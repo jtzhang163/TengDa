@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TengDa.WF.Controls", "TengD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TengDa.Wpf", "TengDa\TengDa.Wpf\TengDa.Wpf.csproj", "{2BC89F9D-8FC7-4E19-9D16-CC66E56E56AE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Outstanding", "Outstanding", "{C3386F66-F346-445B-97B9-F99EAB3A49DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Outstanding.Dispatcher", "Outstanding\Outstanding.Dispatcher\Outstanding.Dispatcher.csproj", "{F13C082C-54A5-411C-A3BC-29315D7FD786}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Outstanding.Dispatcher.App", "Outstanding\Outstanding.Dispatcher.App\Outstanding.Dispatcher.App.csproj", "{DA1FEC99-B530-4BF4-817E-A1C332F9C7B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +41,14 @@ Global
 		{2BC89F9D-8FC7-4E19-9D16-CC66E56E56AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BC89F9D-8FC7-4E19-9D16-CC66E56E56AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BC89F9D-8FC7-4E19-9D16-CC66E56E56AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F13C082C-54A5-411C-A3BC-29315D7FD786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F13C082C-54A5-411C-A3BC-29315D7FD786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F13C082C-54A5-411C-A3BC-29315D7FD786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F13C082C-54A5-411C-A3BC-29315D7FD786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA1FEC99-B530-4BF4-817E-A1C332F9C7B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA1FEC99-B530-4BF4-817E-A1C332F9C7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA1FEC99-B530-4BF4-817E-A1C332F9C7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA1FEC99-B530-4BF4-817E-A1C332F9C7B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +58,8 @@ Global
 		{DFD6CB8D-D1FD-4712-8C4E-C611BBE12D08} = {574B94A2-ECAB-4CE8-A86F-1C2FE2B1DCC6}
 		{D420804D-CABE-4221-93F1-E67F7526E331} = {574B94A2-ECAB-4CE8-A86F-1C2FE2B1DCC6}
 		{2BC89F9D-8FC7-4E19-9D16-CC66E56E56AE} = {574B94A2-ECAB-4CE8-A86F-1C2FE2B1DCC6}
+		{F13C082C-54A5-411C-A3BC-29315D7FD786} = {C3386F66-F346-445B-97B9-F99EAB3A49DC}
+		{DA1FEC99-B530-4BF4-817E-A1C332F9C7B7} = {C3386F66-F346-445B-97B9-F99EAB3A49DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D76A61D6-AF5A-4717-9128-A3189C7723F4}
