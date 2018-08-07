@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="Zopoise.Scada.App.View.StatusBarUC"
+﻿<UserControl x:Class="Tafel.Hipot.App.View.StatusBarUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Zopoise.Scada.App.View"
-             xmlns:MainWin="clr-namespace:Zopoise.Scada.App"
+             xmlns:local="clr-namespace:Tafel.Hipot.App.View"
+             xmlns:MainWin="clr-namespace:Tafel.Hipot.App"
              xmlns:Fluent="urn:fluent-ribbon"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">

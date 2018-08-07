@@ -1,18 +1,18 @@
 ﻿<Fluent:RibbonWindow
-        x:Class="Zopoise.Scada.App.MainWindow"
+        x:Class="Tafel.Hipot.App.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Fluent="urn:fluent-ribbon"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        xmlns:local="clr-namespace:Zopoise.Scada.App"
-        xmlns:view="clr-namespace:Zopoise.Scada.App.View"
+        xmlns:local="clr-namespace:Tafel.Hipot.App"
+        xmlns:view="clr-namespace:Tafel.Hipot.App.View"
         xmlns:vsm="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:controlsPrimitives="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
         xmlns:wpf="clr-namespace:TengDa.Wpf;assembly=TengDa.Wpf"
         xmlns:d3="clr-namespace:InteractiveDataDisplay.WPF;assembly=InteractiveDataDisplay.WPF"
-        xmlns:utils="clr-namespace:Zopoise.Scada.App.Utilities"
+        xmlns:utils="clr-namespace:Tafel.Hipot.App.Utilities"
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="{Binding AppName}" Height="350" Width="525" Foreground="#2b579a">
@@ -35,8 +35,6 @@
         <ObjectDataProvider x:Key="testers" ObjectType="local:AppViewModel" MethodName="GetTesters"/>
 
         <local:VisibilityToCheckedConverter x:Key="VisibilityToCheckedConverter"/>
-
-        <utils:CurrentTypeConverter x:Key="currentTypeConverter"/>
         <utils:RunStatusConverter x:Key="runStatusConverter"/>
         <utils:GraphShowModeConverter x:Key="graphShowModeConverter"/>
         <utils:GraphShowModeToBoolConverter x:Key="graphShowModeToBoolConverter"/>
@@ -125,8 +123,7 @@
                         <Label Content="{Binding CurrentsString}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
                         <Label Content="电压：" VerticalAlignment="Center"  Foreground="#2b579a"/>
                         <Label Content="{Binding Voltage}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
-                        <Label Content="类型：" VerticalAlignment="Center"  Foreground="#2b579a"/>
-                        <Label Content="{Binding CurrentType, Converter={StaticResource currentTypeConverter}}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
+
                     </WrapPanel>
                 </Fluent:RibbonGroupBox>
 

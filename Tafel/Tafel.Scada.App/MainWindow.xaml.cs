@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using TengDa.Wpf;
 
-namespace Zopoise.Scada.App
+namespace Tafel.Hipot.App
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
@@ -21,7 +21,6 @@ namespace Zopoise.Scada.App
 
         public MainWindow()
         {
-
             #region 检查程序是否重复启动
             if (Current.AppIsRun)
             {
@@ -86,7 +85,7 @@ namespace Zopoise.Scada.App
             //数据库初始化
             using (var data = new UserContext())
             {
-                foreach (var ug in data.UserGroups)
+                foreach (var ug in data.Roles)
                 {
                     Console.WriteLine("{0} ", ug.Name);
                 }
@@ -140,7 +139,7 @@ namespace Zopoise.Scada.App
 
         private void OnQueryCVLog(object sender, ExecutedRoutedEventArgs e)
         {
-            var uc = new QueryCVLogUC()
+            var uc = new QueryIDLogUC()
             {
 
             };
@@ -274,44 +273,44 @@ namespace Zopoise.Scada.App
 
         private void BtnShowHistoryData_Click(object sender, RoutedEventArgs e)
         {
-            using (var data = new CurrentVoltageDataContext())
-            {
-                var CurrentVoltageDatas = data.CurrentVoltageDatas.Where(d => d.RecordTime > StartDateTimePicker.Value && d.RecordTime < StopDateTimePicker.Value).ToList();
-                if (CurrentVoltageDatas.Count < 1)
-                {
-                    AppCurrent.AppViewModel.ShowTips("该时间范围没数据！");
-                    return;
-                }
+            //using (var data = new CurrentVoltageDataContext())
+            //{
+            //    var CurrentVoltageDatas = data.CurrentVoltageDatas.Where(d => d.RecordTime > StartDateTimePicker.Value && d.RecordTime < StopDateTimePicker.Value).ToList();
+            //    if (CurrentVoltageDatas.Count < 1)
+            //    {
+            //        AppCurrent.AppViewModel.ShowTips("该时间范围没数据！");
+            //        return;
+            //    }
 
 
-                ShowDataOrder.Clear();
-                ShowVoltageData.Clear();
-                for (int i = 0; i < 1; i++)
-                {
-                    ShowCurrentsData[i] = new List<double>();
-                }
+            //    ShowDataOrder.Clear();
+            //    ShowVoltageData.Clear();
+            //    for (int i = 0; i < 1; i++)
+            //    {
+            //        ShowCurrentsData[i] = new List<double>();
+            //    }
 
-                int order = 1;
-                foreach (var cvData in CurrentVoltageDatas)
-                {
-                    ShowDataOrder.Add(order++);
-                    ShowVoltageData.Add(cvData.Voltage);
-                    for (int i = 0; i < 1; i++)
-                    {
-                        ShowCurrentsData[i].Add(cvData.Currents[i]);
-                    }
-                }
+            //    int order = 1;
+            //    foreach (var cvData in CurrentVoltageDatas)
+            //    {
+            //        ShowDataOrder.Add(order++);
+            //        ShowVoltageData.Add(cvData.Voltage);
+            //        for (int i = 0; i < 1; i++)
+            //        {
+            //            ShowCurrentsData[i].Add(cvData.Currents[i]);
+            //        }
+            //    }
 
-            }
+            //}
 
-            for (int i = 0; i < 1; i++)
-            {
-                var lgCurrents = (LineGraph)linesCurrents.Children[i];
-                lgCurrents.Plot(ShowDataOrder, ShowCurrentsData[i]);
-            }
+            //for (int i = 0; i < 1; i++)
+            //{
+            //    var lgCurrents = (LineGraph)linesCurrents.Children[i];
+            //    lgCurrents.Plot(ShowDataOrder, ShowCurrentsData[i]);
+            //}
 
-            var lgCurrent = (LineGraph)linesVoltage.Children[0];
-            lgCurrent.Plot(ShowDataOrder, ShowVoltageData);
+            //var lgCurrent = (LineGraph)linesVoltage.Children[0];
+            //lgCurrent.Plot(ShowDataOrder, ShowVoltageData);
         }
 
         #endregion

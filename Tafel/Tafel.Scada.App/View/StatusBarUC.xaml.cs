@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Zopoise.Scada.App.View
+namespace Tafel.Hipot.App.View
 {
     /// <summary>
     /// StatusBarUC.xaml 的交互逻辑

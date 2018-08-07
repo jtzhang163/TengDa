@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO.Ports;
 
-namespace Zopoise.Scada.App
+namespace Tafel.Hipot.App
 {
     /// <summary>
     /// 通信控制
@@ -13,42 +13,24 @@ namespace Zopoise.Scada.App
         /// </summary>
         public static bool CommunicateStart()
         {
-            if (AppCurrent.Plc.IsEnable)
-            {
-                if (!AppCurrent.Plc.IsPingSuccess)
-                {
-                    AppCurrent.AppViewModel.ShowTips("无法连接到PLC：" + AppCurrent.Plc.IP);
-                    return false;
-                }
-
-                string msg = string.Empty;
-                if (!AppCurrent.Plc.TcpConnect(out msg))
-                {
-                    AppCurrent.AppViewModel.ShowTips(msg);
-                    return false;
-                }
-            }
-
-            AppCurrent.AppViewModel.ShowTips("连接PLC成功，IP：" + AppCurrent.Plc.IP);
-
-            if (AppCurrent.Communicator.IsEnable)
+            if (AppCurrent.InsulationTester.IsEnable)
             {
 
                 var localPortNames = SerialPort.GetPortNames();
 
-                if (Array.IndexOf(localPortNames, AppCurrent.Communicator.PortName) < 0)
+                if (Array.IndexOf(localPortNames, AppCurrent.InsulationTester.PortName) < 0)
                 {
-                    AppCurrent.AppViewModel.ShowTips("当前PC不存在串口：" + AppCurrent.Communicator.PortName);
+                    AppCurrent.AppViewModel.ShowTips("当前PC不存在串口：" + AppCurrent.InsulationTester.PortName);
                     return false;
                 }
 
                 string msg = string.Empty;
-                if (!AppCurrent.Communicator.Connect(out msg))
+                if (!AppCurrent.InsulationTester.Connect(out msg))
                 {
                     AppCurrent.AppViewModel.ShowTips(msg);
                     return false;
                 }
-                AppCurrent.AppViewModel.ShowTips("连接串口成功：" + AppCurrent.Communicator.PortName);
+                AppCurrent.AppViewModel.ShowTips("连接串口成功：" + AppCurrent.InsulationTester.PortName);
             }
             return true;
         }
@@ -58,31 +40,16 @@ namespace Zopoise.Scada.App
         /// </summary>
         public static bool CommunicateStop()
         {
-
-            if (AppCurrent.Plc.IsEnable)
+            if (AppCurrent.InsulationTester.IsEnable)
             {
                 string msg = string.Empty;
-                if (!AppCurrent.Plc.TcpDisConnect(out msg))
+                if (!AppCurrent.InsulationTester.DisConnect(out msg))
                 {
                     AppCurrent.AppViewModel.ShowTips(msg);
                     return false;
                 }
-                AppCurrent.Plc.AlarmStr = string.Empty;
-            }
-
-            AppCurrent.AppViewModel.ShowTips("关闭和PLC的连接成功，IP：" + AppCurrent.Plc.IP);
-
-            if (AppCurrent.Communicator.IsEnable)
-            {
-
-                string msg = string.Empty;
-                if (!AppCurrent.Communicator.DisConnect(out msg))
-                {
-                    AppCurrent.AppViewModel.ShowTips(msg);
-                    return false;
-                }
-                AppCurrent.Communicator.AlarmStr = string.Empty;
-                AppCurrent.AppViewModel.ShowTips("关闭串口连接成功：" + AppCurrent.Communicator.PortName);
+                AppCurrent.InsulationTester.AlarmStr = string.Empty;
+                AppCurrent.AppViewModel.ShowTips("关闭串口连接成功：" + AppCurrent.InsulationTester.PortName);
             }
             return true;
         }

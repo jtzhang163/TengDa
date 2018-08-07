@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using TengDa;
 using TengDa.Wpf;
 
-namespace Zopoise.Scada.App
+namespace Tafel.Hipot.App
 {
     /// <summary>
     /// 应用程序视图模型

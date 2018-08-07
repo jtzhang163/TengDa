@@ -1,7 +1,7 @@
 ﻿using Fluent;
 using System.Windows;
 
-namespace Zopoise.Scada.App
+namespace Tafel.Hipot.App
 {
     /// <summary>
     /// App.xaml 的交互逻辑

@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using TengDa.Wpf;
 
-namespace Zopoise.Scada.App.View
+namespace Tafel.Hipot.App.View
 {
     /// <summary>
     /// AboutUC.xaml 的交互逻辑

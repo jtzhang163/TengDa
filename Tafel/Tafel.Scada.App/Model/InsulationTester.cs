@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Data.Entity;
 using TengDa.Wpf;
 
-namespace Zopoise.Scada.App
+namespace Tafel.Hipot.App
 {
     /// <summary>
     /// 绝缘电阻测试仪
@@ -19,39 +19,40 @@ namespace Zopoise.Scada.App
         {
             this.Id = Id;
         }
+
+
+        public InsulationData InsulationData = new InsulationData();
+
     }
 
-    public class CommunicatorContext : DbContext
+    public class InsulationContext : DbContext
     {
 
         private static string connectionString = ConfigurationManager.ConnectionStrings["DefaultDatabase"].ToString();
-        public CommunicatorContext() : base(connectionString)
+        public InsulationContext() : base(connectionString)
         {
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<InsulationTester>().Property(c => c.Name).HasMaxLength(50).IsRequired();
-            modelBuilder.Entity<InsulationTester>().Property(c => c.PortName).HasMaxLength(10);
-            modelBuilder.Entity<InsulationTester>().Property(c => c.Company).HasMaxLength(50);
-            modelBuilder.Entity<InsulationTester>().Property(c => c.Location).HasMaxLength(50);
-            modelBuilder.Entity<InsulationTester>().Property(c => c.Number).HasMaxLength(50);
-            modelBuilder.Entity<InsulationTester>().Property(c => c.Model).HasMaxLength(50);
+            modelBuilder.Entity<InsulationTester>().ToTable("t_insulation_tester");
+            modelBuilder.Entity<InsulationDataLog>().ToTable("t_insulation_data_log");
         }
 
-        public DbSet<InsulationTester> Communicators { get; set; }
+        public DbSet<InsulationTester> InsulationTesters { get; set; }
+        public DbSet<InsulationDataLog> InsulationDataLogs { get; set; }
     }
 
-    public class InsulationTesterInitializer : DropCreateDatabaseIfModelChanges<CommunicatorContext>
+    public class InsulationTesterInitializer : DropCreateDatabaseIfModelChanges<InsulationContext>
     {
-        protected override void Seed(CommunicatorContext context)
+        protected override void Seed(InsulationContext context)
         {
-            var communicator = new InsulationTester
+            var tester = new InsulationTester
             {
-                Name = "数据采集器",
+                Name = "绝缘电阻测试仪",
                 Company = "Tengda",
             };
-            context.Communicators.Add(communicator);
+            context.InsulationTesters.Add(tester);
         }
     }
 }

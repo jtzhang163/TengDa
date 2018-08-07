@@ -3,22 +3,8 @@ using System.Globalization;
 using System.Windows.Data;
 using TengDa;
 
-namespace Zopoise.Scada.App.Utilities
+namespace Tafel.Hipot.App.Utilities
 {
-    public class CurrentTypeConverter : IValueConverter
-    {
-        object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            CurrentType currentType = (CurrentType)value;
-            return currentType == CurrentType.AC ? "交流" : "直流";
-            //throw new NotImplementedException();
-        }
-
-        object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
 
     public class RunStatusConverter : IValueConverter
     {

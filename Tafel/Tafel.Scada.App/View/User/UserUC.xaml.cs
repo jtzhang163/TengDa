@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Zopoise.Scada.App.View
+namespace Tafel.Hipot.App.View
 {
     /// <summary>
     /// AboutUC.xaml 的交互逻辑

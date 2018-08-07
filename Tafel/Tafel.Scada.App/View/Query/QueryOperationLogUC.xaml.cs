@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using TengDa.Wpf;
 
-namespace Zopoise.Scada.App
+namespace Tafel.Hipot.App
 {
     /// <summary>
     /// QueryOperationLogUC.xaml 的交互逻辑

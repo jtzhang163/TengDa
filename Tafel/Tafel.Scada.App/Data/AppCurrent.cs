@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Zopoise.Scada.App
+namespace Tafel.Hipot.App
 {
     public static class AppCurrent
     {
@@ -19,12 +19,12 @@ namespace Zopoise.Scada.App
 
                 if (insulationTester.Id < 1)
                 {
-                    insulationTester = AppContext.CommunicatorContext.Communicators.FirstOrDefault() ?? new InsulationTester();
+                    insulationTester = AppContext.InsulationContext.InsulationTesters.FirstOrDefault() ?? new InsulationTester();
                     if (insulationTester.Id < 1)
                     {
-                        AppContext.CommunicatorContext.Communicators.Add(new InsulationTester
+                        AppContext.InsulationContext.InsulationTesters.Add(new InsulationTester
                         {
-                            Name = "通信器",
+                            Name = "绝缘电阻测试仪",
                             Company = "TengDa",
                             IsEnable = true,
                             PortName = "COM1",
@@ -33,7 +33,7 @@ namespace Zopoise.Scada.App
                             Parity = System.IO.Ports.Parity.None,
                             StopBits = System.IO.Ports.StopBits.One
                         });
-                        AppContext.CommunicatorContext.SaveChanges();
+                        AppContext.InsulationContext.SaveChanges();
                     }
                 }
                 return insulationTester;

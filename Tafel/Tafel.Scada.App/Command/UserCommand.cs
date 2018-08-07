@@ -1,4 +1,4 @@
-﻿namespace Zopoise.Scada.App
+﻿namespace Tafel.Hipot.App
 {
     public class UserCommand
     {

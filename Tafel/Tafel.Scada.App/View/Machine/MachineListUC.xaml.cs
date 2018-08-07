@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Controls;
 using TengDa.Wpf;
 
-namespace Zopoise.Scada.App
+namespace Tafel.Hipot.App
 {
     /// <summary>
     /// MachineListUC.xaml 的交互逻辑
@@ -17,15 +17,9 @@ namespace Zopoise.Scada.App
             InitializeComponent();
 
             var machineTrees = new List<MachineTree>
-      {
-        new MachineTree() { Id = 1, Name = AppCurrent.Plc.Name, ParentId = 0 ,IsChecked = AppCurrent.Plc.IsEnable},
-        new MachineTree() { Id = 2, Name = AppCurrent.Communicator.Name, ParentId = 0 ,IsChecked = AppCurrent.Communicator.IsEnable},
-        new MachineTree() { Id = 3, Name = "工装板", ParentId = 0,IsChecked = AppCurrent.Testers.Count(t=>t.IsEnable) == Tester.TesterCount }
-      };
-            AppCurrent.Testers.ForEach(t =>
             {
-                machineTrees.Add(new MachineTree() { Id = t.Id + 3, Name = t.Name, ParentId = 3, IsChecked = t.IsEnable });
-            });
+                new MachineTree() { Id = 1, Name = AppCurrent.InsulationTester.Name, ParentId = 0 ,IsChecked = AppCurrent.InsulationTester.IsEnable},
+            };
 
             this.SetItemsSourceData(machineTrees, m => m.Name, m => m.Id, m => m.ParentId, m => m.IsChecked);
         }
@@ -141,36 +135,15 @@ namespace Zopoise.Scada.App
                 if (Current.IsTerminalInitFinished)
                 {
 
-
-
                     //**************改变设备启用状态 Start***********************
-                    if (Caption == AppCurrent.Plc.Name)
+                    if (Caption == AppCurrent.InsulationTester.Name)
                     {
-                        AppCurrent.Plc.IsEnable = value;
-                        AppContext.PlcContext.SaveChanges();
+                        AppCurrent.InsulationTester.IsEnable = value;
+                        AppContext.InsulationContext.SaveChangesAsync();
                     }
-                    else if (Caption == AppCurrent.Communicator.Name)
-                    {
-                        AppCurrent.Communicator.IsEnable = value;
-                        AppContext.CommunicatorContext.SaveChangesAsync();
-                    }
-                    else if (Caption == "工装板")
-                    {
-                        AppCurrent.Testers.ForEach(t => t.IsEnable = value);
-                        AppContext.TesterContext.SaveChangesAsync();
-                    }
-                    else
-                    {
-                        var tester = AppCurrent.Testers.FirstOrDefault(t => t.Name == Caption);
-                        if (tester != null)
-                        {
-                            tester.IsEnable = value;
-                            AppContext.TesterContext.SaveChangesAsync();
-                        }
-                    }
+                    //**************改变设备启用状态 Finished********************
 
                 }
-                //**************改变设备启用状态 Finished***********************
             }
         }
 

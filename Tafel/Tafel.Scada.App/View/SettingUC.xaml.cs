@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Zopoise.Scada.App.View
+namespace Tafel.Hipot.App.View
 {
     /// <summary>
     /// AboutUC.xaml 的交互逻辑
@@ -19,13 +19,7 @@ namespace Zopoise.Scada.App.View
 
             ObjectTreeView.Items.Add(new TreeViewItem() { Header = "基本配置", Name = "AppOption" });
 
-            ObjectTreeView.Items.Add(new TreeViewItem() { Header = AppCurrent.Plc.Name, Name = AppCurrent.Plc.Name });
-
-            ObjectTreeView.Items.Add(new TreeViewItem() { Header = AppCurrent.Communicator.Name, Name = AppCurrent.Communicator.Name });
-
-            var TreeViewCommunicator = new TreeViewItem() { Header = "工装板", Name = "工装板", IsExpanded = true };
-            AppCurrent.Testers.ForEach(t => TreeViewCommunicator.Items.Add(new TreeViewItem() { Header = t.Name, Name = t.Name }));
-            ObjectTreeView.Items.Add(TreeViewCommunicator);
+            ObjectTreeView.Items.Add(new TreeViewItem() { Header = AppCurrent.InsulationTester.Name, Name = AppCurrent.InsulationTester.Name });
 
         }
 
@@ -43,31 +37,20 @@ namespace Zopoise.Scada.App.View
             {
                 ObjPropertySetter.SelectedObject = AppCurrent.Option;
             }
-            else if (name == AppCurrent.Plc.Name)
+            else if (name == AppCurrent.InsulationTester.Name)
             {
-                ObjPropertySetter.SelectedObject = AppCurrent.Plc;
-            }
-            else if (name == AppCurrent.Communicator.Name)
-            {
-                ObjPropertySetter.SelectedObject = AppCurrent.Communicator;
+                ObjPropertySetter.SelectedObject = AppCurrent.InsulationTester;
             }
             else
             {
 
-                var tester = AppCurrent.Testers.FirstOrDefault(t => t.Name == name);
-                if (tester != null)
-                {
-                    ObjPropertySetter.SelectedObject = AppCurrent.Testers.FirstOrDefault(t => t.Name == name);
-                }
             }
 
         }
 
         private void ObjPropertySetter_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            AppContext.PlcContext.SaveChanges();
-            AppContext.CommunicatorContext.SaveChanges();
-            AppContext.TesterContext.SaveChanges();
+            AppContext.InsulationContext.SaveChanges();
         }
     }
 }

@@ -147,13 +147,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Base\AppContext.cs" />
-    <Compile Include="Base\AppCurrent.cs" />
-    <Compile Include="Base\AppDbInitializer.cs" />
-    <Compile Include="Base\AppOption.cs" />
-    <Compile Include="Base\Enumeration.cs" />
+    <Compile Include="Data\AppContext.cs" />
+    <Compile Include="Data\AppCurrent.cs" />
+    <Compile Include="Data\AppDbInitializer.cs" />
+    <Compile Include="Data\AppOption.cs" />
+    <Compile Include="Data\Enumeration.cs" />
     <Compile Include="Command\QueryCommand.cs" />
     <Compile Include="Command\UserCommand.cs" />
+    <Compile Include="Model\InsulationData.cs" />
     <Compile Include="View\User\UserSettingWindow.xaml.cs">
       <DependentUpon>UserSettingWindow.xaml</DependentUpon>
     </Compile>
@@ -161,17 +162,16 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\InsulationTester.cs" />
-    <Compile Include="Model\CurrentVoltageData.cs" />
     <Compile Include="Run\CommunicateControl.cs" />
     <Compile Include="Run\TimerRun.cs" />
     <Compile Include="Utilities\Converter.cs" />
     <Compile Include="ViewModel\AppViewModel.cs" />
-    <Compile Include="ViewModel\UserCVDataViewModel.cs" />
+    <Compile Include="ViewModel\UserIDLogViewModel.cs" />
     <Compile Include="View\Machine\MachineListUC.xaml.cs">
       <DependentUpon>MachineListUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Query\QueryCVLogUC.xaml.cs">
-      <DependentUpon>QueryCVLogUC.xaml</DependentUpon>
+    <Compile Include="View\Query\QueryIDLogUC.xaml.cs">
+      <DependentUpon>QueryIDLogUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Query\QueryOperationLogUC.xaml.cs">
       <DependentUpon>QueryOperationLogUC.xaml</DependentUpon>
@@ -218,7 +218,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Query\QueryCVLogUC.xaml">
+    <Page Include="View\Query\QueryIDLogUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

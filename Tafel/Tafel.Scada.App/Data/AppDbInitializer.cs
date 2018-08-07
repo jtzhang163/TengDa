@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using TengDa.Wpf;
 
-namespace Zopoise.Scada.App
+namespace Tafel.Hipot.App
 {
     public class AppDbInitializer : DbInitializer
     {
