@@ -1,65 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TengDa.Wpf;
 
 namespace Zopoise.Scada.App
 {
-  /// <summary>
-  /// LoginWindow.xaml 的交互逻辑
-  /// </summary>
-  public partial class UserSettingWindow : Window
-  {
-    public UserSettingWindow()
+    /// <summary>
+    /// LoginWindow.xaml 的交互逻辑
+    /// </summary>
+    public partial class UserSettingWindow : Window
     {
-      InitializeComponent();
-      this.DataContext = AppCurrent.AppViewModel;
-      myMediaTimeline.Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + "Videos/LoginHead.mp4");
-    }
-    private void OnLogin(object sender, ExecutedRoutedEventArgs e)
-    {
-      if (UserViewModel.Login(this.LoginUserNameCombobox.Text, this.LoginUserPasswordBox.Password))
-      {
-
-        //Tip.Alert("成功登录");
-        AppCurrent.AppViewModel.UserName = Current.User.Name;
-        AppCurrent.AppViewModel.UserGroupName = Current.UserGroup.Name;
-        AppCurrent.AppViewModel.UserProfilePicture = Current.User.ProfilePicture;
-        AppCurrent.AppViewModel.UserNumber = Current.User.Number;
-        AppCurrent.AppViewModel.UserPhoneNumber = Current.User.PhoneNumber;
-        AppCurrent.AppViewModel.UserEmail = Current.User.Email;
-
-        AppCurrent.AppViewModel.CurrentUserNameTip = Current.User.Name;
-        AppCurrent.AppViewModel.ShowTips(Current.User.Name + "成功登录");
-
-        btnLogin.Content = "正在登录...";
-
-        Thread t = new Thread(() =>
+        public UserSettingWindow()
         {
-          Thread.Sleep(2000);
-          Dispatcher.Invoke(new Action(() =>
-          {
-            //登录成功，关闭窗口
-            this.Close();
-            AppCurrent.AppViewModel.IsLogin = true;
-            AppCurrent.AppViewModel.MainWindowsBackstageIsOpen = false;
-          }));
-        });
-        t.Start();
+            InitializeComponent();
+            this.DataContext = AppCurrent.AppViewModel;
+            myMediaTimeline.Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + "Videos/LoginHead.mp4");
+        }
+        private void OnLogin(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (UserViewModel.Login(this.LoginUserNameCombobox.Text, this.LoginUserPasswordBox.Password))
+            {
 
-      }
+                //Tip.Alert("成功登录");
+                AppCurrent.AppViewModel.UserName = Current.User.Name;
+                AppCurrent.AppViewModel.UserGroupName = Current.UserGroup.Name;
+                AppCurrent.AppViewModel.UserProfilePicture = Current.User.ProfilePicture;
+                AppCurrent.AppViewModel.UserNumber = Current.User.Number;
+                AppCurrent.AppViewModel.UserPhoneNumber = Current.User.PhoneNumber;
+                AppCurrent.AppViewModel.UserEmail = Current.User.Email;
+
+                AppCurrent.AppViewModel.CurrentUserNameTip = Current.User.Name;
+                AppCurrent.AppViewModel.ShowTips(Current.User.Name + "成功登录");
+
+                btnLogin.Content = "正在登录...";
+
+                Thread t = new Thread(() =>
+                {
+                    Thread.Sleep(2000);
+                    Dispatcher.Invoke(new Action(() =>
+                    {
+                        //登录成功，关闭窗口
+                        this.Close();
+                        AppCurrent.AppViewModel.IsLogin = true;
+                        AppCurrent.AppViewModel.MainWindowsBackstageIsOpen = false;
+                    }));
+                });
+                t.Start();
+
+            }
+        }
     }
-  }
 }
