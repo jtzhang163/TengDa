@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceAPI" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://192.168.3.120:8033/ServiceAPI.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://192.168.3.120:8033/ServiceAPI.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.168.3.120:8033/ServiceAPI.svc?xsd=xsd2" />
+      <xsd:import schemaLocation="http://192.168.3.120:8033/ServiceAPI.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceAPI_DoWork_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoWork" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_DoWork_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_RunServerAPI_InputMessage">
+    <wsdl:part name="parameters" element="tns:RunServerAPI" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_RunServerAPI_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RunServerAPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_RunServerAPI2_InputMessage">
+    <wsdl:part name="parameters" element="tns:RunServerAPI2" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_RunServerAPI2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RunServerAPI2Response" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_CheckSFC_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckSFC" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_CheckSFC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckSFCResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Test_InputMessage">
+    <wsdl:part name="parameters" element="tns:Test" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Test_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetWorkOrderInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkOrderInfo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetWorkOrderInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkOrderInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetEmployeeInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeInfo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetEmployeeInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetProductInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductInfo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetProductInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetBomInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBomInfo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetBomInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBomInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetOrderDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderDetail" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetOrderDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_InsertSFC_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSFC" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_InsertSFC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertSFCResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetSeptInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeptInfo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetSeptInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeptInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetProcessList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProcessList" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetProcessList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProcessListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetStationList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStationList" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetStationList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStationListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_InserOCV_InputMessage">
+    <wsdl:part name="parameters" element="tns:InserOCV" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_InserOCV_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InserOCVResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_InserPinData_InputMessage">
+    <wsdl:part name="parameters" element="tns:InserPinData" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_InserPinData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InserPinDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_InserTighten_InputMessage">
+    <wsdl:part name="parameters" element="tns:InserTighten" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_InserTighten_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InserTightenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Check_User_InputMessage">
+    <wsdl:part name="parameters" element="tns:Check_User" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Check_User_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Check_UserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Check_Material_InputMessage">
+    <wsdl:part name="parameters" element="tns:Check_Material" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Check_Material_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Check_MaterialResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Check_SFC_InputMessage">
+    <wsdl:part name="parameters" element="tns:Check_SFC" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Check_SFC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Check_SFCResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Insert_MachineNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Insert_MachineNo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Insert_MachineNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Insert_MachineNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Get_ProcessInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get_ProcessInfo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Get_ProcessInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Get_ProcessInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Get_StationInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get_StationInfo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Get_StationInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Get_StationInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetTrayInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrayInfo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetTrayInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrayInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Inject_InputMessage">
+    <wsdl:part name="parameters" element="tns:Inject" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_Inject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetStepData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStepData" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetStepData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStepDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetMachineState_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMachineState" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_GetMachineState_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMachineStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_SetTrayInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetTrayInfo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAPI_SetTrayInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetTrayInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceAPI">
+    <wsdl:operation name="DoWork">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/DoWork" message="tns:IServiceAPI_DoWork_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/DoWorkResponse" message="tns:IServiceAPI_DoWork_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RunServerAPI">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/RunServerAPI" message="tns:IServiceAPI_RunServerAPI_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/RunServerAPIResponse" message="tns:IServiceAPI_RunServerAPI_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RunServerAPI2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/RunServerAPI2" message="tns:IServiceAPI_RunServerAPI2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/RunServerAPI2Response" message="tns:IServiceAPI_RunServerAPI2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSFC">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/CheckSFC" message="tns:IServiceAPI_CheckSFC_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/CheckSFCResponse" message="tns:IServiceAPI_CheckSFC_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/Login" message="tns:IServiceAPI_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/LoginResponse" message="tns:IServiceAPI_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/Test" message="tns:IServiceAPI_Test_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/TestResponse" message="tns:IServiceAPI_Test_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkOrderInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/GetWorkOrderInfo" message="tns:IServiceAPI_GetWorkOrderInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/GetWorkOrderInfoResponse" message="tns:IServiceAPI_GetWorkOrderInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/GetEmployeeInfo" message="tns:IServiceAPI_GetEmployeeInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/GetEmployeeInfoResponse" message="tns:IServiceAPI_GetEmployeeInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/GetProductInfo" message="tns:IServiceAPI_GetProductInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/GetProductInfoResponse" message="tns:IServiceAPI_GetProductInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBomInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/GetBomInfo" message="tns:IServiceAPI_GetBomInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/GetBomInfoResponse" message="tns:IServiceAPI_GetBomInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/GetOrderDetail" message="tns:IServiceAPI_GetOrderDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/GetOrderDetailResponse" message="tns:IServiceAPI_GetOrderDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertSFC">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/InsertSFC" message="tns:IServiceAPI_InsertSFC_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/InsertSFCResponse" message="tns:IServiceAPI_InsertSFC_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeptInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/GetSeptInfo" message="tns:IServiceAPI_GetSeptInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/GetSeptInfoResponse" message="tns:IServiceAPI_GetSeptInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/GetProcessList" message="tns:IServiceAPI_GetProcessList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/GetProcessListResponse" message="tns:IServiceAPI_GetProcessList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStationList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/GetStationList" message="tns:IServiceAPI_GetStationList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/GetStationListResponse" message="tns:IServiceAPI_GetStationList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InserOCV">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/InserOCV" message="tns:IServiceAPI_InserOCV_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/InserOCVResponse" message="tns:IServiceAPI_InserOCV_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InserPinData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/InserPinData" message="tns:IServiceAPI_InserPinData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/InserPinDataResponse" message="tns:IServiceAPI_InserPinData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InserTighten">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/InserTighten" message="tns:IServiceAPI_InserTighten_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/InserTightenResponse" message="tns:IServiceAPI_InserTighten_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Check_User">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/Check_User" message="tns:IServiceAPI_Check_User_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/Check_UserResponse" message="tns:IServiceAPI_Check_User_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Check_Material">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/Check_Material" message="tns:IServiceAPI_Check_Material_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/Check_MaterialResponse" message="tns:IServiceAPI_Check_Material_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Check_SFC">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/Check_SFC" message="tns:IServiceAPI_Check_SFC_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/Check_SFCResponse" message="tns:IServiceAPI_Check_SFC_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_MachineNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/Insert_MachineNo" message="tns:IServiceAPI_Insert_MachineNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/Insert_MachineNoResponse" message="tns:IServiceAPI_Insert_MachineNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_ProcessInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/Get_ProcessInfo" message="tns:IServiceAPI_Get_ProcessInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/Get_ProcessInfoResponse" message="tns:IServiceAPI_Get_ProcessInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_StationInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/Get_StationInfo" message="tns:IServiceAPI_Get_StationInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/Get_StationInfoResponse" message="tns:IServiceAPI_Get_StationInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrayInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/GetTrayInfo" message="tns:IServiceAPI_GetTrayInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/GetTrayInfoResponse" message="tns:IServiceAPI_GetTrayInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Inject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/Inject" message="tns:IServiceAPI_Inject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/InjectResponse" message="tns:IServiceAPI_Inject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStepData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/GetStepData" message="tns:IServiceAPI_GetStepData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/GetStepDataResponse" message="tns:IServiceAPI_GetStepData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMachineState">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/GetMachineState" message="tns:IServiceAPI_GetMachineState_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/GetMachineStateResponse" message="tns:IServiceAPI_GetMachineState_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTrayInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAPI/SetTrayInfo" message="tns:IServiceAPI_SetTrayInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAPI/SetTrayInfoResponse" message="tns:IServiceAPI_SetTrayInfo_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServiceAPI" type="tns:IServiceAPI">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoWork">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/DoWork" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunServerAPI">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/RunServerAPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunServerAPI2">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/RunServerAPI2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSFC">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/CheckSFC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/Test" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkOrderInfo">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/GetWorkOrderInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeInfo">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/GetEmployeeInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductInfo">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/GetProductInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBomInfo">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/GetBomInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderDetail">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/GetOrderDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertSFC">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/InsertSFC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeptInfo">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/GetSeptInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessList">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/GetProcessList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStationList">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/GetStationList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InserOCV">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/InserOCV" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InserPinData">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/InserPinData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InserTighten">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/InserTighten" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Check_User">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/Check_User" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Check_Material">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/Check_Material" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Check_SFC">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/Check_SFC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_MachineNo">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/Insert_MachineNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_ProcessInfo">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/Get_ProcessInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_StationInfo">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/Get_StationInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrayInfo">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/GetTrayInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inject">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/Inject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStepData">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/GetStepData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMachineState">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/GetMachineState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTrayInfo">
+      <soap:operation soapAction="http://tempuri.org/IServiceAPI/SetTrayInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceAPI">
+    <wsdl:port name="BasicHttpBinding_IServiceAPI" binding="tns:BasicHttpBinding_IServiceAPI">
+      <soap:address location="http://192.168.3.120:8033/ServiceAPI.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

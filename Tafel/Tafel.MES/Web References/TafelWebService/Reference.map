@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://192.168.3.120:8033/ServiceAPI.svc?wsdl" filename="ServiceAPI.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://192.168.3.120:8033/ServiceAPI.svc?xsd=xsd3" filename="ServiceAPI.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://192.168.3.120:8033/ServiceAPI.svc?xsd=xsd2" filename="ServiceAPI0.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://192.168.3.120:8033/ServiceAPI.svc?xsd=xsd1" filename="ServiceAPI1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://192.168.3.120:8033/ServiceAPI.svc?xsd=xsd0" filename="ServiceAPI2.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>
