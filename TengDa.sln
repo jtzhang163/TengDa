@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Veken.Baking", "Veken\Veken
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Veken.Baking.App", "Veken\Veken.Baking.App\Veken.Baking.App.csproj", "{2BB15E13-3B72-4759-93AF-02735582C5F8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Zopoise", "Zopoise", "{C663D9E5-CC42-477E-87DD-BCB1D1C7C71F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zopoise.Scada.App", "Zopoise\Zopoise.Scada.App\Zopoise.Scada.App.csproj", "{C4DE02E5-EAF6-4EFE-A8AD-867C06A580A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,10 @@ Global
 		{2BB15E13-3B72-4759-93AF-02735582C5F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BB15E13-3B72-4759-93AF-02735582C5F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BB15E13-3B72-4759-93AF-02735582C5F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4DE02E5-EAF6-4EFE-A8AD-867C06A580A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4DE02E5-EAF6-4EFE-A8AD-867C06A580A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4DE02E5-EAF6-4EFE-A8AD-867C06A580A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4DE02E5-EAF6-4EFE-A8AD-867C06A580A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +100,7 @@ Global
 		{12F66392-C6BD-483A-8708-2B7C472A04A5} = {E42CFF92-DBBE-425F-B5FE-9EBE45028D64}
 		{A605A8DF-272C-4989-9BF6-E438FB895D78} = {1B2EB7D9-3EEC-4B4A-BC08-FD4BD0561E5D}
 		{2BB15E13-3B72-4759-93AF-02735582C5F8} = {1B2EB7D9-3EEC-4B4A-BC08-FD4BD0561E5D}
+		{C4DE02E5-EAF6-4EFE-A8AD-867C06A580A8} = {C663D9E5-CC42-477E-87DD-BCB1D1C7C71F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D76A61D6-AF5A-4717-9128-A3189C7723F4}

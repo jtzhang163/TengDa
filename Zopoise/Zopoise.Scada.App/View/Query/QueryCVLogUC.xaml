@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Zopoise.Scada.App.QueryCVLogUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Zopoise.Scada.App"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="600">
+    <UserControl.Resources>
+
+        <!--圆角button-->
+        <Style x:Key="chamferButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5" Name="PART_Background">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#6DBDC6" Offset="0.0" />
+                                    <GradientStop Color="#6DBDC6" Offset="0.0" />
+                                    <GradientStop Color="#6DBDC6" Offset="0.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid>
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Top" Margin="10,10,10,0">
+                <Button DockPanel.Dock="Right" Width="60" Content="导 出" Height="25" Click="BtnExport_Click" Style="{StaticResource chamferButton}" Foreground="White"/>
+                <StackPanel Orientation="Horizontal" Height="25">
+                    <Label Content="起始时间："/>
+                    <xctk:DateTimePicker x:Name="StartDateTimePicker"/>
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <Label Content="结束时间："/>
+                    <xctk:DateTimePicker x:Name="StopDateTimePicker"/>
+                    <Separator Width="100" Visibility="Hidden"/>
+                    <Button  Width="60" Content="查 询" Height="25" Click="BtnQuery_Click" Style="{StaticResource chamferButton}" Foreground="White"/>
+                    <Separator Width="100" Visibility="Hidden"/>
+                </StackPanel>
+            </DockPanel>
+            
+            <!--AutoGeneratingColumn="ResultDataGrid_AutoGeneratingColumn"-->
+            <DataGrid x:Name="ResultDataGrid" Margin="10" ItemsSource="{Binding}" IsReadOnly="True" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding UserName}" Header="用户名称" Width="3*"/>
+                    <DataGridTextColumn Binding="{Binding TesterName}" Header="工装板名称" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding Voltage}" Header="电压" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding Current1}" Header="电流1" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding Current2}" Header="电流2" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding Current3}" Header="电流3" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding Current4}" Header="电流4" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding Current5}" Header="电流5" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding Current6}" Header="电流6" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding CurrentType}" Header="电流类型" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding RecordTime,StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}" Header="操作时间" Width="3*"/>
+                </DataGrid.Columns>
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Background" Value="#6DBDC6"/>
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Height" Value="25" />
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+            </DataGrid>
+        </DockPanel>
+    </Grid>
+</UserControl>
