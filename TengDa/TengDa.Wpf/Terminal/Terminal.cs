@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace TengDa.Wpf
 {
@@ -9,30 +10,36 @@ namespace TengDa.Wpf
         /// 名称
         /// </summary>
         [DisplayName("名称"), Category("基本信息")]
+        [MaxLength(50)]
+        [Required]
         public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// 生产厂商
         /// </summary>
         [DisplayName("生产厂商"), Category("基本信息")]
+        [MaxLength(50)]
         public string Company { get; set; } = string.Empty;
 
         /// <summary>
         /// 型号
         /// </summary>
         [DisplayName("型号"), Category("基本信息")]
+        [MaxLength(50)]
         public string Model { get; set; } = string.Empty;
 
         /// <summary>
         /// 资源号/编号
         /// </summary>
         [DisplayName("资源号/编号"), Category("基本信息")]
+        [MaxLength(50)]
         public string Number { get; set; } = string.Empty;
 
         /// <summary>
         /// 所在位置
         /// </summary>
         [DisplayName("所在位置"), Category("基本信息")]
+        [MaxLength(50)]
         public string Location { get; set; } = string.Empty;
 
         /// <summary>

@@ -31,11 +31,7 @@ namespace Zopoise.Scada.App
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Plc>().Property(p => p.Name).HasMaxLength(50).IsRequired();
-            modelBuilder.Entity<Plc>().Property(p => p.Company).HasMaxLength(50);
-            modelBuilder.Entity<Plc>().Property(p => p.Location).HasMaxLength(50);
-            modelBuilder.Entity<Plc>().Property(p => p.Number).HasMaxLength(50);
-            modelBuilder.Entity<Plc>().Property(p => p.Model).HasMaxLength(50);
+            modelBuilder.Entity<Plc>().ToTable("t_plc");
         }
 
         public DbSet<Plc> Plcs { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
@@ -13,16 +14,21 @@ namespace TengDa.Wpf
         /// <summary>
         /// 键名
         /// </summary>
+        [Required]
+        [MaxLength(50)]
         public string Key { get; set; }
 
         /// <summary>
         /// 值
         /// </summary>
+        [Required]
+        [MaxLength(50)]
         public string Value { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
+        [MaxLength(100)]
         public string Remark { get; set; }
 
         public Option()
@@ -85,9 +91,7 @@ namespace TengDa.Wpf
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Option>().Property(o => o.Key).HasMaxLength(50).IsRequired();
-            modelBuilder.Entity<Option>().Property(o => o.Value).HasMaxLength(50).IsRequired();
-            modelBuilder.Entity<Option>().Property(o => o.Remark).HasMaxLength(50);
+            modelBuilder.Entity<Option>().ToTable("t_option");
         }
         public DbSet<Option> Options { get; set; }
     }
@@ -97,10 +101,10 @@ namespace TengDa.Wpf
         protected override void Seed(OptionContext context)
         {
             var options = new List<Option>()
-              {
+            {
                 new Option("AppName","XXXXXX系统","应用程序名称"),
                 new Option("RememberUserId","1")
-              };
+            };
             options.ForEach(o => context.Options.Add(o));
         }
     }

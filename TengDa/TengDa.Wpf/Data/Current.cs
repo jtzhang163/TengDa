@@ -58,7 +58,7 @@ namespace TengDa.Wpf
 
         public static List<User> Users => Context.UserContext.Users.ToList();
 
-        public static List<Role> UserGroups => Context.UserContext.Roles.ToList();
+        public static List<Role> Roles => Context.UserContext.Roles.ToList();
 
         public static List<Operation> Operations => Context.OperationContext.Operations.ToList();
 

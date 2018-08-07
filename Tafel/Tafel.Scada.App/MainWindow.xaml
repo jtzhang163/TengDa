@@ -1,0 +1,281 @@
+﻿<Fluent:RibbonWindow
+        x:Class="Zopoise.Scada.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Fluent="urn:fluent-ribbon"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:Zopoise.Scada.App"
+        xmlns:view="clr-namespace:Zopoise.Scada.App.View"
+        xmlns:vsm="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:controlsPrimitives="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
+        xmlns:wpf="clr-namespace:TengDa.Wpf;assembly=TengDa.Wpf"
+        xmlns:d3="clr-namespace:InteractiveDataDisplay.WPF;assembly=InteractiveDataDisplay.WPF"
+        xmlns:utils="clr-namespace:Zopoise.Scada.App.Utilities"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="{Binding AppName}" Height="350" Width="525" Foreground="#2b579a">
+    <Fluent:RibbonWindow.CommandBindings>
+        <CommandBinding Command="Close" Executed="OnClose"/>
+        <CommandBinding Command="local:QueryCommand.QueryOperationLog" Executed="OnQueryOperationLog"/>
+        <CommandBinding Command="local:QueryCommand.QueryCVLog" Executed="OnQueryCVLog"/>
+    </Fluent:RibbonWindow.CommandBindings>
+    <Fluent:RibbonWindow.Resources>
+
+        <Style TargetType="Fluent:Button">
+            <Setter Property="Margin" Value="0,1,0,0"/>
+        </Style>
+
+
+        <DataTemplate x:Key="testerDataTemplate">
+            <Label Content="{Binding Name}"/>
+        </DataTemplate>
+
+        <ObjectDataProvider x:Key="testers" ObjectType="local:AppViewModel" MethodName="GetTesters"/>
+
+        <local:VisibilityToCheckedConverter x:Key="VisibilityToCheckedConverter"/>
+
+        <utils:CurrentTypeConverter x:Key="currentTypeConverter"/>
+        <utils:RunStatusConverter x:Key="runStatusConverter"/>
+        <utils:GraphShowModeConverter x:Key="graphShowModeConverter"/>
+        <utils:GraphShowModeToBoolConverter x:Key="graphShowModeToBoolConverter"/>
+        <!--圆角button-->
+        <Style x:Key="chamferButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5" Name="PART_Background">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#09a3de" Offset="0.0" />
+                                    <GradientStop Color="#09a3de" Offset="0.0" />
+                                    <GradientStop Color="#09a3de" Offset="0.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </Fluent:RibbonWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+
+
+        <Fluent:Ribbon>
+            <Fluent:Ribbon.Menu>
+                <Fluent:Backstage x:Name="AppBackstage" IsOpen="{Binding MainWindowsBackstageIsOpen, Mode=TwoWay}">
+                    <Fluent:BackstageTabControl>
+                        <Fluent:BackstageTabItem Header="关于">
+                            <view:AboutUC/>
+                        </Fluent:BackstageTabItem>
+                        <Fluent:BackstageTabItem Header="版本">
+                            <view:VersionsUC/>
+                        </Fluent:BackstageTabItem>
+                        <Fluent:BackstageTabItem Header="用户" x:Name="UserBackstageTabItem" IsSelected="True">
+                            <view:UserUC/>
+                        </Fluent:BackstageTabItem>
+                        <Fluent:BackstageTabItem Header="设置" x:Name="SettingsBackstageTabItem">
+                            <view:SettingUC/>
+                        </Fluent:BackstageTabItem>
+
+                        <Fluent:BackstageTabItem Header="调试">
+                            <Button Height="30" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Content="调试" Click="BtnTest_Click"/>
+                        </Fluent:BackstageTabItem>
+                    </Fluent:BackstageTabControl>
+                </Fluent:Backstage>
+            </Fluent:Ribbon.Menu>
+
+
+            <Fluent:Ribbon.QuickAccessItems>
+                <Fluent:QuickAccessMenuItem Target="{Binding ElementName=BtnStart}"/>
+                <Fluent:QuickAccessMenuItem Target="{Binding ElementName=BtnStop}"/>
+                <Fluent:QuickAccessMenuItem Target="{Binding ElementName=BtnReset}"/>
+            </Fluent:Ribbon.QuickAccessItems>
+
+            <Fluent:RibbonTabItem Header="控制">
+                                        
+                <Fluent:RibbonGroupBox Header="基本操作" Height="80">
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <Fluent:Button Name="BtnStart" Header="启动" Icon="/Images/Start_Green.png" LargeIcon="/Images/Start_Green.png" Click="BtnStart_Click"/>
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <Fluent:Button Name="BtnStop" Header="暂停" Icon="/Images/Stop_Red.png" LargeIcon="/Images/Stop_Red.png" Click="BtnStop_Click"/>
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <Fluent:Button Name="BtnReset" Header="复位" Icon="/Images/Reset_Lime.png" LargeIcon="/Images/Reset_Lime.png" Click="BtnReset_Click"/>
+                    <Separator Width="20" Visibility="Hidden"/>
+                </Fluent:RibbonGroupBox>
+
+
+                <Fluent:RibbonGroupBox Header="实时数据" Height="80" Margin="10,0,0,0">
+                    <WrapPanel DataContext="{StaticResource testers}" VerticalAlignment="Center" Height="70">
+                        <Label Content="选择工装板：" VerticalAlignment="Center" Foreground="#2b579a"/>
+                        <ComboBox Margin="0,20,0,20" Background="#09a3de" ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=testerDataTemplate}"
+                                          IsSynchronizedWithCurrentItem="True" VerticalAlignment="Center">
+                        </ComboBox>
+                        <Label Content="电流：" VerticalAlignment="Center" Foreground="#2b579a"/>
+                        <Label Content="{Binding CurrentsString}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
+                        <Label Content="电压：" VerticalAlignment="Center"  Foreground="#2b579a"/>
+                        <Label Content="{Binding Voltage}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
+                        <Label Content="类型：" VerticalAlignment="Center"  Foreground="#2b579a"/>
+                        <Label Content="{Binding CurrentType, Converter={StaticResource currentTypeConverter}}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
+                    </WrapPanel>
+                </Fluent:RibbonGroupBox>
+
+                <Fluent:RibbonGroupBox Header="当前运行状态" Height="80" Margin="10,0,0,0">
+                    <Label Content="{Binding RunStatus}" FontSize="40" Foreground="#2b579a"/>
+                    <Fluent:RibbonGroupBox.Style>
+                        <Style TargetType="Fluent:RibbonGroupBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RunStatus}" Value="闲置">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RunStatus}" Value="运行">
+                                    <Setter Property="Background" Value="Lime"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RunStatus}" Value="暂停">
+                                    <Setter Property="Background" Value="Yellow"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RunStatus}" Value="异常">
+                                    <Setter Property="Background" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Fluent:RibbonGroupBox.Style>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+
+            <Fluent:RibbonTabItem Header="查询">
+                <Fluent:RibbonGroupBox Header="系统" Height="80">
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <Fluent:Button Name="BtnQuerySystemLog" Header="系统日志" Icon="/Images/SystemLog.png" LargeIcon="/Images/SystemLog.png"  Command="local:QueryCommand.QueryOperationLog"/>
+                    <Separator Width="20" Visibility="Hidden"/>
+                </Fluent:RibbonGroupBox>
+
+                <Fluent:RibbonGroupBox Header="设备" Height="80">
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <Fluent:Button Name="BtnQueryAlarmLog" Header="报警记录" Icon="/Images/Alarm.png" LargeIcon="/Images/Alarm.png"/>
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <Fluent:Button Name="BtnQueryCVLog" Header="电流电压查询" Icon="/Images/DataLog.png" LargeIcon="/Images/DataLog.png" Command="local:QueryCommand.QueryCVLog"/>
+                    <Separator Width="20" Visibility="Hidden"/>
+                </Fluent:RibbonGroupBox>
+
+                <Fluent:RibbonGroupBox Header="生产" Height="80">
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <Fluent:Button Name="BtnQueryReportLog" Header="报表" Icon="/Images/Report.png" LargeIcon="/Images/Report.png"/>
+                    <Separator Width="20" Visibility="Hidden"/>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+
+            <!--Contextual Tabs-->
+            <Fluent:RibbonTabItem Header="设置" Group="{Binding Source={x:Reference toolsGroup}}">
+                <Fluent:RibbonGroupBox Header="基本设置" Height="80">
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <Fluent:Button Name="BtnBaseSetting" Header="配置" Icon="/Images/Setting.PNG" LargeIcon="/Images/Setting.PNG" Click="BtnBaseSetting_Click"/>
+                    <Separator Width="20" Visibility="Hidden"/>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+
+            <Fluent:Ribbon.ContextualGroups>
+                <Fluent:RibbonContextualTabGroup x:Name="toolsGroup" Header="" Visibility="Visible" Background="Green" BorderBrush="Green"/>
+            </Fluent:Ribbon.ContextualGroups>
+        </Fluent:Ribbon>
+
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180" MinWidth="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="180" MinWidth="50" MaxWidth="500"/>
+            </Grid.ColumnDefinitions>
+            <DockPanel>
+                <local:MachineListUC DockPanel.Dock="Top"  Height="380" IsEnabled="{Binding RunStatus, Converter={StaticResource runStatusConverter}}"/>
+                <wpf:YieldUC DockPanel.Dock="Bottom"/>
+            </DockPanel>
+
+            <TabControl Grid.Column="1" Margin="5,0,5,5" x:Name="MainTabControl" BorderThickness="1" BorderBrush="Green">
+                <TabItem Header="数据曲线">
+                    <DockPanel>
+                        <DockPanel DockPanel.Dock="Bottom" Height="60" Margin="10,0,10,0">
+                            <Button x:Name="BtnShowHistoryData" DockPanel.Dock="Right" Width="60" Content="显 示" Height="25" Click="BtnShowHistoryData_Click"  Style="{StaticResource chamferButton}" Foreground="White" IsEnabled="{Binding GraphShowMode,Converter={StaticResource graphShowModeToBoolConverter}}"/>
+                            <WrapPanel VerticalAlignment="Center">
+                                <Label Content="选择图表显示模式：" VerticalAlignment="Center"/>
+                                <RadioButton Content="实时数据" Margin="10" IsChecked="{Binding Path=GraphShowMode,Converter={StaticResource graphShowModeConverter},ConverterParameter={x:Static local:GraphShowMode.实时数据}}"></RadioButton>
+                                <RadioButton Content="历史数据" Margin="10" IsChecked="{Binding Path=GraphShowMode,Converter={StaticResource graphShowModeConverter},ConverterParameter={x:Static local:GraphShowMode.历史数据}}"></RadioButton>
+
+                                <Label Content="  范围：" VerticalAlignment="Center"/>
+                                <Label Content="起始时间：" VerticalAlignment="Center"/>
+                                <xctk:DateTimePicker x:Name="StartDateTimePicker" Height="25" IsEnabled="{Binding GraphShowMode,Converter={StaticResource graphShowModeToBoolConverter}}"/>
+                                <Label Content="结束时间：" VerticalAlignment="Center"/>
+                                <xctk:DateTimePicker x:Name="StopDateTimePicker" Height="25" IsEnabled="{Binding GraphShowMode,Converter={StaticResource graphShowModeToBoolConverter}}"/>
+                            </WrapPanel>
+                        </DockPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <!--PlotHeight="2" PlotWidth="100"-->
+                            <d3:Chart Name="plotterCurrents">
+                                <d3:Chart.Title>
+                                    <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0,5,0,5">电流曲线(单位：A)</TextBlock>
+                                </d3:Chart.Title>
+                                <d3:Chart.LegendContent>
+                                    <d3:LegendItemsPanel>
+                                        <d3:LegendItemsPanel.Resources>
+                                            <DataTemplate x:Key="InteractiveDataDisplay.WPF.LineGraph">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <CheckBox IsChecked="{Binding Path=Visibility, Converter={StaticResource VisibilityToCheckedConverter}, Mode=TwoWay}"/>
+                                                    <Line Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
+                                                    <TextBlock Margin="5,0,0,0" Text="{Binding Path=Description}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </d3:LegendItemsPanel.Resources>
+                                    </d3:LegendItemsPanel>
+                                </d3:Chart.LegendContent>
+                                <Grid Name="linesCurrents"/>
+                            </d3:Chart>
+                            <!--PlotHeight="300" PlotWidth="100"-->
+                            <d3:Chart Name="plotterVoltage" Grid.Row="1">
+                                <d3:Chart.Title>
+                                    <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0,5,0,5">电压曲线(单位：V)</TextBlock>
+                                </d3:Chart.Title>
+                                <d3:Chart.LegendContent>
+                                    <d3:LegendItemsPanel>
+                                        <d3:LegendItemsPanel.Resources>
+                                            <DataTemplate x:Key="InteractiveDataDisplay.WPF.LineGraph">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <CheckBox IsChecked="{Binding Path=Visibility, Converter={StaticResource VisibilityToCheckedConverter}, Mode=TwoWay}"/>
+                                                    <Line Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
+                                                    <TextBlock Margin="5,0,0,0" Text="{Binding Path=Description}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </d3:LegendItemsPanel.Resources>
+                                    </d3:LegendItemsPanel>
+                                </d3:Chart.LegendContent>
+                                <Grid Name="linesVoltage"/>
+                            </d3:Chart>
+                        </Grid>
+                    </DockPanel>
+                </TabItem>
+            </TabControl>
+
+            <wpf:TipUC Grid.Column="2"/>
+
+            <GridSplitter Grid.Column="0" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
+            <GridSplitter Grid.Column="1" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <view:StatusBarUC/>
+        </Grid>
+    </Grid>
+</Fluent:RibbonWindow>

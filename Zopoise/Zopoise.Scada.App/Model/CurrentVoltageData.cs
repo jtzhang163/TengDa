@@ -82,7 +82,7 @@ namespace Zopoise.Scada.App
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CurrentVoltageData>().Property(cvd => cvd.RecordTime).HasColumnType("datetime");
+            modelBuilder.Entity<CurrentVoltageData>().ToTable("t_cvd");
         }
         public DbSet<CurrentVoltageData> CurrentVoltageDatas { get; set; }
     }

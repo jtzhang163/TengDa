@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.IO.Ports;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace TengDa.Wpf
         /// </summary>
         [DisplayName("端口号")]
         [Category("通信设置")]
+        [MaxLength(10)]
         public string PortName { get; set; } = "COM1";
 
         /// <summary>
@@ -180,9 +182,20 @@ namespace TengDa.Wpf
             {
                 if (IsPassiveReceiveSerialPort)
                 {
-                    SerialPort.Read(InputBuf, 0, SerialPort.BytesToRead);
-                    ASCIIEncoding encoding = new ASCIIEncoding();
-                    ReceiveString = encoding.GetString(InputBuf).Trim('\0').Trim('\r').Trim('\n');
+                    //接收数据
+                    ReceiveString = "";
+                    IsGetNewData = false;
+                    do
+                    {
+                        int count = SerialPort.BytesToRead;
+                        if (count <= 0)
+                            break;
+                        byte[] readBuffer = new byte[count];
+                        SerialPort.Read(readBuffer, 0, count);
+                        ReceiveString += System.Text.Encoding.Default.GetString(readBuffer).Trim('\0').Trim('\r').Trim('\n');
+                        Thread.Sleep(10);
+                    } while (SerialPort.BytesToRead > 0);
+
                     IsAlive = true;
                     IsGetNewData = true;
                 }

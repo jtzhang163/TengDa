@@ -32,12 +32,7 @@ namespace Zopoise.Scada.App
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Communicator>().Property(c => c.Name).HasMaxLength(50).IsRequired();
-            modelBuilder.Entity<Communicator>().Property(c => c.PortName).HasMaxLength(10);
-            modelBuilder.Entity<Communicator>().Property(c => c.Company).HasMaxLength(50);
-            modelBuilder.Entity<Communicator>().Property(c => c.Location).HasMaxLength(50);
-            modelBuilder.Entity<Communicator>().Property(c => c.Number).HasMaxLength(50);
-            modelBuilder.Entity<Communicator>().Property(c => c.Model).HasMaxLength(50);
+            modelBuilder.Entity<Communicator>().ToTable("t_communicator");
         }
 
         public DbSet<Communicator> Communicators { get; set; }

@@ -147,11 +147,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Base\AppContext.cs" />
-    <Compile Include="Base\AppCurrent.cs" />
-    <Compile Include="Base\AppDbInitializer.cs" />
-    <Compile Include="Base\AppOption.cs" />
-    <Compile Include="Base\Enumeration.cs" />
+    <Compile Include="Data\AppContext.cs" />
+    <Compile Include="Data\AppCurrent.cs" />
+    <Compile Include="Data\AppDbInitializer.cs" />
+    <Compile Include="Data\AppOption.cs" />
+    <Compile Include="Data\Enumeration.cs" />
     <Compile Include="Command\QueryCommand.cs" />
     <Compile Include="Command\UserCommand.cs" />
     <Compile Include="View\User\UserSettingWindow.xaml.cs">

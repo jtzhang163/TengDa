@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data.Entity;
 
@@ -17,10 +18,13 @@ namespace TengDa.Wpf
         /// <summary>
         /// 操作内容
         /// </summary>
+        [MaxLength(50)]
+        [Required]
         public string Content { get; set; }
         /// <summary>
         /// 操作时间
         /// </summary>
+        [Required]
         public DateTime Time { get; set; }
 
         public Operation() : this(string.Empty)
@@ -43,8 +47,7 @@ namespace TengDa.Wpf
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Operation>().Property(o => o.Content).HasMaxLength(50).IsRequired();
-            modelBuilder.Entity<Operation>().Property(o => o.Time).HasColumnType("datetime").IsRequired();
+            modelBuilder.Entity<Operation>().ToTable("t_operation_log");
         }
         public DbSet<Operation> Operations { get; set; }
     }

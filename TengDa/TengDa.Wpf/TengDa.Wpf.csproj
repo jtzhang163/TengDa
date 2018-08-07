@@ -99,11 +99,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\Service.cs" />
-    <Compile Include="Base\BindableObject.cs" />
-    <Compile Include="Base\Context.cs" />
-    <Compile Include="Base\Current.cs" />
-    <Compile Include="Base\DbInitializer.cs" />
+    <Compile Include="Data\Service.cs" />
+    <Compile Include="Data\BindableObject.cs" />
+    <Compile Include="Data\Context.cs" />
+    <Compile Include="Data\Current.cs" />
+    <Compile Include="Data\DbInitializer.cs" />
     <Compile Include="Helper\DataHelper.cs" />
     <Compile Include="Helper\ExcelHelper.cs" />
     <Compile Include="Command\UserCommands.cs" />

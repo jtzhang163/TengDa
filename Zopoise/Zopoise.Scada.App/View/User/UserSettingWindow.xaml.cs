@@ -24,7 +24,7 @@ namespace Zopoise.Scada.App
 
                 //Tip.Alert("成功登录");
                 AppCurrent.AppViewModel.UserName = Current.User.Name;
-                AppCurrent.AppViewModel.UserGroupName = Current.UserGroup.Name;
+                AppCurrent.AppViewModel.UserGroupName = Current.Role.Name;
                 AppCurrent.AppViewModel.UserProfilePicture = Current.User.ProfilePicture;
                 AppCurrent.AppViewModel.UserNumber = Current.User.Number;
                 AppCurrent.AppViewModel.UserPhoneNumber = Current.User.PhoneNumber;

@@ -23,7 +23,6 @@ namespace TengDa.WF.Terminals
         /// <summary>
         /// 名称
         /// </summary>
-        [Description("名称")]
         [DisplayName("名称")]
         [Category("基本设置")]
         public string Name
@@ -45,7 +44,6 @@ namespace TengDa.WF.Terminals
         /// <summary>
         /// 生产厂商
         /// </summary>
-        [Description("生产厂商")]
         [DisplayName("生产厂商")]
         [Category("基本设置")]
         public string Company
@@ -67,7 +65,6 @@ namespace TengDa.WF.Terminals
         /// <summary>
         /// 型号
         /// </summary>
-        [Description("型号")]
         [DisplayName("型号")]
         [Category("基本设置")]
         public string Model
@@ -89,7 +86,6 @@ namespace TengDa.WF.Terminals
         /// <summary>
         /// 资源号/编号
         /// </summary>
-        [Description("资源号/编号")]
         [DisplayName("资源号/编号")]
         [Category("基本设置")]
         public string Number
@@ -111,7 +107,6 @@ namespace TengDa.WF.Terminals
         /// <summary>
         /// 所在位置
         /// </summary>
-        [Description("所在位置")]
         [DisplayName("所在位置")]
         [Category("基本设置")]
         public string Location
@@ -134,7 +129,6 @@ namespace TengDa.WF.Terminals
         /// <summary>
         /// 报警字符串
         /// </summary>
-        [Description("报警信息")]
         [DisplayName("报警信息")]
         [ReadOnly(true)]
         public string AlarmStr
@@ -160,7 +154,7 @@ namespace TengDa.WF.Terminals
         /// <summary>
         /// 是否在线
         /// </summary>
-        [ReadOnly(true), Description("是否在线")]
+        [ReadOnly(true)]
         [DisplayName("是否在线")]
         public bool IsAlive { get; set; } = false;
 
@@ -169,7 +163,6 @@ namespace TengDa.WF.Terminals
         /// <summary>
         /// 是否启用
         /// </summary>
-        [Description("是否启用")]
         [DisplayName("是否启用")]
         public bool IsEnable
         {

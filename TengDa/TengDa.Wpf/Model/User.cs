@@ -79,9 +79,9 @@ namespace TengDa.Wpf
         /// <summary>
         /// 所属类别Id
         /// </summary>
-        public int GroupId { get; set; }
+        public int RoleId { get; set; }
 
-        public UserGroup Group { get; set; }
+        public Role Role { get; set; }
         /// <summary>
         /// 所属类别
         /// </summary>
@@ -116,15 +116,15 @@ namespace TengDa.Wpf
     /// <summary>
     /// 用户组别
     /// </summary>
-    public class UserGroup
+    public class Role
     {
 
-        public UserGroup() : this(-1)
+        public Role() : this(-1)
         {
 
         }
 
-        public UserGroup(int id)
+        public Role(int id)
         {
             Id = id;
         }
@@ -146,12 +146,12 @@ namespace TengDa.Wpf
         public virtual ICollection<User> Users { get; set; }
         #endregion
 
-        public static List<string> GetUserGroupNameList()
+        public static List<string> GetRoleNameList()
         {
             List<string> list = new List<string>();
             using (var context = new UserContext())
             {
-                context.UserGroups.ToList().ForEach(ug => { list.Add(ug.Name); });
+                context.Roles.ToList().ForEach(r => { list.Add(r.Name); });
             }
             return list;
         }
@@ -176,88 +176,89 @@ namespace TengDa.Wpf
             modelBuilder.Entity<User>().Property(u => u.Email).HasMaxLength(20);
             modelBuilder.Entity<User>().Property(u => u.RegisterTime).HasColumnType("datetime");
             modelBuilder.Entity<User>().Property(u => u.LastLoginTime).HasColumnType("datetime");
-            modelBuilder.Entity<User>().HasRequired(u => u.Group).WithMany(g => g.Users).HasForeignKey(u => u.GroupId);
-            modelBuilder.Entity<UserGroup>().Property(g => g.Name).HasMaxLength(30).IsRequired();
-            modelBuilder.Entity<UserGroup>().Property(g => g.Level).IsRequired();
-            modelBuilder.Entity<UserGroup>().HasMany(g => g.Users).WithRequired();
+            modelBuilder.Entity<User>().HasRequired(u => u.Role).WithMany(r => r.Users).HasForeignKey(u => u.RoleId);
+            modelBuilder.Entity<User>().ToTable("t_user");
+
+            modelBuilder.Entity<Role>().Property(g => g.Name).HasMaxLength(30).IsRequired();
+            modelBuilder.Entity<Role>().Property(g => g.Level).IsRequired();
+            modelBuilder.Entity<Role>().HasMany(g => g.Users).WithRequired();
+            modelBuilder.Entity<Role>().ToTable("t_role");
         }
         public DbSet<User> Users { get; set; }
-        public DbSet<UserGroup> UserGroups { get; set; }
+        public DbSet<Role> Roles { get; set; }
     }
 
     public class UserInitializer : DropCreateDatabaseIfModelChanges<UserContext>
     {
         protected override void Seed(UserContext context)
         {
-            var UserGroups = new List<UserGroup>
-      {
-        new UserGroup
-        {
-          Name = "系统管理员",
-          Level = 4,
-          Users = new List<User>
-          {
-            new User
+            var Roles = new List<Role>
             {
-              Name = "Administrator",
-              Password =  Base64.EncodeBase64("Administrator"),
-              RegisterTime = DateTime.Now,
-              ProfilePicture = "/Images/DefaultProfile.jpg"
-            }
-          }
-        },
+                new Role
+                {
+                    Name = "系统管理员",
+                    Level = 4,
+                    Users = new List<User>
+                    {
+                        new User
+                        {
+                            Name = "Administrator",
+                            Password =  Base64.EncodeBase64("Administrator"),
+                            RegisterTime = DateTime.Now,
+                            ProfilePicture = "/Images/DefaultProfile.jpg"
+                        }
+                    }
+                },
 
-        new UserGroup
-        {
-          Name = "管理员",
-          Level = 3,
-          Users = new List<User>
-          {
-            new User
-            {
-              Name = "Admin",
-              Password =  Base64.EncodeBase64("Admin"),
-              RegisterTime = DateTime.Now,
-              ProfilePicture = "/Images/DefaultProfile.jpg"
-            }
-          }
-        },
+                new Role
+                {
+                    Name = "管理员",
+                    Level = 3,
+                    Users = new List<User>
+                    {
+                        new User
+                        {
+                            Name = "Admin",
+                            Password =  Base64.EncodeBase64("Admin"),
+                            RegisterTime = DateTime.Now,
+                            ProfilePicture = "/Images/DefaultProfile.jpg"
+                        }
+                    }
+                },
 
+                new Role
+                {
+                    Name = "维护人员",
+                    Level = 2,
+                    Users = new List<User>
+                    {
+                        new User
+                        {
+                            Name = "Maintainer",
+                            Password =  Base64.EncodeBase64("Maintainer"),
+                            RegisterTime = DateTime.Now,
+                            ProfilePicture = "/Images/DefaultProfile.jpg"
+                        }
+                    }
+                },
 
-        new UserGroup
-        {
-          Name = "维护人员",
-          Level = 2,
-          Users = new List<User>
-          {
-            new User
-            {
-              Name = "Maintainer",
-              Password =  Base64.EncodeBase64("Maintainer"),
-              RegisterTime = DateTime.Now,
-              ProfilePicture = "/Images/DefaultProfile.jpg"
-            }
-          }
-        },
-
-        new UserGroup
-        {
-          Name = "操作员",
-          Level = 1,
-          Users = new List<User>
-          {
-            new User
-            {
-              Name = "Operator",
-              Password =  Base64.EncodeBase64("Operator"),
-              RegisterTime = DateTime.Now,
-              ProfilePicture = "/Images/DefaultProfile.jpg"
-            }
-          }
-        }
-      };
-
-            UserGroups.ForEach(g => context.UserGroups.Add(g));
+                new Role
+                {
+                    Name = "操作员",
+                    Level = 1,
+                    Users = new List<User>
+                    {
+                        new User
+                        {
+                            Name = "Operator",
+                            Password =  Base64.EncodeBase64("Operator"),
+                            RegisterTime = DateTime.Now,
+                            ProfilePicture = "/Images/DefaultProfile.jpg"
+                        }
+                    }
+                }
+            };
+            Roles.ForEach(g => context.Roles.Add(g));
         }
     }
 }

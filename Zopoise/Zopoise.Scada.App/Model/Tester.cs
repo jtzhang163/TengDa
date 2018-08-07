@@ -92,12 +92,7 @@ namespace Zopoise.Scada.App
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Tester>().Property(t => t.Name).HasMaxLength(50).IsRequired();
-            modelBuilder.Entity<Tester>().Property(t => t.Company).HasMaxLength(50);
-            modelBuilder.Entity<Tester>().Property(t => t.Location).HasMaxLength(50);
-            modelBuilder.Entity<Tester>().Property(t => t.Number).HasMaxLength(50);
-            modelBuilder.Entity<Tester>().Property(t => t.Model).HasMaxLength(50);
-            modelBuilder.Entity<Tester>().Property(t => t.CommunicateString).HasMaxLength(50);
+            modelBuilder.Entity<Tester>().ToTable("t_tester");
         }
         public DbSet<Tester> Testers { get; set; }
     }

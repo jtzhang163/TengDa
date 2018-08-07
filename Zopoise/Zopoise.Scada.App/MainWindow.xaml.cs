@@ -93,7 +93,7 @@ namespace Zopoise.Scada.App
             //数据库初始化
             using (var data = new UserContext())
             {
-                foreach (var ug in data.UserGroups)
+                foreach (var ug in data.Roles)
                 {
                     Console.WriteLine("{0} ", ug.Name);
                 }

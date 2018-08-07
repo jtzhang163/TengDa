@@ -35,19 +35,9 @@ namespace Tafel.ScanSystem
         [ReadOnly(true)]
         public int ClampId { get; set; }
 
-
-        /// <summary>
-        /// 扫码时间
-        /// </summary>
-        [ReadOnly(true)]
-        public DateTime ScanTime { get; set; }
-
-
-
         /// <summary>
         /// 已上传
         /// </summary>
-        [Description("是否已上传MES")]
         [DisplayName("是否已上传MES")]
         [Category("基本信息")]
         public bool IsUploaded

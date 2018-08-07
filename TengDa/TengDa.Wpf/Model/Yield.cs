@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
@@ -35,10 +36,12 @@ namespace TengDa.Wpf
         /// <summary>
         /// 起始时间
         /// </summary>
+        [Required]
         public DateTime StartTime { get; set; }
         /// <summary>
         /// 保存时间
         /// </summary>
+        [Required]
         public DateTime RecordTime { get; set; }
 
         public Yield() : this(0, 0, 0, 0, Common.DefaultTime)
@@ -66,6 +69,7 @@ namespace TengDa.Wpf
         /// <summary>
         /// 类型
         /// </summary>
+        [Required]
         public YieldKey Key { get; set; }
 
         /// <summary>
@@ -76,6 +80,7 @@ namespace TengDa.Wpf
         /// <summary>
         /// 备注
         /// </summary>
+        [MaxLength(30)]
         public string Remark { get; set; }
 
         /// <summary>
@@ -130,11 +135,8 @@ namespace TengDa.Wpf
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Yield>().Property(y => y.StartTime).HasColumnType("datetime").IsRequired();
-            modelBuilder.Entity<Yield>().Property(y => y.RecordTime).HasColumnType("datetime").IsRequired();
-            modelBuilder.Entity<RealtimeYield>().Property(ry => ry.Key).IsRequired();
-            modelBuilder.Entity<RealtimeYield>().Property(ry => ry.Remark).HasMaxLength(30);
-            modelBuilder.Entity<RealtimeYield>().Property(ry => ry.StartTime).HasColumnType("datetime");
+            modelBuilder.Entity<Yield>().ToTable("t_yield_log");
+            modelBuilder.Entity<RealtimeYield>().ToTable("t_yield");
         }
         public DbSet<Yield> Yields { get; set; }
         public DbSet<RealtimeYield> RealtimeYields { get; set; }
@@ -146,10 +148,10 @@ namespace TengDa.Wpf
         {
             var RealtimeYields = new List<RealtimeYield>()
             {
-            new RealtimeYield(YieldKey.FeedingOK,0,"上料OK数"),
-            new RealtimeYield(YieldKey.FeedingNG,0,"上料NG数"),
-            new RealtimeYield(YieldKey.BlankingOK,0,"下料OK数"),
-            new RealtimeYield(YieldKey.BlankingNG,0,"下料NG数")
+                new RealtimeYield(YieldKey.FeedingOK,0,"上料OK数"),
+                new RealtimeYield(YieldKey.FeedingNG,0,"上料NG数"),
+                new RealtimeYield(YieldKey.BlankingOK,0,"下料OK数"),
+                new RealtimeYield(YieldKey.BlankingNG,0,"下料NG数")
             };
             RealtimeYields.ForEach(ry => context.RealtimeYields.Add(ry));
         }
