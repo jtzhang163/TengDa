@@ -86,4 +86,4 @@ namespace Zopoise.Scada.App
         }
         public DbSet<CurrentVoltageData> CurrentVoltageDatas { get; set; }
     }
-|}
+}
