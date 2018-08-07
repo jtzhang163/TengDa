@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2BB15E13-3B72-4759-93AF-02735582C5F8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Veken.Baking.App</RootNamespace>
+    <AssemblyName>Veken.Baking.App</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>TengDa.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VekenDll, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\VekenDll.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="InOvenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOvenForm.Designer.cs">
+      <DependentUpon>InOvenForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesOfflineVerify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesOfflineVerify.Designer.cs">
+      <DependentUpon>MesOfflineVerify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageSystem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageSystem.Designer.cs">
+      <DependentUpon>ManageSystem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Version.cs" />
+    <EmbeddedResource Include="InOvenForm.resx">
+      <DependentUpon>InOvenForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageSystem.resx">
+      <DependentUpon>ManageSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesOfflineVerify.resx">
+      <DependentUpon>MesOfflineVerify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bin\Debug\config.ini" />
+    <None Include="bin\Debug\db_ora.ini" />
+    <None Include="bin\Debug\db_sql.ini" />
+    <None Include="bin\Debug\Log4net.config" />
+    <None Include="bin\Debug\Log\LogError\20171205.AxA" />
+    <None Include="bin\Debug\Log\LogInfo\20171205.AxA" />
+    <None Include="bin\Debug\Veken.Baking.App.exe.config" />
+    <None Include="bin\Debug\Veken.Baking.App.vshost.exe.config" />
+    <None Include="bin\Debug\Veken.Baking.App.vshost.exe.manifest" />
+    <None Include="bin\Release\config.ini" />
+    <None Include="bin\Release\db_ora.ini" />
+    <None Include="bin\Release\db_sql.ini" />
+    <None Include="bin\Release\Log4net.config" />
+    <None Include="bin\Release\Veken.Baking.App.exe.config" />
+    <None Include="bin\Release\Veken.Baking.App.vshost.exe.config" />
+    <None Include="bin\Release\Veken.Baking.App.vshost.exe.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TengDa\TengDa.WF.Controls\TengDa.WF.Controls.csproj">
+      <Project>{d420804d-cabe-4221-93f1-e67f7526e331}</Project>
+      <Name>TengDa.WF.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TengDa\TengDa.WF\TengDa.WF.csproj">
+      <Project>{DFD6CB8D-D1FD-4712-8C4E-C611BBE12D08}</Project>
+      <Name>TengDa.WF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TengDa\TengDa\TengDa.csproj">
+      <Project>{313161d4-a305-47fb-8935-d7c0a0cf4b3d}</Project>
+      <Name>TengDa</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Veken.Baking\Veken.Baking.csproj">
+      <Project>{a605a8df-272c-4989-9bf6-e438fb895d78}</Project>
+      <Name>Veken.Baking</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.png" />
+    <None Include="Resources\logout.png" />
+    <None Include="Resources\register.png" />
+    <None Include="Resources\Verify.png" />
+    <None Include="Resources\Green_Round.png" />
+    <None Include="Resources\Red_Round.png" />
+    <None Include="Resources\Yellow_Round.png" />
+    <None Include="Resources\Yellow_Red_Round.png" />
+    <None Include="Resources\Settings_green.png" />
+    <None Include="Resources\Reset_green.png" />
+    <None Include="Resources\Exit_Red.png" />
+    <None Include="Resources\Start_Green.png" />
+    <None Include="Resources\Stop_Red.png" />
+    <None Include="Resources\Gray_Round.png" />
+    <Content Include="bin\Debug\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="bin\Debug\log4net.dll" />
+    <Content Include="bin\Debug\log4net.pdb" />
+    <Content Include="bin\Debug\log4net.xml" />
+    <Content Include="bin\Debug\Log\LogError\20171105.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171106.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171107.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171108.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171109.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171110.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171111.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171112.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171113.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171114.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171115.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171116.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171118.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171119.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171120.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171121.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171122.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171123.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171124.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171125.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171126.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171127.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171128.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171129.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171130.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171201.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171202.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171203.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171204.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171205.htm" />
+    <Content Include="bin\Debug\Log\LogError\20171205.txt" />
+    <Content Include="bin\Debug\Log\LogError\20171206.txt" />
+    <Content Include="bin\Debug\Log\LogError\20171207.txt" />
+    <Content Include="bin\Debug\Log\LogInfo\20171105.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171106.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171107.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171108.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171108.htm20171108.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171109.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171110.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171111.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171112.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171113.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171114.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171115.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171116.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171118.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171119.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171120.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171121.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171122.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171123.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171124.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171125.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171126.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171127.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171128.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171129.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171130.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171201.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171202.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171203.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171204.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171205.htm" />
+    <Content Include="bin\Debug\Log\LogInfo\20171205.txt" />
+    <Content Include="bin\Debug\Log\LogInfo\20171206.txt" />
+    <Content Include="bin\Debug\Log\LogInfo\20171207.txt" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.pdb" />
+    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
+    <Content Include="bin\Debug\NPOI.dll" />
+    <Content Include="bin\Debug\NPOI.OOXML.dll" />
+    <Content Include="bin\Debug\NPOI.OpenXml4Net.dll" />
+    <Content Include="bin\Debug\NPOI.OpenXmlFormats.dll" />
+    <Content Include="bin\Debug\NPOI.xml" />
+    <Content Include="bin\Debug\Oracle.ManagedDataAccess.dll" />
+    <Content Include="bin\Debug\Tafel.ScanSystem.App.exe" />
+    <Content Include="bin\Debug\Tafel.ScanSystem.App.pdb" />
+    <Content Include="bin\Debug\TengDa.dll" />
+    <Content Include="bin\Debug\TengDa.MES.dll" />
+    <Content Include="bin\Debug\TengDa.MES.pdb" />
+    <Content Include="bin\Debug\TengDa.pdb" />
+    <Content Include="bin\Debug\TengDa.Products.dll" />
+    <Content Include="bin\Debug\TengDa.Products.pdb" />
+    <Content Include="bin\Debug\TengDa.Terminals.dll" />
+    <Content Include="bin\Debug\TengDa.Terminals.pdb" />
+    <Content Include="bin\Debug\Veken.Baking.App.exe" />
+    <Content Include="bin\Debug\Veken.Baking.App.pdb" />
+    <Content Include="bin\Debug\Veken.Baking.App.vshost.exe" />
+    <Content Include="bin\Debug\VekenDll.dll" />
+    <Content Include="bin\Release\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="bin\Release\log4net.dll" />
+    <Content Include="bin\Release\log4net.pdb" />
+    <Content Include="bin\Release\log4net.xml" />
+    <Content Include="bin\Release\Log\LogError\20171105.htm" />
+    <Content Include="bin\Release\Log\LogError\20171106.htm" />
+    <Content Include="bin\Release\Log\LogError\20171107.htm" />
+    <Content Include="bin\Release\Log\LogError\20171108.htm" />
+    <Content Include="bin\Release\Log\LogError\20171109.htm" />
+    <Content Include="bin\Release\Log\LogError\20171110.htm" />
+    <Content Include="bin\Release\Log\LogError\20171111.htm" />
+    <Content Include="bin\Release\Log\LogError\20171112.htm" />
+    <Content Include="bin\Release\Log\LogError\20171113.htm" />
+    <Content Include="bin\Release\Log\LogError\20171114.htm" />
+    <Content Include="bin\Release\Log\LogError\20171115.htm" />
+    <Content Include="bin\Release\Log\LogError\20171116.htm" />
+    <Content Include="bin\Release\Log\LogError\20171118.htm" />
+    <Content Include="bin\Release\Log\LogError\20171119.htm" />
+    <Content Include="bin\Release\Log\LogError\20171120.htm" />
+    <Content Include="bin\Release\Log\LogError\20171121.htm" />
+    <Content Include="bin\Release\Log\LogError\20171122.htm" />
+    <Content Include="bin\Release\Log\LogError\20171123.htm" />
+    <Content Include="bin\Release\Log\LogError\20171124.htm" />
+    <Content Include="bin\Release\Log\LogError\20171125.htm" />
+    <Content Include="bin\Release\Log\LogError\20171128.htm" />
+    <Content Include="bin\Release\Log\LogError\20171129.htm" />
+    <Content Include="bin\Release\Log\LogError\20171204.htm" />
+    <Content Include="bin\Release\Log\LogError\20171207.txt" />
+    <Content Include="bin\Release\Log\LogInfo\20171105.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171106.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171107.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171108.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171108.htm20171108.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171109.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171110.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171111.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171112.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171113.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171114.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171115.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171116.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171118.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171119.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171120.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171121.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171122.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171123.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171124.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171125.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171128.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171129.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171204.htm" />
+    <Content Include="bin\Release\Log\LogInfo\20171207.txt" />
+    <Content Include="bin\Release\Newtonsoft.Json.dll" />
+    <Content Include="bin\Release\Newtonsoft.Json.pdb" />
+    <Content Include="bin\Release\Newtonsoft.Json.xml" />
+    <Content Include="bin\Release\NPOI.dll" />
+    <Content Include="bin\Release\NPOI.OOXML.dll" />
+    <Content Include="bin\Release\NPOI.OpenXml4Net.dll" />
+    <Content Include="bin\Release\NPOI.OpenXmlFormats.dll" />
+    <Content Include="bin\Release\NPOI.xml" />
+    <Content Include="bin\Release\Oracle.ManagedDataAccess.dll" />
+    <Content Include="bin\Release\Tafel.ScanSystem.App.exe" />
+    <Content Include="bin\Release\Tafel.ScanSystem.App.pdb" />
+    <Content Include="bin\Release\TengDa.dll" />
+    <Content Include="bin\Release\TengDa.MES.dll" />
+    <Content Include="bin\Release\TengDa.MES.pdb" />
+    <Content Include="bin\Release\TengDa.pdb" />
+    <Content Include="bin\Release\TengDa.Products.dll" />
+    <Content Include="bin\Release\TengDa.Products.pdb" />
+    <Content Include="bin\Release\TengDa.Terminals.dll" />
+    <Content Include="bin\Release\TengDa.Terminals.pdb" />
+    <Content Include="bin\Release\Veken.Baking.App.exe" />
+    <Content Include="bin\Release\Veken.Baking.App.pdb" />
+    <Content Include="bin\Release\Veken.Baking.App.vshost.exe" />
+    <Content Include="bin\Release\VekenDll.dll" />
+    <Content Include="TengDa.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
