@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TengDa.Wpf
 {
@@ -100,10 +97,10 @@ namespace TengDa.Wpf
         protected override void Seed(OptionContext context)
         {
             var options = new List<Option>()
-      {
-        new Option("AppName","XXXXXX系统","应用程序名称"),
-        new Option("RememberUserId","1")
-      };
+              {
+                new Option("AppName","XXXXXX系统","应用程序名称"),
+                new Option("RememberUserId","1")
+              };
             options.ForEach(o => context.Options.Add(o));
         }
     }

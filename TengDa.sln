@@ -3,9 +3,47 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TengDa", "TengDa", "{574B94A2-ECAB-4CE8-A86F-1C2FE2B1DCC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TengDa", "TengDa\TengDa\TengDa.csproj", "{313161D4-A305-47FB-8935-D7C0A0CF4B3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TengDa.WF", "TengDa\TengDa.WF\TengDa.WF.csproj", "{DFD6CB8D-D1FD-4712-8C4E-C611BBE12D08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TengDa.WF.Controls", "TengDa\TengDa.WF.Controls\TengDa.WF.Controls.csproj", "{D420804D-CABE-4221-93F1-E67F7526E331}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TengDa.Wpf", "TengDa\TengDa.Wpf\TengDa.Wpf.csproj", "{2BC89F9D-8FC7-4E19-9D16-CC66E56E56AE}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{313161D4-A305-47FB-8935-D7C0A0CF4B3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{313161D4-A305-47FB-8935-D7C0A0CF4B3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{313161D4-A305-47FB-8935-D7C0A0CF4B3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{313161D4-A305-47FB-8935-D7C0A0CF4B3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFD6CB8D-D1FD-4712-8C4E-C611BBE12D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFD6CB8D-D1FD-4712-8C4E-C611BBE12D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFD6CB8D-D1FD-4712-8C4E-C611BBE12D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFD6CB8D-D1FD-4712-8C4E-C611BBE12D08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D420804D-CABE-4221-93F1-E67F7526E331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D420804D-CABE-4221-93F1-E67F7526E331}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D420804D-CABE-4221-93F1-E67F7526E331}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D420804D-CABE-4221-93F1-E67F7526E331}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BC89F9D-8FC7-4E19-9D16-CC66E56E56AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BC89F9D-8FC7-4E19-9D16-CC66E56E56AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BC89F9D-8FC7-4E19-9D16-CC66E56E56AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BC89F9D-8FC7-4E19-9D16-CC66E56E56AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{313161D4-A305-47FB-8935-D7C0A0CF4B3D} = {574B94A2-ECAB-4CE8-A86F-1C2FE2B1DCC6}
+		{DFD6CB8D-D1FD-4712-8C4E-C611BBE12D08} = {574B94A2-ECAB-4CE8-A86F-1C2FE2B1DCC6}
+		{D420804D-CABE-4221-93F1-E67F7526E331} = {574B94A2-ECAB-4CE8-A86F-1C2FE2B1DCC6}
+		{2BC89F9D-8FC7-4E19-9D16-CC66E56E56AE} = {574B94A2-ECAB-4CE8-A86F-1C2FE2B1DCC6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D76A61D6-AF5A-4717-9128-A3189C7723F4}

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TengDa.Wpf
 {
-    interface ICommunicate
+    public interface ICommunicate
     {
     }
 }

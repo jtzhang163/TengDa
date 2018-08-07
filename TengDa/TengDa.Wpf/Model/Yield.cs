@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TengDa.Wpf
 {
@@ -147,12 +145,12 @@ namespace TengDa.Wpf
         protected override void Seed(YieldContext context)
         {
             var RealtimeYields = new List<RealtimeYield>()
-      {
-        new RealtimeYield(YieldKey.FeedingOK,0,"上料OK数"),
-        new RealtimeYield(YieldKey.FeedingNG,0,"上料NG数"),
-        new RealtimeYield(YieldKey.BlankingOK,0,"下料OK数"),
-        new RealtimeYield(YieldKey.BlankingNG,0,"下料NG数")
-      };
+            {
+            new RealtimeYield(YieldKey.FeedingOK,0,"上料OK数"),
+            new RealtimeYield(YieldKey.FeedingNG,0,"上料NG数"),
+            new RealtimeYield(YieldKey.BlankingOK,0,"下料OK数"),
+            new RealtimeYield(YieldKey.BlankingNG,0,"下料NG数")
+            };
             RealtimeYields.ForEach(ry => context.RealtimeYields.Add(ry));
         }
     }
