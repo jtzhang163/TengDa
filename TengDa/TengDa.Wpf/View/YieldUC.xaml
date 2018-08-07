@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="TengDa.Wpf.YieldUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxc="clr-namespace:DevExpress.Internal;assembly=DevExpress.Mvvm.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Times New Roman,宋体"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="#2b579a"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+
+        <!--圆角button-->
+        <Style  x:Key="chamferButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5" Name="PART_Background">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#09a3de" Offset="0.0" />
+                                    <GradientStop Color="#09a3de" Offset="0.0" />
+                                    <GradientStop Color="#09a3de" Offset="0.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+    </UserControl.Resources>
+    <GroupBox Header="产量" Padding="5" Margin="5" BorderBrush="#09a3de">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <!--<Label Grid.Row="0" Grid.Column="0" Content="开始时间"/>-->
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding StartTime}" ContentStringFormat="yyyy/M/d HH:mm">
+                <Label.ToolTip>
+                    <TextBlock Text="产量计数起始时间"/>
+                </Label.ToolTip>
+            </Label>
+            <Label Grid.Row="1" Grid.Column="0" Content="上料数" HorizontalContentAlignment="Left"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding FeedingOK}"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="下料数" HorizontalContentAlignment="Left"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding BlankingOK}"/>
+            <Button Grid.Row="3" Grid.Column="0"  Content="历 史" Width="60" Height="25" Style="{StaticResource chamferButton}">
+                <Button.ToolTip>
+                    <TextBlock Text="查看历史产量数据"/>
+                </Button.ToolTip>
+            </Button>
+            <Button Grid.Row="3" Grid.Column="1"  Content="清 零" Width="60" Height="25" Click="BtnClearYield_Click"  Style="{StaticResource chamferButton}"/>
+        </Grid>
+    </GroupBox>
+</UserControl>
