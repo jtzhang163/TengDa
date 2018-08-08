@@ -7,10 +7,6 @@ using TengDa.Wpf;
 
 namespace Tafel.Hipot.App
 {
-    public class InsulationData
-    {
-        public float Resistance { get; set; }
-    }
 
     public class InsulationDataLog : RecordData
     {

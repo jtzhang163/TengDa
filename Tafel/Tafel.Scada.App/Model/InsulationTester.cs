@@ -11,6 +11,15 @@ namespace Tafel.Hipot.App
     [DisplayName("绝缘电阻测试仪")]
     public class InsulationTester : SerialTerminal
     {
+
+        public float Resistance { get; set; }
+
+        public float Voltage { get; set; }
+
+        public float Temperature { get; set; }
+
+        public float TimeSpan { get; set; }
+
         public InsulationTester() : this(-1)
         {
 
@@ -19,9 +28,6 @@ namespace Tafel.Hipot.App
         {
             this.Id = Id;
         }
-
-
-        public InsulationData InsulationData = new InsulationData();
 
     }
 

@@ -15,7 +15,7 @@
         xmlns:utils="clr-namespace:Tafel.Hipot.App.Utilities"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="{Binding AppName}" Height="350" Width="525" Foreground="#2b579a">
+        Title="{Binding AppName}" Height="550" Width="1025" Foreground="#2b579a">
     <Fluent:RibbonWindow.CommandBindings>
         <CommandBinding Command="Close" Executed="OnClose"/>
         <CommandBinding Command="local:QueryCommand.QueryOperationLog" Executed="OnQueryOperationLog"/>
@@ -115,14 +115,18 @@
 
                 <Fluent:RibbonGroupBox Header="实时数据" Height="80" Margin="10,0,0,0">
                     <WrapPanel DataContext="{StaticResource testers}" VerticalAlignment="Center" Height="70">
-                        <Label Content="选择工装板：" VerticalAlignment="Center" Foreground="#2b579a"/>
-                        <ComboBox Margin="0,20,0,20" Background="#09a3de" ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=testerDataTemplate}"
+                        <Label Content="选择仪器：" VerticalAlignment="Center" Foreground="#2b579a"/>
+                        <ComboBox Margin="0,20,0,20" ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=testerDataTemplate}"
                                           IsSynchronizedWithCurrentItem="True" VerticalAlignment="Center">
                         </ComboBox>
-                        <Label Content="电流：" VerticalAlignment="Center" Foreground="#2b579a"/>
-                        <Label Content="{Binding CurrentsString}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
+                        <Label Content="电阻：" VerticalAlignment="Center"  Foreground="#2b579a"/>
+                        <Label Content="{Binding Resistance}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
                         <Label Content="电压：" VerticalAlignment="Center"  Foreground="#2b579a"/>
                         <Label Content="{Binding Voltage}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
+                        <Label Content="测试时长：" VerticalAlignment="Center"  Foreground="#2b579a"/>
+                        <Label Content="{Binding TimeSpan}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
+                        <Label Content="温度：" VerticalAlignment="Center"  Foreground="#2b579a"/>
+                        <Label Content="{Binding Temperature}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
 
                     </WrapPanel>
                 </Fluent:RibbonGroupBox>
@@ -190,16 +194,17 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="180" MinWidth="50"/>
+                <ColumnDefinition Width="200" MinWidth="50"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="180" MinWidth="50" MaxWidth="500"/>
+                <ColumnDefinition Width="200" MinWidth="50" MaxWidth="500"/>
             </Grid.ColumnDefinitions>
             <DockPanel>
                 <local:MachineListUC DockPanel.Dock="Top"  Height="380" IsEnabled="{Binding RunStatus, Converter={StaticResource runStatusConverter}}"/>
+                
                 <wpf:YieldUC DockPanel.Dock="Bottom"/>
             </DockPanel>
 
-            <TabControl Grid.Column="1" Margin="5,0,5,5" x:Name="MainTabControl" BorderThickness="1" BorderBrush="Green">
+            <TabControl Grid.Column="1" Margin="10" x:Name="MainTabControl" BorderThickness="1" BorderBrush="Green">
                 <TabItem Header="数据曲线">
                     <DockPanel>
                         <DockPanel DockPanel.Dock="Bottom" Height="60" Margin="10,0,10,0">

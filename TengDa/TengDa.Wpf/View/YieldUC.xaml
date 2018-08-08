@@ -38,13 +38,14 @@
         </Style>
 
     </UserControl.Resources>
-    <GroupBox Header="产量" Padding="5" Margin="5" BorderBrush="#09a3de">
+    <!--BorderBrush="#09a3de"-->
+    <GroupBox Header="产量" Padding="5" Margin="10">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
