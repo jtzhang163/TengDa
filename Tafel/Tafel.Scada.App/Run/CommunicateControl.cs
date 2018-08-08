@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO.Ports;
+using TengDa.Wpf;
 
 namespace Tafel.Hipot.App
 {
@@ -20,17 +21,17 @@ namespace Tafel.Hipot.App
 
                 if (Array.IndexOf(localPortNames, AppCurrent.InsulationTester.PortName) < 0)
                 {
-                    AppCurrent.AppViewModel.ShowTips("当前PC不存在串口：" + AppCurrent.InsulationTester.PortName);
+                    Current.ShowTips("当前PC不存在串口：" + AppCurrent.InsulationTester.PortName);
                     return false;
                 }
 
                 string msg = string.Empty;
                 if (!AppCurrent.InsulationTester.Connect(out msg))
                 {
-                    AppCurrent.AppViewModel.ShowTips(msg);
+                    Current.ShowTips(msg);
                     return false;
                 }
-                AppCurrent.AppViewModel.ShowTips("连接串口成功：" + AppCurrent.InsulationTester.PortName);
+                Current.ShowTips("连接串口成功：" + AppCurrent.InsulationTester.PortName);
             }
             return true;
         }
@@ -45,11 +46,11 @@ namespace Tafel.Hipot.App
                 string msg = string.Empty;
                 if (!AppCurrent.InsulationTester.DisConnect(out msg))
                 {
-                    AppCurrent.AppViewModel.ShowTips(msg);
+                    Current.ShowTips(msg);
                     return false;
                 }
                 AppCurrent.InsulationTester.AlarmStr = string.Empty;
-                AppCurrent.AppViewModel.ShowTips("关闭串口连接成功：" + AppCurrent.InsulationTester.PortName);
+                Current.ShowTips("关闭串口连接成功：" + AppCurrent.InsulationTester.PortName);
             }
             return true;
         }

@@ -149,11 +149,6 @@ namespace Tafel.Hipot.App
             set => SetProperty(ref isLogin, value);
         }
 
-        public void ShowTips(string tips)
-        {
-            Current.TipViewModel.Tips += string.Format("{0} {1}\r\n", DateTime.Now.ToString("HH:mm:ss"), tips);
-            Current.AddOperation(tips);
-        }
 
         private RunStatus runStatus = RunStatus.闲置;
         [ReadOnly(true), DisplayName("当前系统运行状态")]

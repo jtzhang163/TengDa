@@ -61,7 +61,7 @@ namespace Tafel.Hipot.App
 
             TimerInit();
             //当前时间显示
-            AppCurrent.AppViewModel.ShowTips("打开软件");
+            Current.ShowTips("打开软件");
 
             StartDateTimePicker.Value = DateTime.Now;
             StopDateTimePicker.Value = DateTime.Now;
@@ -176,7 +176,7 @@ namespace Tafel.Hipot.App
         {
             if (Current.IsRunning)
             {
-                AppCurrent.AppViewModel.ShowTips("系统已经在运行，请勿重复启动！");
+                Current.ShowTips("系统已经在运行，请勿重复启动！");
                 return;
             }
 
@@ -184,7 +184,7 @@ namespace Tafel.Hipot.App
             {
                 Current.IsRunning = true;
                 AppCurrent.AppViewModel.RunStatus = TengDa.RunStatus.运行;
-                AppCurrent.AppViewModel.ShowTips("成功启动运行！");
+                Current.ShowTips("成功启动运行！");
             }
 
         }
@@ -193,12 +193,12 @@ namespace Tafel.Hipot.App
         {
             if (!Current.IsRunning)
             {
-                AppCurrent.AppViewModel.ShowTips("系统已暂停运行，请勿重复点击！");
+                Current.ShowTips("系统已暂停运行，请勿重复点击！");
                 return;
             }
 
             Current.IsRunning = false;
-            AppCurrent.AppViewModel.ShowTips("成功停止运行！");
+            Current.ShowTips("成功停止运行！");
             AppCurrent.AppViewModel.RunStatus = TengDa.RunStatus.暂停;
         }
 
@@ -206,13 +206,13 @@ namespace Tafel.Hipot.App
         {
             if (Current.IsRunning)
             {
-                AppCurrent.AppViewModel.ShowTips("请先停止运行！");
+                Current.ShowTips("请先停止运行！", isShowMessageBox: true);
                 return;
             }
 
             if (CommunicateControl.CommunicateStop())
             {
-                AppCurrent.AppViewModel.ShowTips("成功复位！");
+                Current.ShowTips("成功复位！");
                 AppCurrent.AppViewModel.RunStatus = TengDa.RunStatus.闲置;
             }
         }
@@ -278,7 +278,7 @@ namespace Tafel.Hipot.App
             //    var CurrentVoltageDatas = data.CurrentVoltageDatas.Where(d => d.RecordTime > StartDateTimePicker.Value && d.RecordTime < StopDateTimePicker.Value).ToList();
             //    if (CurrentVoltageDatas.Count < 1)
             //    {
-            //        AppCurrent.AppViewModel.ShowTips("该时间范围没数据！");
+            //        Current.ShowTips("该时间范围没数据！");
             //        return;
             //    }
 

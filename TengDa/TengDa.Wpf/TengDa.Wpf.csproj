@@ -126,9 +126,6 @@
     <Compile Include="View\YieldUC.xaml.cs">
       <DependentUpon>YieldUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="XctkMessageBox.xaml.cs">
-      <DependentUpon>XctkMessageBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Model\Option.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,10 +151,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\YieldUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="XctkMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

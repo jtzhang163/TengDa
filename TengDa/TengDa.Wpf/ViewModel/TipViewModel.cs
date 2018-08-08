@@ -1,4 +1,6 @@
-﻿namespace TengDa.Wpf
+﻿using System;
+
+namespace TengDa.Wpf
 {
     public class TipViewModel : BindableObject
     {

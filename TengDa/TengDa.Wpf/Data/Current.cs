@@ -54,6 +54,25 @@ namespace TengDa.Wpf
             }
         }
 
+        public static void ShowTips(string tips)
+        {
+            ShowTips(tips, false);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tips"></param>
+        /// <param name="showBox">是否显示弹窗</param>
+        public static void ShowTips(string tips, bool isShowMessageBox)
+        {
+            Current.TipViewModel.Tips += string.Format("{0} {1}\r\n", DateTime.Now.ToString("HH:mm:ss"), tips);
+            Current.AddOperation(tips);
+            if (isShowMessageBox)
+            {
+                Tip.Alert(tips);
+            }
+        }
+
         public static Role Role => Context.UserContext.Roles.FirstOrDefault(g => g.Id == User.RoleId) ?? new Role();
 
         public static List<User> Users => Context.UserContext.Users.ToList();

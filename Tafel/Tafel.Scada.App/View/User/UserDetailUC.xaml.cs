@@ -39,7 +39,7 @@ namespace Tafel.Hipot.App.View
                 AppCurrent.AppViewModel.UserEmail = string.Empty;
 
                 AppCurrent.AppViewModel.CurrentUserNameTip = string.Empty;
-                AppCurrent.AppViewModel.ShowTips(Current.User.Name + "成功注销");
+                Current.ShowTips(Current.User.Name + "成功注销");
 
                 //Thread t = new Thread(() =>
                 //{

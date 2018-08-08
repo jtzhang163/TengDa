@@ -31,7 +31,7 @@ namespace Tafel.Hipot.App
                 AppCurrent.AppViewModel.UserEmail = Current.User.Email;
 
                 AppCurrent.AppViewModel.CurrentUserNameTip = Current.User.Name;
-                AppCurrent.AppViewModel.ShowTips(Current.User.Name + "成功登录");
+                Current.ShowTips(Current.User.Name + "成功登录");
 
                 btnLogin.Content = "正在登录...";
 
