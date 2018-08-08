@@ -28,7 +28,7 @@ namespace Tafel.Hipot.App
                 var userIDLogViewModels = new List<UserIDLogViewModel>();
                 using (var data = new InsulationContext())
                 {
-                    data.InsulationDataLogs.Where(ucvd => ucvd.RecordTime > StartDateTimePicker.Value && ucvd.RecordTime < StopDateTimePicker.Value).ToList().ForEach(c =>
+                    data.InsulationDataLogs.Where(ucvd => ucvd.RecordTime > StartDateTimePicker.Value && ucvd.RecordTime < StopDateTimePicker.Value).Take(maxDataCount.Value.Value).ToList().ForEach(c =>
                     {
                         userIDLogViewModels.Add(new UserIDLogViewModel
                         {

@@ -35,11 +35,14 @@
             <DockPanel DockPanel.Dock="Top" Margin="10,10,10,0">
                 <Button DockPanel.Dock="Right" Width="60" Content="导 出" Height="25" Click="BtnExport_Click" Style="{StaticResource chamferButton}" Foreground="White"/>
                 <StackPanel Orientation="Horizontal" Height="25">
-                    <Label Content="起始时间："/>
+                    <Label Content="起始："/>
                     <xctk:DateTimePicker x:Name="StartDateTimePicker"/>
                     <Separator Width="20" Visibility="Hidden"/>
-                    <Label Content="结束时间："/>
+                    <Label Content="结束："/>
                     <xctk:DateTimePicker x:Name="StopDateTimePicker"/>
+                    <Separator Width="20" Visibility="Hidden"/>
+                    <Label Content="个数："/>
+                    <xctk:IntegerUpDown DefaultValue="1000" Value="1000" x:Name="maxDataCount"/>
                     <Separator Width="100" Visibility="Hidden"/>
                     <Button  Width="60" Content="查 询" Height="25" Click="BtnQuery_Click" Style="{StaticResource chamferButton}" Foreground="White"/>
                     <Separator Width="100" Visibility="Hidden"/>

@@ -16,7 +16,7 @@ namespace Tafel.Hipot.App
         public QueryOperationLogUC()
         {
             InitializeComponent();
-            StartDateTimePicker.Value = DateTime.Now;
+            StartDateTimePicker.Value = DateTime.Now.AddDays(-1);
             StopDateTimePicker.Value = DateTime.Now;
             this.DataContext = UserOperations;
         }
@@ -26,7 +26,7 @@ namespace Tafel.Hipot.App
             get
             {
                 var userOperations = new List<UserOperationViewModel>();
-                Current.Operations.ForEach(o =>
+                Context.OperationContext.Operations.Where(uo => uo.Time > StartDateTimePicker.Value && uo.Time < StopDateTimePicker.Value).Take(maxDataCount.Value.Value).ToList().ForEach(o =>
                 {
                     userOperations.Add(new UserOperationViewModel
                     {
@@ -35,7 +35,7 @@ namespace Tafel.Hipot.App
                         UserName = o.UserId > 0 ? Current.Users.FirstOrDefault(u => u.Id == o.UserId).Name : "未登录用户"
                     });
                 });
-                return userOperations.Where(uo => uo.Time > StartDateTimePicker.Value && uo.Time < StopDateTimePicker.Value);
+                return userOperations;
             }
         }
 
