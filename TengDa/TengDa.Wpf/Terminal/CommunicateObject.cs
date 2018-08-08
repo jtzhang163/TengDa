@@ -10,15 +10,24 @@ namespace TengDa.Wpf
     /// </summary>
     public class CommunicateObject : Service
     {
-
+        private string name;
         /// <summary>
         /// 名称
         /// </summary>
         [DisplayName("名称"), Category("基本信息")]
         [MaxLength(50)]
         [Required]
-        public string Name { get; set; } = string.Empty;
-
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                SetProperty(ref name, value);
+            }
+        }
         /// <summary>
         /// 是否启用
         /// </summary>

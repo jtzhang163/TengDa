@@ -120,13 +120,13 @@
                                           IsSynchronizedWithCurrentItem="True" VerticalAlignment="Center">
                         </ComboBox>
                         <Label Content="电阻：" VerticalAlignment="Center"  Foreground="#2b579a"/>
-                        <Label Content="{Binding Resistance}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
+                        <Label Content="{Binding Resistance}" VerticalAlignment="Center" Foreground="LimeGreen" FontSize="48"/>
                         <Label Content="电压：" VerticalAlignment="Center"  Foreground="#2b579a"/>
-                        <Label Content="{Binding Voltage}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
+                        <Label Content="{Binding Voltage}" VerticalAlignment="Center" Foreground="LimeGreen" FontSize="48"/>
                         <Label Content="测试时长：" VerticalAlignment="Center"  Foreground="#2b579a"/>
-                        <Label Content="{Binding TimeSpan}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
+                        <Label Content="{Binding TimeSpan}" VerticalAlignment="Center" Foreground="LimeGreen" FontSize="48"/>
                         <Label Content="温度：" VerticalAlignment="Center"  Foreground="#2b579a"/>
-                        <Label Content="{Binding Temperature}" VerticalAlignment="Center" Foreground="#2b579a" FontSize="25"/>
+                        <Label Content="{Binding Temperature}" VerticalAlignment="Center" Foreground="LimeGreen" FontSize="48"/>
 
                     </WrapPanel>
                 </Fluent:RibbonGroupBox>

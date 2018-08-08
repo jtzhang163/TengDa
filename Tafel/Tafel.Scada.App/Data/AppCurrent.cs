@@ -27,7 +27,9 @@ namespace Tafel.Hipot.App
                         AppContext.InsulationContext.InsulationTesters.Add(new InsulationTester
                         {
                             Name = "绝缘电阻测试仪",
-                            Company = "TengDa",
+                            Company = "日置(HIOKI)",
+                            Model = "ST5520",
+                            Number = "",
                             IsEnable = true,
                             PortName = "COM1",
                             BaudRate = 9600,

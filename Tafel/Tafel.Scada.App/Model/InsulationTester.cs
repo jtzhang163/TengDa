@@ -14,7 +14,7 @@ namespace Tafel.Hipot.App
     public class InsulationTester : SerialTerminal
     {
         private float resistance;
-        [NotMapped]
+        [NotMapped,Browsable(false)]
         public float Resistance
         {
             get
@@ -28,7 +28,7 @@ namespace Tafel.Hipot.App
         }
 
         private float voltage;
-        [NotMapped]
+        [NotMapped, Browsable(false)]
         public float Voltage
         {
             get
@@ -42,7 +42,7 @@ namespace Tafel.Hipot.App
         }
 
         private float temperature;
-        [NotMapped]
+        [NotMapped, Browsable(false)]
         public float Temperature
         {
             get
@@ -56,7 +56,7 @@ namespace Tafel.Hipot.App
         }
 
         private float timeSpan;
-        [NotMapped]
+        [NotMapped, Browsable(false)]
         public float TimeSpan
         {
             get

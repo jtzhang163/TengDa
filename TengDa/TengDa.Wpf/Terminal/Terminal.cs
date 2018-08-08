@@ -44,19 +44,19 @@ namespace TengDa.Wpf
         /// <summary>
         /// X轴坐标
         /// </summary>
-        [DisplayName("X轴坐标"), Category("位置坐标")]
+        [DisplayName("坐标X轴"), Category("位置坐标")]
         public float X { get; set; }
 
         /// <summary>
         /// Y轴坐标
         /// </summary>
-        [DisplayName("Y轴坐标"), Category("位置坐标")]
+        [DisplayName("坐标Y轴"), Category("位置坐标")]
         public float Y { get; set; }
 
         /// <summary>
         /// Z轴坐标
         /// </summary>
-        [DisplayName("Z轴坐标"), Category("位置坐标")]
+        [DisplayName("坐标Z轴"), Category("位置坐标")]
         public float Z { get; set; }
 
         /// <summary>
