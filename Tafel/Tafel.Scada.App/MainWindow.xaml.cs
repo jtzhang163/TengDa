@@ -181,6 +181,16 @@ namespace Tafel.Hipot.App
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
+            if (Current.User.Id < 0)
+            {
+                if (Verify.Show("尚未登录提示", "请先登录"))
+                {
+                    LoginWindow window = new LoginWindow();
+                    window.ShowDialog();
+                }
+                return;
+            }
+
             if (Current.IsRunning)
             {
                 Current.ShowTips("系统已经在运行，请勿重复启动！");
@@ -198,6 +208,16 @@ namespace Tafel.Hipot.App
 
         private void BtnStop_Click(object sender, RoutedEventArgs e)
         {
+            if (Current.User.Id < 0)
+            {
+                if (Verify.Show("尚未登录提示", "请先登录"))
+                {
+                    LoginWindow window = new LoginWindow();
+                    window.ShowDialog();
+                }
+                return;
+            }
+
             if (!Current.IsRunning)
             {
                 Current.ShowTips("系统已暂停运行，请勿重复点击！");
@@ -211,6 +231,16 @@ namespace Tafel.Hipot.App
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
         {
+            if (Current.User.Id < 0)
+            {
+                if (Verify.Show("尚未登录提示", "请先登录"))
+                {
+                    LoginWindow window = new LoginWindow();
+                    window.ShowDialog();
+                }
+                return;
+            }
+
             if (Current.IsRunning)
             {
                 Current.ShowTips("请先停止运行！", isShowMessageBox: true);
