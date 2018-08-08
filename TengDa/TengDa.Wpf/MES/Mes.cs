@@ -1,29 +1,21 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace TengDa.Wpf
 {
-    public class Mes : Service
+    public abstract class Mes : Service
     {
         [ReadOnly(true)]
+        [Required]
+        [MaxLength(30)]
         [DisplayName("名称")]
         public string Name { get; set; }
 
-        [Description("MES服务器")]
-        [DisplayName("MES服务器")]
-        public string Host { get; set; }
 
-        /// <summary>
-        /// 是否在线
-        /// </summary>
-        [DisplayName("是否在线")]
-        [ReadOnly(true)]
-        public bool IsAlive { get; set; }
-        /// <summary>
-        /// 是否能Ping通，可判断远程主机是否存在
-        /// </summary>
-        [DisplayName("是否能Ping通")]
-        [ReadOnly(true)]
-        public bool IsPingSuccess { get; set; }
+        [DisplayName("MES服务器")]
+        [Required]
+        [MaxLength(30)]
+        public string Host { get; set; }
 
         /// <summary>
         /// 是否启用
@@ -33,9 +25,19 @@ namespace TengDa.Wpf
         public bool IsEnable { get; set; }
 
         /// <summary>
+        /// 是否在线
+        /// </summary>
+        public bool IsAlive = false;
+
+        /// <summary>
+        /// 是否能Ping通，可判断远程主机是否存在
+        /// </summary>
+        public bool IsPingSuccess = false;
+
+
+        /// <summary>
         /// 是否离线
         /// </summary>
-        [DisplayName("是否离线")]
-        public bool IsOffline { get; set; }
+        public bool IsOffline = false;
     }
 }

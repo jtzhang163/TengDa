@@ -14,7 +14,7 @@
             <TreeView Name="ObjectTreeView" Width="400" SelectedItemChanged="ObjectTreeView_SelectedItemChanged">
 
             </TreeView>
-            <xctk:PropertyGrid x:Name="ObjPropertySetter" DockPanel.Dock="Right" Background="AliceBlue" Foreground="#2b579a" PropertyChanged="ObjPropertySetter_PropertyChanged">
+            <xctk:PropertyGrid x:Name="ObjPropertySetter" DockPanel.Dock="Right" Background="AliceBlue" Foreground="#2b579a" SelectedPropertyItemChanged="ObjPropertySetter_SelectedPropertyItemChanged">
 
             </xctk:PropertyGrid>
             

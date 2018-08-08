@@ -99,7 +99,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Service.cs" />
+    <Compile Include="Model\Service.cs" />
     <Compile Include="Data\BindableObject.cs" />
     <Compile Include="Data\Context.cs" />
     <Compile Include="Data\Current.cs" />

@@ -42,6 +42,31 @@ namespace Tafel.Hipot.App
             }
         }
 
+
+        private static MES mes = new MES();
+        public static MES Mes
+        {
+            get
+            {
+                if (mes.Id < 1)
+                {
+                    mes = AppContext.MesContext.MESs.FirstOrDefault() ?? new MES();
+                    if (mes.Id < 1)
+                    {
+                        AppContext.MesContext.MESs.Add(new MES
+                        {
+                            Name = "MES",
+                            Host = "192.168.1.1",
+                            IsEnable = true,
+
+                        });
+                        AppContext.MesContext.SaveChanges();
+                    }
+                }
+                return mes;
+            }
+        }
+
         #endregion
 
         #region

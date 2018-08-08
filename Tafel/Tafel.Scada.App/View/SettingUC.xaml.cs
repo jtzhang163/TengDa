@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using TengDa.Wpf;
 
 namespace Tafel.Hipot.App.View
 {
@@ -21,6 +22,7 @@ namespace Tafel.Hipot.App.View
 
             ObjectTreeView.Items.Add(new TreeViewItem() { Header = AppCurrent.InsulationTester.Name, Name = AppCurrent.InsulationTester.Name });
 
+            ObjectTreeView.Items.Add(new TreeViewItem() { Header = AppCurrent.Mes.Name, Name = AppCurrent.Mes.Name });
         }
 
         private void ObjectTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -41,16 +43,38 @@ namespace Tafel.Hipot.App.View
             {
                 ObjPropertySetter.SelectedObject = AppCurrent.InsulationTester;
             }
-            else
+            else if(name == AppCurrent.Mes.Name)
             {
-
+                ObjPropertySetter.SelectedObject = AppCurrent.Mes;
             }
 
         }
 
-        private void ObjPropertySetter_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+
+        private void ObjPropertySetter_SelectedPropertyItemChanged(object sender, RoutedPropertyChangedEventArgs<Xceed.Wpf.Toolkit.PropertyGrid.PropertyItemBase> e)
         {
-            AppContext.InsulationContext.SaveChanges();
+            if (e.NewValue == null || e.OldValue == null)
+            {
+                return;
+            }
+
+            //object o = this.ObjPropertySetter.SelectedObject;
+            //Type type = o.GetType();
+            //string settingsStr = string.Empty;
+
+            //if (type == typeof(MES))
+            //{
+            //    System.Reflection.PropertyInfo propertyInfoId = type.GetProperty("Id"); //获取指定名称的属性
+            //    long Id = (long)propertyInfoId.GetValue(o, null); //获取属性值
+            //    Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem p = (Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem)(e.OldValue);
+
+            //    settingsStr = string.Format("将Id为 {0} 的 {1} 的 {2} 修改为 {3} ", Id, type.Name, p.PropertyName, p.Value);
+            //    AppContext.MesContext.SaveChangesAsync();
+
+            //    Current.ShowTips(settingsStr,true);
+            //}
+
+            AppContext.MesContext.SaveChangesAsync();
         }
     }
 }

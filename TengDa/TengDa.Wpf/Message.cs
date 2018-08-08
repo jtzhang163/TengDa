@@ -78,4 +78,25 @@ namespace TengDa.Wpf
             LogHelper.WriteError(str);
         }
     }
+
+    /// <summary>
+    /// 异常处理公用类
+    /// </summary>
+    public class Verify
+    {
+        /// <summary>
+        /// 弹窗确认
+        /// </summary>
+        public static bool Show(string caption, string messageText)
+        {
+            bool isOK = false;
+
+            if (Xceed.Wpf.Toolkit.MessageBox.Show(messageText, caption, MessageBoxButton.OKCancel, MessageBoxImage.Information) == MessageBoxResult.OK)
+            {
+                isOK = true;
+            }
+
+            return isOK;
+        }
+    }
 }

@@ -176,7 +176,7 @@
             <Fluent:RibbonTabItem Header="设置" Group="{Binding Source={x:Reference toolsGroup}}">
                 <Fluent:RibbonGroupBox Header="基本设置" Height="80">
                     <Separator Width="20" Visibility="Hidden"/>
-                    <Fluent:Button Name="BtnBaseSetting" Header="配置" Icon="/Images/Setting.PNG" LargeIcon="/Images/Setting.PNG" Click="BtnBaseSetting_Click"/>
+                    <Fluent:Button Name="BtnBaseSetting" Header="配置" Icon="/Images/Setting.png" LargeIcon="/Images/Setting.png" Click="BtnBaseSetting_Click"/>
                     <Separator Width="20" Visibility="Hidden"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>

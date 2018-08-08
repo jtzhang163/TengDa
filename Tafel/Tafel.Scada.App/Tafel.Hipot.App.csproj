@@ -155,6 +155,7 @@
     <Compile Include="Command\QueryCommand.cs" />
     <Compile Include="Command\UserCommand.cs" />
     <Compile Include="Model\InsulationData.cs" />
+    <Compile Include="Model\MES.cs" />
     <Compile Include="View\User\UserSettingWindow.xaml.cs">
       <DependentUpon>UserSettingWindow.xaml</DependentUpon>
     </Compile>
@@ -307,7 +308,6 @@
     <Resource Include="Images\Reset_Lime.png" />
     <Resource Include="Images\RGV.jpg" />
     <Resource Include="Images\Rgv_Track_Lime.PNG" />
-    <Resource Include="Images\Setting.PNG" />
     <Resource Include="Images\Settings_green.png" />
     <Resource Include="Images\Start_Green.png" />
     <Resource Include="Images\Start_Green_1.png" />
@@ -321,6 +321,7 @@
     <Resource Include="Images\DataLog.png" />
     <Resource Include="Images\Alarm.png" />
     <Resource Include="Images\Report.png" />
+    <Resource Include="Images\Setting.png" />
     <Content Include="Videos\LoginHead.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

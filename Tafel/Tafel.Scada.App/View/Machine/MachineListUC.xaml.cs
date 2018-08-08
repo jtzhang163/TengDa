@@ -19,6 +19,7 @@ namespace Tafel.Hipot.App
             var machineTrees = new List<MachineTree>
             {
                 new MachineTree() { Id = 1, Name = AppCurrent.InsulationTester.Name, ParentId = 0 ,IsChecked = AppCurrent.InsulationTester.IsEnable},
+                new MachineTree() { Id = 2, Name = AppCurrent.Mes.Name, ParentId = 0 ,IsChecked = AppCurrent.Mes.IsEnable},
             };
 
             this.SetItemsSourceData(machineTrees, m => m.Name, m => m.Id, m => m.ParentId, m => m.IsChecked);
@@ -140,6 +141,11 @@ namespace Tafel.Hipot.App
                     {
                         AppCurrent.InsulationTester.IsEnable = value;
                         AppContext.InsulationContext.SaveChangesAsync();
+                    }
+                    else if (Caption == AppCurrent.Mes.Name)
+                    {
+                        AppCurrent.Mes.IsEnable = value;
+                        AppContext.MesContext.SaveChangesAsync();
                     }
                     //**************改变设备启用状态 Finished********************
 
