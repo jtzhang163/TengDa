@@ -4,15 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TengDa.Wpf
 {
-    public abstract class Terminal : Service
+    public abstract class Terminal : CommunicateObject
     {
-        /// <summary>
-        /// 名称
-        /// </summary>
-        [DisplayName("名称"), Category("基本信息")]
-        [MaxLength(50)]
-        [Required]
-        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// 生产厂商
@@ -46,18 +39,6 @@ namespace TengDa.Wpf
         /// 报警字符串
         /// </summary>
         public string AlarmStr = string.Empty;
-
-
-        /// <summary>
-        /// 是否在线
-        /// </summary>
-        public bool IsAlive = false;
-
-        /// <summary>
-        /// 是否启用
-        /// </summary>
-        [DisplayName("是否启用"), Category("常见设置"), ReadOnly(true)]
-        public bool IsEnable { get; set; } = true;
 
 
         /// <summary>

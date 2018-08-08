@@ -10,9 +10,9 @@ namespace Tafel.Hipot.App
     /// <summary>
     /// MachineListUC.xaml 的交互逻辑
     /// </summary>
-    public partial class MachineListUC : UserControl
+    public partial class MachineSelectUC : UserControl
     {
-        public MachineListUC()
+        public MachineSelectUC()
         {
             InitializeComponent();
 

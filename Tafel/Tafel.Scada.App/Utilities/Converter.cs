@@ -46,4 +46,18 @@ namespace Tafel.Hipot.App.Utilities
         }
     }
 
+    public class CommunicateColorConverter : IValueConverter
+    {
+        object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            bool isAlive = (bool)value;
+            return isAlive ? "Lime" : "LightGray";
+        }
+
+        object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }

@@ -199,9 +199,10 @@
                 <ColumnDefinition Width="200" MinWidth="50" MaxWidth="500"/>
             </Grid.ColumnDefinitions>
             <DockPanel>
-                <local:MachineListUC DockPanel.Dock="Top"  Height="380" IsEnabled="{Binding RunStatus, Converter={StaticResource runStatusConverter}}"/>
-                
+               
+                <local:MachineSelectUC DockPanel.Dock="Top"  Height="120" IsEnabled="{Binding RunStatus, Converter={StaticResource runStatusConverter}}"/>
                 <wpf:YieldUC DockPanel.Dock="Bottom"/>
+                <local:CommunicateStatusUC />
             </DockPanel>
 
             <TabControl Grid.Column="1" Margin="10" x:Name="MainTabControl" BorderThickness="1" BorderBrush="Green">

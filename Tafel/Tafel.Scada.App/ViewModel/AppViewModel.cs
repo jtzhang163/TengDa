@@ -169,10 +169,18 @@ namespace Tafel.Hipot.App
 
         public List<InsulationTester> GetTesters()
         {
-            //return AppCurrent.InsulationTester;
             return new List<InsulationTester>()
             {
                 AppCurrent.InsulationTester
+            };
+        }
+
+        public List<CommunicateObject> GetComms()
+        {
+            return new List<CommunicateObject>()
+            {
+                AppCurrent.InsulationTester,
+                AppCurrent.Mes
             };
         }
 

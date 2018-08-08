@@ -116,10 +116,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="TengDa.Wpf, Version=0.8.0.15765, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\TengDa\TengDa.Dll\TengDa.Wpf.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -154,17 +150,11 @@
     <Compile Include="Data\Enumeration.cs" />
     <Compile Include="Command\QueryCommand.cs" />
     <Compile Include="Command\UserCommand.cs" />
-    <Compile Include="Migrations\201808080630522_InitialCreate.cs" />
-    <Compile Include="Migrations\201808080630522_InitialCreate.Designer.cs">
-      <DependentUpon>201808080630522_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808080647576_init.cs" />
-    <Compile Include="Migrations\201808080647576_init.Designer.cs">
-      <DependentUpon>201808080647576_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\InsulationData.cs" />
     <Compile Include="Model\MES.cs" />
+    <Compile Include="View\Machine\CommunicateStatusUC.xaml.cs">
+      <DependentUpon>CommunicateStatusUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\User\UserSettingWindow.xaml.cs">
       <DependentUpon>UserSettingWindow.xaml</DependentUpon>
     </Compile>
@@ -177,8 +167,8 @@
     <Compile Include="Utilities\Converter.cs" />
     <Compile Include="ViewModel\AppViewModel.cs" />
     <Compile Include="ViewModel\UserIDLogViewModel.cs" />
-    <Compile Include="View\Machine\MachineListUC.xaml.cs">
-      <DependentUpon>MachineListUC.xaml</DependentUpon>
+    <Compile Include="View\Machine\MachineSelectUC.xaml.cs">
+      <DependentUpon>MachineSelectUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Query\QueryIDLogUC.xaml.cs">
       <DependentUpon>QueryIDLogUC.xaml</DependentUpon>
@@ -204,6 +194,10 @@
     <Compile Include="View\AboutUC.xaml.cs">
       <DependentUpon>AboutUC.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Machine\CommunicateStatusUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\User\UserSettingWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -224,7 +218,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Machine\MachineListUC.xaml">
+    <Page Include="View\Machine\MachineSelectUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -275,12 +269,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201808080630522_InitialCreate.resx">
-      <DependentUpon>201808080630522_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808080647576_init.resx">
-      <DependentUpon>201808080647576_init.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -298,6 +286,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\TengDa\TengDa.Wpf\TengDa.Wpf.csproj">
+      <Project>{2bc89f9d-8fc7-4e19-9d16-cc66e56e56ae}</Project>
+      <Name>TengDa.Wpf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\TengDa\TengDa\TengDa.csproj">
       <Project>{313161d4-a305-47fb-8935-d7c0a0cf4b3d}</Project>
       <Name>TengDa</Name>

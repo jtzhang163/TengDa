@@ -113,6 +113,7 @@
     <Compile Include="Model\Operation.cs" />
     <Compile Include="Product\Product.cs" />
     <Compile Include="Record\RecordData.cs" />
+    <Compile Include="Terminal\CommunicateObject.cs" />
     <Compile Include="Terminal\EthernetTerminal.cs" />
     <Compile Include="Terminal\ICommunicate.cs" />
     <Compile Include="Terminal\SerialTerminal.cs" />
