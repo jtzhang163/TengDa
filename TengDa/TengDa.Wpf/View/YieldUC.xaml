@@ -24,9 +24,9 @@
                         <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5" Name="PART_Background">
                             <Border.Background>
                                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="White" Offset="0.0" />
                                     <GradientStop Color="#09a3de" Offset="0.0" />
-                                    <GradientStop Color="#09a3de" Offset="0.0" />
-                                    <GradientStop Color="#09a3de" Offset="0.0" />
+                                    <GradientStop Color="White" Offset="0.0" />
                                 </LinearGradientBrush>
                             </Border.Background>
                             <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -34,7 +34,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="#09a3de"/>
         </Style>
 
     </UserControl.Resources>
@@ -51,15 +51,16 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <!--<Label Grid.Row="0" Grid.Column="0" Content="开始时间"/>-->
-            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding StartTime}" ContentStringFormat="yyyy/M/d HH:mm">
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding StartTime}" Foreground="Green" ContentStringFormat="yyyy/M/d H:mm">
                 <Label.ToolTip>
                     <TextBlock Text="产量计数起始时间"/>
                 </Label.ToolTip>
             </Label>
-            <Label Grid.Row="1" Grid.Column="0" Content="上料数" HorizontalContentAlignment="Left"/>
-            <Label Grid.Row="1" Grid.Column="1" Content="{Binding FeedingOK}"/>
-            <Label Grid.Row="2" Grid.Column="0" Content="下料数" HorizontalContentAlignment="Left"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="{Binding BlankingOK}"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="上料数" FontSize="12"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="下料数" FontSize="12"/>
+            <!--{Binding FeedingOK}  {Binding BlankingOK} -->
+            <Label Grid.Row="2" Grid.Column="0" Content="{Binding FeedingOK}" FontSize="26" Foreground="LimeGreen" FontWeight="Bold"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding BlankingOK}" FontSize="26" Foreground="LimeGreen" FontWeight="Bold"/>
             <Button Grid.Row="3" Grid.Column="0"  Content="历 史" Width="60" Height="25" Style="{StaticResource chamferButton}">
                 <Button.ToolTip>
                     <TextBlock Text="查看历史产量数据"/>

@@ -56,7 +56,7 @@
             <Separator HorizontalAlignment="Left" />
 
             <Fluent:StatusBarItem HorizontalAlignment="Right" Margin="0,0,10,0">
-                <Label Content="{Binding TimeNow}" ContentStringFormat="yyyy/M/d HH:mm:ss" Foreground="White"/>
+                <Label Content="{Binding TimeNow}" ContentStringFormat="yyyy/M/d H:mm:ss" Foreground="White"/>
             </Fluent:StatusBarItem>
         </Fluent:StatusBar>
     </Grid>

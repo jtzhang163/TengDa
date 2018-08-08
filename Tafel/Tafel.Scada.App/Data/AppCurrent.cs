@@ -9,6 +9,8 @@ namespace Tafel.Hipot.App
 
         public static AppOption Option = new AppOption();
 
+        public static MainWindow MainWindow { get; set; }
+
         #region 系统设备
 
         private static InsulationTester insulationTester = new InsulationTester();

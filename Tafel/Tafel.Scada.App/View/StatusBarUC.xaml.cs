@@ -32,6 +32,7 @@ namespace Tafel.Hipot.App.View
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             AppCurrent.AppViewModel.MainWindowsBackstageIsOpen = true;
+            AppCurrent.MainWindow.UserBackstageTabItem.IsSelected = true;
         }
     }
 }

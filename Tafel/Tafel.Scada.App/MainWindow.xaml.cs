@@ -58,6 +58,7 @@ namespace Tafel.Hipot.App
 
             this.DataContext = AppCurrent.AppViewModel;
 
+            AppCurrent.MainWindow = this;
 
             TimerInit();
             //当前时间显示
