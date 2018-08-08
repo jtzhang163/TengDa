@@ -33,7 +33,8 @@ namespace Tafel.Hipot.App
                             BaudRate = 9600,
                             DataBits = 8,
                             Parity = System.IO.Ports.Parity.None,
-                            StopBits = System.IO.Ports.StopBits.One
+                            StopBits = System.IO.Ports.StopBits.One,
+                            IsPassiveReceiveSerialPort = true
                         });
                         AppContext.InsulationContext.SaveChanges();
                     }
@@ -71,6 +72,11 @@ namespace Tafel.Hipot.App
 
         #region
         public static System.Timers.Timer TimerUpdateTime = new System.Timers.Timer() { Interval = 1000, AutoReset = true };
+
+        public static System.Timers.Timer TimerCheckTesterInfo = new System.Timers.Timer() { Interval = AppCurrent.Option.CheckTesterInfoInterval, AutoReset = true };
+
+        public static System.Timers.Timer TimerCheckMesInfo = new System.Timers.Timer() { Interval = AppCurrent.Option.CheckMesInfoInterval * 1000, AutoReset = true };
+
         #endregion
 
 

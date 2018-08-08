@@ -83,8 +83,8 @@ namespace Zopoise.Scada.App
             AppCurrent.TimerCommunicateWithPlc.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().PlcCommunicate);
             AppCurrent.TimerCommunicateWithPlc.Start();
 
-            AppCurrent.TimerCommunicateWithPlc.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CommunicatorCommunicate);
-            AppCurrent.TimerCommunicateWithPlc.Start();
+            AppCurrent.TimerCommunicateWithCommunicator.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CommunicatorCommunicate);
+            AppCurrent.TimerCommunicateWithCommunicator.Start();
         }
 
 

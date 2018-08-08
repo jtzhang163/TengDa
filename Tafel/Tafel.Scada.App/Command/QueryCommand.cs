@@ -18,17 +18,17 @@ namespace Tafel.Hipot.App
             }
         }
 
-        private static RoutedUICommand queryCVLog;
-        public static ICommand QueryCVLog
+        private static RoutedUICommand queryIDLog;
+        public static ICommand QueryIDLog
         {
             get
             {
-                if (queryCVLog == null)
+                if (queryIDLog == null)
                 {
-                    queryCVLog = new RoutedUICommand("Query Current and Voltage Log", "QueryCurrentVoltageLog", typeof(QueryCommand));
-                    queryCVLog.InputGestures.Add(new KeyGesture(Key.C, ModifierKeys.Alt));
+                    queryIDLog = new RoutedUICommand("Query Insulation Data Log", "QueryInsulationDataLog", typeof(QueryCommand));
+                    queryIDLog.InputGestures.Add(new KeyGesture(Key.C, ModifierKeys.Alt));
                 }
-                return queryCVLog;
+                return queryIDLog;
             }
         }
     }

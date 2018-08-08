@@ -184,26 +184,5 @@ namespace Tafel.Hipot.App
             };
         }
 
-        private int selectTesterIndex = -1;
-        [Browsable(false)]
-        public int SelectTesterIndex
-        {
-            get
-            {
-                if (selectTesterIndex < 0)
-                {
-                    selectTesterIndex = AppCurrent.Option.SelectTesterIndex;
-                }
-                return selectTesterIndex;
-            }
-            set
-            {
-                if (selectTesterIndex != value)
-                {
-                    AppCurrent.Option.SelectTesterIndex = value;
-                }
-                SetProperty(ref selectTesterIndex, value);
-            }
-        }
     }
 }

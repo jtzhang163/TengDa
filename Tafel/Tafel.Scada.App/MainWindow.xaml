@@ -19,7 +19,7 @@
     <Fluent:RibbonWindow.CommandBindings>
         <CommandBinding Command="Close" Executed="OnClose"/>
         <CommandBinding Command="local:QueryCommand.QueryOperationLog" Executed="OnQueryOperationLog"/>
-        <CommandBinding Command="local:QueryCommand.QueryCVLog" Executed="OnQueryCVLog"/>
+        <CommandBinding Command="local:QueryCommand.QueryIDLog" Executed="OnQueryIDLog"/>
     </Fluent:RibbonWindow.CommandBindings>
     <Fluent:RibbonWindow.Resources>
 
@@ -165,7 +165,7 @@
                     <Separator Width="20" Visibility="Hidden"/>
                     <Fluent:Button Name="BtnQueryAlarmLog" Header="报警记录" Icon="/Images/Alarm.png" LargeIcon="/Images/Alarm.png"/>
                     <Separator Width="20" Visibility="Hidden"/>
-                    <Fluent:Button Name="BtnQueryCVLog" Header="电流电压查询" Icon="/Images/DataLog.png" LargeIcon="/Images/DataLog.png" Command="local:QueryCommand.QueryCVLog"/>
+                    <Fluent:Button Name="BtnQueryCVLog" Header="测试数据查询" Icon="/Images/DataLog.png" LargeIcon="/Images/DataLog.png" Command="local:QueryCommand.QueryIDLog"/>
                     <Separator Width="20" Visibility="Hidden"/>
                 </Fluent:RibbonGroupBox>
 

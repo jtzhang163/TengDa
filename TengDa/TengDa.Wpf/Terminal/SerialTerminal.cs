@@ -80,7 +80,7 @@ namespace TengDa.Wpf
         /// <summary>
         /// 是否被动接受串口返回的数据
         /// </summary>
-        [DisplayName("是否被动接受串口返回的数据")]
+        [DisplayName("是否被动接受串口返回的数据"),ReadOnly(true)]
         public bool IsPassiveReceiveSerialPort { get; set; }
 
 

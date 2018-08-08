@@ -78,6 +78,12 @@ namespace Tafel.Hipot.App
             //更新
             AppCurrent.TimerUpdateTime.Elapsed += delegate { AppCurrent.AppViewModel.TimeNow = DateTime.Now; };
             AppCurrent.TimerUpdateTime.Start();
+
+            AppCurrent.TimerCheckTesterInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckTesterInfo);
+            AppCurrent.TimerCheckTesterInfo.Start();
+
+            AppCurrent.TimerCheckMesInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckMesInfo);
+            AppCurrent.TimerCheckMesInfo.Start();
         }
 
 
@@ -138,7 +144,7 @@ namespace Tafel.Hipot.App
             }
         }
 
-        private void OnQueryCVLog(object sender, ExecutedRoutedEventArgs e)
+        private void OnQueryIDLog(object sender, ExecutedRoutedEventArgs e)
         {
             var uc = new QueryIDLogUC()
             {
@@ -147,18 +153,18 @@ namespace Tafel.Hipot.App
             var isContain = false;
             foreach (TabItem tabItem in this.MainTabControl.Items)
             {
-                if (tabItem.Header.ToString() == "电流电压查询") { isContain = true; }
+                if (tabItem.Header.ToString() == "测试数据查询") { isContain = true; }
             }
 
             if (!isContain)
             {
-                this.MainTabControl.SelectedIndex = this.MainTabControl.Items.Add(new TabItem { Header = "电流电压查询", Content = uc });
+                this.MainTabControl.SelectedIndex = this.MainTabControl.Items.Add(new TabItem { Header = "测试数据查询", Content = uc });
             }
             else
             {
                 for (var i = 0; i < this.MainTabControl.Items.Count; i++)
                 {
-                    if ((this.MainTabControl.Items[i] as TabItem).Header.ToString() == "电流电压查询")
+                    if ((this.MainTabControl.Items[i] as TabItem).Header.ToString() == "测试数据查询")
                     {
                         this.MainTabControl.SelectedIndex = i;
                         return;
@@ -259,7 +265,7 @@ namespace Tafel.Hipot.App
             lgVoltage.StrokeThickness = 2;
 
 
-            timer.Interval = TimeSpan.FromMilliseconds(AppCurrent.Option.CommunicatorCommunicateInterval);
+            timer.Interval = TimeSpan.FromMilliseconds(1000);
             timer.Tick += new EventHandler(AnimatedPlot);
             timer.IsEnabled = true;
         }

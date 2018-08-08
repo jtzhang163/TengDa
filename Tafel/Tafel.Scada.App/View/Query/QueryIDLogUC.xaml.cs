@@ -16,7 +16,7 @@ namespace Tafel.Hipot.App
         public QueryIDLogUC()
         {
             InitializeComponent();
-            StartDateTimePicker.Value = DateTime.Now;
+            StartDateTimePicker.Value = DateTime.Now.AddDays(-1);
             StopDateTimePicker.Value = DateTime.Now;
             this.DataContext = UserIDLogViewModels;
         }
@@ -34,7 +34,11 @@ namespace Tafel.Hipot.App
                         {
                             UserName = c.UserId > 0 ? Current.Users.FirstOrDefault(u => u.Id == c.UserId).Name : "未登录用户",
                             TesterName = AppCurrent.InsulationTester.Name,
+                            Voltage = c.Voltage,
+                            TimeSpan = c.TimeSpan,
+                            Temperature = c.Temperature,
                             Resistance = c.Resistance,
+                            IsUploaded = c.IsUploaded,
                             RecordTime = c.RecordTime
                         });
                     });
@@ -51,7 +55,7 @@ namespace Tafel.Hipot.App
 
         private void BtnExport_Click(object sender, RoutedEventArgs e)
         {
-            ExcelHelper.Export(TengDa._Convert.ToDataTable<UserIDLogViewModel>(UserIDLogViewModels, true), "电流电压历史数据", StartDateTimePicker.Value ?? DateTime.Now, StopDateTimePicker.Value ?? DateTime.Now);
+            ExcelHelper.Export(TengDa._Convert.ToDataTable<UserIDLogViewModel>(UserIDLogViewModels, true), "Hipot测试数据", StartDateTimePicker.Value ?? DateTime.Now, StopDateTimePicker.Value ?? DateTime.Now);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Configuration;
 using System.Data.Entity;
 using TengDa.Wpf;
@@ -12,6 +14,7 @@ namespace Tafel.Hipot.App
     public class InsulationTester : SerialTerminal
     {
         private float resistance;
+        [NotMapped]
         public float Resistance
         {
             get
@@ -25,6 +28,7 @@ namespace Tafel.Hipot.App
         }
 
         private float voltage;
+        [NotMapped]
         public float Voltage
         {
             get
@@ -38,6 +42,7 @@ namespace Tafel.Hipot.App
         }
 
         private float temperature;
+        [NotMapped]
         public float Temperature
         {
             get
@@ -51,6 +56,7 @@ namespace Tafel.Hipot.App
         }
 
         private float timeSpan;
+        [NotMapped]
         public float TimeSpan
         {
             get
@@ -72,6 +78,46 @@ namespace Tafel.Hipot.App
             this.Id = Id;
         }
 
+
+        public void GetInfo()
+        {
+            if (!IsGetNewData)
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(ReceiveString))
+            {
+                return;
+            }
+
+            var tmpStr = ReceiveString.Split(',');
+            if(tmpStr.Length < 4)
+            {
+                return;
+            }
+
+            this.Resistance = TengDa._Convert.StrToFloat(tmpStr[0], 0);
+            this.Voltage = TengDa._Convert.StrToFloat(tmpStr[1], 0);
+            this.TimeSpan = TengDa._Convert.StrToFloat(tmpStr[2], 0);
+            this.Temperature = TengDa._Convert.StrToFloat(tmpStr[3], 0);
+
+            this.RealtimeStatus = string.Format("获得数据完成，电阻：{0}，电压：{1}，测试间隔：{2}，温度：{3}", Resistance, Voltage, TimeSpan, Temperature);
+
+            AppContext.InsulationContext.InsulationDataLogs.Add(new InsulationDataLog()
+            {
+                UserId = Current.User.Id,
+                TesterId = AppCurrent.InsulationTester.Id,
+                IsUploaded = false,
+                Resistance = this.Resistance,
+                Temperature = this.Temperature,
+                TimeSpan = this.TimeSpan,
+                Voltage = this.Voltage,
+                RecordTime = DateTime.Now
+            });
+            AppContext.InsulationContext.SaveChangesAsync();
+            IsGetNewData = false;
+        }
     }
 
     public class InsulationContext : DbContext
@@ -100,6 +146,7 @@ namespace Tafel.Hipot.App
             {
                 Name = "绝缘电阻测试仪",
                 Company = "Tengda",
+                IsPassiveReceiveSerialPort = true
             };
             context.InsulationTesters.Add(tester);
         }

@@ -12,11 +12,23 @@ namespace Tafel.Hipot.App
     public class TimerRun
     {
 
-        public void InsulationTesterCommunicate(object sender, ElapsedEventArgs e)
+        public void CheckTesterInfo(object sender, ElapsedEventArgs e)
         {
             if (Current.IsRunning && AppCurrent.InsulationTester.IsEnable)
             {
-                Console.WriteLine("Plc Communicate");
+
+                AppCurrent.InsulationTester.GetInfo();
+
+            }
+        }
+
+        public void CheckMesInfo(object sender, ElapsedEventArgs e)
+        {
+            if (Current.IsRunning && AppCurrent.Mes.IsEnable)
+            {
+
+                MES.Upload();
+
             }
         }
     }

@@ -50,16 +50,13 @@
             <DataGrid x:Name="ResultDataGrid" Margin="10" ItemsSource="{Binding}" IsReadOnly="True" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding UserName}" Header="用户名称" Width="3*"/>
-                    <DataGridTextColumn Binding="{Binding TesterName}" Header="工装板名称" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding TesterName}" Header="仪器名称" Width="2*"/>
                     <DataGridTextColumn Binding="{Binding Voltage}" Header="电压" Width="2*"/>
-                    <DataGridTextColumn Binding="{Binding Current1}" Header="电流1" Width="2*"/>
-                    <DataGridTextColumn Binding="{Binding Current2}" Header="电流2" Width="2*"/>
-                    <DataGridTextColumn Binding="{Binding Current3}" Header="电流3" Width="2*"/>
-                    <DataGridTextColumn Binding="{Binding Current4}" Header="电流4" Width="2*"/>
-                    <DataGridTextColumn Binding="{Binding Current5}" Header="电流5" Width="2*"/>
-                    <DataGridTextColumn Binding="{Binding Current6}" Header="电流6" Width="2*"/>
-                    <DataGridTextColumn Binding="{Binding CurrentType}" Header="电流类型" Width="2*"/>
-                    <DataGridTextColumn Binding="{Binding RecordTime,StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}" Header="操作时间" Width="3*"/>
+                    <DataGridTextColumn Binding="{Binding Resistance}" Header="电阻" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding Temperature}" Header="温度" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding TimeSpan}" Header="测试时长" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding IsUploaded}" Header="已上传" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding RecordTime,StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}" Header="记录时间" Width="3*"/>
                 </DataGrid.Columns>
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">

@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Tafel.Hipot.App
@@ -18,6 +19,22 @@ namespace Tafel.Hipot.App
         {
             this.Id = id;
         }
+
+        public static void Upload()
+        {
+            var datas = AppContext.InsulationContext.InsulationDataLogs.Where(i => !i.IsUploaded).Take(100).ToList();
+            datas.ForEach(d =>
+            {
+                d.IsUploaded = true;
+
+                //上传MES
+
+                AppCurrent.Mes.RealtimeStatus = string.Format("上传MES完成，电阻：{0}，电压：{1}，测试间隔：{2}，温度：{3}", d.Resistance, d.Voltage, d.TimeSpan, d.Temperature);
+                AppContext.InsulationContext.SaveChangesAsync();
+                Thread.Sleep(200);
+            });
+        }
+
     }
 
     public class MesContext : DbContext
