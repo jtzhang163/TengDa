@@ -21,6 +21,12 @@ namespace Tafel.Hipot.App.View
 
         private void hyberlinkLogout_Click(object sender, RoutedEventArgs e)
         {
+            if (Current.IsRunning)
+            {
+                Tip.Alert("系统正在运行，请先停止！");
+                return;
+            }
+
             if (UserViewModel.Logout())
             {
                 AppCurrent.AppViewModel.UserName = string.Empty;

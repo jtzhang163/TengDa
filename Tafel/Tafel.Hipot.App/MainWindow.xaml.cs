@@ -36,7 +36,14 @@ namespace Tafel.Hipot.App
         }
 
         protected override void OnClosing(CancelEventArgs e)
-        {          
+        {
+            if (Current.IsRunning)
+            {
+                Current.ShowTips("系统正在运行，请先停止！", true);
+                e.Cancel = true;
+                return;
+            }
+
             base.OnClosing(e);
         }
 
