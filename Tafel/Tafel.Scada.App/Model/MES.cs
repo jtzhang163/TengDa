@@ -33,6 +33,13 @@ namespace Tafel.Hipot.App
                 AppContext.InsulationContext.SaveChangesAsync();
                 Thread.Sleep(200);
             });
+
+            var t = new Thread(() => {
+                Thread.Sleep(1000);
+                AppCurrent.Mes.RealtimeStatus = "等待上传";
+            });
+            t.IsBackground = true;
+            t.Start();
         }
 
     }

@@ -215,11 +215,12 @@
                                 <RadioButton Content="实时数据" Margin="10" IsChecked="{Binding Path=GraphShowMode,Converter={StaticResource graphShowModeConverter},ConverterParameter={x:Static local:GraphShowMode.实时数据}}"></RadioButton>
                                 <RadioButton Content="历史数据" Margin="10" IsChecked="{Binding Path=GraphShowMode,Converter={StaticResource graphShowModeConverter},ConverterParameter={x:Static local:GraphShowMode.历史数据}}"></RadioButton>
 
-                                <Label Content="  范围：" VerticalAlignment="Center"/>
-                                <Label Content="起始时间：" VerticalAlignment="Center"/>
+                                <Label Content="起始：" VerticalAlignment="Center"/>
                                 <xctk:DateTimePicker x:Name="StartDateTimePicker" Height="25" IsEnabled="{Binding GraphShowMode,Converter={StaticResource graphShowModeToBoolConverter}}"/>
-                                <Label Content="结束时间：" VerticalAlignment="Center"/>
+                                <Label Content="结束：" VerticalAlignment="Center"/>
                                 <xctk:DateTimePicker x:Name="StopDateTimePicker" Height="25" IsEnabled="{Binding GraphShowMode,Converter={StaticResource graphShowModeToBoolConverter}}"/>
+                                <Label Content="个数：" VerticalAlignment="Center"/>
+                                <xctk:IntegerUpDown DefaultValue="1000" Value="1000" x:Name="maxDataCount" Height="25"/>
                             </WrapPanel>
                         </DockPanel>
                         <Grid>
@@ -227,10 +228,13 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <!--PlotHeight="2" PlotWidth="100"-->
-                            <d3:Chart Name="plotterCurrents">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <d3:Chart Name="plotterResistance" Grid.Row="0" Grid.Column="0" Margin="5">
                                 <d3:Chart.Title>
-                                    <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0,5,0,5">电流曲线(单位：A)</TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0,5,0,5">电阻曲线(单位：Ω)</TextBlock>
                                 </d3:Chart.Title>
                                 <d3:Chart.LegendContent>
                                     <d3:LegendItemsPanel>
@@ -245,10 +249,10 @@
                                         </d3:LegendItemsPanel.Resources>
                                     </d3:LegendItemsPanel>
                                 </d3:Chart.LegendContent>
-                                <Grid Name="linesCurrents"/>
+                                <Grid Name="linesResistance"/>
                             </d3:Chart>
-                            <!--PlotHeight="300" PlotWidth="100"-->
-                            <d3:Chart Name="plotterVoltage" Grid.Row="1">
+
+                            <d3:Chart Name="plotterVoltage" Grid.Row="0" Grid.Column="1" Margin="5">
                                 <d3:Chart.Title>
                                     <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0,5,0,5">电压曲线(单位：V)</TextBlock>
                                 </d3:Chart.Title>
@@ -266,6 +270,46 @@
                                     </d3:LegendItemsPanel>
                                 </d3:Chart.LegendContent>
                                 <Grid Name="linesVoltage"/>
+                            </d3:Chart>
+                            <!--PlotHeight="2" PlotWidth="100"-->
+                            <d3:Chart Name="plotterTemperature" Grid.Row="1" Grid.Column="0" Margin="5">
+                                <d3:Chart.Title>
+                                    <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0,5,0,5">温度曲线(单位：℃)</TextBlock>
+                                </d3:Chart.Title>
+                                <d3:Chart.LegendContent>
+                                    <d3:LegendItemsPanel>
+                                        <d3:LegendItemsPanel.Resources>
+                                            <DataTemplate x:Key="InteractiveDataDisplay.WPF.LineGraph">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <CheckBox IsChecked="{Binding Path=Visibility, Converter={StaticResource VisibilityToCheckedConverter}, Mode=TwoWay}"/>
+                                                    <Line Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
+                                                    <TextBlock Margin="5,0,0,0" Text="{Binding Path=Description}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </d3:LegendItemsPanel.Resources>
+                                    </d3:LegendItemsPanel>
+                                </d3:Chart.LegendContent>
+                                <Grid Name="linesTemperature"/>
+                            </d3:Chart>
+                            <!--PlotHeight="300" PlotWidth="100"-->
+                            <d3:Chart Name="plotterTimeSpan" Grid.Row="1" Grid.Column="1" Margin="5">
+                                <d3:Chart.Title>
+                                    <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0,5,0,5">测试时长(单位：s)</TextBlock>
+                                </d3:Chart.Title>
+                                <d3:Chart.LegendContent>
+                                    <d3:LegendItemsPanel>
+                                        <d3:LegendItemsPanel.Resources>
+                                            <DataTemplate x:Key="InteractiveDataDisplay.WPF.LineGraph">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <CheckBox IsChecked="{Binding Path=Visibility, Converter={StaticResource VisibilityToCheckedConverter}, Mode=TwoWay}"/>
+                                                    <Line Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
+                                                    <TextBlock Margin="5,0,0,0" Text="{Binding Path=Description}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </d3:LegendItemsPanel.Resources>
+                                    </d3:LegendItemsPanel>
+                                </d3:Chart.LegendContent>
+                                <Grid Name="linesTimeSpan"/>
                             </d3:Chart>
                         </Grid>
                     </DockPanel>

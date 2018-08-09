@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using InteractiveDataDisplay.WPF;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using TengDa.Wpf;
 
 namespace Tafel.Hipot.App
 {
@@ -103,6 +106,29 @@ namespace Tafel.Hipot.App
             }
         }
 
+        private static List<double> showResistanceData = new List<double>();
+        /// <summary>
+        /// 电阻Y轴
+        /// </summary>
+        public static List<double> ShowResistanceData
+        {
+            get
+            {
+                if (showResistanceData.Count < 1)
+                {
+                    for (int j = 0; j < ShowDataCount; j++)
+                    {
+                        showResistanceData.Add(0);
+                    }
+                }
+                return showResistanceData;
+            }
+            set
+            {
+                showResistanceData = value;
+            }
+        }
+
         private static List<double> showVoltageData = new List<double>();
         /// <summary>
         /// 电压Y轴
@@ -126,33 +152,104 @@ namespace Tafel.Hipot.App
             }
         }
 
-
-        private static List<double>[] showCurrentsData = new List<double>[1];
+        private static List<double> showTemperatureData = new List<double>();
         /// <summary>
-        /// 电流Y轴
+        /// 温度Y轴
         /// </summary>
-        public static List<double>[] ShowCurrentsData
+        public static List<double> ShowTemperatureData
         {
             get
             {
-                if (showCurrentsData[0] == null)
+                if (showTemperatureData.Count < 1)
                 {
-                    for (int i = 0; i < 1; i++)
+                    for (int j = 0; j < ShowDataCount; j++)
                     {
-                        showCurrentsData[i] = new List<double>();
-                        for (int j = 0; j < ShowDataCount; j++)
-                        {
-                            showCurrentsData[i].Add(0);
-                        }
+                        showTemperatureData.Add(0);
                     }
-
                 }
-                return showCurrentsData;
+                return showTemperatureData;
             }
             set
             {
-                showCurrentsData = value;
+                showTemperatureData = value;
             }
         }
+
+        private static List<double> showTimeSpanData = new List<double>();
+        /// <summary>
+        /// 测试时长Y轴
+        /// </summary>
+        public static List<double> ShowTimeSpanData
+        {
+            get
+            {
+                if (showTimeSpanData.Count < 1)
+                {
+                    for (int j = 0; j < ShowDataCount; j++)
+                    {
+                        showTimeSpanData.Add(0);
+                    }
+                }
+                return showTimeSpanData;
+            }
+            set
+            {
+                showTimeSpanData = value;
+            }
+        }
+
+
+        public static void AnimatedPlot()
+        {
+
+            if (Current.IsRunning && AppCurrent.AppViewModel.GraphShowMode == GraphShowMode.实时数据)
+            {
+                Action<MainWindow> updateWindow = new Action<MainWindow>(UpdateWindow);
+                MainWindow.Dispatcher.BeginInvoke(updateWindow, MainWindow);
+            }
+        }
+
+        private static void UpdateWindow(MainWindow window)
+        {
+            var lgResistance = (LineGraph)(window.linesResistance).Children[0];
+            lgResistance.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowResistanceData);
+
+            var lgVoltage = (LineGraph)(window.linesVoltage).Children[0];
+            lgVoltage.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowVoltageData);
+
+            var lgTemperature = (LineGraph)(window.linesTemperature).Children[0];
+            lgTemperature.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowTemperatureData);
+
+            var lgTimeSpan = (LineGraph)(window.linesTimeSpan).Children[0];
+            lgTimeSpan.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowTimeSpanData);
+        }
+
+        //private static List<double>[] showCurrentsData = new List<double>[1];
+        ///// <summary>
+        ///// 电流Y轴
+        ///// </summary>
+        //public static List<double>[] ShowCurrentsData
+        //{
+        //    get
+        //    {
+        //        if (showCurrentsData[0] == null)
+        //        {
+        //            for (int i = 0; i < 1; i++)
+        //            {
+        //                showCurrentsData[i] = new List<double>();
+        //                for (int j = 0; j < ShowDataCount; j++)
+        //                {
+        //                    showCurrentsData[i].Add(0);
+        //                }
+        //            }
+
+        //        }
+        //        return showCurrentsData;
+        //    }
+        //    set
+        //    {
+        //        showCurrentsData = value;
+        //    }
+        //}
     }
 }

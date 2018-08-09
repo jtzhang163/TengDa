@@ -64,7 +64,7 @@ namespace Zopoise.Scada.App
             //当前时间显示
             AppCurrent.AppViewModel.ShowTips("打开软件");
 
-            StartDateTimePicker.Value = DateTime.Now;
+            StartDateTimePicker.Value = DateTime.Now.AddHours(-1);
             StopDateTimePicker.Value = DateTime.Now;
 
             Current.IsTerminalInitFinished = true;

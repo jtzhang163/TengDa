@@ -64,7 +64,7 @@ namespace Tafel.Hipot.App
             //当前时间显示
             Current.ShowTips("打开软件");
 
-            StartDateTimePicker.Value = DateTime.Now;
+            StartDateTimePicker.Value = DateTime.Now.AddHours(-1);
             StopDateTimePicker.Value = DateTime.Now;
 
             Current.IsTerminalInitFinished = true;
@@ -254,39 +254,35 @@ namespace Tafel.Hipot.App
             }
         }
 
-        private DispatcherTimer timer = new DispatcherTimer();
+        //private DispatcherTimer timer = new DispatcherTimer();
 
-        private void AnimatedPlot(object sender, EventArgs e)
-        {
+        //private void AnimatedPlot(object sender, EventArgs e)
+        //{
 
-            if (Current.IsRunning && AppCurrent.AppViewModel.GraphShowMode == GraphShowMode.实时数据)
-            {
-                for (int i = 0; i < 1; i++)
-                {
-                    var lgCurrents = (LineGraph)linesCurrents.Children[i];
-                    lgCurrents.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowCurrentsData[i]);
-                }
+        //    if (Current.IsRunning && AppCurrent.AppViewModel.GraphShowMode == GraphShowMode.实时数据)
+        //    {
+        //        var lgResistance = (LineGraph)linesResistance.Children[0];
+        //        lgResistance.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowResistanceData);
 
-                var lgCurrent = (LineGraph)linesVoltage.Children[0];
-                lgCurrent.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowVoltageData);
-            }
+        //        var lgVoltage = (LineGraph)linesVoltage.Children[0];
+        //        lgVoltage.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowVoltageData);
 
-        }
+        //        var lgTemperature = (LineGraph)linesTemperature.Children[0];
+        //        lgTemperature.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowTemperatureData);
 
-        private Color[] chartColors = new Color[] { Colors.Blue, Colors.Lime, Colors.Green, Colors.Cyan, Colors.Red, Colors.Purple };
+        //        var lgTimeSpan = (LineGraph)linesTimeSpan.Children[0];
+        //        lgTimeSpan.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowTimeSpanData);
+        //    }
+        //}
 
         private void InitDrawingGraph()
         {
 
-            for (int i = 0; i < 1; i++)
-            {
-                var lgCurrents = new LineGraph();
-                linesCurrents.Children.Add(lgCurrents);
-                lgCurrents.Stroke = new SolidColorBrush(chartColors[i]);
-                lgCurrents.Description = String.Format("{0}-第{0}路电流", i + 1);
-                lgCurrents.StrokeThickness = 2;
-            }
-
+            var lgResistance = new LineGraph();
+            linesResistance.Children.Add(lgResistance);
+            lgResistance.Stroke = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
+            lgResistance.Description = String.Format("电阻");
+            lgResistance.StrokeThickness = 2;
 
             var lgVoltage = new LineGraph();
             linesVoltage.Children.Add(lgVoltage);
@@ -294,60 +290,80 @@ namespace Tafel.Hipot.App
             lgVoltage.Description = String.Format("电压");
             lgVoltage.StrokeThickness = 2;
 
+            var lgTemperature = new LineGraph();
+            linesTemperature.Children.Add(lgTemperature);
+            lgTemperature.Stroke = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
+            lgTemperature.Description = String.Format("温度");
+            lgTemperature.StrokeThickness = 2;
 
-            timer.Interval = TimeSpan.FromMilliseconds(1000);
-            timer.Tick += new EventHandler(AnimatedPlot);
-            timer.IsEnabled = true;
+            var lgTimeSpan = new LineGraph();
+            linesTimeSpan.Children.Add(lgTimeSpan);
+            lgTimeSpan.Stroke = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
+            lgTimeSpan.Description = String.Format("测试时长");
+            lgTimeSpan.StrokeThickness = 2;
+
+
+            //timer.Interval = TimeSpan.FromMilliseconds(1000);
+            //timer.Tick += new EventHandler(AnimatedPlot);
+            //timer.IsEnabled = true;
         }
 
         #region 显示历史数据
 
         private static List<double> ShowDataOrder = new List<double>();
 
-        private List<double> ShowVoltageData = new List<double>();
+        private static List<double> ShowVoltageData = new List<double>();
 
-        private static List<double>[] ShowCurrentsData = new List<double>[1];
+        private static List<double> ShowResistanceData = new List<double>();
+
+        private static List<double> ShowTemperatureData = new List<double>();
+
+        private static List<double> ShowTimeSpanData = new List<double>();
 
         private void BtnShowHistoryData_Click(object sender, RoutedEventArgs e)
         {
-            //using (var data = new CurrentVoltageDataContext())
-            //{
-            //    var CurrentVoltageDatas = data.CurrentVoltageDatas.Where(d => d.RecordTime > StartDateTimePicker.Value && d.RecordTime < StopDateTimePicker.Value).ToList();
-            //    if (CurrentVoltageDatas.Count < 1)
-            //    {
-            //        Current.ShowTips("该时间范围没数据！");
-            //        return;
-            //    }
+            using (var data = new InsulationContext())
+            {
+                var insulationDataLogs = data.InsulationDataLogs.Where(d => d.RecordTime > StartDateTimePicker.Value && d.RecordTime < StopDateTimePicker.Value).Take(maxDataCount.Value.Value).ToList();
+                if (insulationDataLogs.Count < 1)
+                {
+                    Current.ShowTips("该时间范围没数据！",true);
+                    return;
+                }
+
+                ShowDataOrder.Clear();
+                ShowVoltageData.Clear();
+                ShowResistanceData.Clear();
+                ShowTemperatureData.Clear();
+                ShowTimeSpanData.Clear();
+
+                int order = 1;
+                foreach (var cvData in insulationDataLogs)
+                {
+                    ShowDataOrder.Add(order);
+                    ShowVoltageData.Add(cvData.Voltage);
+                    ShowResistanceData.Add(cvData.Resistance);
+                    ShowTemperatureData.Add(cvData.Temperature);
+                    ShowTimeSpanData.Add(cvData.TimeSpan);
+
+                    order++;
+                }
+
+            }
 
 
-            //    ShowDataOrder.Clear();
-            //    ShowVoltageData.Clear();
-            //    for (int i = 0; i < 1; i++)
-            //    {
-            //        ShowCurrentsData[i] = new List<double>();
-            //    }
+            var lgResistance = (LineGraph)linesResistance.Children[0];
+            lgResistance.Plot(ShowDataOrder, ShowResistanceData);
 
-            //    int order = 1;
-            //    foreach (var cvData in CurrentVoltageDatas)
-            //    {
-            //        ShowDataOrder.Add(order++);
-            //        ShowVoltageData.Add(cvData.Voltage);
-            //        for (int i = 0; i < 1; i++)
-            //        {
-            //            ShowCurrentsData[i].Add(cvData.Currents[i]);
-            //        }
-            //    }
+            var lgVoltage = (LineGraph)linesVoltage.Children[0];
+            lgVoltage.Plot(ShowDataOrder, ShowVoltageData);
 
-            //}
+            var lgTimeSpan = (LineGraph)linesTimeSpan.Children[0];
+            lgTimeSpan.Plot(ShowDataOrder, ShowTimeSpanData);
 
-            //for (int i = 0; i < 1; i++)
-            //{
-            //    var lgCurrents = (LineGraph)linesCurrents.Children[i];
-            //    lgCurrents.Plot(ShowDataOrder, ShowCurrentsData[i]);
-            //}
+            var lgTemperature = (LineGraph)linesTemperature.Children[0];
+            lgTemperature.Plot(ShowDataOrder, ShowTemperatureData);
 
-            //var lgCurrent = (LineGraph)linesVoltage.Children[0];
-            //lgCurrent.Plot(ShowDataOrder, ShowVoltageData);
         }
 
         #endregion

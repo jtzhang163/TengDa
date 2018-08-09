@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Configuration;
 using System.Data.Entity;
+using System.Threading;
 using TengDa.Wpf;
 
 namespace Tafel.Hipot.App
@@ -104,6 +105,24 @@ namespace Tafel.Hipot.App
 
             this.RealtimeStatus = string.Format("获得数据完成，电阻：{0}，电压：{1}，测试间隔：{2}，温度：{3}", Resistance, Voltage, TimeSpan, Temperature);
 
+
+
+            AppCurrent.ShowResistanceData.Add(this.Resistance);
+            AppCurrent.ShowResistanceData.RemoveAt(0);
+
+            AppCurrent.ShowVoltageData.Add(this.Voltage);
+            AppCurrent.ShowVoltageData.RemoveAt(0);
+
+
+            AppCurrent.ShowTimeSpanData.Add(this.TimeSpan);
+            AppCurrent.ShowTimeSpanData.RemoveAt(0);
+
+
+            AppCurrent.ShowTemperatureData.Add(this.Temperature);
+            AppCurrent.ShowTemperatureData.RemoveAt(0);
+
+            AppCurrent.AnimatedPlot();
+
             AppContext.InsulationContext.InsulationDataLogs.Add(new InsulationDataLog()
             {
                 UserId = Current.User.Id,
@@ -117,6 +136,14 @@ namespace Tafel.Hipot.App
             });
             AppContext.InsulationContext.SaveChangesAsync();
             IsGetNewData = false;
+
+            var t = new Thread(()=> {
+                Thread.Sleep(1000);
+                this.RealtimeStatus = "等待数据";
+            });
+            t.IsBackground = true;
+            t.Start();
+
         }
     }
 
