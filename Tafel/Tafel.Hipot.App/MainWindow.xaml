@@ -256,7 +256,7 @@
             <DockPanel>
                
                 <local:MachineSelectUC DockPanel.Dock="Top"  Height="120" IsEnabled="{Binding RunStatus, Converter={StaticResource runStatusConverter}}"/>
-                <wpf:YieldUC DockPanel.Dock="Bottom"/>
+                <wpf:YieldUC x:Name="wpfYieldUC" DockPanel.Dock="Bottom" />
                 <local:CommunicateStatusUC />
             </DockPanel>
 

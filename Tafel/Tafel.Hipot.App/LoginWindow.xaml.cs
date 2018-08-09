@@ -16,6 +16,9 @@ namespace Tafel.Hipot.App
         public LoginWindow()
         {
             InitializeComponent();
+
+            new AppDbInitializer().Initialize();
+
             this.DataContext = AppCurrent.AppViewModel;
             myMediaTimeline.Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + "Videos/LoginHead.mp4");
             if (AppCurrent.Option.IsRememberMe)

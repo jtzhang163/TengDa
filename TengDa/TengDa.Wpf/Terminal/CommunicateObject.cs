@@ -10,7 +10,7 @@ namespace TengDa.Wpf
     /// </summary>
     public class CommunicateObject : Service
     {
-        private string name;
+        private string name = "";
         /// <summary>
         /// 名称
         /// </summary>

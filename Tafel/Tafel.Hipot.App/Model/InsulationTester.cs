@@ -93,7 +93,7 @@ namespace Tafel.Hipot.App
             }
 
             var tmpStr = ReceiveString.Split(',');
-            if(tmpStr.Length < 4)
+            if (tmpStr.Length < 4)
             {
                 return;
             }
@@ -137,7 +137,10 @@ namespace Tafel.Hipot.App
             AppContext.InsulationContext.SaveChangesAsync();
             IsGetNewData = false;
 
-            var t = new Thread(()=> {
+            Current.RealtimeYieldViewModel.FeedingOK++;
+
+            var t = new Thread(() =>
+            {
                 Thread.Sleep(1000);
                 this.RealtimeStatus = "等待数据";
             });
@@ -176,6 +179,7 @@ namespace Tafel.Hipot.App
                 IsPassiveReceiveSerialPort = true
             };
             context.InsulationTesters.Add(tester);
+            context.SaveChanges();
         }
     }
 }

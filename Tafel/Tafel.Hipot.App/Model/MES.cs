@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TengDa.Wpf;
 
 namespace Tafel.Hipot.App
 {
@@ -28,6 +29,8 @@ namespace Tafel.Hipot.App
                 d.IsUploaded = true;
 
                 //上传MES
+
+                Current.RealtimeYieldViewModel.BlankingOK++;
 
                 AppCurrent.Mes.RealtimeStatus = string.Format("上传MES完成，电阻：{0}，电压：{1}，测试间隔：{2}，温度：{3}", d.Resistance, d.Voltage, d.TimeSpan, d.Temperature);
                 AppContext.InsulationContext.SaveChangesAsync();
@@ -67,9 +70,10 @@ namespace Tafel.Hipot.App
             var mes = new MES
             {
                 Name = "MES",
-                Host = "192.168.1.1",
+                Host = "192.168.1.1"
             };
             context.MESs.Add(mes);
+            context.SaveChanges();
         }
     }
 }

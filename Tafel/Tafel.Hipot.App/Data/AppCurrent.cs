@@ -63,8 +63,7 @@ namespace Tafel.Hipot.App
                         {
                             Name = "MES",
                             Host = "192.168.1.1",
-                            IsEnable = true,
-
+                            IsEnable = true
                         });
                         AppContext.MesContext.SaveChanges();
                     }

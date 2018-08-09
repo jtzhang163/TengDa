@@ -51,8 +51,6 @@ namespace Tafel.Hipot.App
         private void Init()
         {
 
-            new AppDbInitializer().Initialize();
-
             this.DataContext = AppCurrent.AppViewModel;
 
             AppCurrent.MainWindow = this;
@@ -65,6 +63,13 @@ namespace Tafel.Hipot.App
             StopDateTimePicker.Value = DateTime.Now;
 
             Current.IsTerminalInitFinished = true;
+
+            Current.RealtimeYieldViewModel.FeedingOKContent = "测试数";
+            Current.RealtimeYieldViewModel.BlankingOKContent = "上传数";
+            if (Current.RealtimeYieldViewModel.StartTime == TengDa.Common.DefaultTime)
+            {
+                RealtimeYield.SetRealtimeYield(DateTime.Now);
+            }
         }
 
 

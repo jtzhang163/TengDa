@@ -100,6 +100,22 @@ namespace TengDa.Wpf
             }
         }
 
+        private string feedingOKContent = "上料数";
+
+        public string FeedingOKContent
+        {
+            get => feedingOKContent;
+            set => SetProperty(ref feedingOKContent, value);
+        }
+
+        private string blankingOKContent = "下料数";
+
+        public string BlankingOKContent
+        {
+            get => blankingOKContent;
+            set => SetProperty(ref blankingOKContent, value);
+        }
+
         private DateTime startTime = TengDa.Common.DefaultTime;
         public DateTime StartTime
         {

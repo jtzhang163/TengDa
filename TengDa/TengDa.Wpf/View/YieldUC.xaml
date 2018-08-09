@@ -57,8 +57,8 @@
                     <TextBlock Text="产量计数起始时间"/>
                 </Label.ToolTip>
             </Label>
-            <Label Grid.Row="1" Grid.Column="0" Content="上料数" FontSize="12"/>
-            <Label Grid.Row="1" Grid.Column="1" Content="下料数" FontSize="12"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="{Binding FeedingOKContent}" FontSize="12"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding BlankingOKContent}" FontSize="12"/>
             <!--{Binding FeedingOK}  {Binding BlankingOK} -->
             <Label Grid.Row="2" Grid.Column="0" Content="{Binding FeedingOK}" FontSize="26" Foreground="LimeGreen" FontWeight="Bold"/>
             <Label Grid.Row="2" Grid.Column="1" Content="{Binding BlankingOK}" FontSize="26" Foreground="LimeGreen" FontWeight="Bold"/>
