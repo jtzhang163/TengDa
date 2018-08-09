@@ -28,8 +28,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <local:ShowLoginConverter x:Key="showLoginConverter"/>
-        <local:ShowUserDetailConverter x:Key="showUserDetailConverter"/>
+        
         <Style TargetType="Label">
             <Setter Property="FontFamily" Value="Times New Roman,宋体"/>
             <Setter Property="FontSize" Value="18"/>
@@ -39,14 +38,8 @@
     </UserControl.Resources>
 
     <Grid>
-        <WrapPanel Visibility="{Binding Path=IsLogin, Converter={StaticResource showLoginConverter}}">
-            <TextBlock Margin="0,-5,0,0">
-                <Hyperlink FontSize="30" FontFamily="Times New Roman,宋体"  Style="{StaticResource hyberlinkEffect}" Click="Hyperlink_Click">登录</Hyperlink>
-            </TextBlock>
-            <Label FontSize="30" FontFamily="Times New Roman,宋体"  Margin="0,-10,0,0">以充分使用系统！</Label>
-        </WrapPanel>
 
-        <StackPanel Orientation="Vertical" Visibility="{Binding Path=IsLogin, Converter={StaticResource showUserDetailConverter}}">
+        <StackPanel Orientation="Vertical">
             <Grid x:Name="gridUserDetail" Height="300">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
