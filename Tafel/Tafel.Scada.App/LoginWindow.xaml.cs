@@ -50,5 +50,10 @@ namespace Tafel.Hipot.App
 
             }
         }
+
+        private void BtnCloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
