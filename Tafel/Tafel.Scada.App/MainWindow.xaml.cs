@@ -236,7 +236,7 @@ namespace Tafel.Hipot.App
                 if (Verify.Show("尚未登录提示", "请先登录"))
                 {
                     LoginWindow window = new LoginWindow();
-                    window.ShowDialog();
+                    window.ShowDialog();                  
                 }
                 return;
             }

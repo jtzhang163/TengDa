@@ -40,10 +40,12 @@ namespace Tafel.Hipot.App
                     Thread.Sleep(2000);
                     Dispatcher.Invoke(new Action(() =>
                     {
-                        //登录成功，关闭窗口
-                        this.Close();
+                        //登录成功，关闭窗口          
                         AppCurrent.AppViewModel.IsLogin = true;
                         AppCurrent.AppViewModel.MainWindowsBackstageIsOpen = false;
+                        MainWindow window = new MainWindow();
+                        window.Show();
+                        this.Close();
                     }));
                 });
                 t.Start();

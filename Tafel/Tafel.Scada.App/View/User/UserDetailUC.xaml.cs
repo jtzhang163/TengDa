@@ -30,7 +30,6 @@ namespace Tafel.Hipot.App.View
         {
             if (UserViewModel.Logout())
             {
-                //Tip.Alert("成功登录");
                 AppCurrent.AppViewModel.UserName = string.Empty;
                 AppCurrent.AppViewModel.UserGroupName = string.Empty;
                 AppCurrent.AppViewModel.UserProfilePicture = string.Empty;
@@ -53,6 +52,10 @@ namespace Tafel.Hipot.App.View
                 //  }));
                 //});
                 //t.Start();
+
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                AppCurrent.MainWindow.Close();
 
             }
         }
