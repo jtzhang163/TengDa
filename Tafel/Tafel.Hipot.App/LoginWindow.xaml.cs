@@ -33,6 +33,16 @@ namespace Tafel.Hipot.App
         }
         private void OnLogin(object sender, ExecutedRoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(this.loginUserNameTextBox.Text))
+            {
+                Tip.Alert("请输入用户名");
+                return;
+            }
+            if (string.IsNullOrEmpty(this.loginPasswordBox.Text))
+            {
+                Tip.Alert("请输入密码");
+                return;
+            }
             if (UserViewModel.Login(this.loginUserNameTextBox.Text, this.loginPasswordBox.Password))
             {
 
@@ -51,7 +61,10 @@ namespace Tafel.Hipot.App
                     }));
                 });
                 t.Start();
-
+            }
+            else
+            {
+                Tip.Alert("用户名或密码错误");
             }
         }
 

@@ -275,7 +275,7 @@
                                 <Label Content="结束：" VerticalAlignment="Center"/>
                                 <xctk:DateTimePicker x:Name="StopDateTimePicker" Height="25" IsEnabled="{Binding GraphShowMode,Converter={StaticResource graphShowModeToBoolConverter}}"/>
                                 <Label Content="个数：" VerticalAlignment="Center"/>
-                                <xctk:IntegerUpDown DefaultValue="1000" Value="1000" x:Name="maxDataCount" Height="25"/>
+                                <xctk:IntegerUpDown DefaultValue="1000" Value="1000" x:Name="maxDataCount" Height="25" IsEnabled="{Binding GraphShowMode,Converter={StaticResource graphShowModeToBoolConverter}}"/>
                             </WrapPanel>
                         </DockPanel>
                         <Grid>
