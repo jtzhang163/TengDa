@@ -367,6 +367,21 @@ namespace Tafel.Hipot.App
         }
 
         #endregion
+
+        private void BtnCloseTabItem_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            string header = btn.Tag.ToString();
+            foreach (TabItem item in MainTabControl.Items)
+            {
+                string _header = item.Header.ToString();
+                if (_header == header && _header != "数据曲线")
+                {
+                    MainTabControl.Items.Remove(item);
+                    break;
+                }
+            }
+        }
     }
 
 
