@@ -16,7 +16,7 @@
         Title="LoginWindow" Height="350" Width="400" Margin="0">
     <Window.Resources>
 
-        <!--设置TabItem样式-->
+        <!--设置关闭标识样式-->
         <Style TargetType="{x:Type Button}" x:Key="CloseButton">
             <Setter Property="Template">
                 <Setter.Value>
@@ -143,10 +143,9 @@
                 </Image.Clip>
             </Image>
             <Border CornerRadius="10"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom"  Height="30">
-                <xctk:WatermarkTextBox x:Name="LoginUserNameTextBox" Watermark="账号" Text="Administrator" VerticalContentAlignment="Center"/>
+                <xctk:WatermarkTextBox x:Name="loginUserNameTextBox" Watermark="用户账号" VerticalContentAlignment="Center"/>
             </Border>
-            <xctk:WatermarkPasswordBox x:Name="LoginUserPasswordBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Watermark="密码" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="30"
-                       Password="Administrator"/>
+            <xctk:WatermarkPasswordBox x:Name="loginPasswordBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Watermark="用户密码" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="30" />
 
             <TextBlock Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Margin="10,20,0,0">
                     <Hyperlink Style="{StaticResource hyberlinkEffect}">注册账号</Hyperlink>
@@ -155,8 +154,8 @@
                     <Hyperlink Style="{StaticResource hyberlinkEffect}">找回密码</Hyperlink>
             </TextBlock>
 
-            <CheckBox Grid.Row="3" Grid.Column="1" Foreground="gray" IsChecked="True">记住密码</CheckBox>
-            <CheckBox Grid.Row="3" Grid.Column="2" Foreground="gray" HorizontalAlignment="Right" IsChecked="False">MES登录</CheckBox>
+            <CheckBox Grid.Row="3" Grid.Column="1" Foreground="gray" IsChecked="{Binding IsRememberMe,Mode=TwoWay}">记住我</CheckBox>
+            <CheckBox Grid.Row="3" Grid.Column="2" Foreground="gray" HorizontalAlignment="Right" IsChecked="{Binding IsMesLogin,Mode=TwoWay}">MES登录</CheckBox>
 
             <Button x:Name="btnLogin" Style="{StaticResource chamferButton}"  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="登  录" Background="#09a3de"  Foreground="White" BorderThickness="0" Margin="0,-5,0,25"
                         Command="CommonCommand:UserCommands.Login"/>

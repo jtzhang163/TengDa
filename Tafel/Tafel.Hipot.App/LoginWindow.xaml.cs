@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using TengDa.Encrypt;
 using TengDa.Wpf;
 
 namespace Tafel.Hipot.App
@@ -16,10 +18,19 @@ namespace Tafel.Hipot.App
             InitializeComponent();
             this.DataContext = AppCurrent.AppViewModel;
             myMediaTimeline.Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + "Videos/LoginHead.mp4");
+            if (AppCurrent.Option.IsRememberMe)
+            {
+                var user = Context.UserContext.Users.SingleOrDefault(u => u.Id == AppCurrent.Option.LastLoginUserId);
+                if (user != null)
+                {
+                    this.loginUserNameTextBox.Text = user.Name;
+                    this.loginPasswordBox.Password = Base64.DecodeBase64(user.Password);
+                }
+            }
         }
         private void OnLogin(object sender, ExecutedRoutedEventArgs e)
         {
-            if (UserViewModel.Login(this.LoginUserNameTextBox.Text, this.LoginUserPasswordBox.Password))
+            if (UserViewModel.Login(this.loginUserNameTextBox.Text, this.loginPasswordBox.Password))
             {
 
                 //Tip.Alert("成功登录");
@@ -29,8 +40,10 @@ namespace Tafel.Hipot.App
                 AppCurrent.AppViewModel.UserNumber = Current.User.Number;
                 AppCurrent.AppViewModel.UserPhoneNumber = Current.User.PhoneNumber;
                 AppCurrent.AppViewModel.UserEmail = Current.User.Email;
-
                 AppCurrent.AppViewModel.CurrentUserNameTip = Current.User.Name;
+
+                AppCurrent.Option.LastLoginUserId = Current.User.Id;
+
                 Current.ShowTips(Current.User.Name + "成功登录");
 
                 btnLogin.Content = "正在登录...";

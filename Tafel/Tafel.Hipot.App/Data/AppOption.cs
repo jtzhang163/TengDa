@@ -77,6 +77,100 @@ namespace Tafel.Hipot.App
         }
 
 
+        private int lastLoginUserId = -1;
+
+        /// <summary>
+        /// 最后登录系统的用户ID
+        /// </summary>
+        [Browsable(false)]
+        public int LastLoginUserId
+        {
+            get
+            {
+                if (lastLoginUserId < 0)
+                {
+                    lastLoginUserId = _Convert.StrToInt(TengDa.Wpf.Option.GetOption("LastLoginUserId"), -1);
+                    if (lastLoginUserId < 0)
+                    {
+                        lastLoginUserId = 1;
+                        TengDa.Wpf.Option.SetOption("LastLoginUserId", lastLoginUserId.ToString(), "最后登录系统的用户ID");
+                    }
+                }
+                return lastLoginUserId;
+            }
+            set
+            {
+                if (lastLoginUserId != value)
+                {
+                    TengDa.Wpf.Option.SetOption("LastLoginUserId", value.ToString());
+                    lastLoginUserId = value;
+                }
+            }
+        }
+
+
+        private bool? isRememberMe = null;
+
+        /// <summary>
+        /// 是否记住我
+        /// </summary>
+        [Browsable(false)]
+        public bool IsRememberMe
+        {
+            get
+            {
+                if (isRememberMe == null)
+                {
+                    isRememberMe = _Convert.StrToBoolOrNull(TengDa.Wpf.Option.GetOption("IsRememberMe"));
+                    if (isRememberMe == null)
+                    {
+                        isRememberMe = false;
+                        TengDa.Wpf.Option.SetOption("IsRememberMe", isRememberMe.ToString(), "是否记住我");
+                    }
+                }
+                return isRememberMe.Value;
+            }
+            set
+            {
+                if (isRememberMe.Value != value)
+                {
+                    TengDa.Wpf.Option.SetOption("IsRememberMe", value.ToString());
+                    SetProperty(ref isRememberMe, value);
+                }
+            }
+        }
+
+        private bool? isMesLogin = null;
+        /// <summary>
+        /// 是否为MES登录
+        /// </summary>
+        [Browsable(false)]
+        public bool IsMesLogin
+        {
+            get
+            {
+                if (isMesLogin == null)
+                {
+                    isMesLogin = _Convert.StrToBoolOrNull(TengDa.Wpf.Option.GetOption("IsMesLogin"));
+                    if (isMesLogin == null)
+                    {
+                        isMesLogin = false;
+                        TengDa.Wpf.Option.SetOption("IsMesLogin", isMesLogin.ToString(), "是否为MES登录");
+                    }
+                }
+                return isMesLogin.Value;
+            }
+            set
+            {
+                if (isMesLogin.Value != value)
+                {
+                    TengDa.Wpf.Option.SetOption("IsMesLogin", value.ToString());
+                    SetProperty(ref isMesLogin, value);
+                }
+            }
+        }
+
+
 
 
         //private int xxxxxx = -1;

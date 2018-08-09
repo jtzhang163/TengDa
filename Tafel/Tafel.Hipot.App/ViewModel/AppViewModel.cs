@@ -167,6 +167,21 @@ namespace Tafel.Hipot.App
             set => SetProperty(ref graphShowMode, value);
         }
 
+        [Browsable(false)]
+        public bool IsMesLogin
+        {
+            get => AppCurrent.Option.IsMesLogin;
+            set => AppCurrent.Option.IsMesLogin = value;
+        }
+
+        [Browsable(false)]
+        public bool IsRememberMe
+        {
+            get => AppCurrent.Option.IsRememberMe;
+            set => AppCurrent.Option.IsRememberMe = value;
+        }
+
+
         public List<InsulationTester> GetTesters()
         {
             return new List<InsulationTester>()

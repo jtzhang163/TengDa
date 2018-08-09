@@ -53,6 +53,19 @@ namespace TengDa
             }
         }
 
+        public static bool? StrToBoolOrNull(string str)
+        {
+            try
+            {
+                return bool.Parse(str.ToLower());
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError(ex);
+                return null;
+            }
+        }
+
 
         public static float StrToFloat(string str, float defaultValue)
         {
