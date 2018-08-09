@@ -21,20 +21,8 @@ namespace Tafel.Hipot.App
         {
             if (UserViewModel.Login(this.LoginUserNameCombobox.Text, this.LoginUserPasswordBox.Password))
             {
-
-                //Tip.Alert("成功登录");
-                AppCurrent.AppViewModel.UserName = Current.User.Name;
-                AppCurrent.AppViewModel.UserGroupName = Current.Role.Name;
-                AppCurrent.AppViewModel.UserProfilePicture = Current.User.ProfilePicture;
-                AppCurrent.AppViewModel.UserNumber = Current.User.Number;
-                AppCurrent.AppViewModel.UserPhoneNumber = Current.User.PhoneNumber;
-                AppCurrent.AppViewModel.UserEmail = Current.User.Email;
-
-                AppCurrent.AppViewModel.CurrentUserNameTip = Current.User.Name;
                 Current.ShowTips(Current.User.Name + "成功登录");
-
                 btnLogin.Content = "正在登录...";
-
                 Thread t = new Thread(() =>
                 {
                     Thread.Sleep(2000);
@@ -42,7 +30,6 @@ namespace Tafel.Hipot.App
                     {
                         //登录成功，关闭窗口
                         this.Close();
-                        AppCurrent.AppViewModel.IsLogin = true;
                         AppCurrent.AppViewModel.MainWindowsBackstageIsOpen = false;
                     }));
                 });

@@ -12,16 +12,6 @@
         ResizeMode="NoResize"
         Title="编辑个人信息" Height="350" Width="400" Margin="0">
     <Window.Resources>
-        <Style TargetType="Window">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsLogin}" Value="True">
-                    <Setter Property="Visibility" Value="Hidden"></Setter>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding IsLogin}" Value="False">
-                    <Setter Property="Visibility" Value="Visible"></Setter>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
 
         <!--集成资源-->
         <Style x:Key="hyberlinkEffect" TargetType="{x:Type Hyperlink}">

@@ -29,22 +29,10 @@ namespace Tafel.Hipot.App.View
 
             if (UserViewModel.Logout())
             {
-                AppCurrent.AppViewModel.UserName = string.Empty;
-                AppCurrent.AppViewModel.UserGroupName = string.Empty;
-                AppCurrent.AppViewModel.UserProfilePicture = string.Empty;
-                AppCurrent.AppViewModel.UserNumber = string.Empty;
-                AppCurrent.AppViewModel.UserPhoneNumber = string.Empty;
-                AppCurrent.AppViewModel.UserEmail = string.Empty;
 
-                AppCurrent.AppViewModel.CurrentUserNameTip = string.Empty;
                 Current.ShowTips(Current.User.Name + "成功注销");
-
-                AppCurrent.AppViewModel.IsLogin = false;
-
-                LoginWindow window = new LoginWindow();
-                window.Show();
+                new LoginWindow().Show();
                 AppCurrent.MainWindow.Close();
-
             }
         }
 

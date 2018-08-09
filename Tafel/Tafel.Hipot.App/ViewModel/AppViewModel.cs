@@ -85,53 +85,24 @@ namespace Tafel.Hipot.App
             set => SetProperty(ref currentUserNameTip, value);
         }
 
-        private string userName = string.Empty;
         [Browsable(false)]
-        public string UserName
-        {
-            get => userName;
-            set => SetProperty(ref userName, value);
-        }
+        public string UserName => Current.User.Name;
 
-        private string userGroupName = string.Empty;
         [Browsable(false)]
-        public string UserGroupName
-        {
-            get => userGroupName;
-            set => SetProperty(ref userGroupName, value);
-        }
+        public string UserGroupName => Current.User.Role.Name;
 
-        private string userProfilePicture = string.Empty;
         [Browsable(false)]
-        public string UserProfilePicture
-        {
-            get => userProfilePicture;
-            set => SetProperty(ref userProfilePicture, value);
-        }
+        public string UserProfilePicture => Current.User.ProfilePicture;
 
-        private string userNumber = string.Empty;
         [Browsable(false)]
-        public string UserNumber
-        {
-            get => userNumber;
-            set => SetProperty(ref userNumber, value);
-        }
+        public string UserNumber => Current.User.Number;
 
-        private string userPhoneNumber = string.Empty;
         [Browsable(false)]
-        public string UserPhoneNumber
-        {
-            get => userPhoneNumber;
-            set => SetProperty(ref userPhoneNumber, value);
-        }
+        public string UserPhoneNumber => Current.User.PhoneNumber;
 
-        private string userEmail = string.Empty;
         [Browsable(false)]
-        public string UserEmail
-        {
-            get => userEmail;
-            set => SetProperty(ref userEmail, value);
-        }
+        public string UserEmail => Current.User.Email;
+
 
         private bool mainWindowsBackstageIsOpen = true;
         [Browsable(false)]
@@ -139,14 +110,6 @@ namespace Tafel.Hipot.App
         {
             get => mainWindowsBackstageIsOpen;
             set => SetProperty(ref mainWindowsBackstageIsOpen, value);
-        }
-
-        private bool isLogin = false;
-        [Browsable(false)]
-        public bool IsLogin
-        {
-            get => isLogin;
-            set => SetProperty(ref isLogin, value);
         }
 
 
