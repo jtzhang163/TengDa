@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
@@ -81,26 +82,27 @@ namespace TengDa.Wpf
         /// </summary>
         public int RoleId { get; set; }
 
-        public Role Role { get; set; }
-        /// <summary>
-        /// 所属类别
-        /// </summary>
-        //private UserGroup group = new UserGroup();
-        //public UserGroup Group
-        //{
-        //  get
-        //  {
-        //    using (var data = new UserContext())
-        //    {
-        //      group = data.UserGroups.FirstOrDefault(g => g.Id == this.GroupId) ?? new UserGroup();
-        //    }
-        //    return group;
-        //  }
-        //  set
-        //  {
-        //    group = value;
-        //  }
-        //}
+
+        // <summary>
+        // 所属类别
+        // </summary>
+        private Role role = new Role();
+        [NotMapped]
+        public Role Role
+        {
+            get
+            {
+                using (var data = new UserContext())
+                {
+                    role = data.Roles.FirstOrDefault(g => g.Id == this.RoleId) ?? new Role();
+                }
+                return role;
+            }
+            set
+            {
+                role = value;
+            }
+        }
 
         public User() : this(-1)
         {
@@ -176,12 +178,12 @@ namespace TengDa.Wpf
             modelBuilder.Entity<User>().Property(u => u.Email).HasMaxLength(20);
             modelBuilder.Entity<User>().Property(u => u.RegisterTime).HasColumnType("datetime");
             modelBuilder.Entity<User>().Property(u => u.LastLoginTime).HasColumnType("datetime");
-            modelBuilder.Entity<User>().HasRequired(u => u.Role).WithMany(r => r.Users).HasForeignKey(u => u.RoleId);
+            //modelBuilder.Entity<User>().HasRequired(u => u.Role).WithMany(r => r.Users).HasForeignKey(u => u.RoleId);
             modelBuilder.Entity<User>().ToTable("t_user");
 
             modelBuilder.Entity<Role>().Property(g => g.Name).HasMaxLength(30).IsRequired();
             modelBuilder.Entity<Role>().Property(g => g.Level).IsRequired();
-            modelBuilder.Entity<Role>().HasMany(g => g.Users).WithRequired();
+           // modelBuilder.Entity<Role>().HasMany(g => g.Users).WithRequired();
             modelBuilder.Entity<Role>().ToTable("t_role");
         }
         public DbSet<User> Users { get; set; }

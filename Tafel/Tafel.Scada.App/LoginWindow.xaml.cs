@@ -19,7 +19,7 @@ namespace Tafel.Hipot.App
         }
         private void OnLogin(object sender, ExecutedRoutedEventArgs e)
         {
-            if (UserViewModel.Login(this.LoginUserNameCombobox.Text, this.LoginUserPasswordBox.Password))
+            if (UserViewModel.Login(this.LoginUserNameTextBox.Text, this.LoginUserPasswordBox.Password))
             {
 
                 //Tip.Alert("成功登录");

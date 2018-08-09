@@ -34,18 +34,22 @@ namespace Tafel.Hipot.App.View
             if (name == "AppViewModel")
             {
                 ObjPropertySetter.SelectedObject = AppCurrent.AppViewModel;
+                ObjPropertySetter.IsReadOnly = Current.User.Id < 1 ? true : false; 
             }
             else if (name == "AppOption")
             {
                 ObjPropertySetter.SelectedObject = AppCurrent.Option;
+                ObjPropertySetter.IsReadOnly = Current.User.Role.Level < 2 ? true : false;
             }
             else if (name == "InsulationTester")
             {
                 ObjPropertySetter.SelectedObject = AppCurrent.InsulationTester;
+                ObjPropertySetter.IsReadOnly = Current.User.Role.Level < 3 ? true : false;
             }
             else if(name == "Mes")
             {
                 ObjPropertySetter.SelectedObject = AppCurrent.Mes;
+                ObjPropertySetter.IsReadOnly = Current.User.Role.Level < 2 ? true : false;
             }
 
         }

@@ -104,12 +104,9 @@
                 <EllipseGeometry RadiusX="48" RadiusY="48" Center="48,48"/>
             </Image.Clip>
         </Image>
-
-        <xctk:WatermarkComboBox x:Name="LoginUserNameCombobox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalContentAlignment="Center" VerticalAlignment="Bottom"  Height="30"
-                                        Watermark="账号" SelectedIndex="0">
-            <Label Content="Administrator"/>
-            <!--<TextBox Margin="0" Height="25" Width="100"/>-->
-        </xctk:WatermarkComboBox>
+        <Border CornerRadius="10"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom"  Height="30">
+            <xctk:WatermarkTextBox x:Name="LoginUserNameTextBox" Watermark="账号" Text="Administrator" VerticalContentAlignment="Center"/>
+        </Border>
         <xctk:WatermarkPasswordBox x:Name="LoginUserPasswordBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Watermark="密码" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="30"
                        Password="Administrator"/>
 
@@ -121,7 +118,7 @@
         </TextBlock>
 
         <CheckBox Grid.Row="3" Grid.Column="1" Foreground="gray" IsChecked="True">记住密码</CheckBox>
-        <CheckBox Grid.Row="3" Grid.Column="2" Foreground="gray" HorizontalAlignment="Right" IsChecked="False">自动登录</CheckBox>
+        <CheckBox Grid.Row="3" Grid.Column="2" Foreground="gray" HorizontalAlignment="Right" IsChecked="False">MES登录</CheckBox>
 
         <Button x:Name="btnLogin" Style="{StaticResource chamferButton}"  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="登  录" Background="#09a3de"  Foreground="White" BorderThickness="0" Margin="0,-5,0,25"
                         Command="CommonCommand:UserCommands.Login"/>

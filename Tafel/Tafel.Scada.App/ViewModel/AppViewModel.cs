@@ -29,7 +29,7 @@ namespace Tafel.Hipot.App
                     appName = TengDa.Wpf.Option.GetOption("AppName");
                     if (appName == string.Empty)
                     {
-                        appName = "众普森灯具老化线数据监控采集系统";
+                        appName = "东莞塔菲尔Hipot自动采集上传系统";
                         TengDa.Wpf.Option.SetOption("AppName", appName, "应用程序名称");
                     }
                 }
