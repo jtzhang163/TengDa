@@ -43,7 +43,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tafel.ScanSystem", "Tafel\T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tafel.ScanSystem.App", "Tafel\Tafel.ScanSystem.App\Tafel.ScanSystem.App.csproj", "{D6A6AA33-F0A0-4311-86C2-518FC25C94E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tafel.Hipot.App", "Tafel\Tafel.Scada.App\Tafel.Hipot.App.csproj", "{E6D9CC88-0F5D-41EA-87D2-239D94F794ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tafel.Hipot.App", "Tafel\Tafel.Hipot.App\Tafel.Hipot.App.csproj", "{E6D9CC88-0F5D-41EA-87D2-239D94F794ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

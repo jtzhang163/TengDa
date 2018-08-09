@@ -17,7 +17,6 @@
         WindowState="Maximized"
         Title="{Binding AppName}" Height="550" Width="1025" Foreground="#2b579a">
     <Fluent:RibbonWindow.CommandBindings>
-        <CommandBinding Command="Close" Executed="OnClose"/>
         <CommandBinding Command="local:QueryCommand.QueryOperationLog" Executed="OnQueryOperationLog"/>
         <CommandBinding Command="local:QueryCommand.QueryIDLog" Executed="OnQueryIDLog"/>
     </Fluent:RibbonWindow.CommandBindings>

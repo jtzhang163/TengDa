@@ -36,20 +36,10 @@ namespace Tafel.Hipot.App
         }
 
         protected override void OnClosing(CancelEventArgs e)
-        {
-
+        {          
             base.OnClosing(e);
         }
 
-        public void OnClose(object sender, ExecutedRoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        public void OnShowLoginView(object sender, ExecutedRoutedEventArgs e)
-        {
-
-        }
 
         private void Init()
         {
