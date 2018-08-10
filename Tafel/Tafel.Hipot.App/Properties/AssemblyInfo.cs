@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("Tafel.Hipot.App")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("深圳市腾达工业自动设备有限公司")]
 [assembly: AssemblyProduct("Tafel.Hipot.App")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("Copyright © 深圳市腾达工业自动设备有限公司 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -14,7 +14,7 @@
         xmlns:d3="clr-namespace:InteractiveDataDisplay.WPF;assembly=InteractiveDataDisplay.WPF"
         xmlns:utils="clr-namespace:Tafel.Hipot.App.Utilities"
         mc:Ignorable="d"
-        WindowState="Maximized"
+        WindowState="Maximized" Background="White" 
         Title="{Binding AppName}" Height="550" Width="1025" Foreground="#2b579a">
     <Fluent:RibbonWindow.CommandBindings>
         <CommandBinding Command="local:QueryCommand.QueryOperationLog" Executed="OnQueryOperationLog"/>
@@ -127,7 +127,7 @@
         <Fluent:Ribbon>
             <Fluent:Ribbon.Menu>
                 <Fluent:Backstage x:Name="AppBackstage" IsOpen="{Binding MainWindowsBackstageIsOpen, Mode=TwoWay}">
-                    <Fluent:BackstageTabControl>
+                    <Fluent:BackstageTabControl Background="White">
                         <Fluent:BackstageTabItem Header="关于">
                             <view:AboutUC/>
                         </Fluent:BackstageTabItem>

@@ -1,4 +1,5 @@
 ﻿using Fluent;
+using System;
 using System.Windows;
 
 namespace Tafel.Hipot.App
@@ -8,21 +9,25 @@ namespace Tafel.Hipot.App
     /// </summary>
     public partial class App : Application
     {
-        //protected override void OnStartup(StartupEventArgs e)
-        //{
-        //  Fluent.ThemeManager.ChangeAppTheme(this, "Black");
-        // // base.OnStartup(e);
-        //}
         protected override void OnStartup(StartupEventArgs e)
         {
-
-            //Tuple<AppTheme, Accent> appStyle = ThemeManager.DetectAppStyle(Application.Current);
-            //ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Blue"), ThemeManager.GetAppTheme("BaseLight"));
-            ThemeManager.IsAutomaticWindowsAppModeSettingSyncEnabled = true;
-            ThemeManager.SyncAppThemeWithWindowsAppModeSetting();
+            Fluent.ThemeManager.ChangeAppTheme(this, "Silver");
+            //Silver Blue Black
             base.OnStartup(e);
-            ScreenTip.HelpPressed += OnScreenTipHelpPressed;
         }
+        //protected override void OnStartup(StartupEventArgs e)
+        //{
+
+        //    //Tuple<AppTheme, Accent> appStyle = ThemeManager.DetectAppStyle(Application.Current);
+        //    ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Blue"), ThemeManager.GetAppTheme("BaseDark"));
+        //    ThemeManager.IsAutomaticWindowsAppModeSettingSyncEnabled = true;
+        //    ThemeManager.SyncAppThemeWithWindowsAppModeSetting();
+        //    base.OnStartup(e);
+        //    ScreenTip.HelpPressed += OnScreenTipHelpPressed;
+
+        //    //You can choose between these available color schemes:
+        //    //“Red”, “Green”, “Blue”, “Purple”, “Orange”, “Lime”, “Emerald”, “Teal”, “Cyan”, “Cobalt”, “Indigo”, “Violet”, “Pink”, “Magenta”, “Crimson”, “Amber”, “Yellow”, “Brown”, “Olive”, “Steel”, “Mauve”, “Taupe”, “Sienna”
+        //}
 
         /// <summary>
         /// Handles F1 pressed on ScreenTip with help capability
