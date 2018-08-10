@@ -171,6 +171,169 @@ namespace Tafel.Hipot.App
         }
 
 
+        /// <summary>
+        /// 当前工序编号
+        /// </summary>
+        public string CurrentProcessCode
+        {
+            get => CurrentProcess.Split(',')[1];
+        }
+
+        /// <summary>
+        /// 当前工位编号
+        /// </summary>
+        public string CurrentStationCode
+        {
+            get => CurrentStation.Split(',')[1];
+        }
+
+
+
+        private string currentProcess = string.Empty;
+        /// <summary>
+        /// 当前工序名称和编号
+        /// </summary>
+        public string CurrentProcess
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(currentProcess))
+                {
+                    currentProcess = TengDa.Wpf.Option.GetOption("CurrentProcess");
+                    if (string.IsNullOrEmpty(currentProcess))
+                    {
+                        currentProcess = "Unknown,Unknown";
+                        TengDa.Wpf.Option.SetOption("CurrentProcess", currentProcess, "当前工序名称和编号");
+                    }
+                }
+                return currentProcess;
+            }
+            set
+            {
+                if (currentProcess != value)
+                {
+                    TengDa.Wpf.Option.SetOption("CurrentProcess", value.ToString());
+                    SetProperty(ref currentProcess, value);
+                }
+            }
+        }
+
+        private string currentStation = string.Empty;
+        /// <summary>
+        /// 当前工位名称和编号
+        /// </summary>
+        public string CurrentStation
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(currentStation))
+                {
+                    currentStation = TengDa.Wpf.Option.GetOption("CurrentStation");
+                    if (string.IsNullOrEmpty(currentStation))
+                    {
+                        currentStation = "Unknown,Unknown";
+                        TengDa.Wpf.Option.SetOption("CurrentStation", currentStation, "当前工位名称和编号");
+                    }
+                }
+                return currentStation;
+            }
+            set
+            {
+                if (currentStation != value)
+                {
+                    TengDa.Wpf.Option.SetOption("CurrentStation", value);
+                    SetProperty(ref currentStation, value);
+                }
+            }
+        }
+
+        private string currentOrderNo = string.Empty;
+        /// <summary>
+        /// 当前工单
+        /// </summary>
+        public string CurrentOrderNo
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(currentOrderNo))
+                {
+                    currentOrderNo = TengDa.Wpf.Option.GetOption("CurrentOrderNo");
+                    if (string.IsNullOrEmpty(currentOrderNo))
+                    {
+                        currentOrderNo = "Known";
+                        TengDa.Wpf.Option.SetOption("CurrentOrderNo", currentOrderNo, "当前工单");
+                    }
+                }
+                return currentOrderNo;
+            }
+            set
+            {
+                if (currentOrderNo != value)
+                {
+                    TengDa.Wpf.Option.SetOption("CurrentOrderNo", value);
+                    SetProperty(ref currentOrderNo, value);
+                }
+            }
+        }
+
+        private string currentMaterialOrderNo = string.Empty;
+        /// <summary>
+        /// 当前来料工单
+        /// </summary>
+        public string CurrentMaterialOrderNo
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(currentMaterialOrderNo))
+                {
+                    currentMaterialOrderNo = TengDa.Wpf.Option.GetOption("CurrentMaterialOrderNo");
+                    if (string.IsNullOrEmpty(currentMaterialOrderNo))
+                    {
+                        currentMaterialOrderNo = "Unknown";
+                        TengDa.Wpf.Option.SetOption("CurrentMaterialOrderNo", currentMaterialOrderNo, "当前来料工单");
+                    }
+                }
+                return currentMaterialOrderNo;
+            }
+            set
+            {
+                if (currentMaterialOrderNo != value)
+                {
+                    TengDa.Wpf.Option.SetOption("CurrentMaterialOrderNo", value.ToString());
+                    SetProperty(ref currentMaterialOrderNo, value);
+                }
+            }
+        }
+
+
+        private string iPAddressRegex = string.Empty;
+        /// <summary>
+        /// 局域网IP地址正则表达式
+        /// </summary>
+        public string IPAddressRegex
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(iPAddressRegex))
+                {
+                    iPAddressRegex = TengDa.Wpf.Option.GetOption("IPAddressRegex");
+                    if (string.IsNullOrEmpty(iPAddressRegex))
+                    {
+                        iPAddressRegex = "192.168.*";
+                        TengDa.Wpf.Option.SetOption("IPAddressRegex", iPAddressRegex, "局域网IP地址正则表达式");
+                    }
+                }
+                return iPAddressRegex;
+            }
+            set
+            {
+                if (iPAddressRegex != value)
+                {
+                    TengDa.Wpf.Option.SetOption("IPAddressRegex", value.ToString());
+                    SetProperty(ref iPAddressRegex, value);
+                }
+            }
+        }
 
 
         //private int xxxxxx = -1;

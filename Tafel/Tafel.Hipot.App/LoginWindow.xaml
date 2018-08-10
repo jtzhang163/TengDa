@@ -107,7 +107,7 @@
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
             <!--登录控件头部-->
             <MediaElement Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" x:Name="myMediaElement" VerticalAlignment="Top">

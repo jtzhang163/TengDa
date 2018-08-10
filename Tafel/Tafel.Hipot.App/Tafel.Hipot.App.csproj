@@ -301,7 +301,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Tafel.Hipot.App_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -314,6 +313,10 @@
     <ProjectReference Include="..\..\TengDa\TengDa\TengDa.csproj">
       <Project>{313161d4-a305-47fb-8935-d7c0a0cf4b3d}</Project>
       <Name>TengDa</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tafel.MES\Tafel.MES.csproj">
+      <Project>{3e119445-c804-46a4-95f7-39de26793ca3}</Project>
+      <Name>Tafel.MES</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

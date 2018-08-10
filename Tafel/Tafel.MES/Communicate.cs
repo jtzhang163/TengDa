@@ -46,7 +46,7 @@ namespace Tafel.MES
             bool b = CheckXML(returnXml, out name, out msg);
             if (!string.IsNullOrEmpty(msg))
             {
-                TengDa.Error.Alert(msg);
+                LogHelper.WriteError(msg);
             }
 
             if (string.IsNullOrEmpty(name))
@@ -89,7 +89,7 @@ namespace Tafel.MES
             bool b= CheckXML(returnXml, out msg);
             if (!string.IsNullOrEmpty(msg))
             {
-                TengDa.Error.Alert(msg);
+                LogHelper.WriteError(msg);
             }
             return b;
 
@@ -127,9 +127,7 @@ namespace Tafel.MES
             bool b = CheckXML(returnXml, out msg);
             if (!string.IsNullOrEmpty(msg))
             {
-                Error.Alert(msg);
-
-                LogHelper.WriteError(xml);
+                LogHelper.WriteError(msg);
             }
             return b;
 
@@ -167,7 +165,7 @@ namespace Tafel.MES
             bool b = CheckXML(returnXml, out msg);
             if (!string.IsNullOrEmpty(msg))
             {
-                TengDa.Error.Alert(msg);
+                LogHelper.WriteError(msg);
             }
 
             TengDa.LogHelper.WriteInfo("XML上传：\r\n" + xml);
@@ -209,7 +207,7 @@ namespace Tafel.MES
 
             if (!string.IsNullOrEmpty(msg))
             {
-                TengDa.Error.Alert(msg);
+                LogHelper.WriteError(msg);
             }
             return pi;
         }
