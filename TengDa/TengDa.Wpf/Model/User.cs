@@ -13,18 +13,7 @@ namespace TengDa.Wpf
     /// </summary>
     public class User : BindableObject
     {
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                SetProperty(ref id, value);
-            }
-        }
-        private int id = -1;
+        public int Id { get; set; }
         /// <summary>
         /// 用户名称
         /// </summary>
@@ -113,6 +102,65 @@ namespace TengDa.Wpf
         {
             Id = id;
         }
+
+
+        public static bool Register(string name, string password, out string msg)
+        {
+            return Register(name, "", password, false, out msg);
+        }
+
+        public static bool Register(string name, string number, string password, bool isEnable, out string msg)
+        {
+            using (var data = new UserContext())
+            {
+                User user = new User();
+                if (data.Users.Where(u => u.Name == name).Count() > 0)
+                {
+                    msg = "系统中已存在用户：" + name;
+                    return false;
+                }
+                user.Name = name;
+                user.Number = number;
+                user.Password = Base64.EncodeBase64(password);
+                user.IsEnable = isEnable;
+                user.RegisterTime = DateTime.Now;
+                user.RoleId = data.Roles.Single(r => r.Name == "操作员").Id;
+                user.ProfilePicture = "/Images/DefaultProfile.jpg";
+                data.Users.Add(user);
+                data.SaveChanges();
+            }
+            msg = string.Empty;
+            return true;
+        }
+
+
+        public static bool Login(string name, string password, out string msg)
+        {
+            var user = new User();
+            using (var data = new UserContext())
+            {
+                var entityPassword = Base64.EncodeBase64(password);
+                user = data.Users.FirstOrDefault(u => u.Name == name && u.Password == entityPassword) ?? new User();
+                user.LastLoginTime = DateTime.Now;
+                user.LoginTimes++;
+                data.SaveChanges();
+            }
+            Current.User = user;
+            if (Current.User.Id > 0)
+            {
+                msg = string.Empty;
+                return true;
+            }
+            msg = "用户名或密码错误";
+            return false;
+        }
+
+        public static bool Logout()
+        {
+            Current.User = new User(-1);
+            return true;
+        }
+
     }
 
     /// <summary>

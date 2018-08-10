@@ -27,7 +27,7 @@ namespace Tafel.Hipot.App.View
                 return;
             }
 
-            if (UserViewModel.Logout())
+            if (User.Logout())
             {
 
                 Current.ShowTips(Current.User.Name + "成功注销");

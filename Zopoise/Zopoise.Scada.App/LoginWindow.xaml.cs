@@ -19,7 +19,8 @@ namespace Zopoise.Scada.App
         }
         private void OnLogin(object sender, ExecutedRoutedEventArgs e)
         {
-            if (UserViewModel.Login(this.LoginUserNameCombobox.Text, this.LoginUserPasswordBox.Password))
+            string msg = string.Empty;
+            if (User.Login(this.LoginUserNameCombobox.Text, this.LoginUserPasswordBox.Password ,out msg))
             {
 
                 //Tip.Alert("成功登录");
@@ -48,6 +49,10 @@ namespace Zopoise.Scada.App
                 });
                 t.Start();
 
+            }
+            else
+            {
+                Error.Alert(msg);
             }
         }
     }

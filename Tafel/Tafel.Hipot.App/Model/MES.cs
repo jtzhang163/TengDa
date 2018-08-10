@@ -69,6 +69,30 @@ namespace Tafel.Hipot.App
         #region MES方法
 
 
+        public static bool Login(string userNumber, string password, out string msg)
+        {
+
+            string userName = string.Empty;
+
+            if (!MES.GetUserName(userNumber, password, out userName, out msg))
+            {
+                return false;
+            }
+
+            if (Context.UserContext.Users.Where(u => u.Name == userName).Count() == 0)
+            {
+                //首次登录需先注册
+                if (!User.Register(userName, userNumber, password, true, out msg))
+                {
+                    return false;
+                }
+            }
+
+            return User.Login(userName, password, out msg);
+        }
+
+
+
         public static bool CheckSfc(string code, out string msg)
         {
 

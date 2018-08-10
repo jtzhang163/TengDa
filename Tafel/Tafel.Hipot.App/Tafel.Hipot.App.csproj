@@ -175,9 +175,6 @@
     <Compile Include="View\Machine\CommunicateStatusUC.xaml.cs">
       <DependentUpon>CommunicateStatusUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\User\UserSettingWindow.xaml.cs">
-      <DependentUpon>UserSettingWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -215,10 +212,6 @@
       <DependentUpon>AboutUC.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Machine\CommunicateStatusUC.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\User\UserSettingWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

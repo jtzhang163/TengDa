@@ -28,7 +28,7 @@ namespace Zopoise.Scada.App.View
 
         private void hyberlinkLogout_Click(object sender, RoutedEventArgs e)
         {
-            if (UserViewModel.Logout())
+            if (User.Logout())
             {
                 //Tip.Alert("成功登录");
                 AppCurrent.AppViewModel.UserName = string.Empty;

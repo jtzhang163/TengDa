@@ -27,7 +27,7 @@ namespace Tafel.MES
                                     <table>
                                         <rows>
                                             <returncode>1</returncode>
-                                            <errormsg>OK</errormsg>
+                                            <errormsg>MesUser</errormsg>
                                         </rows>
                                     </table>
                                 </response>"; 

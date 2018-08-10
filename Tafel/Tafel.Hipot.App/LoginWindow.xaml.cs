@@ -43,29 +43,52 @@ namespace Tafel.Hipot.App
                 Tip.Alert("请输入密码");
                 return;
             }
-            if (UserViewModel.Login(this.loginUserNameTextBox.Text, this.loginPasswordBox.Password))
-            {
 
-                AppCurrent.Option.LastLoginUserId = Current.User.Id;
-                Current.ShowTips(Current.User.Name + "成功登录");
-                btnLogin.Content = "正在登录...";
-                Thread t = new Thread(() =>
+            string msg = string.Empty;
+            if (AppCurrent.Option.IsMesLogin)
+            {
+                //MES登录              
+                if (MES.Login(this.loginUserNameTextBox.Text, this.loginPasswordBox.Password, out msg))
                 {
-                    Thread.Sleep(2000);
-                    Dispatcher.Invoke(new Action(() =>
-                    {
-                        //登录成功，关闭窗口          
-                        AppCurrent.AppViewModel.MainWindowsBackstageIsOpen = false;
-                        new MainWindow().Show();
-                        this.Close();
-                    }));
-                });
-                t.Start();
+                    AfterLogin();
+                }
+                else
+                {
+                    Tip.Alert(msg);
+                }
             }
             else
             {
-                Tip.Alert("用户名或密码错误");
+                //普通登录
+                if (User.Login(this.loginUserNameTextBox.Text, this.loginPasswordBox.Password, out msg))
+                {
+                    AfterLogin();
+                }
+                else
+                {
+                    Tip.Alert(msg);
+                }
             }
+
+        }
+
+        private void AfterLogin()
+        {
+            AppCurrent.Option.LastLoginUserId = Current.User.Id;
+            Current.ShowTips(Current.User.Name + "成功登录");
+            btnLogin.Content = "正在登录...";
+            Thread t = new Thread(() =>
+            {
+                Thread.Sleep(2000);
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    //登录成功，关闭窗口          
+                    AppCurrent.AppViewModel.MainWindowsBackstageIsOpen = false;
+                    new MainWindow().Show();
+                    this.Close();
+                }));
+            });
+            t.Start();
         }
 
         private void BtnCloseWindow_Click(object sender, RoutedEventArgs e)
