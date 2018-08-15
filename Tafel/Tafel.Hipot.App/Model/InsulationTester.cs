@@ -92,16 +92,16 @@ namespace Tafel.Hipot.App
                 return;
             }
 
-            var tmpStr = ReceiveString.Split(',');
-            if (tmpStr.Length < 4)
+            if (ReceiveString.Length < 24)
             {
+                TengDa.LogHelper.WriteError("测试仪传输的数据异常：" + ReceiveString);
                 return;
             }
 
-            this.Resistance = TengDa._Convert.StrToFloat(tmpStr[0], 0);
-            this.Voltage = TengDa._Convert.StrToFloat(tmpStr[1], 0);
-            this.TimeSpan = TengDa._Convert.StrToFloat(tmpStr[2], 0);
-            this.Temperature = TengDa._Convert.StrToFloat(tmpStr[3], 0);
+            this.Resistance = TengDa._Convert.StrToFloat(ReceiveString.Substring(6, 5), 0);
+            this.Voltage = 100;
+            this.TimeSpan = 5;
+            this.Temperature = 0;
 
             this.RealtimeStatus = string.Format("获得数据完成，电阻：{0}，电压：{1}，测试间隔：{2}，温度：{3}", Resistance, Voltage, TimeSpan, Temperature);
 
@@ -134,7 +134,7 @@ namespace Tafel.Hipot.App
                 Voltage = this.Voltage,
                 RecordTime = DateTime.Now
             });
-            AppContext.InsulationContext.SaveChangesAsync();
+            AppContext.InsulationContext.SaveChanges();
             IsGetNewData = false;
 
             Current.RealtimeYieldViewModel.FeedingOK++;

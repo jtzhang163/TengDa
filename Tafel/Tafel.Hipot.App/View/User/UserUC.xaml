@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Tafel.Hipot.App.View"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="1200">
     <Grid>
         <DockPanel Margin="30,30,0,0">
             <Label Content="用户" DockPanel.Dock="Top" FontSize="30" FontFamily="微软雅黑" Foreground="#2b579a" Margin="0,0,30,10"/>
@@ -14,7 +14,7 @@
                 <StackPanel Orientation="Horizontal" x:Name="UserStackPanel">
                     <Grid>
                         <DockPanel Margin="0,30,0,0">
-                            <Label Content="用户详情" DockPanel.Dock="Top" FontFamily="宋体" FontSize="25" FontWeight="Bold" Foreground="#2b579a" Margin="0,0,30,0"/>
+                            <Label Content="当前用户" DockPanel.Dock="Top" FontFamily="宋体" FontSize="25" FontWeight="Bold" Foreground="#2b579a" Margin="0,0,30,0"/>
                             <local:UserDetailUC Height="350" Width="400" Margin="7,-110,34,0" />
                         </DockPanel>
                     </Grid>

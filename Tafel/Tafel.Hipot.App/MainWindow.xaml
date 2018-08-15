@@ -175,7 +175,7 @@
                                           IsSynchronizedWithCurrentItem="True" VerticalAlignment="Center">
                         </ComboBox>
                         <Label Content="电阻：" VerticalAlignment="Center"  Foreground="#2b579a"/>
-                        <Label Content="{Binding Resistance}" VerticalAlignment="Center" Foreground="LimeGreen" FontSize="48"/>
+                        <Label Content="{Binding Resistance}" VerticalAlignment="Center" Foreground="Green" FontWeight="Bold" FontSize="50"/>
                         <Label Content="电压：" VerticalAlignment="Center"  Foreground="#2b579a"/>
                         <Label Content="{Binding Voltage}" VerticalAlignment="Center" Foreground="LimeGreen" FontSize="48"/>
                         <Label Content="测试时长：" VerticalAlignment="Center"  Foreground="#2b579a"/>
@@ -289,7 +289,7 @@
                             </Grid.ColumnDefinitions>
                             <d3:Chart Name="plotterResistance" Grid.Row="0" Grid.Column="0" Margin="5">
                                 <d3:Chart.Title>
-                                    <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0,5,0,5">电阻曲线(单位：Ω)</TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0,5,0,5">电阻曲线(单位：MΩ)</TextBlock>
                                 </d3:Chart.Title>
                                 <d3:Chart.LegendContent>
                                     <d3:LegendItemsPanel>

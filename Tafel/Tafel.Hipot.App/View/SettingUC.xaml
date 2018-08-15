@@ -10,7 +10,7 @@
     <Grid>
         <DockPanel Margin="30,30,0,0">
             <Label Content="设置" DockPanel.Dock="Top" FontSize="30" FontFamily="微软雅黑" Foreground="#2b579a" Margin="0,0,30,10"/>
-            <Label Content="部分设置项重启后才可生效！" DockPanel.Dock="Bottom" FontSize="24" FontFamily="微软雅黑" Foreground="#2b579a" HorizontalContentAlignment="Center" Margin="0,0,30,10"/>
+            <Label Content="部分设置项重启后才可生效！" DockPanel.Dock="Bottom" FontSize="24" FontFamily="微软雅黑" Foreground="#ff0000" HorizontalContentAlignment="Center" Margin="0,0,30,10"/>
             <TreeView Name="ObjectTreeView" Width="400" SelectedItemChanged="ObjectTreeView_SelectedItemChanged">
 
             </TreeView>
