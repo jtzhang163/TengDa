@@ -33,23 +33,23 @@ namespace Tafel.Hipot.App.View
 
             if (name == "AppViewModel")
             {
-                ObjPropertySetter.SelectedObject = AppCurrent.AppViewModel;
-                ObjPropertySetter.IsReadOnly = Current.User.Id < 1 ? true : false; 
+                ObjPropertySetter.SelectedObject = Current.App;
+                ObjPropertySetter.IsReadOnly = TengDa.Wpf.Current.User.Id < 1 ? true : false; 
             }
             else if (name == "AppOption")
             {
-                ObjPropertySetter.SelectedObject = AppCurrent.Option;
-                ObjPropertySetter.IsReadOnly = Current.User.Role.Level < 2 ? true : false;
+                ObjPropertySetter.SelectedObject = Current.Option;
+                ObjPropertySetter.IsReadOnly = TengDa.Wpf.Current.User.Role.Level < 2 ? true : false;
             }
             else if (name == "InsulationTester")
             {
-                ObjPropertySetter.SelectedObject = AppCurrent.InsulationTester;
-                ObjPropertySetter.IsReadOnly = Current.User.Role.Level < 3 ? true : false;
+                ObjPropertySetter.SelectedObject = Current.Tester;
+                ObjPropertySetter.IsReadOnly = TengDa.Wpf.Current.User.Role.Level < 3 ? true : false;
             }
             else if(name == "Mes")
             {
-                ObjPropertySetter.SelectedObject = AppCurrent.Mes;
-                ObjPropertySetter.IsReadOnly = Current.User.Role.Level < 2 ? true : false;
+                ObjPropertySetter.SelectedObject = Current.Mes;
+                ObjPropertySetter.IsReadOnly = TengDa.Wpf.Current.User.Role.Level < 2 ? true : false;
             }
 
         }
@@ -73,14 +73,14 @@ namespace Tafel.Hipot.App.View
                 //Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem p = (Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem)(e.OldValue);
 
                 //settingsStr = string.Format("将Id为 {0} 的 {1} 的 {2} 修改为 {3} ", Id, type.Name, p.PropertyName, p.Value);
-                //AppContext.MesContext.SaveChangesAsync();
+                //Context.MesContext.SaveChangesAsync();
 
-                //Current.ShowTips(settingsStr, true);
-                AppContext.MesContext.SaveChangesAsync();
+                //OperationHelper.ShowTips(settingsStr, true);
+                Context.MesContext.SaveChangesAsync();
             }
             else if(type == typeof(InsulationTester))
             {
-                AppContext.InsulationContext.SaveChangesAsync();
+                Context.InsulationContext.SaveChangesAsync();
             }
 
         }

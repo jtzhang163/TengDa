@@ -72,7 +72,7 @@ namespace Tafel.Hipot.App
         {
             get
             {
-                if (Current.User.Id < 1)
+                if (TengDa.Wpf.Current.User.Id < 1)
                 {
                     currentUserNameTip = string.Empty;
                 }
@@ -86,25 +86,25 @@ namespace Tafel.Hipot.App
         }
 
         [Browsable(false)]
-        public string UserName => Current.User.Name;
+        public string UserName => TengDa.Wpf.Current.User.Name;
 
         [Browsable(false)]
-        public string UserGroupName => Current.User.Role.Name;
+        public string UserGroupName => TengDa.Wpf.Current.User.Role.Name;
 
         [Browsable(false)]
-        public string UserProfilePicture => Current.User.ProfilePicture;
+        public string UserProfilePicture => TengDa.Wpf.Current.User.ProfilePicture;
 
         [Browsable(false)]
-        public string UserNumber => Current.User.Number;
+        public string UserNumber => TengDa.Wpf.Current.User.Number;
 
         [Browsable(false)]
-        public string UserPhoneNumber => Current.User.PhoneNumber;
+        public string UserPhoneNumber => TengDa.Wpf.Current.User.PhoneNumber;
 
         [Browsable(false)]
-        public string UserEmail => Current.User.Email;
+        public string UserEmail => TengDa.Wpf.Current.User.Email;
 
 
-        private bool mainWindowsBackstageIsOpen = true;
+        private bool mainWindowsBackstageIsOpen = false;
         [Browsable(false)]
         public bool MainWindowsBackstageIsOpen
         {
@@ -133,15 +133,15 @@ namespace Tafel.Hipot.App
         [Browsable(false)]
         public bool IsMesLogin
         {
-            get => AppCurrent.Option.IsMesLogin;
-            set => AppCurrent.Option.IsMesLogin = value;
+            get => Current.Option.IsMesLogin;
+            set => Current.Option.IsMesLogin = value;
         }
 
         [Browsable(false)]
         public bool IsRememberMe
         {
-            get => AppCurrent.Option.IsRememberMe;
-            set => AppCurrent.Option.IsRememberMe = value;
+            get => Current.Option.IsRememberMe;
+            set => Current.Option.IsRememberMe = value;
         }
 
 
@@ -149,7 +149,7 @@ namespace Tafel.Hipot.App
         {
             return new List<InsulationTester>()
             {
-                AppCurrent.InsulationTester
+                Current.Tester
             };
         }
 
@@ -157,8 +157,8 @@ namespace Tafel.Hipot.App
         {
             return new List<CommunicateObject>()
             {
-                AppCurrent.InsulationTester,
-                AppCurrent.Mes
+                Current.Tester,
+                Current.Mes
             };
         }
 

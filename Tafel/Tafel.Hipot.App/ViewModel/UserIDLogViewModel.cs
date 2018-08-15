@@ -49,6 +49,6 @@ namespace Tafel.Hipot.App
         /// 记录时间
         /// </summary>
         [DisplayName("记录时间")]
-        public DateTime RecordTime { get; set; }
+        public DateTime DateTime { get; set; }
     }
 }

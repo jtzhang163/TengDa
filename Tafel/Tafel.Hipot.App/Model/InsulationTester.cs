@@ -107,37 +107,37 @@ namespace Tafel.Hipot.App
 
 
 
-            AppCurrent.ShowResistanceData.Add(this.Resistance);
-            AppCurrent.ShowResistanceData.RemoveAt(0);
+            Current.ShowResistanceData.Add(this.Resistance);
+            Current.ShowResistanceData.RemoveAt(0);
 
-            AppCurrent.ShowVoltageData.Add(this.Voltage);
-            AppCurrent.ShowVoltageData.RemoveAt(0);
-
-
-            AppCurrent.ShowTimeSpanData.Add(this.TimeSpan);
-            AppCurrent.ShowTimeSpanData.RemoveAt(0);
+            Current.ShowVoltageData.Add(this.Voltage);
+            Current.ShowVoltageData.RemoveAt(0);
 
 
-            AppCurrent.ShowTemperatureData.Add(this.Temperature);
-            AppCurrent.ShowTemperatureData.RemoveAt(0);
+            Current.ShowTimeSpanData.Add(this.TimeSpan);
+            Current.ShowTimeSpanData.RemoveAt(0);
 
-            AppCurrent.AnimatedPlot();
 
-            AppContext.InsulationContext.InsulationDataLogs.Add(new InsulationDataLog()
+            Current.ShowTemperatureData.Add(this.Temperature);
+            Current.ShowTemperatureData.RemoveAt(0);
+
+            Current.AnimatedPlot();
+
+            Context.InsulationContext.InsulationDataLogs.Add(new InsulationDataLog()
             {
-                UserId = Current.User.Id,
-                TesterId = AppCurrent.InsulationTester.Id,
+                UserId = TengDa.Wpf.Current.User.Id,
+                TesterId = Current.Tester.Id,
                 IsUploaded = false,
                 Resistance = this.Resistance,
                 Temperature = this.Temperature,
                 TimeSpan = this.TimeSpan,
                 Voltage = this.Voltage,
-                RecordTime = DateTime.Now
+                DateTime = DateTime.Now
             });
-            AppContext.InsulationContext.SaveChanges();
+            Context.InsulationContext.SaveChanges();
             IsGetNewData = false;
 
-            Current.RealtimeYieldViewModel.FeedingOK++;
+            TengDa.Wpf.Current.YieldNow.FeedingOK++;
 
             var t = new Thread(() =>
             {
@@ -160,7 +160,7 @@ namespace Tafel.Hipot.App
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<InsulationTester>().ToTable("t_insulation_tester");
+            modelBuilder.Entity<InsulationTester>().ToTable("t_tester");
             modelBuilder.Entity<InsulationDataLog>().ToTable("t_insulation_data_log");
         }
 

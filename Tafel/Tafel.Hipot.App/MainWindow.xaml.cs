@@ -22,7 +22,7 @@ namespace Tafel.Hipot.App
         public MainWindow()
         {
             #region 检查程序是否重复启动
-            if (Current.AppIsRun)
+            if (TengDa.Wpf.Current.AppIsRun)
             {
                 if (Xceed.Wpf.Toolkit.MessageBox.Show("当前程序已经在运行，请勿重复启动！", "提示", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK)
                 {
@@ -37,79 +37,54 @@ namespace Tafel.Hipot.App
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            if (Current.IsRunning)
+            if (TengDa.Wpf.Current.IsRunning)
             {
-                Current.ShowTips("系统正在运行，请先停止！", true);
+                OperationHelper.ShowTips("系统正在运行，请先停止！", true);
                 e.Cancel = true;
                 return;
             }
-
+            //OperationHelper.ShowTips("关闭软件");
             base.OnClosing(e);
         }
-
 
         private void Init()
         {
 
-            this.DataContext = AppCurrent.AppViewModel;
+            this.DataContext = Current.App;
 
-            AppCurrent.MainWindow = this;
+            Current.MainWindow = this;
 
             TimerInit();
-            //当前时间显示
-            Current.ShowTips("打开软件");
-
+ 
             StartDateTimePicker.Value = DateTime.Now.AddHours(-1);
             StopDateTimePicker.Value = DateTime.Now;
 
-            Current.IsTerminalInitFinished = true;
+            TengDa.Wpf.Current.IsTerminalInitFinished = true;
 
-            Current.RealtimeYieldViewModel.FeedingOKContent = "测试数";
-            Current.RealtimeYieldViewModel.BlankingOKContent = "上传数";
-            if (Current.RealtimeYieldViewModel.StartTime == TengDa.Common.DefaultTime)
+            TengDa.Wpf.Current.YieldNow.FeedingOKContent = "测试数";
+            TengDa.Wpf.Current.YieldNow.BlankingOKContent = "上传数";
+            if (TengDa.Wpf.Current.YieldNow.StartTime == TengDa.Common.DefaultTime)
             {
-                RealtimeYield.SetRealtimeYield(DateTime.Now);
+                TengDa.Wpf.Current.YieldNow.StartTime = DateTime.Now;
             }
-        }
 
+            OperationHelper.ShowTips("打开软件");
+        }
 
         private void TimerInit()
         {
             //界面画图定时器
             InitDrawingGraph();
             //更新
-            AppCurrent.TimerUpdateTime.Elapsed += delegate { AppCurrent.AppViewModel.TimeNow = DateTime.Now; };
-            AppCurrent.TimerUpdateTime.Start();
+            Current.TimerUpdateTime.Elapsed += delegate { Current.App.TimeNow = DateTime.Now; };
+            Current.TimerUpdateTime.Start();
 
-            AppCurrent.TimerCheckTesterInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckTesterInfo);
-            AppCurrent.TimerCheckTesterInfo.Start();
+            Current.TimerCheckTesterInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckTesterInfo);
+            Current.TimerCheckTesterInfo.Start();
 
-            AppCurrent.TimerCheckMesInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckMesInfo);
-            AppCurrent.TimerCheckMesInfo.Start();
+            Current.TimerCheckMesInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckMesInfo);
+            Current.TimerCheckMesInfo.Start();
         }
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //数据库初始化
-            using (var data = new UserContext())
-            {
-                foreach (var ug in data.Roles)
-                {
-                    Console.WriteLine("{0} ", ug.Name);
-                }
-                Console.WriteLine("finished!");
-            }
-            using (var data = new OptionContext())
-            {
-                foreach (var ug in data.Options)
-                {
-                    Console.WriteLine("{0} ", ug.Value);
-                }
-                Console.WriteLine("finished!");
-            }
-        }
-
 
         private void BtnTest_Click(object sender, RoutedEventArgs e)
         {
@@ -183,7 +158,7 @@ namespace Tafel.Hipot.App
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            if (Current.User.Id < 0)
+            if (TengDa.Wpf.Current.User.Id < 0)
             {
                 if (Verify.Show("尚未登录提示", "请先登录"))
                 {
@@ -193,24 +168,24 @@ namespace Tafel.Hipot.App
                 return;
             }
 
-            if (Current.IsRunning)
+            if (TengDa.Wpf.Current.IsRunning)
             {
-                Current.ShowTips("系统已经在运行，请勿重复启动！");
+                OperationHelper.ShowTips("系统已经在运行，请勿重复启动！");
                 return;
             }
 
             if (CommunicateControl.CommunicateStart())
             {
-                Current.IsRunning = true;
-                AppCurrent.AppViewModel.RunStatus = TengDa.RunStatus.运行;
-                Current.ShowTips("成功启动运行！");
+                TengDa.Wpf.Current.IsRunning = true;
+                Current.App.RunStatus = TengDa.RunStatus.运行;
+                OperationHelper.ShowTips("成功启动运行！");
             }
 
         }
 
         private void BtnStop_Click(object sender, RoutedEventArgs e)
         {
-            if (Current.User.Id < 0)
+            if (TengDa.Wpf.Current.User.Id < 0)
             {
                 if (Verify.Show("尚未登录提示", "请先登录"))
                 {
@@ -220,20 +195,20 @@ namespace Tafel.Hipot.App
                 return;
             }
 
-            if (!Current.IsRunning)
+            if (!TengDa.Wpf.Current.IsRunning)
             {
-                Current.ShowTips("系统已暂停运行，请勿重复点击！");
+                OperationHelper.ShowTips("系统已暂停运行，请勿重复点击！");
                 return;
             }
 
-            Current.IsRunning = false;
-            Current.ShowTips("成功停止运行！");
-            AppCurrent.AppViewModel.RunStatus = TengDa.RunStatus.暂停;
+            TengDa.Wpf.Current.IsRunning = false;
+            OperationHelper.ShowTips("成功停止运行！");
+            Current.App.RunStatus = TengDa.RunStatus.暂停;
         }
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
         {
-            if (Current.User.Id < 0)
+            if (TengDa.Wpf.Current.User.Id < 0)
             {
                 if (Verify.Show("尚未登录提示", "请先登录"))
                 {
@@ -243,16 +218,16 @@ namespace Tafel.Hipot.App
                 return;
             }
 
-            if (Current.IsRunning)
+            if (TengDa.Wpf.Current.IsRunning)
             {
-                Current.ShowTips("请先停止运行！", isShowMessageBox: true);
+                OperationHelper.ShowTips("请先停止运行！", isShowMessageBox: true);
                 return;
             }
 
             if (CommunicateControl.CommunicateStop())
             {
-                Current.ShowTips("成功复位！");
-                AppCurrent.AppViewModel.RunStatus = TengDa.RunStatus.闲置;
+                OperationHelper.ShowTips("成功复位！");
+                Current.App.RunStatus = TengDa.RunStatus.闲置;
             }
         }
 
@@ -261,19 +236,19 @@ namespace Tafel.Hipot.App
         //private void AnimatedPlot(object sender, EventArgs e)
         //{
 
-        //    if (Current.IsRunning && AppCurrent.AppViewModel.GraphShowMode == GraphShowMode.实时数据)
+        //    if (TengDa.Wpf.Current.IsRunning && Current.App.GraphShowMode == GraphShowMode.实时数据)
         //    {
         //        var lgResistance = (LineGraph)linesResistance.Children[0];
-        //        lgResistance.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowResistanceData);
+        //        lgResistance.Plot(Current.ShowDataOrder, Current.ShowResistanceData);
 
         //        var lgVoltage = (LineGraph)linesVoltage.Children[0];
-        //        lgVoltage.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowVoltageData);
+        //        lgVoltage.Plot(Current.ShowDataOrder, Current.ShowVoltageData);
 
         //        var lgTemperature = (LineGraph)linesTemperature.Children[0];
-        //        lgTemperature.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowTemperatureData);
+        //        lgTemperature.Plot(Current.ShowDataOrder, Current.ShowTemperatureData);
 
         //        var lgTimeSpan = (LineGraph)linesTimeSpan.Children[0];
-        //        lgTimeSpan.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowTimeSpanData);
+        //        lgTimeSpan.Plot(Current.ShowDataOrder, Current.ShowTimeSpanData);
         //    }
         //}
 
@@ -326,10 +301,10 @@ namespace Tafel.Hipot.App
         {
             using (var data = new InsulationContext())
             {
-                var insulationDataLogs = data.InsulationDataLogs.Where(d => d.RecordTime > StartDateTimePicker.Value && d.RecordTime < StopDateTimePicker.Value).Take(maxDataCount.Value.Value).ToList();
+                var insulationDataLogs = data.InsulationDataLogs.Where(d => d.DateTime > StartDateTimePicker.Value && d.DateTime < StopDateTimePicker.Value).Take(maxDataCount.Value.Value).ToList();
                 if (insulationDataLogs.Count < 1)
                 {
-                    Current.ShowTips("该时间范围没数据！",true);
+                    OperationHelper.ShowTips("该时间范围没数据！",true);
                     return;
                 }
 

@@ -14,37 +14,37 @@ namespace Tafel.Hipot.App
         /// </summary>
         public static bool CommunicateStart()
         {
-            if (AppCurrent.InsulationTester.IsEnable)
+            if (Current.Tester.IsEnable)
             {
                 var localPortNames = SerialPort.GetPortNames();
-                if (Array.IndexOf(localPortNames, AppCurrent.InsulationTester.PortName) < 0)
+                if (Array.IndexOf(localPortNames, Current.Tester.PortName) < 0)
                 {
-                    Current.ShowTips("当前PC不存在串口：" + AppCurrent.InsulationTester.PortName, true);
+                    OperationHelper.ShowTips("当前PC不存在串口：" + Current.Tester.PortName, true);
                     return false;
                 }
 
                 string msg = string.Empty;
-                if (!AppCurrent.InsulationTester.Connect(out msg))
+                if (!Current.Tester.Connect(out msg))
                 {
-                    Current.ShowTips(msg, true);
-                    AppCurrent.InsulationTester.RealtimeStatus = "连接出现异常";
+                    OperationHelper.ShowTips(msg, true);
+                    Current.Tester.RealtimeStatus = "连接出现异常";
                     return false;
                 }
-                AppCurrent.InsulationTester.RealtimeStatus = "连接成功";
-                Current.ShowTips("连接串口成功：" + AppCurrent.InsulationTester.PortName);
+                Current.Tester.RealtimeStatus = "连接成功";
+                OperationHelper.ShowTips("连接串口成功：" + Current.Tester.PortName);
             }
 
-            if (AppCurrent.Mes.IsEnable)
+            if (Current.Mes.IsEnable)
             {
                 string msg = string.Empty;
-                if(!AppCurrent.Mes.Connect(out msg))
+                if(!Current.Mes.Connect(out msg))
                 {
-                    Current.ShowTips(msg, true);
-                    AppCurrent.Mes.RealtimeStatus = "连接出现异常";
+                    OperationHelper.ShowTips(msg, true);
+                    Current.Mes.RealtimeStatus = "连接出现异常";
                     return false;
                 }
-                AppCurrent.Mes.RealtimeStatus = "连接成功";
-                Current.ShowTips("连接MES成功：" + AppCurrent.Mes.Host);
+                Current.Mes.RealtimeStatus = "连接成功";
+                OperationHelper.ShowTips("连接MES成功：" + Current.Mes.Host);
             }
             return true;
         }
@@ -54,32 +54,32 @@ namespace Tafel.Hipot.App
         /// </summary>
         public static bool CommunicateStop()
         {
-            if (AppCurrent.InsulationTester.IsEnable)
+            if (Current.Tester.IsEnable)
             {
                 string msg = string.Empty;
-                if (!AppCurrent.InsulationTester.DisConnect(out msg))
+                if (!Current.Tester.DisConnect(out msg))
                 {
-                    Current.ShowTips(msg);
-                    AppCurrent.InsulationTester.RealtimeStatus = "断开连接出现异常";
+                    OperationHelper.ShowTips(msg);
+                    Current.Tester.RealtimeStatus = "断开连接出现异常";
                     return false;
                 }
-                AppCurrent.InsulationTester.AlarmStr = string.Empty;
-                AppCurrent.InsulationTester.RealtimeStatus = "断开连接";
-                Current.ShowTips("关闭串口连接成功：" + AppCurrent.InsulationTester.PortName);
+                Current.Tester.AlarmStr = string.Empty;
+                Current.Tester.RealtimeStatus = "断开连接";
+                OperationHelper.ShowTips("关闭串口连接成功：" + Current.Tester.PortName);
             }
 
-            if (AppCurrent.Mes.IsEnable)
+            if (Current.Mes.IsEnable)
             {
                 string msg = string.Empty;
-                if (!AppCurrent.Mes.DisConnect(out msg))
+                if (!Current.Mes.DisConnect(out msg))
                 {
-                    Current.ShowTips(msg);
-                    AppCurrent.Mes.RealtimeStatus = "断开连接出现异常";
+                    OperationHelper.ShowTips(msg);
+                    Current.Mes.RealtimeStatus = "断开连接出现异常";
                     return false;
                 }
                 
-                AppCurrent.Mes.RealtimeStatus = "断开连接";
-                Current.ShowTips("关闭MES连接成功：" + AppCurrent.Mes.Host);
+                Current.Mes.RealtimeStatus = "断开连接";
+                OperationHelper.ShowTips("关闭MES连接成功：" + Current.Mes.Host);
             }
             return true;
         }

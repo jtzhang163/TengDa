@@ -59,7 +59,7 @@
                     <DataGridTextColumn Binding="{Binding Temperature}" Header="温度" Width="2*"/>
                     <DataGridTextColumn Binding="{Binding TimeSpan}" Header="测试时长" Width="2*"/>
                     <DataGridTextColumn Binding="{Binding IsUploaded}" Header="已上传" Width="2*"/>
-                    <DataGridTextColumn Binding="{Binding RecordTime,StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}" Header="记录时间" Width="3*"/>
+                    <DataGridTextColumn Binding="{Binding DateTime,StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}" Header="记录时间" Width="3*"/>
                 </DataGrid.Columns>
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">

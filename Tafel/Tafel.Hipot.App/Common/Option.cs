@@ -8,9 +8,8 @@ namespace Tafel.Hipot.App
     /// 基本配置
     /// </summary>
     [DisplayName("基本配置")]
-    public class AppOption : BindableObject
+    public class Option : BindableObject
     {
-
 
         private int checkTesterInfoInterval = -1;
         /// <summary>

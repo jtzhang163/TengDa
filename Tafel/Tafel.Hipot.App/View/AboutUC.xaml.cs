@@ -10,7 +10,7 @@ namespace Tafel.Hipot.App.View
         public AboutUC()
         {
             InitializeComponent();
-            this.DataContext = AppCurrent.AppViewModel;
+            this.DataContext = Current.App;
         }
     }
 }

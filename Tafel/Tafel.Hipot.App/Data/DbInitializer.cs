@@ -3,7 +3,7 @@ using TengDa.Wpf;
 
 namespace Tafel.Hipot.App
 {
-    public class AppDbInitializer : DbInitializer
+    public class DbInitializer : TengDa.Wpf.DbInitializer
     {
         public override void Initialize()
         {

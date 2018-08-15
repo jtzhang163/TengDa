@@ -99,10 +99,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Service.cs" />
-    <Compile Include="Data\BindableObject.cs" />
+    <Compile Include="Common\Service.cs" />
+    <Compile Include="Common\BindableObject.cs" />
     <Compile Include="Data\Context.cs" />
-    <Compile Include="Data\Current.cs" />
+    <Compile Include="Common\Current.cs" />
     <Compile Include="Data\DbInitializer.cs" />
     <Compile Include="Helper\DataHelper.cs" />
     <Compile Include="Helper\ExcelHelper.cs" />
@@ -112,15 +112,15 @@
     <Compile Include="Model\Yield.cs" />
     <Compile Include="Model\Operation.cs" />
     <Compile Include="Product\Product.cs" />
-    <Compile Include="Record\RecordData.cs" />
+    <Compile Include="Record\Record.cs" />
     <Compile Include="Terminal\CommunicateObject.cs" />
     <Compile Include="Terminal\EthernetTerminal.cs" />
     <Compile Include="Terminal\ICommunicate.cs" />
     <Compile Include="Terminal\SerialTerminal.cs" />
     <Compile Include="Terminal\Terminal.cs" />
-    <Compile Include="ViewModel\RealtimeYieldViewModel.cs" />
+    <Compile Include="ViewModel\YieldNowViewModel.cs" />
     <Compile Include="ViewModel\TipViewModel.cs" />
-    <Compile Include="ViewModel\UserOperationViewModel.cs" />
+    <Compile Include="ViewModel\OperationViewModel.cs" />
     <Compile Include="View\TipUC.xaml.cs">
       <DependentUpon>TipUC.xaml</DependentUpon>
     </Compile>

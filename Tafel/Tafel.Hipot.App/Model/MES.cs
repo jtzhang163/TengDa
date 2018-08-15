@@ -23,7 +23,7 @@ namespace Tafel.Hipot.App
         {
             get
             {
-                List<IPAddress> ips = TengDa.Net.GetIPList().Where(i => Regex.IsMatch(i.ToString(), AppCurrent.Option.IPAddressRegex)).ToList();
+                List<IPAddress> ips = TengDa.Net.GetIPList().Where(i => Regex.IsMatch(i.ToString(), Current.Option.IPAddressRegex)).ToList();
                 if (ips.Count > 0)
                 {
                     ipaddr = ips[0].ToString();
@@ -44,23 +44,23 @@ namespace Tafel.Hipot.App
 
         public static void Upload()
         {
-            var datas = AppContext.InsulationContext.InsulationDataLogs.Where(i => !i.IsUploaded).Take(100).ToList();
+            var datas = Context.InsulationContext.InsulationDataLogs.Where(i => !i.IsUploaded).Take(100).ToList();
             datas.ForEach(d =>
             {
                 d.IsUploaded = true;
 
                 //上传MES
 
-                Current.RealtimeYieldViewModel.BlankingOK++;
+                TengDa.Wpf.Current.YieldNow.BlankingOK++;
 
-                AppCurrent.Mes.RealtimeStatus = string.Format("上传MES完成，电阻：{0}，电压：{1}，测试间隔：{2}，温度：{3}", d.Resistance, d.Voltage, d.TimeSpan, d.Temperature);
-                AppContext.InsulationContext.SaveChangesAsync();
+                Current.Mes.RealtimeStatus = string.Format("上传MES完成，电阻：{0}，电压：{1}，测试间隔：{2}，温度：{3}", d.Resistance, d.Voltage, d.TimeSpan, d.Temperature);
+                Context.InsulationContext.SaveChanges();
                 Thread.Sleep(200);
             });
 
             var t = new Thread(() => {
                 Thread.Sleep(1000);
-                AppCurrent.Mes.RealtimeStatus = "等待上传";
+                Current.Mes.RealtimeStatus = "等待上传";
             });
             t.IsBackground = true;
             t.Start();
@@ -79,7 +79,7 @@ namespace Tafel.Hipot.App
                 return false;
             }
 
-            if (Context.UserContext.Users.Where(u => u.Name == userName).Count() == 0)
+            if (TengDa.Wpf.Context.UserContext.Users.Where(u => u.Name == userName).Count() == 0)
             {
                 //首次登录需先注册
                 if (!User.Register(userName, userNumber, password, true, out msg))
@@ -96,12 +96,12 @@ namespace Tafel.Hipot.App
         public static bool CheckSfc(string code, out string msg)
         {
 
-            if (!AppCurrent.Mes.IsEnable)
+            if (!Current.Mes.IsEnable)
             {
                 msg = "MES未启用";
                 return false;
             }
-            if (!AppCurrent.Mes.IsAlive)
+            if (!Current.Mes.IsAlive)
             {
                 msg = "MES未在线";
                 return false;
@@ -110,12 +110,12 @@ namespace Tafel.Hipot.App
             {
                 BarcodeNo = code,
                 IPAddress = IPAddr.ToString(),
-                MachineNo = AppCurrent.InsulationTester.Number,
-                MaterialOrderNo = AppCurrent.Option.CurrentMaterialOrderNo,
-                OrderNo = AppCurrent.Option.CurrentOrderNo,
-                ProcessCode = AppCurrent.Option.CurrentProcessCode,
-                StationCode = AppCurrent.Option.CurrentStationCode,
-                UserNumber = Current.User.Number
+                MachineNo = Current.Tester.Number,
+                MaterialOrderNo = Current.Option.CurrentMaterialOrderNo,
+                OrderNo = Current.Option.CurrentOrderNo,
+                ProcessCode = Current.Option.CurrentProcessCode,
+                StationCode = Current.Option.CurrentStationCode,
+                UserNumber = TengDa.Wpf.Current.User.Number
             };
 
             if (!Tafel.MES.MES.CheckSfc(sfc, out msg))
@@ -129,11 +129,11 @@ namespace Tafel.Hipot.App
 
         public static bool UploadBattery(string code, string trayCode)
         {
-            if (!AppCurrent.Mes.IsEnable)
+            if (!Current.Mes.IsEnable)
             {
                 return false;
             }
-            if (!AppCurrent.Mes.IsAlive)
+            if (!Current.Mes.IsAlive)
             {
                 return false;
             }
@@ -141,8 +141,8 @@ namespace Tafel.Hipot.App
             {
                 TrayCode = trayCode,
                 BarcodeNo = code,
-                ProcessCode = AppCurrent.Option.CurrentProcessCode,
-                UserNumber = Current.User.Number,
+                ProcessCode = Current.Option.CurrentProcessCode,
+                UserNumber = TengDa.Wpf.Current.User.Number,
                 InputTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
             };
             string msg = string.Empty;
@@ -156,19 +156,19 @@ namespace Tafel.Hipot.App
 
         public static void UploadMachineInfo(string state)
         {
-            if (!AppCurrent.Mes.IsEnable)
+            if (!Current.Mes.IsEnable)
             {
                 return;
             }
-            if (!AppCurrent.Mes.IsAlive)
+            if (!Current.Mes.IsAlive)
             {
                 return;
             }
             MachineState ms = new MachineState
             {
                 state = (State)Enum.Parse(typeof(State), state),
-                MachineNo = AppCurrent.InsulationTester.Number,
-                UserNumber = Current.User.Number
+                MachineNo = Current.Tester.Number,
+                UserNumber = TengDa.Wpf.Current.User.Number
             };
             string msg = string.Empty;
             if (!Tafel.MES.MES.UploadMachineState(ms, out msg))
@@ -185,12 +185,12 @@ namespace Tafel.Hipot.App
             if (string.IsNullOrEmpty(msg))//成功获取到
             {
                 lbProcessText = string.Format("{0}[{1}]", pi.ProcessName, pi.ProcessCode);
-                AppCurrent.Option.CurrentProcess = string.Format("{0},{1}", pi.ProcessName, pi.ProcessCode);
+                Current.Option.CurrentProcess = string.Format("{0},{1}", pi.ProcessName, pi.ProcessCode);
             }
             else
             {
                 Error.Alert(msg);
-                string[] s = AppCurrent.Option.CurrentProcess.Split(',');
+                string[] s = Current.Option.CurrentProcess.Split(',');
                 lbProcessText = string.Format("{0}[{1}]", s[0], s[1]);
             }
 
@@ -199,11 +199,11 @@ namespace Tafel.Hipot.App
             if (string.IsNullOrEmpty(msg))//成功获取到
             {
                 lbStationText = string.Format("{0}[{1}]", si.StationName, si.StationCode);
-                AppCurrent.Option.CurrentStation = string.Format("{0},{1}", si.StationName, si.StationCode);
+                Current.Option.CurrentStation = string.Format("{0},{1}", si.StationName, si.StationCode);
             }
             else
             {
-                string[] s = AppCurrent.Option.CurrentStation.Split(',');
+                string[] s = Current.Option.CurrentStation.Split(',');
                 lbStationText = string.Format("{0}[{1}]", s[0], s[1]);
             }
         }
@@ -214,9 +214,9 @@ namespace Tafel.Hipot.App
             {
                 UserNumber = userNumber,
                 UserPwd = password,
-                MachineNo = AppCurrent.InsulationTester.Number,
-                ProcessCode = AppCurrent.Option.CurrentProcessCode,
-                StationCode = AppCurrent.Option.CurrentStationCode
+                MachineNo = Current.Tester.Number,
+                ProcessCode = Current.Option.CurrentProcessCode,
+                StationCode = Current.Option.CurrentStationCode
             };
             return Tafel.MES.MES.CheckUser(user, out userName, out msg);
         }

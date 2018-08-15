@@ -170,7 +170,7 @@
 
                 <Fluent:RibbonGroupBox Header="实时数据" Height="80" Margin="10,0,0,0">
                     <WrapPanel DataContext="{StaticResource testers}" VerticalAlignment="Center" Height="70">
-                        <Label Content="选择仪器：" VerticalAlignment="Center" Foreground="#2b579a"/>
+                        <Label Content="测试仪：" VerticalAlignment="Center" Foreground="#2b579a"/>
                         <ComboBox Margin="0,20,0,20" ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=testerDataTemplate}"
                                           IsSynchronizedWithCurrentItem="True" VerticalAlignment="Center">
                         </ComboBox>

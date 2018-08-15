@@ -157,6 +157,7 @@ namespace TengDa.Wpf
 
         public static bool Logout()
         {
+            OperationHelper.ShowTips(Current.User.Name + "成功注销");
             Current.User = new User(-1);
             return true;
         }

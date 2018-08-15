@@ -11,17 +11,13 @@ namespace TengDa.Wpf
         public YieldUC()
         {
             InitializeComponent();
-            this.DataContext = Current.RealtimeYieldViewModel;
+            this.DataContext = Current.YieldNow;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Current.RealtimeYieldViewModel.FeedingOK++;
-        }
 
         private void BtnClearYield_Click(object sender, RoutedEventArgs e)
         {
-            Current.RealtimeYieldViewModel.ClearYield();
+            Current.YieldNow.ClearYield();
         }
     }
 }

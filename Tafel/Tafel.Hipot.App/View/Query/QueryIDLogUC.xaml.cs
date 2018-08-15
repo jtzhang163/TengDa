@@ -28,18 +28,18 @@ namespace Tafel.Hipot.App
                 var userIDLogViewModels = new List<UserIDLogViewModel>();
                 using (var data = new InsulationContext())
                 {
-                    data.InsulationDataLogs.Where(ucvd => ucvd.RecordTime > StartDateTimePicker.Value && ucvd.RecordTime < StopDateTimePicker.Value).Take(maxDataCount.Value.Value).ToList().ForEach(c =>
+                    data.InsulationDataLogs.Where(ucvd => ucvd.DateTime > StartDateTimePicker.Value && ucvd.DateTime < StopDateTimePicker.Value).Take(maxDataCount.Value.Value).ToList().ForEach(c =>
                     {
                         userIDLogViewModels.Add(new UserIDLogViewModel
                         {
-                            UserName = c.UserId > 0 ? Current.Users.FirstOrDefault(u => u.Id == c.UserId).Name : "未登录用户",
-                            TesterName = AppCurrent.InsulationTester.Name,
+                            UserName = c.UserId > 0 ? TengDa.Wpf.Context.UserContext.Users.FirstOrDefault(u => u.Id == c.UserId).Name : "未登录用户",
+                            TesterName = Current.Tester.Name,
                             Voltage = c.Voltage,
                             TimeSpan = c.TimeSpan,
                             Temperature = c.Temperature,
                             Resistance = c.Resistance,
                             IsUploaded = c.IsUploaded,
-                            RecordTime = c.RecordTime
+                            DateTime = c.DateTime
                         });
                     });
                 }

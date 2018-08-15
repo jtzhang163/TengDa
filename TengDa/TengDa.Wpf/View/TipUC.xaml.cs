@@ -10,7 +10,7 @@ namespace TengDa.Wpf
         public TipUC()
         {
             InitializeComponent();
-            this.DataContext = Current.TipViewModel;
+            this.DataContext = Current.Tip;
         }
     }
 }

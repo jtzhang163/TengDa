@@ -15,13 +15,13 @@ namespace Tafel.Hipot.App.View
         public UserDetailUC()
         {
             InitializeComponent();
-            this.DataContext = AppCurrent.AppViewModel;
+            this.DataContext = Current.App;
 
         }
 
         private void hyberlinkLogout_Click(object sender, RoutedEventArgs e)
         {
-            if (Current.IsRunning)
+            if (TengDa.Wpf.Current.IsRunning)
             {
                 Tip.Alert("系统正在运行，请先停止！");
                 return;
@@ -29,10 +29,8 @@ namespace Tafel.Hipot.App.View
 
             if (User.Logout())
             {
-
-                Current.ShowTips(Current.User.Name + "成功注销");
                 new LoginWindow().Show();
-                AppCurrent.MainWindow.Close();
+                Current.MainWindow.Close();
             }
         }
 

@@ -27,7 +27,7 @@
         <ObjectDataProvider x:Key="comms" ObjectType="local:AppViewModel" MethodName="GetComms"/>
 
     </UserControl.Resources>
-    <GroupBox Header="设备实时状态" DataContext="{StaticResource comms}" Margin="10">
+    <GroupBox Header="实时通信状态" DataContext="{StaticResource comms}" Margin="10">
 
         <ListBox BorderThickness="0" Margin="0" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" ItemTemplateSelector="{StaticResource commStatusTemplateSelector}"/>
 

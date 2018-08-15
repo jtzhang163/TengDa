@@ -17,13 +17,13 @@ namespace Tafel.Hipot.App
         {
             InitializeComponent();
 
-            new AppDbInitializer().Initialize();
+            new DbInitializer().Initialize();
 
-            this.DataContext = AppCurrent.AppViewModel;
+            this.DataContext = Current.App;
             myMediaTimeline.Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + "Videos/LoginHead.mp4");
-            if (AppCurrent.Option.IsRememberMe)
+            if (Current.Option.IsRememberMe)
             {
-                var user = Context.UserContext.Users.SingleOrDefault(u => u.Id == AppCurrent.Option.LastLoginUserId);
+                var user = TengDa.Wpf.Context.UserContext.Users.SingleOrDefault(u => u.Id == Current.Option.LastLoginUserId);
                 if (user != null)
                 {
                     this.loginUserNameTextBox.Text = user.Name;
@@ -45,7 +45,7 @@ namespace Tafel.Hipot.App
             }
 
             string msg = string.Empty;
-            if (AppCurrent.Option.IsMesLogin)
+            if (Current.Option.IsMesLogin)
             {
                 //MES登录              
                 if (MES.Login(this.loginUserNameTextBox.Text, this.loginPasswordBox.Password, out msg))
@@ -74,8 +74,8 @@ namespace Tafel.Hipot.App
 
         private void AfterLogin()
         {
-            AppCurrent.Option.LastLoginUserId = Current.User.Id;
-            Current.ShowTips(Current.User.Name + "成功登录");
+            Current.Option.LastLoginUserId = TengDa.Wpf.Current.User.Id;
+            OperationHelper.ShowTips(TengDa.Wpf.Current.User.Name + "成功登录");
             btnLogin.Content = "正在登录...";
             Thread t = new Thread(() =>
             {
@@ -83,7 +83,7 @@ namespace Tafel.Hipot.App
                 Dispatcher.Invoke(new Action(() =>
                 {
                     //登录成功，关闭窗口          
-                    AppCurrent.AppViewModel.MainWindowsBackstageIsOpen = false;
+                    Current.App.MainWindowsBackstageIsOpen = false;
                     new MainWindow().Show();
                     this.Close();
                 }));

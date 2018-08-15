@@ -5,9 +5,6 @@ using System.Windows;
 namespace TengDa.Wpf
 {
 
-
-
-
     /// <summary>
     /// 提示信息弹窗提示公用类
     /// </summary>
@@ -24,23 +21,6 @@ namespace TengDa.Wpf
                 }
             }
             LogHelper.WriteInfo(msg);
-
-
-
-            //if (!Current.isMessageBoxShow)
-            //{
-            //  Thread t = new Thread(() =>
-            //  {
-            //    Current.isMessageBoxShow = true;
-            //    if (Xceed.Wpf.Toolkit.MessageBox.Show(msg, "提示", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK)
-            //    {
-            //      Current.isMessageBoxShow = false;
-            //    }
-            //  });
-            //  t.SetApartmentState(ApartmentState.STA);
-            //  t.Start();
-            //}
-            //LogHelper.WriteInfo(msg);
         }
     }
 
@@ -65,22 +45,18 @@ namespace TengDa.Wpf
         {
             if (!Current.isMessageBoxShow)
             {
-                Thread t = new Thread(() =>
+                Current.isMessageBoxShow = true;
+                if (Xceed.Wpf.Toolkit.MessageBox.Show(str, "异常提示", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK)
                 {
-                    Current.isMessageBoxShow = true;
-                    if (Xceed.Wpf.Toolkit.MessageBox.Show(str, "异常提示", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK)
-                    {
-                        Current.isMessageBoxShow = false;
-                    }
-                });
-                t.Start();
+                    Current.isMessageBoxShow = false;
+                }
             }
             LogHelper.WriteError(str);
         }
     }
 
     /// <summary>
-    /// 异常处理公用类
+    /// 确认框公用类
     /// </summary>
     public class Verify
     {

@@ -163,11 +163,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\AppContext.cs" />
-    <Compile Include="Data\AppCurrent.cs" />
-    <Compile Include="Data\AppDbInitializer.cs" />
-    <Compile Include="Data\AppOption.cs" />
-    <Compile Include="Data\Enumeration.cs" />
+    <Compile Include="Data\Context.cs" />
+    <Compile Include="Common\Current.cs" />
+    <Compile Include="Data\DbInitializer.cs" />
+    <Compile Include="Common\Option.cs" />
+    <Compile Include="Common\Enumeration.cs" />
     <Compile Include="Command\QueryCommand.cs" />
     <Compile Include="Command\UserCommand.cs" />
     <Compile Include="Model\InsulationData.cs" />

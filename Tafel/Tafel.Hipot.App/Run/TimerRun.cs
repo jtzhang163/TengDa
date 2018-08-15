@@ -14,17 +14,17 @@ namespace Tafel.Hipot.App
 
         public void CheckTesterInfo(object sender, ElapsedEventArgs e)
         {
-            if (Current.IsRunning && AppCurrent.InsulationTester.IsEnable)
+            if (TengDa.Wpf.Current.IsRunning && Current.Tester.IsEnable)
             {
 
-                AppCurrent.InsulationTester.GetInfo();
+                Current.Tester.GetInfo();
 
             }
         }
 
         public void CheckMesInfo(object sender, ElapsedEventArgs e)
         {
-            if (Current.IsRunning && AppCurrent.Mes.IsEnable)
+            if (TengDa.Wpf.Current.IsRunning && Current.Mes.IsEnable)
             {
 
                 MES.Upload();

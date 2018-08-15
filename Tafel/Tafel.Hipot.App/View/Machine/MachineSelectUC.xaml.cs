@@ -18,8 +18,8 @@ namespace Tafel.Hipot.App
 
             var machineTrees = new List<MachineTree>
             {
-                new MachineTree() { Id = 1, Name = AppCurrent.InsulationTester.Name, ParentId = 0 ,IsChecked = AppCurrent.InsulationTester.IsEnable},
-                new MachineTree() { Id = 2, Name = AppCurrent.Mes.Name, ParentId = 0 ,IsChecked = AppCurrent.Mes.IsEnable},
+                new MachineTree() { Id = 1, Name = Current.Tester.Name, ParentId = 0 ,IsChecked = Current.Tester.IsEnable},
+                new MachineTree() { Id = 2, Name = Current.Mes.Name, ParentId = 0 ,IsChecked = Current.Mes.IsEnable},
             };
 
             this.SetItemsSourceData(machineTrees, m => m.Name, m => m.Id, m => m.ParentId, m => m.IsChecked);
@@ -133,19 +133,19 @@ namespace Tafel.Hipot.App
                 SetIsCheckedByParent(value);
                 if (Parent != null) Parent.SetIsCheckedByChild(value);
 
-                if (Current.IsTerminalInitFinished)
+                if (TengDa.Wpf.Current.IsTerminalInitFinished)
                 {
 
                     //**************改变设备启用状态 Start***********************
-                    if (Caption == AppCurrent.InsulationTester.Name)
+                    if (Caption == Current.Tester.Name)
                     {
-                        AppCurrent.InsulationTester.IsEnable = value;
-                        AppContext.InsulationContext.SaveChangesAsync();
+                        Current.Tester.IsEnable = value;
+                        Context.InsulationContext.SaveChangesAsync();
                     }
-                    else if (Caption == AppCurrent.Mes.Name)
+                    else if (Caption == Current.Mes.Name)
                     {
-                        AppCurrent.Mes.IsEnable = value;
-                        AppContext.MesContext.SaveChangesAsync();
+                        Current.Mes.IsEnable = value;
+                        Context.MesContext.SaveChangesAsync();
                     }
                     //**************改变设备启用状态 Finished********************
 

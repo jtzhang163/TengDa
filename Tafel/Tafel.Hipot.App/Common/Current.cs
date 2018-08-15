@@ -6,28 +6,27 @@ using TengDa.Wpf;
 
 namespace Tafel.Hipot.App
 {
-    public static class AppCurrent
+    public static class Current
     {
-        public static AppViewModel AppViewModel = new AppViewModel();
+        public static AppViewModel App = new AppViewModel();
 
-        public static AppOption Option = new AppOption();
+        public static Option Option = new Option();
 
         public static MainWindow MainWindow { get; set; }
 
         #region 系统设备
 
-        private static InsulationTester insulationTester = new InsulationTester();
-        public static InsulationTester InsulationTester
+        private static InsulationTester tester = new InsulationTester();
+        public static InsulationTester Tester
         {
             get
             {
-
-                if (insulationTester.Id < 1)
+                if (tester.Id < 1)
                 {
-                    insulationTester = AppContext.InsulationContext.InsulationTesters.FirstOrDefault() ?? new InsulationTester();
-                    if (insulationTester.Id < 1)
+                    tester = Context.InsulationContext.InsulationTesters.FirstOrDefault() ?? new InsulationTester();
+                    if (tester.Id < 1)
                     {
-                        AppContext.InsulationContext.InsulationTesters.Add(new InsulationTester
+                        Context.InsulationContext.InsulationTesters.Add(new InsulationTester
                         {
                             Name = "绝缘电阻测试仪",
                             Company = "日置(HIOKI)",
@@ -41,10 +40,10 @@ namespace Tafel.Hipot.App
                             StopBits = System.IO.Ports.StopBits.One,
                             IsPassiveReceiveSerialPort = true
                         });
-                        AppContext.InsulationContext.SaveChanges();
+                        Context.InsulationContext.SaveChanges();
                     }
                 }
-                return insulationTester;
+                return tester;
             }
         }
 
@@ -56,16 +55,16 @@ namespace Tafel.Hipot.App
             {
                 if (mes.Id < 1)
                 {
-                    mes = AppContext.MesContext.MESs.FirstOrDefault() ?? new MES();
+                    mes = Context.MesContext.MESs.FirstOrDefault() ?? new MES();
                     if (mes.Id < 1)
                     {
-                        AppContext.MesContext.MESs.Add(new MES
+                        Context.MesContext.MESs.Add(new MES
                         {
                             Name = "MES",
                             Host = "192.168.1.1",
                             IsEnable = true
                         });
-                        AppContext.MesContext.SaveChanges();
+                        Context.MesContext.SaveChanges();
                     }
                 }
                 return mes;
@@ -77,9 +76,9 @@ namespace Tafel.Hipot.App
         #region
         public static System.Timers.Timer TimerUpdateTime = new System.Timers.Timer() { Interval = 1000, AutoReset = true };
 
-        public static System.Timers.Timer TimerCheckTesterInfo = new System.Timers.Timer() { Interval = AppCurrent.Option.CheckTesterInfoInterval, AutoReset = true };
+        public static System.Timers.Timer TimerCheckTesterInfo = new System.Timers.Timer() { Interval = Option.CheckTesterInfoInterval, AutoReset = true };
 
-        public static System.Timers.Timer TimerCheckMesInfo = new System.Timers.Timer() { Interval = AppCurrent.Option.CheckMesInfoInterval * 1000, AutoReset = true };
+        public static System.Timers.Timer TimerCheckMesInfo = new System.Timers.Timer() { Interval = Option.CheckMesInfoInterval * 1000, AutoReset = true };
 
         #endregion
 
@@ -201,7 +200,7 @@ namespace Tafel.Hipot.App
         public static void AnimatedPlot()
         {
 
-            if (Current.IsRunning && AppCurrent.AppViewModel.GraphShowMode == GraphShowMode.实时数据)
+            if (TengDa.Wpf.Current.IsRunning && App.GraphShowMode == GraphShowMode.实时数据)
             {
                 Action<MainWindow> updateWindow = new Action<MainWindow>(UpdateWindow);
                 MainWindow.Dispatcher.BeginInvoke(updateWindow, MainWindow);
@@ -211,16 +210,16 @@ namespace Tafel.Hipot.App
         private static void UpdateWindow(MainWindow window)
         {
             var lgResistance = (LineGraph)(window.linesResistance).Children[0];
-            lgResistance.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowResistanceData);
+            lgResistance.Plot(ShowDataOrder, ShowResistanceData);
 
             var lgVoltage = (LineGraph)(window.linesVoltage).Children[0];
-            lgVoltage.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowVoltageData);
+            lgVoltage.Plot(ShowDataOrder, ShowVoltageData);
 
             var lgTemperature = (LineGraph)(window.linesTemperature).Children[0];
-            lgTemperature.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowTemperatureData);
+            lgTemperature.Plot(ShowDataOrder, ShowTemperatureData);
 
             var lgTimeSpan = (LineGraph)(window.linesTimeSpan).Children[0];
-            lgTimeSpan.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowTimeSpanData);
+            lgTimeSpan.Plot(ShowDataOrder, ShowTimeSpanData);
         }
 
         //private static List<double>[] showCurrentsData = new List<double>[1];

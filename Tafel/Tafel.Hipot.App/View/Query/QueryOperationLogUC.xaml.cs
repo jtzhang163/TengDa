@@ -18,37 +18,36 @@ namespace Tafel.Hipot.App
             InitializeComponent();
             StartDateTimePicker.Value = DateTime.Now.AddDays(-1);
             StopDateTimePicker.Value = DateTime.Now;
-            this.DataContext = UserOperations;
+            this.DataContext = Operations;
         }
 
-        public IEnumerable<UserOperationViewModel> UserOperations
+        public IEnumerable<OperationViewModel> Operations
         {
             get
             {
-                var userOperations = new List<UserOperationViewModel>();
-                Context.OperationContext.Operations.Where(uo => uo.Time > StartDateTimePicker.Value && uo.Time < StopDateTimePicker.Value).Take(maxDataCount.Value.Value).ToList().ForEach(o =>
+                var operations = new List<OperationViewModel>();
+                TengDa.Wpf.Context.OperationContext.Operations.Where(o => o.DateTime > StartDateTimePicker.Value && o.DateTime < StopDateTimePicker.Value).Take(maxDataCount.Value.Value).ToList().ForEach(o =>
                 {
-                    userOperations.Add(new UserOperationViewModel
+                    operations.Add(new OperationViewModel
                     {
                         Content = o.Content,
-                        Time = o.Time,
-                        UserName = o.UserId > 0 ? Current.Users.FirstOrDefault(u => u.Id == o.UserId).Name : "未登录用户"
+                        Time = o.DateTime,
+                        UserName = o.UserId > 0 ? TengDa.Wpf.Context.UserContext.Users.FirstOrDefault(u => u.Id == o.UserId).Name : "未登录用户"
                     });
                 });
-                return userOperations;
+                return operations;
             }
         }
 
 
         private void BtnQuery_Click(object sender, RoutedEventArgs e)
         {
-            this.DataContext = UserOperations;
+            this.DataContext = Operations;
         }
 
         private void BtnExport_Click(object sender, RoutedEventArgs e)
         {
-            ExcelHelper.Export(TengDa._Convert.ToDataTable<UserOperationViewModel>(UserOperations, true), "系统日志", StartDateTimePicker.Value ?? DateTime.Now, StopDateTimePicker.Value ?? DateTime.Now);
-            //ExcelHelper.Export(DataHelper.DataGridToDataTable(ResultDataGrid), "系统日志", StartDateTimePicker.Value ?? DateTime.Now, StopDateTimePicker.Value ?? DateTime.Now);
+            ExcelHelper.Export(TengDa._Convert.ToDataTable<OperationViewModel>(Operations, true), "系统日志", StartDateTimePicker.Value ?? DateTime.Now, StopDateTimePicker.Value ?? DateTime.Now);
         }
     }
 }

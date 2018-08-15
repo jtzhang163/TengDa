@@ -4,15 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace TengDa.Wpf
 {
     /// <summary>
-    /// 操作日志
+    /// 产量历史
     /// </summary>
-    public class Yield
+    public class YieldLog : Record
     {
-        public int Id { get; set; }
         /// <summary>
         /// 用户Id
         /// </summary>
@@ -38,18 +38,13 @@ namespace TengDa.Wpf
         /// </summary>
         [Required]
         public DateTime StartTime { get; set; }
-        /// <summary>
-        /// 保存时间
-        /// </summary>
-        [Required]
-        public DateTime RecordTime { get; set; }
 
-        public Yield() : this(0, 0, 0, 0, Common.DefaultTime)
+        public YieldLog() : this(0, 0, 0, 0, Common.DefaultTime)
         {
             this.Id = -1;
         }
 
-        public Yield(int feedingOK, int feedingNG, int blankingOK, int blankingNG, DateTime startTime)
+        public YieldLog(int feedingOK, int feedingNG, int blankingOK, int blankingNG, DateTime startTime)
         {
             UserId = Current.User.Id;
             FeedingOK = feedingOK;
@@ -57,74 +52,51 @@ namespace TengDa.Wpf
             BlankingOK = blankingOK;
             BlankingNG = blankingNG;
             StartTime = startTime;
-            RecordTime = DateTime.Now;
+            DateTime = DateTime.Now;
         }
     }
-
-    public class RealtimeYield
+    /// <summary>
+    /// 实时产量
+    /// </summary>
+    public class YieldNow : Service
     {
 
-        public int Id { get; set; }
-
         /// <summary>
-        /// 类型
+        /// 上料OK数
         /// </summary>
-        [Required]
-        public YieldKey Key { get; set; }
-
+        public int FeedingOK { get; set; }
         /// <summary>
-        /// 值
+        /// 上料NG数
         /// </summary>
-        public int Value { get; set; }
-
+        public int FeedingNG { get; set; }
         /// <summary>
-        /// 备注
+        /// 下料OK数
         /// </summary>
-        [MaxLength(30)]
-        public string Remark { get; set; }
-
+        public int BlankingOK { get; set; }
+        /// <summary>
+        /// 下料NG数
+        /// </summary>
+        public int BlankingNG { get; set; }
         /// <summary>
         /// 产量计数起始时间
         /// </summary>
+        [Required]
         public DateTime StartTime { get; set; } = TengDa.Common.DefaultTime;
 
-        public RealtimeYield()
+        public YieldNow() : this(0, 0, 0, 0, DateTime.Now)
         {
             this.Id = -1;
         }
 
-        public RealtimeYield(YieldKey key, int value) : this(key, value, "")
+        public YieldNow(int feedingOK, int feedingNG, int blankingOK, int blankingNG, DateTime startTime)
         {
+            this.FeedingOK = feedingOK;
+            this.FeedingOK = feedingNG;
+            this.FeedingOK = blankingOK;
+            this.FeedingOK = blankingNG;
+            this.StartTime = startTime;
         }
 
-        public RealtimeYield(YieldKey key, int value, string remark)
-        {
-            Key = key;
-            Value = value;
-            Remark = remark;
-        }
-
-        public static int GetRealtimeYield(YieldKey yieldKey)
-        {
-            return Context.YieldContext.RealtimeYields.Where(ry => ry.Key == yieldKey).First().Value;
-        }
-
-        public static void SetRealtimeYield(YieldKey yieldKey, int value)
-        {
-            Context.YieldContext.RealtimeYields.Where(ry => ry.Key == yieldKey).First().Value = value;
-            Context.YieldContext.SaveChangesAsync();
-        }
-
-        public static async void SetRealtimeYield(DateTime startTime)
-        {
-            await Context.YieldContext.RealtimeYields.ForEachAsync(ry => ry.StartTime = startTime);
-            await Context.YieldContext.SaveChangesAsync();
-        }
-
-        public static DateTime GetStartTime()
-        {
-            return Context.YieldContext.RealtimeYields.First().StartTime;
-        }
     }
 
     public class YieldContext : DbContext
@@ -135,25 +107,18 @@ namespace TengDa.Wpf
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Yield>().ToTable("t_yield_log");
-            modelBuilder.Entity<RealtimeYield>().ToTable("t_yield");
+            modelBuilder.Entity<YieldLog>().ToTable("t_yield_log");
+            modelBuilder.Entity<YieldNow>().ToTable("t_yield_now");
         }
-        public DbSet<Yield> Yields { get; set; }
-        public DbSet<RealtimeYield> RealtimeYields { get; set; }
+        public DbSet<YieldLog> YieldLogs { get; set; }
+        public DbSet<YieldNow> YieldNows { get; set; }
     }
 
     public class YieldInitializer : DropCreateDatabaseIfModelChanges<YieldContext>
     {
         protected override void Seed(YieldContext context)
         {
-            var RealtimeYields = new List<RealtimeYield>()
-            {
-                new RealtimeYield(YieldKey.FeedingOK,0,"上料OK数"),
-                new RealtimeYield(YieldKey.FeedingNG,0,"上料NG数"),
-                new RealtimeYield(YieldKey.BlankingOK,0,"下料OK数"),
-                new RealtimeYield(YieldKey.BlankingNG,0,"下料NG数")
-            };
-            RealtimeYields.ForEach(ry => context.RealtimeYields.Add(ry));
+            context.YieldNows.Add(new YieldNow(0, 0, 0, 0, DateTime.Now));
         }
     }
 }
