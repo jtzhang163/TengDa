@@ -2,7 +2,7 @@
 
 namespace Tafel.Hipot.App
 {
-    public static class QueryCommand
+    public static class QueryCommands
     {
         private static RoutedUICommand queryOperationLog;
         public static ICommand QueryOperationLog
@@ -11,7 +11,7 @@ namespace Tafel.Hipot.App
             {
                 if (queryOperationLog == null)
                 {
-                    queryOperationLog = new RoutedUICommand("Query Operation Log", "QueryOperationLog", typeof(QueryCommand));
+                    queryOperationLog = new RoutedUICommand("Query Operation Log", "QueryOperationLog", typeof(QueryCommands));
                     queryOperationLog.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Alt));
                 }
                 return queryOperationLog;
@@ -25,7 +25,7 @@ namespace Tafel.Hipot.App
             {
                 if (queryIDLog == null)
                 {
-                    queryIDLog = new RoutedUICommand("Query Insulation Data Log", "QueryInsulationDataLog", typeof(QueryCommand));
+                    queryIDLog = new RoutedUICommand("Query Insulation Data Log", "QueryInsulationDataLog", typeof(QueryCommands));
                     queryIDLog.InputGestures.Add(new KeyGesture(Key.C, ModifierKeys.Alt));
                 }
                 return queryIDLog;

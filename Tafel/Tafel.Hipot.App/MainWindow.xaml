@@ -17,8 +17,8 @@
         WindowState="Maximized" Background="White" 
         Title="{Binding AppName}" Height="550" Width="1025" Foreground="#2b579a">
     <Fluent:RibbonWindow.CommandBindings>
-        <CommandBinding Command="local:QueryCommand.QueryOperationLog" Executed="OnQueryOperationLog"/>
-        <CommandBinding Command="local:QueryCommand.QueryIDLog" Executed="OnQueryIDLog"/>
+        <CommandBinding Command="local:QueryCommands.QueryOperationLog" Executed="OnQueryOperationLog"/>
+        <CommandBinding Command="local:QueryCommands.QueryIDLog" Executed="OnQueryIDLog"/>
     </Fluent:RibbonWindow.CommandBindings>
     <Fluent:RibbonWindow.Resources>
 
@@ -212,7 +212,7 @@
             <Fluent:RibbonTabItem Header="查询">
                 <Fluent:RibbonGroupBox Header="系统" Height="80">
                     <Separator Width="20" Visibility="Hidden"/>
-                    <Fluent:Button Name="BtnQuerySystemLog" Header="系统日志" Icon="/Images/SystemLog.png" LargeIcon="/Images/SystemLog.png"  Command="local:QueryCommand.QueryOperationLog"/>
+                    <Fluent:Button Name="BtnQuerySystemLog" Header="系统日志" Icon="/Images/SystemLog.png" LargeIcon="/Images/SystemLog.png"  Command="local:QueryCommands.QueryOperationLog"/>
                     <Separator Width="20" Visibility="Hidden"/>
                 </Fluent:RibbonGroupBox>
 
@@ -220,7 +220,7 @@
                     <Separator Width="20" Visibility="Hidden"/>
                     <Fluent:Button Name="BtnQueryAlarmLog" Header="报警记录" Icon="/Images/Alarm.png" LargeIcon="/Images/Alarm.png"/>
                     <Separator Width="20" Visibility="Hidden"/>
-                    <Fluent:Button Name="BtnQueryCVLog" Header="测试数据查询" Icon="/Images/DataLog.png" LargeIcon="/Images/DataLog.png" Command="local:QueryCommand.QueryIDLog"/>
+                    <Fluent:Button Name="BtnQueryCVLog" Header="测试数据查询" Icon="/Images/DataLog.png" LargeIcon="/Images/DataLog.png" Command="local:QueryCommands.QueryIDLog"/>
                     <Separator Width="20" Visibility="Hidden"/>
                 </Fluent:RibbonGroupBox>
 

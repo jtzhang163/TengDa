@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace TengDa.Wpf
 {
@@ -8,9 +10,21 @@ namespace TengDa.Wpf
     public abstract class Record : Service
     {
         /// <summary>
+        /// 用户Id
+        /// </summary>
+        public int UserId { get; set; }
+
+        [NotMapped]
+        public virtual User User
+        {
+            get => Context.UserContext.Users.Single(u => u.Id == UserId);
+            set => UserId = value.Id;
+        }
+
+        /// <summary>
         /// 记录时间
         /// </summary>
-        public DateTime DateTime { get; set; } = Common.DefaultTime;
+        public DateTime DateTime { get; set; }
 
         protected Record()
         {

@@ -11,13 +11,13 @@ namespace TengDa.Wpf
         public YieldUC()
         {
             InitializeComponent();
-            this.DataContext = Current.YieldNow;
+            this.DataContext = AppCurrent.YieldNow;
         }
 
 
         private void BtnClearYield_Click(object sender, RoutedEventArgs e)
         {
-            Current.YieldNow.ClearYield();
+            AppCurrent.YieldNow.ClearYield();
         }
     }
 }

@@ -74,8 +74,8 @@ namespace Tafel.Hipot.App
 
         private void AfterLogin()
         {
-            Current.Option.LastLoginUserId = TengDa.Wpf.Current.User.Id;
-            OperationHelper.ShowTips(TengDa.Wpf.Current.User.Name + "成功登录");
+            Current.Option.LastLoginUserId = AppCurrent.User.Id;
+            OperationHelper.ShowTips(AppCurrent.User.Name + "成功登录");
             btnLogin.Content = "正在登录...";
             Thread t = new Thread(() =>
             {

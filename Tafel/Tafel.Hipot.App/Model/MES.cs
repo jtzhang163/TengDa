@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using Tafel.MES;
 using TengDa.Wpf;
 
@@ -37,21 +34,21 @@ namespace Tafel.Hipot.App
         {
 
         }
-        public MES(long id)
+        public MES(int id)
         {
             this.Id = id;
         }
 
         public static void Upload()
         {
-            var datas = Context.InsulationContext.InsulationDataLogs.Where(i => !i.IsUploaded).Take(100).ToList();
+            var datas = Context.InsulationContext.DataLogs.Where(i => !i.IsUploaded).Take(100).ToList();
             datas.ForEach(d =>
             {
                 d.IsUploaded = true;
 
                 //上传MES
 
-                TengDa.Wpf.Current.YieldNow.BlankingOK++;
+                AppCurrent.YieldNow.BlankingOK++;
 
                 Current.Mes.RealtimeStatus = string.Format("上传MES完成，电阻：{0}，电压：{1}，测试间隔：{2}，温度：{3}", d.Resistance, d.Voltage, d.TimeSpan, d.Temperature);
                 Context.InsulationContext.SaveChanges();
@@ -115,7 +112,7 @@ namespace Tafel.Hipot.App
                 OrderNo = Current.Option.CurrentOrderNo,
                 ProcessCode = Current.Option.CurrentProcessCode,
                 StationCode = Current.Option.CurrentStationCode,
-                UserNumber = TengDa.Wpf.Current.User.Number
+                UserNumber = AppCurrent.User.Number
             };
 
             if (!Tafel.MES.MES.CheckSfc(sfc, out msg))
@@ -142,7 +139,7 @@ namespace Tafel.Hipot.App
                 TrayCode = trayCode,
                 BarcodeNo = code,
                 ProcessCode = Current.Option.CurrentProcessCode,
-                UserNumber = TengDa.Wpf.Current.User.Number,
+                UserNumber = AppCurrent.User.Number,
                 InputTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
             };
             string msg = string.Empty;
@@ -168,7 +165,7 @@ namespace Tafel.Hipot.App
             {
                 state = (State)Enum.Parse(typeof(State), state),
                 MachineNo = Current.Tester.Number,
-                UserNumber = TengDa.Wpf.Current.User.Number
+                UserNumber = AppCurrent.User.Number
             };
             string msg = string.Empty;
             if (!Tafel.MES.MES.UploadMachineState(ms, out msg))
@@ -221,35 +218,5 @@ namespace Tafel.Hipot.App
             return Tafel.MES.MES.CheckUser(user, out userName, out msg);
         }
         #endregion
-    }
-
-    public class MesContext : DbContext
-    {
-
-        private static string connectionString = ConfigurationManager.ConnectionStrings["DefaultDatabase"].ToString();
-        public MesContext() : base(connectionString)
-        {
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<MES>().ToTable("t_mes");
-        }
-
-        public DbSet<MES> MESs { get; set; }
-    }
-
-    public class MesInitializer : DropCreateDatabaseIfModelChanges<MesContext>
-    {
-        protected override void Seed(MesContext context)
-        {
-            var mes = new MES
-            {
-                Name = "MES",
-                Host = "192.168.1.1"
-            };
-            context.MESs.Add(mes);
-            context.SaveChanges();
-        }
     }
 }

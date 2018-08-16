@@ -2,6 +2,9 @@
 
 namespace TengDa.Wpf
 {
+    /// <summary>
+    /// 产品类型基类
+    /// </summary>
     public abstract class Product : Service
     {
         [DisplayName("条码")]

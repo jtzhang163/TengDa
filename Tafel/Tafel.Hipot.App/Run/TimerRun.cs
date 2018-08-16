@@ -14,7 +14,7 @@ namespace Tafel.Hipot.App
 
         public void CheckTesterInfo(object sender, ElapsedEventArgs e)
         {
-            if (TengDa.Wpf.Current.IsRunning && Current.Tester.IsEnable)
+            if (AppCurrent.IsRunning && Current.Tester.IsEnable)
             {
 
                 Current.Tester.GetInfo();
@@ -24,7 +24,7 @@ namespace Tafel.Hipot.App
 
         public void CheckMesInfo(object sender, ElapsedEventArgs e)
         {
-            if (TengDa.Wpf.Current.IsRunning && Current.Mes.IsEnable)
+            if (AppCurrent.IsRunning && Current.Mes.IsEnable)
             {
 
                 MES.Upload();

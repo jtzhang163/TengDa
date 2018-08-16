@@ -1,6 +1,6 @@
 ﻿namespace Tafel.Hipot.App
 {
-    public class UserCommand
+    public class UserCommands : TengDa.Wpf.UserCommands
     {
         //private static RoutedUICommand onShowUserView;
         //public static ICommand OnShowUserView

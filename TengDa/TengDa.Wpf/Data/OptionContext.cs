@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Configuration;
 using System.Data.Entity;
 
-namespace TengDa.Wpf.Data
+namespace TengDa.Wpf
 {
     /// <summary>
     /// 用户上下文
     /// </summary>
     public class OptionContext : DbContext
     {
-        private static string connectionString = ConfigurationManager.ConnectionStrings["DefaultDatabase"].ToString();
-        public OptionContext() : base(connectionString)
+        public OptionContext() : base(AppCurrent.ConnectionString)
         {
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

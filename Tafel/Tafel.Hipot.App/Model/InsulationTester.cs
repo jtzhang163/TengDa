@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Configuration;
-using System.Data.Entity;
 using System.Threading;
 using TengDa.Wpf;
 
@@ -42,20 +40,6 @@ namespace Tafel.Hipot.App
             }
         }
 
-        private float temperature;
-        [NotMapped, Browsable(false)]
-        public float Temperature
-        {
-            get
-            {
-                return temperature;
-            }
-            set
-            {
-                SetProperty(ref temperature, value);
-            }
-        }
-
         private float timeSpan;
         [NotMapped, Browsable(false)]
         public float TimeSpan
@@ -74,7 +58,7 @@ namespace Tafel.Hipot.App
         {
 
         }
-        public InsulationTester(long id)
+        public InsulationTester(int id)
         {
             this.Id = Id;
         }
@@ -101,9 +85,8 @@ namespace Tafel.Hipot.App
             this.Resistance = TengDa._Convert.StrToFloat(ReceiveString.Substring(6, 5), 0);
             this.Voltage = 100;
             this.TimeSpan = 5;
-            this.Temperature = 0;
 
-            this.RealtimeStatus = string.Format("获得数据完成，电阻：{0}，电压：{1}，测试间隔：{2}，温度：{3}", Resistance, Voltage, TimeSpan, Temperature);
+            this.RealtimeStatus = string.Format("获得数据完成，电阻：{0}，电压：{1}，测试间隔：{2}", Resistance, Voltage, TimeSpan);
 
 
 
@@ -118,18 +101,14 @@ namespace Tafel.Hipot.App
             Current.ShowTimeSpanData.RemoveAt(0);
 
 
-            Current.ShowTemperatureData.Add(this.Temperature);
-            Current.ShowTemperatureData.RemoveAt(0);
-
             Current.AnimatedPlot();
 
-            Context.InsulationContext.InsulationDataLogs.Add(new InsulationDataLog()
+            Context.InsulationContext.DataLogs.Add(new InsulationDataLog()
             {
-                UserId = TengDa.Wpf.Current.User.Id,
+                User = AppCurrent.User,
                 TesterId = Current.Tester.Id,
                 IsUploaded = false,
                 Resistance = this.Resistance,
-                Temperature = this.Temperature,
                 TimeSpan = this.TimeSpan,
                 Voltage = this.Voltage,
                 DateTime = DateTime.Now
@@ -137,7 +116,7 @@ namespace Tafel.Hipot.App
             Context.InsulationContext.SaveChanges();
             IsGetNewData = false;
 
-            TengDa.Wpf.Current.YieldNow.FeedingOK++;
+            AppCurrent.YieldNow.FeedingOK++;
 
             var t = new Thread(() =>
             {
@@ -147,39 +126,6 @@ namespace Tafel.Hipot.App
             t.IsBackground = true;
             t.Start();
 
-        }
-    }
-
-    public class InsulationContext : DbContext
-    {
-
-        private static string connectionString = ConfigurationManager.ConnectionStrings["DefaultDatabase"].ToString();
-        public InsulationContext() : base(connectionString)
-        {
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<InsulationTester>().ToTable("t_tester");
-            modelBuilder.Entity<InsulationDataLog>().ToTable("t_insulation_data_log");
-        }
-
-        public DbSet<InsulationTester> InsulationTesters { get; set; }
-        public DbSet<InsulationDataLog> InsulationDataLogs { get; set; }
-    }
-
-    public class InsulationTesterInitializer : DropCreateDatabaseIfModelChanges<InsulationContext>
-    {
-        protected override void Seed(InsulationContext context)
-        {
-            var tester = new InsulationTester
-            {
-                Name = "绝缘电阻测试仪",
-                Company = "Tengda",
-                IsPassiveReceiveSerialPort = true
-            };
-            context.InsulationTesters.Add(tester);
-            context.SaveChanges();
         }
     }
 }

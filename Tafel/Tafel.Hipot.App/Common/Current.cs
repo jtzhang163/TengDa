@@ -23,27 +23,49 @@ namespace Tafel.Hipot.App
             {
                 if (tester.Id < 1)
                 {
-                    tester = Context.InsulationContext.InsulationTesters.FirstOrDefault() ?? new InsulationTester();
-                    if (tester.Id < 1)
-                    {
-                        Context.InsulationContext.InsulationTesters.Add(new InsulationTester
-                        {
-                            Name = "绝缘电阻测试仪",
-                            Company = "日置(HIOKI)",
-                            Model = "ST5520",
-                            Number = "",
-                            IsEnable = true,
-                            PortName = "COM1",
-                            BaudRate = 9600,
-                            DataBits = 8,
-                            Parity = System.IO.Ports.Parity.None,
-                            StopBits = System.IO.Ports.StopBits.One,
-                            IsPassiveReceiveSerialPort = true
-                        });
-                        Context.InsulationContext.SaveChanges();
-                    }
+                    tester = Context.InsulationContext.Testers.FirstOrDefault() ?? new InsulationTester();
                 }
                 return tester;
+            }
+        }
+
+        private static TemperatureCollector collector = new TemperatureCollector();
+        public static TemperatureCollector Collector
+        {
+            get
+            {
+                if (collector.Id < 1)
+                {
+                    collector = Context.CollectorContext.Collectors.FirstOrDefault() ?? new TemperatureCollector();
+                }
+                return collector;
+            }
+        }
+
+
+        private static Cooler cooler = new Cooler();
+        public static Cooler Cooler
+        {
+            get
+            {
+                if (cooler.Id < 1)
+                {
+                    cooler = Context.CoolerContext.Coolers.FirstOrDefault() ?? new Cooler();
+                }
+                return cooler;
+            }
+        }
+
+        private static Scaner scaner = new Scaner();
+        public static Scaner Scaner
+        {
+            get
+            {
+                if (scaner.Id < 1)
+                {
+                    scaner = Context.ScanerContext.Scaners.FirstOrDefault() ?? new Scaner();
+                }
+                return scaner;
             }
         }
 
@@ -56,16 +78,6 @@ namespace Tafel.Hipot.App
                 if (mes.Id < 1)
                 {
                     mes = Context.MesContext.MESs.FirstOrDefault() ?? new MES();
-                    if (mes.Id < 1)
-                    {
-                        Context.MesContext.MESs.Add(new MES
-                        {
-                            Name = "MES",
-                            Host = "192.168.1.1",
-                            IsEnable = true
-                        });
-                        Context.MesContext.SaveChanges();
-                    }
                 }
                 return mes;
             }
@@ -200,7 +212,7 @@ namespace Tafel.Hipot.App
         public static void AnimatedPlot()
         {
 
-            if (TengDa.Wpf.Current.IsRunning && App.GraphShowMode == GraphShowMode.实时数据)
+            if (AppCurrent.IsRunning && App.GraphShowMode == GraphShowMode.实时数据)
             {
                 Action<MainWindow> updateWindow = new Action<MainWindow>(UpdateWindow);
                 MainWindow.Dispatcher.BeginInvoke(updateWindow, MainWindow);

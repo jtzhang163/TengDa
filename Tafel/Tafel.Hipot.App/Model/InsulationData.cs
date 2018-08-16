@@ -18,9 +18,9 @@ namespace Tafel.Hipot.App
 
         public float TimeSpan { get; set; }
 
-        public long TesterId { get; set; }
+        public int TesterId { get; set; }
 
-        public long UserId { get; set; }
+        public InsulationTester Tester { get; set; }
 
         public bool IsUploaded { get; set; }
     }

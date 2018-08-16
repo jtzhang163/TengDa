@@ -8,7 +8,7 @@ using TengDa.Wpf;
 namespace Tafel.Hipot.App
 {
     /// <summary>
-    /// 应用程序视图模型
+    /// 应用程序ViewModel
     /// </summary>
     [DisplayName("应用程序视图模型")]
     public class AppViewModel : BindableObject
@@ -72,7 +72,7 @@ namespace Tafel.Hipot.App
         {
             get
             {
-                if (TengDa.Wpf.Current.User.Id < 1)
+                if (AppCurrent.User.Id < 1)
                 {
                     currentUserNameTip = string.Empty;
                 }
@@ -86,22 +86,22 @@ namespace Tafel.Hipot.App
         }
 
         [Browsable(false)]
-        public string UserName => TengDa.Wpf.Current.User.Name;
+        public string UserName => AppCurrent.User.Name;
 
         [Browsable(false)]
-        public string UserGroupName => TengDa.Wpf.Current.User.Role.Name;
+        public string UserGroupName => AppCurrent.User.Role.Name;
 
         [Browsable(false)]
-        public string UserProfilePicture => TengDa.Wpf.Current.User.ProfilePicture;
+        public string UserProfilePicture => AppCurrent.User.ProfilePicture;
 
         [Browsable(false)]
-        public string UserNumber => TengDa.Wpf.Current.User.Number;
+        public string UserNumber => AppCurrent.User.Number;
 
         [Browsable(false)]
-        public string UserPhoneNumber => TengDa.Wpf.Current.User.PhoneNumber;
+        public string UserPhoneNumber => AppCurrent.User.PhoneNumber;
 
         [Browsable(false)]
-        public string UserEmail => TengDa.Wpf.Current.User.Email;
+        public string UserEmail => AppCurrent.User.Email;
 
 
         private bool mainWindowsBackstageIsOpen = false;
@@ -158,7 +158,10 @@ namespace Tafel.Hipot.App
             return new List<CommunicateObject>()
             {
                 Current.Tester,
-                Current.Mes
+                Current.Mes,
+                Current.Collector,
+                Current.Cooler,
+                Current.Scaner
             };
         }
 

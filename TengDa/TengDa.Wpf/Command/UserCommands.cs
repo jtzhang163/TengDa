@@ -2,7 +2,7 @@
 
 namespace TengDa.Wpf
 {
-    public static class UserCommands
+    public class UserCommands
     {
         private static RoutedUICommand login;
         public static ICommand Login

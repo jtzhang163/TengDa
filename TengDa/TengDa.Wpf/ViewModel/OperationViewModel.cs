@@ -3,6 +3,9 @@ using System.ComponentModel;
 
 namespace TengDa.Wpf
 {
+    /// <summary>
+    /// 操作日志查询ViewModel
+    /// </summary>
     public class OperationViewModel
     {
         [DisplayName("用户名称")]

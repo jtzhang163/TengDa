@@ -7,8 +7,12 @@ namespace Tafel.Hipot.App
     {
         public override void Initialize()
         {
-            Database.SetInitializer(new InsulationTesterInitializer());
             base.Initialize();
+            Database.SetInitializer(new MesInitializer());
+            Database.SetInitializer(new CollectorInitializer());
+            Database.SetInitializer(new TesterInitializer());
+            Database.SetInitializer(new ScanerInitializer());
+            Database.SetInitializer(new CoolerInitializer());
         }
     }
 }

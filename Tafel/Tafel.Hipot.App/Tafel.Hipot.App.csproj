@@ -163,14 +163,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\ScanerContext.cs" />
+    <Compile Include="Data\CoolerContext.cs" />
+    <Compile Include="Data\CollectorContext.cs" />
     <Compile Include="Data\Context.cs" />
     <Compile Include="Common\Current.cs" />
     <Compile Include="Data\DbInitializer.cs" />
     <Compile Include="Common\Option.cs" />
     <Compile Include="Common\Enumeration.cs" />
-    <Compile Include="Command\QueryCommand.cs" />
-    <Compile Include="Command\UserCommand.cs" />
+    <Compile Include="Command\QueryCommands.cs" />
+    <Compile Include="Command\UserCommands.cs" />
+    <Compile Include="Data\InsulationContext.cs" />
+    <Compile Include="Data\BatteryContext.cs" />
+    <Compile Include="Data\MesContext.cs" />
+    <Compile Include="Model\Battery.cs" />
+    <Compile Include="Model\Cooler.cs" />
     <Compile Include="Model\InsulationData.cs" />
+    <Compile Include="Model\PLC.cs" />
+    <Compile Include="Model\Scaner.cs" />
+    <Compile Include="Model\TemperatureCollector.cs" />
     <Compile Include="Model\MES.cs" />
     <Compile Include="View\Machine\CommunicateStatusUC.xaml.cs">
       <DependentUpon>CommunicateStatusUC.xaml</DependentUpon>

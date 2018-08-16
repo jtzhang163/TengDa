@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Configuration;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TengDa.Wpf
 {
@@ -13,10 +8,6 @@ namespace TengDa.Wpf
     /// </summary>
     public class YieldLog : Record
     {
-        /// <summary>
-        /// 用户Id
-        /// </summary>
-        public int UserId { get; set; }
         /// <summary>
         /// 上料OK数
         /// </summary>
@@ -46,7 +37,7 @@ namespace TengDa.Wpf
 
         public YieldLog(int feedingOK, int feedingNG, int blankingOK, int blankingNG, DateTime startTime)
         {
-            UserId = Current.User.Id;
+            User = AppCurrent.User;
             FeedingOK = feedingOK;
             FeedingNG = feedingNG;
             BlankingOK = blankingOK;
@@ -99,26 +90,4 @@ namespace TengDa.Wpf
 
     }
 
-    public class YieldContext : DbContext
-    {
-        private static string connectionString = ConfigurationManager.ConnectionStrings["DefaultDatabase"].ToString();
-        public YieldContext() : base(connectionString)
-        {
-        }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<YieldLog>().ToTable("t_yield_log");
-            modelBuilder.Entity<YieldNow>().ToTable("t_yield_now");
-        }
-        public DbSet<YieldLog> YieldLogs { get; set; }
-        public DbSet<YieldNow> YieldNows { get; set; }
-    }
-
-    public class YieldInitializer : DropCreateDatabaseIfModelChanges<YieldContext>
-    {
-        protected override void Seed(YieldContext context)
-        {
-            context.YieldNows.Add(new YieldNow(0, 0, 0, 0, DateTime.Now));
-        }
-    }
 }

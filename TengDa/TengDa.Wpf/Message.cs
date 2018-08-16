@@ -12,12 +12,12 @@ namespace TengDa.Wpf
     {
         public static void Alert(string msg)
         {
-            if (!Current.isMessageBoxShow)
+            if (!AppCurrent.isMessageBoxShow)
             {
-                Current.isMessageBoxShow = true;
+                AppCurrent.isMessageBoxShow = true;
                 if (Xceed.Wpf.Toolkit.MessageBox.Show(msg, "提示", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK)
                 {
-                    Current.isMessageBoxShow = false;
+                    AppCurrent.isMessageBoxShow = false;
                 }
             }
             LogHelper.WriteInfo(msg);
@@ -43,12 +43,12 @@ namespace TengDa.Wpf
         /// <param name="ex"></param>
         public static void Alert(string str)
         {
-            if (!Current.isMessageBoxShow)
+            if (!AppCurrent.isMessageBoxShow)
             {
-                Current.isMessageBoxShow = true;
+                AppCurrent.isMessageBoxShow = true;
                 if (Xceed.Wpf.Toolkit.MessageBox.Show(str, "异常提示", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK)
                 {
-                    Current.isMessageBoxShow = false;
+                    AppCurrent.isMessageBoxShow = false;
                 }
             }
             LogHelper.WriteError(str);

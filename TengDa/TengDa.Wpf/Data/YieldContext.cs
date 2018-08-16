@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Configuration;
 using System.Data.Entity;
 
-
-namespace TengDa.Wpf.Data
+namespace TengDa.Wpf
 {
     public class YieldContext : DbContext
     {
-        private static string connectionString = ConfigurationManager.ConnectionStrings["DefaultDatabase"].ToString();
-        public YieldContext() : base(connectionString)
+        public YieldContext() : base(AppCurrent.ConnectionString)
         {
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

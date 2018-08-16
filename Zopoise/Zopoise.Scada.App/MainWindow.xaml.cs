@@ -87,29 +87,6 @@ namespace Zopoise.Scada.App
             AppCurrent.TimerCommunicateWithCommunicator.Start();
         }
 
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //数据库初始化
-            using (var data = new UserContext())
-            {
-                foreach (var ug in data.Roles)
-                {
-                    Console.WriteLine("{0} ", ug.Name);
-                }
-                Console.WriteLine("finished!");
-            }
-            using (var data = new OptionContext())
-            {
-                foreach (var ug in data.Options)
-                {
-                    Console.WriteLine("{0} ", ug.Value);
-                }
-                Console.WriteLine("finished!");
-            }
-        }
-
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 

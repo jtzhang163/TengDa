@@ -1,11 +1,10 @@
-﻿using System.Configuration;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 
 namespace TengDa.Wpf
 {
     public class OperationContext : DbContext
     {
-        public OperationContext() : base(Current.ConnectionString)
+        public OperationContext() : base(AppCurrent.ConnectionString)
         {
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

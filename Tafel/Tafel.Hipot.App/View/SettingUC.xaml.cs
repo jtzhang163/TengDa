@@ -34,22 +34,22 @@ namespace Tafel.Hipot.App.View
             if (name == "AppViewModel")
             {
                 ObjPropertySetter.SelectedObject = Current.App;
-                ObjPropertySetter.IsReadOnly = TengDa.Wpf.Current.User.Id < 1 ? true : false; 
+                ObjPropertySetter.IsReadOnly = AppCurrent.User.Id < 1 ? true : false; 
             }
             else if (name == "AppOption")
             {
                 ObjPropertySetter.SelectedObject = Current.Option;
-                ObjPropertySetter.IsReadOnly = TengDa.Wpf.Current.User.Role.Level < 2 ? true : false;
+                ObjPropertySetter.IsReadOnly = AppCurrent.User.Role.Level < 2 ? true : false;
             }
             else if (name == "InsulationTester")
             {
                 ObjPropertySetter.SelectedObject = Current.Tester;
-                ObjPropertySetter.IsReadOnly = TengDa.Wpf.Current.User.Role.Level < 3 ? true : false;
+                ObjPropertySetter.IsReadOnly = AppCurrent.User.Role.Level < 3 ? true : false;
             }
             else if(name == "Mes")
             {
                 ObjPropertySetter.SelectedObject = Current.Mes;
-                ObjPropertySetter.IsReadOnly = TengDa.Wpf.Current.User.Role.Level < 2 ? true : false;
+                ObjPropertySetter.IsReadOnly = AppCurrent.User.Role.Level < 2 ? true : false;
             }
 
         }
@@ -69,7 +69,7 @@ namespace Tafel.Hipot.App.View
             if (type == typeof(MES))
             {
                 //System.Reflection.PropertyInfo propertyInfoId = type.GetProperty("Id"); //获取指定名称的属性
-                //long Id = (long)propertyInfoId.GetValue(o, null); //获取属性值
+                //int Id = (int)propertyInfoId.GetValue(o, null); //获取属性值
                 //Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem p = (Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem)(e.OldValue);
 
                 //settingsStr = string.Format("将Id为 {0} 的 {1} 的 {2} 修改为 {3} ", Id, type.Name, p.PropertyName, p.Value);

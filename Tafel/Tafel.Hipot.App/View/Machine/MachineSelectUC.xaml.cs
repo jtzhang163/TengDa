@@ -133,7 +133,7 @@ namespace Tafel.Hipot.App
                 SetIsCheckedByParent(value);
                 if (Parent != null) Parent.SetIsCheckedByChild(value);
 
-                if (TengDa.Wpf.Current.IsTerminalInitFinished)
+                if (AppCurrent.IsTerminalInitFinished)
                 {
 
                     //**************改变设备启用状态 Start***********************
@@ -235,7 +235,7 @@ namespace Tafel.Hipot.App
 
     public class MachineTree
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public long ParentId { get; set; }
         public bool IsChecked { get; set; }

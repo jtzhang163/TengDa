@@ -32,7 +32,7 @@ namespace Tafel.Hipot.App
                     {
                         Content = o.Content,
                         Time = o.DateTime,
-                        UserName = o.UserId > 0 ? TengDa.Wpf.Context.UserContext.Users.FirstOrDefault(u => u.Id == o.UserId).Name : "未登录用户"
+                        UserName = o.User.Name
                     });
                 });
                 return operations;
