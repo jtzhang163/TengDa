@@ -51,6 +51,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TengDa.Test", "TengDa.Test"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCef", "Test\TestCef\TestCef.csproj", "{BE9918CF-FF36-4DDA-A7D0-AE2FEAE204C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jtzhang.Helper.TcpServer", "TengDa\TengDa.Helper\Jtzhang.Helper.TcpServer\Jtzhang.Helper.TcpServer.csproj", "{A74D5534-1917-40DB-AEB8-50AC3764E096}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -263,6 +265,18 @@ Global
 		{BE9918CF-FF36-4DDA-A7D0-AE2FEAE204C8}.Release|x64.Build.0 = Release|x64
 		{BE9918CF-FF36-4DDA-A7D0-AE2FEAE204C8}.Release|x86.ActiveCfg = Release|Any CPU
 		{BE9918CF-FF36-4DDA-A7D0-AE2FEAE204C8}.Release|x86.Build.0 = Release|Any CPU
+		{A74D5534-1917-40DB-AEB8-50AC3764E096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A74D5534-1917-40DB-AEB8-50AC3764E096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A74D5534-1917-40DB-AEB8-50AC3764E096}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A74D5534-1917-40DB-AEB8-50AC3764E096}.Debug|x64.Build.0 = Debug|Any CPU
+		{A74D5534-1917-40DB-AEB8-50AC3764E096}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A74D5534-1917-40DB-AEB8-50AC3764E096}.Debug|x86.Build.0 = Debug|Any CPU
+		{A74D5534-1917-40DB-AEB8-50AC3764E096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A74D5534-1917-40DB-AEB8-50AC3764E096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A74D5534-1917-40DB-AEB8-50AC3764E096}.Release|x64.ActiveCfg = Release|Any CPU
+		{A74D5534-1917-40DB-AEB8-50AC3764E096}.Release|x64.Build.0 = Release|Any CPU
+		{A74D5534-1917-40DB-AEB8-50AC3764E096}.Release|x86.ActiveCfg = Release|Any CPU
+		{A74D5534-1917-40DB-AEB8-50AC3764E096}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -285,6 +299,7 @@ Global
 		{E6D9CC88-0F5D-41EA-87D2-239D94F794ED} = {C0009D2D-D675-4476-AF6C-F59A1E60B366}
 		{8A2102DE-6DD2-477F-ADAE-51FC3BB19C7D} = {C0009D2D-D675-4476-AF6C-F59A1E60B366}
 		{BE9918CF-FF36-4DDA-A7D0-AE2FEAE204C8} = {8CA89279-4505-4157-8333-7BA66BE5CD55}
+		{A74D5534-1917-40DB-AEB8-50AC3764E096} = {E42CFF92-DBBE-425F-B5FE-9EBE45028D64}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D76A61D6-AF5A-4717-9128-A3189C7723F4}

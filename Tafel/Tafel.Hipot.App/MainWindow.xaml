@@ -87,7 +87,7 @@
             <Label Content="{Binding Name}"/>
         </DataTemplate>
 
-        <ObjectDataProvider x:Key="testers" ObjectType="local:AppViewModel" MethodName="GetTesters"/>
+        <!--<ObjectDataProvider x:Key="testers" ObjectType="local:AppViewModel" MethodName="GetTesters"/>-->
 
         <local:VisibilityToCheckedConverter x:Key="VisibilityToCheckedConverter"/>
         <utils:RunStatusConverter x:Key="runStatusConverter"/>
@@ -168,21 +168,9 @@
                 </Fluent:RibbonGroupBox>
 
 
-                <Fluent:RibbonGroupBox Header="实时数据" Height="80" Margin="10,0,0,0">
-                    <WrapPanel DataContext="{StaticResource testers}" VerticalAlignment="Center" Height="70">
-                        <Label Content="测试仪：" VerticalAlignment="Center" Foreground="#2b579a"/>
-                        <ComboBox Margin="0,20,0,20" ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=testerDataTemplate}"
-                                          IsSynchronizedWithCurrentItem="True" VerticalAlignment="Center">
-                        </ComboBox>
-                        <Label Content="电阻：" VerticalAlignment="Center"  Foreground="#2b579a"/>
-                        <Label Content="{Binding Resistance}" VerticalAlignment="Center" Foreground="Green" FontWeight="Bold" FontSize="50"/>
-                        <Label Content="电压：" VerticalAlignment="Center"  Foreground="#2b579a"/>
-                        <Label Content="{Binding Voltage}" VerticalAlignment="Center" Foreground="LimeGreen" FontSize="48"/>
-                        <Label Content="测试时长：" VerticalAlignment="Center"  Foreground="#2b579a"/>
-                        <Label Content="{Binding TimeSpan}" VerticalAlignment="Center" Foreground="LimeGreen" FontSize="48"/>
-                        <Label Content="温度：" VerticalAlignment="Center"  Foreground="#2b579a"/>
-                        <Label Content="{Binding Temperature}" VerticalAlignment="Center" Foreground="LimeGreen" FontSize="48"/>
-
+                <Fluent:RibbonGroupBox Header="实时条码" Height="80" Margin="10,0,0,0">
+                    <WrapPanel x:Name="wpScaner" VerticalAlignment="Center" Height="70">
+                        <Label Content="{Binding Code}" VerticalAlignment="Center" Foreground="LimeGreen" FontWeight="Bold" FontSize="50"/>
                     </WrapPanel>
                 </Fluent:RibbonGroupBox>
 
@@ -254,9 +242,8 @@
                 <ColumnDefinition Width="200" MinWidth="50" MaxWidth="500"/>
             </Grid.ColumnDefinitions>
             <DockPanel>
-               
                 <local:MachineSelectUC DockPanel.Dock="Top"  Height="120" IsEnabled="{Binding RunStatus, Converter={StaticResource runStatusConverter}}"/>
-                <wpf:YieldUC x:Name="wpfYieldUC" DockPanel.Dock="Bottom" />
+                <wpf:YieldUC x:Name="wpfYieldUC" DockPanel.Dock="Bottom"/>
                 <local:CommunicateStatusUC />
             </DockPanel>
 
@@ -284,8 +271,8 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
                             <d3:Chart Name="plotterResistance" Grid.Row="0" Grid.Column="0" Margin="5">
                                 <d3:Chart.Title>
@@ -307,25 +294,11 @@
                                 <Grid Name="linesResistance"/>
                             </d3:Chart>
 
-                            <d3:Chart Name="plotterVoltage" Grid.Row="0" Grid.Column="1" Margin="5">
-                                <d3:Chart.Title>
-                                    <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0,5,0,5">电压曲线(单位：V)</TextBlock>
-                                </d3:Chart.Title>
-                                <d3:Chart.LegendContent>
-                                    <d3:LegendItemsPanel>
-                                        <d3:LegendItemsPanel.Resources>
-                                            <DataTemplate x:Key="InteractiveDataDisplay.WPF.LineGraph">
-                                                <StackPanel Orientation="Horizontal">
-                                                    <CheckBox IsChecked="{Binding Path=Visibility, Converter={StaticResource VisibilityToCheckedConverter}, Mode=TwoWay}"/>
-                                                    <Line Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
-                                                    <TextBlock Margin="5,0,0,0" Text="{Binding Path=Description}"/>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </d3:LegendItemsPanel.Resources>
-                                    </d3:LegendItemsPanel>
-                                </d3:Chart.LegendContent>
-                                <Grid Name="linesVoltage"/>
-                            </d3:Chart>
+                            <DockPanel Grid.Row="0" Grid.Column="1" x:Name="dpTester">
+                                <Label Content="实时电阻(MΩ)：" FontSize="18" DockPanel.Dock="Top" Margin="5"/>
+                                <Label Content="{Binding Resistance}" FontSize="80" FontWeight="Bold" Foreground="LimeGreen" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </DockPanel>
+
                             <!--PlotHeight="2" PlotWidth="100"-->
                             <d3:Chart Name="plotterTemperature" Grid.Row="1" Grid.Column="0" Margin="5">
                                 <d3:Chart.Title>
@@ -346,26 +319,10 @@
                                 </d3:Chart.LegendContent>
                                 <Grid Name="linesTemperature"/>
                             </d3:Chart>
-                            <!--PlotHeight="300" PlotWidth="100"-->
-                            <d3:Chart Name="plotterTimeSpan" Grid.Row="1" Grid.Column="1" Margin="5">
-                                <d3:Chart.Title>
-                                    <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0,5,0,5">测试时长(单位：s)</TextBlock>
-                                </d3:Chart.Title>
-                                <d3:Chart.LegendContent>
-                                    <d3:LegendItemsPanel>
-                                        <d3:LegendItemsPanel.Resources>
-                                            <DataTemplate x:Key="InteractiveDataDisplay.WPF.LineGraph">
-                                                <StackPanel Orientation="Horizontal">
-                                                    <CheckBox IsChecked="{Binding Path=Visibility, Converter={StaticResource VisibilityToCheckedConverter}, Mode=TwoWay}"/>
-                                                    <Line Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
-                                                    <TextBlock Margin="5,0,0,0" Text="{Binding Path=Description}"/>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </d3:LegendItemsPanel.Resources>
-                                    </d3:LegendItemsPanel>
-                                </d3:Chart.LegendContent>
-                                <Grid Name="linesTimeSpan"/>
-                            </d3:Chart>
+                            <DockPanel Grid.Row="1" Grid.Column="1" x:Name="dpCollector">
+                                <Label Content="实时温度(℃)："  FontSize="18" DockPanel.Dock="Top" Margin="5"/>
+                                <Label Content="{Binding Temperature}" FontSize="80" FontWeight="Bold" Foreground="LimeGreen" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </DockPanel>
                         </Grid>
                     </DockPanel>
                 </TabItem>

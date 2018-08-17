@@ -13,10 +13,10 @@
         <util:CommunicateColorConverter x:Key="communicateColorConverter"/>
 
         <DataTemplate x:Key="commTemplate" DataType="{x:Type wpf:CommunicateObject}">
-            <Border Background="{Binding IsAlive,Converter={StaticResource communicateColorConverter}}" Margin="5,5,0,10" Width="150">
-                <StackPanel Orientation="Vertical" Margin="10">
+            <Border Background="{Binding IsAlive,Converter={StaticResource communicateColorConverter}}" Margin="5,5,0,0" Width="130">
+                <StackPanel Orientation="Vertical" Margin="5,5,5,5">
                     <Label Content="{Binding Name}"/>
-                    <TextBlock DockPanel.Dock="Bottom" Text="{Binding RealtimeStatus}" Height="45" Background="White" TextWrapping="Wrap"/>
+                    <TextBlock DockPanel.Dock="Bottom" Text="{Binding RealtimeStatus}" Background="White"/>
                 </StackPanel>
             </Border>
         </DataTemplate>
@@ -27,7 +27,7 @@
         <ObjectDataProvider x:Key="comms" ObjectType="local:AppViewModel" MethodName="GetComms"/>
 
     </UserControl.Resources>
-    <GroupBox Header="实时通信状态" DataContext="{StaticResource comms}" Margin="10">
+    <GroupBox Header="实时通信状态" DataContext="{StaticResource comms}" Margin="10,5,10,0">
 
         <ListBox BorderThickness="0" Margin="0" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" ItemTemplateSelector="{StaticResource commStatusTemplateSelector}"/>
 

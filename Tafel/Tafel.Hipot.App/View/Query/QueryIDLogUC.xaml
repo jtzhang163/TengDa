@@ -53,7 +53,7 @@
             <DataGrid x:Name="ResultDataGrid" Margin="10" ItemsSource="{Binding}" IsReadOnly="True" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding UserName}" Header="用户名称" Width="3*"/>
-                    <DataGridTextColumn Binding="{Binding TesterName}" Header="仪器名称" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding BatteryCode}" Header="电池条码" Width="4*"/>
                     <DataGridTextColumn Binding="{Binding Voltage}" Header="电压" Width="2*"/>
                     <DataGridTextColumn Binding="{Binding Resistance}" Header="电阻" Width="2*"/>
                     <DataGridTextColumn Binding="{Binding Temperature}" Header="温度" Width="2*"/>

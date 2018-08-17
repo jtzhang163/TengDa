@@ -26,23 +26,23 @@ namespace Tafel.Hipot.App
             get
             {
                 var userIDLogViewModels = new List<UserIDLogViewModel>();
-                using (var data = new InsulationContext())
+
+                Context.InsulationContext.DataLogs.Include("Battery").Where(ucvd => ucvd.DateTime > StartDateTimePicker.Value && ucvd.DateTime < StopDateTimePicker.Value).Take(maxDataCount.Value.Value).ToList().ForEach(c =>
                 {
-                    data.DataLogs.Where(ucvd => ucvd.DateTime > StartDateTimePicker.Value && ucvd.DateTime < StopDateTimePicker.Value).Take(maxDataCount.Value.Value).ToList().ForEach(c =>
+                    userIDLogViewModels.Add(new UserIDLogViewModel
                     {
-                        userIDLogViewModels.Add(new UserIDLogViewModel
-                        {
-                            UserName = c.User.Id > 0 ? TengDa.Wpf.Context.UserContext.Users.FirstOrDefault(u => u.Id == c.User.Id).Name : "未登录用户",
-                            TesterName = Current.Tester.Name,
-                            Voltage = c.Voltage,
-                            TimeSpan = c.TimeSpan,
-                            Temperature = c.Temperature,
-                            Resistance = c.Resistance,
-                            IsUploaded = c.IsUploaded,
-                            DateTime = c.DateTime
-                        });
+                        //UserName = c.User.Id > 0 ? TengDa.Wpf.Context.UserContext.Users.FirstOrDefault(u => u.Id == c.User.Id).Name : "未登录用户",
+                        UserName = c.User.Name,
+                        BatteryCode = c.Battery.Code,
+                        Voltage = c.Voltage,
+                        TimeSpan = c.TimeSpan,
+                        Temperature = c.Temperature,
+                        Resistance = c.Resistance,
+                        IsUploaded = c.IsUploaded,
+                        DateTime = c.DateTime
                     });
-                }
+                });
+
                 return userIDLogViewModels;
             }
         }

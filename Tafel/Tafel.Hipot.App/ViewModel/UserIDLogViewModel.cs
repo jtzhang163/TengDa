@@ -10,10 +10,10 @@ namespace Tafel.Hipot.App
         public string UserName { get; set; }
 
         /// <summary>
-        /// 仪器名称
+        /// 电池条码
         /// </summary>
-        [DisplayName("仪器名称")]
-        public string TesterName { get; set; }
+        [DisplayName("电池条码")]
+        public string BatteryCode { get; set; }
 
         /// <summary>
         /// 电阻

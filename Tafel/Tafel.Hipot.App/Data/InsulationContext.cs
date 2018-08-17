@@ -13,10 +13,12 @@ namespace Tafel.Hipot.App
         {
             modelBuilder.Entity<InsulationTester>().ToTable("t_tester");
             modelBuilder.Entity<InsulationDataLog>().ToTable("t_data_log");
+            modelBuilder.Entity<Battery>().ToTable("t_battery");
         }
 
         public DbSet<InsulationTester> Testers { get; set; }
         public DbSet<InsulationDataLog> DataLogs { get; set; }
+        public DbSet<Battery> Batteries { get; set; }
     }
 
     public class TesterInitializer : DropCreateDatabaseIfModelChanges<InsulationContext>

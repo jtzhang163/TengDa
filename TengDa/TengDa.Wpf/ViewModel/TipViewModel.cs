@@ -1,4 +1,7 @@
-﻿namespace TengDa.Wpf
+﻿using System;
+using System.Collections.Generic;
+
+namespace TengDa.Wpf
 {
     /// <summary>
     /// 界面提示框
@@ -14,7 +17,13 @@
             }
             set
             {
-                SetProperty(ref tips, value);
+                var tipsList = new List<string>(value.Split('\n'));
+                if(tipsList.Count > 50)
+                {
+                    //过长删除
+                    tipsList.RemoveAt(0);
+                }
+                SetProperty(ref tips, string.Join("\n", tipsList));
             }
         }
     }

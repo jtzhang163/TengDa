@@ -174,7 +174,6 @@
     <Compile Include="Command\QueryCommands.cs" />
     <Compile Include="Command\UserCommands.cs" />
     <Compile Include="Data\InsulationContext.cs" />
-    <Compile Include="Data\BatteryContext.cs" />
     <Compile Include="Data\MesContext.cs" />
     <Compile Include="Model\Battery.cs" />
     <Compile Include="Model\Cooler.cs" />

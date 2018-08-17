@@ -144,24 +144,15 @@ namespace Tafel.Hipot.App
             set => Current.Option.IsRememberMe = value;
         }
 
-
-        public List<InsulationTester> GetTesters()
-        {
-            return new List<InsulationTester>()
-            {
-                Current.Tester
-            };
-        }
-
         public List<CommunicateObject> GetComms()
         {
             return new List<CommunicateObject>()
             {
                 Current.Tester,
-                Current.Mes,
                 Current.Collector,
                 Current.Cooler,
-                Current.Scaner
+                Current.Scaner,
+                Current.Mes
             };
         }
 

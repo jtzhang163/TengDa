@@ -37,9 +37,10 @@ namespace Tafel.Hipot.App
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            if (AppCurrent.IsRunning)
+
+            if (Current.App.RunStatus != TengDa.RunStatus.闲置)
             {
-                OperationHelper.ShowTips("系统正在运行，请先停止！", true);
+                OperationHelper.ShowTips("系统正在运行，请先停止、复位后关闭！", true);
                 e.Cancel = true;
                 return;
             }
@@ -52,10 +53,14 @@ namespace Tafel.Hipot.App
 
             this.DataContext = Current.App;
 
+            this.wpScaner.DataContext = Current.Scaner;
+
+            this.dpTester.DataContext = Current.Tester;
+
+            this.dpCollector.DataContext = Current.Collector;
+
             Current.MainWindow = this;
 
-            TimerInit();
- 
             StartDateTimePicker.Value = DateTime.Now.AddHours(-1);
             StopDateTimePicker.Value = DateTime.Now;
 
@@ -69,9 +74,11 @@ namespace Tafel.Hipot.App
             }
 
             OperationHelper.ShowTips("打开软件");
+
+            InitTimer();
         }
 
-        private void TimerInit()
+        private void InitTimer()
         {
             //界面画图定时器
             InitDrawingGraph();
@@ -81,6 +88,18 @@ namespace Tafel.Hipot.App
 
             Current.TimerCheckTesterInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckTesterInfo);
             Current.TimerCheckTesterInfo.Start();
+
+            Current.TimerCheckCollectorInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckCollectorInfo);
+            Current.TimerCheckCollectorInfo.Start();
+
+            Current.TimerCheckCoolerInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckCoolerInfo);
+            Current.TimerCheckCoolerInfo.Start();
+
+            Current.TimerCheckScanerInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckScanerInfo);
+            Current.TimerCheckScanerInfo.Start();
+
+            Current.TimerCheckDataInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckDataInfo);
+            Current.TimerCheckDataInfo.Start();
 
             Current.TimerCheckMesInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckMesInfo);
             Current.TimerCheckMesInfo.Start();
@@ -261,23 +280,12 @@ namespace Tafel.Hipot.App
             lgResistance.Description = String.Format("电阻");
             lgResistance.StrokeThickness = 2;
 
-            var lgVoltage = new LineGraph();
-            linesVoltage.Children.Add(lgVoltage);
-            lgVoltage.Stroke = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
-            lgVoltage.Description = String.Format("电压");
-            lgVoltage.StrokeThickness = 2;
 
             var lgTemperature = new LineGraph();
             linesTemperature.Children.Add(lgTemperature);
             lgTemperature.Stroke = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
             lgTemperature.Description = String.Format("温度");
             lgTemperature.StrokeThickness = 2;
-
-            var lgTimeSpan = new LineGraph();
-            linesTimeSpan.Children.Add(lgTimeSpan);
-            lgTimeSpan.Stroke = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
-            lgTimeSpan.Description = String.Format("测试时长");
-            lgTimeSpan.StrokeThickness = 2;
 
 
             //timer.Interval = TimeSpan.FromMilliseconds(1000);
@@ -289,13 +297,9 @@ namespace Tafel.Hipot.App
 
         private static List<double> ShowDataOrder = new List<double>();
 
-        private static List<double> ShowVoltageData = new List<double>();
-
         private static List<double> ShowResistanceData = new List<double>();
 
         private static List<double> ShowTemperatureData = new List<double>();
-
-        private static List<double> ShowTimeSpanData = new List<double>();
 
         private void BtnShowHistoryData_Click(object sender, RoutedEventArgs e)
         {
@@ -309,20 +313,15 @@ namespace Tafel.Hipot.App
                 }
 
                 ShowDataOrder.Clear();
-                ShowVoltageData.Clear();
                 ShowResistanceData.Clear();
                 ShowTemperatureData.Clear();
-                ShowTimeSpanData.Clear();
 
                 int order = 1;
                 foreach (var cvData in dataLogs)
                 {
                     ShowDataOrder.Add(order);
-                    ShowVoltageData.Add(cvData.Voltage);
                     ShowResistanceData.Add(cvData.Resistance);
                     ShowTemperatureData.Add(cvData.Temperature);
-                    ShowTimeSpanData.Add(cvData.TimeSpan);
-
                     order++;
                 }
 
@@ -331,12 +330,6 @@ namespace Tafel.Hipot.App
 
             var lgResistance = (LineGraph)linesResistance.Children[0];
             lgResistance.Plot(ShowDataOrder, ShowResistanceData);
-
-            var lgVoltage = (LineGraph)linesVoltage.Children[0];
-            lgVoltage.Plot(ShowDataOrder, ShowVoltageData);
-
-            var lgTimeSpan = (LineGraph)linesTimeSpan.Children[0];
-            lgTimeSpan.Plot(ShowDataOrder, ShowTimeSpanData);
 
             var lgTemperature = (LineGraph)linesTemperature.Children[0];
             lgTemperature.Plot(ShowDataOrder, ShowTemperatureData);

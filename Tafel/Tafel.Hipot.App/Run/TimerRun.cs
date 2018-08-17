@@ -22,6 +22,46 @@ namespace Tafel.Hipot.App
             }
         }
 
+        public void CheckCollectorInfo(object sender, ElapsedEventArgs e)
+        {
+            if (AppCurrent.IsRunning && Current.Collector.IsEnable)
+            {
+
+                Current.Collector.GetInfo();
+
+            }
+        }
+
+        public void CheckCoolerInfo(object sender, ElapsedEventArgs e)
+        {
+            if (AppCurrent.IsRunning && Current.Cooler.IsEnable)
+            {
+
+                Current.Cooler.GetInfo();
+
+            }
+        }
+
+        public void CheckScanerInfo(object sender, ElapsedEventArgs e)
+        {
+            if (AppCurrent.IsRunning && Current.Scaner.IsEnable && Current.Cooler.IsReadyScan) 
+            {
+
+                Current.Scaner.GetInfo();
+
+            }
+        }
+
+        public void CheckDataInfo(object sender, ElapsedEventArgs e)
+        {
+            if (AppCurrent.IsRunning)
+            {
+
+                InsulationData.Insert();
+
+            }
+        }
+
         public void CheckMesInfo(object sender, ElapsedEventArgs e)
         {
             if (AppCurrent.IsRunning && Current.Mes.IsEnable)

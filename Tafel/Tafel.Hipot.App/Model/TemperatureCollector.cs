@@ -50,13 +50,15 @@ namespace Tafel.Hipot.App
                 return;
             }
 
-            if (ReceiveString.Length < 24)
+            if (ReceiveString.Length < 5)
             {
-                TengDa.LogHelper.WriteError("测试仪传输的数据异常：" + ReceiveString);
+                TengDa.LogHelper.WriteError(Name + "传输的数据异常：" + ReceiveString);
                 return;
             }
 
-            this.Temperature = TengDa._Convert.StrToFloat(ReceiveString.Substring(6, 5), 0);
+            this.Temperature = TengDa._Convert.StrToFloat(ReceiveString.Trim(new char[] { '\r','\n'}), 0);
+
+            InsulationData.Temperature = this.Temperature;
 
             this.RealtimeStatus = string.Format("获得数据完成，温度：{0}", Temperature);
 
@@ -66,18 +68,7 @@ namespace Tafel.Hipot.App
 
             Current.AnimatedPlot();
 
-            Context.InsulationContext.DataLogs.Add(new InsulationDataLog()
-            {
-                User = AppCurrent.User,
-                TesterId = Current.Tester.Id,
-                IsUploaded = false,
-                Temperature = this.Temperature,
-                DateTime = DateTime.Now
-            });
-            Context.InsulationContext.SaveChanges();
             IsGetNewData = false;
-
-            AppCurrent.YieldNow.FeedingOK++;
 
             var t = new Thread(() =>
             {

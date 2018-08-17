@@ -19,7 +19,11 @@ namespace Tafel.Hipot.App
             var machineTrees = new List<MachineTree>
             {
                 new MachineTree() { Id = 1, Name = Current.Tester.Name, ParentId = 0 ,IsChecked = Current.Tester.IsEnable},
-                new MachineTree() { Id = 2, Name = Current.Mes.Name, ParentId = 0 ,IsChecked = Current.Mes.IsEnable},
+                new MachineTree() { Id = 2, Name = Current.Collector.Name, ParentId = 0 ,IsChecked = Current.Collector.IsEnable},
+                new MachineTree() { Id = 3, Name = Current.Cooler.Name, ParentId = 0 ,IsChecked = Current.Cooler.IsEnable},
+                new MachineTree() { Id = 4, Name = Current.Scaner.Name, ParentId = 0 ,IsChecked = Current.Scaner.IsEnable},
+                //new MachineTree() { Id = 5, Name = Current.Cooler.PLC.Name, ParentId = 4 ,IsChecked = Current.Cooler.PLC.IsEnable},
+                new MachineTree() { Id = 6, Name = Current.Mes.Name, ParentId = 0 ,IsChecked = Current.Mes.IsEnable},
             };
 
             this.SetItemsSourceData(machineTrees, m => m.Name, m => m.Id, m => m.ParentId, m => m.IsChecked);
@@ -141,6 +145,21 @@ namespace Tafel.Hipot.App
                     {
                         Current.Tester.IsEnable = value;
                         Context.InsulationContext.SaveChangesAsync();
+                    }
+                    else if (Caption == Current.Collector.Name)
+                    {
+                        Current.Collector.IsEnable = value;
+                        Context.CollectorContext.SaveChangesAsync();
+                    }
+                    else if (Caption == Current.Cooler.Name)
+                    {
+                        Current.Cooler.IsEnable = value;
+                        Context.CoolerContext.SaveChangesAsync();
+                    }
+                    else if (Caption == Current.Scaner.Name)
+                    {
+                        Current.Scaner.IsEnable = value;
+                        Context.ScanerContext.SaveChangesAsync();
                     }
                     else if (Caption == Current.Mes.Name)
                     {

@@ -83,7 +83,7 @@ namespace TengDa.Wpf
 
 
         #region 开启/断开连接
-        public bool TcpConnect(out string msg)
+        public bool Connect(out string msg)
         {
             try
             {
@@ -117,7 +117,7 @@ namespace TengDa.Wpf
             return true;
         }
 
-        public bool TcpDisConnect(out string msg)
+        public bool DisConnect(out string msg)
         {
             try
             {
@@ -176,7 +176,7 @@ namespace TengDa.Wpf
                 {
                     tcpClient = null;
                     tcpClient = new TcpClient();
-                    TcpConnect(out msg);
+                    Connect(out msg);
                 }
                 NetworkStream ns = TcpClient.GetStream();
                 Byte[] sendBytes = Encoding.UTF8.GetBytes(input + "\r");
@@ -243,7 +243,7 @@ namespace TengDa.Wpf
                 {
                     tcpClient = null;
                     tcpClient = new TcpClient();
-                    TcpConnect(out msg);
+                    Connect(out msg);
                 }
                 NetworkStream ns = TcpClient.GetStream();
                 Byte[] sendBytes = new byte[] { input };
@@ -337,7 +337,7 @@ namespace TengDa.Wpf
                 {
                     tcpClient = null;
                     tcpClient = new TcpClient();
-                    TcpConnect(out msg);
+                    Connect(out msg);
                 }
                 NetworkStream ns = TcpClient.GetStream();
                 Byte[] sendBytes = new byte[] { input };

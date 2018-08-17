@@ -85,15 +85,25 @@ namespace Tafel.Hipot.App
 
         #endregion
 
-        #region
+        public static Battery Battery = new Battery();
+
+        #region 定时器
+
         public static System.Timers.Timer TimerUpdateTime = new System.Timers.Timer() { Interval = 1000, AutoReset = true };
 
         public static System.Timers.Timer TimerCheckTesterInfo = new System.Timers.Timer() { Interval = Option.CheckTesterInfoInterval, AutoReset = true };
 
+        public static System.Timers.Timer TimerCheckCollectorInfo = new System.Timers.Timer() { Interval = Option.CheckCollectorInfoInterval, AutoReset = true };
+
+        public static System.Timers.Timer TimerCheckCoolerInfo = new System.Timers.Timer() { Interval = Option.CheckCoolerInfoInterval, AutoReset = true };
+
+        public static System.Timers.Timer TimerCheckScanerInfo = new System.Timers.Timer() { Interval = Option.CheckScanerInfoInterval, AutoReset = true };
+
+        public static System.Timers.Timer TimerCheckDataInfo = new System.Timers.Timer() { Interval = 100, AutoReset = true };
+
         public static System.Timers.Timer TimerCheckMesInfo = new System.Timers.Timer() { Interval = Option.CheckMesInfoInterval * 1000, AutoReset = true };
 
         #endregion
-
 
         public const int ShowDataCount = 100;
 
@@ -139,29 +149,6 @@ namespace Tafel.Hipot.App
             }
         }
 
-        private static List<double> showVoltageData = new List<double>();
-        /// <summary>
-        /// 电压Y轴
-        /// </summary>
-        public static List<double> ShowVoltageData
-        {
-            get
-            {
-                if (showVoltageData.Count < 1)
-                {
-                    for (int j = 0; j < ShowDataCount; j++)
-                    {
-                        showVoltageData.Add(0);
-                    }
-                }
-                return showVoltageData;
-            }
-            set
-            {
-                showVoltageData = value;
-            }
-        }
-
         private static List<double> showTemperatureData = new List<double>();
         /// <summary>
         /// 温度Y轴
@@ -185,29 +172,6 @@ namespace Tafel.Hipot.App
             }
         }
 
-        private static List<double> showTimeSpanData = new List<double>();
-        /// <summary>
-        /// 测试时长Y轴
-        /// </summary>
-        public static List<double> ShowTimeSpanData
-        {
-            get
-            {
-                if (showTimeSpanData.Count < 1)
-                {
-                    for (int j = 0; j < ShowDataCount; j++)
-                    {
-                        showTimeSpanData.Add(0);
-                    }
-                }
-                return showTimeSpanData;
-            }
-            set
-            {
-                showTimeSpanData = value;
-            }
-        }
-
 
         public static void AnimatedPlot()
         {
@@ -224,14 +188,9 @@ namespace Tafel.Hipot.App
             var lgResistance = (LineGraph)(window.linesResistance).Children[0];
             lgResistance.Plot(ShowDataOrder, ShowResistanceData);
 
-            var lgVoltage = (LineGraph)(window.linesVoltage).Children[0];
-            lgVoltage.Plot(ShowDataOrder, ShowVoltageData);
-
             var lgTemperature = (LineGraph)(window.linesTemperature).Children[0];
             lgTemperature.Plot(ShowDataOrder, ShowTemperatureData);
 
-            var lgTimeSpan = (LineGraph)(window.linesTimeSpan).Children[0];
-            lgTimeSpan.Plot(ShowDataOrder, ShowTimeSpanData);
         }
 
         //private static List<double>[] showCurrentsData = new List<double>[1];
