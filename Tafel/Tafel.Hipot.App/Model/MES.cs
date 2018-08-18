@@ -6,6 +6,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Tafel.MES;
+using TengDa;
 using TengDa.Wpf;
 
 namespace Tafel.Hipot.App
@@ -16,7 +17,10 @@ namespace Tafel.Hipot.App
         #region 本机IP
         private static string ipaddr = "127.0.0.1";
 
-        public static IPAddress IPAddr
+        /// <summary>
+        /// 本机IP
+        /// </summary>
+        public static IPAddress LocalIPAddr
         {
             get
             {
@@ -41,18 +45,35 @@ namespace Tafel.Hipot.App
 
         public static void Upload()
         {
-            var datas = Context.InsulationContext.DataLogs.Where(i => !i.IsUploaded).Take(100).ToList();
+            var datas = Context.InsulationContext.DataLogs.Include("Battery").OrderByDescending(d=>d.DateTime).Where(i => !i.IsUploaded).Take(5).ToList();
             datas.ForEach(d =>
             {
-                d.IsUploaded = true;
+                string msg = "";
+                if (MES.CheckSfc(d.Battery.Code, out msg))
+                {
+                    Current.Mes.RealtimeStatus = string.Format("MES检验通过，ID：{0}", d.Id);
+                    Thread.Sleep(100);
+                    if (MES.UploadBattery(d.Battery.Code, d.Resistance, d.Voltage, d.Temperature, d.TimeSpan))
+                    {
+                        d.IsUploaded = true;
+                        //上传MES
+                        AppCurrent.YieldNow.BlankingOK++;
+                        Current.Mes.RealtimeStatus = string.Format("上传MES完成，ID：{0}", d.Id);
+                        Context.InsulationContext.SaveChanges();
+                    }
+                    else
+                    {
+                        Current.Mes.RealtimeStatus = string.Format("上传MES失败，ID：{0}", d.Id);
+                    }
 
-                //上传MES
+                    Thread.Sleep(100);
+                }
+                else
+                {
+                    Current.Mes.RealtimeStatus = string.Format("MES检验失败，ID：{0}", d.Id);
+                    LogHelper.WriteError(string.Format("MES检验失败，Code：{0}", d.Battery.Code));
+                }
 
-                AppCurrent.YieldNow.BlankingOK++;
-
-                Current.Mes.RealtimeStatus = string.Format("上传MES完成，电阻：{0}，电压：{1}，测试间隔：{2}，温度：{3}", d.Resistance, d.Voltage, d.TimeSpan, d.Temperature);
-                Context.InsulationContext.SaveChanges();
-                Thread.Sleep(200);
             });
 
             var t = new Thread(() => {
@@ -106,13 +127,13 @@ namespace Tafel.Hipot.App
             Sfc sfc = new Sfc
             {
                 BarcodeNo = code,
-                IPAddress = IPAddr.ToString(),
+                IPAddress = LocalIPAddr.ToString(),
                 MachineNo = Current.Tester.Number,
                 MaterialOrderNo = Current.Option.CurrentMaterialOrderNo,
                 OrderNo = Current.Option.CurrentOrderNo,
                 ProcessCode = Current.Option.CurrentProcessCode,
                 StationCode = Current.Option.CurrentStationCode,
-                UserNumber = AppCurrent.User.Number
+                UserNumber = AppCurrent.User.Number              
             };
 
             if (!Tafel.MES.MES.CheckSfc(sfc, out msg))
@@ -124,7 +145,7 @@ namespace Tafel.Hipot.App
             return true;
         }
 
-        public static bool UploadBattery(string code, string trayCode)
+        public static bool UploadBattery(string code, float resistance, float voltage, float temperature, float timespan)
         {
             if (!Current.Mes.IsEnable)
             {
@@ -134,16 +155,27 @@ namespace Tafel.Hipot.App
             {
                 return false;
             }
-            TrayInfo trayInfo = new TrayInfo
+            HipotInfo hipotInfo = new HipotInfo
             {
-                TrayCode = trayCode,
                 BarcodeNo = code,
                 ProcessCode = Current.Option.CurrentProcessCode,
+                StationCode = Current.Option.CurrentStationCode,
+                OrderNo = Current.Option.CurrentOrderNo,
+                IPAddress = LocalIPAddr.ToString(),
+                MaterialOrderNo = Current.Option.CurrentMaterialOrderNo,
+                MachineNo = Current.Tester.Number,
                 UserNumber = AppCurrent.User.Number,
-                InputTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+                BarcodeNo_N = code,
+                Resistance_N = resistance.ToString(),
+                Voltage_N = voltage.ToString(),
+                Temperature_N = temperature.ToString(),
+                TestTimeSpan_N = timespan.ToString(),
+                TestResult_N = (resistance > Current.Option.ThresholdResistance && temperature < Current.Option.ThresholdTemperature) ? "OK" : "NG",
+                UserNumber_N = AppCurrent.User.Number,
+                InsertTime_N = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
             };
             string msg = string.Empty;
-            if (!Tafel.MES.MES.UploadBattery(trayInfo, out msg))
+            if (!Tafel.MES.MES.UploadBattery(hipotInfo, out msg))
             {
                 Error.Alert(msg);
                 return false;
@@ -175,33 +207,29 @@ namespace Tafel.Hipot.App
 
         }
 
-        public static void GetInfo(out string lbProcessText, out string lbStationText, out string msg)
+        public static void GetInfo()
         {
-            string ip = MES.IPAddr.ToString();
+            string msg = string.Empty;
+            string ip = MES.LocalIPAddr.ToString();
             ProcessInfo pi = Tafel.MES.MES.GetProcessInfo(new IP { IPAddress = ip }, out msg);
             if (string.IsNullOrEmpty(msg))//成功获取到
             {
-                lbProcessText = string.Format("{0}[{1}]", pi.ProcessName, pi.ProcessCode);
                 Current.Option.CurrentProcess = string.Format("{0},{1}", pi.ProcessName, pi.ProcessCode);
             }
             else
             {
                 Error.Alert(msg);
-                string[] s = Current.Option.CurrentProcess.Split(',');
-                lbProcessText = string.Format("{0}[{1}]", s[0], s[1]);
             }
 
 
             StationInfo si = Tafel.MES.MES.GetStationInfo(new IpAndProcess { IPAddress = ip, ProcessCode = pi.ProcessCode }, out msg);
             if (string.IsNullOrEmpty(msg))//成功获取到
             {
-                lbStationText = string.Format("{0}[{1}]", si.StationName, si.StationCode);
                 Current.Option.CurrentStation = string.Format("{0},{1}", si.StationName, si.StationCode);
             }
             else
             {
-                string[] s = Current.Option.CurrentStation.Split(',');
-                lbStationText = string.Format("{0}[{1}]", s[0], s[1]);
+                Error.Alert(msg);
             }
         }
 

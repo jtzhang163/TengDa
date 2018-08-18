@@ -46,7 +46,7 @@ namespace Tafel.MES
             bool b = CheckXML(returnXml, out name, out msg);
             if (!string.IsNullOrEmpty(msg))
             {
-                LogHelper.WriteError(msg);
+                LogHelper.WriteError(msg + "xml" + xml);
             }
 
             if (string.IsNullOrEmpty(name))
@@ -89,7 +89,7 @@ namespace Tafel.MES
             bool b= CheckXML(returnXml, out msg);
             if (!string.IsNullOrEmpty(msg))
             {
-                LogHelper.WriteError(msg);
+                LogHelper.WriteError(msg + "xml" + xml);
             }
             return b;
 
@@ -127,12 +127,18 @@ namespace Tafel.MES
             bool b = CheckXML(returnXml, out msg);
             if (!string.IsNullOrEmpty(msg))
             {
-                LogHelper.WriteError(msg);
+                LogHelper.WriteError(msg + "xml" + xml);
             }
             return b;
 
         }
 
+        /// <summary>
+        /// 上料扫码上传
+        /// </summary>
+        /// <param name="taryInfo"></param>
+        /// <param name="msg"></param>
+        /// <returns></returns>
         public static bool UploadBattery(TrayInfo taryInfo, out string msg)
         {
 
@@ -165,7 +171,73 @@ namespace Tafel.MES
             bool b = CheckXML(returnXml, out msg);
             if (!string.IsNullOrEmpty(msg))
             {
-                LogHelper.WriteError(msg);
+                LogHelper.WriteError(msg + "xml" + xml);
+            }
+
+            TengDa.LogHelper.WriteInfo("XML上传：\r\n" + xml);
+            TengDa.LogHelper.WriteInfo("XML返回：\r\n" + returnXml);
+            return b;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="taryInfo"></param>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public static bool UploadBattery(HipotInfo hipotInfo, out string msg)
+        {
+
+            string xml = GetXML("HipotInfo", new string[] {
+                "BarcodeNo=" + hipotInfo.BarcodeNo,
+                "ProcessCode=" + hipotInfo.ProcessCode,
+                "StationCode=" + hipotInfo.StationCode,
+                "OrderNo=" + hipotInfo.OrderNo,
+                "IPAddress=" + hipotInfo.IPAddress,
+                "MaterialOrderNo=" + hipotInfo.MaterialOrderNo,
+                "MachineNo=" + hipotInfo.MachineNo,
+                "UserNumber=" + hipotInfo.UserNumber,
+                "BarcodeNo_N=" + hipotInfo.BarcodeNo_N,
+                "Resistance_N=" + hipotInfo.Resistance_N,
+                "Voltage_N=" + hipotInfo.Voltage_N,
+                "Temperature_N=" + hipotInfo.Temperature_N,
+                "TestTimeSpan_N=" + hipotInfo.TestTimeSpan_N,
+                "TestResult_N=" + hipotInfo.TestResult_N,
+                "UserNumber_N=" + hipotInfo.UserNumber_N,
+                "InsertTime_N=" + hipotInfo.InsertTime_N
+            });
+
+            xml = xml.Replace("ConfigProcessCode", hipotInfo.ProcessCode);
+
+            ServiceAPI ws = new ServiceAPI();
+
+#if ISOFFLINE
+            string returnXml = @"<?xml version='1.0' encoding='utf-8'?>
+                                <response>
+                                    <table>
+                                        <rows>
+                                            <returncode>1</returncode>
+                                            <errormsg>OK</errormsg>
+                                        </rows>
+                                    </table>
+                                </response>";
+#else
+
+            string returnXml = string.Empty;
+            try
+            {
+                returnXml = returnXml = ws.SetTrayInfo(xml);
+            }
+            catch (Exception ex)
+            {
+                msg = ex.Message;
+                return false;
+            }
+#endif
+            bool b = CheckXML(returnXml, out msg);
+            if (!string.IsNullOrEmpty(msg))
+            {
+                LogHelper.WriteError(msg + "xml" + xml);
             }
 
             TengDa.LogHelper.WriteInfo("XML上传：\r\n" + xml);
@@ -207,7 +279,7 @@ namespace Tafel.MES
 
             if (!string.IsNullOrEmpty(msg))
             {
-                LogHelper.WriteError(msg);
+                LogHelper.WriteError(msg + "xml" + xml);
             }
             return pi;
         }

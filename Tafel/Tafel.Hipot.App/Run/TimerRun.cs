@@ -66,7 +66,7 @@ namespace Tafel.Hipot.App
         {
             if (AppCurrent.IsRunning && Current.Mes.IsEnable)
             {
-
+                MES.UploadMachineInfo("S");
                 MES.Upload();
 
             }

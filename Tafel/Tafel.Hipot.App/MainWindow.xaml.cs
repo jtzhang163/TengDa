@@ -75,6 +75,7 @@ namespace Tafel.Hipot.App
 
             OperationHelper.ShowTips("打开软件");
 
+            MES.GetInfo();
             InitTimer();
         }
 

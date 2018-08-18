@@ -18,7 +18,7 @@ namespace Tafel.Hipot.App
     public class Scaner : EthernetTerminal
     {
 
-        private string code = string.Empty;
+        private string code = "000000000000000000000000";
         [NotMapped,Browsable(false)]
         public string Code
         {

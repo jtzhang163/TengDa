@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Data.Entity.Validation;
 using System.Linq;
 
 namespace TengDa.Wpf
@@ -46,11 +47,7 @@ namespace TengDa.Wpf
 
         public static string GetOption(string key)
         {
-            using (var data = new OptionContext())
-            {
-                Option option = data.Options.Where(o => o.Key == key).FirstOrDefault();
-                return option != null ? option.Value : string.Empty;
-            }
+            return Context.OptionContext.Options.Where(o => o.Key == key).FirstOrDefault()?.Value;
         }
 
         public static void SetOption(string key, string value)
@@ -60,19 +57,26 @@ namespace TengDa.Wpf
 
         public static void SetOption(string key, string value, string remark)
         {
-            using (var data = new OptionContext())
+
+            Option option = Context.OptionContext.Options.Where(o => o.Key == key).FirstOrDefault();
+            // return option != null ? option.Value : string.Empty;
+            if (option != null)
             {
-                Option option = data.Options.Where(o => o.Key == key).FirstOrDefault();
-                // return option != null ? option.Value : string.Empty;
-                if (option != null)
-                {
-                    data.Options.Where(o => o.Key == key).First().Value = value;
-                }
-                else
-                {
-                    data.Options.Add(new Option { Key = key, Value = value, Remark = remark });
-                }
-                data.SaveChanges();
+                Context.OptionContext.Options.Where(o => o.Key == key).First().Value = value;
+            }
+            else
+            {
+                Context.OptionContext.Options.Add(new Option { Key = key, Value = value, Remark = remark });
+            }
+
+            try
+            {
+                // 写数据库
+                Context.OptionContext.SaveChanges();
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                Error.Alert(dbEx);
             }
         }
     }

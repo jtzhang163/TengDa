@@ -8,5 +8,6 @@
         public static OperationContext OperationContext = new OperationContext();
         public static UserContext UserContext = new UserContext();
         public static YieldContext YieldContext = new YieldContext();
+        public static OptionContext OptionContext = new OptionContext();
     }
 }

@@ -526,11 +526,11 @@ namespace Tafel.Hipot.App
             }
         }
 
-
-
         /// <summary>
         /// 当前工序编号
         /// </summary>
+        [DisplayName("当前工序编号")]
+        [Category("MES")]
         public string CurrentProcessCode
         {
             get => CurrentProcess.Split(',')[1];
@@ -539,6 +539,8 @@ namespace Tafel.Hipot.App
         /// <summary>
         /// 当前工位编号
         /// </summary>
+        [DisplayName("当前工位编号")]
+        [Category("MES")]
         public string CurrentStationCode
         {
             get => CurrentStation.Split(',')[1];
@@ -550,6 +552,8 @@ namespace Tafel.Hipot.App
         /// <summary>
         /// 当前工序名称和编号
         /// </summary>
+        [DisplayName("当前工序名称和编号")]
+        [Category("MES")]
         public string CurrentProcess
         {
             get
@@ -579,6 +583,8 @@ namespace Tafel.Hipot.App
         /// <summary>
         /// 当前工位名称和编号
         /// </summary>
+        [DisplayName("当前工位名称和编号")]
+        [Category("MES")]
         public string CurrentStation
         {
             get
@@ -608,6 +614,8 @@ namespace Tafel.Hipot.App
         /// <summary>
         /// 当前工单
         /// </summary>
+        [DisplayName("当前工单")]
+        [Category("MES")]
         public string CurrentOrderNo
         {
             get
@@ -637,6 +645,8 @@ namespace Tafel.Hipot.App
         /// <summary>
         /// 当前来料工单
         /// </summary>
+        [DisplayName("当前来料工单")]
+        [Category("MES")]
         public string CurrentMaterialOrderNo
         {
             get
@@ -667,6 +677,8 @@ namespace Tafel.Hipot.App
         /// <summary>
         /// 局域网IP地址正则表达式
         /// </summary>
+        [DisplayName("局域网IP地址正则表达式")]
+        [Category("MES")]
         public string IPAddressRegex
         {
             get
@@ -693,36 +705,68 @@ namespace Tafel.Hipot.App
         }
 
 
-        //private int xxxxxx = -1;
-        ///// <summary>
-        ///// ZZZZZZZZZ
-        ///// </summary>
-        //[DisplayName("ZZZZZZZZZ")]
-        //[Category("通信")]
-        //public int YYYYYYYYY
-        //{
-        //  get
-        //  {
-        //    if (xxxxxx < 0)
-        //    {
-        //      xxxxxx = _Convert.StrToInt(TengDa.Wpf.Option.GetOption("YYYYYYYYY"), -1);
-        //      if (xxxxxx < 0)
-        //      {
-        //        xxxxxx = 1000;
-        //        TengDa.Wpf.Option.SetOption("YYYYYYYYY", xxxxxx.ToString(), "ZZZZZZZZZ");
-        //      }
-        //    }
-        //    return xxxxxx;
-        //  }
-        //  set
-        //  {
-        //    if (xxxxxx != value)
-        //    {
-        //      TengDa.Wpf.Option.SetOption("YYYYYYYYY", value.ToString());
-        //      SetProperty(ref xxxxxx, value);
-        //    }
-        //  }
-        //}
+        private float thresholdResistance = -1;
+        /// <summary>
+        /// 电阻设定值
+        /// </summary>
+        [DisplayName("电阻设定值")]
+        [Description("电阻设定值，若测得电阻大于该值，则判断为合格")]
+        public float ThresholdResistance
+        {
+            get
+            {
+                if (thresholdResistance < 0)
+                {
+                    thresholdResistance = _Convert.StrToInt(TengDa.Wpf.Option.GetOption("ThresholdResistance"), -1);
+                    if (thresholdResistance < 0)
+                    {
+                        thresholdResistance = 1;
+                        TengDa.Wpf.Option.SetOption("ThresholdResistance", thresholdResistance.ToString(), "电阻设定值");
+                    }
+                }
+                return thresholdResistance;
+            }
+            set
+            {
+                if (thresholdResistance != value)
+                {
+                    TengDa.Wpf.Option.SetOption("ThresholdResistance", value.ToString());
+                    SetProperty(ref thresholdResistance, value);
+                }
+            }
+        }
+
+        private float thresholdTemperature = -1;
+        /// <summary>
+        /// 温度设定值
+        /// </summary>
+        [DisplayName("温度设定值")]
+        [Description("温度设定值，若测得温度小于该值，则判断为合格")]
+        public float ThresholdTemperature
+        {
+            get
+            {
+                if (thresholdTemperature < 0)
+                {
+                    thresholdTemperature = _Convert.StrToInt(TengDa.Wpf.Option.GetOption("ThresholdTemperature"), -1);
+                    if (thresholdTemperature < 0)
+                    {
+                        thresholdTemperature = 200;
+                        TengDa.Wpf.Option.SetOption("ThresholdTemperature", thresholdTemperature.ToString(), "温度设定值");
+                    }
+                }
+                return thresholdTemperature;
+            }
+            set
+            {
+                if (thresholdTemperature != value)
+                {
+                    TengDa.Wpf.Option.SetOption("ThresholdTemperature", value.ToString());
+                    SetProperty(ref thresholdTemperature, value);
+                }
+            }
+        }
+
 
     }
 }
