@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tafel.Hipot.App"
+        xmlns:util="clr-namespace:Tafel.Hipot.App.Utilities"
         xmlns:view="clr-namespace:Tafel.Hipot.App.View"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:CommonCommand="clr-namespace:TengDa.Wpf;assembly=TengDa.Wpf"
@@ -48,7 +49,7 @@
         </Style>
 
 
-        <!--集成资源-->
+        <!--超链接样式-->
         <Style x:Key="hyberlinkEffect" TargetType="{x:Type Hyperlink}">
             <Setter Property="Foreground" Value="#09a3de"></Setter>
             <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"></Setter>
@@ -67,6 +68,11 @@
             </Style.Triggers>
         </Style>
 
+        <!--被禁用的超链接样式-->
+        <Style x:Key="hyberlinkEffectNotEnabled" TargetType="{x:Type Hyperlink}">
+            <Setter Property="Foreground" Value="Gray"></Setter>
+            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"></Setter>
+        </Style>
 
         <!--圆角button-->
         <Style  x:Key="chamferButton" TargetType="{x:Type Button}">
@@ -88,11 +94,11 @@
             </Setter>
         </Style>
 
-    </Window.Resources>
+        <util:BooleanToVisibleConverter x:Key="booleanToVisibleConverter"/>
+        <util:BooleanToHiddenConverter x:Key="booleanToHiddenConverter"/>
+        <util:BooleanToButtonContentConverter x:Key="booleanToButtonContentConverter"/>
 
-    <Window.CommandBindings>
-        <CommandBinding Command="CommonCommand:UserCommands.Login" Executed="OnLogin"/>
-    </Window.CommandBindings>
+    </Window.Resources>
 
     <Border CornerRadius="15" Height="350" Width="400" Background="AliceBlue">
         <Grid Margin="0">
@@ -132,23 +138,28 @@
                     <EllipseGeometry RadiusX="48" RadiusY="48" Center="48,48"/>
                 </Image.Clip>
             </Image>
-            <Border CornerRadius="10"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom"  Height="30">
-                <xctk:WatermarkTextBox x:Name="loginUserNameTextBox" Watermark="用户账号" VerticalContentAlignment="Center"/>
+            <Border CornerRadius="10"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom"  Height="30" Margin="0,-5,0,5">
+                <xctk:WatermarkTextBox x:Name="userNameTextBox" Watermark="输入用户名/工号" VerticalContentAlignment="Center"/>
             </Border>
-            <xctk:WatermarkPasswordBox x:Name="loginPasswordBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Watermark="用户密码" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="30" />
+            <xctk:WatermarkPasswordBox x:Name="passwordBox" Watermark="输入密码" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="30" Margin="0,-3,0,0"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Margin="10,20,0,0">
-                    <Hyperlink Style="{StaticResource hyberlinkEffect}">注册账号</Hyperlink>
+            <xctk:WatermarkPasswordBox x:Name="confirmPasswordBox" Watermark="输入确认密码" Visibility="{Binding Path=IsLoginWindow, Converter={StaticResource booleanToHiddenConverter}}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="30" Margin="0,-4,0,0"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="3" Margin="10,25,0,0" Visibility="{Binding Path=IsLoginWindow, Converter={StaticResource booleanToHiddenConverter}}">
+                    <Hyperlink Style="{StaticResource hyberlinkEffect}" Click="loginHyperlink_Click">直接登录</Hyperlink>
             </TextBlock>
-            <TextBlock Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Margin="10,0,0,0">
-                    <Hyperlink Style="{StaticResource hyberlinkEffect}">找回密码</Hyperlink>
+            <TextBlock Grid.Row="1" Grid.Column="3" Margin="10,25,0,0" Visibility="{Binding Path=IsLoginWindow, Converter={StaticResource booleanToVisibleConverter}}">
+                    <Hyperlink Style="{StaticResource hyberlinkEffect}" Click="registerHyperlink_Click" >注册账号</Hyperlink>
+            </TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="3" Margin="10,5,0,0">
+                    <Hyperlink Style="{StaticResource hyberlinkEffectNotEnabled}">找回密码</Hyperlink>
             </TextBlock>
 
-            <CheckBox Grid.Row="3" Grid.Column="1" Foreground="gray" IsChecked="{Binding IsRememberMe,Mode=TwoWay}">记住我</CheckBox>
-            <CheckBox Grid.Row="3" Grid.Column="2" Foreground="gray" HorizontalAlignment="Right" IsChecked="{Binding IsMesLogin,Mode=TwoWay}">MES登录</CheckBox>
+            <CheckBox Grid.Row="3" Grid.Column="1" Foreground="gray" IsChecked="{Binding IsRememberMe,Mode=TwoWay}"  Visibility="{Binding Path=IsLoginWindow, Converter={StaticResource booleanToVisibleConverter}}" Margin="0,-2,0,0">记住我</CheckBox>
+            <CheckBox Grid.Row="3" Grid.Column="2" Foreground="gray" HorizontalAlignment="Right" IsChecked="{Binding IsMesLogin,Mode=TwoWay}"  Visibility="{Binding Path=IsLoginWindow, Converter={StaticResource booleanToVisibleConverter}}" Margin="0,-2,0,0">MES登录</CheckBox>
 
-            <Button x:Name="btnLogin" Style="{StaticResource chamferButton}"  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="登  录" Background="#09a3de"  Foreground="White" BorderThickness="0" Margin="0,-5,0,25"
-                        Command="CommonCommand:UserCommands.Login"/>
+            <Button x:Name="btnLoginOrRegister" Style="{StaticResource chamferButton}" Content="{Binding Path=IsLoginWindow, Converter={StaticResource booleanToButtonContentConverter}}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Background="#09a3de"  Foreground="White" BorderThickness="0" Margin="0,-5,0,25"
+                       Click="btnLoginOrRegister_Click"/>
         </Grid>
     </Border>
 

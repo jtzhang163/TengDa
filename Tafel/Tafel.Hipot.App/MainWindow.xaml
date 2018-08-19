@@ -89,7 +89,7 @@
 
         <!--<ObjectDataProvider x:Key="testers" ObjectType="local:AppViewModel" MethodName="GetTesters"/>-->
 
-        <local:VisibilityToCheckedConverter x:Key="VisibilityToCheckedConverter"/>
+        <utils:VisibilityToCheckedConverter x:Key="visibilityToCheckedConverter"/>
         <utils:RunStatusConverter x:Key="runStatusConverter"/>
         <utils:GraphShowModeConverter x:Key="graphShowModeConverter"/>
         <utils:GraphShowModeToBoolConverter x:Key="graphShowModeToBoolConverter"/>
@@ -156,7 +156,7 @@
             </Fluent:Ribbon.QuickAccessItems>
 
             <Fluent:RibbonTabItem Header="控制">
-                                        
+
                 <Fluent:RibbonGroupBox Header="基本操作" Height="80">
                     <Separator Width="20" Visibility="Hidden"/>
                     <Fluent:Button Name="BtnStart" Header="启动" Icon="/Images/Start_Green.png" LargeIcon="/Images/Start_Green.png" Click="BtnStart_Click"/>
@@ -283,7 +283,7 @@
                                         <d3:LegendItemsPanel.Resources>
                                             <DataTemplate x:Key="InteractiveDataDisplay.WPF.LineGraph">
                                                 <StackPanel Orientation="Horizontal">
-                                                    <CheckBox IsChecked="{Binding Path=Visibility, Converter={StaticResource VisibilityToCheckedConverter}, Mode=TwoWay}"/>
+                                                    <CheckBox IsChecked="{Binding Path=Visibility, Converter={StaticResource visibilityToCheckedConverter}, Mode=TwoWay}"/>
                                                     <Line Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
                                                     <TextBlock Margin="5,0,0,0" Text="{Binding Path=Description}"/>
                                                 </StackPanel>
@@ -309,7 +309,7 @@
                                         <d3:LegendItemsPanel.Resources>
                                             <DataTemplate x:Key="InteractiveDataDisplay.WPF.LineGraph">
                                                 <StackPanel Orientation="Horizontal">
-                                                    <CheckBox IsChecked="{Binding Path=Visibility, Converter={StaticResource VisibilityToCheckedConverter}, Mode=TwoWay}"/>
+                                                    <CheckBox IsChecked="{Binding Path=Visibility, Converter={StaticResource visibilityToCheckedConverter}, Mode=TwoWay}"/>
                                                     <Line Width="15" Height="15" X1="0" Y1="0" X2="15" Y2="15" Stroke="{Binding Path=Stroke}" StrokeThickness="2"/>
                                                     <TextBlock Margin="5,0,0,0" Text="{Binding Path=Description}"/>
                                                 </StackPanel>

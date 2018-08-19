@@ -73,7 +73,7 @@ namespace TengDa.Wpf
         /// <summary>
         /// 是否启用
         /// </summary>
-        public bool IsEnable { get; set; }
+        public bool IsEnabled { get; set; } = true;
 
         /// <summary>
         /// 所属类别Id
@@ -101,7 +101,7 @@ namespace TengDa.Wpf
             return Register(name, "", password, false, out msg);
         }
 
-        public static bool Register(string name, string number, string password, bool isEnable, out string msg)
+        public static bool Register(string name, string number, string password, bool isEnabled, out string msg)
         {
 
             User user = new User();
@@ -113,7 +113,7 @@ namespace TengDa.Wpf
             user.Name = name;
             user.Number = number;
             user.Password = Base64.EncodeBase64(password);
-            user.IsEnable = isEnable;
+            user.IsEnabled = isEnabled;
             user.RegisterTime = DateTime.Now;
             user.RoleId = Context.UserContext.Roles.Single(r => r.Name == "操作员").Id;
             user.ProfilePicture = "/Images/DefaultProfile.jpg";
@@ -135,6 +135,13 @@ namespace TengDa.Wpf
             user.LastLoginTime = DateTime.Now;
             user.LoginTimes++;
             Context.UserContext.SaveChanges();
+
+            if (!user.IsEnabled)
+            {
+                msg = user.Name + "尚未审核或已被禁用";
+                return false;
+            }
+
             AppCurrent.User = user;
 
             if (AppCurrent.User.Id > 0)

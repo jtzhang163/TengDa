@@ -171,5 +171,15 @@ namespace Tafel.Hipot.App
             };
         }
 
+        private bool isLoginWindow = true;
+        /// <summary>
+        /// LoginWindow是登录界面还是注册界面
+        /// </summary>
+        [Browsable(false)]
+        public bool IsLoginWindow
+        {
+            get => isLoginWindow;
+            set => SetProperty(ref isLoginWindow, value);
+        }
     }
 }

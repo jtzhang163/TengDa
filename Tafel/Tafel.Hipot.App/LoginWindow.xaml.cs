@@ -26,43 +26,71 @@ namespace Tafel.Hipot.App
                 var user = TengDa.Wpf.Context.UserContext.Users.SingleOrDefault(u => u.Id == Current.Option.LastLoginUserId);
                 if (user != null)
                 {
-                    this.loginUserNameTextBox.Text = user.Name;
-                    this.loginPasswordBox.Password = Base64.DecodeBase64(user.Password);
+                    this.userNameTextBox.Text = user.Name;
+                    this.passwordBox.Password = Base64.DecodeBase64(user.Password);
                 }
             }
         }
-        private void OnLogin(object sender, ExecutedRoutedEventArgs e)
+        private void btnLoginOrRegister_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(this.loginUserNameTextBox.Text))
+            if (string.IsNullOrEmpty(this.userNameTextBox.Text))
             {
                 Tip.Alert("请输入用户名");
                 return;
             }
-            if (string.IsNullOrEmpty(this.loginPasswordBox.Text))
+
+            if (string.IsNullOrEmpty(this.passwordBox.Text))
             {
                 Tip.Alert("请输入密码");
                 return;
             }
 
-            string msg = string.Empty;
-            if (Current.Option.IsMesLogin)
+            if (!Current.App.IsLoginWindow && string.IsNullOrEmpty(this.confirmPasswordBox.Text))
             {
-                //MES登录              
-                if (MES.Login(this.loginUserNameTextBox.Text, this.loginPasswordBox.Password, out msg))
+                Tip.Alert("请输入确认密码");
+                return;
+            }
+
+            if (!Current.App.IsLoginWindow && this.confirmPasswordBox.Text != this.passwordBox.Text)
+            {
+                Tip.Alert("两次输入密码不相同");
+                return;
+            }
+
+            string msg = string.Empty;
+            //登录
+            if (Current.App.IsLoginWindow)
+            {
+                if (Current.Option.IsMesLogin)
                 {
-                    AfterLogin();
+                    //MES登录              
+                    if (MES.Login(this.userNameTextBox.Text, this.passwordBox.Password, out msg))
+                    {
+                        AfterLogin();
+                    }
+                    else
+                    {
+                        Tip.Alert(msg);
+                    }
                 }
                 else
                 {
-                    Tip.Alert(msg);
+                    //普通登录
+                    if (User.Login(this.userNameTextBox.Text, this.passwordBox.Password, out msg))
+                    {
+                        AfterLogin();
+                    }
+                    else
+                    {
+                        Tip.Alert(msg);
+                    }
                 }
             }
-            else
-            {
-                //普通登录
-                if (User.Login(this.loginUserNameTextBox.Text, this.loginPasswordBox.Password, out msg))
+            else //注册
+            {     
+                if (User.Register(this.userNameTextBox.Text, this.passwordBox.Password, out msg))
                 {
-                    AfterLogin();
+                    AfterRegister();
                 }
                 else
                 {
@@ -70,13 +98,32 @@ namespace Tafel.Hipot.App
                 }
             }
 
+
+        }
+
+        private void AfterRegister()
+        {
+            Current.Option.LastLoginUserId = AppCurrent.User.Id;
+            OperationHelper.ShowTips(this.userNameTextBox.Text + "成功注册");
+            btnLoginOrRegister.Content = "正在注册...";
+            Thread t = new Thread(() =>
+            {
+                Thread.Sleep(2000);
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    //登录成功，关闭窗口          
+                    Current.App.IsLoginWindow = true;
+                    btnLoginOrRegister.Content = "登 录";
+                    Tip.Alert(this.userNameTextBox.Text + "成功注册，请让管理员审核后登录");
+                }));
+            });
+            t.Start();
         }
 
         private void AfterLogin()
         {
-            Current.Option.LastLoginUserId = AppCurrent.User.Id;
             OperationHelper.ShowTips(AppCurrent.User.Name + "成功登录");
-            btnLogin.Content = "正在登录...";
+            btnLoginOrRegister.Content = "正在登录...";
             Thread t = new Thread(() =>
             {
                 Thread.Sleep(2000);
@@ -94,6 +141,17 @@ namespace Tafel.Hipot.App
         private void BtnCloseWindow_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+
+        private void loginHyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            Current.App.IsLoginWindow = true;
+        }
+
+        private void registerHyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            Current.App.IsLoginWindow = false;
         }
     }
 }
