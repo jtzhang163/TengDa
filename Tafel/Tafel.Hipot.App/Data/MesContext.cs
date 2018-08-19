@@ -26,7 +26,7 @@ namespace Tafel.Hipot.App
             {
                 Name = "MES",
                 Host = "192.168.1.1",
-                IsEnable = true
+                IsEnabled = true
             };
             context.MESs.Add(mes);
         }

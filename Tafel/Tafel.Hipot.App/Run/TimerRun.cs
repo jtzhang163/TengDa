@@ -14,7 +14,7 @@ namespace Tafel.Hipot.App
 
         public void CheckTesterInfo(object sender, ElapsedEventArgs e)
         {
-            if (AppCurrent.IsRunning && Current.Tester.IsEnable)
+            if (AppCurrent.IsRunning && Current.Tester.IsEnabled)
             {
 
                 Current.Tester.GetInfo();
@@ -24,7 +24,7 @@ namespace Tafel.Hipot.App
 
         public void CheckCollectorInfo(object sender, ElapsedEventArgs e)
         {
-            if (AppCurrent.IsRunning && Current.Collector.IsEnable)
+            if (AppCurrent.IsRunning && Current.Collector.IsEnabled)
             {
 
                 Current.Collector.GetInfo();
@@ -34,7 +34,7 @@ namespace Tafel.Hipot.App
 
         public void CheckCoolerInfo(object sender, ElapsedEventArgs e)
         {
-            if (AppCurrent.IsRunning && Current.Cooler.IsEnable)
+            if (AppCurrent.IsRunning && Current.Cooler.IsEnabled)
             {
 
                 Current.Cooler.GetInfo();
@@ -44,7 +44,7 @@ namespace Tafel.Hipot.App
 
         public void CheckScanerInfo(object sender, ElapsedEventArgs e)
         {
-            if (AppCurrent.IsRunning && Current.Scaner.IsEnable && Current.Cooler.IsReadyScan) 
+            if (AppCurrent.IsRunning && Current.Scaner.IsEnabled && Current.Cooler.IsReadyScan) 
             {
 
                 Current.Scaner.GetInfo();
@@ -64,7 +64,7 @@ namespace Tafel.Hipot.App
 
         public void CheckMesInfo(object sender, ElapsedEventArgs e)
         {
-            if (AppCurrent.IsRunning && Current.Mes.IsEnable)
+            if (AppCurrent.IsRunning && Current.Mes.IsEnabled)
             {
                 MES.UploadMachineInfo("S");
                 MES.Upload();

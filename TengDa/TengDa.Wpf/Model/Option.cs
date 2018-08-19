@@ -59,7 +59,6 @@ namespace TengDa.Wpf
         {
 
             Option option = Context.OptionContext.Options.Where(o => o.Key == key).FirstOrDefault();
-            // return option != null ? option.Value : string.Empty;
             if (option != null)
             {
                 Context.OptionContext.Options.Where(o => o.Key == key).First().Value = value;

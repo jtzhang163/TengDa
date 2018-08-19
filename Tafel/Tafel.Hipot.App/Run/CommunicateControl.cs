@@ -14,7 +14,7 @@ namespace Tafel.Hipot.App
         /// </summary>
         public static bool CommunicateStart()
         {
-            if (Current.Tester.IsEnable)
+            if (Current.Tester.IsEnabled)
             {
                 var localPortNames = SerialPort.GetPortNames();
                 if (Array.IndexOf(localPortNames, Current.Tester.PortName) < 0)
@@ -34,7 +34,7 @@ namespace Tafel.Hipot.App
                 OperationHelper.ShowTips("连接电阻测试仪成功：" + Current.Tester.PortName);
             }
 
-            if (Current.Collector.IsEnable)
+            if (Current.Collector.IsEnabled)
             {
                 var localPortNames = SerialPort.GetPortNames();
                 if (Array.IndexOf(localPortNames, Current.Collector.PortName) < 0)
@@ -54,7 +54,7 @@ namespace Tafel.Hipot.App
                 OperationHelper.ShowTips("连接温度采集器成功：" + Current.Collector.PortName);
             }
 
-            if (Current.Cooler.IsEnable)
+            if (Current.Cooler.IsEnabled)
             {
                 if (!Current.Cooler.PLC.IsPingSuccess)
                 {
@@ -72,7 +72,7 @@ namespace Tafel.Hipot.App
                 OperationHelper.ShowTips("连接冷却机成功：" + Current.Cooler.PLC.IP);
             }
 
-            if (Current.Scaner.IsEnable)
+            if (Current.Scaner.IsEnabled)
             {
                 if (!Current.Scaner.IsPingSuccess)
                 {
@@ -90,7 +90,7 @@ namespace Tafel.Hipot.App
                 OperationHelper.ShowTips("连接扫码枪成功：" + Current.Scaner.IP);
             }
 
-            if (Current.Mes.IsEnable)
+            if (Current.Mes.IsEnabled)
             {
                 if (!Current.Mes.IsPingSuccess)
                 {
@@ -116,7 +116,7 @@ namespace Tafel.Hipot.App
         /// </summary>
         public static bool CommunicateStop()
         {
-            if (Current.Tester.IsEnable)
+            if (Current.Tester.IsEnabled)
             {
                 string msg = string.Empty;
                 if (!Current.Tester.DisConnect(out msg))
@@ -130,7 +130,7 @@ namespace Tafel.Hipot.App
                 OperationHelper.ShowTips("关闭串口连接成功：" + Current.Tester.PortName);
             }
 
-            if (Current.Collector.IsEnable)
+            if (Current.Collector.IsEnabled)
             {
                 string msg = string.Empty;
                 if (!Current.Collector.DisConnect(out msg))
@@ -144,7 +144,7 @@ namespace Tafel.Hipot.App
                 OperationHelper.ShowTips("关闭串口连接成功：" + Current.Collector.PortName);
             }
 
-            if (Current.Cooler.IsEnable)
+            if (Current.Cooler.IsEnabled)
             {
                 string msg = string.Empty;
                 if (!Current.Cooler.PLC.DisConnect(out msg))
@@ -158,7 +158,7 @@ namespace Tafel.Hipot.App
                 OperationHelper.ShowTips("关闭PLC连接成功：" + Current.Cooler.PLC.IP);
             }
 
-            if (Current.Scaner.IsEnable)
+            if (Current.Scaner.IsEnabled)
             {
                 string msg = string.Empty;
                 if (!Current.Scaner.DisConnect(out msg))
@@ -172,7 +172,7 @@ namespace Tafel.Hipot.App
                 OperationHelper.ShowTips("关闭扫码枪连接成功：" + Current.Scaner.IP);
             }
 
-            if (Current.Mes.IsEnable)
+            if (Current.Mes.IsEnabled)
             {
                 string msg = string.Empty;
                 if (!Current.Mes.DisConnect(out msg))

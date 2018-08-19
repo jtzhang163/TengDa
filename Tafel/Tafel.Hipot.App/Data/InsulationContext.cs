@@ -31,7 +31,7 @@ namespace Tafel.Hipot.App
                 Company = "日置(HIOKI)",
                 Model = "ST5520",
                 Number = "",
-                IsEnable = true,
+                IsEnabled = true,
                 PortName = "COM1",
                 BaudRate = 9600,
                 DataBits = 8,

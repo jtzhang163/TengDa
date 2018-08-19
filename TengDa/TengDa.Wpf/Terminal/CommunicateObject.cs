@@ -32,7 +32,7 @@ namespace TengDa.Wpf
         /// 是否启用
         /// </summary>
         [DisplayName("是否启用"), Category("常见设置"), ReadOnly(true)]
-        public bool IsEnable { get; set; } = true;
+        public bool IsEnabled { get; set; } = true;
 
         private bool isAlive;
         /// <summary>

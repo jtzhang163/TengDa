@@ -16,6 +16,7 @@ namespace TengDa
         {
             try
             {
+                if (str == null) { throw new Exception("str为null"); }
                 return Convert.ToInt32(str);
             }
             catch (Exception ex)
@@ -29,6 +30,7 @@ namespace TengDa
         {
             try
             {
+                if (str == null) { throw new Exception("str为null"); }
                 return DateTime.Parse(str);
             }
             catch (Exception ex)
@@ -44,6 +46,7 @@ namespace TengDa
         {
             try
             {
+                if (str == null) { throw new Exception("str为null"); }
                 return bool.Parse(str.ToLower());
             }
             catch (Exception ex)
@@ -57,6 +60,7 @@ namespace TengDa
         {
             try
             {
+                if (str == null) { throw new Exception("str为null"); }
                 return bool.Parse(str.ToLower());
             }
             catch (Exception ex)
@@ -71,6 +75,7 @@ namespace TengDa
         {
             try
             {
+                if (str == null) { throw new Exception("str为null"); }
                 return Convert.ToSingle(str);
             }
             catch (Exception ex)

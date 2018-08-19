@@ -27,7 +27,7 @@ namespace Tafel.Hipot.App
                 Company = "",
                 Model = "",
                 Number = "",
-                IsEnable = true,
+                IsEnabled = true,
                 PortName = "COM2",
                 BaudRate = 9600,
                 DataBits = 8,

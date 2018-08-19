@@ -18,12 +18,12 @@ namespace Tafel.Hipot.App
 
             var machineTrees = new List<MachineTree>
             {
-                new MachineTree() { Id = 1, Name = Current.Tester.Name, ParentId = 0 ,IsChecked = Current.Tester.IsEnable},
-                new MachineTree() { Id = 2, Name = Current.Collector.Name, ParentId = 0 ,IsChecked = Current.Collector.IsEnable},
-                new MachineTree() { Id = 3, Name = Current.Cooler.Name, ParentId = 0 ,IsChecked = Current.Cooler.IsEnable},
-                new MachineTree() { Id = 4, Name = Current.Scaner.Name, ParentId = 0 ,IsChecked = Current.Scaner.IsEnable},
-                //new MachineTree() { Id = 5, Name = Current.Cooler.PLC.Name, ParentId = 4 ,IsChecked = Current.Cooler.PLC.IsEnable},
-                new MachineTree() { Id = 6, Name = Current.Mes.Name, ParentId = 0 ,IsChecked = Current.Mes.IsEnable},
+                new MachineTree() { Id = 1, Name = Current.Tester.Name, ParentId = 0 ,IsChecked = Current.Tester.IsEnabled},
+                new MachineTree() { Id = 2, Name = Current.Collector.Name, ParentId = 0 ,IsChecked = Current.Collector.IsEnabled},
+                new MachineTree() { Id = 3, Name = Current.Cooler.Name, ParentId = 0 ,IsChecked = Current.Cooler.IsEnabled},
+                new MachineTree() { Id = 4, Name = Current.Scaner.Name, ParentId = 0 ,IsChecked = Current.Scaner.IsEnabled},
+                //new MachineTree() { Id = 5, Name = Current.Cooler.PLC.Name, ParentId = 4 ,IsChecked = Current.Cooler.PLC.IsEnabled},
+                new MachineTree() { Id = 6, Name = Current.Mes.Name, ParentId = 0 ,IsChecked = Current.Mes.IsEnabled},
             };
 
             this.SetItemsSourceData(machineTrees, m => m.Name, m => m.Id, m => m.ParentId, m => m.IsChecked);
@@ -143,27 +143,27 @@ namespace Tafel.Hipot.App
                     //**************改变设备启用状态 Start***********************
                     if (Caption == Current.Tester.Name)
                     {
-                        Current.Tester.IsEnable = value;
+                        Current.Tester.IsEnabled = value;
                         Context.InsulationContext.SaveChangesAsync();
                     }
                     else if (Caption == Current.Collector.Name)
                     {
-                        Current.Collector.IsEnable = value;
+                        Current.Collector.IsEnabled = value;
                         Context.CollectorContext.SaveChangesAsync();
                     }
                     else if (Caption == Current.Cooler.Name)
                     {
-                        Current.Cooler.IsEnable = value;
+                        Current.Cooler.IsEnabled = value;
                         Context.CoolerContext.SaveChangesAsync();
                     }
                     else if (Caption == Current.Scaner.Name)
                     {
-                        Current.Scaner.IsEnable = value;
+                        Current.Scaner.IsEnabled = value;
                         Context.ScanerContext.SaveChangesAsync();
                     }
                     else if (Caption == Current.Mes.Name)
                     {
-                        Current.Mes.IsEnable = value;
+                        Current.Mes.IsEnabled = value;
                         Context.MesContext.SaveChangesAsync();
                     }
                     //**************改变设备启用状态 Finished********************

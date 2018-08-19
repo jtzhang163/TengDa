@@ -29,7 +29,7 @@ namespace Tafel.Hipot.App
                 Company = "TengDa",
                 Model = "",
                 Number = "",
-                IsEnable = true,
+                IsEnabled = true,
                 PLC = new PLC
                 {
                     Name = "PLC",             
@@ -38,7 +38,7 @@ namespace Tafel.Hipot.App
                     Number = "",
                     IP = "192.168.1.5",
                     Port = 9094,
-                    IsEnable = true,
+                    IsEnabled = true,
                 }
             };
             context.Coolers.Add(cooler);

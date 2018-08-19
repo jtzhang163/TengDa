@@ -114,7 +114,7 @@ namespace Tafel.Hipot.App
         public static bool CheckSfc(string code, out string msg)
         {
 
-            if (!Current.Mes.IsEnable)
+            if (!Current.Mes.IsEnabled)
             {
                 msg = "MES未启用";
                 return false;
@@ -147,7 +147,7 @@ namespace Tafel.Hipot.App
 
         public static bool UploadBattery(string code, float resistance, float voltage, float temperature, float timespan)
         {
-            if (!Current.Mes.IsEnable)
+            if (!Current.Mes.IsEnabled)
             {
                 return false;
             }
@@ -185,7 +185,7 @@ namespace Tafel.Hipot.App
 
         public static void UploadMachineInfo(string state)
         {
-            if (!Current.Mes.IsEnable)
+            if (!Current.Mes.IsEnabled)
             {
                 return;
             }
