@@ -65,26 +65,41 @@ namespace Tafel.Hipot.App
             get => timeNow;
             set => SetProperty(ref timeNow, value);
         }
-
-        private string currentUserNameTip = string.Empty;
+    
         [Browsable(false)]
-        public string CurrentUserNameTip
+        public string LocalIPAddress => MES.LocalIPAddr.ToString();
+
+        [Browsable(false)]
+        public string CurrentProcess
         {
             get
             {
-                if (AppCurrent.User.Id < 1)
+                var tmp = Current.Option.CurrentProcess.Split(',');
+
+                if(tmp.Length < 2)
                 {
-                    currentUserNameTip = string.Empty;
+                    return "";
                 }
-                else
-                {
-                    currentUserNameTip = string.Format("当前用户: {0}", UserName);
-                }
-                return currentUserNameTip;
+
+                return string.Format("{0}【{1}】",tmp[0],tmp[1]);
             }
-            set => SetProperty(ref currentUserNameTip, value);
         }
 
+        [Browsable(false)]
+        public string CurrentStation
+        {
+            get
+            {
+                var tmp = Current.Option.CurrentStation.Split(',');
+
+                if (tmp.Length < 2)
+                {
+                    return "";
+                }
+
+                return string.Format("{0}【{1}】", tmp[0], tmp[1]);
+            }
+        }
         [Browsable(false)]
         public string UserName => AppCurrent.User.Name;
 

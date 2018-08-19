@@ -8,6 +8,11 @@
              xmlns:Fluent="urn:fluent-ribbon"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </UserControl.Resources>
     <UserControl.CommandBindings>
         <!--<CommandBinding Command="MainWin:UserCommand.OnShowUserView" Executed="OnShowUserView"/>-->
     </UserControl.CommandBindings>
@@ -23,40 +28,50 @@
             </Fluent:StatusBarItem> 
             <Separator HorizontalAlignment="Left" />
             -->
-            <Fluent:StatusBarItem Title="About User" Value="xxx" HorizontalAlignment="Left" Margin="10,0,0,0">
-                <TextBlock Text="{Binding CurrentUserNameTip}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown">
-                    <TextBlock.ToolTip>
-                        <ToolTip>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Source="{Binding UserProfilePicture}" Width="96" Height="96" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,10,0,10">
-                                    <Image.Clip>
-                                        <EllipseGeometry RadiusX="48" RadiusY="48" Center="48,48"/>
-                                    </Image.Clip>
-                                </Image>
-                                <Label Grid.Row="2" Grid.Column="0" Content="用户名称："/>
-                                <Label Grid.Row="2" Grid.Column="1" Content="{Binding UserName}"/>
-                                <Label Grid.Row="3" Grid.Column="0" Content="用户组别："/>
-                                <Label Grid.Row="3" Grid.Column="1" Content="{Binding UserGroupName}"/>
-                            </Grid>
-                        </ToolTip>
-                    </TextBlock.ToolTip>
-                </TextBlock>
+            <!--Title="About User" Value="xxx"-->
+            <Fluent:StatusBarItem HorizontalAlignment="Left">
+                <WrapPanel>
+                    <Label Content=" 当前用户："/>
+                    <TextBlock Text="{Binding UserName}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" VerticalAlignment="Center">
+                        <TextBlock.ToolTip>
+                            <ToolTip>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Source="{Binding UserProfilePicture}" Width="96" Height="96" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,10,0,10">
+                                        <Image.Clip>
+                                            <EllipseGeometry RadiusX="48" RadiusY="48" Center="48,48"/>
+                                        </Image.Clip>
+                                    </Image>
+                                    <Label Grid.Row="2" Grid.Column="0" Foreground="Black" Content="用户名称："/>
+                                    <Label Grid.Row="2" Grid.Column="1" Foreground="Black" Content="{Binding UserName}"/>
+                                    <Label Grid.Row="3" Grid.Column="0" Foreground="Black" Content="用户组别："/>
+                                    <Label Grid.Row="3" Grid.Column="1" Foreground="Black" Content="{Binding UserGroupName}"/>
+                                </Grid>
+                            </ToolTip>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <Label Content=" 本机IP："/>
+                    <Label Content="{Binding LocalIPAddress}"/>
+                    <Label Content=" 当前工序："/>
+                    <Label Content="{Binding CurrentProcess}"/>
+                    <Label Content=" 当前工位："/>
+                    <Label Content="{Binding CurrentStation}"/>
+                </WrapPanel>
             </Fluent:StatusBarItem>
 
             <Separator HorizontalAlignment="Left" />
 
             <Fluent:StatusBarItem HorizontalAlignment="Right" Margin="0,0,10,0">
-                <Label Content="{Binding TimeNow}" ContentStringFormat="yyyy/M/d H:mm:ss" Foreground="White"/>
+                <Label Content="{Binding TimeNow}" ContentStringFormat="yyyy/M/d H:mm:ss"/>
             </Fluent:StatusBarItem>
         </Fluent:StatusBar>
     </Grid>

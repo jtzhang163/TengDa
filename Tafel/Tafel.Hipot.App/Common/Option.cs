@@ -625,7 +625,7 @@ namespace Tafel.Hipot.App
                     currentOrderNo = TengDa.Wpf.Option.GetOption("CurrentOrderNo");
                     if (string.IsNullOrEmpty(currentOrderNo))
                     {
-                        currentOrderNo = "Known";
+                        currentOrderNo = "Unknown";
                         TengDa.Wpf.Option.SetOption("CurrentOrderNo", currentOrderNo, "当前工单");
                     }
                 }
