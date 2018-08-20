@@ -37,7 +37,7 @@ namespace TengDa.Wpf
                         new User
                         {
                             Name = "Administrator",
-                            NickName = "Administrator",
+                            NickName = "折翼の天使",
                             Password =  Base64.EncodeBase64("Administrator"),
                             RegisterTime = DateTime.Now,
                             ProfilePicture = "/Images/DefaultProfile.jpg"
@@ -54,7 +54,7 @@ namespace TengDa.Wpf
                         new User
                         {
                             Name = "Admin",
-                            NickName = "Admin",
+                            NickName = "棉花糖的夏天",
                             Password =  Base64.EncodeBase64("Admin"),
                             RegisterTime = DateTime.Now,
                             ProfilePicture = "/Images/DefaultProfile.jpg"
@@ -71,7 +71,7 @@ namespace TengDa.Wpf
                         new User
                         {
                             Name = "Maintainer",
-                            NickName = "Maintainer",
+                            NickName = "蓝色水晶恋",
                             Password =  Base64.EncodeBase64("Maintainer"),
                             RegisterTime = DateTime.Now,
                             ProfilePicture = "/Images/DefaultProfile.jpg"
@@ -88,11 +88,29 @@ namespace TengDa.Wpf
                         new User
                         {
                             Name = "Operator",
-                            NickName = "Operator",
+                            NickName = "秋天的落叶",
                             Password =  Base64.EncodeBase64("Operator"),
                             RegisterTime = DateTime.Now,
                             ProfilePicture = "/Images/DefaultProfile.jpg"
-                        }
+                        },
+
+                        new User
+                        {
+                            Name = "123456",
+                            NickName = "妳、卜嬞硪，硪卜怪伱",
+                            Password =  Base64.EncodeBase64("123456"),
+                            RegisterTime = DateTime.Now,
+                            ProfilePicture = "/Images/DefaultProfile.jpg"
+                        },
+
+                        new User
+                        {
+                            Name = "111111",
+                            NickName = "不分手的恋爱",
+                            Password =  Base64.EncodeBase64("111111"),
+                            RegisterTime = DateTime.Now,
+                            ProfilePicture = "/Images/DefaultProfile.jpg"
+                        },
                     }
                 }
             };
