@@ -131,6 +131,7 @@ namespace Tafel.Hipot.App
                 {
                     //登录成功，关闭窗口          
                     Current.App.MainWindowsBackstageIsOpen = false;
+                    Current.Option.LastLoginUserId = AppCurrent.User.Id;
                     new MainWindow().Show();
                     this.Close();
                 }));

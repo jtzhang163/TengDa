@@ -22,10 +22,10 @@
 
         <ObjectDataProvider x:Key="users" ObjectType="wpf:UserFactory" MethodName="GetUsers"/>
 
-        <ObjectDataProvider x:Key="roles" ObjectType="wpf:RoleFactory" MethodName="GetRoles"/>
+        <ObjectDataProvider x:Key="roles" ObjectType="wpf:RoleFactory" MethodName="GetLowAuthorityRoles"/>
 
         <DataTemplate x:Key="superAdminTemplate" DataType="{x:Type wpf:User}">
-            <Border Background="#0066CC" Margin="5" Padding="5">
+            <Border Background="Red" Margin="5" Padding="5">
                 <StackPanel Width="240" Orientation="Horizontal">
                     <Label Content="{Binding Name}"/>
                     <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='等级'}"/>
@@ -34,7 +34,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="adminTemplate" DataType="{x:Type wpf:User}">
-            <Border Background="#0077DD"  Margin="5" Padding="5">
+            <Border Background="HotPink"  Margin="5" Padding="5">
                 <StackPanel Width="240" Orientation="Horizontal">
                     <Label Content="{Binding Name}"/>
                     <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='等级'}"/>
@@ -43,7 +43,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="maintainerTemplate" DataType="{x:Type wpf:User}">
-            <Border Background="#0088EE"  Margin="5" Padding="5">
+            <Border Background="LimeGreen"  Margin="5" Padding="5">
                 <StackPanel Width="240" Orientation="Horizontal">
                     <Label Content="{Binding Name}"/>
                     <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='等级'}"/>
@@ -52,7 +52,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="operatorTemplate" DataType="{x:Type wpf:User}">
-            <Border Background="#0099FF"  Margin="5" Padding="5">
+            <Border Background="Yellow"  Margin="5" Padding="5">
                 <StackPanel Width="240" Orientation="Horizontal">
                     <Label Content="{Binding Name}"/>
                     <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='等级'}"/>
@@ -61,7 +61,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="roleDataTemplate">
-            <Label Content="{Binding Name}"/>
+            <Label Content="{Binding Name}" Padding="2"/>
         </DataTemplate>
 
         <!--圆角button-->
@@ -94,11 +94,12 @@
             <Button Margin="5" Padding="4" Content="Add Book" Click="AddBook" />
         </StackPanel>-->
         <Label Content="用户列表" DockPanel.Dock="Top" FontFamily="宋体" FontSize="25" FontWeight="Bold" Foreground="#2b579a" Margin="0,30,0,30"/>
-        <ListBox DockPanel.Dock="Left" ItemsSource="{Binding}" Margin="5,5,5,30" MinWidth="150"
-                 IsSynchronizedWithCurrentItem="True" ItemTemplateSelector="{StaticResource userTemplateSelector}"/>
+        <ListBox x:Name="UserListBox" DockPanel.Dock="Left" ItemsSource="{Binding}" Margin="5,5,5,30" MinWidth="150"
+                 IsSynchronizedWithCurrentItem="True" ItemTemplateSelector="{StaticResource userTemplateSelector}" SelectionChanged="UserListBox_SelectionChanged"/>
 
         <Grid Height="200" VerticalAlignment="Top" Margin="25,20,0,0">
             <Grid.RowDefinitions>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -109,19 +110,18 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="注册时间" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Label Content="上次登录" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Label Content="登录次数" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Label Content="是否启用" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Label Content="注册时间" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Label Content="上次登录" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Label Content="登录次数" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Label Content="是否启用" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Label x:Name="UserRoleLabel" Content="用户角色" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <!--<Label Content="用户角色" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
             <Label Content="{Binding RegisterTime}" ContentStringFormat="{}{0:yyyy-MM-dd HH:mm}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
             <Label Content="{Binding LastLoginTime}" ContentStringFormat="{}{0:yyyy-MM-dd HH:mm}"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
-            <Label Content="{Binding LoginTimes}" Grid.Row="2" Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
+            <Label Content="{Binding LoginTimes}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
             <CheckBox IsChecked="{Binding IsEnabled}" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
-            <!--<ComboBox DataContext="{StaticResource roles}" ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=roleDataTemplate}" SelectedIndex="{Binding Path=Role, Converter={StaticResource roleIndexConverter}}" SelectedValuePath="Role" Grid.Row="4" Grid.Column="1" Margin="5"/>-->
-            <!--<ComboBox ItemsSource="" Grid.Row="4" Grid.Column="1" Margin="5"/>-->
-            <Button Content="保存修改" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonSaveChanges_Click" Style="{StaticResource chamferButton}" Margin="5,0,0,0"/>
+            <ComboBox x:Name="UserRolesComboBox" DataContext="{StaticResource roles}" ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=roleDataTemplate}" Grid.Row="4" Grid.Column="1" Width="120" HorizontalAlignment="Left" Margin="0,5,5,5" SelectionChanged="UserRolesComboBox_SelectionChanged"/>
+            <Button x:Name="SaveChangesButton" Content="保存修改" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonSaveChanges_Click" Style="{StaticResource chamferButton}" Margin="5,0,0,0"/>
         </Grid>
     </DockPanel>
-
 </UserControl>
