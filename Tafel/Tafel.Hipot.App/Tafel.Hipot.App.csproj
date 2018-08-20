@@ -181,6 +181,7 @@
     <Compile Include="Model\Scaner.cs" />
     <Compile Include="Model\TemperatureCollector.cs" />
     <Compile Include="Model\MES.cs" />
+    <Compile Include="Utilities\Selector.cs" />
     <Compile Include="View\Machine\CommunicateStatusUC.xaml.cs">
       <DependentUpon>CommunicateStatusUC.xaml</DependentUpon>
     </Compile>
@@ -205,8 +206,14 @@
     <Compile Include="View\StatusBarUC.xaml.cs">
       <DependentUpon>StatusBarUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\User\UserDetailUC.xaml.cs">
-      <DependentUpon>UserDetailUC.xaml</DependentUpon>
+    <Compile Include="View\User\UserListUC.xaml.cs">
+      <DependentUpon>UserListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\CurrentUserUC.xaml.cs">
+      <DependentUpon>CurrentUserUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\AboutUserUC.xaml.cs">
+      <DependentUpon>AboutUserUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\User\UserUC.xaml.cs">
       <DependentUpon>UserUC.xaml</DependentUpon>
@@ -256,7 +263,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\User\UserDetailUC.xaml">
+    <Page Include="View\User\UserListUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\User\CurrentUserUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\User\AboutUserUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

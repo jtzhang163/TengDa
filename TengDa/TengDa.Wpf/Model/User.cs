@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -160,6 +161,21 @@ namespace TengDa.Wpf
             return true;
         }
 
+    }
+
+    public class UserFactory
+    {
+        private ObservableCollection<User> users = new ObservableCollection<User>();
+
+        public UserFactory()
+        {
+            Context.UserContext.Users.ToList().ForEach(u => users.Add(u));
+        }
+
+        public IEnumerable<User> GetUsers()
+        {
+            return users;
+        }
     }
 
 }

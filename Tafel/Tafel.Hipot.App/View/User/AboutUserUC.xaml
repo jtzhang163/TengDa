@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Tafel.Hipot.App.View.AboutUserUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Tafel.Hipot.App.View"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1200">
+    <StackPanel Orientation="Vertical">
+        <Label Content="用户说明：" FontFamily="宋体" FontSize="25" FontWeight="Bold" Foreground="#2b579a" Margin="0,30,30,0"/>
+        <TextBlock LineHeight="39" FontFamily="宋体" FontSize="20" Foreground="#2b579a" TextWrapping="Wrap" Margin="5,0,100,0">
+            <LineBreak/>该系统用户分为 3个等级，分别为操作员、维护人员、管理员，不同用户具有不同的操作权限，以下逐一进行说明：
+            <LineBreak/>1.操作员：具有基本的操作权限；
+            <LineBreak/>2.维护人员：可以修改部分配置项，可管理操作员用户；
+            <LineBreak/>3.管理员：可以修改全部配置项，可管理所有用户。
+            <LineBreak/>用户注册以后，首先需要由等级更高的用户审核，通过以后才可以登录使用该系统。
+        </TextBlock>
+    </StackPanel>
+</UserControl>

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace TengDa.Wpf
 {
@@ -35,5 +37,26 @@ namespace TengDa.Wpf
         public virtual ICollection<User> Users { get; set; }
         #endregion
 
+    }
+
+
+    public class RoleFactory
+    {
+        private ObservableCollection<Role> roles = new ObservableCollection<Role>();
+
+        public RoleFactory()
+        {
+            Context.UserContext.Roles.ToList().ForEach(r => roles.Add(r));
+        }
+
+        public IEnumerable<Role> GetRoles()
+        {
+            return roles;
+        }
+
+        public IEnumerable<Role> GetLowAuthorityRoles()
+        {
+            return roles.Where(r => r.Level <= AppCurrent.User.Role.Level);
+        }
     }
 }
