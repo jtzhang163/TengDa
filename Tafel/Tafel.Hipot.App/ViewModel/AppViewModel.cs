@@ -109,14 +109,69 @@ namespace Tafel.Hipot.App
         [Browsable(false)]
         public string UserProfilePicture => AppCurrent.User.ProfilePicture;
 
+        private string userNickName = string.Empty;
         [Browsable(false)]
-        public string UserNumber => AppCurrent.User.Number;
+        public string UserNickName
+        {
+            get
+            {
+                userNickName = AppCurrent.User.NickName;
+                return userNickName;
+            }
+            set
+            {
+                AppCurrent.User.NickName = value;
+                SetProperty(ref userNickName, value);
+            }
+        }
 
+        private string userNumber = string.Empty;
         [Browsable(false)]
-        public string UserPhoneNumber => AppCurrent.User.PhoneNumber;
+        public string UserNumber
+        {
+            get
+            {
+                userNumber = AppCurrent.User.Number;
+                return userNumber;
+            }
+            set
+            {
+                AppCurrent.User.Number = value;
+                SetProperty(ref userNumber, value);
+            }
+        }
 
+        private string userPhoneNumber = string.Empty;
         [Browsable(false)]
-        public string UserEmail => AppCurrent.User.Email;
+        public string UserPhoneNumber
+        {
+            get
+            {
+                userPhoneNumber = AppCurrent.User.PhoneNumber;
+                return userPhoneNumber;
+            }
+            set
+            {
+                AppCurrent.User.PhoneNumber = value;
+                SetProperty(ref userPhoneNumber, value);
+            }
+        }
+
+        private string userEmail = string.Empty;
+        [Browsable(false)]
+        public string UserEmail
+        {
+            get
+            {
+                userEmail = AppCurrent.User.Email;
+                return userEmail;
+            }
+            set
+            {
+                AppCurrent.User.Email = value;
+                SetProperty(ref userEmail, value);
+            }
+        }
 
 
         private bool mainWindowsBackstageIsOpen = false;
@@ -180,6 +235,17 @@ namespace Tafel.Hipot.App
         {
             get => isLoginWindow;
             set => SetProperty(ref isLoginWindow, value);
+        }
+
+        private bool isCurrentUserIsEdit = false;
+        /// <summary>
+        /// 当前用户界面处于编辑状态
+        /// </summary>
+        [Browsable(false)]
+        public bool IsCurrentUserIsEdit
+        {
+            get => isCurrentUserIsEdit;
+            set => SetProperty(ref isCurrentUserIsEdit, value);
         }
     }
 }

@@ -173,6 +173,19 @@ namespace Tafel.Hipot.App.Utilities
         }
     }
 
+    public class CurrentUserIsEditToButtonContentConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return (bool)value ? "保 存" : "编 辑";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     //public class UserTemplateSelector : DataTemplateSelector
     //{
     //    public override DataTemplate SelectTemplate(object item, DependencyObject container)

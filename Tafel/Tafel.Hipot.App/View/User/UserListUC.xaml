@@ -27,7 +27,7 @@
         <DataTemplate x:Key="superAdminTemplate" DataType="{x:Type wpf:User}">
             <Border Background="Red" Margin="5" Padding="5">
                 <StackPanel Width="240" Orientation="Horizontal">
-                    <Label Content="{Binding Name}"/>
+                    <Label Content="{Binding NickName}"/>
                     <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='等级'}"/>
                 </StackPanel>
             </Border>
@@ -36,7 +36,7 @@
         <DataTemplate x:Key="adminTemplate" DataType="{x:Type wpf:User}">
             <Border Background="HotPink"  Margin="5" Padding="5">
                 <StackPanel Width="240" Orientation="Horizontal">
-                    <Label Content="{Binding Name}"/>
+                    <Label Content="{Binding NickName}"/>
                     <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='等级'}"/>
                 </StackPanel>
             </Border>
@@ -45,7 +45,7 @@
         <DataTemplate x:Key="maintainerTemplate" DataType="{x:Type wpf:User}">
             <Border Background="LimeGreen"  Margin="5" Padding="5">
                 <StackPanel Width="240" Orientation="Horizontal">
-                    <Label Content="{Binding Name}"/>
+                    <Label Content="{Binding NickName}"/>
                     <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='等级'}"/>
                 </StackPanel>
             </Border>
@@ -54,7 +54,7 @@
         <DataTemplate x:Key="operatorTemplate" DataType="{x:Type wpf:User}">
             <Border Background="Yellow"  Margin="5" Padding="5">
                 <StackPanel Width="240" Orientation="Horizontal">
-                    <Label Content="{Binding Name}"/>
+                    <Label Content="{Binding NickName}"/>
                     <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='等级'}"/>
                 </StackPanel>
             </Border>
@@ -97,13 +97,14 @@
         <ListBox x:Name="UserListBox" DockPanel.Dock="Left" ItemsSource="{Binding}" Margin="5,5,5,30" MinWidth="150"
                  IsSynchronizedWithCurrentItem="True" ItemTemplateSelector="{StaticResource userTemplateSelector}" SelectionChanged="UserListBox_SelectionChanged"/>
 
-        <Grid Height="300" VerticalAlignment="Top" Margin="25,20,0,0">
+        <Grid Height="370" VerticalAlignment="Top" Margin="25,22,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -123,9 +124,9 @@
             <ComboBox x:Name="UserRolesComboBox" DataContext="{StaticResource roles}" ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=roleDataTemplate}" Grid.Row="4" Grid.Column="1" 
                      Width="120" HorizontalAlignment="Left" Margin="5,10,0,10" Padding="3,2,0,0" SelectionChanged="UserRolesComboBox_SelectionChanged"/>
 
-            <WrapPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,0">
-                <Button x:Name="SaveChangesButton" Content="保存修改" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Click="ButtonSaveChanges_Click" Style="{StaticResource chamferButton}"/>
-                <Button x:Name="DeleteUserButton" Content="删除用户" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Click="DeleteUserButton_Click" Style="{StaticResource chamferButton}" Margin="20,0,0,0"/>
+            <WrapPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,0">
+                <Button x:Name="SaveChangesButton" Content="保 存" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Click="ButtonSaveChanges_Click" Style="{StaticResource chamferButton}"/>
+                <Button x:Name="DeleteUserButton" Content="删 除" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Click="DeleteUserButton_Click" Style="{StaticResource chamferButton}" Margin="20,0,0,0"/>
             </WrapPanel>
         </Grid>
     </DockPanel>

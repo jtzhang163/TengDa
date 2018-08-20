@@ -32,7 +32,7 @@
             <Fluent:StatusBarItem HorizontalAlignment="Left">
                 <WrapPanel>
                     <Label Content=" 当前用户："/>
-                    <TextBlock Text="{Binding UserName}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding UserNickName}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" VerticalAlignment="Center">
                         <TextBlock.ToolTip>
                             <ToolTip>
                                 <Grid>
@@ -52,7 +52,7 @@
                                         </Image.Clip>
                                     </Image>
                                     <Label Grid.Row="2" Grid.Column="0" Foreground="Black" Content="用户名称："/>
-                                    <Label Grid.Row="2" Grid.Column="1" Foreground="Black" Content="{Binding UserName}"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Foreground="Black" Content="{Binding UserNickName}"/>
                                     <Label Grid.Row="3" Grid.Column="0" Foreground="Black" Content="用户组别："/>
                                     <Label Grid.Row="3" Grid.Column="1" Foreground="Black" Content="{Binding UserGroupName}"/>
                                 </Grid>

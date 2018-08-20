@@ -37,6 +37,7 @@ namespace TengDa.Wpf
                         new User
                         {
                             Name = "Administrator",
+                            NickName = "Administrator",
                             Password =  Base64.EncodeBase64("Administrator"),
                             RegisterTime = DateTime.Now,
                             ProfilePicture = "/Images/DefaultProfile.jpg"
@@ -53,6 +54,7 @@ namespace TengDa.Wpf
                         new User
                         {
                             Name = "Admin",
+                            NickName = "Admin",
                             Password =  Base64.EncodeBase64("Admin"),
                             RegisterTime = DateTime.Now,
                             ProfilePicture = "/Images/DefaultProfile.jpg"
@@ -69,6 +71,7 @@ namespace TengDa.Wpf
                         new User
                         {
                             Name = "Maintainer",
+                            NickName = "Maintainer",
                             Password =  Base64.EncodeBase64("Maintainer"),
                             RegisterTime = DateTime.Now,
                             ProfilePicture = "/Images/DefaultProfile.jpg"
@@ -85,6 +88,7 @@ namespace TengDa.Wpf
                         new User
                         {
                             Name = "Operator",
+                            NickName = "Operator",
                             Password =  Base64.EncodeBase64("Operator"),
                             RegisterTime = DateTime.Now,
                             ProfilePicture = "/Images/DefaultProfile.jpg"

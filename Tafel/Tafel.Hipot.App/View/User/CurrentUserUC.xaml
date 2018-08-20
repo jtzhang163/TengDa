@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:app="clr-namespace:Tafel.Hipot.App"
              xmlns:local="clr-namespace:Tafel.Hipot.App.View"
+             xmlns:utils="clr-namespace:Tafel.Hipot.App.Utilities"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:CommonCommand="clr-namespace:TengDa.Wpf;assembly=TengDa.Wpf"
              mc:Ignorable="d" 
@@ -16,13 +17,51 @@
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Foreground" Value="#2b579a"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Margin" Value="0,10,0,0"/>
         </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Times New Roman,宋体"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="#2b579a"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="0,-10,0,0"/>
+        </Style>
+
+        <utils:CurrentUserIsEditToButtonContentConverter x:Key="buttonContentConverter"/>
+
+        <!--圆角button-->
+        <Style x:Key="chamferButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5" Name="PART_Background">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#09a3de" Offset="0.0" />
+                                    <GradientStop Color="#09a3de" Offset="0.0" />
+                                    <GradientStop Color="#09a3de" Offset="0.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+
     </UserControl.Resources>
 
     <Grid Margin="0,0,20,0">
         <StackPanel Orientation="Vertical">
             <Label Content="当前用户" DockPanel.Dock="Top" FontFamily="宋体" FontSize="25" FontWeight="Bold" Foreground="#2b579a" Margin="0,30,0,30"/>
-            <Grid x:Name="gridUserDetail" Height="260">
+            <Grid x:Name="gridUserDetail" Height="380">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -35,6 +74,8 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="{Binding UserProfilePicture}" Width="96" Height="96">
                     <Image.Clip>
@@ -47,14 +88,19 @@
                 <Label Grid.Row="2" Grid.ColumnSpan="3"  Height="1" Background="Gray" VerticalAlignment="Center"/>
                 <!--<GridSplitter Grid.Row="2" Grid.ColumnSpan="2"  Height="5" Background="Blue" Foreground="Black"/>-->
 
-                <Label Content="工号：" Grid.Column="1" Grid.Row="3" Foreground="Black"/>
-                <Label Content="{Binding UserNumber}" Grid.Row="3" Grid.Column="2"/>
+                <Label Content="昵称：" Grid.Column="1" Grid.Row="3" Foreground="Black"/>
+                <TextBox Text="{Binding UserNickName}" Grid.Row="3" Grid.Column="2" IsEnabled="{Binding IsCurrentUserIsEdit}"/>
 
-                <Label Content="手机：" Grid.Column="1" Grid.Row="4" Foreground="Black"/>
-                <Label Content="{Binding UserPhoneNumber}" Grid.Row="4" Grid.Column="2"/>
+                <Label Content="工号：" Grid.Column="1" Grid.Row="4" Foreground="Black"/>
+                <TextBox Text="{Binding UserNumber}" Grid.Row="4" Grid.Column="2" IsEnabled="{Binding IsCurrentUserIsEdit}"/>
 
-                <Label Content="邮箱：" Grid.Column="1" Grid.Row="5" Foreground="Black"/>
-                <Label Content="{Binding UserEmail}" Grid.Row="5" Grid.Column="2"/>
+                <Label Content="手机：" Grid.Column="1" Grid.Row="5" Foreground="Black"/>
+                <TextBox Text="{Binding UserPhoneNumber}" Grid.Row="5" Grid.Column="2" IsEnabled="{Binding IsCurrentUserIsEdit}"/>
+
+                <Label Content="邮箱：" Grid.Column="1" Grid.Row="6" Foreground="Black"/>
+                <TextBox Text="{Binding UserEmail}" Grid.Row="6" Grid.Column="2" IsEnabled="{Binding IsCurrentUserIsEdit}"/>
+
+                <Button x:Name="EditOrSaveButton" Grid.Row="7" Grid.Column="2" Content="{Binding Path=IsCurrentUserIsEdit,Converter={StaticResource buttonContentConverter}}" Style="{StaticResource chamferButton}" Click="EditOrSaveButton_Click"/>
             </Grid>
         </StackPanel>
     </Grid>

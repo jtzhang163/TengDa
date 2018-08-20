@@ -19,14 +19,15 @@ namespace Tafel.Hipot.App.View
 
         }
 
-        private void hyberlinkSetting_Click(object sender, RoutedEventArgs e)
+        private void EditOrSaveButton_Click(object sender, RoutedEventArgs e)
         {
+            if (Current.App.IsCurrentUserIsEdit)
+            {
+                TengDa.Wpf.Context.UserContext.SaveChanges();
+                Tip.Alert("修改信息成功保存");
+            }
 
-        }
-
-        private void hyberlinkManage_Click(object sender, RoutedEventArgs e)
-        {
-
+            Current.App.IsCurrentUserIsEdit = !Current.App.IsCurrentUserIsEdit;
         }
     }
 }

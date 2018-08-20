@@ -10,6 +10,9 @@
     <UserControl.Resources>
         <!--集成资源-->
         <Style x:Key="hyberlinkEffect" TargetType="{x:Type Hyperlink}">
+            <Setter Property="FontSize" Value="30"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman,宋体"></Setter>
+            <Setter Property="Foreground" Value="#09a3de"></Setter>
             <Setter Property="Foreground" Value="#09a3de"></Setter>
             <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"></Setter>
             <Style.Triggers>
@@ -31,14 +34,8 @@
         <DockPanel Margin="30,30,0,0">
             <Label Content="用户" DockPanel.Dock="Top" FontSize="30" FontFamily="微软雅黑" Foreground="#2b579a" Margin="0,0,30,10"/>
             <WrapPanel DockPanel.Dock="Bottom" Height="100">
-                <TextBlock Width="100">
-                    <Hyperlink x:Name="hyberlinkLogout" FontSize="30" FontFamily="Times New Roman,宋体"  Style="{StaticResource hyberlinkEffect}" Click="hyberlinkLogout_Click">注销</Hyperlink>
-                </TextBlock>
-                <TextBlock Width="100">
-                    <Hyperlink x:Name="hyberlinkSetting" FontSize="30" FontFamily="Times New Roman,宋体"  Style="{StaticResource hyberlinkEffect}" Click="hyberlinkSetting_Click">编辑</Hyperlink>
-                </TextBlock>
-                <TextBlock Width="100">
-                    <Hyperlink x:Name="hyberlinkManage" FontSize="30" FontFamily="Times New Roman,宋体"  Style="{StaticResource hyberlinkEffect}" Click="hyberlinkManage_Click">管理</Hyperlink>
+                <TextBlock>
+                    <Hyperlink x:Name="hyberlinkLogout" Style="{StaticResource hyberlinkEffect}" Click="hyberlinkLogout_Click">退出登录</Hyperlink>
                 </TextBlock>
             </WrapPanel>
             <Grid>
