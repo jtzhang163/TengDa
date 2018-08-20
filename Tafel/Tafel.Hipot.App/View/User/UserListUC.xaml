@@ -97,14 +97,14 @@
         <ListBox x:Name="UserListBox" DockPanel.Dock="Left" ItemsSource="{Binding}" Margin="5,5,5,30" MinWidth="150"
                  IsSynchronizedWithCurrentItem="True" ItemTemplateSelector="{StaticResource userTemplateSelector}" SelectionChanged="UserListBox_SelectionChanged"/>
 
-        <Grid Height="200" VerticalAlignment="Top" Margin="25,20,0,0">
+        <Grid Height="300" VerticalAlignment="Top" Margin="25,20,0,0">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -119,9 +119,14 @@
             <Label Content="{Binding RegisterTime}" ContentStringFormat="{}{0:yyyy-MM-dd HH:mm}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
             <Label Content="{Binding LastLoginTime}" ContentStringFormat="{}{0:yyyy-MM-dd HH:mm}"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
             <Label Content="{Binding LoginTimes}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
-            <CheckBox IsChecked="{Binding IsEnabled}" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
-            <ComboBox x:Name="UserRolesComboBox" DataContext="{StaticResource roles}" ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=roleDataTemplate}" Grid.Row="4" Grid.Column="1" Width="120" HorizontalAlignment="Left" Margin="0,5,5,5" SelectionChanged="UserRolesComboBox_SelectionChanged"/>
-            <Button x:Name="SaveChangesButton" Content="保存修改" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonSaveChanges_Click" Style="{StaticResource chamferButton}" Margin="5,0,0,0"/>
+            <CheckBox IsChecked="{Binding IsEnabled}" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0"/>
+            <ComboBox x:Name="UserRolesComboBox" DataContext="{StaticResource roles}" ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=roleDataTemplate}" Grid.Row="4" Grid.Column="1" 
+                     Width="120" HorizontalAlignment="Left" Margin="5,10,0,10" Padding="3,2,0,0" SelectionChanged="UserRolesComboBox_SelectionChanged"/>
+
+            <WrapPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,0">
+                <Button x:Name="SaveChangesButton" Content="保存修改" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Click="ButtonSaveChanges_Click" Style="{StaticResource chamferButton}"/>
+                <Button x:Name="DeleteUserButton" Content="删除用户" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Click="DeleteUserButton_Click" Style="{StaticResource chamferButton}" Margin="20,0,0,0"/>
+            </WrapPanel>
         </Grid>
     </DockPanel>
 </UserControl>
