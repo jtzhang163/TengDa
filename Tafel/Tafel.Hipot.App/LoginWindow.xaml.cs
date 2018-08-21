@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using TengDa.Encrypt;
 using TengDa.Wpf;
 
@@ -28,6 +30,7 @@ namespace Tafel.Hipot.App
                 {
                     this.userNameTextBox.Text = user.Name;
                     this.passwordBox.Password = Base64.DecodeBase64(user.Password);
+                    this.ProfileImage.Source = new BitmapImage(new Uri(user.ProfilePicture, UriKind.Relative)); ;
                 }
             }
         }
