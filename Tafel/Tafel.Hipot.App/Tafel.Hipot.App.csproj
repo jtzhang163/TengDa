@@ -227,6 +227,9 @@
     <Compile Include="View\AboutUC.xaml.cs">
       <DependentUpon>AboutUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ChangePwdWindow.xaml.cs">
+      <DependentUpon>ChangePwdWindow.xaml</DependentUpon>
+    </Compile>
     <Content Include="Style\Style.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -293,6 +296,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AboutUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ChangePwdWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

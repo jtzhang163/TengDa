@@ -24,9 +24,17 @@ namespace Tafel.Hipot.App.View
         private void DeleteUserButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var user = (User)UserListBox.SelectedItem;
-            TengDa.Wpf.Context.UserContext.Users.Remove(user);
-            TengDa.Wpf.Context.UserContext.SaveChanges();
-            Tip.Alert("用户删除成功，重启软件即可生效！");
+            if (TengDa.Wpf.Context.UserContext.Users.Any(u => u.Id == user.Id))
+            {
+                TengDa.Wpf.Context.UserContext.Users.Remove(user);
+                TengDa.Wpf.Context.UserContext.SaveChanges();
+                Tip.Alert("用户删除成功，重启软件即可生效！");
+            }
+            else
+            {
+                Tip.Alert("该用户已删除，请勿重复操作！");
+            }
+
         }
 
 

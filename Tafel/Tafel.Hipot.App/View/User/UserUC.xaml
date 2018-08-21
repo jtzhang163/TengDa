@@ -8,9 +8,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1200">
     <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,5,0,0"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+        </Style>
         <!--集成资源-->
         <Style x:Key="hyberlinkEffect" TargetType="{x:Type Hyperlink}">
-            <Setter Property="FontSize" Value="30"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
             <Setter Property="FontFamily" Value="Times New Roman,宋体"></Setter>
             <Setter Property="Foreground" Value="#09a3de"></Setter>
             <Setter Property="Foreground" Value="#09a3de"></Setter>
@@ -29,12 +33,12 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+       
     </UserControl.Resources>
     <Grid>
         <DockPanel Margin="30,30,0,0">
             <Label Content="用户" DockPanel.Dock="Top" FontSize="30" FontFamily="微软雅黑" Foreground="#2b579a" Margin="0,0,30,10"/>
-            <StackPanel DockPanel.Dock="Bottom" Height="100" Orientation="Vertical">
-
+            <StackPanel DockPanel.Dock="Bottom" Height="120" Orientation="Vertical">
                 <TextBlock>
                     <Hyperlink x:Name="ChangeProfileHyberlink" Style="{StaticResource hyberlinkEffect}" Click="ChangeProfileHyberlink_Click">更换头像</Hyperlink>
                 </TextBlock>

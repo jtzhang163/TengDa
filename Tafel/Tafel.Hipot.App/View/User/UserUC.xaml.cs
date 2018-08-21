@@ -35,7 +35,8 @@ namespace Tafel.Hipot.App.View
 
         private void ChangePwdHyberlink_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            var win = new ChangePwdWindow();
+            win.ShowDialog();
         }
     }
 }
