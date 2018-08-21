@@ -178,15 +178,6 @@ namespace Tafel.Hipot.App
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            if (AppCurrent.User.Id < 0)
-            {
-                if (Verify.Show("尚未登录提示", "请先登录"))
-                {
-                    LoginWindow window = new LoginWindow();
-                    window.ShowDialog();
-                }
-                return;
-            }
 
             if (AppCurrent.IsRunning)
             {
@@ -205,16 +196,6 @@ namespace Tafel.Hipot.App
 
         private void BtnStop_Click(object sender, RoutedEventArgs e)
         {
-            if (AppCurrent.User.Id < 0)
-            {
-                if (Verify.Show("尚未登录提示", "请先登录"))
-                {
-                    LoginWindow window = new LoginWindow();
-                    window.ShowDialog();
-                }
-                return;
-            }
-
             if (!AppCurrent.IsRunning)
             {
                 OperationHelper.ShowTips("系统已暂停运行，请勿重复点击！");
@@ -228,19 +209,16 @@ namespace Tafel.Hipot.App
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
         {
-            if (AppCurrent.User.Id < 0)
+
+            if (Current.App.RunStatus == TengDa.RunStatus.运行)
             {
-                if (Verify.Show("尚未登录提示", "请先登录"))
-                {
-                    LoginWindow window = new LoginWindow();
-                    window.ShowDialog();                  
-                }
+                Tip.Alert("系统正在运行，复位无效，请停止运行后再执行复位操作！");
                 return;
             }
 
-            if (AppCurrent.IsRunning)
+            if (Current.App.RunStatus == TengDa.RunStatus.闲置)
             {
-                OperationHelper.ShowTips("请先停止运行！", isShowMessageBox: true);
+                Tip.Alert("系统尚未启动，复位操作无效！");
                 return;
             }
 

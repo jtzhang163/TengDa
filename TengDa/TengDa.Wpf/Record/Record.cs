@@ -17,7 +17,7 @@ namespace TengDa.Wpf
         [NotMapped]
         public virtual User User
         {
-            get => Context.UserContext.Users.Single(u => u.Id == UserId);
+            get => Context.UserContext.Users.SingleOrDefault(u => u.Id == UserId) ?? new User();
             set => UserId = value.Id;
         }
 
