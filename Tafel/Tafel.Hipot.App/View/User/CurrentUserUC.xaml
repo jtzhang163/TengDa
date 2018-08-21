@@ -11,51 +11,29 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <UserControl.Resources>
-     
-        <Style TargetType="Label">
-            <Setter Property="FontFamily" Value="Times New Roman,宋体"/>
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="Foreground" Value="#2b579a"/>
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="Margin" Value="0,10,0,0"/>
-        </Style>
 
-        <Style TargetType="TextBox">
-            <Setter Property="FontFamily" Value="Times New Roman,宋体"/>
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="Foreground" Value="#2b579a"/>
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Margin" Value="0,-10,0,0"/>
-        </Style>
-
-        <utils:CurrentUserIsEditToButtonContentConverter x:Key="buttonContentConverter"/>
-
-        <!--圆角button-->
-        <Style x:Key="chamferButton" TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5" Name="PART_Background">
-                            <Border.Background>
-                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                    <GradientStop Color="#09a3de" Offset="0.0" />
-                                    <GradientStop Color="#09a3de" Offset="0.0" />
-                                    <GradientStop Color="#09a3de" Offset="0.0" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Width" Value="60"/>
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-        </Style>
-
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Style/Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="Times New Roman,宋体"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Foreground" Value="#2b579a"/>
+                <Setter Property="VerticalAlignment" Value="Bottom"/>
+                <Setter Property="Margin" Value="0,10,0,0"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="FontFamily" Value="Times New Roman,宋体"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Foreground" Value="#2b579a"/>
+                <Setter Property="VerticalAlignment" Value="Bottom"/>
+                <Setter Property="Width" Value="200"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="0,-10,0,0"/>
+            </Style>
+            <utils:CurrentUserIsEditToButtonContentConverter x:Key="buttonContentConverter"/>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid Margin="0,0,20,0">
@@ -100,7 +78,7 @@
                 <Label Content="邮箱：" Grid.Column="1" Grid.Row="6"/>
                 <TextBox Text="{Binding UserEmail}" Grid.Row="6" Grid.Column="2" IsEnabled="{Binding IsCurrentUserIsEdit}"/>
 
-                <Button x:Name="EditOrSaveButton" Grid.Row="7" Grid.Column="2" Content="{Binding Path=IsCurrentUserIsEdit,Converter={StaticResource buttonContentConverter}}" Style="{StaticResource chamferButton}" Click="EditOrSaveButton_Click"/>
+                <Button x:Name="EditOrSaveButton" Grid.Row="7" Grid.Column="2" Content="{Binding Path=IsCurrentUserIsEdit,Converter={StaticResource buttonContentConverter}}" Style="{DynamicResource ChamferButton}" Click="EditOrSaveButton_Click" HorizontalAlignment="Left"/>
             </Grid>
         </StackPanel>
     </Grid>

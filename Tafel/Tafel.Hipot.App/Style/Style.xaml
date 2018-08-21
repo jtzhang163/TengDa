@@ -20,6 +20,9 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="Height" Value="25"/>
     </Style>
 
 </ResourceDictionary>

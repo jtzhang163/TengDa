@@ -233,7 +233,7 @@
                 <TabItem Header="数据曲线">
                     <DockPanel>
                         <DockPanel DockPanel.Dock="Bottom" Height="60" Margin="10,0,10,0">
-                            <Button x:Name="BtnShowHistoryData" DockPanel.Dock="Right" Width="60" Content="显 示" Height="25" Click="BtnShowHistoryData_Click"  Style="{DynamicResource ChamferButton}" Foreground="White" IsEnabled="{Binding GraphShowMode,Converter={StaticResource graphShowModeToBoolConverter}}"/>
+                            <Button x:Name="BtnShowHistoryData" DockPanel.Dock="Right" Width="60" Content="显 示" Height="25" Click="BtnShowHistoryData_Click"  Style="{DynamicResource ChamferButton}" IsEnabled="{Binding GraphShowMode,Converter={StaticResource graphShowModeToBoolConverter}}"/>
                             <WrapPanel VerticalAlignment="Center">
                                 <Label Content="选择图表显示模式：" VerticalAlignment="Center"/>
                                 <RadioButton Content="实时数据" Margin="10" IsChecked="{Binding Path=GraphShowMode,Converter={StaticResource graphShowModeConverter},ConverterParameter={x:Static local:GraphShowMode.实时数据}}"></RadioButton>
