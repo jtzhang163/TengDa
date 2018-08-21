@@ -33,11 +33,20 @@
     <Grid>
         <DockPanel Margin="30,30,0,0">
             <Label Content="用户" DockPanel.Dock="Top" FontSize="30" FontFamily="微软雅黑" Foreground="#2b579a" Margin="0,0,30,10"/>
-            <WrapPanel DockPanel.Dock="Bottom" Height="100">
+            <StackPanel DockPanel.Dock="Bottom" Height="100" Orientation="Vertical">
+
                 <TextBlock>
-                    <Hyperlink x:Name="hyberlinkLogout" Style="{StaticResource hyberlinkEffect}" Click="hyberlinkLogout_Click">退出登录</Hyperlink>
+                    <Hyperlink x:Name="ChangeProfileHyberlink" Style="{StaticResource hyberlinkEffect}" Click="ChangeProfileHyberlink_Click">更换头像</Hyperlink>
                 </TextBlock>
-            </WrapPanel>
+
+                <TextBlock>
+                    <Hyperlink x:Name="ChangePwdHyberlink" Style="{StaticResource hyberlinkEffect}" Click="ChangePwdHyberlink_Click">修改密码</Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink x:Name="LogoutHyberlink" Style="{StaticResource hyberlinkEffect}" Click="LogoutHyberlink_Click">退出登录</Hyperlink>
+                </TextBlock>
+            </StackPanel>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>

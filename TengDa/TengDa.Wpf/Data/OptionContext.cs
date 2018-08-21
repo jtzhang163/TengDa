@@ -25,7 +25,6 @@ namespace TengDa.Wpf
             var options = new List<Option>()
             {
                 new Option("AppName","XXXXXX系统","应用程序名称"),
-                new Option("RememberUserId","1")
             };
             options.ForEach(o => context.Options.Add(o));
         }

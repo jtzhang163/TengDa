@@ -227,6 +227,11 @@
     <Compile Include="View\AboutUC.xaml.cs">
       <DependentUpon>AboutUC.xaml</DependentUpon>
     </Compile>
+    <Content Include="Style\Style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Page Include="View\Machine\CommunicateStatusUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -310,7 +315,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Images\制作.pptx" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -337,39 +341,97 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\DefaultProfile.jpg" />
-    <Resource Include="Images\Exit.PNG" />
-    <Resource Include="Images\Change_Password.PNG" />
-    <Resource Include="Images\Exit_Red.png" />
-    <Resource Include="Images\Gray_Round.png" />
-    <Resource Include="Images\Green_Round.png" />
-    <Resource Include="Images\login.png" />
-    <Resource Include="Images\logo.jpg" />
-    <Resource Include="Images\logo.PNG" />
-    <Resource Include="Images\logout.png" />
-    <Resource Include="Images\MES.jpg" />
-    <Resource Include="Images\MES.PNG" />
-    <Resource Include="Images\Oven.jpg" />
-    <Resource Include="Images\Red_Round.png" />
-    <Resource Include="Images\register.png" />
-    <Resource Include="Images\Reset_green.png" />
-    <Resource Include="Images\Reset_Lime.png" />
-    <Resource Include="Images\RGV.jpg" />
-    <Resource Include="Images\Rgv_Track_Lime.PNG" />
-    <Resource Include="Images\Settings_green.png" />
-    <Resource Include="Images\Start_Green.png" />
-    <Resource Include="Images\Start_Green_1.png" />
-    <Resource Include="Images\Stop_Red.png" />
-    <Resource Include="Images\Switch_green.png" />
-    <Resource Include="Images\Verify.png" />
-    <Resource Include="Images\Yellow_Red_Round.png" />
-    <Resource Include="Images\Yellow_Round.png" />
+    <Content Include="Images\DefaultProfile.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Exit.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Change_Password.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Exit_Red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Gray_Round.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Green_Round.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\login.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\logo.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\logout.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\MES.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\MES.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Oven.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Red_Round.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\register.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Reset_green.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Reset_Lime.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Rgv_Track_Lime.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Settings_green.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Start_Green.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Start_Green_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Stop_Red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Switch_green.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Verify.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Yellow_Red_Round.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Yellow_Round.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="TengDa.ico" />
-    <Resource Include="Images\SystemLog.png" />
-    <Resource Include="Images\DataLog.png" />
-    <Resource Include="Images\Alarm.png" />
-    <Resource Include="Images\Report.png" />
-    <Resource Include="Images\Setting.png" />
+    <Content Include="Images\SystemLog.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\DataLog.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Alarm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Report.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Setting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Videos\LoginHead.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

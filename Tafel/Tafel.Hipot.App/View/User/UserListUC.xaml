@@ -26,42 +26,70 @@
 
         <DataTemplate x:Key="superAdminTemplate" DataType="{x:Type wpf:User}">
             <Border Background="Red" Margin="5" Padding="5">
-                <StackPanel Width="240" Orientation="Horizontal">
-                    <Label Content="{Binding NickName}"/>
-                    <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='等级'}"/>
-                </StackPanel>
+                <DockPanel>
+                    <Image DockPanel.Dock="Left" Source="{Binding ProfilePicture}" Width="48" Height="48">
+                        <Image.Clip>
+                            <EllipseGeometry RadiusX="24" RadiusY="24" Center="24,24"/>
+                        </Image.Clip>
+                    </Image>
+                    <StackPanel Width="240">
+                        <Label Content="{Binding Nickname}"/>
+                        <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='Level'}"/>
+                    </StackPanel>
+                </DockPanel>
             </Border>
         </DataTemplate>
 
         <DataTemplate x:Key="adminTemplate" DataType="{x:Type wpf:User}">
-            <Border Background="HotPink"  Margin="5" Padding="5">
-                <StackPanel Width="240" Orientation="Horizontal">
-                    <Label Content="{Binding NickName}"/>
-                    <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='等级'}"/>
-                </StackPanel>
+            <Border Background="HotPink" Margin="5" Padding="5">
+                <DockPanel>
+                    <Image DockPanel.Dock="Left" Source="{Binding ProfilePicture}" Width="48" Height="48">
+                        <Image.Clip>
+                            <EllipseGeometry RadiusX="24" RadiusY="24" Center="24,24"/>
+                        </Image.Clip>
+                    </Image>
+                    <StackPanel Width="240">
+                        <Label Content="{Binding Nickname}"/>
+                        <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='Level'}"/>
+                    </StackPanel>
+                </DockPanel>
             </Border>
         </DataTemplate>
 
         <DataTemplate x:Key="maintainerTemplate" DataType="{x:Type wpf:User}">
-            <Border Background="LimeGreen"  Margin="5" Padding="5">
-                <StackPanel Width="240" Orientation="Horizontal">
-                    <Label Content="{Binding NickName}"/>
-                    <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='等级'}"/>
-                </StackPanel>
+            <Border Background="LimeGreen" Margin="5" Padding="5">
+                <DockPanel>
+                    <Image DockPanel.Dock="Left" Source="{Binding ProfilePicture}" Width="48" Height="48">
+                        <Image.Clip>
+                            <EllipseGeometry RadiusX="24" RadiusY="24" Center="24,24"/>
+                        </Image.Clip>
+                    </Image>
+                    <StackPanel Width="240">
+                        <Label Content="{Binding Nickname}"/>
+                        <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='Level'}"/>
+                    </StackPanel>
+                </DockPanel>
             </Border>
         </DataTemplate>
 
         <DataTemplate x:Key="operatorTemplate" DataType="{x:Type wpf:User}">
-            <Border Background="Yellow"  Margin="5" Padding="5">
-                <StackPanel Width="240" Orientation="Horizontal">
-                    <Label Content="{Binding NickName}"/>
-                    <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='等级'}"/>
-                </StackPanel>
+            <Border Background="Yellow" Margin="5" Padding="5">
+                <DockPanel>
+                    <Image DockPanel.Dock="Left" Source="{Binding ProfilePicture}" Width="48" Height="48">
+                        <Image.Clip>
+                            <EllipseGeometry RadiusX="24" RadiusY="24" Center="24,24"/>
+                        </Image.Clip>
+                    </Image>
+                    <StackPanel Width="240">
+                        <Label Content="{Binding Nickname}"/>
+                        <Label Content="{Binding Role, Converter={StaticResource roleNameTipConverter},ConverterParameter='Level'}"/>
+                    </StackPanel>
+                </DockPanel>
             </Border>
         </DataTemplate>
 
         <DataTemplate x:Key="roleDataTemplate">
-            <Label Content="{Binding Name}" Padding="2"/>
+            <Label Content="{Binding Name}" Margin="0"/>
         </DataTemplate>
 
         <!--圆角button-->
@@ -87,6 +115,14 @@
             <Setter Property="Height" Value="25"/>
         </Style>
 
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Times New Roman,宋体"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="#2b579a"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
     </UserControl.Resources>
 
     <DockPanel DataContext="{StaticResource users}">
@@ -97,34 +133,36 @@
         <ListBox x:Name="UserListBox" DockPanel.Dock="Left" ItemsSource="{Binding}" Margin="5,5,5,30" MinWidth="150"
                  IsSynchronizedWithCurrentItem="True" ItemTemplateSelector="{StaticResource userTemplateSelector}" SelectionChanged="UserListBox_SelectionChanged"/>
 
-        <Grid Height="370" VerticalAlignment="Top" Margin="25,22,0,0">
+        <Grid Height="400" VerticalAlignment="Top" Margin="25,20,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="注册时间" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Label Content="上次登录" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Label Content="登录次数" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Label Content="是否启用" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Label x:Name="UserRoleLabel" Content="用户角色" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <!--<Label Content="用户角色" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
-            <Label Content="{Binding RegisterTime}" ContentStringFormat="{}{0:yyyy-MM-dd HH:mm}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
-            <Label Content="{Binding LastLoginTime}" ContentStringFormat="{}{0:yyyy-MM-dd HH:mm}"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
-            <Label Content="{Binding LoginTimes}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
-            <CheckBox IsChecked="{Binding IsEnabled}" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0"/>
-            <ComboBox x:Name="UserRolesComboBox" DataContext="{StaticResource roles}" ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=roleDataTemplate}" Grid.Row="4" Grid.Column="1" 
-                     Width="120" HorizontalAlignment="Left" Margin="5,10,0,10" Padding="3,2,0,0" SelectionChanged="UserRolesComboBox_SelectionChanged"/>
+            <Label Content="用  户  名" Grid.Row="0"/>
+            <Label Content="注册时间" Grid.Row="1"/>
+            <Label Content="上次登录" Grid.Row="2"/>
+            <Label Content="登录次数" Grid.Row="3"/>
+            <Label Content="是否启用" Grid.Row="4"/>
+            <Label x:Name="UserRoleLabel" Content="用户角色" Grid.Row="5"/>
+            <Label Content="{Binding Name}" Grid.Row="0" Grid.Column="1"/>
+            <Label Content="{Binding RegisterTime}" ContentStringFormat="{}{0:yyyy-MM-dd HH:mm}" Grid.Row="1" Grid.Column="1"/>
+            <Label Content="{Binding LastLoginTime}" ContentStringFormat="{}{0:yyyy-MM-dd HH:mm}"  Grid.Row="2" Grid.Column="1"/>
+            <Label Content="{Binding LoginTimes}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
+            <CheckBox IsChecked="{Binding IsEnabled}" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Grid.Row="4" Grid.Column="1" Margin="5,0,0,0" VerticalAlignment="Center"/>
+            <ComboBox x:Name="UserRolesComboBox" DataContext="{StaticResource roles}" ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=roleDataTemplate}" Grid.Row="5" Grid.Column="1" 
+                     Width="120" Margin="5,0,0,0" Padding="0,1,0,0" SelectionChanged="UserRolesComboBox_SelectionChanged"  HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-            <WrapPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,0">
+            <WrapPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0">
                 <Button x:Name="SaveChangesButton" Content="保 存" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Click="ButtonSaveChanges_Click" Style="{StaticResource chamferButton}"/>
                 <Button x:Name="DeleteUserButton" Content="删 除" IsEnabled="{Binding Path=Role, Converter={StaticResource roleToIsEnabledConverter}}" Click="DeleteUserButton_Click" Style="{StaticResource chamferButton}" Margin="20,0,0,0"/>
             </WrapPanel>

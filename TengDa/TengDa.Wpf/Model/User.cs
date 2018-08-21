@@ -24,7 +24,7 @@ namespace TengDa.Wpf
         /// 昵称
         /// </summary>
         [MaxLength(50)]
-        public string NickName { get; set; }
+        public string Nickname { get; set; }
 
         /// <summary>
         /// 用户头像

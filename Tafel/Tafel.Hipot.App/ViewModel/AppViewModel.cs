@@ -109,19 +109,19 @@ namespace Tafel.Hipot.App
         [Browsable(false)]
         public string UserProfilePicture => AppCurrent.User.ProfilePicture;
 
-        private string userNickName = string.Empty;
+        private string userNickname = string.Empty;
         [Browsable(false)]
-        public string UserNickName
+        public string UserNickname
         {
             get
             {
-                userNickName = AppCurrent.User.NickName;
-                return userNickName;
+                userNickname = AppCurrent.User.Nickname;
+                return userNickname;
             }
             set
             {
-                AppCurrent.User.NickName = value;
-                SetProperty(ref userNickName, value);
+                AppCurrent.User.Nickname = value;
+                SetProperty(ref userNickname, value);
             }
         }
 

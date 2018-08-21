@@ -88,16 +88,16 @@
                 <Label Grid.Row="2" Grid.ColumnSpan="3"  Height="1" Background="Gray" VerticalAlignment="Center"/>
                 <!--<GridSplitter Grid.Row="2" Grid.ColumnSpan="2"  Height="5" Background="Blue" Foreground="Black"/>-->
 
-                <Label Content="昵称：" Grid.Column="1" Grid.Row="3" Foreground="Black"/>
-                <TextBox Text="{Binding UserNickName}" Grid.Row="3" Grid.Column="2" IsEnabled="{Binding IsCurrentUserIsEdit}"/>
+                <Label Content="昵称：" Grid.Column="1" Grid.Row="3"/>
+                <TextBox Text="{Binding UserNickname}" Grid.Row="3" Grid.Column="2" IsEnabled="{Binding IsCurrentUserIsEdit}"/>
 
-                <Label Content="工号：" Grid.Column="1" Grid.Row="4" Foreground="Black"/>
+                <Label Content="工号：" Grid.Column="1" Grid.Row="4"/>
                 <TextBox Text="{Binding UserNumber}" Grid.Row="4" Grid.Column="2" IsEnabled="{Binding IsCurrentUserIsEdit}"/>
 
-                <Label Content="手机：" Grid.Column="1" Grid.Row="5" Foreground="Black"/>
+                <Label Content="手机：" Grid.Column="1" Grid.Row="5"/>
                 <TextBox Text="{Binding UserPhoneNumber}" Grid.Row="5" Grid.Column="2" IsEnabled="{Binding IsCurrentUserIsEdit}"/>
 
-                <Label Content="邮箱：" Grid.Column="1" Grid.Row="6" Foreground="Black"/>
+                <Label Content="邮箱：" Grid.Column="1" Grid.Row="6"/>
                 <TextBox Text="{Binding UserEmail}" Grid.Row="6" Grid.Column="2" IsEnabled="{Binding IsCurrentUserIsEdit}"/>
 
                 <Button x:Name="EditOrSaveButton" Grid.Row="7" Grid.Column="2" Content="{Binding Path=IsCurrentUserIsEdit,Converter={StaticResource buttonContentConverter}}" Style="{StaticResource chamferButton}" Click="EditOrSaveButton_Click"/>

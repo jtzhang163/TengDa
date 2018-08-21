@@ -13,7 +13,7 @@ namespace Tafel.Hipot.App.View
             InitializeComponent();
         }
 
-        private void hyberlinkLogout_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void LogoutHyberlink_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (AppCurrent.IsRunning)
             {
@@ -28,12 +28,12 @@ namespace Tafel.Hipot.App.View
             }
         }
 
-        private void hyberlinkSetting_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ChangeProfileHyberlink_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
         }
 
-        private void hyberlinkManage_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ChangePwdHyberlink_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
         }
