@@ -106,8 +106,21 @@ namespace Tafel.Hipot.App
         [Browsable(false)]
         public string UserGroupName => AppCurrent.User.Role.Name;
 
+        private string userProfilePicture = string.Empty;
         [Browsable(false)]
-        public string UserProfilePicture => AppCurrent.User.ProfilePicture;
+        public string UserProfilePicture
+        {
+            get
+            {
+                userProfilePicture = AppCurrent.User.ProfilePicture;
+                return userProfilePicture;
+            }
+            set
+            {
+                AppCurrent.User.ProfilePicture = value;
+                SetProperty(ref userProfilePicture, value);
+            }
+        }
 
         private string userNickname = string.Empty;
         [Browsable(false)]
