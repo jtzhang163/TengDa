@@ -197,6 +197,9 @@
     <Compile Include="View\Machine\MachineSelectUC.xaml.cs">
       <DependentUpon>MachineSelectUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MainTabItemUC.xaml.cs">
+      <DependentUpon>MainTabItemUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Query\QueryIDLogUC.xaml.cs">
       <DependentUpon>QueryIDLogUC.xaml</DependentUpon>
     </Compile>
@@ -257,6 +260,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Machine\MachineSelectUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainTabItemUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Controls;
 using TengDa.Wpf;
 
 namespace Tafel.Hipot.App
@@ -11,6 +12,8 @@ namespace Tafel.Hipot.App
         public static AppViewModel App = new AppViewModel();
 
         public static Option Option = new Option();
+
+        public static MainTabItemUC MainTabItemUC { get; set; }
 
         public static MainWindow MainWindow { get; set; }
 
@@ -178,17 +181,17 @@ namespace Tafel.Hipot.App
 
             if (AppCurrent.IsRunning && App.GraphShowMode == GraphShowMode.实时数据)
             {
-                Action<MainWindow> updateWindow = new Action<MainWindow>(UpdateWindow);
-                MainWindow.Dispatcher.BeginInvoke(updateWindow, MainWindow);
+                Action<MainTabItemUC> update = new Action<MainTabItemUC>(UpdateWindow);
+                MainTabItemUC.Dispatcher.BeginInvoke(update, MainTabItemUC);
             }
         }
 
-        private static void UpdateWindow(MainWindow window)
+        private static void UpdateWindow(MainTabItemUC uc)
         {
-            var lgResistance = (LineGraph)(window.linesResistance).Children[0];
+            var lgResistance = (LineGraph)(uc.linesResistance).Children[0];
             lgResistance.Plot(ShowDataOrder, ShowResistanceData);
 
-            var lgTemperature = (LineGraph)(window.linesTemperature).Children[0];
+            var lgTemperature = (LineGraph)(uc.linesTemperature).Children[0];
             lgTemperature.Plot(ShowDataOrder, ShowTemperatureData);
 
         }

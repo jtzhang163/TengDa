@@ -1,14 +1,8 @@
-﻿using InteractiveDataDisplay.WPF;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Threading;
 using TengDa.Wpf;
 
 namespace Tafel.Hipot.App
@@ -38,7 +32,7 @@ namespace Tafel.Hipot.App
         protected override void OnClosing(CancelEventArgs e)
         {
 
-            if (Current.App.RunStatus != TengDa.RunStatus.闲置)
+            if (Current.App.RunStatus == TengDa.RunStatus.运行)
             {
                 OperationHelper.ShowTips("系统正在运行，请先停止、复位后关闭！", true);
                 e.Cancel = true;
@@ -55,15 +49,6 @@ namespace Tafel.Hipot.App
 
             this.wpScaner.DataContext = Current.Scaner;
 
-            this.dpTester.DataContext = Current.Tester;
-
-            this.dpCollector.DataContext = Current.Collector;
-
-            Current.MainWindow = this;
-
-            StartDateTimePicker.Value = DateTime.Now.AddHours(-1);
-            StopDateTimePicker.Value = DateTime.Now;
-
             AppCurrent.IsTerminalInitFinished = true;
 
             AppCurrent.YieldNow.FeedingOKContent = "测试数";
@@ -77,12 +62,14 @@ namespace Tafel.Hipot.App
 
             MES.GetInfo();
             InitTimer();
+
+            this.MainTabControl.SelectedIndex = this.MainTabControl.Items.Add(new TabItem { Header = "主界面", Content = new MainTabItemUC() });
+
+            Current.MainWindow = this;
         }
 
         private void InitTimer()
         {
-            //界面画图定时器
-            InitDrawingGraph();
             //更新
             Current.TimerUpdateTime.Elapsed += delegate { Current.App.TimeNow = DateTime.Now; };
             Current.TimerUpdateTime.Start();
@@ -114,10 +101,6 @@ namespace Tafel.Hipot.App
 
         private void OnQueryOperationLog(object sender, ExecutedRoutedEventArgs e)
         {
-            var uc = new QueryOperationLogUC()
-            {
-
-            };
             var isContain = false;
             foreach (TabItem tabItem in this.MainTabControl.Items)
             {
@@ -126,7 +109,7 @@ namespace Tafel.Hipot.App
 
             if (!isContain)
             {
-                this.MainTabControl.SelectedIndex = this.MainTabControl.Items.Add(new TabItem { Header = "系统日志", Content = uc });
+                this.MainTabControl.SelectedIndex = this.MainTabControl.Items.Add(new TabItem { Header = "系统日志", Content = new QueryOperationLogUC() });
             }
             else
             {
@@ -143,10 +126,6 @@ namespace Tafel.Hipot.App
 
         private void OnQueryIDLog(object sender, ExecutedRoutedEventArgs e)
         {
-            var uc = new QueryIDLogUC()
-            {
-
-            };
             var isContain = false;
             foreach (TabItem tabItem in this.MainTabControl.Items)
             {
@@ -155,7 +134,7 @@ namespace Tafel.Hipot.App
 
             if (!isContain)
             {
-                this.MainTabControl.SelectedIndex = this.MainTabControl.Items.Add(new TabItem { Header = "测试数据查询", Content = uc });
+                this.MainTabControl.SelectedIndex = this.MainTabControl.Items.Add(new TabItem { Header = "测试数据查询", Content = new QueryIDLogUC() });
             }
             else
             {
@@ -229,94 +208,6 @@ namespace Tafel.Hipot.App
             }
         }
 
-        //private DispatcherTimer timer = new DispatcherTimer();
-
-        //private void AnimatedPlot(object sender, EventArgs e)
-        //{
-
-        //    if (Current.IsRunning && Current.App.GraphShowMode == GraphShowMode.实时数据)
-        //    {
-        //        var lgResistance = (LineGraph)linesResistance.Children[0];
-        //        lgResistance.Plot(Current.ShowDataOrder, Current.ShowResistanceData);
-
-        //        var lgVoltage = (LineGraph)linesVoltage.Children[0];
-        //        lgVoltage.Plot(Current.ShowDataOrder, Current.ShowVoltageData);
-
-        //        var lgTemperature = (LineGraph)linesTemperature.Children[0];
-        //        lgTemperature.Plot(Current.ShowDataOrder, Current.ShowTemperatureData);
-
-        //        var lgTimeSpan = (LineGraph)linesTimeSpan.Children[0];
-        //        lgTimeSpan.Plot(Current.ShowDataOrder, Current.ShowTimeSpanData);
-        //    }
-        //}
-
-        private void InitDrawingGraph()
-        {
-
-            var lgResistance = new LineGraph();
-            linesResistance.Children.Add(lgResistance);
-            lgResistance.Stroke = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
-            lgResistance.Description = String.Format("电阻");
-            lgResistance.StrokeThickness = 2;
-
-
-            var lgTemperature = new LineGraph();
-            linesTemperature.Children.Add(lgTemperature);
-            lgTemperature.Stroke = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
-            lgTemperature.Description = String.Format("温度");
-            lgTemperature.StrokeThickness = 2;
-
-
-            //timer.Interval = TimeSpan.FromMilliseconds(1000);
-            //timer.Tick += new EventHandler(AnimatedPlot);
-            //timer.IsEnabled = true;
-        }
-
-        #region 显示历史数据
-
-        private static List<double> ShowDataOrder = new List<double>();
-
-        private static List<double> ShowResistanceData = new List<double>();
-
-        private static List<double> ShowTemperatureData = new List<double>();
-
-        private void BtnShowHistoryData_Click(object sender, RoutedEventArgs e)
-        {
-            using (var data = new InsulationContext())
-            {
-                var dataLogs = data.DataLogs.Where(d => d.DateTime > StartDateTimePicker.Value && d.DateTime < StopDateTimePicker.Value).Take(maxDataCount.Value.Value).ToList();
-                if (dataLogs.Count < 1)
-                {
-                    OperationHelper.ShowTips("该时间范围没数据！",true);
-                    return;
-                }
-
-                ShowDataOrder.Clear();
-                ShowResistanceData.Clear();
-                ShowTemperatureData.Clear();
-
-                int order = 1;
-                foreach (var cvData in dataLogs)
-                {
-                    ShowDataOrder.Add(order);
-                    ShowResistanceData.Add(cvData.Resistance);
-                    ShowTemperatureData.Add(cvData.Temperature);
-                    order++;
-                }
-
-            }
-
-
-            var lgResistance = (LineGraph)linesResistance.Children[0];
-            lgResistance.Plot(ShowDataOrder, ShowResistanceData);
-
-            var lgTemperature = (LineGraph)linesTemperature.Children[0];
-            lgTemperature.Plot(ShowDataOrder, ShowTemperatureData);
-
-        }
-
-        #endregion
-
         private void BtnCloseTabItem_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -324,7 +215,7 @@ namespace Tafel.Hipot.App
             foreach (TabItem item in MainTabControl.Items)
             {
                 string _header = item.Header.ToString();
-                if (_header == header && _header != "数据曲线")
+                if (_header == header && _header != "主界面")
                 {
                     MainTabControl.Items.Remove(item);
                     break;
