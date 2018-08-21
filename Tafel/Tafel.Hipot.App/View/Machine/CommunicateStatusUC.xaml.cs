@@ -18,6 +18,15 @@ namespace Tafel.Hipot.App
             InitializeComponent();
 
         }
+
+        private void IsEnabledCheckBox_CheckedChanged(object sender, RoutedEventArgs e)
+        {
+            Context.CollectorContext.SaveChanges();
+            Context.CoolerContext.SaveChanges();
+            Context.InsulationContext.SaveChanges();
+            Context.MesContext.SaveChanges();
+            Context.ScanerContext.SaveChanges();
+        }
     }
 
     public class CommStatusTemplateSelector : DataTemplateSelector
