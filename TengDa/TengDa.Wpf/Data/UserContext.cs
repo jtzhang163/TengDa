@@ -40,7 +40,7 @@ namespace TengDa.Wpf
                             Nickname = "折翼の天使",
                             Password =  Base64.EncodeBase64("Administrator"),
                             RegisterTime = DateTime.Now,
-                            ProfilePicture = "/Images/DefaultProfile.jpg"
+                            ProfilePicture = "/Images/Profiles/001.jpg"
                         }
                     }
                 },
@@ -57,7 +57,7 @@ namespace TengDa.Wpf
                             Nickname = "棉花糖的夏天",
                             Password =  Base64.EncodeBase64("Admin"),
                             RegisterTime = DateTime.Now,
-                            ProfilePicture = "/Images/DefaultProfile.jpg"
+                            ProfilePicture = "/Images/Profiles/002.jpg"
                         }
                     }
                 },
@@ -74,7 +74,7 @@ namespace TengDa.Wpf
                             Nickname = "蓝色水晶恋",
                             Password =  Base64.EncodeBase64("Maintainer"),
                             RegisterTime = DateTime.Now,
-                            ProfilePicture = "/Images/DefaultProfile.jpg"
+                            ProfilePicture = "/Images/Profiles/003.jpg"
                         }
                     }
                 },
@@ -91,7 +91,7 @@ namespace TengDa.Wpf
                             Nickname = "秋天的落叶",
                             Password =  Base64.EncodeBase64("Operator"),
                             RegisterTime = DateTime.Now,
-                            ProfilePicture = "/Images/DefaultProfile.jpg"
+                            ProfilePicture = "/Images/Profiles/004.jpg"
                         },
 
                         new User
@@ -100,7 +100,7 @@ namespace TengDa.Wpf
                             Nickname = "妳、卜嬞硪，硪卜怪伱",
                             Password =  Base64.EncodeBase64("123456"),
                             RegisterTime = DateTime.Now,
-                            ProfilePicture = "/Images/DefaultProfile.jpg"
+                            ProfilePicture = "/Images/Profiles/005.jpg"
                         },
 
                         new User
@@ -109,7 +109,7 @@ namespace TengDa.Wpf
                             Nickname = "不分手的恋爱",
                             Password =  Base64.EncodeBase64("111111"),
                             RegisterTime = DateTime.Now,
-                            ProfilePicture = "/Images/DefaultProfile.jpg"
+                            ProfilePicture = "/Images/Profiles/006.jpg"
                         },
                     }
                 }

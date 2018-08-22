@@ -51,9 +51,9 @@
                                             <EllipseGeometry RadiusX="48" RadiusY="48" Center="48,48"/>
                                         </Image.Clip>
                                     </Image>
-                                    <Label Grid.Row="2" Grid.Column="0" Foreground="Black" Content="用户昵称："/>
+                                    <Label Grid.Row="2" Grid.Column="0" Foreground="Black" Content="昵称："/>
                                     <Label Grid.Row="2" Grid.Column="1" Foreground="Black" Content="{Binding UserNickname}"/>
-                                    <Label Grid.Row="3" Grid.Column="0" Foreground="Black" Content="用户组别："/>
+                                    <Label Grid.Row="3" Grid.Column="0" Foreground="Black" Content="组别："/>
                                     <Label Grid.Row="3" Grid.Column="1" Foreground="Black" Content="{Binding UserGroupName}"/>
                                 </Grid>
                             </ToolTip>

@@ -33,6 +33,9 @@ namespace Tafel.Hipot.App.View
 
         private void ChangeProfileHyberlink_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            var win = new ChangeProfileWindow();
+            win.ShowDialog();
+            /* //选择图片，并复制到另一路径
             OpenFileDialog op = new Microsoft.Win32.OpenFileDialog();
             op.Title = "选择新头像的图片";
             op.RestoreDirectory = true;          
@@ -64,7 +67,7 @@ namespace Tafel.Hipot.App.View
             {
                 Error.Alert(ex);
             } 
-
+            */
         }
 
         private void ChangePwdHyberlink_Click(object sender, System.Windows.RoutedEventArgs e)

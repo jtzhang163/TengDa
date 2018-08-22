@@ -230,10 +230,24 @@
     <Compile Include="View\AboutUC.xaml.cs">
       <DependentUpon>AboutUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ChangeProfileWindow.xaml.cs">
+      <DependentUpon>ChangeProfileWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ChangePwdWindow.xaml.cs">
       <DependentUpon>ChangePwdWindow.xaml</DependentUpon>
     </Compile>
-    <Resource Include="Images\a5337e268a13ab951ecae40f7da57f11.jpg" />
+    <Resource Include="Images\Profiles\001.jpg" />
+    <Resource Include="Images\Profiles\002.jpg" />
+    <Resource Include="Images\Profiles\003.jpg" />
+    <Resource Include="Images\Profiles\004.jpg" />
+    <Resource Include="Images\Profiles\005.jpg" />
+    <Resource Include="Images\Profiles\006.jpg" />
+    <Resource Include="Images\Profiles\007.jpg" />
+    <Resource Include="Images\Profiles\008.jpg" />
+    <Resource Include="Images\Profiles\009.jpg" />
+    <Resource Include="Images\Profiles\010.jpg" />
+    <Resource Include="Images\Profiles\011.jpg" />
+    <Resource Include="Images\Profiles\012.jpg" />
     <Content Include="Style\Style.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -306,6 +320,10 @@
     <Page Include="View\AboutUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ChangeProfileWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\ChangePwdWindow.xaml">
       <SubType>Designer</SubType>

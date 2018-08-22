@@ -117,7 +117,7 @@ namespace TengDa.Wpf
             user.IsEnabled = isEnabled;
             user.RegisterTime = DateTime.Now;
             user.RoleId = Context.UserContext.Roles.Single(r => r.Name == "操作员").Id;
-            user.ProfilePicture = "/Images/DefaultProfile.jpg";
+            user.ProfilePicture = "/Images/Profiles/001.jpg";
             Context.UserContext.Users.Add(user);
             Context.UserContext.SaveChanges();
 
