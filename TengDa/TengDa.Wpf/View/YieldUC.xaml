@@ -39,7 +39,7 @@
 
     </UserControl.Resources>
     <!--BorderBrush="#09a3de"-->
-    <GroupBox Header="产量" Padding="5" Margin="10" BorderThickness="1" Foreground="#2b579a">
+    <GroupBox Header="产量" Padding="5" Margin="10" BorderBrush="LightGray">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>

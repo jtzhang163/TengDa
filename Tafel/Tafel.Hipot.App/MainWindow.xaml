@@ -214,11 +214,11 @@
             </Grid.ColumnDefinitions>
             <DockPanel>
                 <!--<local:MachineSelectUC DockPanel.Dock="Top"  Height="120" IsEnabled="{Binding RunStatus, Converter={StaticResource runStatusConverter}}"/>-->
-                <wpf:YieldUC x:Name="wpfYieldUC" DockPanel.Dock="Bottom"/>
-                <local:CommunicateStatusUC />
+                <local:CommunicateStatusUC  DockPanel.Dock="Top"/>
+                <wpf:YieldUC x:Name="wpfYieldUC"/>
             </DockPanel>
 
-            <TabControl Grid.Column="1" Margin="10,0,10,10" x:Name="MainTabControl" BorderThickness="1" BorderBrush="Green">
+            <TabControl Grid.Column="1" Margin="10,0,10,10" x:Name="MainTabControl" BorderThickness="1"  BorderBrush="Green">
 
             </TabControl>
 

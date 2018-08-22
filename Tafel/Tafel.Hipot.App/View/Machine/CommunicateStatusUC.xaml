@@ -14,8 +14,11 @@
 
         <DataTemplate x:Key="commTemplate" DataType="{x:Type wpf:CommunicateObject}">
             <Border Background="{Binding IsAlive,Converter={StaticResource communicateColorConverter}}" Margin="5" Width="140">
-                <StackPanel Orientation="Vertical" Margin="5,5,5,5">
-                    <CheckBox IsChecked="{Binding IsEnabled,Mode=TwoWay}" Content="{Binding Name}" Margin="0,5,0,5" Checked="IsEnabledCheckBox_CheckedChanged" Unchecked="IsEnabledCheckBox_CheckedChanged"/>
+                <StackPanel Margin="5,5,5,5">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsEnabled,Mode=TwoWay}" Margin="0,5,0,5" Checked="IsEnabledCheckBox_CheckedChanged" Unchecked="IsEnabledCheckBox_CheckedChanged"/>
+                        <Label Content="{Binding Name}"/>
+                    </StackPanel>
                     <TextBlock DockPanel.Dock="Bottom" Text="{Binding RealtimeStatus}" Background="White" Margin="0,0,0,5"/>
                 </StackPanel>
             </Border>
@@ -27,7 +30,7 @@
         <ObjectDataProvider x:Key="comms" ObjectType="local:AppViewModel" MethodName="GetComms"/>
 
     </UserControl.Resources>
-    <GroupBox Header="实时通信状态" DataContext="{StaticResource comms}" Margin="10,5,10,5">
+    <GroupBox Header="实时通信状态" DataContext="{StaticResource comms}" Margin="10,5,10,5" BorderBrush="LightGray">
 
         <ListBox BorderThickness="0" Margin="0" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" ItemTemplateSelector="{StaticResource commStatusTemplateSelector}"/>
 
