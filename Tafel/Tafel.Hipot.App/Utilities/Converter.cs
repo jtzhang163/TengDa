@@ -23,7 +23,7 @@ namespace Tafel.Hipot.App.Utilities
         }
     }
 
-    public class RunStatusConverter : IValueConverter
+    public class RunStatusToChangeCheckMachineConverter : IValueConverter
     {
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

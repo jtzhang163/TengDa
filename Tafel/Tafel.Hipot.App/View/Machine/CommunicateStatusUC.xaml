@@ -10,13 +10,15 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
 
+        <util:RunStatusToChangeCheckMachineConverter x:Key="runStatusToChangeCheckMachineConverter"/>
         <util:CommunicateColorConverter x:Key="communicateColorConverter"/>
 
         <DataTemplate x:Key="commTemplate" DataType="{x:Type wpf:CommunicateObject}">
             <Border Background="{Binding IsAlive,Converter={StaticResource communicateColorConverter}}" Margin="5" Width="140">
                 <StackPanel Margin="5,5,5,5">
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsEnabled,Mode=TwoWay}" Margin="0,5,0,5" Checked="IsEnabledCheckBox_CheckedChanged" Unchecked="IsEnabledCheckBox_CheckedChanged"/>
+                        <CheckBox IsChecked="{Binding IsEnabled,Mode=TwoWay}" Margin="0,5,0,5" 
+                                  Checked="IsEnabledCheckBox_CheckedChanged" Unchecked="IsEnabledCheckBox_CheckedChanged"/>
                         <Label Content="{Binding Name}"/>
                     </StackPanel>
                     <TextBlock DockPanel.Dock="Bottom" Text="{Binding RealtimeStatus}" Background="White" Margin="0,0,0,5"/>
@@ -30,9 +32,11 @@
         <ObjectDataProvider x:Key="comms" ObjectType="local:AppViewModel" MethodName="GetComms"/>
 
     </UserControl.Resources>
-    <GroupBox Header="实时通信状态" DataContext="{StaticResource comms}" Margin="10,5,10,5" BorderBrush="LightGray">
+    <Grid IsEnabled="{Binding RunStatus, Converter={StaticResource runStatusToChangeCheckMachineConverter}}">
+        <GroupBox Header="实时通信状态" DataContext="{StaticResource comms}" Margin="10,5,10,5" BorderBrush="LightGray">
 
-        <ListBox BorderThickness="0" Margin="0" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" ItemTemplateSelector="{StaticResource commStatusTemplateSelector}"/>
+            <ListBox BorderThickness="0" Margin="0" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" ItemTemplateSelector="{StaticResource commStatusTemplateSelector}"/>
 
-    </GroupBox>
+        </GroupBox>
+    </Grid>
 </UserControl>

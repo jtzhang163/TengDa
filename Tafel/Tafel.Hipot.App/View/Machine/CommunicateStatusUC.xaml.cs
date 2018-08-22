@@ -16,7 +16,7 @@ namespace Tafel.Hipot.App
         public CommunicateStatusUC()
         {
             InitializeComponent();
-
+            this.DataContext = Current.App;
         }
 
         private void IsEnabledCheckBox_CheckedChanged(object sender, RoutedEventArgs e)
