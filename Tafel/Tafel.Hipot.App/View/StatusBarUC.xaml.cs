@@ -28,11 +28,5 @@ namespace Tafel.Hipot.App.View
             };
             timerUpdateTime.Start();
         }
-
-        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            Current.App.MainWindowsBackstageIsOpen = true;
-            Current.MainWindow.UserBackstageTabItem.IsSelected = true;
-        }
     }
 }

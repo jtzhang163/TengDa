@@ -222,7 +222,24 @@
 
             </TabControl>
 
-            <wpf:TipUC Grid.Column="2"/>
+            <DockPanel Grid.Column="2">
+                <DockPanel DockPanel.Dock="Bottom">
+                    <Image DockPanel.Dock="Left" Source="{Binding UserProfilePicture}" Width="60" Height="60" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="20,0,10,10">
+                        <Image.Clip>
+                            <EllipseGeometry RadiusX="30" RadiusY="30" Center="30,30"/>
+                        </Image.Clip>
+                    </Image>
+                    <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,15">
+                        <Label Content="欢迎你，" Margin="-5,0,0,0"/>
+                        <TextBlock Text="{Binding UserNickname}" TextDecorations="Underline" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                    </StackPanel>
+                    <!--<Label Grid.Row="2" Grid.Column="0" Foreground="Black" Content="昵称："/>
+                    <Label Grid.Row="2" Grid.Column="1" Foreground="Black" Content="{Binding UserNickname}"/>
+                    <Label Grid.Row="3" Grid.Column="0" Foreground="Black" Content="组别："/>
+                    <Label Grid.Row="3" Grid.Column="1" Foreground="Black" Content="{Binding UserGroupName}"/>-->
+                </DockPanel>
+                <wpf:TipUC/>
+            </DockPanel>
 
             <GridSplitter Grid.Column="0" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
             <GridSplitter Grid.Column="1" Width="2" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
