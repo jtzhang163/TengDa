@@ -90,7 +90,7 @@ namespace Tafel.Hipot.App
                 }
             }
             else //注册
-            {     
+            {
                 if (User.Register(this.userNameTextBox.Text, this.passwordBox.Password, out msg))
                 {
                     AfterRegister();
@@ -156,6 +156,15 @@ namespace Tafel.Hipot.App
         private void registerHyperlink_Click(object sender, RoutedEventArgs e)
         {
             Current.App.IsLoginWindow = false;
+        }
+
+        private void userNameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var user = TengDa.Wpf.Context.UserContext.Users.FirstOrDefault(u => u.Name == this.userNameTextBox.Text.Trim());
+            if (user != null)
+            {
+                this.ProfileImage.Source = new BitmapImage(new Uri(user.ProfilePicture, UriKind.Relative)); ;
+            }
         }
     }
 }

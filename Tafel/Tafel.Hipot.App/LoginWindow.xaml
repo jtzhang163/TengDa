@@ -122,7 +122,7 @@
                 </Image.Clip>
             </Image>
             <Border CornerRadius="10"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom"  Height="30" Margin="0,-5,0,5">
-                <xctk:WatermarkTextBox x:Name="userNameTextBox" Watermark="输入用户名/工号" VerticalContentAlignment="Center"/>
+                <xctk:WatermarkTextBox x:Name="userNameTextBox" Watermark="输入用户名/工号" VerticalContentAlignment="Center" LostFocus="userNameTextBox_LostFocus"/>
             </Border>
             <xctk:WatermarkPasswordBox x:Name="passwordBox" Watermark="输入密码" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="30" Margin="0,-3,0,0"/>
 
@@ -142,7 +142,7 @@
             <CheckBox Grid.Row="3" Grid.Column="2" Foreground="gray" HorizontalAlignment="Right" IsChecked="{Binding IsMesLogin,Mode=TwoWay}"  Visibility="{Binding Path=IsLoginWindow, Converter={StaticResource booleanToVisibleConverter}}" Margin="0,-2,0,0">MES登录</CheckBox>
 
             <Button x:Name="btnLoginOrRegister" Style="{DynamicResource ChamferButton}" Content="{Binding Path=IsLoginWindow, Converter={StaticResource booleanToButtonContentConverter}}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0" Margin="0,-5,0,25" Width="Auto"
-                       Click="btnLoginOrRegister_Click"/>
+                      IsDefault="true" Click="btnLoginOrRegister_Click"/>
         </Grid>
     </Border>
 
