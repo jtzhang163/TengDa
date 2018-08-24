@@ -164,11 +164,21 @@ namespace Tafel.Hipot.App
                 return;
             }
 
+            if (Current.App.RunStatus == TengDa.RunStatus.异常)
+            {
+                OperationHelper.ShowTips("请先复位！");
+                return;
+            }
+
             if (CommunicateControl.CommunicateStart())
             {
                 AppCurrent.IsRunning = true;
                 Current.App.RunStatus = TengDa.RunStatus.运行;
                 OperationHelper.ShowTips("成功启动运行！");
+            }
+            else
+            {
+                Current.App.RunStatus = TengDa.RunStatus.异常;
             }
 
         }
