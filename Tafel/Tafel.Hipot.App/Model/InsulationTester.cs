@@ -54,6 +54,11 @@ namespace Tafel.Hipot.App
             }
         }
 
+        /// <summary>
+        /// 采集器准备好准备好采集数据
+        /// </summary>
+        public bool CollectorIsReadyCollect = false;
+
         public InsulationTester() : this(-1)
         {
 
@@ -90,7 +95,9 @@ namespace Tafel.Hipot.App
             InsulationData.Voltage = this.Voltage;
             InsulationData.TimeSpan = this.TimeSpan;
 
-            this.RealtimeStatus = string.Format("获得数据完成，电阻：{0}", Resistance);
+            this.RealtimeStatus = string.Format("获得电阻：{0}", Resistance);
+
+            this.CollectorIsReadyCollect = true;
 
 
             Current.ShowResistanceData.Add(this.Resistance);

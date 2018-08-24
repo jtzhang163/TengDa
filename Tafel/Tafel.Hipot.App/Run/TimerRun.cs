@@ -24,7 +24,7 @@ namespace Tafel.Hipot.App
 
         public void CheckCollectorInfo(object sender, ElapsedEventArgs e)
         {
-            if (AppCurrent.IsRunning && Current.Collector.IsEnabled)
+            if (AppCurrent.IsRunning && Current.Collector.IsEnabled && Current.Tester.CollectorIsReadyCollect)
             {
 
                 Current.Collector.GetInfo();

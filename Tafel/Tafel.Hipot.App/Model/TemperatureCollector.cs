@@ -40,35 +40,42 @@ namespace Tafel.Hipot.App
 
         public void GetInfo()
         {
-            if (!IsGetNewData)
+
+            var output = new byte[] { };
+
+            string msg;
+            //string input = "01 03 00 00 00 10 44 06";
+            var input = new byte[] { 1, 3, 0, 0, 0, 16, 68, 6 };
+
+            if (!this.GetInfo(input, out output, out msg))
             {
+                // AppCurrent.Tip 
+                OperationHelper.ShowTips(msg);
                 return;
             }
 
-            if (string.IsNullOrEmpty(ReceiveString))
-            {
-                return;
-            }
 
-            if (ReceiveString.Length < 5)
-            {
-                TengDa.LogHelper.WriteError(Name + "传输的数据异常：" + ReceiveString);
-                return;
-            }
+            Current.Tester.CollectorIsReadyCollect = false;
 
-            this.Temperature = TengDa._Convert.StrToFloat(ReceiveString.Trim(new char[] { '\r','\n'}), 0);
+            if (output.Length > 4)
+            {
+                this.Temperature = (output[3] * 256 + output[4]) / 755 * 25.7f;
+            }
+            else
+            {
+                this.Temperature = 25;
+            }
+                       
 
             InsulationData.Temperature = this.Temperature;
 
-            this.RealtimeStatus = string.Format("获得数据完成，温度：{0}", Temperature);
+            this.RealtimeStatus = string.Format("获得温度：{0}", Temperature);
 
 
             Current.ShowTemperatureData.Add(this.Temperature);
             Current.ShowTemperatureData.RemoveAt(0);
 
             Current.AnimatedPlot();
-
-            IsGetNewData = false;
 
             var t = new Thread(() =>
             {

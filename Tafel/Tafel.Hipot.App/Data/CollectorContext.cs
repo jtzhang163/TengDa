@@ -24,16 +24,16 @@ namespace Tafel.Hipot.App
             var collector = new TemperatureCollector
             {
                 Name = "温度采集器",
-                Company = "",
+                Company = "深圳有控技术",
                 Model = "",
                 Number = "",
                 IsEnabled = true,
                 PortName = "COM2",
                 BaudRate = 9600,
                 DataBits = 8,
-                Parity = System.IO.Ports.Parity.None,
+                Parity = System.IO.Ports.Parity.Even,
                 StopBits = System.IO.Ports.StopBits.One,
-                IsPassiveReceiveSerialPort = true
+                IsPassiveReceiveSerialPort = false
             };
             context.Collectors.Add(collector);
         }
