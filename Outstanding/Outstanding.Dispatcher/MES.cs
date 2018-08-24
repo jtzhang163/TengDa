@@ -42,27 +42,27 @@ namespace Outstanding.Dispatcher
             }
         }
 
-        protected string workstationSn = string.Empty;
-        /// <summary>
-        /// 工作中心SN
-        /// </summary>
-        [DisplayName("工作中心SN")]
-        [Category("参数配置")]
-        public string WorkstationSn
-        {
-            get
-            {
-                return workstationSn;
-            }
-            set
-            {
-                if (workstationSn != value)
-                {
-                    UpdateDbField("WorkstationSn", value);
-                }
-                workstationSn = value;
-            }
-        }
+        //protected string workstationSn = string.Empty;
+        ///// <summary>
+        ///// 工作中心SN
+        ///// </summary>
+        //[DisplayName("工作中心SN")]
+        //[Category("参数配置")]
+        //public string WorkstationSn
+        //{
+        //    get
+        //    {
+        //        return workstationSn;
+        //    }
+        //    set
+        //    {
+        //        if (workstationSn != value)
+        //        {
+        //            UpdateDbField("WorkstationSn", value);
+        //        }
+        //        workstationSn = value;
+        //    }
+        //}
 
         protected string employeeNo = string.Empty;
         /// <summary>
@@ -165,7 +165,7 @@ namespace Outstanding.Dispatcher
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
             this.isOffline = Convert.ToBoolean(rowInfo["IsOffline"]);
             this.webServiceUrl = rowInfo["WebServiceUrl"].ToString();
-            this.workstationSn = rowInfo["WorkstationSn"].ToString();
+           //this.workstationSn = rowInfo["WorkstationSn"].ToString();
             this.employeeNo = rowInfo["EmployeeNo"].ToString();
             this.manufactureOrder = rowInfo["ManufactureOrder"].ToString();
         }
@@ -313,7 +313,7 @@ namespace Outstanding.Dispatcher
 
                     //设置参数
                     object device = floor.Number;
-                    object workstation_sn = this.WorkstationSn;
+                    object workstation_sn = floor.Model;
                     object emp_no = this.EmployeeNo;
                     object mo_number = this.ManufactureOrder;
                     object product_sn = "$$$" + battery.Code;
