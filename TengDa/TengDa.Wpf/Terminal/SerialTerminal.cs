@@ -230,7 +230,6 @@ namespace TengDa.Wpf
                     msg = string.Empty;
                     return true;
                 }
-                IsAlive = true;
 
                 msg = "指定时间串口未返回数据！";
                 return false;
@@ -241,6 +240,91 @@ namespace TengDa.Wpf
             }
             IsAlive = false;
             return false;
+        }
+
+        public bool GetInfo(byte[] input, out byte[] output, out string msg)
+        {
+            msg = string.Empty;
+            output = new byte[] { };
+            try
+            {
+                SerialPort.Write(input, 0, input.Length);
+
+                var tmp = new List<byte>();
+                do
+                {
+                    int count = SerialPort.BytesToRead;
+                    if (count <= 0)
+                        break;
+                    byte[] readBuffer = new byte[count];
+                    SerialPort.Read(readBuffer, 0, count);
+                    tmp.AddRange(readBuffer);
+                    Thread.Sleep(10);
+                } while (SerialPort.BytesToRead > 0);
+
+                output = tmp.ToArray();
+
+                ReceiveString = ASCIIToHex(Encoding.UTF8.GetString(output));
+
+                SerialPort.DiscardInBuffer();
+
+                SerialPort.DiscardOutBuffer();
+
+                IsAlive = true;
+
+                if (!string.IsNullOrEmpty(ReceiveString))
+                {
+                    msg = string.Empty;
+                    return true;
+                }
+
+                msg = "指定时间串口未返回数据！";
+                return false;
+            }
+            catch (Exception ex)
+            {
+                msg = ex.Message;
+            }
+            IsAlive = false;
+            return false;
+        }
+
+        //16进制字符串转换成ASCII字符串
+        private string HexToASCII(string str)
+        {
+            try
+            {
+                string[] mystr1 = str.Trim().Split(' ');
+                byte[] t = new byte[mystr1.Length];
+                for (int i = 0; i < t.Length; i++)
+                {
+                    t[i] = Convert.ToByte(mystr1[i], 16);
+                }
+                return Encoding.UTF8.GetString(t);
+            }
+            catch
+            {
+                return str;
+            }
+        }
+
+        //字符串转换成16进制字符
+        private string ASCIIToHex(string str)
+        {
+            try
+            {
+                byte[] a = Encoding.UTF8.GetBytes(str.Trim());
+                string mystr1 = "";
+                for (int i = 0; i < a.Length; i++)
+                {
+                    mystr1 += a[i].ToString("X2") + " ";
+                }
+                return mystr1;
+            }
+            catch
+            {
+                return str;
+            }
         }
         #endregion
     }
