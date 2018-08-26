@@ -21,39 +21,51 @@ namespace Tafel.Hipot.App
 
         public static void Insert()
         {
-            if (Battery.Id < 0)
+            if (Battery.Id > 0)
             {
-                return;
+                Context.InsulationContext.DataLogs.Add(new InsulationDataLog()
+                {
+                    User = AppCurrent.User,
+                    Battery = Battery,
+                    Resistance = 0,
+                    Voltage = 0,
+                    TimeSpan = 0,
+                    Temperature = 0,
+                    IsUploaded = false,
+                    DateTime = DateTime.Now
+                });
+                Context.InsulationContext.SaveChanges();
+
+                AppCurrent.YieldNow.FeedingOK++;
+
+                Battery = new Battery();
             }
 
-            if (Resistance == 0)
+            if (Resistance > 0)
             {
-                return;
+                var data = Context.InsulationContext.DataLogs.Where(d => d.Resistance == 0)
+                    .OrderByDescending(d => d.DateTime).Take(3).OrderBy(d => d.DateTime).FirstOrDefault();
+                if (data != null)
+                {
+                    data.Resistance = Resistance;
+                    data.Voltage = Voltage;
+                    data.TimeSpan = TimeSpan;
+                    Context.InsulationContext.SaveChanges();
+                }
+                Resistance = 0;
             }
 
-            if (Temperature == 0)
+            if (Temperature > 0)
             {
-                return;
+                var data = Context.InsulationContext.DataLogs.Where(d => d.Temperature == 0)
+                    .OrderByDescending(d => d.DateTime).Take(3).OrderBy(d => d.DateTime).FirstOrDefault();
+                if (data != null)
+                {
+                    data.Temperature = Temperature;
+                    Context.InsulationContext.SaveChanges();
+                }
+                Temperature = 0;
             }
-
-            Context.InsulationContext.DataLogs.Add(new InsulationDataLog()
-            {
-                User = AppCurrent.User,
-                Battery = Battery,
-                Resistance = Resistance,
-                Voltage = Voltage,
-                TimeSpan = TimeSpan,
-                Temperature = Temperature,
-                IsUploaded = false,
-                DateTime = DateTime.Now
-            });
-            Context.InsulationContext.SaveChanges();
-
-            AppCurrent.YieldNow.FeedingOK++;
-
-            Battery = new Battery();
-            Resistance = 0;
-            Temperature = 0;
 
         }
     }
