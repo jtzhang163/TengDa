@@ -33,6 +33,9 @@ namespace Tafel.Hipot.App
                     this.ProfileImage.Source = new BitmapImage(new Uri(user.ProfilePicture, UriKind.Relative)); ;
                 }
             }
+
+            MES.GetInfo();
+
         }
         private void btnLoginOrRegister_Click(object sender, RoutedEventArgs e)
         {
@@ -66,6 +69,11 @@ namespace Tafel.Hipot.App
             {
                 if (Current.Option.IsMesLogin)
                 {
+                    if (!Current.Mes.IsPingSuccess)
+                    {
+                        Error.Alert("无法连接至MES服务器，登录失败！");
+                        return;
+                    }
                     //MES登录              
                     if (MES.Login(this.userNameTextBox.Text, this.passwordBox.Password, out msg))
                     {

@@ -47,7 +47,8 @@ namespace TengDa.Wpf
         /// <summary>
         /// 是否离线
         /// </summary>
-        public bool IsOffline = false;
+        [DisplayName("是否离线")]
+        public bool IsOffline { get; set; }
 
         public bool Connect(out string msg)
         {

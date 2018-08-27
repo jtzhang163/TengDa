@@ -65,6 +65,12 @@ namespace Tafel.Hipot.App
                     Context.InsulationContext.SaveChanges();
                 }
                 Temperature = 0;
+
+                if(data.Id > 0)
+                {
+                    MES.Upload();
+                }
+
             }
 
         }

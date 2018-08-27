@@ -45,38 +45,39 @@ namespace Tafel.Hipot.App
 
         public static void Upload()
         {
-            var datas = Context.InsulationContext.DataLogs.Include("Battery").OrderByDescending(d=>d.DateTime).Where(i => !i.IsUploaded).Take(5).ToList();
+
+            if (Current.Mes.IsOffline)
+            {
+                return;
+            }
+
+            var datas = Context.InsulationContext.DataLogs.Where(d => d.Resistance > 0 && d.Temperature > 0)
+                .Include("Battery").OrderByDescending(d => d.DateTime)
+                .Where(i => !i.IsUploaded).Take(5).ToList();
             datas.ForEach(d =>
             {
-                string msg = "";
-                if (MES.CheckSfc(d.Battery.Code, out msg))
-                {
-                    Current.Mes.RealtimeStatus = string.Format("MES检验通过，ID：{0}", d.Id);
-                    Thread.Sleep(100);
-                    if (MES.UploadBattery(d.Battery.Code, d.Resistance, d.Voltage, d.Temperature, d.TimeSpan))
-                    {
-                        d.IsUploaded = true;
-                        //上传MES
-                        AppCurrent.YieldNow.BlankingOK++;
-                        Current.Mes.RealtimeStatus = string.Format("上传MES完成，ID：{0}", d.Id);
-                        Context.InsulationContext.SaveChanges();
-                    }
-                    else
-                    {
-                        Current.Mes.RealtimeStatus = string.Format("上传MES失败，ID：{0}", d.Id);
-                    }
 
-                    Thread.Sleep(100);
+                Current.Mes.RealtimeStatus = string.Format("MES检验通过，ID：{0}", d.Id);
+                Thread.Sleep(100);
+                if (MES.UploadBattery(d.Battery.Code, d.Resistance, d.Voltage, d.Temperature, d.TimeSpan))
+                {
+                    d.IsUploaded = true;
+                    //上传MES
+                    AppCurrent.YieldNow.BlankingOK++;
+                    Current.Mes.RealtimeStatus = string.Format("上传MES完成，ID：{0}", d.Id);
+                    Context.InsulationContext.SaveChanges();
                 }
                 else
                 {
-                    Current.Mes.RealtimeStatus = string.Format("MES检验失败，ID：{0}", d.Id);
-                    LogHelper.WriteError(string.Format("MES检验失败，Code：{0}", d.Battery.Code));
+                    Current.Mes.RealtimeStatus = string.Format("上传MES失败，ID：{0}", d.Id);
                 }
+
+                Thread.Sleep(100);
 
             });
 
-            var t = new Thread(() => {
+            var t = new Thread(() =>
+            {
                 Thread.Sleep(1000);
                 Current.Mes.RealtimeStatus = "等待上传";
             });
@@ -155,6 +156,7 @@ namespace Tafel.Hipot.App
             {
                 return false;
             }
+
             HipotInfo hipotInfo = new HipotInfo
             {
                 BarcodeNo = code,
@@ -177,7 +179,7 @@ namespace Tafel.Hipot.App
             string msg = string.Empty;
             if (!Tafel.MES.MES.UploadBattery(hipotInfo, out msg))
             {
-                Error.Alert(msg);
+                OperationHelper.ShowTips(msg);
                 return false;
             }
             return true;
@@ -193,6 +195,7 @@ namespace Tafel.Hipot.App
             {
                 return;
             }
+
             MachineState ms = new MachineState
             {
                 state = (State)Enum.Parse(typeof(State), state),
@@ -209,11 +212,21 @@ namespace Tafel.Hipot.App
 
         public static void GetInfo()
         {
+            if (!Current.Mes.IsPingSuccess)
+            {
+                return;
+            }
+
             string msg = string.Empty;
             string ip = MES.LocalIPAddr.ToString();
             ProcessInfo pi = Tafel.MES.MES.GetProcessInfo(new IP { IPAddress = ip }, out msg);
             if (string.IsNullOrEmpty(msg))//成功获取到
             {
+                if(pi == null)
+                {
+                    Error.Alert("无法获取到工序工位信息");
+                    return;
+                }           
                 Current.Option.CurrentProcess = string.Format("{0},{1}", pi.ProcessName, pi.ProcessCode);
             }
             else

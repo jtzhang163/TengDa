@@ -9,6 +9,7 @@ namespace Tafel.MES
     [XmlInclude(typeof(MESUser))]
     [XmlInclude(typeof(Sfc))]
     [XmlInclude(typeof(MachineState))]
+    [XmlInclude(typeof(HipotInfo))]
     [XmlInclude(typeof(TrayInfo))]
     [XmlInclude(typeof(IP))]
     [XmlInclude(typeof(IpAndProcess))]

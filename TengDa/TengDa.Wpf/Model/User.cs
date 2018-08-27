@@ -112,6 +112,7 @@ namespace TengDa.Wpf
                 return false;
             }
             user.Name = name;
+            user.Nickname = name;
             user.Number = number;
             user.Password = Base64.EncodeBase64(password);
             user.IsEnabled = isEnabled;

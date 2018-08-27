@@ -625,7 +625,7 @@ namespace Tafel.Hipot.App
                     currentOrderNo = TengDa.Wpf.Option.GetOption("CurrentOrderNo");
                     if (string.IsNullOrEmpty(currentOrderNo))
                     {
-                        currentOrderNo = "Unknown";
+                        currentOrderNo = "EP-18-0401L";
                         TengDa.Wpf.Option.SetOption("CurrentOrderNo", currentOrderNo, "当前工单");
                     }
                 }
@@ -688,7 +688,7 @@ namespace Tafel.Hipot.App
                     iPAddressRegex = TengDa.Wpf.Option.GetOption("IPAddressRegex");
                     if (string.IsNullOrEmpty(iPAddressRegex))
                     {
-                        iPAddressRegex = "192.168.*";
+                        iPAddressRegex = "10.1.*";
                         TengDa.Wpf.Option.SetOption("IPAddressRegex", iPAddressRegex, "局域网IP地址正则表达式");
                     }
                 }

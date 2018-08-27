@@ -64,11 +64,10 @@ namespace Tafel.Hipot.App
 
         public void CheckMesInfo(object sender, ElapsedEventArgs e)
         {
-            if (AppCurrent.IsRunning && Current.Mes.IsEnabled)
+            if (AppCurrent.IsRunning && Current.Mes.IsEnabled && !Current.Mes.IsOffline)
             {
                 MES.UploadMachineInfo("S");
                 MES.Upload();
-
             }
         }
     }

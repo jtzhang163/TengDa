@@ -30,7 +30,7 @@ namespace Tafel.Hipot.App
                 Name = "绝缘电阻测试仪",
                 Company = "日置(HIOKI)",
                 Model = "ST5520",
-                Number = "",
+                Number = "111111",
                 IsEnabled = true,
                 PortName = "COM1",
                 BaudRate = 9600,

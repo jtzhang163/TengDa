@@ -60,7 +60,6 @@ namespace Tafel.Hipot.App
 
             OperationHelper.ShowTips("打开软件");
 
-            MES.GetInfo();
             InitTimer();
 
             this.MainTabControl.SelectedIndex = this.MainTabControl.Items.Add(new TabItem { Header = "主界面", Content = new MainTabItemUC() });

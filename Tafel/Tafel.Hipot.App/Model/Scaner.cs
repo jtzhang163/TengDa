@@ -61,11 +61,20 @@ namespace Tafel.Hipot.App
                 Current.Cooler.ScanResult = ScanResult.OK;
                 this.RealtimeStatus = code;
 
-                Code = code;
+                if (!Current.Mes.IsOffline && Current.Mes.IsEnabled)
+                {
+                    if (!MES.CheckSfc(code, out msg))
+                    {
+                        OperationHelper.ShowTips(string.Format("MES检验失败，Code：{0}", code));
+                        Current.Mes.RealtimeStatus = string.Format("MES检验失败，ID：{0}", code);
+                        LogHelper.WriteError(string.Format("MES检验失败，Code：{0}", code));
+                    }
+                }
 
+                Code = code;
                 Current.Cooler.IsReadyScan = false;
 
-                var t = new Thread(()=> {
+                var t = new Thread(() => {
                     Thread.Sleep(2000);
                     this.RealtimeStatus = "等待扫码";
                 });
@@ -81,6 +90,7 @@ namespace Tafel.Hipot.App
                 InsulationData.Battery = battery;
 
                 return true;
+
             }
 
             code = Regex.Match(output, Current.Option.ScanFailedReturnStr).Value;

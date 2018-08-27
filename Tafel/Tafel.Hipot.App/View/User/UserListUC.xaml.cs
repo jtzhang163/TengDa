@@ -47,7 +47,7 @@ namespace Tafel.Hipot.App.View
                 if (UserRolesComboBox != null)
                 {
                     UserRolesComboBox.SelectedIndex = index;
-                    var isVisible = user.Role.Level <= AppCurrent.User.Role.Level && user != AppCurrent.User;
+                    var isVisible = user.Role.Level <= AppCurrent.User.Role.Level && user != AppCurrent.User && AppCurrent.User.Role.Level > 1;
                     var visible = isVisible ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
                     UserRoleLabel.Visibility = visible;
                     UserRolesComboBox.Visibility = visible;

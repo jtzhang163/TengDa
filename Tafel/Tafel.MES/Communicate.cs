@@ -1,4 +1,4 @@
-﻿#define ISOFFLINE
+﻿//#define ISOFFLINE
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -86,7 +86,7 @@ namespace Tafel.MES
                 return false;
             }
 #endif
-            bool b= CheckXML(returnXml, out msg);
+            bool b = CheckXML(returnXml, out msg);
             if (!string.IsNullOrEmpty(msg))
             {
                 LogHelper.WriteError(msg + "xml" + xml);
@@ -226,7 +226,7 @@ namespace Tafel.MES
             string returnXml = string.Empty;
             try
             {
-                returnXml = returnXml = ws.SetTrayInfo(xml);
+                returnXml = returnXml = ws.InsertSFC(xml);
             }
             catch (Exception ex)
             {
@@ -268,10 +268,10 @@ namespace Tafel.MES
             {
                 returnXml = ws.Get_ProcessInfo(xml);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 msg = ex.Message;
-                return new ProcessInfo { ProcessCode = "" , ProcessName = ""};
+                return new ProcessInfo { ProcessCode = "", ProcessName = "" };
             }
 
 #endif
@@ -352,7 +352,7 @@ namespace Tafel.MES
 
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
-           // settings.Indent = false;
+            // settings.Indent = false;
 
             MemoryStream mem = new MemoryStream();
 
@@ -365,7 +365,7 @@ namespace Tafel.MES
             }
 
             string xml = Encoding.UTF8.GetString(mem.ToArray());
-            return Regex.Replace(xml, @"<rows[^>]*>", "<rows>").Replace('"','\'').Substring(1);
+            return Regex.Replace(xml, @"<rows[^>]*>", "<rows>").Replace('"', '\'').Substring(1);
         }
 
         /// <summary>
@@ -436,7 +436,7 @@ namespace Tafel.MES
             catch (Exception ex)
             {
                 msg = ex.Message;
-                return new ProcessInfo {  ProcessCode = "", ProcessName = "" };
+                return new ProcessInfo { ProcessCode = "", ProcessName = "" };
             }
         }
 

@@ -210,11 +210,14 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="200" MinWidth="50" MaxWidth="500"/>
             </Grid.ColumnDefinitions>
-            <DockPanel>
-                <!--<local:MachineSelectUC DockPanel.Dock="Top"  Height="120" IsEnabled="{Binding RunStatus, Converter={StaticResource runStatusConverter}}"/>-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
                 <local:CommunicateStatusUC  DockPanel.Dock="Top"/>
-                <wpf:YieldUC x:Name="wpfYieldUC"/>
-            </DockPanel>
+                <wpf:YieldUC x:Name="wpfYieldUC" Grid.Row="1"/>
+            </Grid>
 
             <TabControl Grid.Column="1" Margin="10,0,10,10" x:Name="MainTabControl" BorderThickness="1"  BorderBrush="Green">
 
