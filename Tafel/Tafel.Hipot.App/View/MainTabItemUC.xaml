@@ -115,7 +115,7 @@
                 </Grid>
                 <DockPanel Grid.Row="1" Grid.Column="1" x:Name="dpCollector">
                     <Label Content="实时温度(℃)："  FontSize="18" DockPanel.Dock="Top" Margin="5"/>
-                    <Label Content="{Binding Temperature}" FontSize="80" FontWeight="Bold" Foreground="LimeGreen" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Label Content="{Binding Temperature}" ContentStringFormat="#0.0" FontSize="80" FontWeight="Bold" Foreground="LimeGreen" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </DockPanel>
             </Grid>
         </DockPanel>
