@@ -59,7 +59,17 @@ namespace Tafel.Hipot.App
 
             if (output.Length > 4)
             {
-                this.Temperature = (output[3] * 256 + output[4]) / 755 * 25.7f;
+                this.Temperature = (output[3] * 256 + output[4]) / 53.3f;
+
+                if (this.Temperature < 20)
+                {
+                    this.Temperature = 20f - (20f - this.Temperature) / 10f;
+                }
+
+                if (this.Temperature > 40)
+                {
+                    this.Temperature = (this.Temperature - 40f)/ 10f + 40f;
+                }
             }
             else
             {

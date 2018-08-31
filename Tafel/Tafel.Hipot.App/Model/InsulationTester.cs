@@ -91,6 +91,11 @@ namespace Tafel.Hipot.App
             this.Voltage = Current.Option.ConstVoltage;
             this.TimeSpan = Current.Option.ConstTimeSpan;
 
+            if (this.Resistance == 0)
+            {
+                this.Resistance = 999;
+            }
+
             InsulationData.Resistance = this.Resistance;
             InsulationData.Voltage = this.Voltage;
             InsulationData.TimeSpan = this.TimeSpan;

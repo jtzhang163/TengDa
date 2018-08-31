@@ -41,7 +41,7 @@ namespace Tafel.Hipot.App
                 Battery = new Battery();
             }
 
-            if (Resistance > 0)
+            if (Resistance > -1)
             {
                 var data = Context.InsulationContext.DataLogs.Where(d => d.Resistance == 0)
                     .OrderByDescending(d => d.DateTime).Take(3).OrderBy(d => d.DateTime).FirstOrDefault();
@@ -52,10 +52,10 @@ namespace Tafel.Hipot.App
                     data.TimeSpan = TimeSpan;
                     Context.InsulationContext.SaveChanges();
                 }
-                Resistance = 0;
+                Resistance = -1;
             }
 
-            if (Temperature > 0)
+            if (Temperature > -1)
             {
                 var data = Context.InsulationContext.DataLogs.Where(d => d.Temperature == 0)
                     .OrderByDescending(d => d.DateTime).Take(3).OrderBy(d => d.DateTime).FirstOrDefault();
@@ -63,13 +63,13 @@ namespace Tafel.Hipot.App
                 {
                     data.Temperature = Temperature;
                     Context.InsulationContext.SaveChanges();
-                }
-                Temperature = 0;
 
-                if(data.Id > 0)
-                {
-                    MES.Upload();
+                    if (data.Id > 0)
+                    {
+                        MES.Upload(data.Id);
+                    }
                 }
+                Temperature = -1;
 
             }
 
