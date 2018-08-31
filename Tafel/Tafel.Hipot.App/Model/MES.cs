@@ -45,15 +45,36 @@ namespace Tafel.Hipot.App
 
         public static void Upload()
         {
+            Upload(0);
+        }
+
+        public static void Upload(int id)
+        {
 
             if (Current.Mes.IsOffline)
             {
                 return;
             }
 
-            var datas = Context.InsulationContext.DataLogs.Where(d => d.Resistance > 0 && d.Temperature > 0)
-                .Include("Battery").OrderByDescending(d => d.DateTime)
-                .Where(i => !i.IsUploaded).Take(5).ToList();
+            var datas = new List<InsulationDataLog>();
+
+            if (id > 0)
+            {
+                datas = Context.InsulationContext.DataLogs.Where(d => d.Id == id)
+                    .Include("Battery").ToList();
+            }
+            else
+            {
+                datas = Context.InsulationContext.DataLogs.Where(d => d.Resistance > 0 && d.Temperature > 0)
+                    .Include("Battery").OrderByDescending(d => d.DateTime)
+                    .Where(i => !i.IsUploaded).Take(5).ToList();
+            }
+
+            if (datas.Count < 1)
+            {
+                return;
+            }
+
             datas.ForEach(d =>
             {
 
@@ -64,14 +85,14 @@ namespace Tafel.Hipot.App
                     d.IsUploaded = true;
                     //上传MES
                     AppCurrent.YieldNow.BlankingOK++;
-                    Current.Mes.RealtimeStatus = string.Format("上传MES完成，ID：{0}", d.Id);
-                    Context.InsulationContext.SaveChanges();
+                    Current.Mes.RealtimeStatus = string.Format("上传MES完成，ID：{0}", d.Id);          
                 }
                 else
                 {
+                    d.IsUploaded = true;
                     Current.Mes.RealtimeStatus = string.Format("上传MES失败，ID：{0}", d.Id);
                 }
-
+                Context.InsulationContext.SaveChanges();
                 Thread.Sleep(100);
 
             });
