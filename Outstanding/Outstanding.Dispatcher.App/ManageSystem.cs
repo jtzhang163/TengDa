@@ -4436,26 +4436,27 @@ namespace Outstanding.Dispatcher.App
             int i = cbSampleSelectedOven.SelectedIndex;
             int j = cbSampleSelectedFloor.SelectedIndex;
 
-            if (Current.ovens[i].Floors[j].Stations.Count(s => s.FloorStatus == FloorStatus.烘烤) > 0)
-            {
-                Tip.Alert(Current.ovens[i].Floors[j].Name + "正在烘烤，不能输入水含量数据！");
-                return;
-            }
+            //if (Current.ovens[i].Floors[j].Stations.Count(s => s.FloorStatus == FloorStatus.烘烤) > 0)
+            //{
+            //    Tip.Alert(Current.ovens[i].Floors[j].Name + "正在烘烤，不能输入水含量数据！");
+            //    return;
+            //}
 
             float waterContent = TengDa._Convert.StrToFloat(tbWaterContent.Text.Trim(), 0);
             if (waterContent > 0)
             {
-                Current.ovens[i].Floors[j].Stations.ForEach(s => s.Clamp.WaterContent = waterContent);
-                Current.blankers.ForEach(b => b.Stations.ForEach(bs =>
-                {
-                    Current.ovens[i].Floors[j].Stations.ForEach(fs =>
-            {
-                      if (bs.FromStationId == fs.Id && bs.ClampId > 0)
-                      {
-                          bs.Clamp.WaterContent = waterContent;
-                      }
-                  });
-                }));
+                //    Current.ovens[i].Floors[j].Stations.ForEach(s => s.Clamp.WaterContent = waterContent);
+                //    Current.blankers.ForEach(b => b.Stations.ForEach(bs =>
+                //    {
+                //        Current.ovens[i].Floors[j].Stations.ForEach(fs =>
+                //{
+                //          if (bs.FromStationId == fs.Id && bs.ClampId > 0)
+                //          {
+                //              bs.Clamp.WaterContent = waterContent;
+                //          }
+                //      });
+                //    }));
+                Clamp.SetWaterCont(Current.ovens[i].Floors[j], waterContent);
                 Tip.Alert("水含量数据输入成功！");
             }
             else

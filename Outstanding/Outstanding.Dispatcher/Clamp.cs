@@ -449,6 +449,22 @@ namespace Outstanding.Dispatcher
             return true;
             //return Database.NonQuery(string.Format("UPDATE [dbo].[{0}] SET [EnterTime] = '{1}', [OutTime] = '{2}', [BakingStartTime] = '{3}', [BakingStopTime] = '{4}', [Vacuum] = {5}, [Temperature] = {6}, [IsUploaded] = '{7}', [IsFinished] = '{8}' WHERE [Id] = {9}", TableName, newClamp.EnterTime, newClamp.OutTime, newClamp.BakingStartTime, newClamp.BakingStopTime, newClamp.Vacuum, newClamp.Temperature, newClamp.IsUploaded, newClamp.IsFinished, newClamp.Id), out msg);
         }
+
+        public static bool SetWaterCont(Floor floor, float waterCont)
+        {
+            string msg = "";
+
+            for (int i = 0; i < floor.Stations.Count; i++)
+            {
+                string sql = string.Format("UPDATE dbo.[{0}] SET WaterContent = {1} WHERE Id in (SELECT TOP 1 Id FROM dbo.[{0}] WHERE OvenStationId = {2} AND BakingStopTime > '2010-01-01' ORDER BY BakingStopTime DESC)", TableName, waterCont, floor.Stations[i].Id);
+                if (!Database.NonQuery(sql, out msg))
+                {
+                    Error.Alert(msg);
+                    return false;
+                }
+            }
+            return true;
+        }
         #endregion
     }
 
