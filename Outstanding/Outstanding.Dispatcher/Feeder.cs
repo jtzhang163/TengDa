@@ -147,6 +147,11 @@ namespace Outstanding.Dispatcher
             }
         }
 
+        /// <summary>
+        /// 接收到空夹具的信息计数，防止上料机急停返回的异常数据导致生成错误指令
+        /// </summary>
+        private int[] EmptyClampCount = new int[] { 0, 0 };
+
         public void CacheBatteryIn(Battery battery)
         {
             var c = CacheBatteries;
@@ -412,13 +417,26 @@ namespace Outstanding.Dispatcher
                 {
                     switch (iOut[j])
                     {
-                        case 1: this.Stations[j].ClampStatus = ClampStatus.无夹具; break;
+                        case 1: this.EmptyClampCount[j]++; break;
                         case 2: this.Stations[j].ClampStatus = ClampStatus.空夹具; break;
                         case 3: this.Stations[j].ClampStatus = ClampStatus.满夹具; this.Stations[j].SampleStatus = SampleStatus.非样品位; break;
                         case 31: this.Stations[j].ClampStatus = ClampStatus.满夹具; this.Stations[j].SampleStatus = SampleStatus.样品位; break;
                         case 4: this.Stations[j].ClampStatus = ClampStatus.异常; break;
                         default: this.Stations[j].ClampStatus = ClampStatus.未知; break;
                     }
+
+                    if (iOut[j] == 1)
+                    {
+                        if(EmptyClampCount[j] > 2)
+                        {
+                            this.Stations[j].ClampStatus = ClampStatus.无夹具;
+                            EmptyClampCount[j] = 3;
+                        }
+                    }
+                    else
+                    {
+                        EmptyClampCount[j] = 0;
+                    }          
 
                     switch (iOut[j + 2])
                     {
