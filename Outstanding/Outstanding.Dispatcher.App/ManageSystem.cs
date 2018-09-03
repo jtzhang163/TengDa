@@ -3092,6 +3092,12 @@ namespace Outstanding.Dispatcher.App
                 dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_TV] WHERE [腔体] = '{1}' AND [记录时间] BETWEEN '{2}' AND '{3}' ", Config.DbTableNamePre, cbStations.Text.Trim(), dtpStart.Value, dtpStop.Value), out msg);
             }
 
+            if (dt == null)
+            {
+                Error.Alert(msg);
+                return;
+            }
+
             dgvTV.DataSource = dt;
             //设置显示列宽度
             dgvTV.Columns[0].Width = 70;
@@ -3167,6 +3173,12 @@ namespace Outstanding.Dispatcher.App
                 dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Alarm] WHERE [名称] = '{1}' AND [开始时间] BETWEEN '{2}' AND '{3}' ", Config.DbTableNamePre, cbAlarmFloors.Text.Trim(), dtpAlarmStart.Value, dtpAlarmStop.Value), out msg);
             }
 
+            if (dt == null)
+            {
+                Error.Alert(msg);
+                return;
+            }
+
             dgvAlarm.DataSource = dt;
             dgvAlarm.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
             dgvAlarm.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
@@ -3234,6 +3246,11 @@ namespace Outstanding.Dispatcher.App
 
             DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_TaskLog] WHERE [任务生成时间] BETWEEN '{1}' AND '{2}' ", Config.DbTableNamePre, dtpTaskStart.Value, dtpTaskStop.Value), out msg);
 
+            if (dt == null)
+            {
+                Error.Alert(msg);
+                return;
+            }
 
             dgvTaskLog.DataSource = dt;
             //设置显示列宽度
