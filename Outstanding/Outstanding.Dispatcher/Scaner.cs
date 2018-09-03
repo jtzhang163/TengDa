@@ -147,7 +147,6 @@ namespace Outstanding.Dispatcher
 
         public bool StartClampScan(out string code, out string msg)
         {
-            StopClampScan(out msg);//开始扫码前复位一次
             return this.GetInfo(Current.option.StartClampScan, ClampScanerTimeout, out code, out msg);
         }
 

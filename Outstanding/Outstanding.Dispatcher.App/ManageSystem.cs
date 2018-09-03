@@ -2110,14 +2110,14 @@ namespace Outstanding.Dispatcher.App
                                 {
                                     this.BeginInvoke(new MethodInvoker(() =>
                                     {
-                                              this.tbScanerStatus[i][1].Text = "+" + code;
-                                          }));
-                                    Current.feeders[i].ClampScaner.StopClampScan(out msg);
+                                        this.tbScanerStatus[i][1].Text = "+" + code;
+                                    }));
+                           
                                     s.Clamp.Code = code;
                                     s.Clamp.ScanTime = DateTime.Now;
 
-                        //增加Clamp
-                        if (s.ClampId < 1)
+                                    //增加Clamp
+                                    if (s.ClampId < 1)
                                     {
                                         Error.Alert(msg);
                                     }
@@ -2127,6 +2127,8 @@ namespace Outstanding.Dispatcher.App
                                 {
                                     Error.Alert(msg);
                                 }
+
+                                Current.feeders[i].ClampScaner.StopClampScan(out msg);
 
                                 if (!Current.feeders[i].SetScanClampResultOK(out msg))
                                 {
@@ -4307,8 +4309,6 @@ namespace Outstanding.Dispatcher.App
             tsmRotaterRotate2.Text = Option.LayoutType == 1 ? "手动旋转至B线" : "手动旋转至D线";
         }
         #endregion
-
-
 
         #region 手动调试夹具扫码枪
 
