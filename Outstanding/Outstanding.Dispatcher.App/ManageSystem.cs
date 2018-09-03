@@ -4475,6 +4475,10 @@ namespace Outstanding.Dispatcher.App
                 //    }));
                 Clamp.SetWaterCont(Current.ovens[i].Floors[j], waterContent);
                 Tip.Alert("水含量数据输入成功！");
+                if (timerlock && Current.mes.IsAlive)
+                {
+                    UploadBatteriesInfo(new List<Clamp>());
+                }
             }
             else
             {
