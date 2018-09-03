@@ -2416,7 +2416,7 @@ namespace Outstanding.Dispatcher.App
             string msg = string.Empty;
             if (clamps.Count < 1)
             {
-                clamps = Clamp.GetList(string.Format("SELECT TOP 3 * FROM [dbo].[{0}] WHERE IsUploaded = 'false' AND IsFinished = 'true' AND WaterContent > 0  ORDER BY ScanTime DESC", Clamp.TableName), out msg);
+                clamps = Clamp.GetList(string.Format("SELECT TOP 6 * FROM [dbo].[{0}] WHERE IsUploaded = 'false' AND IsFinished = 'true' AND WaterContent > 0  ORDER BY ScanTime DESC", Clamp.TableName), out msg);
                 if (!string.IsNullOrEmpty(msg))
                 {
                     Error.Alert(msg);
