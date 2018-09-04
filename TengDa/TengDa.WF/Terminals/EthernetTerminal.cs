@@ -126,7 +126,7 @@ namespace TengDa.WF.Terminals
             }
         }
 
-        public bool IsCommunicatting = false;
+        //public bool IsCommunicatting = false;
 
         private MelsecNet melsec_net = new MelsecNet();
         #endregion
@@ -272,7 +272,8 @@ namespace TengDa.WF.Terminals
         /// <returns></returns>
         public bool GetInfo(bool checkPingSuccess, byte input, int readtimeout, out string output, out string msg)
         {
-            IsCommunicatting = true;
+
+            //IsCommunicatting = true;
             output = string.Empty;
             msg = string.Empty;
             try
@@ -327,7 +328,7 @@ namespace TengDa.WF.Terminals
                 while (readtimeout > sw.ElapsedMilliseconds)
                     if (t.Join(1))
                         break;
-                IsCommunicatting = false;
+               // IsCommunicatting = false;
                 // If we didn't connect successfully, throw an exception
                 if (connectSuccess)
                 {

@@ -2099,13 +2099,14 @@ namespace Outstanding.Dispatcher.App
                 if (Current.feeders[i].AlreadyGetAllInfo)
                 {
                     #region 夹具扫码逻辑
-                    if (Current.feeders[i].ClampScaner.IsEnable && Current.feeders[i].ClampScaner.IsReady && !Current.feeders[i].ClampScaner.IsCommunicatting)
+                    if (Current.feeders[i].ClampScaner.IsEnable && Current.feeders[i].ClampScaner.IsReady)
                     {
                         Current.feeders[i].Stations.ForEach(s =>
                         {
                             if (s.IsClampScanReady)
                             {
                                 string code = string.Empty;
+
                                 if (Current.feeders[i].ClampScaner.StartClampScan(out code, out msg))
                                 {
                                     this.BeginInvoke(new MethodInvoker(() =>
@@ -2115,12 +2116,6 @@ namespace Outstanding.Dispatcher.App
                            
                                     s.Clamp.Code = code;
                                     s.Clamp.ScanTime = DateTime.Now;
-
-                                    //增加Clamp
-                                    if (s.ClampId < 1)
-                                    {
-                                        Error.Alert(msg);
-                                    }
 
                                 }
                                 else if (!string.IsNullOrEmpty(msg))
@@ -2141,7 +2136,7 @@ namespace Outstanding.Dispatcher.App
                     #endregion
 
                     #region 电池扫码逻辑
-                    if (Current.feeders[i].BatteryScaner.IsEnable && Current.feeders[i].BatteryScaner.CanScan && !Current.feeders[i].BatteryScaner.IsCommunicatting)
+                    if (Current.feeders[i].BatteryScaner.IsEnable && Current.feeders[i].BatteryScaner.CanScan)
                     {
 
                         string code = string.Empty;
