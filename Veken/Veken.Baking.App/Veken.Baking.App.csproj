@@ -58,6 +58,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OutOvenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OutOvenForm.Designer.cs">
+      <DependentUpon>OutOvenForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="InOvenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Version.cs" />
+    <EmbeddedResource Include="OutOvenForm.resx">
+      <DependentUpon>OutOvenForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InOvenForm.resx">
       <DependentUpon>InOvenForm.cs</DependentUpon>
     </EmbeddedResource>
