@@ -2350,11 +2350,11 @@ namespace Outstanding.Dispatcher.App
                 //上料机工位无任务则关门
                 Current.feeders.ForEach(f => f.Stations.ForEach(s =>
                 {
-                    if (s.Id != Current.Task.FromStationId && s.Id != Current.Task.ToStationId && s.DoorStatus != DoorStatus.关闭)
+                    if (s.Id != Current.Task.FromStationId && s.Id != Current.Task.ToStationId && s.DoorStatus != DoorStatus.关闭 && !Current.rgv.IsGettingOrPutting)
                     {
                         s.CloseDoor();
                     }
-                    else if (s.Id == Current.Task.FromStationId && Current.Task.Status != TaskStatus.就绪 && Current.Task.Status != TaskStatus.可取 && s.DoorStatus != DoorStatus.关闭)
+                    else if (s.Id == Current.Task.FromStationId && Current.Task.Status != TaskStatus.就绪 && Current.Task.Status != TaskStatus.可取 && s.DoorStatus != DoorStatus.关闭 && !Current.rgv.IsGettingOrPutting)
                     {
                         s.CloseDoor();
                     }
