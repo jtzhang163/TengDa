@@ -25,7 +25,7 @@ namespace Veken.Baking.App
             this.i = i;
             this.j = j;
             this.ms = ms;
-            this.Text = string.Format("腔体 {0} 入腔扫码", Current.ovens[i].Floors[j].Name);
+            this.Text = string.Format("腔体 {0} 出腔扫码", Current.ovens[i].Floors[j].Name);
             this.lbFloorNumber.Text = Current.ovens[i].Floors[j].Number;
             this.lvClampCodes.Columns.Clear();
             this.lvClampCodes.Items.Clear();
@@ -39,13 +39,13 @@ namespace Veken.Baking.App
 
             this.lbTip.Text = "等待扫码！";
             clampCodes.Clear();
-            Current.IsInOvenFormShow = true;
+            Current.IsOutOvenFormShow = true;
         }
 
         private void InOvenForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.lvClampCodes.Dispose();
-            Current.IsInOvenFormShow = false;
+            Current.IsOutOvenFormShow = false;
         }
 
         private List<string> clampCodes = new List<string>();
@@ -202,69 +202,6 @@ namespace Veken.Baking.App
 
                     clampCodes.Add(code);
 
-                    if (Current.mes.IsAlive)
-                    {
-
-                        //电芯数据保存到数据库
-                        List<Battery> batteries = new List<Battery>();
-                        for (int ii = 0; ii < cells.Count; ii++)
-                        {
-                            Battery battery = new Battery();
-                            battery.Code = cells[ii].sfc_no;
-                            battery.ClampId = clampid;
-                            battery.Location = cells[ii].seq_no;
-                            batteries.Add(battery);
-                        }
-
-
-                        this.BeginInvoke(new MethodInvoker(() =>
-                        {
-                            ListViewItem li_n = lvClampCodes.Items.Cast<ListViewItem>().First(x => x.SubItems[1].Text == code);
-                            if (li_n != null)
-                            {
-                                li_n.SubItems[2].Text = batteries.Count.ToString();
-                            }
-                        }));
-
-
-                        if (!Battery.Add(batteries, out msg))
-                        {
-                            this.BeginInvoke(new MethodInvoker(() => { this.lbTip.Text = code + " 电芯数据存入数据库失败！"; this.lbTip.ForeColor = Color.Red; }));
-                            LogHelper.WriteError(code + " 电芯数据存入数据库失败");
-                            return;
-                        }
-                        this.BeginInvoke(new MethodInvoker(() => { this.lbTip.Text = code + " 电芯数据存入数据库成功！"; this.lbTip.ForeColor = Color.LightGreen; }));
-                        LogHelper.WriteInfo(code + " 电芯数据存入数据库成功！");
-                        Thread.Sleep(100);
-
-                        //工艺参数保存到数据库
-                        if (!TechStandard4DB.Add(techStandards, clampid, out msg))
-                        {
-                            this.BeginInvoke(new MethodInvoker(() => { this.lbTip.Text = code + " 工艺参数存入数据库失败！"; this.lbTip.ForeColor = Color.Red; }));
-                            LogHelper.WriteError(code + " 工艺参数存入数据库失败");
-                            return;
-                        }
-                        this.BeginInvoke(new MethodInvoker(() => { this.lbTip.Text = code + " 工艺参数存入数据库成功！"; this.lbTip.ForeColor = Color.LightGreen; }));
-                        LogHelper.WriteInfo(code + " 工艺参数存入数据库成功！");
-                    }
-                    else if (Current.mes.IsOffline)
-                    {
-
-                        Battery battery = new Battery();
-                        battery.Code = code + "-" + DateTime.Now.ToString("yyyyMMddHHmmss");
-                        battery.ClampId = clampid;
-                        battery.Location = "1";
-
-                        if (Battery.Add(battery, out msg) < 1)
-                        {
-                            this.BeginInvoke(new MethodInvoker(() => { this.lbTip.Text = code + " MES离线模式，生成电芯数据存入数据库失败！"; this.lbTip.ForeColor = Color.Red; }));
-                            LogHelper.WriteInfo(code + " MES离线模式，生成电芯数据存入数据库失败！");
-                            return;
-                        }
-                        this.BeginInvoke(new MethodInvoker(() => { this.lbTip.Text = code + " MES离线模式，生成电芯数据存入数据库成功！"; this.lbTip.ForeColor = Color.LightGreen; }));
-                        LogHelper.WriteError(code + " MES离线模式，生成电芯数据存入数据库成功！");
-                        Thread.Sleep(100);
-                    }
                 }
                 catch (Exception ex)
                 {

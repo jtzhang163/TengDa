@@ -17,5 +17,6 @@ namespace Veken.Baking
         public static MES mes = new MES();
         public static Option option = new Option();
         public static bool IsInOvenFormShow = false;
+        public static bool IsOutOvenFormShow = false;
     }
 }

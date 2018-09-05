@@ -2176,20 +2176,32 @@ namespace Veken.Baking.App
                             {
                                 if (Current.ovens[i].Floors[j].Number == Current.scaner.ReceiveString)
                                 {
+                                    if (!Current.IsOutOvenFormShow)
+                                    {
+                                        //入炉
+                                        if (!Current.IsInOvenFormShow && (Current.ovens[i].Floors[j].floorStatus == FloorStatus.空腔 || Current.ovens[i].Floors[j].floorStatus == FloorStatus.待烘烤))
+                                        {
+                                            srcFloorName = tlpFloor01[i][j].Name;
+                                            this.BeginInvoke(new MethodInvoker(() => { tsmInOven_Click(null, null); }));
+                                        }
+                                        else if (Current.IsInOvenFormShow && (Current.ovens[i].Floors[j].floorStatus == FloorStatus.空腔 || Current.ovens[i].Floors[j].floorStatus == FloorStatus.待烘烤))
+                                        {
+                                            this.BeginInvoke(new MethodInvoker(() => { inOvenForm.Close(); }));
+                                        }
+                                    }
 
-                                    if (!Current.IsInOvenFormShow && (Current.ovens[i].Floors[j].floorStatus == FloorStatus.空腔 || Current.ovens[i].Floors[j].floorStatus == FloorStatus.待烘烤))
+                                    if (!Current.IsInOvenFormShow)
                                     {
-                                        srcFloorName = tlpFloor01[i][j].Name;
-                                        this.BeginInvoke(new MethodInvoker(() => { tsmInOven_Click(null, null); }));
-                                        //线程不是UI主线程的话,操作窗体需要用委托调用的
-                                    }
-                                    else if (Current.IsInOvenFormShow && (Current.ovens[i].Floors[j].floorStatus == FloorStatus.空腔 || Current.ovens[i].Floors[j].floorStatus == FloorStatus.待烘烤))
-                                    {
-                                        this.BeginInvoke(new MethodInvoker(() => { inOvenForm.Close(); }));
-                                    }
-                                    else if (Current.ovens[i].Floors[j].floorStatus == FloorStatus.待出腔)
-                                    {
-                                        outOven(i, j);
+                                        //出炉
+                                        if (!Current.IsOutOvenFormShow && Current.ovens[i].Floors[j].floorStatus == FloorStatus.待出腔)
+                                        {
+                                            srcFloorName = tlpFloor01[i][j].Name;
+                                            this.BeginInvoke(new MethodInvoker(() => { tsmOutOven_Click(null, null); }));
+                                        }
+                                        else if (Current.IsOutOvenFormShow && (Current.ovens[i].Floors[j].floorStatus == FloorStatus.待出腔 || Current.ovens[i].Floors[j].floorStatus == FloorStatus.空腔))
+                                        {
+                                            this.BeginInvoke(new MethodInvoker(() => { outOvenForm.Close(); }));
+                                        }
                                     }
                                 }
                             }
@@ -2234,6 +2246,8 @@ namespace Veken.Baking.App
 
         InOvenForm inOvenForm = null;
 
+        OutOvenForm outOvenForm = null;
+
         private void tsmOutOven_Click(object sender, EventArgs e)
         {
             if (Current.runStstus != RunStatus.运行)
@@ -2244,32 +2258,31 @@ namespace Veken.Baking.App
 
             int i = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(12, 2), 0) - 1;
-            if (Current.ovens[i].Floors[j].floorStatus == FloorStatus.待出腔)
-            {
-                outOven(i, j);
-            }
+
+            outOvenForm = new OutOvenForm(i, j, this);
+            outOvenForm.ShowDialog();
         }
 
-        private void outOven(int i, int j)
-        {
-            string msg = string.Empty;
-            for (int k = 0; k < Current.ovens[i].Floors[j].Clamps.Count; k++)
-            {
-                Yield.BlankingOK += Current.ovens[i].Floors[j].Clamps[k].Batteries.Count;
-            }
+        //private void outOven(int i, int j)
+        //{
+        //    string msg = string.Empty;
+        //    for (int k = 0; k < Current.ovens[i].Floors[j].Clamps.Count; k++)
+        //    {
+        //        Yield.BlankingOK += Current.ovens[i].Floors[j].Clamps[k].Batteries.Count;
+        //    }
 
-            Database.NonQuery(string.Format("UPDATE [dbo].[{0}] SET [IsFinished] = 'TRUE', [OutTime] = GETDATE() WHERE [Id] IN ({1})", Clamp.TableName, Current.ovens[i].Floors[j].ClampIds), out msg);
+        //    Database.NonQuery(string.Format("UPDATE [dbo].[{0}] SET [IsFinished] = 'TRUE', [OutTime] = GETDATE() WHERE [Id] IN ({1})", Clamp.TableName, Current.ovens[i].Floors[j].ClampIds), out msg);
 
-            //清除该腔体绑定料盒/托盘数据
-            Current.ovens[i].Floors[j].Clamps.Clear();
-            Current.ovens[i].Floors[j].ClampIds = string.Empty;
+        //    //清除该腔体绑定料盒/托盘数据
+        //    Current.ovens[i].Floors[j].Clamps.Clear();
+        //    Current.ovens[i].Floors[j].ClampIds = string.Empty;
 
-            if (Current.mes.IsAlive)
-            {
-                Thread t = new Thread(new ParameterizedThreadStart(UploadBatteriesInfo));
-                t.Start(new List<Clamp>());
-            }
-        }
+        //    if (Current.mes.IsAlive)
+        //    {
+        //        Thread t = new Thread(new ParameterizedThreadStart(UploadBatteriesInfo));
+        //        t.Start(new List<Clamp>());
+        //    }
+        //}
 
         #endregion
 
