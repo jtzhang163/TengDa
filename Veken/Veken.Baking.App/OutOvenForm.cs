@@ -37,12 +37,22 @@ namespace Veken.Baking.App
             this.lvClampCodes.Columns[1].Width = 140;
             this.lvClampCodes.Columns[2].Width = 60;
 
-            this.lbTip.Text = "等待扫码！";
             clampCodes.Clear();
+            //填充ListView
+            foreach (Clamp c in Current.ovens[i].Floors[j].Clamps)
+            {
+                ListViewItem li = new ListViewItem();//创建行对象
+                li.Text = (++clampNum).ToString();
+                li.SubItems.Add(c.Code);
+                li.SubItems.Add(c.Batteries.Count.ToString());
+                this.lvClampCodes.Items.Add(li);
+            }
+
+            this.lbTip.Text = "等待扫码！";
             Current.IsOutOvenFormShow = true;
         }
 
-        private void InOvenForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void OutOvenForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.lvClampCodes.Dispose();
             Current.IsOutOvenFormShow = false;
@@ -55,23 +65,17 @@ namespace Veken.Baking.App
             this.tbClampCode.Text = code;
             this.tbClampCode.ForeColor = Color.Lime;
 
-            if (Current.ovens[i].Floors[j].Clamps.Count(c => c.Code == code) > 0)
+            if (!clampCodes.Contains(code))
             {
-                this.lbTip.Text = "腔体中已有料盒：" + code;
+                this.lbTip.Text = "料盒已出，或腔体中没有该料盒：" + code;
                 this.lbTip.ForeColor = Color.Red;
-            }
-            else if (!clampCodes.Contains(code))
-            {
-                this.lbTip.Text = "获得条码 " + code;
-                this.lbTip.ForeColor = Color.LightGreen;
-
-                Thread thread = new Thread(new ParameterizedThreadStart(InOven));
-                thread.Start(code + "," + clampNum);
             }
             else
             {
-                this.lbTip.Text = "重复扫码";
-                this.lbTip.ForeColor = Color.Red;
+                this.lbTip.Text = "获得条码 " + code;
+                this.lbTip.ForeColor = Color.LightGreen;
+                Thread thread = new Thread(new ParameterizedThreadStart(OutOven));
+                thread.Start(code);
             }
 
             System.Timers.Timer t = new System.Timers.Timer(3000);
@@ -106,32 +110,30 @@ namespace Veken.Baking.App
             }
         }
 
-        private void InOven(object obj)
+        private void OutOven(object obj)
         {
-            string code = obj.ToString().Split(',')[0];
-            int index = TengDa._Convert.StrToInt(obj.ToString().Split(',')[1], -1);
+            string code = obj.ToString();
+
+            Clamp clamp = Current.ovens[i].Floors[j].Clamps.Single(c => c.Code == code);
 
             string msg = string.Empty;
-            string techNo = string.Empty;
             lock (locker)
             {
                 try
                 {
-                    List<Cell> cells = new List<Cell>();
-                    List<TechStandard> techStandards = new List<TechStandard>();
                     if (Current.mes.IsAlive)
                     {
                         if (Current.mes.IsOffline) { Current.mes.IsOffline = false; }
 
-                        this.BeginInvoke(new MethodInvoker(() => { this.lbTip.Text = code + " 正在获取电芯数据和工艺参数..."; this.lbTip.ForeColor = Color.LightGreen; }));
-                        if (!MES.GetInfo(Current.ovens[i].Floors[j].Number, code, out techNo, out cells, out techStandards, out msg))
+                        this.BeginInvoke(new MethodInvoker(() => { this.lbTip.Text = code + " 正在上传料盒信息..."; this.lbTip.ForeColor = Color.LightGreen; }));
+                        if (!MES.UploadCellInfo(clamp))
                         {
-                            this.BeginInvoke(new MethodInvoker(() => { this.lbTip.Text = string.Format("{0}: {1}", code, msg); this.lbTip.ForeColor = Color.Red; }));
-                            LogHelper.WriteError(string.Format("{0}: {1}", code, msg));
+                            this.BeginInvoke(new MethodInvoker(() => { this.lbTip.Text = string.Format("{0}: {1}", code, "上传失败"); this.lbTip.ForeColor = Color.Red; }));
+                            LogHelper.WriteError(string.Format("{0}: {1}", code, "上传失败"));
                             return;
                         }
-                        this.BeginInvoke(new MethodInvoker(() => { this.lbTip.Text = code + " 获取数据成功"; this.lbTip.ForeColor = Color.LightGreen; }));
-                        LogHelper.WriteInfo(code + " 获取数据成功");
+                        this.BeginInvoke(new MethodInvoker(() => { this.lbTip.Text = code + " 上传MES成功"; this.lbTip.ForeColor = Color.LightGreen; }));
+                        LogHelper.WriteInfo(code + " 上传MES成功");
                         Thread.Sleep(100);
                     }
                     else
@@ -163,27 +165,8 @@ namespace Veken.Baking.App
 
                     }
 
-                    //料盒/托盘保存到数据库
-                    Clamp clamp = new Clamp();
-                    clamp.Code = code;
-                    clamp.EnterTime = DateTime.Now;
-                    clamp.FloorId = Current.ovens[i].Floors[j].Id;
-                    clamp.Location = index.ToString();
-                    clamp.OutTime = TengDa.Common.DefaultTime;
-                    clamp.BakingStartTime = TengDa.Common.DefaultTime;
-                    clamp.BakingStopTime = TengDa.Common.DefaultTime;
-                    clamp.isUploaded = false;
-                    clamp.isFinished = false;
-                    clamp.techNo = techNo;
 
-                    int clampid = Clamp.Add(clamp, out msg);
-                    if (clampid < 1)
-                    {
-                        Error.Alert("clampid < 1");
-                        return;
-                    }
-
-                    Current.ovens[i].Floors[j].Clamps.Add(new Clamp(clampid));
+                    Current.ovens[i].Floors[j].Clamps.Remove(clamp);
                     string clampids = string.Empty;
                     foreach (Clamp c in Current.ovens[i].Floors[j].Clamps)
                     {
@@ -193,15 +176,19 @@ namespace Veken.Baking.App
 
                     this.BeginInvoke(new MethodInvoker(() =>
                     {
-                        ListViewItem li = new ListViewItem();//创建行对象
-                        li.Text = (++clampNum).ToString();
-                        li.SubItems.Add(code);
-                        li.SubItems.Add("");
-                        this.lvClampCodes.Items.Add(li);
+                        foreach(ListViewItem li in this.lvClampCodes.Items)
+                        {
+                            foreach (ListViewItem subli in li.SubItems)
+                            {
+                                if (subli.Text == code)
+                                {
+                                    this.lvClampCodes.Items.Remove(li);
+                                }
+                            }
+                        }                      
                     }));
 
-                    clampCodes.Add(code);
-
+                    clampCodes.Remove(code);
                 }
                 catch (Exception ex)
                 {

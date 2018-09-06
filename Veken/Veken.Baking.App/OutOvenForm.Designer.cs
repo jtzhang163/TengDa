@@ -246,7 +246,7 @@
             this.Name = "OutOvenForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "出腔扫码";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InOvenForm_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OutOvenForm_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

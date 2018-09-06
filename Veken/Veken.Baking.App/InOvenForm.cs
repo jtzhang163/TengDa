@@ -37,6 +37,8 @@ namespace Veken.Baking.App
             this.lvClampCodes.Columns[1].Width = 140;
             this.lvClampCodes.Columns[2].Width = 60;
 
+            clampCodes.Clear();
+
             //填充ListView
             foreach (Clamp c in Current.ovens[i].Floors[j].Clamps)
             {
@@ -45,10 +47,10 @@ namespace Veken.Baking.App
                 li.SubItems.Add(c.Code);
                 li.SubItems.Add(c.Batteries.Count.ToString());
                 this.lvClampCodes.Items.Add(li);
+                clampCodes.Add(c.Code);
             }
 
             this.lbTip.Text = "等待扫码！";
-            clampCodes.Clear();
             Current.IsInOvenFormShow = true;
         }
 
