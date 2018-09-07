@@ -348,19 +348,23 @@ namespace Outstanding.Dispatcher
                 }
 
                 var result = false;
-                oOven.Floors.ForEach(f =>
+
+                if (Current.TaskMode == TaskMode.自动任务)
                 {
-                    if (f.Id != oFloor.Id)
+                    oOven.Floors.ForEach(f =>
                     {
-                        f.Stations.ForEach(s =>
+                        if (f.Id != oFloor.Id)
                         {
-                            if (s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId)
+                            f.Stations.ForEach(s =>
                             {
-                                result = true;
-                            }
-                        });
-                    }
-                });
+                                if (s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId)
+                                {
+                                    result = true;
+                                }
+                            });
+                        }
+                    });
+                }
 
                 return result;
             }
