@@ -393,7 +393,8 @@ namespace Veken.Baking.App
         {
 
             lbTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            this.Text = Current.option.AppName + Version.AssemblyVersion;
+            // this.Text = Current.option.AppName + Version.AssemblyVersion;
+            this.Text = string.Format("{0} {1}  {2}", Current.option.AppName, Version.AssemblyVersion, new Version().VersionTime.ToString("yyyy/M/d"));
             this.cbInOvenCheck.Checked = Current.option.InOvenCheck;
             Current.runStstus = RunStatus.闲置;
 

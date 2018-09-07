@@ -23,5 +23,13 @@ namespace Veken.Baking.App
                 // return "V" + assemblyVersion;
             }
         }
+
+        public DateTime VersionTime
+        {
+            get
+            {
+                return System.IO.File.GetLastWriteTime(this.GetType().Assembly.Location);
+            }
+        }
     }
 }
