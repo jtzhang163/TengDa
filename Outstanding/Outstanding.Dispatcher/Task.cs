@@ -489,13 +489,13 @@ namespace Outstanding.Dispatcher
                                 Current.rgv.ClampId = Current.Task.FromStation.ClampId;
                                 Current.Task.FromStation.ClampId = -1;
                             }
-                        }
 
-                        if (!Current.rgv.IsGettingOrPutting && Current.Task.FromStation.ClampStatus == ClampStatus.无夹具)
-                        {
-
-                            Current.Task.Status = TaskStatus.取完;
+                            if (!Current.rgv.IsGettingOrPutting)
+                            {
+                                Current.Task.Status = TaskStatus.取完;
+                            }
                         }
+        
                     }
                     else if (Current.Task.Status == TaskStatus.取完 && Current.Task.ToStation != null)
                     {
@@ -629,19 +629,16 @@ namespace Outstanding.Dispatcher
                     {
                         Current.rgv.ClampStatus = Current.Task.FromClampStatus;
                         Current.rgv.Location = Current.Task.FromStation.Location;
-
                         if (Current.Task.FromStation.ClampId > 0)
                         {
                             Current.rgv.ClampId = Current.Task.FromStation.ClampId;
                             Current.Task.FromStation.ClampId = -1;
                         }
-
-                    }
-
-
-                    if (!Current.rgv.IsGettingOrPutting && Current.Task.FromStation.ClampStatus == ClampStatus.无夹具)
-                    {
-                        Current.Task.Status = TaskStatus.取完;
+                        
+                        if (!Current.rgv.IsGettingOrPutting)
+                        {
+                            Current.Task.Status = TaskStatus.取完;
+                        }
                     }
                 }
                 else if (Current.Task.Status == TaskStatus.取完)

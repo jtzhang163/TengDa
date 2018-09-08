@@ -3965,6 +3965,13 @@ namespace Outstanding.Dispatcher.App
                 }
                 else if (isPut)
                 {
+
+                    if (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取)
+                    {
+                        Tip.Alert("取盘任务尚未完成！");
+                        return;
+                    }
+
                     if (station.ClampStatus != ClampStatus.无夹具)
                     {
                         Tip.Alert("该位置有夹具，不能放盘！");
