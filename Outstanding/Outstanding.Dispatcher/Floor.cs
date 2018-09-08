@@ -242,26 +242,6 @@ namespace Outstanding.Dispatcher
             }
         }
 
-        private string clampIds = string.Empty;
-
-        [ReadOnly(false), Description("腔体中夹具Id集合")]
-        [DisplayName("腔体中夹具Id集合")]
-        public string ClampIds
-        {
-            get
-            {
-                clampIds = string.Empty;
-                foreach (Clamp clamp in Clamps)
-                {
-                    if (clamp.Id > 0)
-                    {
-                        clampIds += clamp.Id + ",";
-                    }
-                }
-                return clampIds.Trim(',');
-            }
-        }
-
         #endregion
 
         #region 系统腔体列表

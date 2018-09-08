@@ -438,10 +438,6 @@ namespace Outstanding.Dispatcher.App
                 for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
                 {
                     lbBlankerStationName[i][j].Text = Current.blankers[i].Stations[j].Name;
-                    if (Current.blankers[i].Stations[j].Clamp.Id < 1)
-                    {
-                        tlpBlankerStationClamp[i][j].Visible = false;
-                    }
                 }
             }
 
