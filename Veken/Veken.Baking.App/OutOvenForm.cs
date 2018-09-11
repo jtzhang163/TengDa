@@ -9,13 +9,14 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using TengDa;
+using TengDa.WF;
 
 namespace Veken.Baking.App
 {
     public partial class OutOvenForm : Form
     {
         int i = -1, j = -1;
-        static int clampNum = 0;
+        int clampNum = 0;
 
         ManageSystem ms = null;
 
@@ -46,6 +47,7 @@ namespace Veken.Baking.App
                 li.SubItems.Add(c.Code);
                 li.SubItems.Add(c.Batteries.Count.ToString());
                 this.lvClampCodes.Items.Add(li);
+                clampCodes.Add(c.Code);
             }
 
             this.lbTip.Text = "等待扫码！";
@@ -165,7 +167,7 @@ namespace Veken.Baking.App
 
                     }
 
-
+                    Yield.BlankingOK += clamp.Batteries.Count;
                     Current.ovens[i].Floors[j].Clamps.Remove(clamp);
                     string clampids = string.Empty;
                     foreach (Clamp c in Current.ovens[i].Floors[j].Clamps)
@@ -178,7 +180,7 @@ namespace Veken.Baking.App
                     {
                         foreach(ListViewItem li in this.lvClampCodes.Items)
                         {
-                            foreach (ListViewItem subli in li.SubItems)
+                            foreach (ListViewItem.ListViewSubItem subli in li.SubItems)
                             {
                                 if (subli.Text == code)
                                 {
