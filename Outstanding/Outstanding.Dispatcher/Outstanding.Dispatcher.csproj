@@ -72,6 +72,7 @@
     <Compile Include="PLC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scaner.cs" />
+    <Compile Include="Yield.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="TVD.cs" />
