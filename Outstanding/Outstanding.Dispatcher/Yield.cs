@@ -206,5 +206,54 @@ namespace Outstanding.Dispatcher
         }
 
         #endregion
+
+        #region 方法
+
+        public static void Clear()
+        {
+            Current.Yields.ForEach(y => { y.ClearYield(); });
+        }
+
+        public void ClearYield()
+        {
+            this.FeedingOK = 0;
+            this.FeedingNG = 0;
+            this.BlankingOK = 0;
+            this.BlankingNG = 0;
+        }
+
+        /// <summary>
+        /// 判断时间是否是当前班次所在时间
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static bool IsCurrentShift(DateTime dt)
+        {
+            DateTime dtShiftStart = Common.DefaultTime;
+            DateTime dtShiftStop = Common.DefaultTime;
+
+            if (DateTime.Now.Hour < 8)
+            {
+                dtShiftStart = _Convert.StrToDateTime(string.Format("{0} 20:00:00", DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")), Common.DefaultTime);
+                dtShiftStop = _Convert.StrToDateTime(string.Format("{0} 08:00:00", DateTime.Now.ToString("yyyy-MM-dd")), Common.DefaultTime);
+            }
+            else if (DateTime.Now.Hour < 20)
+            {
+                dtShiftStart = _Convert.StrToDateTime(string.Format("{0} 08:00:00", DateTime.Now.ToString("yyyy-MM-dd")), Common.DefaultTime);
+                dtShiftStop = _Convert.StrToDateTime(string.Format("{0} 20:00:00", DateTime.Now.ToString("yyyy-MM-dd")), Common.DefaultTime);
+            }
+            else
+            {
+                dtShiftStart = _Convert.StrToDateTime(string.Format("{0} 20:00:00", DateTime.Now.ToString("yyyy-MM-dd")), Common.DefaultTime);
+                dtShiftStop = _Convert.StrToDateTime(string.Format("{0} 08:00:00", DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")), Common.DefaultTime);
+            }
+
+            if (dt > dtShiftStart && dt < dtShiftStop)
+            {
+                return true;
+            }
+            return false;
+        }
+        #endregion
     }
 }

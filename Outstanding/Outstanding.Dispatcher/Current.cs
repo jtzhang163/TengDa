@@ -50,6 +50,6 @@ namespace Outstanding.Dispatcher
 
         public static CurrentTask Task = new CurrentTask(1);
 
-
+        public static List<Yield> Yields = new List<Yield>();
     }
 }

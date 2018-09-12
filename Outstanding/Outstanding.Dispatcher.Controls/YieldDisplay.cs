@@ -24,16 +24,21 @@ namespace Outstanding.Dispatcher.Controls
 
         private void btnYieldClear_Click(object sender, EventArgs e)
         {
-            if (btnYieldClearClick != null)
-            {
-                btnYieldClearClick(sender, new EventArgs());
-            }
+            btnYieldClearClick?.Invoke(sender, new EventArgs());
         }
 
         public void YieldUpdate()
         {
-            lbShowFeedingOK2.Text = Yield.FeedingOK.ToString();
-            lbShowBlankingOK2.Text = Yield.BlankingOK.ToString();
+            lbShowFeedingOK1.Text = Current.Yields[0].FeedingOK.ToString();
+            lbShowBlankingOK1.Text = Current.Yields[0].BlankingOK.ToString();
+            lbShowFeedingOK2.Text = Current.Yields[1].FeedingOK.ToString();
+            lbShowBlankingOK2.Text = Current.Yields[1].BlankingOK.ToString();
+        }
+
+        public void SetYieldType(int layoutType)
+        {
+            lbYieldType1.Text = layoutType == 1 ? "A线" : "C线";
+            lbYieldType2.Text = layoutType == 1 ? "B线" : "D线";
         }
 
         public void SetClearYieldTime(DateTime dateTime)

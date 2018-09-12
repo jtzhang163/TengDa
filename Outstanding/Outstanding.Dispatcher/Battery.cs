@@ -160,7 +160,7 @@ namespace Outstanding.Dispatcher
                 sb.Append(string.Format("('{0}', {1}, '{2}', '{3}'),", battery.Code, battery.ClampId, battery.Location, DateTime.Now));
             }
 
-            Yield.FeedingOK += addBatteries.Count;
+            //Yield.FeedingOK += addBatteries.Count;
             return Database.NonQuery(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [Location], [ScanTime]) VALUES {1}", TableName, sb.ToString().TrimEnd(',')), out msg);
         }
 

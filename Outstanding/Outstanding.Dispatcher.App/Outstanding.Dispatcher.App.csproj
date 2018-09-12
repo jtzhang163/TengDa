@@ -123,10 +123,17 @@
     <Content Include="TengDa.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Outstanding.Dispatcher.Controls\Outstanding.Dispatcher.Controls.csproj">
+      <Project>{28e684df-1a53-4538-80b4-c1f96cc82d66}</Project>
+      <Name>Outstanding.Dispatcher.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Outstanding.Dispatcher\Outstanding.Dispatcher.csproj">
       <Project>{f13c082c-54a5-411c-a3bc-29315d7fd786}</Project>
       <Name>Outstanding.Dispatcher</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

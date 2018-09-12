@@ -89,12 +89,14 @@ namespace Outstanding.Dispatcher
 
                     if (value == ClampStatus.空夹具 && this.GetPutType == GetPutType.下料机)
                     {
-                        Yield.BlankingOK++;
+                        // Yield.BlankingOK++;
+                        Current.Yields.First(y => y.ClampOri == this.ClampOri).BlankingOK++;
                     }
 
                     if (value == ClampStatus.满夹具 && this.GetPutType == GetPutType.上料机)
                     {
-                        Yield.FeedingOK++;
+                        //  Yield.FeedingOK++;
+                        Current.Yields.First(y => y.ClampOri == this.ClampOri).FeedingOK++;
                     }
 
                     AddLog(string.Format("{0}——>{1}", clampStatus, value));

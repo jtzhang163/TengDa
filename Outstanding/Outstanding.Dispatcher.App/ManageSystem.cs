@@ -110,6 +110,8 @@ namespace Outstanding.Dispatcher.App
                 new Version().VersionTime.ToString("yyyy/M/d"));
             Current.runStstus = RunStatus.闲置;
             Current.TaskMode = TaskMode.手动任务;
+
+            yieldDisplay.SetYieldType(Option.LayoutType);
             yieldDisplay.SetClearYieldTime(_Convert.StrToDateTime(Current.option.ClearYieldTime, Common.DefaultTime));
 
             if (!Current.option.IsMesUserEnable)
@@ -393,6 +395,7 @@ namespace Outstanding.Dispatcher.App
             Current.blankers = Blanker.BlankerList;
             Current.rotater = Rotater.RotaterList.First();
             Current.cache = Cache.CacheList.First();
+            Current.Yields = Yield.YieldList;
             cbStations.Items.Add("All");
             cbAlarmFloors.Items.Add("All");
 
