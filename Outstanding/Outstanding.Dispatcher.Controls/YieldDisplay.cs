@@ -32,8 +32,8 @@ namespace Outstanding.Dispatcher.Controls
 
         public void YieldUpdate()
         {
-            lbShowFeedingOK2.Text = .FeedingOK.ToString();
-            lbShowBlankingOK2.Text = .BlankingOK.ToString();
+            lbShowFeedingOK2.Text = Yield.FeedingOK.ToString();
+            lbShowBlankingOK2.Text = Yield.BlankingOK.ToString();
         }
 
         public void SetClearYieldTime(DateTime dateTime)
