@@ -393,7 +393,7 @@ namespace Outstanding.Dispatcher
                 {
                     return 2;
                 }
-                if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.无盘) > 0)
+                if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出) > 0)
                 {
                     return 3;
                 }
@@ -401,11 +401,7 @@ namespace Outstanding.Dispatcher
                 {
                     return 4;
                 }
-                if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出) > 0)
-                {
-                    return 5;
-                }
-                return 6;
+                return 5;
             }
         }
 
