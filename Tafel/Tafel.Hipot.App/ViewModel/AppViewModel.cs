@@ -27,7 +27,7 @@ namespace Tafel.Hipot.App
                 if (string.IsNullOrEmpty(appName))
                 {
                     appName = TengDa.Wpf.Option.GetOption("AppName");
-                    if (appName == string.Empty)
+                    if (string.IsNullOrEmpty(appName))
                     {
                         appName = "东莞塔菲尔Hipot自动采集上传系统";
                         TengDa.Wpf.Option.SetOption("AppName", appName, "应用程序名称");
