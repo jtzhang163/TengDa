@@ -1623,7 +1623,7 @@
             this.cbRemPwd.Name = "cbRemPwd";
             this.cbRemPwd.Size = new System.Drawing.Size(72, 16);
             this.cbRemPwd.TabIndex = 5;
-            this.cbRemPwd.Text = "记住密码";
+            this.cbRemPwd.Text = "记住我";
             this.cbRemPwd.UseVisualStyleBackColor = true;
             this.cbRemPwd.CheckedChanged += new System.EventHandler(this.cbRemPwd_CheckedChanged);
             // 
