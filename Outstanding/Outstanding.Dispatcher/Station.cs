@@ -87,15 +87,13 @@ namespace Outstanding.Dispatcher
                         this.FloorStatus = FloorStatus.空盘;
                     }
 
-                    if (value == ClampStatus.空夹具 && this.GetPutType == GetPutType.下料机)
+                    if (value == ClampStatus.空夹具 && clampStatus == ClampStatus.满夹具 && this.GetPutType == GetPutType.下料机)
                     {
-                        // Yield.BlankingOK++;
                         Current.Yields.First(y => y.ClampOri == this.ClampOri).BlankingOK++;
                     }
 
-                    if (value == ClampStatus.满夹具 && this.GetPutType == GetPutType.上料机)
+                    if (value == ClampStatus.满夹具 && clampStatus == ClampStatus.空夹具 && this.GetPutType == GetPutType.上料机)
                     {
-                        //  Yield.FeedingOK++;
                         Current.Yields.First(y => y.ClampOri == this.ClampOri).FeedingOK++;
                     }
 
