@@ -275,3 +275,5 @@ __pycache__/
 /Tafel/Tafel.Document
 /Tafel/Tafel.Scada.App/Migrations
 /Tafel/Tafel.Hipot.App/Documents
+/Bak/Bak.Document
+/Bak/Bak.fanuc.Test
