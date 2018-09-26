@@ -39,30 +39,6 @@ namespace BakBattery.Baking
             private set { stationId = value; }
         }
 
-        //[Browsable(false)]
-        //public bool PreIsReady { get; set; } = false;
-
-        //public string Alarm2BinString = string.Empty;
-
-        //public string PreAlarm2BinString = string.Empty;
-
-        //public TriLamp triLamp = TriLamp.Unknown;
-
-        //[ReadOnly(true)]
-        //[DisplayName("电池是否到位")]
-        //public bool IsReady { get; set; } = false;
-
-        ///// <summary>
-        ///// 当前扫描NG已累计次数
-        ///// </summary>
-        //[Browsable(false)]
-        //public int CurrentScanNgCount { get; set; }
-
-        ///// <summary>
-        ///// 扫描NG总次数设置
-        ///// </summary>
-        //[Browsable(false)]
-        //public int ScanNgCount { get { return Current.option.ScanNgCount; } }
 
         #endregion
 

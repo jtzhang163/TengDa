@@ -530,54 +530,6 @@ namespace BakBattery.Baking
 
                 this.BatteryCache.SetCount(iOut[9]);
 
-                #region 写指令 控制开关门
-                for (int j = 0; j < this.Stations.Count; j++)
-                {
-                    #region 控制开门
-                    if (this.Stations[j].toOpenDoor)
-                    {
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.OpenFeederDoorStrs.Split(',')[j], out output, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
-
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.OpenOvenDoorStrs.Split(',')[j], output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送开门指令到{0}:{1}", this.Stations[j].Name, Current.option.OpenOvenDoorStrs.Split(',')[j]));
-                        this.Stations[j].toOpenDoor = false;
-                    }
-                    #endregion
-
-                    #region 控制关门
-                    if (this.Stations[j].toCloseDoor)
-                    {
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.CloseFeederDoorStrs.Split(',')[j], out output, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
-
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.CloseOvenDoorStrs.Split(',')[j], output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送关门指令到{0}:{1}", this.Stations[j].Name, Current.option.CloseOvenDoorStrs.Split(',')[j]));
-                        this.Stations[j].toCloseDoor = false;
-                    }
-                    #endregion
-
-                }
-                #endregion
-
                 Thread.Sleep(100);
             }
             catch (Exception ex)

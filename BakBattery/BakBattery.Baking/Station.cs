@@ -600,7 +600,6 @@ namespace BakBattery.Baking
         #region 控制标志
         public bool toOpenDoor = false;
         public bool toCloseDoor = false;
-        public bool[] toRotate = new bool[2] { false, false };
         #endregion
 
         #endregion
@@ -757,11 +756,6 @@ namespace BakBattery.Baking
                     Oven oven = Oven.OvenList.First(o => o.Id == floor.OvenId);
                     oven.OpenDoor(oven.Floors.IndexOf(floor));
                 }
-                else if (this.GetPutType == GetPutType.上料机)
-                {
-                    Feeder feeder = Feeder.FeederList.First(f => f.StationIds.Contains(this.Id.ToString()));
-                    feeder.OpenDoor(feeder.Stations.IndexOf(this));
-                }
             }
         }
 
@@ -779,12 +773,6 @@ namespace BakBattery.Baking
                     Oven oven = Oven.OvenList.First(o => o.Id == floor.OvenId);
                     oven.CloseDoor(oven.Floors.IndexOf(floor));
                 }
-                else if (this.GetPutType == GetPutType.上料机)
-                {
-                    Feeder feeder = Feeder.FeederList.First(f => f.StationIds.Contains(this.Id.ToString()));
-                    feeder.CloseDoor(feeder.Stations.IndexOf(this));
-                }
-
             }
         }
 

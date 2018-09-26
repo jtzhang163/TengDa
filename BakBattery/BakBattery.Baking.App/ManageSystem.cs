@@ -886,19 +886,6 @@ namespace BakBattery.Baking.App
                 blanker.IsAlive = blanker.IsEnable && blanker.Plc.IsAlive;
                 blanker.Stations.ForEach(s => s.IsAlive = s.IsEnable && blanker.IsAlive);
 
-                if (blanker.CacheId > 0)
-                {
-                    blanker.Cache.IsAlive = blanker.Cache.IsEnable && blanker.Plc.IsAlive;
-                    blanker.Cache.Stations.ForEach(s => s.IsAlive = s.IsEnable && blanker.Cache.IsAlive);
-                }
-
-                if (blanker.RotaterId > 0)
-                {
-                    blanker.Rotater.IsAlive = blanker.Rotater.IsEnable && blanker.Plc.IsAlive;
-                    blanker.Rotater.Station.IsAlive = blanker.Rotater.Station.IsEnable && blanker.Rotater.IsAlive;
-                }
-
-
                 if (blanker.Plc.IsAlive) { if (tbBlankerStatus[i].Text.Trim() == "未连接") { tbBlankerStatus[i].Text = "连接成功"; } }
                 else { this.tbBlankerStatus[i].Text = "未连接"; }
 
@@ -3452,80 +3439,6 @@ namespace BakBattery.Baking.App
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
             Current.ovens[i].Floors[j].AddLog("手动关门");
             Current.ovens[i].CloseDoor(j);
-        }
-
-        private void tsmFeederOpenDoor_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-            string srcName = (sender as ToolStripMenuItem).Name;
-            int i = TengDa._Convert.StrToInt(srcName.Substring(18, 2), 0);
-            int j = TengDa._Convert.StrToInt(srcName.Substring(20, 2), 0);
-            Current.feeders[i].Stations[j].AddLog("手动开门");
-            Current.feeders[i].OpenDoor(j);
-        }
-
-        private void tsmFeederCloseDoor_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-            string srcName = (sender as ToolStripMenuItem).Name;
-            int i = TengDa._Convert.StrToInt(srcName.Substring(19, 2), 0);
-            int j = TengDa._Convert.StrToInt(srcName.Substring(21, 2), 0);
-            if (Current.feeders[i].Stations[j].Id == Current.Task.FromStationId || Current.feeders[i].Stations[j].Id == Current.Task.ToStationId)
-            {
-                Tip.Alert(Current.feeders[i].Stations[j].Name + " 工位任务尚未完成，不能手动关门！");
-                return;
-            }
-            Current.feeders[i].Stations[j].AddLog("手动关门");
-            Current.feeders[i].CloseDoor(j);
-        }
-
-        private void cmsFeeder_Opening(object sender, CancelEventArgs e)
-        {
-            string tlpFeederName = (sender as ContextMenuStrip).SourceControl.Name;
-
-            int i = Convert.ToInt32(tlpFeederName.Substring(9)) - 1;
-
-            if (Option.LayoutType == 1)
-            {
-                i = FeederCount - 1 - i;
-            }
-
-            List<ToolStripItem> tsiFeederStations = new List<ToolStripItem>();
-
-            for (int j = 0; j < Current.feeders[i].Stations.Count; j++)
-            {
-                lbFeederStationName[i][j].Text = Current.feeders[i].Stations[j].Name;
-                ToolStripMenuItem tsmiFeederStation = new ToolStripMenuItem();
-                tsmiFeederStation.Name = "tsmi" + i.ToString("D2") + j.ToString("D2");
-                tsmiFeederStation.Text = Current.feeders[i].Stations[j].Name;
-
-
-                ToolStripMenuItem tsmiFeederOpenDoor = new ToolStripMenuItem();
-                tsmiFeederOpenDoor.Name = "tsmiFeederOpenDoor" + i.ToString("D2") + j.ToString("D2");
-                tsmiFeederOpenDoor.Text = "开门";
-                tsmiFeederOpenDoor.Enabled = Current.feeders[i].Stations[j].DoorStatus == DoorStatus.打开 ? false : true;
-                tsmiFeederOpenDoor.Click += new System.EventHandler(this.tsmFeederOpenDoor_Click);
-
-                ToolStripMenuItem tsmiFeederCloseDoor = new ToolStripMenuItem();
-                tsmiFeederCloseDoor.Name = "tsmiFeederCloseDoor" + i.ToString("D2") + j.ToString("D2");
-                tsmiFeederCloseDoor.Text = "关门";
-                tsmiFeederCloseDoor.Enabled = Current.feeders[i].Stations[j].DoorStatus == DoorStatus.关闭 ? false : true;
-                tsmiFeederCloseDoor.Click += new System.EventHandler(this.tsmFeederCloseDoor_Click);
-
-                tsmiFeederStation.DropDownItems.AddRange(new ToolStripItem[] { tsmiFeederOpenDoor, tsmiFeederCloseDoor });
-
-                tsiFeederStations.Add(tsmiFeederStation);
-            }
-            this.tsmFeederRemoteControl.DropDownItems.Clear();
-            this.tsmFeederRemoteControl.DropDownItems.AddRange(tsiFeederStations.ToArray());
         }
 
         private void tlpFeederStationClamp_CellPaint(object sender, TableLayoutCellPaintEventArgs e)

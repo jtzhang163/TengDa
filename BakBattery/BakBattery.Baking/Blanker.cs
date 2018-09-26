@@ -174,30 +174,6 @@ namespace BakBattery.Baking
         }
         #endregion
 
-        #region 该设备上的旋转台
-        [Browsable(false)]
-        [ReadOnly(true)]
-        public Transfer Rotater
-        {
-            get
-            {
-                return Transfer.RotaterList.FirstOrDefault(r => r.Id == this.RotaterId);
-            }
-        }
-        #endregion
-
-        #region 该设备上的缓存架
-        [Browsable(false)]
-        [ReadOnly(true)]
-        public Cache Cache
-        {
-            get
-            {
-                return Cache.CacheList.FirstOrDefault(c => c.Id == this.CacheId);
-            }
-        }
-        #endregion
-
         #region 该设备上的工位列表
         private List<Station> stations = new List<Station>();
         [Browsable(false)]
@@ -227,10 +203,6 @@ namespace BakBattery.Baking
         {
             if (!this.Plc.IsPingSuccess)
             {
-                if (this.RotaterId > 0)
-                {
-                    this.Rotater.IsAlive = false;
-                }
                 this.Plc.IsAlive = false;
                 LogHelper.WriteError("无法连接到 " + this.Plc.IP);
                 return false;
@@ -244,7 +216,6 @@ namespace BakBattery.Baking
                 if (!this.Plc.GetInfo(false, Current.option.GetBlankerInfoStr, out output, out msg))
                 {
                     Error.Alert(msg);
-                    this.Rotater.IsAlive = false;
                     this.Plc.IsAlive = false;
                     return false;
                 }
@@ -281,144 +252,6 @@ namespace BakBattery.Baking
                             this.Stations[j].ClampStatus = ClampStatus.未知;
                             this.Stations[j].Status = StationStatus.不可用;
                             break;
-                    }
-                }
-
-                if (this.RotaterId > 0)
-                {
-                    switch (iOut[6])
-                    {
-                        case 1: this.Rotater.Station.ClampStatus = ClampStatus.无夹具; break;
-                        case 2:
-                        case 3: this.Rotater.Station.ClampStatus = ClampStatus.空夹具; break;
-                        default: this.Rotater.Station.ClampStatus = ClampStatus.异常; break;
-                    }
-
-                    switch (iOut[7])
-                    {
-                        case 1: this.Rotater.Station.DoorStatus = DoorStatus.打开; break;
-                        case 2: this.Rotater.Station.DoorStatus = DoorStatus.关闭; break;
-                        default: this.Rotater.Station.DoorStatus = DoorStatus.异常; break;
-                    }
-
-                    if (this.Rotater.Station.ClampStatus == ClampStatus.无夹具 && this.Rotater.Station.DoorStatus == DoorStatus.打开)
-                    {
-                        this.Rotater.Station.Status = StationStatus.可放;
-                    }
-                    else if (this.Rotater.Station.ClampStatus == ClampStatus.空夹具 && this.Rotater.Station.DoorStatus == DoorStatus.打开)
-                    {
-                        this.Rotater.Station.Status = StationStatus.可取;
-                    }
-                    else
-                    {
-                        this.Rotater.Station.Status = StationStatus.工作中;
-                    }
-
-                    ClampOri clampOri = this.Stations[0].ClampOri;
-                    switch (iOut[12])
-                    {
-                        case 1: this.Rotater.Station.ClampOri = clampOri == ClampOri.A ? ClampOri.B : ClampOri.A; break;
-                        case 2: this.Rotater.Station.ClampOri = clampOri; break;
-                        default: this.Rotater.Station.ClampOri = ClampOri.未知; break;
-                    }
-
-                    #region 控制开门
-                    if (this.Rotater.Station.toOpenDoor)
-                    {
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.RotaterOpenDoorStr, out output, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
-
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.RotaterOpenDoorStr, output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送旋转台开门指令到{0}:{1}", this.Rotater.Station.Name, Current.option.RotaterOpenDoorStr));
-                        this.Rotater.Station.toOpenDoor = false;
-                    }
-                    #endregion
-
-                    #region 控制关门
-                    if (this.Rotater.Station.toCloseDoor)
-                    {
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.RotaterCloseDoorStr, out output, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
-
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.RotaterCloseDoorStr, output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送旋转台关门指令到{0}:{1}", this.Rotater.Station.Name, Current.option.RotaterCloseDoorStr));
-                        this.Rotater.Station.toCloseDoor = false;
-                    }
-
-                    #endregion
-
-                    #region 控制旋转
-
-                    for (int x = 0; x < 2; x++)
-                    {
-                        if (this.Rotater.Station.toRotate[x])
-                        {
-                            output = string.Empty;
-                            if (!this.Plc.GetInfo(false, Current.option.RotaterRotateStrs.Split(',')[x], out output, out msg))
-                            {
-                                Error.Alert(msg);
-                                this.Plc.IsAlive = false;
-                                return false;
-                            }
-
-                            if (output.Substring(3, 1) != "$")
-                            {
-                                LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.RotaterRotateStrs.Split(',')[x], output));
-                                return false;
-                            }
-                            LogHelper.WriteInfo(string.Format("成功发送旋转台旋转指令到{0}:{1}", this.Rotater.Station.Name, Current.option.RotaterRotateStrs.Split(',')[x]));
-                            this.Rotater.Station.toRotate[x] = false;
-                        }
-                    }
-                    #endregion
-                }
-
-                if (this.CacheId > 0)
-                {
-                    for (int j = 0; j < this.Cache.Stations.Count; j++)
-                    {
-                        switch (iOut[8 + j])
-                        {
-                            case 1:
-                                this.Cache.Stations[j].ClampStatus = ClampStatus.无夹具;
-                                this.Cache.Stations[j].Status = StationStatus.可放;
-                                break;
-                            case 2:
-                                this.Cache.Stations[j].ClampStatus = this.Cache.Stations[j].Clamp.Batteries.Count > 0 ? ClampStatus.满夹具 : ClampStatus.空夹具;
-                                this.Cache.Stations[j].Status = StationStatus.工作中;
-                                break;
-                            case 3:
-                                this.Cache.Stations[j].ClampStatus = this.Cache.Stations[j].Clamp.Batteries.Count > 0 ? ClampStatus.满夹具 : ClampStatus.空夹具;
-                                this.Cache.Stations[j].Status = StationStatus.可取;
-                                break;
-                            case 4:
-                                this.Cache.Stations[j].ClampStatus = ClampStatus.异常;
-                                this.Cache.Stations[j].Status = StationStatus.不可用;
-                                break;
-                            default:
-                                this.Cache.Stations[j].ClampStatus = ClampStatus.未知;
-                                this.Cache.Stations[j].Status = StationStatus.不可用;
-                                break;
-                        }
-                        this.Cache.Stations[j].Status = StationStatus.工作中;
                     }
                 }
 
