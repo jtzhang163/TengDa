@@ -171,7 +171,6 @@ namespace BakBattery.Baking.App
 
                 lbFeederStationName[i] = new Label[FeederStationCount];
                 lbFeederClampCode[i] = new Label[FeederStationCount];
-                lbFeederDoorStatus[i] = new Label[FeederStationCount];
                 tlpFeederStationClamp[i] = new TableLayoutPanel[FeederStationCount];
 
                 for (int j = 0; j < FeederStationCount; j++)
@@ -179,7 +178,6 @@ namespace BakBattery.Baking.App
                     int jj = Option.LayoutType == 1 ? FeederStationCount - j : j + 1;
                     lbFeederStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbFeederStationName{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
                     lbFeederClampCode[i][j] = (Label)(this.Controls.Find(string.Format("lbFeederClampCode{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    lbFeederDoorStatus[i][j] = (Label)(this.Controls.Find(string.Format("lbFeederDoorStatus{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
                     tlpFeederStationClamp[i][j] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpFeederStationClamp{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
                 }
 
@@ -875,30 +873,6 @@ namespace BakBattery.Baking.App
                             }
                         }
                     }
-
-
-                    lbFeederDoorStatus[i][j].Text = station.DoorStatus.ToString();
-                    switch (station.DoorStatus)
-                    {
-                        case DoorStatus.打开:
-                            lbFeederDoorStatus[i][j].ForeColor = Color.White;
-                            lbFeederDoorStatus[i][j].BackColor = SystemColors.WindowText;
-                            break;
-                        case DoorStatus.异常:
-                            lbFeederDoorStatus[i][j].ForeColor = Color.White;
-                            lbFeederDoorStatus[i][j].BackColor = Color.Red;
-                            break;
-                        default:
-                            lbFeederDoorStatus[i][j].ForeColor = Color.Green;
-                            lbFeederDoorStatus[i][j].BackColor = Color.Transparent;
-                            break;
-                    }
-
-                    //if (station.IsAlive && station.Id == feeder.CurrentPutStationId)
-                    //{
-                    //  this.tlpFeederStationClamp[i][j].Invalidate();
-                    //}
-
                 }
             }
 
@@ -1248,7 +1222,6 @@ namespace BakBattery.Baking.App
 
         private Label[][] lbFeederStationName = new Label[FeederCount][];
         private Label[][] lbFeederClampCode = new Label[FeederCount][];
-        private Label[][] lbFeederDoorStatus = new Label[FeederCount][];
         private TableLayoutPanel[][] tlpFeederStationClamp = new TableLayoutPanel[FeederCount][];
 
         private const int FeederScanerCount = 2;
