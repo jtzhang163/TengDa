@@ -675,7 +675,7 @@ namespace BakBattery.Baking.App
                 oven.PreAlarmStr = oven.AlarmStr;
 
 
-                for (int j = 0; j < oven.Floors.Count; j++)
+                for (int j = 0; j < OvenFloorCount; j++)
                 {
                     Floor floor = oven.Floors[j];
                     this.pbRunTime[i][j].Maximum = floor.RunMinutesTotal;
@@ -1221,7 +1221,7 @@ namespace BakBattery.Baking.App
         #region 控件数组
 
         private const int OvenCount = 8;
-        private static int OvenFloorCount = 5;
+        private static int OvenFloorCount = 3;
 
         private Label[] lbOvenName = new Label[OvenCount];
         private Label[] lbOvenNameN = new Label[OvenCount];

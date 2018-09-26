@@ -30,17 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSystem));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbTime = new System.Windows.Forms.Label();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabMainUser = new System.Windows.Forms.TabPage();
@@ -173,7 +173,6 @@
             this.pbOvenTriLamp01 = new System.Windows.Forms.PictureBox();
             this.lbOvenName01 = new System.Windows.Forms.Label();
             this.tlpOven01 = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpFloor0104 = new System.Windows.Forms.TableLayoutPanel();
             this.cmsFloor = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmRemoteControl = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAlarmReset = new System.Windows.Forms.ToolStripMenuItem();
@@ -183,13 +182,6 @@
             this.tsmOpenNetControl = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUploadVacuum = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStopBaking = new System.Windows.Forms.ToolStripMenuItem();
-            this.lbFloorInfoTop0104 = new System.Windows.Forms.Label();
-            this.pbRunTime0104 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0104 = new System.Windows.Forms.Label();
-            this.tlpFloor0105 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0105 = new System.Windows.Forms.Label();
-            this.pbRunTime0105 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0105 = new System.Windows.Forms.Label();
             this.tlpFloor0102 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFloorInfoTop0102 = new System.Windows.Forms.Label();
             this.pbRunTime0102 = new System.Windows.Forms.ProgressBar();
@@ -203,14 +195,6 @@
             this.pbRunTime0103 = new System.Windows.Forms.ProgressBar();
             this.lbFloorStatus0103 = new System.Windows.Forms.Label();
             this.tlpOven02 = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpFloor0204 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0204 = new System.Windows.Forms.Label();
-            this.pbRunTime0204 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0204 = new System.Windows.Forms.Label();
-            this.tlpFloor0205 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0205 = new System.Windows.Forms.Label();
-            this.pbRunTime0205 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0205 = new System.Windows.Forms.Label();
             this.tlpFloor0202 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFloorInfoTop0202 = new System.Windows.Forms.Label();
             this.pbRunTime0202 = new System.Windows.Forms.ProgressBar();
@@ -224,18 +208,10 @@
             this.pbRunTime0203 = new System.Windows.Forms.ProgressBar();
             this.lbFloorStatus0203 = new System.Windows.Forms.Label();
             this.tlpOven03 = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpFloor0304 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0304 = new System.Windows.Forms.Label();
-            this.pbRunTime0304 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0304 = new System.Windows.Forms.Label();
             this.tlpFloor0301 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFloorInfoTop0301 = new System.Windows.Forms.Label();
             this.pbRunTime0301 = new System.Windows.Forms.ProgressBar();
             this.lbFloorStatus0301 = new System.Windows.Forms.Label();
-            this.tlpFloor0305 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0305 = new System.Windows.Forms.Label();
-            this.pbRunTime0305 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0305 = new System.Windows.Forms.Label();
             this.tlpFloor0302 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFloorInfoTop0302 = new System.Windows.Forms.Label();
             this.pbRunTime0302 = new System.Windows.Forms.ProgressBar();
@@ -245,14 +221,6 @@
             this.pbRunTime0303 = new System.Windows.Forms.ProgressBar();
             this.lbFloorStatus0303 = new System.Windows.Forms.Label();
             this.tlpOven04 = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpFloor0404 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0404 = new System.Windows.Forms.Label();
-            this.pbRunTime0404 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0404 = new System.Windows.Forms.Label();
-            this.tlpFloor0405 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0405 = new System.Windows.Forms.Label();
-            this.pbRunTime0405 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0405 = new System.Windows.Forms.Label();
             this.tlpFloor0402 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFloorInfoTop0402 = new System.Windows.Forms.Label();
             this.pbRunTime0402 = new System.Windows.Forms.ProgressBar();
@@ -279,14 +247,6 @@
             this.pbOvenTriLamp05 = new System.Windows.Forms.PictureBox();
             this.lbOvenName05 = new System.Windows.Forms.Label();
             this.tlpOven05 = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpFloor0504 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0504 = new System.Windows.Forms.Label();
-            this.pbRunTime0504 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0504 = new System.Windows.Forms.Label();
-            this.tlpFloor0505 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0505 = new System.Windows.Forms.Label();
-            this.pbRunTime0505 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0505 = new System.Windows.Forms.Label();
             this.tlpFloor0502 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFloorInfoTop0502 = new System.Windows.Forms.Label();
             this.pbRunTime0502 = new System.Windows.Forms.ProgressBar();
@@ -300,14 +260,6 @@
             this.pbRunTime0503 = new System.Windows.Forms.ProgressBar();
             this.lbFloorStatus0503 = new System.Windows.Forms.Label();
             this.tlpOven06 = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpFloor0604 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0604 = new System.Windows.Forms.Label();
-            this.pbRunTime0604 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0604 = new System.Windows.Forms.Label();
-            this.tlpFloor0605 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0605 = new System.Windows.Forms.Label();
-            this.pbRunTime0605 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0605 = new System.Windows.Forms.Label();
             this.tlpFloor0602 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFloorInfoTop0602 = new System.Windows.Forms.Label();
             this.pbRunTime0602 = new System.Windows.Forms.ProgressBar();
@@ -321,14 +273,6 @@
             this.pbRunTime0603 = new System.Windows.Forms.ProgressBar();
             this.lbFloorStatus0603 = new System.Windows.Forms.Label();
             this.tlpOven07 = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpFloor0704 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0704 = new System.Windows.Forms.Label();
-            this.pbRunTime0704 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0704 = new System.Windows.Forms.Label();
-            this.tlpFloor0705 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0705 = new System.Windows.Forms.Label();
-            this.pbRunTime0705 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0705 = new System.Windows.Forms.Label();
             this.tlpFloor0702 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFloorInfoTop0702 = new System.Windows.Forms.Label();
             this.pbRunTime0702 = new System.Windows.Forms.ProgressBar();
@@ -342,14 +286,6 @@
             this.pbRunTime0703 = new System.Windows.Forms.ProgressBar();
             this.lbFloorStatus0703 = new System.Windows.Forms.Label();
             this.tlpOven08 = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpFloor0804 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0804 = new System.Windows.Forms.Label();
-            this.pbRunTime0804 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0804 = new System.Windows.Forms.Label();
-            this.tlpFloor0805 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop0805 = new System.Windows.Forms.Label();
-            this.pbRunTime0805 = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus0805 = new System.Windows.Forms.Label();
             this.tlpFloor0802 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFloorInfoTop0802 = new System.Windows.Forms.Label();
             this.pbRunTime0802 = new System.Windows.Forms.ProgressBar();
@@ -719,27 +655,19 @@
             this.tableLayoutPanel26.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp01)).BeginInit();
             this.tlpOven01.SuspendLayout();
-            this.tlpFloor0104.SuspendLayout();
             this.cmsFloor.SuspendLayout();
-            this.tlpFloor0105.SuspendLayout();
             this.tlpFloor0102.SuspendLayout();
             this.tlpFloor0101.SuspendLayout();
             this.tlpFloor0103.SuspendLayout();
             this.tlpOven02.SuspendLayout();
-            this.tlpFloor0204.SuspendLayout();
-            this.tlpFloor0205.SuspendLayout();
             this.tlpFloor0202.SuspendLayout();
             this.tlpFloor0201.SuspendLayout();
             this.tlpFloor0203.SuspendLayout();
             this.tlpOven03.SuspendLayout();
-            this.tlpFloor0304.SuspendLayout();
             this.tlpFloor0301.SuspendLayout();
-            this.tlpFloor0305.SuspendLayout();
             this.tlpFloor0302.SuspendLayout();
             this.tlpFloor0303.SuspendLayout();
             this.tlpOven04.SuspendLayout();
-            this.tlpFloor0404.SuspendLayout();
-            this.tlpFloor0405.SuspendLayout();
             this.tlpFloor0402.SuspendLayout();
             this.tlpFloor0401.SuspendLayout();
             this.tlpFloor0403.SuspendLayout();
@@ -753,26 +681,18 @@
             this.tableLayoutPanel53.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp05)).BeginInit();
             this.tlpOven05.SuspendLayout();
-            this.tlpFloor0504.SuspendLayout();
-            this.tlpFloor0505.SuspendLayout();
             this.tlpFloor0502.SuspendLayout();
             this.tlpFloor0501.SuspendLayout();
             this.tlpFloor0503.SuspendLayout();
             this.tlpOven06.SuspendLayout();
-            this.tlpFloor0604.SuspendLayout();
-            this.tlpFloor0605.SuspendLayout();
             this.tlpFloor0602.SuspendLayout();
             this.tlpFloor0601.SuspendLayout();
             this.tlpFloor0603.SuspendLayout();
             this.tlpOven07.SuspendLayout();
-            this.tlpFloor0704.SuspendLayout();
-            this.tlpFloor0705.SuspendLayout();
             this.tlpFloor0702.SuspendLayout();
             this.tlpFloor0701.SuspendLayout();
             this.tlpFloor0703.SuspendLayout();
             this.tlpOven08.SuspendLayout();
-            this.tlpFloor0804.SuspendLayout();
-            this.tlpFloor0805.SuspendLayout();
             this.tlpFloor0802.SuspendLayout();
             this.tlpFloor0801.SuspendLayout();
             this.tlpFloor0803.SuspendLayout();
@@ -2619,9 +2539,6 @@
             this.tlpOven01.BackColor = System.Drawing.SystemColors.Window;
             this.tlpOven01.ColumnCount = 1;
             this.tlpOven01.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpOven01.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpOven01.Controls.Add(this.tlpFloor0104, 0, 3);
-            this.tlpOven01.Controls.Add(this.tlpFloor0105, 0, 4);
             this.tlpOven01.Controls.Add(this.tlpFloor0102, 0, 1);
             this.tlpOven01.Controls.Add(this.tlpFloor0101, 0, 0);
             this.tlpOven01.Controls.Add(this.tlpFloor0103, 0, 2);
@@ -2629,36 +2546,14 @@
             this.tlpOven01.Location = new System.Drawing.Point(5, 19);
             this.tlpOven01.Margin = new System.Windows.Forms.Padding(0);
             this.tlpOven01.Name = "tlpOven01";
-            this.tlpOven01.RowCount = 5;
-            this.tlpOven01.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven01.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven01.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven01.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven01.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpOven01.RowCount = 3;
+            this.tlpOven01.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven01.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven01.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven01.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpOven01.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpOven01.Size = new System.Drawing.Size(131, 229);
             this.tlpOven01.TabIndex = 34;
-            // 
-            // tlpFloor0104
-            // 
-            this.tlpFloor0104.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0104.ColumnCount = 3;
-            this.tlpFloor0104.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0104.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0104.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0104.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0104.Controls.Add(this.lbFloorInfoTop0104, 0, 0);
-            this.tlpFloor0104.Controls.Add(this.pbRunTime0104, 0, 1);
-            this.tlpFloor0104.Controls.Add(this.lbFloorStatus0104, 0, 2);
-            this.tlpFloor0104.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0104.Location = new System.Drawing.Point(3, 138);
-            this.tlpFloor0104.Name = "tlpFloor0104";
-            this.tlpFloor0104.RowCount = 3;
-            this.tlpFloor0104.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0104.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0104.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0104.Size = new System.Drawing.Size(125, 39);
-            this.tlpFloor0104.TabIndex = 19;
-            this.tlpFloor0104.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
             // cmsFloor
             // 
@@ -2734,116 +2629,6 @@
             this.tsmStopBaking.Text = "停止";
             this.tsmStopBaking.Click += new System.EventHandler(this.tsmStopBaking_Click);
             // 
-            // lbFloorInfoTop0104
-            // 
-            this.lbFloorInfoTop0104.AutoSize = true;
-            this.lbFloorInfoTop0104.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0104.SetColumnSpan(this.lbFloorInfoTop0104, 3);
-            this.lbFloorInfoTop0104.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0104.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0104.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0104.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0104.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0104.Name = "lbFloorInfoTop0104";
-            this.lbFloorInfoTop0104.Size = new System.Drawing.Size(125, 15);
-            this.lbFloorInfoTop0104.TabIndex = 13;
-            this.lbFloorInfoTop0104.Text = "100.0℃";
-            this.lbFloorInfoTop0104.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0104
-            // 
-            this.pbRunTime0104.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0104.SetColumnSpan(this.pbRunTime0104, 3);
-            this.pbRunTime0104.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0104.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0104.Location = new System.Drawing.Point(10, 15);
-            this.pbRunTime0104.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0104.Name = "pbRunTime0104";
-            this.pbRunTime0104.Size = new System.Drawing.Size(105, 7);
-            this.pbRunTime0104.TabIndex = 9;
-            // 
-            // lbFloorStatus0104
-            // 
-            this.lbFloorStatus0104.AutoSize = true;
-            this.lbFloorStatus0104.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0104.SetColumnSpan(this.lbFloorStatus0104, 3);
-            this.lbFloorStatus0104.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0104.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0104.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0104.Location = new System.Drawing.Point(0, 22);
-            this.lbFloorStatus0104.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0104.Name = "lbFloorStatus0104";
-            this.lbFloorStatus0104.Size = new System.Drawing.Size(125, 17);
-            this.lbFloorStatus0104.TabIndex = 17;
-            this.lbFloorStatus0104.Text = "空腔";
-            this.lbFloorStatus0104.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tlpFloor0105
-            // 
-            this.tlpFloor0105.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0105.ColumnCount = 3;
-            this.tlpFloor0105.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0105.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0105.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0105.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0105.Controls.Add(this.lbFloorInfoTop0105, 0, 0);
-            this.tlpFloor0105.Controls.Add(this.pbRunTime0105, 0, 1);
-            this.tlpFloor0105.Controls.Add(this.lbFloorStatus0105, 0, 2);
-            this.tlpFloor0105.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0105.Location = new System.Drawing.Point(3, 183);
-            this.tlpFloor0105.Name = "tlpFloor0105";
-            this.tlpFloor0105.RowCount = 3;
-            this.tlpFloor0105.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0105.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0105.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0105.Size = new System.Drawing.Size(125, 43);
-            this.tlpFloor0105.TabIndex = 18;
-            this.tlpFloor0105.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0105
-            // 
-            this.lbFloorInfoTop0105.AutoSize = true;
-            this.lbFloorInfoTop0105.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0105.SetColumnSpan(this.lbFloorInfoTop0105, 3);
-            this.lbFloorInfoTop0105.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0105.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0105.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0105.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0105.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0105.Name = "lbFloorInfoTop0105";
-            this.lbFloorInfoTop0105.Size = new System.Drawing.Size(125, 17);
-            this.lbFloorInfoTop0105.TabIndex = 13;
-            this.lbFloorInfoTop0105.Text = "100.0℃ 200℃ 20000Pa";
-            this.lbFloorInfoTop0105.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0105
-            // 
-            this.pbRunTime0105.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0105.SetColumnSpan(this.pbRunTime0105, 3);
-            this.pbRunTime0105.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0105.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0105.Location = new System.Drawing.Point(10, 17);
-            this.pbRunTime0105.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0105.Name = "pbRunTime0105";
-            this.pbRunTime0105.Size = new System.Drawing.Size(105, 8);
-            this.pbRunTime0105.TabIndex = 9;
-            // 
-            // lbFloorStatus0105
-            // 
-            this.lbFloorStatus0105.AutoSize = true;
-            this.lbFloorStatus0105.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0105.SetColumnSpan(this.lbFloorStatus0105, 3);
-            this.lbFloorStatus0105.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0105.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0105.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0105.Location = new System.Drawing.Point(0, 25);
-            this.lbFloorStatus0105.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0105.Name = "lbFloorStatus0105";
-            this.lbFloorStatus0105.Size = new System.Drawing.Size(125, 18);
-            this.lbFloorStatus0105.TabIndex = 17;
-            this.lbFloorStatus0105.Text = "C1-5: 空腔";
-            this.lbFloorStatus0105.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // tlpFloor0102
             // 
             this.tlpFloor0102.BackColor = System.Drawing.SystemColors.Control;
@@ -2856,13 +2641,13 @@
             this.tlpFloor0102.Controls.Add(this.pbRunTime0102, 0, 1);
             this.tlpFloor0102.Controls.Add(this.lbFloorStatus0102, 0, 2);
             this.tlpFloor0102.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0102.Location = new System.Drawing.Point(3, 48);
+            this.tlpFloor0102.Location = new System.Drawing.Point(3, 79);
             this.tlpFloor0102.Name = "tlpFloor0102";
             this.tlpFloor0102.RowCount = 3;
             this.tlpFloor0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0102.Size = new System.Drawing.Size(125, 39);
+            this.tlpFloor0102.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0102.TabIndex = 13;
             this.tlpFloor0102.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -2877,7 +2662,7 @@
             this.lbFloorInfoTop0102.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0102.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0102.Name = "lbFloorInfoTop0102";
-            this.lbFloorInfoTop0102.Size = new System.Drawing.Size(125, 15);
+            this.lbFloorInfoTop0102.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0102.TabIndex = 13;
             this.lbFloorInfoTop0102.Text = "0.0℃";
             this.lbFloorInfoTop0102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2888,10 +2673,10 @@
             this.tlpFloor0102.SetColumnSpan(this.pbRunTime0102, 3);
             this.pbRunTime0102.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0102.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0102.Location = new System.Drawing.Point(10, 15);
+            this.pbRunTime0102.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0102.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0102.Name = "pbRunTime0102";
-            this.pbRunTime0102.Size = new System.Drawing.Size(105, 7);
+            this.pbRunTime0102.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0102.TabIndex = 9;
             // 
             // lbFloorStatus0102
@@ -2902,10 +2687,10 @@
             this.lbFloorStatus0102.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0102.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0102.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0102.Location = new System.Drawing.Point(0, 22);
+            this.lbFloorStatus0102.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0102.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0102.Name = "lbFloorStatus0102";
-            this.lbFloorStatus0102.Size = new System.Drawing.Size(125, 17);
+            this.lbFloorStatus0102.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0102.TabIndex = 17;
             this.lbFloorStatus0102.Text = "空腔";
             this.lbFloorStatus0102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2928,7 +2713,7 @@
             this.tlpFloor0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0101.Size = new System.Drawing.Size(125, 39);
+            this.tlpFloor0101.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0101.TabIndex = 12;
             this.tlpFloor0101.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -2943,7 +2728,7 @@
             this.lbFloorInfoTop0101.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0101.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0101.Name = "lbFloorInfoTop0101";
-            this.lbFloorInfoTop0101.Size = new System.Drawing.Size(125, 15);
+            this.lbFloorInfoTop0101.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0101.TabIndex = 13;
             this.lbFloorInfoTop0101.Text = "0.0℃";
             this.lbFloorInfoTop0101.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2954,10 +2739,10 @@
             this.tlpFloor0101.SetColumnSpan(this.pbRunTime0101, 3);
             this.pbRunTime0101.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0101.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0101.Location = new System.Drawing.Point(10, 15);
+            this.pbRunTime0101.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0101.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0101.Name = "pbRunTime0101";
-            this.pbRunTime0101.Size = new System.Drawing.Size(105, 7);
+            this.pbRunTime0101.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0101.TabIndex = 9;
             // 
             // lbFloorStatus0101
@@ -2968,10 +2753,10 @@
             this.lbFloorStatus0101.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0101.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0101.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0101.Location = new System.Drawing.Point(0, 22);
+            this.lbFloorStatus0101.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0101.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0101.Name = "lbFloorStatus0101";
-            this.lbFloorStatus0101.Size = new System.Drawing.Size(125, 17);
+            this.lbFloorStatus0101.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0101.TabIndex = 17;
             this.lbFloorStatus0101.Text = "空腔";
             this.lbFloorStatus0101.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2988,13 +2773,13 @@
             this.tlpFloor0103.Controls.Add(this.pbRunTime0103, 0, 1);
             this.tlpFloor0103.Controls.Add(this.lbFloorStatus0103, 0, 2);
             this.tlpFloor0103.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0103.Location = new System.Drawing.Point(3, 93);
+            this.tlpFloor0103.Location = new System.Drawing.Point(3, 155);
             this.tlpFloor0103.Name = "tlpFloor0103";
             this.tlpFloor0103.RowCount = 3;
             this.tlpFloor0103.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0103.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0103.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0103.Size = new System.Drawing.Size(125, 39);
+            this.tlpFloor0103.Size = new System.Drawing.Size(125, 71);
             this.tlpFloor0103.TabIndex = 11;
             this.tlpFloor0103.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -3009,7 +2794,7 @@
             this.lbFloorInfoTop0103.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0103.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0103.Name = "lbFloorInfoTop0103";
-            this.lbFloorInfoTop0103.Size = new System.Drawing.Size(125, 15);
+            this.lbFloorInfoTop0103.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0103.TabIndex = 13;
             this.lbFloorInfoTop0103.Text = "0.0℃";
             this.lbFloorInfoTop0103.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3020,10 +2805,10 @@
             this.tlpFloor0103.SetColumnSpan(this.pbRunTime0103, 3);
             this.pbRunTime0103.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0103.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0103.Location = new System.Drawing.Point(10, 15);
+            this.pbRunTime0103.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0103.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0103.Name = "pbRunTime0103";
-            this.pbRunTime0103.Size = new System.Drawing.Size(105, 7);
+            this.pbRunTime0103.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0103.TabIndex = 9;
             // 
             // lbFloorStatus0103
@@ -3034,10 +2819,10 @@
             this.lbFloorStatus0103.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0103.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0103.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0103.Location = new System.Drawing.Point(0, 22);
+            this.lbFloorStatus0103.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0103.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0103.Name = "lbFloorStatus0103";
-            this.lbFloorStatus0103.Size = new System.Drawing.Size(125, 17);
+            this.lbFloorStatus0103.Size = new System.Drawing.Size(125, 29);
             this.lbFloorStatus0103.TabIndex = 17;
             this.lbFloorStatus0103.Text = "空腔";
             this.lbFloorStatus0103.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3047,9 +2832,6 @@
             this.tlpOven02.BackColor = System.Drawing.SystemColors.Window;
             this.tlpOven02.ColumnCount = 1;
             this.tlpOven02.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpOven02.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpOven02.Controls.Add(this.tlpFloor0204, 0, 3);
-            this.tlpOven02.Controls.Add(this.tlpFloor0205, 0, 4);
             this.tlpOven02.Controls.Add(this.tlpFloor0202, 0, 1);
             this.tlpOven02.Controls.Add(this.tlpFloor0201, 0, 0);
             this.tlpOven02.Controls.Add(this.tlpFloor0203, 0, 2);
@@ -3057,146 +2839,14 @@
             this.tlpOven02.Location = new System.Drawing.Point(146, 19);
             this.tlpOven02.Margin = new System.Windows.Forms.Padding(0);
             this.tlpOven02.Name = "tlpOven02";
-            this.tlpOven02.RowCount = 5;
-            this.tlpOven02.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven02.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven02.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven02.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven02.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpOven02.RowCount = 3;
+            this.tlpOven02.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven02.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven02.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven02.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpOven02.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpOven02.Size = new System.Drawing.Size(131, 229);
             this.tlpOven02.TabIndex = 0;
-            // 
-            // tlpFloor0204
-            // 
-            this.tlpFloor0204.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0204.ColumnCount = 3;
-            this.tlpFloor0204.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0204.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0204.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0204.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0204.Controls.Add(this.lbFloorInfoTop0204, 0, 0);
-            this.tlpFloor0204.Controls.Add(this.pbRunTime0204, 0, 1);
-            this.tlpFloor0204.Controls.Add(this.lbFloorStatus0204, 0, 2);
-            this.tlpFloor0204.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0204.Location = new System.Drawing.Point(3, 138);
-            this.tlpFloor0204.Name = "tlpFloor0204";
-            this.tlpFloor0204.RowCount = 3;
-            this.tlpFloor0204.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0204.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0204.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0204.Size = new System.Drawing.Size(125, 39);
-            this.tlpFloor0204.TabIndex = 19;
-            this.tlpFloor0204.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0204
-            // 
-            this.lbFloorInfoTop0204.AutoSize = true;
-            this.lbFloorInfoTop0204.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0204.SetColumnSpan(this.lbFloorInfoTop0204, 3);
-            this.lbFloorInfoTop0204.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0204.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0204.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0204.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0204.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0204.Name = "lbFloorInfoTop0204";
-            this.lbFloorInfoTop0204.Size = new System.Drawing.Size(125, 15);
-            this.lbFloorInfoTop0204.TabIndex = 13;
-            this.lbFloorInfoTop0204.Text = "0.0℃";
-            this.lbFloorInfoTop0204.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0204
-            // 
-            this.pbRunTime0204.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0204.SetColumnSpan(this.pbRunTime0204, 3);
-            this.pbRunTime0204.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0204.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0204.Location = new System.Drawing.Point(10, 15);
-            this.pbRunTime0204.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0204.Name = "pbRunTime0204";
-            this.pbRunTime0204.Size = new System.Drawing.Size(105, 7);
-            this.pbRunTime0204.TabIndex = 9;
-            // 
-            // lbFloorStatus0204
-            // 
-            this.lbFloorStatus0204.AutoSize = true;
-            this.lbFloorStatus0204.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0204.SetColumnSpan(this.lbFloorStatus0204, 3);
-            this.lbFloorStatus0204.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0204.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0204.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0204.Location = new System.Drawing.Point(0, 22);
-            this.lbFloorStatus0204.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0204.Name = "lbFloorStatus0204";
-            this.lbFloorStatus0204.Size = new System.Drawing.Size(125, 17);
-            this.lbFloorStatus0204.TabIndex = 17;
-            this.lbFloorStatus0204.Text = "空腔";
-            this.lbFloorStatus0204.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tlpFloor0205
-            // 
-            this.tlpFloor0205.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0205.ColumnCount = 3;
-            this.tlpFloor0205.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0205.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0205.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0205.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0205.Controls.Add(this.lbFloorInfoTop0205, 0, 0);
-            this.tlpFloor0205.Controls.Add(this.pbRunTime0205, 0, 1);
-            this.tlpFloor0205.Controls.Add(this.lbFloorStatus0205, 0, 2);
-            this.tlpFloor0205.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0205.Location = new System.Drawing.Point(3, 183);
-            this.tlpFloor0205.Name = "tlpFloor0205";
-            this.tlpFloor0205.RowCount = 3;
-            this.tlpFloor0205.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0205.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0205.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0205.Size = new System.Drawing.Size(125, 43);
-            this.tlpFloor0205.TabIndex = 18;
-            this.tlpFloor0205.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0205
-            // 
-            this.lbFloorInfoTop0205.AutoSize = true;
-            this.lbFloorInfoTop0205.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0205.SetColumnSpan(this.lbFloorInfoTop0205, 3);
-            this.lbFloorInfoTop0205.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0205.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0205.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0205.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0205.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0205.Name = "lbFloorInfoTop0205";
-            this.lbFloorInfoTop0205.Size = new System.Drawing.Size(125, 17);
-            this.lbFloorInfoTop0205.TabIndex = 13;
-            this.lbFloorInfoTop0205.Text = "0.0℃";
-            this.lbFloorInfoTop0205.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0205
-            // 
-            this.pbRunTime0205.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0205.SetColumnSpan(this.pbRunTime0205, 3);
-            this.pbRunTime0205.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0205.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0205.Location = new System.Drawing.Point(10, 17);
-            this.pbRunTime0205.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0205.Name = "pbRunTime0205";
-            this.pbRunTime0205.Size = new System.Drawing.Size(105, 8);
-            this.pbRunTime0205.TabIndex = 9;
-            // 
-            // lbFloorStatus0205
-            // 
-            this.lbFloorStatus0205.AutoSize = true;
-            this.lbFloorStatus0205.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0205.SetColumnSpan(this.lbFloorStatus0205, 3);
-            this.lbFloorStatus0205.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0205.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0205.ForeColor = System.Drawing.Color.Ivory;
-            this.lbFloorStatus0205.Location = new System.Drawing.Point(0, 25);
-            this.lbFloorStatus0205.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0205.Name = "lbFloorStatus0205";
-            this.lbFloorStatus0205.Size = new System.Drawing.Size(125, 18);
-            this.lbFloorStatus0205.TabIndex = 17;
-            this.lbFloorStatus0205.Text = "空腔";
-            this.lbFloorStatus0205.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0202
             // 
@@ -3210,13 +2860,13 @@
             this.tlpFloor0202.Controls.Add(this.pbRunTime0202, 0, 1);
             this.tlpFloor0202.Controls.Add(this.lbFloorStatus0202, 0, 2);
             this.tlpFloor0202.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0202.Location = new System.Drawing.Point(3, 48);
+            this.tlpFloor0202.Location = new System.Drawing.Point(3, 79);
             this.tlpFloor0202.Name = "tlpFloor0202";
             this.tlpFloor0202.RowCount = 3;
             this.tlpFloor0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0202.Size = new System.Drawing.Size(125, 39);
+            this.tlpFloor0202.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0202.TabIndex = 13;
             this.tlpFloor0202.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -3231,7 +2881,7 @@
             this.lbFloorInfoTop0202.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0202.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0202.Name = "lbFloorInfoTop0202";
-            this.lbFloorInfoTop0202.Size = new System.Drawing.Size(125, 15);
+            this.lbFloorInfoTop0202.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0202.TabIndex = 13;
             this.lbFloorInfoTop0202.Text = "0.0℃";
             this.lbFloorInfoTop0202.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3242,10 +2892,10 @@
             this.tlpFloor0202.SetColumnSpan(this.pbRunTime0202, 3);
             this.pbRunTime0202.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0202.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0202.Location = new System.Drawing.Point(10, 15);
+            this.pbRunTime0202.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0202.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0202.Name = "pbRunTime0202";
-            this.pbRunTime0202.Size = new System.Drawing.Size(105, 7);
+            this.pbRunTime0202.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0202.TabIndex = 9;
             // 
             // lbFloorStatus0202
@@ -3256,10 +2906,10 @@
             this.lbFloorStatus0202.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0202.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0202.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0202.Location = new System.Drawing.Point(0, 22);
+            this.lbFloorStatus0202.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0202.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0202.Name = "lbFloorStatus0202";
-            this.lbFloorStatus0202.Size = new System.Drawing.Size(125, 17);
+            this.lbFloorStatus0202.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0202.TabIndex = 17;
             this.lbFloorStatus0202.Text = "空腔";
             this.lbFloorStatus0202.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3282,7 +2932,7 @@
             this.tlpFloor0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0201.Size = new System.Drawing.Size(125, 39);
+            this.tlpFloor0201.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0201.TabIndex = 12;
             this.tlpFloor0201.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -3297,7 +2947,7 @@
             this.lbFloorInfoTop0201.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0201.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0201.Name = "lbFloorInfoTop0201";
-            this.lbFloorInfoTop0201.Size = new System.Drawing.Size(125, 15);
+            this.lbFloorInfoTop0201.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0201.TabIndex = 13;
             this.lbFloorInfoTop0201.Text = "0.0℃";
             this.lbFloorInfoTop0201.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3308,10 +2958,10 @@
             this.tlpFloor0201.SetColumnSpan(this.pbRunTime0201, 3);
             this.pbRunTime0201.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0201.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0201.Location = new System.Drawing.Point(10, 15);
+            this.pbRunTime0201.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0201.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0201.Name = "pbRunTime0201";
-            this.pbRunTime0201.Size = new System.Drawing.Size(105, 7);
+            this.pbRunTime0201.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0201.TabIndex = 9;
             // 
             // lbFloorStatus0201
@@ -3322,10 +2972,10 @@
             this.lbFloorStatus0201.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0201.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0201.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0201.Location = new System.Drawing.Point(0, 22);
+            this.lbFloorStatus0201.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0201.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0201.Name = "lbFloorStatus0201";
-            this.lbFloorStatus0201.Size = new System.Drawing.Size(125, 17);
+            this.lbFloorStatus0201.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0201.TabIndex = 17;
             this.lbFloorStatus0201.Text = "空腔";
             this.lbFloorStatus0201.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3342,13 +2992,13 @@
             this.tlpFloor0203.Controls.Add(this.pbRunTime0203, 0, 1);
             this.tlpFloor0203.Controls.Add(this.lbFloorStatus0203, 0, 2);
             this.tlpFloor0203.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0203.Location = new System.Drawing.Point(3, 93);
+            this.tlpFloor0203.Location = new System.Drawing.Point(3, 155);
             this.tlpFloor0203.Name = "tlpFloor0203";
             this.tlpFloor0203.RowCount = 3;
             this.tlpFloor0203.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0203.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0203.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0203.Size = new System.Drawing.Size(125, 39);
+            this.tlpFloor0203.Size = new System.Drawing.Size(125, 71);
             this.tlpFloor0203.TabIndex = 11;
             this.tlpFloor0203.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -3363,7 +3013,7 @@
             this.lbFloorInfoTop0203.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0203.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0203.Name = "lbFloorInfoTop0203";
-            this.lbFloorInfoTop0203.Size = new System.Drawing.Size(125, 15);
+            this.lbFloorInfoTop0203.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0203.TabIndex = 13;
             this.lbFloorInfoTop0203.Text = "0.0℃";
             this.lbFloorInfoTop0203.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3374,10 +3024,10 @@
             this.tlpFloor0203.SetColumnSpan(this.pbRunTime0203, 3);
             this.pbRunTime0203.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0203.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0203.Location = new System.Drawing.Point(10, 15);
+            this.pbRunTime0203.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0203.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0203.Name = "pbRunTime0203";
-            this.pbRunTime0203.Size = new System.Drawing.Size(105, 7);
+            this.pbRunTime0203.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0203.TabIndex = 9;
             // 
             // lbFloorStatus0203
@@ -3388,10 +3038,10 @@
             this.lbFloorStatus0203.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0203.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0203.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0203.Location = new System.Drawing.Point(0, 22);
+            this.lbFloorStatus0203.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0203.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0203.Name = "lbFloorStatus0203";
-            this.lbFloorStatus0203.Size = new System.Drawing.Size(125, 17);
+            this.lbFloorStatus0203.Size = new System.Drawing.Size(125, 29);
             this.lbFloorStatus0203.TabIndex = 17;
             this.lbFloorStatus0203.Text = "空腔";
             this.lbFloorStatus0203.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3401,90 +3051,21 @@
             this.tlpOven03.BackColor = System.Drawing.SystemColors.Window;
             this.tlpOven03.ColumnCount = 1;
             this.tlpOven03.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpOven03.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpOven03.Controls.Add(this.tlpFloor0304, 0, 3);
             this.tlpOven03.Controls.Add(this.tlpFloor0301, 0, 0);
-            this.tlpOven03.Controls.Add(this.tlpFloor0305, 0, 4);
             this.tlpOven03.Controls.Add(this.tlpFloor0302, 0, 1);
             this.tlpOven03.Controls.Add(this.tlpFloor0303, 0, 2);
             this.tlpOven03.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpOven03.Location = new System.Drawing.Point(287, 19);
             this.tlpOven03.Margin = new System.Windows.Forms.Padding(0);
             this.tlpOven03.Name = "tlpOven03";
-            this.tlpOven03.RowCount = 5;
-            this.tlpOven03.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven03.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven03.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven03.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven03.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpOven03.RowCount = 3;
+            this.tlpOven03.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven03.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven03.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven03.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpOven03.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpOven03.Size = new System.Drawing.Size(131, 229);
             this.tlpOven03.TabIndex = 35;
-            // 
-            // tlpFloor0304
-            // 
-            this.tlpFloor0304.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0304.ColumnCount = 3;
-            this.tlpFloor0304.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0304.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0304.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0304.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0304.Controls.Add(this.lbFloorInfoTop0304, 0, 0);
-            this.tlpFloor0304.Controls.Add(this.pbRunTime0304, 0, 1);
-            this.tlpFloor0304.Controls.Add(this.lbFloorStatus0304, 0, 2);
-            this.tlpFloor0304.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0304.Location = new System.Drawing.Point(3, 138);
-            this.tlpFloor0304.Name = "tlpFloor0304";
-            this.tlpFloor0304.RowCount = 3;
-            this.tlpFloor0304.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0304.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0304.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0304.Size = new System.Drawing.Size(125, 39);
-            this.tlpFloor0304.TabIndex = 19;
-            this.tlpFloor0304.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0304
-            // 
-            this.lbFloorInfoTop0304.AutoSize = true;
-            this.lbFloorInfoTop0304.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0304.SetColumnSpan(this.lbFloorInfoTop0304, 3);
-            this.lbFloorInfoTop0304.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0304.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0304.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0304.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0304.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0304.Name = "lbFloorInfoTop0304";
-            this.lbFloorInfoTop0304.Size = new System.Drawing.Size(125, 15);
-            this.lbFloorInfoTop0304.TabIndex = 13;
-            this.lbFloorInfoTop0304.Text = "0.0℃";
-            this.lbFloorInfoTop0304.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0304
-            // 
-            this.pbRunTime0304.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0304.SetColumnSpan(this.pbRunTime0304, 3);
-            this.pbRunTime0304.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0304.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0304.Location = new System.Drawing.Point(10, 15);
-            this.pbRunTime0304.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0304.Name = "pbRunTime0304";
-            this.pbRunTime0304.Size = new System.Drawing.Size(105, 7);
-            this.pbRunTime0304.TabIndex = 9;
-            // 
-            // lbFloorStatus0304
-            // 
-            this.lbFloorStatus0304.AutoSize = true;
-            this.lbFloorStatus0304.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0304.SetColumnSpan(this.lbFloorStatus0304, 3);
-            this.lbFloorStatus0304.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0304.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0304.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0304.Location = new System.Drawing.Point(0, 22);
-            this.lbFloorStatus0304.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0304.Name = "lbFloorStatus0304";
-            this.lbFloorStatus0304.Size = new System.Drawing.Size(125, 17);
-            this.lbFloorStatus0304.TabIndex = 17;
-            this.lbFloorStatus0304.Text = "空腔";
-            this.lbFloorStatus0304.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0301
             // 
@@ -3504,7 +3085,7 @@
             this.tlpFloor0301.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0301.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0301.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0301.Size = new System.Drawing.Size(125, 39);
+            this.tlpFloor0301.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0301.TabIndex = 14;
             this.tlpFloor0301.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -3519,7 +3100,7 @@
             this.lbFloorInfoTop0301.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0301.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0301.Name = "lbFloorInfoTop0301";
-            this.lbFloorInfoTop0301.Size = new System.Drawing.Size(125, 15);
+            this.lbFloorInfoTop0301.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0301.TabIndex = 13;
             this.lbFloorInfoTop0301.Text = "0.0℃";
             this.lbFloorInfoTop0301.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3530,10 +3111,10 @@
             this.tlpFloor0301.SetColumnSpan(this.pbRunTime0301, 3);
             this.pbRunTime0301.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0301.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0301.Location = new System.Drawing.Point(10, 15);
+            this.pbRunTime0301.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0301.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0301.Name = "pbRunTime0301";
-            this.pbRunTime0301.Size = new System.Drawing.Size(105, 7);
+            this.pbRunTime0301.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0301.TabIndex = 9;
             // 
             // lbFloorStatus0301
@@ -3544,79 +3125,13 @@
             this.lbFloorStatus0301.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0301.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0301.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0301.Location = new System.Drawing.Point(0, 22);
+            this.lbFloorStatus0301.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0301.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0301.Name = "lbFloorStatus0301";
-            this.lbFloorStatus0301.Size = new System.Drawing.Size(125, 17);
+            this.lbFloorStatus0301.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0301.TabIndex = 17;
             this.lbFloorStatus0301.Text = "空腔";
             this.lbFloorStatus0301.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tlpFloor0305
-            // 
-            this.tlpFloor0305.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0305.ColumnCount = 3;
-            this.tlpFloor0305.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0305.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0305.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0305.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0305.Controls.Add(this.lbFloorInfoTop0305, 0, 0);
-            this.tlpFloor0305.Controls.Add(this.pbRunTime0305, 0, 1);
-            this.tlpFloor0305.Controls.Add(this.lbFloorStatus0305, 0, 2);
-            this.tlpFloor0305.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0305.Location = new System.Drawing.Point(3, 183);
-            this.tlpFloor0305.Name = "tlpFloor0305";
-            this.tlpFloor0305.RowCount = 3;
-            this.tlpFloor0305.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0305.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0305.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0305.Size = new System.Drawing.Size(125, 43);
-            this.tlpFloor0305.TabIndex = 18;
-            this.tlpFloor0305.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0305
-            // 
-            this.lbFloorInfoTop0305.AutoSize = true;
-            this.lbFloorInfoTop0305.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0305.SetColumnSpan(this.lbFloorInfoTop0305, 3);
-            this.lbFloorInfoTop0305.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0305.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0305.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0305.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0305.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0305.Name = "lbFloorInfoTop0305";
-            this.lbFloorInfoTop0305.Size = new System.Drawing.Size(125, 17);
-            this.lbFloorInfoTop0305.TabIndex = 13;
-            this.lbFloorInfoTop0305.Text = "0.0℃";
-            this.lbFloorInfoTop0305.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0305
-            // 
-            this.pbRunTime0305.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0305.SetColumnSpan(this.pbRunTime0305, 3);
-            this.pbRunTime0305.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0305.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0305.Location = new System.Drawing.Point(10, 17);
-            this.pbRunTime0305.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0305.Name = "pbRunTime0305";
-            this.pbRunTime0305.Size = new System.Drawing.Size(105, 8);
-            this.pbRunTime0305.TabIndex = 9;
-            // 
-            // lbFloorStatus0305
-            // 
-            this.lbFloorStatus0305.AutoSize = true;
-            this.lbFloorStatus0305.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0305.SetColumnSpan(this.lbFloorStatus0305, 3);
-            this.lbFloorStatus0305.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0305.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0305.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0305.Location = new System.Drawing.Point(0, 25);
-            this.lbFloorStatus0305.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0305.Name = "lbFloorStatus0305";
-            this.lbFloorStatus0305.Size = new System.Drawing.Size(125, 18);
-            this.lbFloorStatus0305.TabIndex = 17;
-            this.lbFloorStatus0305.Text = "空腔";
-            this.lbFloorStatus0305.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0302
             // 
@@ -3630,13 +3145,13 @@
             this.tlpFloor0302.Controls.Add(this.pbRunTime0302, 0, 1);
             this.tlpFloor0302.Controls.Add(this.lbFloorStatus0302, 0, 2);
             this.tlpFloor0302.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0302.Location = new System.Drawing.Point(3, 48);
+            this.tlpFloor0302.Location = new System.Drawing.Point(3, 79);
             this.tlpFloor0302.Name = "tlpFloor0302";
             this.tlpFloor0302.RowCount = 3;
             this.tlpFloor0302.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0302.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0302.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0302.Size = new System.Drawing.Size(125, 39);
+            this.tlpFloor0302.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0302.TabIndex = 13;
             this.tlpFloor0302.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -3651,7 +3166,7 @@
             this.lbFloorInfoTop0302.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0302.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0302.Name = "lbFloorInfoTop0302";
-            this.lbFloorInfoTop0302.Size = new System.Drawing.Size(125, 15);
+            this.lbFloorInfoTop0302.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0302.TabIndex = 13;
             this.lbFloorInfoTop0302.Text = "0.0℃";
             this.lbFloorInfoTop0302.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3662,10 +3177,10 @@
             this.tlpFloor0302.SetColumnSpan(this.pbRunTime0302, 3);
             this.pbRunTime0302.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0302.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0302.Location = new System.Drawing.Point(10, 15);
+            this.pbRunTime0302.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0302.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0302.Name = "pbRunTime0302";
-            this.pbRunTime0302.Size = new System.Drawing.Size(105, 7);
+            this.pbRunTime0302.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0302.TabIndex = 9;
             // 
             // lbFloorStatus0302
@@ -3676,10 +3191,10 @@
             this.lbFloorStatus0302.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0302.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0302.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0302.Location = new System.Drawing.Point(0, 22);
+            this.lbFloorStatus0302.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0302.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0302.Name = "lbFloorStatus0302";
-            this.lbFloorStatus0302.Size = new System.Drawing.Size(125, 17);
+            this.lbFloorStatus0302.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0302.TabIndex = 17;
             this.lbFloorStatus0302.Text = "空腔";
             this.lbFloorStatus0302.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3696,13 +3211,13 @@
             this.tlpFloor0303.Controls.Add(this.pbRunTime0303, 0, 1);
             this.tlpFloor0303.Controls.Add(this.lbFloorStatus0303, 0, 2);
             this.tlpFloor0303.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0303.Location = new System.Drawing.Point(3, 93);
+            this.tlpFloor0303.Location = new System.Drawing.Point(3, 155);
             this.tlpFloor0303.Name = "tlpFloor0303";
             this.tlpFloor0303.RowCount = 3;
             this.tlpFloor0303.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0303.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0303.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0303.Size = new System.Drawing.Size(125, 39);
+            this.tlpFloor0303.Size = new System.Drawing.Size(125, 71);
             this.tlpFloor0303.TabIndex = 11;
             this.tlpFloor0303.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -3717,7 +3232,7 @@
             this.lbFloorInfoTop0303.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0303.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0303.Name = "lbFloorInfoTop0303";
-            this.lbFloorInfoTop0303.Size = new System.Drawing.Size(125, 15);
+            this.lbFloorInfoTop0303.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0303.TabIndex = 13;
             this.lbFloorInfoTop0303.Text = "0.0℃";
             this.lbFloorInfoTop0303.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3728,10 +3243,10 @@
             this.tlpFloor0303.SetColumnSpan(this.pbRunTime0303, 3);
             this.pbRunTime0303.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0303.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0303.Location = new System.Drawing.Point(10, 15);
+            this.pbRunTime0303.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0303.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0303.Name = "pbRunTime0303";
-            this.pbRunTime0303.Size = new System.Drawing.Size(105, 7);
+            this.pbRunTime0303.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0303.TabIndex = 9;
             // 
             // lbFloorStatus0303
@@ -3742,10 +3257,10 @@
             this.lbFloorStatus0303.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0303.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0303.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0303.Location = new System.Drawing.Point(0, 22);
+            this.lbFloorStatus0303.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0303.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0303.Name = "lbFloorStatus0303";
-            this.lbFloorStatus0303.Size = new System.Drawing.Size(125, 17);
+            this.lbFloorStatus0303.Size = new System.Drawing.Size(125, 29);
             this.lbFloorStatus0303.TabIndex = 17;
             this.lbFloorStatus0303.Text = "空腔";
             this.lbFloorStatus0303.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3755,9 +3270,6 @@
             this.tlpOven04.BackColor = System.Drawing.SystemColors.Window;
             this.tlpOven04.ColumnCount = 1;
             this.tlpOven04.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpOven04.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpOven04.Controls.Add(this.tlpFloor0404, 0, 3);
-            this.tlpOven04.Controls.Add(this.tlpFloor0405, 0, 4);
             this.tlpOven04.Controls.Add(this.tlpFloor0402, 0, 1);
             this.tlpOven04.Controls.Add(this.tlpFloor0401, 0, 0);
             this.tlpOven04.Controls.Add(this.tlpFloor0403, 0, 2);
@@ -3765,146 +3277,14 @@
             this.tlpOven04.Location = new System.Drawing.Point(428, 19);
             this.tlpOven04.Margin = new System.Windows.Forms.Padding(0);
             this.tlpOven04.Name = "tlpOven04";
-            this.tlpOven04.RowCount = 5;
-            this.tlpOven04.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven04.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven04.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven04.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven04.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpOven04.RowCount = 3;
+            this.tlpOven04.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven04.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven04.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven04.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpOven04.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpOven04.Size = new System.Drawing.Size(131, 229);
             this.tlpOven04.TabIndex = 36;
-            // 
-            // tlpFloor0404
-            // 
-            this.tlpFloor0404.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0404.ColumnCount = 3;
-            this.tlpFloor0404.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0404.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0404.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0404.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0404.Controls.Add(this.lbFloorInfoTop0404, 0, 0);
-            this.tlpFloor0404.Controls.Add(this.pbRunTime0404, 0, 1);
-            this.tlpFloor0404.Controls.Add(this.lbFloorStatus0404, 0, 2);
-            this.tlpFloor0404.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0404.Location = new System.Drawing.Point(3, 138);
-            this.tlpFloor0404.Name = "tlpFloor0404";
-            this.tlpFloor0404.RowCount = 3;
-            this.tlpFloor0404.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0404.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0404.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0404.Size = new System.Drawing.Size(125, 39);
-            this.tlpFloor0404.TabIndex = 19;
-            this.tlpFloor0404.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0404
-            // 
-            this.lbFloorInfoTop0404.AutoSize = true;
-            this.lbFloorInfoTop0404.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0404.SetColumnSpan(this.lbFloorInfoTop0404, 3);
-            this.lbFloorInfoTop0404.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0404.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0404.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0404.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0404.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0404.Name = "lbFloorInfoTop0404";
-            this.lbFloorInfoTop0404.Size = new System.Drawing.Size(125, 15);
-            this.lbFloorInfoTop0404.TabIndex = 13;
-            this.lbFloorInfoTop0404.Text = "0.0℃";
-            this.lbFloorInfoTop0404.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0404
-            // 
-            this.pbRunTime0404.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0404.SetColumnSpan(this.pbRunTime0404, 3);
-            this.pbRunTime0404.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0404.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0404.Location = new System.Drawing.Point(10, 15);
-            this.pbRunTime0404.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0404.Name = "pbRunTime0404";
-            this.pbRunTime0404.Size = new System.Drawing.Size(105, 7);
-            this.pbRunTime0404.TabIndex = 9;
-            // 
-            // lbFloorStatus0404
-            // 
-            this.lbFloorStatus0404.AutoSize = true;
-            this.lbFloorStatus0404.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0404.SetColumnSpan(this.lbFloorStatus0404, 3);
-            this.lbFloorStatus0404.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0404.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0404.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0404.Location = new System.Drawing.Point(0, 22);
-            this.lbFloorStatus0404.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0404.Name = "lbFloorStatus0404";
-            this.lbFloorStatus0404.Size = new System.Drawing.Size(125, 17);
-            this.lbFloorStatus0404.TabIndex = 17;
-            this.lbFloorStatus0404.Text = "空腔";
-            this.lbFloorStatus0404.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tlpFloor0405
-            // 
-            this.tlpFloor0405.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0405.ColumnCount = 3;
-            this.tlpFloor0405.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0405.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0405.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0405.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0405.Controls.Add(this.lbFloorInfoTop0405, 0, 0);
-            this.tlpFloor0405.Controls.Add(this.pbRunTime0405, 0, 1);
-            this.tlpFloor0405.Controls.Add(this.lbFloorStatus0405, 0, 2);
-            this.tlpFloor0405.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0405.Location = new System.Drawing.Point(3, 183);
-            this.tlpFloor0405.Name = "tlpFloor0405";
-            this.tlpFloor0405.RowCount = 3;
-            this.tlpFloor0405.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0405.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0405.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0405.Size = new System.Drawing.Size(125, 43);
-            this.tlpFloor0405.TabIndex = 18;
-            this.tlpFloor0405.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0405
-            // 
-            this.lbFloorInfoTop0405.AutoSize = true;
-            this.lbFloorInfoTop0405.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0405.SetColumnSpan(this.lbFloorInfoTop0405, 3);
-            this.lbFloorInfoTop0405.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0405.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0405.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0405.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0405.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0405.Name = "lbFloorInfoTop0405";
-            this.lbFloorInfoTop0405.Size = new System.Drawing.Size(125, 17);
-            this.lbFloorInfoTop0405.TabIndex = 13;
-            this.lbFloorInfoTop0405.Text = "0.0℃";
-            this.lbFloorInfoTop0405.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0405
-            // 
-            this.pbRunTime0405.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0405.SetColumnSpan(this.pbRunTime0405, 3);
-            this.pbRunTime0405.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0405.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0405.Location = new System.Drawing.Point(10, 17);
-            this.pbRunTime0405.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0405.Name = "pbRunTime0405";
-            this.pbRunTime0405.Size = new System.Drawing.Size(105, 8);
-            this.pbRunTime0405.TabIndex = 9;
-            // 
-            // lbFloorStatus0405
-            // 
-            this.lbFloorStatus0405.AutoSize = true;
-            this.lbFloorStatus0405.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0405.SetColumnSpan(this.lbFloorStatus0405, 3);
-            this.lbFloorStatus0405.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0405.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0405.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0405.Location = new System.Drawing.Point(0, 25);
-            this.lbFloorStatus0405.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0405.Name = "lbFloorStatus0405";
-            this.lbFloorStatus0405.Size = new System.Drawing.Size(125, 18);
-            this.lbFloorStatus0405.TabIndex = 17;
-            this.lbFloorStatus0405.Text = "空腔";
-            this.lbFloorStatus0405.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0402
             // 
@@ -3918,13 +3298,13 @@
             this.tlpFloor0402.Controls.Add(this.pbRunTime0402, 0, 1);
             this.tlpFloor0402.Controls.Add(this.lbFloorStatus0402, 0, 2);
             this.tlpFloor0402.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0402.Location = new System.Drawing.Point(3, 48);
+            this.tlpFloor0402.Location = new System.Drawing.Point(3, 79);
             this.tlpFloor0402.Name = "tlpFloor0402";
             this.tlpFloor0402.RowCount = 3;
             this.tlpFloor0402.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0402.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0402.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0402.Size = new System.Drawing.Size(125, 39);
+            this.tlpFloor0402.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0402.TabIndex = 13;
             this.tlpFloor0402.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -3939,7 +3319,7 @@
             this.lbFloorInfoTop0402.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0402.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0402.Name = "lbFloorInfoTop0402";
-            this.lbFloorInfoTop0402.Size = new System.Drawing.Size(125, 15);
+            this.lbFloorInfoTop0402.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0402.TabIndex = 13;
             this.lbFloorInfoTop0402.Text = "0.0℃";
             this.lbFloorInfoTop0402.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3950,10 +3330,10 @@
             this.tlpFloor0402.SetColumnSpan(this.pbRunTime0402, 3);
             this.pbRunTime0402.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0402.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0402.Location = new System.Drawing.Point(10, 15);
+            this.pbRunTime0402.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0402.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0402.Name = "pbRunTime0402";
-            this.pbRunTime0402.Size = new System.Drawing.Size(105, 7);
+            this.pbRunTime0402.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0402.TabIndex = 9;
             // 
             // lbFloorStatus0402
@@ -3964,10 +3344,10 @@
             this.lbFloorStatus0402.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0402.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0402.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0402.Location = new System.Drawing.Point(0, 22);
+            this.lbFloorStatus0402.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0402.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0402.Name = "lbFloorStatus0402";
-            this.lbFloorStatus0402.Size = new System.Drawing.Size(125, 17);
+            this.lbFloorStatus0402.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0402.TabIndex = 17;
             this.lbFloorStatus0402.Text = "空腔";
             this.lbFloorStatus0402.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3990,7 +3370,7 @@
             this.tlpFloor0401.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0401.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0401.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0401.Size = new System.Drawing.Size(125, 39);
+            this.tlpFloor0401.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0401.TabIndex = 12;
             this.tlpFloor0401.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -4005,7 +3385,7 @@
             this.lbFloorInfoTop0401.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0401.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0401.Name = "lbFloorInfoTop0401";
-            this.lbFloorInfoTop0401.Size = new System.Drawing.Size(125, 15);
+            this.lbFloorInfoTop0401.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0401.TabIndex = 13;
             this.lbFloorInfoTop0401.Text = "0.0℃";
             this.lbFloorInfoTop0401.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4016,10 +3396,10 @@
             this.tlpFloor0401.SetColumnSpan(this.pbRunTime0401, 3);
             this.pbRunTime0401.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0401.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0401.Location = new System.Drawing.Point(10, 15);
+            this.pbRunTime0401.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0401.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0401.Name = "pbRunTime0401";
-            this.pbRunTime0401.Size = new System.Drawing.Size(105, 7);
+            this.pbRunTime0401.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0401.TabIndex = 9;
             // 
             // lbFloorStatus0401
@@ -4030,10 +3410,10 @@
             this.lbFloorStatus0401.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0401.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0401.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0401.Location = new System.Drawing.Point(0, 22);
+            this.lbFloorStatus0401.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0401.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0401.Name = "lbFloorStatus0401";
-            this.lbFloorStatus0401.Size = new System.Drawing.Size(125, 17);
+            this.lbFloorStatus0401.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0401.TabIndex = 17;
             this.lbFloorStatus0401.Text = "空腔";
             this.lbFloorStatus0401.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4050,13 +3430,13 @@
             this.tlpFloor0403.Controls.Add(this.pbRunTime0403, 0, 1);
             this.tlpFloor0403.Controls.Add(this.lbFloorStatus0403, 0, 2);
             this.tlpFloor0403.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0403.Location = new System.Drawing.Point(3, 93);
+            this.tlpFloor0403.Location = new System.Drawing.Point(3, 155);
             this.tlpFloor0403.Name = "tlpFloor0403";
             this.tlpFloor0403.RowCount = 3;
             this.tlpFloor0403.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0403.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0403.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0403.Size = new System.Drawing.Size(125, 39);
+            this.tlpFloor0403.Size = new System.Drawing.Size(125, 71);
             this.tlpFloor0403.TabIndex = 11;
             this.tlpFloor0403.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -4071,7 +3451,7 @@
             this.lbFloorInfoTop0403.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0403.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0403.Name = "lbFloorInfoTop0403";
-            this.lbFloorInfoTop0403.Size = new System.Drawing.Size(125, 15);
+            this.lbFloorInfoTop0403.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0403.TabIndex = 13;
             this.lbFloorInfoTop0403.Text = "0.0℃";
             this.lbFloorInfoTop0403.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4082,10 +3462,10 @@
             this.tlpFloor0403.SetColumnSpan(this.pbRunTime0403, 3);
             this.pbRunTime0403.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0403.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0403.Location = new System.Drawing.Point(10, 15);
+            this.pbRunTime0403.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0403.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0403.Name = "pbRunTime0403";
-            this.pbRunTime0403.Size = new System.Drawing.Size(105, 7);
+            this.pbRunTime0403.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0403.TabIndex = 9;
             // 
             // lbFloorStatus0403
@@ -4096,10 +3476,10 @@
             this.lbFloorStatus0403.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0403.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0403.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0403.Location = new System.Drawing.Point(0, 22);
+            this.lbFloorStatus0403.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0403.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0403.Name = "lbFloorStatus0403";
-            this.lbFloorStatus0403.Size = new System.Drawing.Size(125, 17);
+            this.lbFloorStatus0403.Size = new System.Drawing.Size(125, 29);
             this.lbFloorStatus0403.TabIndex = 17;
             this.lbFloorStatus0403.Text = "空腔";
             this.lbFloorStatus0403.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4299,9 +3679,6 @@
             this.tlpOven05.BackColor = System.Drawing.SystemColors.Window;
             this.tlpOven05.ColumnCount = 1;
             this.tlpOven05.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpOven05.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpOven05.Controls.Add(this.tlpFloor0504, 0, 3);
-            this.tlpOven05.Controls.Add(this.tlpFloor0505, 0, 4);
             this.tlpOven05.Controls.Add(this.tlpFloor0502, 0, 1);
             this.tlpOven05.Controls.Add(this.tlpFloor0501, 0, 0);
             this.tlpOven05.Controls.Add(this.tlpFloor0503, 0, 2);
@@ -4309,146 +3686,14 @@
             this.tlpOven05.Location = new System.Drawing.Point(5, 19);
             this.tlpOven05.Margin = new System.Windows.Forms.Padding(0);
             this.tlpOven05.Name = "tlpOven05";
-            this.tlpOven05.RowCount = 5;
-            this.tlpOven05.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven05.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven05.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven05.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven05.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpOven05.RowCount = 3;
+            this.tlpOven05.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven05.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven05.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven05.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpOven05.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpOven05.Size = new System.Drawing.Size(131, 230);
             this.tlpOven05.TabIndex = 34;
-            // 
-            // tlpFloor0504
-            // 
-            this.tlpFloor0504.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0504.ColumnCount = 3;
-            this.tlpFloor0504.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0504.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0504.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0504.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0504.Controls.Add(this.lbFloorInfoTop0504, 0, 0);
-            this.tlpFloor0504.Controls.Add(this.pbRunTime0504, 0, 1);
-            this.tlpFloor0504.Controls.Add(this.lbFloorStatus0504, 0, 2);
-            this.tlpFloor0504.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0504.Location = new System.Drawing.Point(3, 141);
-            this.tlpFloor0504.Name = "tlpFloor0504";
-            this.tlpFloor0504.RowCount = 3;
-            this.tlpFloor0504.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0504.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0504.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0504.Size = new System.Drawing.Size(125, 40);
-            this.tlpFloor0504.TabIndex = 19;
-            this.tlpFloor0504.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0504
-            // 
-            this.lbFloorInfoTop0504.AutoSize = true;
-            this.lbFloorInfoTop0504.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0504.SetColumnSpan(this.lbFloorInfoTop0504, 3);
-            this.lbFloorInfoTop0504.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0504.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0504.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0504.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0504.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0504.Name = "lbFloorInfoTop0504";
-            this.lbFloorInfoTop0504.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorInfoTop0504.TabIndex = 13;
-            this.lbFloorInfoTop0504.Text = "0.0℃";
-            this.lbFloorInfoTop0504.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0504
-            // 
-            this.pbRunTime0504.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0504.SetColumnSpan(this.pbRunTime0504, 3);
-            this.pbRunTime0504.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0504.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0504.Location = new System.Drawing.Point(10, 16);
-            this.pbRunTime0504.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0504.Name = "pbRunTime0504";
-            this.pbRunTime0504.Size = new System.Drawing.Size(105, 8);
-            this.pbRunTime0504.TabIndex = 9;
-            // 
-            // lbFloorStatus0504
-            // 
-            this.lbFloorStatus0504.AutoSize = true;
-            this.lbFloorStatus0504.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0504.SetColumnSpan(this.lbFloorStatus0504, 3);
-            this.lbFloorStatus0504.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0504.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0504.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0504.Location = new System.Drawing.Point(0, 24);
-            this.lbFloorStatus0504.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0504.Name = "lbFloorStatus0504";
-            this.lbFloorStatus0504.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorStatus0504.TabIndex = 17;
-            this.lbFloorStatus0504.Text = "空腔";
-            this.lbFloorStatus0504.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tlpFloor0505
-            // 
-            this.tlpFloor0505.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0505.ColumnCount = 3;
-            this.tlpFloor0505.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0505.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0505.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0505.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0505.Controls.Add(this.lbFloorInfoTop0505, 0, 0);
-            this.tlpFloor0505.Controls.Add(this.pbRunTime0505, 0, 1);
-            this.tlpFloor0505.Controls.Add(this.lbFloorStatus0505, 0, 2);
-            this.tlpFloor0505.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0505.Location = new System.Drawing.Point(3, 187);
-            this.tlpFloor0505.Name = "tlpFloor0505";
-            this.tlpFloor0505.RowCount = 3;
-            this.tlpFloor0505.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0505.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0505.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0505.Size = new System.Drawing.Size(125, 40);
-            this.tlpFloor0505.TabIndex = 18;
-            this.tlpFloor0505.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0505
-            // 
-            this.lbFloorInfoTop0505.AutoSize = true;
-            this.lbFloorInfoTop0505.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0505.SetColumnSpan(this.lbFloorInfoTop0505, 3);
-            this.lbFloorInfoTop0505.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0505.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0505.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0505.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0505.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0505.Name = "lbFloorInfoTop0505";
-            this.lbFloorInfoTop0505.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorInfoTop0505.TabIndex = 13;
-            this.lbFloorInfoTop0505.Text = "0.0℃";
-            this.lbFloorInfoTop0505.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0505
-            // 
-            this.pbRunTime0505.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0505.SetColumnSpan(this.pbRunTime0505, 3);
-            this.pbRunTime0505.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0505.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0505.Location = new System.Drawing.Point(10, 16);
-            this.pbRunTime0505.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0505.Name = "pbRunTime0505";
-            this.pbRunTime0505.Size = new System.Drawing.Size(105, 8);
-            this.pbRunTime0505.TabIndex = 9;
-            // 
-            // lbFloorStatus0505
-            // 
-            this.lbFloorStatus0505.AutoSize = true;
-            this.lbFloorStatus0505.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0505.SetColumnSpan(this.lbFloorStatus0505, 3);
-            this.lbFloorStatus0505.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0505.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0505.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0505.Location = new System.Drawing.Point(0, 24);
-            this.lbFloorStatus0505.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0505.Name = "lbFloorStatus0505";
-            this.lbFloorStatus0505.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorStatus0505.TabIndex = 17;
-            this.lbFloorStatus0505.Text = "空腔";
-            this.lbFloorStatus0505.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0502
             // 
@@ -4462,13 +3707,13 @@
             this.tlpFloor0502.Controls.Add(this.pbRunTime0502, 0, 1);
             this.tlpFloor0502.Controls.Add(this.lbFloorStatus0502, 0, 2);
             this.tlpFloor0502.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0502.Location = new System.Drawing.Point(3, 49);
+            this.tlpFloor0502.Location = new System.Drawing.Point(3, 79);
             this.tlpFloor0502.Name = "tlpFloor0502";
             this.tlpFloor0502.RowCount = 3;
             this.tlpFloor0502.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0502.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0502.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0502.Size = new System.Drawing.Size(125, 40);
+            this.tlpFloor0502.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0502.TabIndex = 13;
             this.tlpFloor0502.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -4483,7 +3728,7 @@
             this.lbFloorInfoTop0502.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0502.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0502.Name = "lbFloorInfoTop0502";
-            this.lbFloorInfoTop0502.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorInfoTop0502.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0502.TabIndex = 13;
             this.lbFloorInfoTop0502.Text = "0.0℃";
             this.lbFloorInfoTop0502.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4494,10 +3739,10 @@
             this.tlpFloor0502.SetColumnSpan(this.pbRunTime0502, 3);
             this.pbRunTime0502.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0502.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0502.Location = new System.Drawing.Point(10, 16);
+            this.pbRunTime0502.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0502.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0502.Name = "pbRunTime0502";
-            this.pbRunTime0502.Size = new System.Drawing.Size(105, 8);
+            this.pbRunTime0502.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0502.TabIndex = 9;
             // 
             // lbFloorStatus0502
@@ -4508,10 +3753,10 @@
             this.lbFloorStatus0502.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0502.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0502.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0502.Location = new System.Drawing.Point(0, 24);
+            this.lbFloorStatus0502.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0502.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0502.Name = "lbFloorStatus0502";
-            this.lbFloorStatus0502.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorStatus0502.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0502.TabIndex = 17;
             this.lbFloorStatus0502.Text = "空腔";
             this.lbFloorStatus0502.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4534,7 +3779,7 @@
             this.tlpFloor0501.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0501.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0501.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0501.Size = new System.Drawing.Size(125, 40);
+            this.tlpFloor0501.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0501.TabIndex = 12;
             this.tlpFloor0501.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -4549,7 +3794,7 @@
             this.lbFloorInfoTop0501.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0501.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0501.Name = "lbFloorInfoTop0501";
-            this.lbFloorInfoTop0501.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorInfoTop0501.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0501.TabIndex = 13;
             this.lbFloorInfoTop0501.Text = "0.0℃";
             this.lbFloorInfoTop0501.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4560,10 +3805,10 @@
             this.tlpFloor0501.SetColumnSpan(this.pbRunTime0501, 3);
             this.pbRunTime0501.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0501.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0501.Location = new System.Drawing.Point(10, 16);
+            this.pbRunTime0501.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0501.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0501.Name = "pbRunTime0501";
-            this.pbRunTime0501.Size = new System.Drawing.Size(105, 8);
+            this.pbRunTime0501.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0501.TabIndex = 9;
             // 
             // lbFloorStatus0501
@@ -4574,10 +3819,10 @@
             this.lbFloorStatus0501.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0501.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0501.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0501.Location = new System.Drawing.Point(0, 24);
+            this.lbFloorStatus0501.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0501.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0501.Name = "lbFloorStatus0501";
-            this.lbFloorStatus0501.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorStatus0501.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0501.TabIndex = 17;
             this.lbFloorStatus0501.Text = "空腔";
             this.lbFloorStatus0501.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4594,13 +3839,13 @@
             this.tlpFloor0503.Controls.Add(this.pbRunTime0503, 0, 1);
             this.tlpFloor0503.Controls.Add(this.lbFloorStatus0503, 0, 2);
             this.tlpFloor0503.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0503.Location = new System.Drawing.Point(3, 95);
+            this.tlpFloor0503.Location = new System.Drawing.Point(3, 155);
             this.tlpFloor0503.Name = "tlpFloor0503";
             this.tlpFloor0503.RowCount = 3;
             this.tlpFloor0503.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0503.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0503.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0503.Size = new System.Drawing.Size(125, 40);
+            this.tlpFloor0503.Size = new System.Drawing.Size(125, 72);
             this.tlpFloor0503.TabIndex = 11;
             this.tlpFloor0503.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -4615,7 +3860,7 @@
             this.lbFloorInfoTop0503.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0503.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0503.Name = "lbFloorInfoTop0503";
-            this.lbFloorInfoTop0503.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorInfoTop0503.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0503.TabIndex = 13;
             this.lbFloorInfoTop0503.Text = "0.0℃";
             this.lbFloorInfoTop0503.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4626,10 +3871,10 @@
             this.tlpFloor0503.SetColumnSpan(this.pbRunTime0503, 3);
             this.pbRunTime0503.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0503.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0503.Location = new System.Drawing.Point(10, 16);
+            this.pbRunTime0503.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0503.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0503.Name = "pbRunTime0503";
-            this.pbRunTime0503.Size = new System.Drawing.Size(105, 8);
+            this.pbRunTime0503.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0503.TabIndex = 9;
             // 
             // lbFloorStatus0503
@@ -4640,10 +3885,10 @@
             this.lbFloorStatus0503.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0503.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0503.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0503.Location = new System.Drawing.Point(0, 24);
+            this.lbFloorStatus0503.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0503.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0503.Name = "lbFloorStatus0503";
-            this.lbFloorStatus0503.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorStatus0503.Size = new System.Drawing.Size(125, 30);
             this.lbFloorStatus0503.TabIndex = 17;
             this.lbFloorStatus0503.Text = "空腔";
             this.lbFloorStatus0503.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4653,9 +3898,6 @@
             this.tlpOven06.BackColor = System.Drawing.SystemColors.Window;
             this.tlpOven06.ColumnCount = 1;
             this.tlpOven06.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpOven06.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpOven06.Controls.Add(this.tlpFloor0604, 0, 3);
-            this.tlpOven06.Controls.Add(this.tlpFloor0605, 0, 4);
             this.tlpOven06.Controls.Add(this.tlpFloor0602, 0, 1);
             this.tlpOven06.Controls.Add(this.tlpFloor0601, 0, 0);
             this.tlpOven06.Controls.Add(this.tlpFloor0603, 0, 2);
@@ -4663,146 +3905,14 @@
             this.tlpOven06.Location = new System.Drawing.Point(146, 19);
             this.tlpOven06.Margin = new System.Windows.Forms.Padding(0);
             this.tlpOven06.Name = "tlpOven06";
-            this.tlpOven06.RowCount = 5;
-            this.tlpOven06.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven06.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven06.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven06.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven06.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpOven06.RowCount = 3;
+            this.tlpOven06.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven06.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven06.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven06.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpOven06.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpOven06.Size = new System.Drawing.Size(131, 230);
             this.tlpOven06.TabIndex = 0;
-            // 
-            // tlpFloor0604
-            // 
-            this.tlpFloor0604.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0604.ColumnCount = 3;
-            this.tlpFloor0604.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0604.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0604.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0604.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0604.Controls.Add(this.lbFloorInfoTop0604, 0, 0);
-            this.tlpFloor0604.Controls.Add(this.pbRunTime0604, 0, 1);
-            this.tlpFloor0604.Controls.Add(this.lbFloorStatus0604, 0, 2);
-            this.tlpFloor0604.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0604.Location = new System.Drawing.Point(3, 141);
-            this.tlpFloor0604.Name = "tlpFloor0604";
-            this.tlpFloor0604.RowCount = 3;
-            this.tlpFloor0604.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0604.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0604.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0604.Size = new System.Drawing.Size(125, 40);
-            this.tlpFloor0604.TabIndex = 19;
-            this.tlpFloor0604.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0604
-            // 
-            this.lbFloorInfoTop0604.AutoSize = true;
-            this.lbFloorInfoTop0604.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0604.SetColumnSpan(this.lbFloorInfoTop0604, 3);
-            this.lbFloorInfoTop0604.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0604.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0604.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0604.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0604.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0604.Name = "lbFloorInfoTop0604";
-            this.lbFloorInfoTop0604.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorInfoTop0604.TabIndex = 13;
-            this.lbFloorInfoTop0604.Text = "0.0℃";
-            this.lbFloorInfoTop0604.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0604
-            // 
-            this.pbRunTime0604.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0604.SetColumnSpan(this.pbRunTime0604, 3);
-            this.pbRunTime0604.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0604.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0604.Location = new System.Drawing.Point(10, 16);
-            this.pbRunTime0604.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0604.Name = "pbRunTime0604";
-            this.pbRunTime0604.Size = new System.Drawing.Size(105, 8);
-            this.pbRunTime0604.TabIndex = 9;
-            // 
-            // lbFloorStatus0604
-            // 
-            this.lbFloorStatus0604.AutoSize = true;
-            this.lbFloorStatus0604.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0604.SetColumnSpan(this.lbFloorStatus0604, 3);
-            this.lbFloorStatus0604.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0604.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0604.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0604.Location = new System.Drawing.Point(0, 24);
-            this.lbFloorStatus0604.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0604.Name = "lbFloorStatus0604";
-            this.lbFloorStatus0604.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorStatus0604.TabIndex = 17;
-            this.lbFloorStatus0604.Text = "空腔";
-            this.lbFloorStatus0604.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tlpFloor0605
-            // 
-            this.tlpFloor0605.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0605.ColumnCount = 3;
-            this.tlpFloor0605.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0605.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0605.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0605.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0605.Controls.Add(this.lbFloorInfoTop0605, 0, 0);
-            this.tlpFloor0605.Controls.Add(this.pbRunTime0605, 0, 1);
-            this.tlpFloor0605.Controls.Add(this.lbFloorStatus0605, 0, 2);
-            this.tlpFloor0605.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0605.Location = new System.Drawing.Point(3, 187);
-            this.tlpFloor0605.Name = "tlpFloor0605";
-            this.tlpFloor0605.RowCount = 3;
-            this.tlpFloor0605.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0605.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0605.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0605.Size = new System.Drawing.Size(125, 40);
-            this.tlpFloor0605.TabIndex = 18;
-            this.tlpFloor0605.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0605
-            // 
-            this.lbFloorInfoTop0605.AutoSize = true;
-            this.lbFloorInfoTop0605.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0605.SetColumnSpan(this.lbFloorInfoTop0605, 3);
-            this.lbFloorInfoTop0605.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0605.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0605.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0605.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0605.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0605.Name = "lbFloorInfoTop0605";
-            this.lbFloorInfoTop0605.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorInfoTop0605.TabIndex = 13;
-            this.lbFloorInfoTop0605.Text = "0.0℃";
-            this.lbFloorInfoTop0605.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0605
-            // 
-            this.pbRunTime0605.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0605.SetColumnSpan(this.pbRunTime0605, 3);
-            this.pbRunTime0605.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0605.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0605.Location = new System.Drawing.Point(10, 16);
-            this.pbRunTime0605.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0605.Name = "pbRunTime0605";
-            this.pbRunTime0605.Size = new System.Drawing.Size(105, 8);
-            this.pbRunTime0605.TabIndex = 9;
-            // 
-            // lbFloorStatus0605
-            // 
-            this.lbFloorStatus0605.AutoSize = true;
-            this.lbFloorStatus0605.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0605.SetColumnSpan(this.lbFloorStatus0605, 3);
-            this.lbFloorStatus0605.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0605.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0605.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0605.Location = new System.Drawing.Point(0, 24);
-            this.lbFloorStatus0605.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0605.Name = "lbFloorStatus0605";
-            this.lbFloorStatus0605.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorStatus0605.TabIndex = 17;
-            this.lbFloorStatus0605.Text = "空腔";
-            this.lbFloorStatus0605.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0602
             // 
@@ -4816,13 +3926,13 @@
             this.tlpFloor0602.Controls.Add(this.pbRunTime0602, 0, 1);
             this.tlpFloor0602.Controls.Add(this.lbFloorStatus0602, 0, 2);
             this.tlpFloor0602.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0602.Location = new System.Drawing.Point(3, 49);
+            this.tlpFloor0602.Location = new System.Drawing.Point(3, 79);
             this.tlpFloor0602.Name = "tlpFloor0602";
             this.tlpFloor0602.RowCount = 3;
             this.tlpFloor0602.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0602.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0602.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0602.Size = new System.Drawing.Size(125, 40);
+            this.tlpFloor0602.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0602.TabIndex = 13;
             this.tlpFloor0602.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -4837,7 +3947,7 @@
             this.lbFloorInfoTop0602.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0602.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0602.Name = "lbFloorInfoTop0602";
-            this.lbFloorInfoTop0602.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorInfoTop0602.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0602.TabIndex = 13;
             this.lbFloorInfoTop0602.Text = "0.0℃";
             this.lbFloorInfoTop0602.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4848,10 +3958,10 @@
             this.tlpFloor0602.SetColumnSpan(this.pbRunTime0602, 3);
             this.pbRunTime0602.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0602.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0602.Location = new System.Drawing.Point(10, 16);
+            this.pbRunTime0602.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0602.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0602.Name = "pbRunTime0602";
-            this.pbRunTime0602.Size = new System.Drawing.Size(105, 8);
+            this.pbRunTime0602.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0602.TabIndex = 9;
             // 
             // lbFloorStatus0602
@@ -4862,10 +3972,10 @@
             this.lbFloorStatus0602.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0602.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0602.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0602.Location = new System.Drawing.Point(0, 24);
+            this.lbFloorStatus0602.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0602.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0602.Name = "lbFloorStatus0602";
-            this.lbFloorStatus0602.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorStatus0602.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0602.TabIndex = 17;
             this.lbFloorStatus0602.Text = "空腔";
             this.lbFloorStatus0602.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4888,7 +3998,7 @@
             this.tlpFloor0601.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0601.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0601.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0601.Size = new System.Drawing.Size(125, 40);
+            this.tlpFloor0601.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0601.TabIndex = 12;
             this.tlpFloor0601.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -4903,7 +4013,7 @@
             this.lbFloorInfoTop0601.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0601.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0601.Name = "lbFloorInfoTop0601";
-            this.lbFloorInfoTop0601.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorInfoTop0601.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0601.TabIndex = 13;
             this.lbFloorInfoTop0601.Text = "0.0℃";
             this.lbFloorInfoTop0601.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4914,10 +4024,10 @@
             this.tlpFloor0601.SetColumnSpan(this.pbRunTime0601, 3);
             this.pbRunTime0601.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0601.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0601.Location = new System.Drawing.Point(10, 16);
+            this.pbRunTime0601.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0601.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0601.Name = "pbRunTime0601";
-            this.pbRunTime0601.Size = new System.Drawing.Size(105, 8);
+            this.pbRunTime0601.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0601.TabIndex = 9;
             // 
             // lbFloorStatus0601
@@ -4928,10 +4038,10 @@
             this.lbFloorStatus0601.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0601.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0601.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0601.Location = new System.Drawing.Point(0, 24);
+            this.lbFloorStatus0601.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0601.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0601.Name = "lbFloorStatus0601";
-            this.lbFloorStatus0601.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorStatus0601.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0601.TabIndex = 17;
             this.lbFloorStatus0601.Text = "空腔";
             this.lbFloorStatus0601.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4948,13 +4058,13 @@
             this.tlpFloor0603.Controls.Add(this.pbRunTime0603, 0, 1);
             this.tlpFloor0603.Controls.Add(this.lbFloorStatus0603, 0, 2);
             this.tlpFloor0603.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0603.Location = new System.Drawing.Point(3, 95);
+            this.tlpFloor0603.Location = new System.Drawing.Point(3, 155);
             this.tlpFloor0603.Name = "tlpFloor0603";
             this.tlpFloor0603.RowCount = 3;
             this.tlpFloor0603.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0603.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0603.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0603.Size = new System.Drawing.Size(125, 40);
+            this.tlpFloor0603.Size = new System.Drawing.Size(125, 72);
             this.tlpFloor0603.TabIndex = 11;
             this.tlpFloor0603.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -4969,7 +4079,7 @@
             this.lbFloorInfoTop0603.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0603.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0603.Name = "lbFloorInfoTop0603";
-            this.lbFloorInfoTop0603.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorInfoTop0603.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0603.TabIndex = 13;
             this.lbFloorInfoTop0603.Text = "0.0℃";
             this.lbFloorInfoTop0603.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4980,10 +4090,10 @@
             this.tlpFloor0603.SetColumnSpan(this.pbRunTime0603, 3);
             this.pbRunTime0603.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0603.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0603.Location = new System.Drawing.Point(10, 16);
+            this.pbRunTime0603.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0603.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0603.Name = "pbRunTime0603";
-            this.pbRunTime0603.Size = new System.Drawing.Size(105, 8);
+            this.pbRunTime0603.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0603.TabIndex = 9;
             // 
             // lbFloorStatus0603
@@ -4994,10 +4104,10 @@
             this.lbFloorStatus0603.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0603.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0603.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0603.Location = new System.Drawing.Point(0, 24);
+            this.lbFloorStatus0603.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0603.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0603.Name = "lbFloorStatus0603";
-            this.lbFloorStatus0603.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorStatus0603.Size = new System.Drawing.Size(125, 30);
             this.lbFloorStatus0603.TabIndex = 17;
             this.lbFloorStatus0603.Text = "空腔";
             this.lbFloorStatus0603.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5007,9 +4117,6 @@
             this.tlpOven07.BackColor = System.Drawing.SystemColors.Window;
             this.tlpOven07.ColumnCount = 1;
             this.tlpOven07.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpOven07.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpOven07.Controls.Add(this.tlpFloor0704, 0, 3);
-            this.tlpOven07.Controls.Add(this.tlpFloor0705, 0, 4);
             this.tlpOven07.Controls.Add(this.tlpFloor0702, 0, 1);
             this.tlpOven07.Controls.Add(this.tlpFloor0701, 0, 0);
             this.tlpOven07.Controls.Add(this.tlpFloor0703, 0, 2);
@@ -5017,146 +4124,14 @@
             this.tlpOven07.Location = new System.Drawing.Point(287, 19);
             this.tlpOven07.Margin = new System.Windows.Forms.Padding(0);
             this.tlpOven07.Name = "tlpOven07";
-            this.tlpOven07.RowCount = 5;
-            this.tlpOven07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpOven07.RowCount = 3;
+            this.tlpOven07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpOven07.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpOven07.Size = new System.Drawing.Size(131, 230);
             this.tlpOven07.TabIndex = 35;
-            // 
-            // tlpFloor0704
-            // 
-            this.tlpFloor0704.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0704.ColumnCount = 3;
-            this.tlpFloor0704.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0704.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0704.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0704.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0704.Controls.Add(this.lbFloorInfoTop0704, 0, 0);
-            this.tlpFloor0704.Controls.Add(this.pbRunTime0704, 0, 1);
-            this.tlpFloor0704.Controls.Add(this.lbFloorStatus0704, 0, 2);
-            this.tlpFloor0704.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0704.Location = new System.Drawing.Point(3, 141);
-            this.tlpFloor0704.Name = "tlpFloor0704";
-            this.tlpFloor0704.RowCount = 3;
-            this.tlpFloor0704.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0704.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0704.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0704.Size = new System.Drawing.Size(125, 40);
-            this.tlpFloor0704.TabIndex = 19;
-            this.tlpFloor0704.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0704
-            // 
-            this.lbFloorInfoTop0704.AutoSize = true;
-            this.lbFloorInfoTop0704.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0704.SetColumnSpan(this.lbFloorInfoTop0704, 3);
-            this.lbFloorInfoTop0704.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0704.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0704.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0704.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0704.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0704.Name = "lbFloorInfoTop0704";
-            this.lbFloorInfoTop0704.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorInfoTop0704.TabIndex = 13;
-            this.lbFloorInfoTop0704.Text = "0.0℃";
-            this.lbFloorInfoTop0704.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0704
-            // 
-            this.pbRunTime0704.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0704.SetColumnSpan(this.pbRunTime0704, 3);
-            this.pbRunTime0704.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0704.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0704.Location = new System.Drawing.Point(10, 16);
-            this.pbRunTime0704.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0704.Name = "pbRunTime0704";
-            this.pbRunTime0704.Size = new System.Drawing.Size(105, 8);
-            this.pbRunTime0704.TabIndex = 9;
-            // 
-            // lbFloorStatus0704
-            // 
-            this.lbFloorStatus0704.AutoSize = true;
-            this.lbFloorStatus0704.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0704.SetColumnSpan(this.lbFloorStatus0704, 3);
-            this.lbFloorStatus0704.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0704.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0704.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0704.Location = new System.Drawing.Point(0, 24);
-            this.lbFloorStatus0704.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0704.Name = "lbFloorStatus0704";
-            this.lbFloorStatus0704.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorStatus0704.TabIndex = 17;
-            this.lbFloorStatus0704.Text = "空腔";
-            this.lbFloorStatus0704.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tlpFloor0705
-            // 
-            this.tlpFloor0705.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0705.ColumnCount = 3;
-            this.tlpFloor0705.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0705.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0705.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0705.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0705.Controls.Add(this.lbFloorInfoTop0705, 0, 0);
-            this.tlpFloor0705.Controls.Add(this.pbRunTime0705, 0, 1);
-            this.tlpFloor0705.Controls.Add(this.lbFloorStatus0705, 0, 2);
-            this.tlpFloor0705.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0705.Location = new System.Drawing.Point(3, 187);
-            this.tlpFloor0705.Name = "tlpFloor0705";
-            this.tlpFloor0705.RowCount = 3;
-            this.tlpFloor0705.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0705.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0705.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0705.Size = new System.Drawing.Size(125, 40);
-            this.tlpFloor0705.TabIndex = 18;
-            this.tlpFloor0705.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0705
-            // 
-            this.lbFloorInfoTop0705.AutoSize = true;
-            this.lbFloorInfoTop0705.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0705.SetColumnSpan(this.lbFloorInfoTop0705, 3);
-            this.lbFloorInfoTop0705.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0705.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0705.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0705.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0705.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0705.Name = "lbFloorInfoTop0705";
-            this.lbFloorInfoTop0705.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorInfoTop0705.TabIndex = 13;
-            this.lbFloorInfoTop0705.Text = "0.0℃";
-            this.lbFloorInfoTop0705.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0705
-            // 
-            this.pbRunTime0705.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0705.SetColumnSpan(this.pbRunTime0705, 3);
-            this.pbRunTime0705.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0705.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0705.Location = new System.Drawing.Point(10, 16);
-            this.pbRunTime0705.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0705.Name = "pbRunTime0705";
-            this.pbRunTime0705.Size = new System.Drawing.Size(105, 8);
-            this.pbRunTime0705.TabIndex = 9;
-            // 
-            // lbFloorStatus0705
-            // 
-            this.lbFloorStatus0705.AutoSize = true;
-            this.lbFloorStatus0705.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0705.SetColumnSpan(this.lbFloorStatus0705, 3);
-            this.lbFloorStatus0705.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0705.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0705.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0705.Location = new System.Drawing.Point(0, 24);
-            this.lbFloorStatus0705.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0705.Name = "lbFloorStatus0705";
-            this.lbFloorStatus0705.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorStatus0705.TabIndex = 17;
-            this.lbFloorStatus0705.Text = "空腔";
-            this.lbFloorStatus0705.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0702
             // 
@@ -5170,13 +4145,13 @@
             this.tlpFloor0702.Controls.Add(this.pbRunTime0702, 0, 1);
             this.tlpFloor0702.Controls.Add(this.lbFloorStatus0702, 0, 2);
             this.tlpFloor0702.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0702.Location = new System.Drawing.Point(3, 49);
+            this.tlpFloor0702.Location = new System.Drawing.Point(3, 79);
             this.tlpFloor0702.Name = "tlpFloor0702";
             this.tlpFloor0702.RowCount = 3;
             this.tlpFloor0702.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0702.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0702.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0702.Size = new System.Drawing.Size(125, 40);
+            this.tlpFloor0702.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0702.TabIndex = 13;
             this.tlpFloor0702.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -5191,7 +4166,7 @@
             this.lbFloorInfoTop0702.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0702.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0702.Name = "lbFloorInfoTop0702";
-            this.lbFloorInfoTop0702.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorInfoTop0702.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0702.TabIndex = 13;
             this.lbFloorInfoTop0702.Text = "0.0℃";
             this.lbFloorInfoTop0702.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5202,10 +4177,10 @@
             this.tlpFloor0702.SetColumnSpan(this.pbRunTime0702, 3);
             this.pbRunTime0702.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0702.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0702.Location = new System.Drawing.Point(10, 16);
+            this.pbRunTime0702.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0702.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0702.Name = "pbRunTime0702";
-            this.pbRunTime0702.Size = new System.Drawing.Size(105, 8);
+            this.pbRunTime0702.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0702.TabIndex = 9;
             // 
             // lbFloorStatus0702
@@ -5216,10 +4191,10 @@
             this.lbFloorStatus0702.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0702.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0702.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0702.Location = new System.Drawing.Point(0, 24);
+            this.lbFloorStatus0702.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0702.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0702.Name = "lbFloorStatus0702";
-            this.lbFloorStatus0702.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorStatus0702.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0702.TabIndex = 17;
             this.lbFloorStatus0702.Text = "空腔";
             this.lbFloorStatus0702.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5242,7 +4217,7 @@
             this.tlpFloor0701.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0701.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0701.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0701.Size = new System.Drawing.Size(125, 40);
+            this.tlpFloor0701.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0701.TabIndex = 12;
             this.tlpFloor0701.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -5257,7 +4232,7 @@
             this.lbFloorInfoTop0701.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0701.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0701.Name = "lbFloorInfoTop0701";
-            this.lbFloorInfoTop0701.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorInfoTop0701.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0701.TabIndex = 13;
             this.lbFloorInfoTop0701.Text = "0.0℃";
             this.lbFloorInfoTop0701.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5268,10 +4243,10 @@
             this.tlpFloor0701.SetColumnSpan(this.pbRunTime0701, 3);
             this.pbRunTime0701.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0701.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0701.Location = new System.Drawing.Point(10, 16);
+            this.pbRunTime0701.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0701.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0701.Name = "pbRunTime0701";
-            this.pbRunTime0701.Size = new System.Drawing.Size(105, 8);
+            this.pbRunTime0701.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0701.TabIndex = 9;
             // 
             // lbFloorStatus0701
@@ -5282,10 +4257,10 @@
             this.lbFloorStatus0701.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0701.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0701.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0701.Location = new System.Drawing.Point(0, 24);
+            this.lbFloorStatus0701.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0701.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0701.Name = "lbFloorStatus0701";
-            this.lbFloorStatus0701.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorStatus0701.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0701.TabIndex = 17;
             this.lbFloorStatus0701.Text = "空腔";
             this.lbFloorStatus0701.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5302,13 +4277,13 @@
             this.tlpFloor0703.Controls.Add(this.pbRunTime0703, 0, 1);
             this.tlpFloor0703.Controls.Add(this.lbFloorStatus0703, 0, 2);
             this.tlpFloor0703.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0703.Location = new System.Drawing.Point(3, 95);
+            this.tlpFloor0703.Location = new System.Drawing.Point(3, 155);
             this.tlpFloor0703.Name = "tlpFloor0703";
             this.tlpFloor0703.RowCount = 3;
             this.tlpFloor0703.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0703.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0703.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0703.Size = new System.Drawing.Size(125, 40);
+            this.tlpFloor0703.Size = new System.Drawing.Size(125, 72);
             this.tlpFloor0703.TabIndex = 11;
             this.tlpFloor0703.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -5323,7 +4298,7 @@
             this.lbFloorInfoTop0703.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0703.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0703.Name = "lbFloorInfoTop0703";
-            this.lbFloorInfoTop0703.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorInfoTop0703.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0703.TabIndex = 14;
             this.lbFloorInfoTop0703.Text = "0.0℃";
             this.lbFloorInfoTop0703.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5334,10 +4309,10 @@
             this.tlpFloor0703.SetColumnSpan(this.pbRunTime0703, 3);
             this.pbRunTime0703.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0703.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0703.Location = new System.Drawing.Point(10, 16);
+            this.pbRunTime0703.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0703.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0703.Name = "pbRunTime0703";
-            this.pbRunTime0703.Size = new System.Drawing.Size(105, 8);
+            this.pbRunTime0703.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0703.TabIndex = 9;
             // 
             // lbFloorStatus0703
@@ -5348,10 +4323,10 @@
             this.lbFloorStatus0703.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0703.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0703.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0703.Location = new System.Drawing.Point(0, 24);
+            this.lbFloorStatus0703.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0703.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0703.Name = "lbFloorStatus0703";
-            this.lbFloorStatus0703.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorStatus0703.Size = new System.Drawing.Size(125, 30);
             this.lbFloorStatus0703.TabIndex = 17;
             this.lbFloorStatus0703.Text = "空腔";
             this.lbFloorStatus0703.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5361,9 +4336,6 @@
             this.tlpOven08.BackColor = System.Drawing.SystemColors.Window;
             this.tlpOven08.ColumnCount = 1;
             this.tlpOven08.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpOven08.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpOven08.Controls.Add(this.tlpFloor0804, 0, 3);
-            this.tlpOven08.Controls.Add(this.tlpFloor0805, 0, 4);
             this.tlpOven08.Controls.Add(this.tlpFloor0802, 0, 1);
             this.tlpOven08.Controls.Add(this.tlpFloor0801, 0, 0);
             this.tlpOven08.Controls.Add(this.tlpFloor0803, 0, 2);
@@ -5371,146 +4343,14 @@
             this.tlpOven08.Location = new System.Drawing.Point(428, 19);
             this.tlpOven08.Margin = new System.Windows.Forms.Padding(0);
             this.tlpOven08.Name = "tlpOven08";
-            this.tlpOven08.RowCount = 5;
-            this.tlpOven08.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven08.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven08.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven08.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpOven08.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpOven08.RowCount = 3;
+            this.tlpOven08.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven08.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven08.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpOven08.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpOven08.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpOven08.Size = new System.Drawing.Size(131, 230);
             this.tlpOven08.TabIndex = 36;
-            // 
-            // tlpFloor0804
-            // 
-            this.tlpFloor0804.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0804.ColumnCount = 3;
-            this.tlpFloor0804.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0804.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0804.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0804.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0804.Controls.Add(this.lbFloorInfoTop0804, 0, 0);
-            this.tlpFloor0804.Controls.Add(this.pbRunTime0804, 0, 1);
-            this.tlpFloor0804.Controls.Add(this.lbFloorStatus0804, 0, 2);
-            this.tlpFloor0804.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0804.Location = new System.Drawing.Point(3, 141);
-            this.tlpFloor0804.Name = "tlpFloor0804";
-            this.tlpFloor0804.RowCount = 3;
-            this.tlpFloor0804.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0804.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0804.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0804.Size = new System.Drawing.Size(125, 40);
-            this.tlpFloor0804.TabIndex = 19;
-            this.tlpFloor0804.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0804
-            // 
-            this.lbFloorInfoTop0804.AutoSize = true;
-            this.lbFloorInfoTop0804.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0804.SetColumnSpan(this.lbFloorInfoTop0804, 3);
-            this.lbFloorInfoTop0804.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0804.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0804.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0804.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0804.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0804.Name = "lbFloorInfoTop0804";
-            this.lbFloorInfoTop0804.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorInfoTop0804.TabIndex = 13;
-            this.lbFloorInfoTop0804.Text = "0.0℃";
-            this.lbFloorInfoTop0804.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0804
-            // 
-            this.pbRunTime0804.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0804.SetColumnSpan(this.pbRunTime0804, 3);
-            this.pbRunTime0804.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0804.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0804.Location = new System.Drawing.Point(10, 16);
-            this.pbRunTime0804.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0804.Name = "pbRunTime0804";
-            this.pbRunTime0804.Size = new System.Drawing.Size(105, 8);
-            this.pbRunTime0804.TabIndex = 9;
-            // 
-            // lbFloorStatus0804
-            // 
-            this.lbFloorStatus0804.AutoSize = true;
-            this.lbFloorStatus0804.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0804.SetColumnSpan(this.lbFloorStatus0804, 3);
-            this.lbFloorStatus0804.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0804.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0804.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0804.Location = new System.Drawing.Point(0, 24);
-            this.lbFloorStatus0804.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0804.Name = "lbFloorStatus0804";
-            this.lbFloorStatus0804.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorStatus0804.TabIndex = 17;
-            this.lbFloorStatus0804.Text = "空腔";
-            this.lbFloorStatus0804.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tlpFloor0805
-            // 
-            this.tlpFloor0805.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpFloor0805.ColumnCount = 3;
-            this.tlpFloor0805.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0805.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-            this.tlpFloor0805.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor0805.ContextMenuStrip = this.cmsFloor;
-            this.tlpFloor0805.Controls.Add(this.lbFloorInfoTop0805, 0, 0);
-            this.tlpFloor0805.Controls.Add(this.pbRunTime0805, 0, 1);
-            this.tlpFloor0805.Controls.Add(this.lbFloorStatus0805, 0, 2);
-            this.tlpFloor0805.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0805.Location = new System.Drawing.Point(3, 187);
-            this.tlpFloor0805.Name = "tlpFloor0805";
-            this.tlpFloor0805.RowCount = 3;
-            this.tlpFloor0805.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0805.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpFloor0805.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0805.Size = new System.Drawing.Size(125, 40);
-            this.tlpFloor0805.TabIndex = 18;
-            this.tlpFloor0805.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
-            // 
-            // lbFloorInfoTop0805
-            // 
-            this.lbFloorInfoTop0805.AutoSize = true;
-            this.lbFloorInfoTop0805.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0805.SetColumnSpan(this.lbFloorInfoTop0805, 3);
-            this.lbFloorInfoTop0805.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop0805.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop0805.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop0805.Location = new System.Drawing.Point(0, 0);
-            this.lbFloorInfoTop0805.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorInfoTop0805.Name = "lbFloorInfoTop0805";
-            this.lbFloorInfoTop0805.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorInfoTop0805.TabIndex = 13;
-            this.lbFloorInfoTop0805.Text = "0.0℃";
-            this.lbFloorInfoTop0805.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbRunTime0805
-            // 
-            this.pbRunTime0805.BackColor = System.Drawing.Color.Yellow;
-            this.tlpFloor0805.SetColumnSpan(this.pbRunTime0805, 3);
-            this.pbRunTime0805.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbRunTime0805.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0805.Location = new System.Drawing.Point(10, 16);
-            this.pbRunTime0805.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.pbRunTime0805.Name = "pbRunTime0805";
-            this.pbRunTime0805.Size = new System.Drawing.Size(105, 8);
-            this.pbRunTime0805.TabIndex = 9;
-            // 
-            // lbFloorStatus0805
-            // 
-            this.lbFloorStatus0805.AutoSize = true;
-            this.lbFloorStatus0805.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor0805.SetColumnSpan(this.lbFloorStatus0805, 3);
-            this.lbFloorStatus0805.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0805.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus0805.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0805.Location = new System.Drawing.Point(0, 24);
-            this.lbFloorStatus0805.Margin = new System.Windows.Forms.Padding(0);
-            this.lbFloorStatus0805.Name = "lbFloorStatus0805";
-            this.lbFloorStatus0805.Size = new System.Drawing.Size(125, 16);
-            this.lbFloorStatus0805.TabIndex = 17;
-            this.lbFloorStatus0805.Text = "空腔";
-            this.lbFloorStatus0805.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0802
             // 
@@ -5524,13 +4364,13 @@
             this.tlpFloor0802.Controls.Add(this.pbRunTime0802, 0, 1);
             this.tlpFloor0802.Controls.Add(this.lbFloorStatus0802, 0, 2);
             this.tlpFloor0802.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0802.Location = new System.Drawing.Point(3, 49);
+            this.tlpFloor0802.Location = new System.Drawing.Point(3, 79);
             this.tlpFloor0802.Name = "tlpFloor0802";
             this.tlpFloor0802.RowCount = 3;
             this.tlpFloor0802.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0802.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0802.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0802.Size = new System.Drawing.Size(125, 40);
+            this.tlpFloor0802.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0802.TabIndex = 13;
             this.tlpFloor0802.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -5545,7 +4385,7 @@
             this.lbFloorInfoTop0802.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0802.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0802.Name = "lbFloorInfoTop0802";
-            this.lbFloorInfoTop0802.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorInfoTop0802.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0802.TabIndex = 13;
             this.lbFloorInfoTop0802.Text = "0.0℃";
             this.lbFloorInfoTop0802.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5556,10 +4396,10 @@
             this.tlpFloor0802.SetColumnSpan(this.pbRunTime0802, 3);
             this.pbRunTime0802.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0802.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0802.Location = new System.Drawing.Point(10, 16);
+            this.pbRunTime0802.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0802.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0802.Name = "pbRunTime0802";
-            this.pbRunTime0802.Size = new System.Drawing.Size(105, 8);
+            this.pbRunTime0802.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0802.TabIndex = 9;
             // 
             // lbFloorStatus0802
@@ -5570,10 +4410,10 @@
             this.lbFloorStatus0802.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0802.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0802.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0802.Location = new System.Drawing.Point(0, 24);
+            this.lbFloorStatus0802.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0802.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0802.Name = "lbFloorStatus0802";
-            this.lbFloorStatus0802.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorStatus0802.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0802.TabIndex = 17;
             this.lbFloorStatus0802.Text = "空腔";
             this.lbFloorStatus0802.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5596,7 +4436,7 @@
             this.tlpFloor0801.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0801.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0801.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0801.Size = new System.Drawing.Size(125, 40);
+            this.tlpFloor0801.Size = new System.Drawing.Size(125, 70);
             this.tlpFloor0801.TabIndex = 12;
             this.tlpFloor0801.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -5611,7 +4451,7 @@
             this.lbFloorInfoTop0801.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0801.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0801.Name = "lbFloorInfoTop0801";
-            this.lbFloorInfoTop0801.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorInfoTop0801.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0801.TabIndex = 13;
             this.lbFloorInfoTop0801.Text = "0.0℃";
             this.lbFloorInfoTop0801.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5622,10 +4462,10 @@
             this.tlpFloor0801.SetColumnSpan(this.pbRunTime0801, 3);
             this.pbRunTime0801.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0801.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0801.Location = new System.Drawing.Point(10, 16);
+            this.pbRunTime0801.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0801.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0801.Name = "pbRunTime0801";
-            this.pbRunTime0801.Size = new System.Drawing.Size(105, 8);
+            this.pbRunTime0801.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0801.TabIndex = 9;
             // 
             // lbFloorStatus0801
@@ -5636,10 +4476,10 @@
             this.lbFloorStatus0801.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0801.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0801.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0801.Location = new System.Drawing.Point(0, 24);
+            this.lbFloorStatus0801.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0801.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0801.Name = "lbFloorStatus0801";
-            this.lbFloorStatus0801.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorStatus0801.Size = new System.Drawing.Size(125, 28);
             this.lbFloorStatus0801.TabIndex = 17;
             this.lbFloorStatus0801.Text = "空腔";
             this.lbFloorStatus0801.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5656,13 +4496,13 @@
             this.tlpFloor0803.Controls.Add(this.pbRunTime0803, 0, 1);
             this.tlpFloor0803.Controls.Add(this.lbFloorStatus0803, 0, 2);
             this.tlpFloor0803.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFloor0803.Location = new System.Drawing.Point(3, 95);
+            this.tlpFloor0803.Location = new System.Drawing.Point(3, 155);
             this.tlpFloor0803.Name = "tlpFloor0803";
             this.tlpFloor0803.RowCount = 3;
             this.tlpFloor0803.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tlpFloor0803.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpFloor0803.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tlpFloor0803.Size = new System.Drawing.Size(125, 40);
+            this.tlpFloor0803.Size = new System.Drawing.Size(125, 72);
             this.tlpFloor0803.TabIndex = 11;
             this.tlpFloor0803.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpFloor_CellPaint);
             // 
@@ -5677,7 +4517,7 @@
             this.lbFloorInfoTop0803.Location = new System.Drawing.Point(0, 0);
             this.lbFloorInfoTop0803.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorInfoTop0803.Name = "lbFloorInfoTop0803";
-            this.lbFloorInfoTop0803.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorInfoTop0803.Size = new System.Drawing.Size(125, 28);
             this.lbFloorInfoTop0803.TabIndex = 13;
             this.lbFloorInfoTop0803.Text = "0.0℃";
             this.lbFloorInfoTop0803.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5688,10 +4528,10 @@
             this.tlpFloor0803.SetColumnSpan(this.pbRunTime0803, 3);
             this.pbRunTime0803.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime0803.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime0803.Location = new System.Drawing.Point(10, 16);
+            this.pbRunTime0803.Location = new System.Drawing.Point(10, 28);
             this.pbRunTime0803.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.pbRunTime0803.Name = "pbRunTime0803";
-            this.pbRunTime0803.Size = new System.Drawing.Size(105, 8);
+            this.pbRunTime0803.Size = new System.Drawing.Size(105, 14);
             this.pbRunTime0803.TabIndex = 9;
             // 
             // lbFloorStatus0803
@@ -5702,10 +4542,10 @@
             this.lbFloorStatus0803.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFloorStatus0803.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0803.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus0803.Location = new System.Drawing.Point(0, 24);
+            this.lbFloorStatus0803.Location = new System.Drawing.Point(0, 42);
             this.lbFloorStatus0803.Margin = new System.Windows.Forms.Padding(0);
             this.lbFloorStatus0803.Name = "lbFloorStatus0803";
-            this.lbFloorStatus0803.Size = new System.Drawing.Size(125, 16);
+            this.lbFloorStatus0803.Size = new System.Drawing.Size(125, 30);
             this.lbFloorStatus0803.TabIndex = 17;
             this.lbFloorStatus0803.Text = "空腔";
             this.lbFloorStatus0803.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -7546,23 +6386,23 @@
             // 
             // dgvTV
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTV.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTV.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvTV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTV.Location = new System.Drawing.Point(52, 57);
             this.dgvTV.Margin = new System.Windows.Forms.Padding(0);
@@ -8085,35 +6925,35 @@
             // 
             // dgvTaskLog
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTaskLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTaskLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvTaskLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTaskLog.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTaskLog.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvTaskLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTaskLog.Location = new System.Drawing.Point(52, 57);
             this.dgvTaskLog.Margin = new System.Windows.Forms.Padding(0);
             this.dgvTaskLog.Name = "dgvTaskLog";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTaskLog.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTaskLog.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvTaskLog.RowTemplate.Height = 23;
             this.dgvTaskLog.Size = new System.Drawing.Size(937, 462);
             this.dgvTaskLog.TabIndex = 5;
@@ -8281,23 +7121,23 @@
             // 
             // dgvAlarm
             // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlarm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlarm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvAlarm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAlarm.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAlarm.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvAlarm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAlarm.Location = new System.Drawing.Point(52, 57);
             this.dgvAlarm.Margin = new System.Windows.Forms.Padding(0);
@@ -8494,23 +7334,23 @@
             // 
             // dgViewBattery
             // 
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgViewBattery.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgViewBattery.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgViewBattery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewBattery.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewBattery.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgViewBattery.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgViewBattery.Location = new System.Drawing.Point(52, 57);
             this.dgViewBattery.Margin = new System.Windows.Forms.Padding(0);
@@ -8681,23 +7521,23 @@
             // 
             // dgViewOper
             // 
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgViewOper.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgViewOper.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgViewOper.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewOper.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewOper.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgViewOper.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgViewOper.Location = new System.Drawing.Point(52, 57);
             this.dgViewOper.Margin = new System.Windows.Forms.Padding(0);
@@ -10122,11 +8962,7 @@
             this.tableLayoutPanel26.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp01)).EndInit();
             this.tlpOven01.ResumeLayout(false);
-            this.tlpFloor0104.ResumeLayout(false);
-            this.tlpFloor0104.PerformLayout();
             this.cmsFloor.ResumeLayout(false);
-            this.tlpFloor0105.ResumeLayout(false);
-            this.tlpFloor0105.PerformLayout();
             this.tlpFloor0102.ResumeLayout(false);
             this.tlpFloor0102.PerformLayout();
             this.tlpFloor0101.ResumeLayout(false);
@@ -10134,10 +8970,6 @@
             this.tlpFloor0103.ResumeLayout(false);
             this.tlpFloor0103.PerformLayout();
             this.tlpOven02.ResumeLayout(false);
-            this.tlpFloor0204.ResumeLayout(false);
-            this.tlpFloor0204.PerformLayout();
-            this.tlpFloor0205.ResumeLayout(false);
-            this.tlpFloor0205.PerformLayout();
             this.tlpFloor0202.ResumeLayout(false);
             this.tlpFloor0202.PerformLayout();
             this.tlpFloor0201.ResumeLayout(false);
@@ -10145,21 +8977,13 @@
             this.tlpFloor0203.ResumeLayout(false);
             this.tlpFloor0203.PerformLayout();
             this.tlpOven03.ResumeLayout(false);
-            this.tlpFloor0304.ResumeLayout(false);
-            this.tlpFloor0304.PerformLayout();
             this.tlpFloor0301.ResumeLayout(false);
             this.tlpFloor0301.PerformLayout();
-            this.tlpFloor0305.ResumeLayout(false);
-            this.tlpFloor0305.PerformLayout();
             this.tlpFloor0302.ResumeLayout(false);
             this.tlpFloor0302.PerformLayout();
             this.tlpFloor0303.ResumeLayout(false);
             this.tlpFloor0303.PerformLayout();
             this.tlpOven04.ResumeLayout(false);
-            this.tlpFloor0404.ResumeLayout(false);
-            this.tlpFloor0404.PerformLayout();
-            this.tlpFloor0405.ResumeLayout(false);
-            this.tlpFloor0405.PerformLayout();
             this.tlpFloor0402.ResumeLayout(false);
             this.tlpFloor0402.PerformLayout();
             this.tlpFloor0401.ResumeLayout(false);
@@ -10176,10 +9000,6 @@
             this.tableLayoutPanel53.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp05)).EndInit();
             this.tlpOven05.ResumeLayout(false);
-            this.tlpFloor0504.ResumeLayout(false);
-            this.tlpFloor0504.PerformLayout();
-            this.tlpFloor0505.ResumeLayout(false);
-            this.tlpFloor0505.PerformLayout();
             this.tlpFloor0502.ResumeLayout(false);
             this.tlpFloor0502.PerformLayout();
             this.tlpFloor0501.ResumeLayout(false);
@@ -10187,10 +9007,6 @@
             this.tlpFloor0503.ResumeLayout(false);
             this.tlpFloor0503.PerformLayout();
             this.tlpOven06.ResumeLayout(false);
-            this.tlpFloor0604.ResumeLayout(false);
-            this.tlpFloor0604.PerformLayout();
-            this.tlpFloor0605.ResumeLayout(false);
-            this.tlpFloor0605.PerformLayout();
             this.tlpFloor0602.ResumeLayout(false);
             this.tlpFloor0602.PerformLayout();
             this.tlpFloor0601.ResumeLayout(false);
@@ -10198,10 +9014,6 @@
             this.tlpFloor0603.ResumeLayout(false);
             this.tlpFloor0603.PerformLayout();
             this.tlpOven07.ResumeLayout(false);
-            this.tlpFloor0704.ResumeLayout(false);
-            this.tlpFloor0704.PerformLayout();
-            this.tlpFloor0705.ResumeLayout(false);
-            this.tlpFloor0705.PerformLayout();
             this.tlpFloor0702.ResumeLayout(false);
             this.tlpFloor0702.PerformLayout();
             this.tlpFloor0701.ResumeLayout(false);
@@ -10209,10 +9021,6 @@
             this.tlpFloor0703.ResumeLayout(false);
             this.tlpFloor0703.PerformLayout();
             this.tlpOven08.ResumeLayout(false);
-            this.tlpFloor0804.ResumeLayout(false);
-            this.tlpFloor0804.PerformLayout();
-            this.tlpFloor0805.ResumeLayout(false);
-            this.tlpFloor0805.PerformLayout();
             this.tlpFloor0802.ResumeLayout(false);
             this.tlpFloor0802.PerformLayout();
             this.tlpFloor0801.ResumeLayout(false);
@@ -10538,23 +9346,7 @@
         private System.Windows.Forms.Label lbFloorInfoTop0203;
         private System.Windows.Forms.ProgressBar pbRunTime0203;
         private System.Windows.Forms.Label lbFloorStatus0203;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0204;
-        private System.Windows.Forms.Label lbFloorInfoTop0204;
-        private System.Windows.Forms.ProgressBar pbRunTime0204;
-        private System.Windows.Forms.Label lbFloorStatus0204;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0205;
-        private System.Windows.Forms.Label lbFloorInfoTop0205;
-        private System.Windows.Forms.ProgressBar pbRunTime0205;
-        private System.Windows.Forms.Label lbFloorStatus0205;
         private System.Windows.Forms.TableLayoutPanel tlpOven01;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0104;
-        private System.Windows.Forms.Label lbFloorInfoTop0104;
-        private System.Windows.Forms.ProgressBar pbRunTime0104;
-        private System.Windows.Forms.Label lbFloorStatus0104;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0105;
-        private System.Windows.Forms.Label lbFloorInfoTop0105;
-        private System.Windows.Forms.ProgressBar pbRunTime0105;
-        private System.Windows.Forms.Label lbFloorStatus0105;
         private System.Windows.Forms.TableLayoutPanel tlpFloor0102;
         private System.Windows.Forms.Label lbFloorInfoTop0102;
         private System.Windows.Forms.ProgressBar pbRunTime0102;
@@ -10568,14 +9360,6 @@
         private System.Windows.Forms.ProgressBar pbRunTime0103;
         private System.Windows.Forms.Label lbFloorStatus0103;
         private System.Windows.Forms.TableLayoutPanel tlpOven03;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0304;
-        private System.Windows.Forms.Label lbFloorInfoTop0304;
-        private System.Windows.Forms.ProgressBar pbRunTime0304;
-        private System.Windows.Forms.Label lbFloorStatus0304;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0305;
-        private System.Windows.Forms.Label lbFloorInfoTop0305;
-        private System.Windows.Forms.ProgressBar pbRunTime0305;
-        private System.Windows.Forms.Label lbFloorStatus0305;
         private System.Windows.Forms.TableLayoutPanel tlpFloor0302;
         private System.Windows.Forms.Label lbFloorInfoTop0302;
         private System.Windows.Forms.ProgressBar pbRunTime0302;
@@ -10585,14 +9369,6 @@
         private System.Windows.Forms.ProgressBar pbRunTime0303;
         private System.Windows.Forms.Label lbFloorStatus0303;
         private System.Windows.Forms.TableLayoutPanel tlpOven04;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0404;
-        private System.Windows.Forms.Label lbFloorInfoTop0404;
-        private System.Windows.Forms.ProgressBar pbRunTime0404;
-        private System.Windows.Forms.Label lbFloorStatus0404;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0405;
-        private System.Windows.Forms.Label lbFloorInfoTop0405;
-        private System.Windows.Forms.ProgressBar pbRunTime0405;
-        private System.Windows.Forms.Label lbFloorStatus0405;
         private System.Windows.Forms.TableLayoutPanel tlpFloor0402;
         private System.Windows.Forms.Label lbFloorInfoTop0402;
         private System.Windows.Forms.ProgressBar pbRunTime0402;
@@ -10631,14 +9407,6 @@
         private System.Windows.Forms.PictureBox pbOvenTriLamp05;
         private System.Windows.Forms.Label lbOvenName05;
         private System.Windows.Forms.TableLayoutPanel tlpOven05;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0504;
-        private System.Windows.Forms.Label lbFloorInfoTop0504;
-        private System.Windows.Forms.ProgressBar pbRunTime0504;
-        private System.Windows.Forms.Label lbFloorStatus0504;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0505;
-        private System.Windows.Forms.Label lbFloorInfoTop0505;
-        private System.Windows.Forms.ProgressBar pbRunTime0505;
-        private System.Windows.Forms.Label lbFloorStatus0505;
         private System.Windows.Forms.TableLayoutPanel tlpFloor0502;
         private System.Windows.Forms.Label lbFloorInfoTop0502;
         private System.Windows.Forms.ProgressBar pbRunTime0502;
@@ -10652,14 +9420,6 @@
         private System.Windows.Forms.ProgressBar pbRunTime0503;
         private System.Windows.Forms.Label lbFloorStatus0503;
         private System.Windows.Forms.TableLayoutPanel tlpOven06;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0604;
-        private System.Windows.Forms.Label lbFloorInfoTop0604;
-        private System.Windows.Forms.ProgressBar pbRunTime0604;
-        private System.Windows.Forms.Label lbFloorStatus0604;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0605;
-        private System.Windows.Forms.Label lbFloorInfoTop0605;
-        private System.Windows.Forms.ProgressBar pbRunTime0605;
-        private System.Windows.Forms.Label lbFloorStatus0605;
         private System.Windows.Forms.TableLayoutPanel tlpFloor0602;
         private System.Windows.Forms.Label lbFloorInfoTop0602;
         private System.Windows.Forms.ProgressBar pbRunTime0602;
@@ -10673,14 +9433,6 @@
         private System.Windows.Forms.ProgressBar pbRunTime0603;
         private System.Windows.Forms.Label lbFloorStatus0603;
         private System.Windows.Forms.TableLayoutPanel tlpOven07;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0704;
-        private System.Windows.Forms.Label lbFloorInfoTop0704;
-        private System.Windows.Forms.ProgressBar pbRunTime0704;
-        private System.Windows.Forms.Label lbFloorStatus0704;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0705;
-        private System.Windows.Forms.Label lbFloorInfoTop0705;
-        private System.Windows.Forms.ProgressBar pbRunTime0705;
-        private System.Windows.Forms.Label lbFloorStatus0705;
         private System.Windows.Forms.TableLayoutPanel tlpFloor0702;
         private System.Windows.Forms.Label lbFloorInfoTop0702;
         private System.Windows.Forms.ProgressBar pbRunTime0702;
@@ -10693,14 +9445,6 @@
         private System.Windows.Forms.ProgressBar pbRunTime0703;
         private System.Windows.Forms.Label lbFloorStatus0703;
         private System.Windows.Forms.TableLayoutPanel tlpOven08;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0804;
-        private System.Windows.Forms.Label lbFloorInfoTop0804;
-        private System.Windows.Forms.ProgressBar pbRunTime0804;
-        private System.Windows.Forms.Label lbFloorStatus0804;
-        private System.Windows.Forms.TableLayoutPanel tlpFloor0805;
-        private System.Windows.Forms.Label lbFloorInfoTop0805;
-        private System.Windows.Forms.ProgressBar pbRunTime0805;
-        private System.Windows.Forms.Label lbFloorStatus0805;
         private System.Windows.Forms.TableLayoutPanel tlpFloor0802;
         private System.Windows.Forms.Label lbFloorInfoTop0802;
         private System.Windows.Forms.ProgressBar pbRunTime0802;
