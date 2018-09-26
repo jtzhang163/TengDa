@@ -365,7 +365,7 @@
             this.pRobot = new System.Windows.Forms.Panel();
             this.tlpTrack = new System.Windows.Forms.TableLayoutPanel();
             this.panelRobot = new System.Windows.Forms.Panel();
-            this.cmsRGV = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsRobot = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmManuGetStation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmManuPutStation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmManuStartGetPut = new System.Windows.Forms.ToolStripMenuItem();
@@ -779,7 +779,7 @@
             this.pRobot.SuspendLayout();
             this.tlpTrack.SuspendLayout();
             this.panelRobot.SuspendLayout();
-            this.cmsRGV.SuspendLayout();
+            this.cmsRobot.SuspendLayout();
             this.tableLayoutPanel21.SuspendLayout();
             this.tlpFeeder1.SuspendLayout();
             this.cmsFeeder.SuspendLayout();
@@ -5759,48 +5759,48 @@
             this.panelRobot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panelRobot.BackColor = System.Drawing.SystemColors.Control;
             this.panelRobot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelRobot.ContextMenuStrip = this.cmsRGV;
+            this.panelRobot.ContextMenuStrip = this.cmsRobot;
             this.panelRobot.Controls.Add(this.tableLayoutPanel21);
             this.panelRobot.Location = new System.Drawing.Point(3, 3);
             this.panelRobot.Name = "panelRobot";
             this.panelRobot.Size = new System.Drawing.Size(83, 55);
             this.panelRobot.TabIndex = 1;
             // 
-            // cmsRGV
+            // cmsRobot
             // 
-            this.cmsRGV.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsRobot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmManuGetStation,
             this.tsmManuPutStation,
             this.tsmManuStartGetPut,
             this.tsmManuMoveToStation});
-            this.cmsRGV.Name = "cmsRGV";
-            this.cmsRGV.Size = new System.Drawing.Size(173, 92);
+            this.cmsRobot.Name = "cmsRobot";
+            this.cmsRobot.Size = new System.Drawing.Size(181, 114);
             // 
             // tsmManuGetStation
             // 
             this.tsmManuGetStation.Name = "tsmManuGetStation";
-            this.tsmManuGetStation.Size = new System.Drawing.Size(172, 22);
+            this.tsmManuGetStation.Size = new System.Drawing.Size(180, 22);
             this.tsmManuGetStation.Text = "手动任务【取盘】";
             this.tsmManuGetStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
             // 
             // tsmManuPutStation
             // 
             this.tsmManuPutStation.Name = "tsmManuPutStation";
-            this.tsmManuPutStation.Size = new System.Drawing.Size(172, 22);
+            this.tsmManuPutStation.Size = new System.Drawing.Size(180, 22);
             this.tsmManuPutStation.Text = "手动任务【放盘】";
             this.tsmManuPutStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
             // 
             // tsmManuStartGetPut
             // 
             this.tsmManuStartGetPut.Name = "tsmManuStartGetPut";
-            this.tsmManuStartGetPut.Size = new System.Drawing.Size(172, 22);
+            this.tsmManuStartGetPut.Size = new System.Drawing.Size(180, 22);
             this.tsmManuStartGetPut.Text = "开始取放";
             this.tsmManuStartGetPut.Click += new System.EventHandler(this.tsmManuStartGetPut_Click);
             // 
             // tsmManuMoveToStation
             // 
             this.tsmManuMoveToStation.Name = "tsmManuMoveToStation";
-            this.tsmManuMoveToStation.Size = new System.Drawing.Size(172, 22);
+            this.tsmManuMoveToStation.Size = new System.Drawing.Size(180, 22);
             this.tsmManuMoveToStation.Text = "移动至";
             this.tsmManuMoveToStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
             // 
@@ -5892,7 +5892,7 @@
             // 
             this.cmsFeeder.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmFeederRemoteControl});
-            this.cmsFeeder.Name = "cmsRGV";
+            this.cmsFeeder.Name = "cmsRobot";
             this.cmsFeeder.Size = new System.Drawing.Size(125, 26);
             this.cmsFeeder.Opening += new System.ComponentModel.CancelEventHandler(this.cmsFeeder_Opening);
             // 
@@ -10222,7 +10222,7 @@
             this.pRobot.ResumeLayout(false);
             this.tlpTrack.ResumeLayout(false);
             this.panelRobot.ResumeLayout(false);
-            this.cmsRGV.ResumeLayout(false);
+            this.cmsRobot.ResumeLayout(false);
             this.tableLayoutPanel21.ResumeLayout(false);
             this.tableLayoutPanel21.PerformLayout();
             this.tlpFeeder1.ResumeLayout(false);
@@ -10825,7 +10825,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmRemoteControl;
         private System.Windows.Forms.ToolStripMenuItem tsmOvenOpenDoor;
         private System.Windows.Forms.ToolStripMenuItem tsmOvenCloseDoor;
-        private System.Windows.Forms.ContextMenuStrip cmsRGV;
+        private System.Windows.Forms.ContextMenuStrip cmsRobot;
         private System.Windows.Forms.ToolStripMenuItem tsmManuGetStation;
         private System.Windows.Forms.ToolStripMenuItem tsmManuPutStation;
         private System.Windows.Forms.TableLayoutPanel tlpCacheClamp04;
