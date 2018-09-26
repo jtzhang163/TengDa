@@ -10,9 +10,9 @@ using TengDa.WF;
 namespace BakBattery.Baking
 {
     /// <summary>
-    /// RGV搬运车
+    /// 机器人搬运车
     /// </summary>
-    public class RGV : TengDa.WF.Terminals.Terminal
+    public class Robot : TengDa.WF.Terminals.Terminal
     {
         #region 属性字段
 
@@ -23,7 +23,7 @@ namespace BakBattery.Baking
             {
                 if (string.IsNullOrEmpty(tableName))
                 {
-                    tableName = Config.DbTableNamePre + ".RGVs";
+                    tableName = Config.DbTableNamePre + ".Robots";
                 }
                 return tableName;
             }
@@ -117,12 +117,12 @@ namespace BakBattery.Baking
         [ReadOnly(true), DisplayName("可发送放盘指令")]
         public bool IsReadyPut { get; set; } = false;
         /// <summary>
-        /// RGV货叉正在运动
+        /// 机器人货叉正在运动
         /// </summary>
-        [ReadOnly(true), DisplayName("RGV货叉正在运动")]
+        [ReadOnly(true), DisplayName("机器人货叉正在运动")]
         public bool IsGettingOrPutting { get; set; } = false;
 
-        [ReadOnly(true), DisplayName("RGV正在移动")]
+        [ReadOnly(true), DisplayName("机器人正在移动")]
         public bool IsMoving { get; set; } = false;
 
         [ReadOnly(true), DisplayName("可确认是否取放夹具到位")]
@@ -156,9 +156,9 @@ namespace BakBattery.Baking
 
         #region 构造方法
 
-        public RGV() : this(-1) { }
+        public Robot() : this(-1) { }
 
-        public RGV(int id)
+        public Robot(int id)
         {
             if (id < 0)
             {
@@ -265,7 +265,7 @@ namespace BakBattery.Baking
             {
 
                 int d0500 = -1;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RgvXasixAddress, 0, out d0500, out msg))
+                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RobotXasixAddress, 0, out d0500, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -273,7 +273,7 @@ namespace BakBattery.Baking
                 }
                 this.D0500 = d0500;
 
-                RgvPosition rp = RgvPosition.RgvPositionList.FirstOrDefault(r => r.XMinValue < this.D0500 && r.XMaxValue > this.D0500);
+                RobotPosition rp = RobotPosition.RobotPositionList.FirstOrDefault(r => r.XMinValue < this.D0500 && r.XMaxValue > this.D0500);
 
                 this.Position = rp == null ? this.position : rp.Position;
 
@@ -284,7 +284,7 @@ namespace BakBattery.Baking
                 this.PreD0500 = this.D0500;
 
                 bool isNotGettingOrPutting = false;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RgvIsGettingOrPuttingAdd, false, out isNotGettingOrPutting, out msg))
+                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RobotIsGettingOrPuttingAdd, false, out isNotGettingOrPutting, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -294,7 +294,7 @@ namespace BakBattery.Baking
                 this.IsGettingOrPutting = !isNotGettingOrPutting;
 
                 bool isMoving = false;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RgvIsMovingAdd, false, out isMoving, out msg))
+                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RobotIsMovingAdd, false, out isMoving, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -303,7 +303,7 @@ namespace BakBattery.Baking
                 this.IsMoving = isMoving;
 
                 bool isReadyGet = false;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RgvIsReadyGetPutAdds.Split(',')[0], false, out isReadyGet, out msg))
+                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RobotIsReadyGetPutAdds.Split(',')[0], false, out isReadyGet, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -312,7 +312,7 @@ namespace BakBattery.Baking
                 this.IsReadyGet = isReadyGet;
 
                 bool isReadyPut = false;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RgvIsReadyGetPutAdds.Split(',')[1], false, out isReadyPut, out msg))
+                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RobotIsReadyGetPutAdds.Split(',')[1], false, out isReadyPut, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -341,7 +341,7 @@ namespace BakBattery.Baking
                 this.CanCheckGetPutClampIsOk = CanCheckPutClampIsOkCount > 1;
 
                 int d3410 = -1;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RgvToPositionAdds.Split(',')[0], 0, out d3410, out msg))
+                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RobotToPositionAdds.Split(',')[0], 0, out d3410, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -351,7 +351,7 @@ namespace BakBattery.Baking
 
 
                 int d3411 = -1;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RgvToPositionAdds.Split(',')[1], 0, out d3411, out msg))
+                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RobotToPositionAdds.Split(',')[1], 0, out d3411, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -360,7 +360,7 @@ namespace BakBattery.Baking
                 this.D3411 = d3411;
 
                 bool m70 = false;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RgvToGetPutAdds.Split(',')[0], false, out m70, out msg))
+                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RobotToGetPutAdds.Split(',')[0], false, out m70, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -369,7 +369,7 @@ namespace BakBattery.Baking
                 this.M70 = m70;
 
                 bool m71 = false;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RgvToGetPutAdds.Split(',')[0], false, out m71, out msg))
+                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RobotToGetPutAdds.Split(',')[0], false, out m71, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -378,7 +378,7 @@ namespace BakBattery.Baking
                 this.M71 = m71;
 
                 bool m76 = false;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RgvStartGetPutAdd, false, out m76, out msg))
+                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, true, Current.option.RobotStartGetPutAdd, false, out m76, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -411,7 +411,7 @@ namespace BakBattery.Baking
             try
             {
                 int o1 = 0;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, false, Current.option.RgvToPositionAdds.Split(',')[0], D3410, out o1, out msg))
+                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, false, Current.option.RobotToPositionAdds.Split(',')[0], D3410, out o1, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -420,7 +420,7 @@ namespace BakBattery.Baking
 
 
                 int o2 = 0;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, false, Current.option.RgvToPositionAdds.Split(',')[1], D3411, out o2, out msg))
+                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, false, Current.option.RobotToPositionAdds.Split(',')[1], D3411, out o2, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -428,14 +428,14 @@ namespace BakBattery.Baking
                 }
 
                 bool m = false;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, false, isGet ? Current.option.RgvToGetPutAdds.Split(',')[0] : Current.option.RgvToGetPutAdds.Split(',')[1], true, out m, out msg))
+                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, false, isGet ? Current.option.RobotToGetPutAdds.Split(',')[0] : Current.option.RobotToGetPutAdds.Split(',')[1], true, out m, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
                     return false;
                 }
 
-                LogHelper.WriteInfo(string.Format("给RGV发送到位取放指令------D3410：{0}   D3411：{1}   {2}：true  ", D3410, D3411, isGet ? Current.option.RgvToGetPutAdds.Split(',')[0] : Current.option.RgvToGetPutAdds.Split(',')[1]));
+                LogHelper.WriteInfo(string.Format("给机器人发送到位取放指令------D3410：{0}   D3411：{1}   {2}：true  ", D3410, D3411, isGet ? Current.option.RobotToGetPutAdds.Split(',')[0] : Current.option.RobotToGetPutAdds.Split(',')[1]));
             }
             catch (Exception ex)
             {
@@ -462,13 +462,13 @@ namespace BakBattery.Baking
             try
             {
                 bool m = false;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, false, Current.option.RgvStartGetPutAdd, true, out m, out msg))
+                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, false, Current.option.RobotStartGetPutAdd, true, out m, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
                     return false;
                 }
-                LogHelper.WriteInfo(string.Format("给RGV发送开始取放指令------{0}：true  ", Current.option.RgvStartGetPutAdd));
+                LogHelper.WriteInfo(string.Format("给机器人发送开始取放指令------{0}：true  ", Current.option.RobotStartGetPutAdd));
             }
             catch (Exception ex)
             {
@@ -496,7 +496,7 @@ namespace BakBattery.Baking
                     this.Plc.IsAlive = false;
                     return false;
                 }
-                LogHelper.WriteInfo(string.Format("给RGV发送报警指令------{0}：true  ", Current.option.PutClampIsNotOkAlarmAdd));
+                LogHelper.WriteInfo(string.Format("给机器人发送报警指令------{0}：true  ", Current.option.PutClampIsNotOkAlarmAdd));
             }
             catch (Exception ex)
             {
@@ -508,7 +508,7 @@ namespace BakBattery.Baking
         #endregion
     }
 
-    public class RgvPosition : Service
+    public class RobotPosition : Service
     {
         #region 属性字段
 
@@ -519,7 +519,7 @@ namespace BakBattery.Baking
             {
                 if (string.IsNullOrEmpty(tableName))
                 {
-                    tableName = Config.DbTableNamePre + ".RgvPositions";
+                    tableName = Config.DbTableNamePre + ".RobotPositions";
                 }
                 return tableName;
             }
@@ -607,9 +607,9 @@ namespace BakBattery.Baking
 
         #region 构造方法
 
-        public RgvPosition() : this(-1) { }
+        public RobotPosition() : this(-1) { }
 
-        public RgvPosition(int id)
+        public RobotPosition(int id)
         {
             if (id < 0)
             {
@@ -660,12 +660,12 @@ namespace BakBattery.Baking
         #endregion
 
         #region 列表
-        private static List<RgvPosition> rgvPositionList = new List<RgvPosition>();
-        public static List<RgvPosition> RgvPositionList
+        private static List<RobotPosition> robotPositionList = new List<RobotPosition>();
+        public static List<RobotPosition> RobotPositionList
         {
             get
             {
-                if (rgvPositionList.Count < 1)
+                if (robotPositionList.Count < 1)
                 {
                     string msg = string.Empty;
 
@@ -680,13 +680,13 @@ namespace BakBattery.Baking
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            RgvPosition rgvPosition = new RgvPosition();
-                            rgvPosition.InitFields(dt.Rows[i]);
-                            rgvPositionList.Add(rgvPosition);
+                            RobotPosition robotPosition = new RobotPosition();
+                            robotPosition.InitFields(dt.Rows[i]);
+                            robotPositionList.Add(robotPosition);
                         }
                     }
                 }
-                return rgvPositionList;
+                return robotPositionList;
             }
         }
         #endregion

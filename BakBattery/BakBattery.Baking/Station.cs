@@ -251,21 +251,21 @@ namespace BakBattery.Baking
             }
         }
 
-        private string rgvValues = string.Empty;
+        private string robotValues = string.Empty;
         /// <summary>
-        /// RGV位置标识
+        /// 机器人位置标识
         /// </summary>
-        [ReadOnly(true), DisplayName("RGV位置标识")]
-        public string RgvValues
+        [ReadOnly(true), DisplayName("机器人位置标识")]
+        public string RobotValues
         {
-            get { return rgvValues; }
+            get { return robotValues; }
             set
             {
-                if (rgvValues != value)
+                if (robotValues != value)
                 {
-                    UpdateDbField("RgvValues", value);
+                    UpdateDbField("RobotValues", value);
                 }
-                rgvValues = value;
+                robotValues = value;
             }
         }
 
@@ -578,17 +578,17 @@ namespace BakBattery.Baking
             }
         }
 
-        [Description("与RGV的相对距离，根据此属性判断是否可开关门")]
-        [DisplayName("与RGV的相对距离")]
-        public RelativeMove RgvRelativeMove
+        [Description("与机器人的相对距离，根据此属性判断是否可开关门")]
+        [DisplayName("与机器人的相对距离")]
+        public RelativeMove RobotRelativeMove
         {
             get
             {
-                if ((Current.rgv.X <= this.X && Current.rgv.MovingDirection == MovingDirection.前进) || (Current.rgv.X >= this.X && Current.rgv.MovingDirection == MovingDirection.后退))
+                if ((Current.Robot.X <= this.X && Current.Robot.MovingDirection == MovingDirection.前进) || (Current.Robot.X >= this.X && Current.Robot.MovingDirection == MovingDirection.后退))
                 {
                     return RelativeMove.远离;
                 }
-                else if ((Current.rgv.X < this.X && Current.rgv.MovingDirection == MovingDirection.后退) || (Current.rgv.X > this.X && Current.rgv.MovingDirection == MovingDirection.前进))
+                else if ((Current.Robot.X < this.X && Current.Robot.MovingDirection == MovingDirection.后退) || (Current.Robot.X > this.X && Current.Robot.MovingDirection == MovingDirection.前进))
                 {
                     return RelativeMove.靠近;
                 }
@@ -664,7 +664,7 @@ namespace BakBattery.Baking
             this.number = rowInfo["Number"].ToString();
             this.location = rowInfo["Location"].ToString();
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
-            this.rgvValues = rowInfo["RgvValues"].ToString();
+            this.robotValues = rowInfo["RobotValues"].ToString();
             this.floorStatus = (FloorStatus)Enum.Parse(typeof(FloorStatus), rowInfo["FloorStatus"].ToString());
             this.sampleStatus = (SampleStatus)Enum.Parse(typeof(SampleStatus), rowInfo["SampleStatus"].ToString());
             this.PreFloorStatus = this.floorStatus;

@@ -131,7 +131,7 @@ namespace BakBattery.Baking.App
                 this.tlpDisplayMain.Controls.Add(this.tlpBlanker2, 0, 2);
                 this.tlpDisplayMain.Controls.Add(this.tlpOvenLineA, 2, 0);
                 this.tlpDisplayMain.Controls.Add(this.tlpOvenLineB, 2, 2);
-                this.tlpDisplayMain.Controls.Add(this.pRGV, 0, 1);
+                this.tlpDisplayMain.Controls.Add(this.pRobot, 0, 1);
                 this.tlpDisplayMain.Controls.Add(this.tlpFeeder1, 3, 0);
                 this.tlpDisplayMain.Controls.Add(this.tlpFeeder2, 3, 2);
 
@@ -352,36 +352,36 @@ namespace BakBattery.Baking.App
 
             TreeNode tnEnabledTaskList = new TreeNode("有效任务排序", tnEnabledTasks.ToArray());
 
-            List<TreeNode> tnRgvNodes = new List<TreeNode>();
+            List<TreeNode> tnRobotNodes = new List<TreeNode>();
 
-            List<TreeNode> tnRgvClamps = new List<TreeNode>();
-            if (Current.rgv.Clamp.Id > 0)
+            List<TreeNode> tnRobotClamps = new List<TreeNode>();
+            if (Current.Robot.Clamp.Id > 0)
             {
                 List<TreeNode> tnBatteries = new List<TreeNode>();
-                var batteries = Current.rgv.Clamp.Batteries;
+                var batteries = Current.Robot.Clamp.Batteries;
                 foreach (var b in batteries)
                 {
                     tnBatteries.Add(new TreeNode(string.Format("{0}:{1}(电芯)", b.Id, b.Code)));
                 }
-                tnRgvClamps.Add(new TreeNode(string.Format("{0}:{1}(夹具)", Current.rgv.Clamp.Id, Current.rgv.Clamp.Code), tnBatteries.ToArray()));
+                tnRobotClamps.Add(new TreeNode(string.Format("{0}:{1}(夹具)", Current.Robot.Clamp.Id, Current.Robot.Clamp.Code), tnBatteries.ToArray()));
             }
 
-            tnRgvNodes.Add(new TreeNode("PLC"));
-            tnRgvNodes.AddRange(tnRgvClamps);
-            TreeNode tnRgv = new TreeNode("RGV", tnRgvNodes.ToArray());
+            tnRobotNodes.Add(new TreeNode("PLC"));
+            tnRobotNodes.AddRange(tnRobotClamps);
+            TreeNode tnRobot = new TreeNode("机器人", tnRobotNodes.ToArray());
 
-            List<TreeNode> tnRgvPositions = new List<TreeNode>();
-            RgvPosition.RgvPositionList.ForEach(r =>
+            List<TreeNode> tnRobotPositions = new List<TreeNode>();
+            RobotPosition.RobotPositionList.ForEach(r =>
             {
-                tnRgvPositions.Add(new TreeNode(string.Format("{0}:{1}", r.Id, r.XValue)));
+                tnRobotPositions.Add(new TreeNode(string.Format("{0}:{1}", r.Id, r.XValue)));
             });
-            TreeNode tnRgvPositionList = new TreeNode("RGV x轴点位", tnRgvPositions.ToArray());
+            TreeNode tnRobotPositionList = new TreeNode("机器人 x轴点位", tnRobotPositions.ToArray());
 
             TreeNode tnMES = new TreeNode("MES");
 
             TreeNode tnCurrentTask = new TreeNode("当前任务");
 
-            tvSettings.Nodes.AddRange(new TreeNode[] { tnCurrentTask, tnConfig, tnOvenList, tnFeederList, tnBlankerList, tnScanerList, tnCache, tnRotater, tnStationList, tnTaskList, tnEnabledTaskList, tnRgv, tnRgvPositionList, tnMES });
+            tvSettings.Nodes.AddRange(new TreeNode[] { tnCurrentTask, tnConfig, tnOvenList, tnFeederList, tnBlankerList, tnScanerList, tnCache, tnRotater, tnStationList, tnTaskList, tnEnabledTaskList, tnRobot, tnRobotPositionList, tnMES });
         }
 
         private void InitTerminal()
@@ -441,12 +441,12 @@ namespace BakBattery.Baking.App
             }
 
 
-            lbRgvName.Text = Current.rgv.Name;
-            lbRgvNameN.Text = Current.rgv.Name;
+            lbRobotName.Text = Current.Robot.Name;
+            lbRobotNameN.Text = Current.Robot.Name;
 
-            lbRgvClampCode.Text = Current.rgv.Clamp.Code;
+            lbRobotClampCode.Text = Current.Robot.Clamp.Code;
 
-            cbRgvIsEnable.Checked = Current.rgv.IsEnable;
+            cbRobotIsEnable.Checked = Current.Robot.IsEnable;
 
             lbRotaterName.Text = Current.rotater.Name;
             lbRotaterClampCode.Text = Current.rotater.Station.Clamp.Code;
@@ -1150,69 +1150,69 @@ namespace BakBattery.Baking.App
             }
             #endregion
 
-            #region RGV
+            #region 机器人
 
-            Current.rgv.IsAlive = Current.rgv.IsEnable && Current.rgv.Plc.IsAlive;
+            Current.Robot.IsAlive = Current.Robot.IsEnable && Current.Robot.Plc.IsAlive;
 
-            if (Current.rgv.Plc.IsAlive)
+            if (Current.Robot.Plc.IsAlive)
             {
 
-                switch (Current.rgv.ClampStatus)
+                switch (Current.Robot.ClampStatus)
                 {
-                    case ClampStatus.满夹具: this.panelRGV.BackColor = Color.LimeGreen; break;
-                    case ClampStatus.空夹具: this.panelRGV.BackColor = Color.Cyan; break;
-                    case ClampStatus.无夹具: this.panelRGV.BackColor = Color.White; break;
-                    default: this.panelRGV.BackColor = SystemColors.Control; break;
+                    case ClampStatus.满夹具: this.panelRobot.BackColor = Color.LimeGreen; break;
+                    case ClampStatus.空夹具: this.panelRobot.BackColor = Color.Cyan; break;
+                    case ClampStatus.无夹具: this.panelRobot.BackColor = Color.White; break;
+                    default: this.panelRobot.BackColor = SystemColors.Control; break;
                 }
 
-                if (tbRgvStatus.Text.Trim() == "未连接")
+                if (tbRobotStatus.Text.Trim() == "未连接")
                 {
-                    tbRgvStatus.Text = "连接成功";
+                    tbRobotStatus.Text = "连接成功";
                 }
 
-                this.pbRgvLamp.Image = Properties.Resources.Green_Round;
+                this.pbRobotLamp.Image = Properties.Resources.Green_Round;
             }
             else
             {
-                this.panelRGV.BackColor = SystemColors.Control;
-                this.tbRgvStatus.Text = "未连接";
-                this.pbRgvLamp.Image = Properties.Resources.Gray_Round;
+                this.panelRobot.BackColor = SystemColors.Control;
+                this.tbRobotStatus.Text = "未连接";
+                this.pbRobotLamp.Image = Properties.Resources.Gray_Round;
             }
 
-            if (Current.rgv.PrePosition != Current.rgv.Position && Current.rgv.Position > 0)
+            if (Current.Robot.PrePosition != Current.Robot.Position && Current.Robot.Position > 0)
             {
-                this.tlpTrack.Controls.Remove(this.panelRGV);
-                int col = Option.LayoutType == 1 ? 19 - Current.rgv.Position : Current.rgv.Position - 1;
-                this.tlpTrack.Controls.Add(this.panelRGV, col, 0);
+                this.tlpTrack.Controls.Remove(this.panelRobot);
+                int col = Option.LayoutType == 1 ? 19 - Current.Robot.Position : Current.Robot.Position - 1;
+                this.tlpTrack.Controls.Add(this.panelRobot, col, 0);
             }
 
-            Current.rgv.PrePosition = Current.rgv.Position;
+            Current.Robot.PrePosition = Current.Robot.Position;
 
-            if (Current.rgv.IsAlive)
+            if (Current.Robot.IsAlive)
             {
-                if (Current.rgv.IsMoving)
+                if (Current.Robot.IsMoving)
                 {
-                    this.lbRgvInfo.Text = Current.rgv.MovingDirection == MovingDirection.前进 ^ Option.LayoutType == 1 ? string.Format("{0}移动", Current.rgv.MovingDirSign) : string.Format("移动{0}", Current.rgv.MovingDirSign);
-                    this.lbRgvInfo.ForeColor = Color.Blue;
+                    this.lbRobotInfo.Text = Current.Robot.MovingDirection == MovingDirection.前进 ^ Option.LayoutType == 1 ? string.Format("{0}移动", Current.Robot.MovingDirSign) : string.Format("移动{0}", Current.Robot.MovingDirSign);
+                    this.lbRobotInfo.ForeColor = Color.Blue;
                 }
-                else if (Current.rgv.IsGettingOrPutting)
+                else if (Current.Robot.IsGettingOrPutting)
                 {
-                    this.lbRgvInfo.Text = Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.可取 ? "取盘中" : "放盘中";
-                    this.lbRgvInfo.ForeColor = Color.Blue;
+                    this.lbRobotInfo.Text = Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.可取 ? "取盘中" : "放盘中";
+                    this.lbRobotInfo.ForeColor = Color.Blue;
                 }
                 else
                 {
-                    this.lbRgvInfo.Text = "闲置";
-                    this.lbRgvInfo.ForeColor = SystemColors.WindowText;
+                    this.lbRobotInfo.Text = "闲置";
+                    this.lbRobotInfo.ForeColor = SystemColors.WindowText;
                 }
             }
             else
             {
-                this.lbRgvInfo.Text = "未知";
-                this.lbRgvInfo.ForeColor = SystemColors.WindowText;
+                this.lbRobotInfo.Text = "未知";
+                this.lbRobotInfo.ForeColor = SystemColors.WindowText;
             }
 
-            lbRgvClampCode.Text = Current.rgv.Clamp.Code;
+            lbRobotClampCode.Text = Current.Robot.Clamp.Code;
             #endregion
         }
 
@@ -1522,20 +1522,20 @@ namespace BakBattery.Baking.App
                 }
             }
 
-            if (Current.rgv.IsEnable)
+            if (Current.Robot.IsEnable)
             {
-                if (!Current.rgv.Plc.IsPingSuccess)
+                if (!Current.Robot.Plc.IsPingSuccess)
                 {
-                    Error.Alert(string.Format("无法连接到{0}的PLC, IP:{1}", Current.rgv.Name, Current.rgv.Plc.IP));
+                    Error.Alert(string.Format("无法连接到{0}的PLC, IP:{1}", Current.Robot.Name, Current.Robot.Plc.IP));
                     return false;
                 }
 
-                if (!Current.rgv.Plc.TcpConnect(out msg))
+                if (!Current.Robot.Plc.TcpConnect(out msg))
                 {
-                    Error.Alert(string.Format("打开RGV连接失败，原因：{0}", msg));
+                    Error.Alert(string.Format("打开机器人连接失败，原因：{0}", msg));
                     return false;
                 }
-                this.BeginInvoke(new MethodInvoker(() => { tbRgvStatus.Text = "连接成功"; }));
+                this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "连接成功"; }));
             }
 
             return true;
@@ -1605,15 +1605,15 @@ namespace BakBattery.Baking.App
                 Current.blankers[i].PreAlarmStr = string.Empty;
             }
 
-            if (Current.rgv.IsEnable)
+            if (Current.Robot.IsEnable)
             {
-                if (!Current.rgv.Plc.TcpDisConnect(out msg))
+                if (!Current.Robot.Plc.TcpDisConnect(out msg))
                 {
                     Error.Alert(msg);
                     return false;
                 }
-                tbRgvStatus.Text = "未连接";
-                this.pbRgvLamp.Image = Properties.Resources.Gray_Round;
+                tbRobotStatus.Text = "未连接";
+                this.pbRobotLamp.Image = Properties.Resources.Gray_Round;
             }
 
             return true;
@@ -1722,7 +1722,7 @@ namespace BakBattery.Baking.App
 
         System.Timers.Timer[] timerBlankerRuns = new System.Timers.Timer[BlankerCount] { null, null };
 
-        System.Timers.Timer timerRgvRun = null;
+        System.Timers.Timer timerRobotRun = null;
 
         System.Timers.Timer timerRun = null;
 
@@ -1770,9 +1770,9 @@ namespace BakBattery.Baking.App
                 }
             }
 
-            if (cbRgvIsEnable.Checked && !Current.rgv.Plc.IsAlive)
+            if (cbRobotIsEnable.Checked && !Current.Robot.Plc.IsAlive)
             {
-                msg = Current.rgv.Name + " 启动异常！";
+                msg = Current.Robot.Name + " 启动异常！";
                 return false;
             }
 
@@ -1835,16 +1835,16 @@ namespace BakBattery.Baking.App
                     timerBlankerRuns[i].Start();
                 }
 
-                timerRgvRun = new System.Timers.Timer();
-                timerRgvRun.Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000);
-                timerRgvRun.Elapsed += delegate
+                timerRobotRun = new System.Timers.Timer();
+                timerRobotRun.Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000);
+                timerRobotRun.Elapsed += delegate
                 {
-                    Thread listen = new Thread(new ThreadStart(RgvRunInvokeFunc));
+                    Thread listen = new Thread(new ThreadStart(RobotRunInvokeFunc));
                     listen.IsBackground = true;
                     listen.Start();
                 };
                 Thread.Sleep(200);
-                timerRgvRun.Start();
+                timerRobotRun.Start();
 
                 timerRun = new System.Timers.Timer();
                 timerRun.Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000);
@@ -1923,11 +1923,11 @@ namespace BakBattery.Baking.App
                 }
             }
 
-            if (timerRgvRun != null)
+            if (timerRobotRun != null)
             {
-                timerRgvRun.Stop();
-                timerRgvRun.Close();
-                timerRgvRun.Dispose();
+                timerRobotRun.Stop();
+                timerRobotRun.Close();
+                timerRobotRun.Dispose();
             }
 
             if (timerPaintCurve != null)
@@ -1978,7 +1978,7 @@ namespace BakBattery.Baking.App
                 cbBlankerIsEnable[i].Enabled = IsEnable;
             }
             cbMesIsEnable.Enabled = IsEnable;
-            cbRgvIsEnable.Enabled = IsEnable;
+            cbRobotIsEnable.Enabled = IsEnable;
         }
 
         private void OvenRunInvokeFunc(object obj)
@@ -2245,22 +2245,22 @@ namespace BakBattery.Baking.App
             }
         }
 
-        private void RgvRunInvokeFunc()
+        private void RobotRunInvokeFunc()
         {
             string msg = string.Empty;
-            if (timerlock && Current.rgv.IsEnable)
+            if (timerlock && Current.Robot.IsEnable)
             {
-                this.BeginInvoke(new MethodInvoker(() => { tbRgvStatus.Text = "发送指令—>" + Current.rgv.Name + "PLC"; }));
-                if (Current.rgv.GetInfo())
+                this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "发送指令—>" + Current.Robot.Name + "PLC"; }));
+                if (Current.Robot.GetInfo())
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { tbRgvStatus.Text = "成功获得" + Current.rgv.Name + "信息"; }));
+                    this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "成功获得" + Current.Robot.Name + "信息"; }));
                 }
                 else
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { tbRgvStatus.Text = "获取" + Current.rgv.Name + "信息失败"; }));
+                    this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "获取" + Current.Robot.Name + "信息失败"; }));
                 }
 
-                if (Current.rgv.AlreadyGetAllInfo)
+                if (Current.Robot.AlreadyGetAllInfo)
                 {
 
 
@@ -2292,9 +2292,9 @@ namespace BakBattery.Baking.App
                             if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) < 1
                                 && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) < 1
                                 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
-                                && ((floor.Stations[0].RgvRelativeMove == RelativeMove.远离 || floor.Stations[0].RgvRelativeMove == RelativeMove.不变)
-                                && (floor.Stations[0].Distance(Current.rgv) > 1
-                                || Current.Task.TaskId < 1 && Current.rgv.IsAlive && !Current.rgv.IsGettingOrPutting && Current.rgv.ClampStatus == ClampStatus.无夹具)))
+                                && ((floor.Stations[0].RobotRelativeMove == RelativeMove.远离 || floor.Stations[0].RobotRelativeMove == RelativeMove.不变)
+                                && (floor.Stations[0].Distance(Current.Robot) > 1
+                                || Current.Task.TaskId < 1 && Current.Robot.IsAlive && !Current.Robot.IsGettingOrPutting && Current.Robot.ClampStatus == ClampStatus.无夹具)))
                             {
                                 Current.ovens[i].CloseDoor(j);
                             }
@@ -2335,8 +2335,8 @@ namespace BakBattery.Baking.App
                         oOven.UploadVacuum(jj);
                     }
 
-                    if (oFloor.DoorStatus == DoorStatus.关闭 && !oFloor.IsVacuum && (!Current.rgv.IsGettingOrPutting && Current.rgv.ClampStatus == ClampStatus.无夹具
-                      || oStation.RgvRelativeMove == RelativeMove.远离 && oStation.Distance(Current.rgv) > 1))
+                    if (oFloor.DoorStatus == DoorStatus.关闭 && !oFloor.IsVacuum && (!Current.Robot.IsGettingOrPutting && Current.Robot.ClampStatus == ClampStatus.无夹具
+                      || oStation.RobotRelativeMove == RelativeMove.远离 && oStation.Distance(Current.Robot) > 1))
                     {
                         oOven.OpenDoor(jj);
                     }
@@ -2345,11 +2345,11 @@ namespace BakBattery.Baking.App
                 //上料机工位无任务则关门
                 Current.feeders.ForEach(f => f.Stations.ForEach(s =>
                 {
-                    if (s.Id != Current.Task.FromStationId && s.Id != Current.Task.ToStationId && s.DoorStatus != DoorStatus.关闭 && !Current.rgv.IsGettingOrPutting)
+                    if (s.Id != Current.Task.FromStationId && s.Id != Current.Task.ToStationId && s.DoorStatus != DoorStatus.关闭 && !Current.Robot.IsGettingOrPutting)
                     {
                         s.CloseDoor();
                     }
-                    else if (s.Id == Current.Task.FromStationId && Current.Task.Status != TaskStatus.就绪 && Current.Task.Status != TaskStatus.可取 && s.DoorStatus != DoorStatus.关闭 && !Current.rgv.IsGettingOrPutting)
+                    else if (s.Id == Current.Task.FromStationId && Current.Task.Status != TaskStatus.就绪 && Current.Task.Status != TaskStatus.可取 && s.DoorStatus != DoorStatus.关闭 && !Current.Robot.IsGettingOrPutting)
                     {
                         s.CloseDoor();
                     }
@@ -2364,7 +2364,7 @@ namespace BakBattery.Baking.App
 
         #endregion
 
-        #region RGV搬运主逻辑
+        #region 机器人搬运主逻辑
 
         System.Timers.Timer timerTask = null;
         private void Timer_Task(object sender, ElapsedEventArgs e)
@@ -3048,10 +3048,10 @@ namespace BakBattery.Baking.App
             }
         }
 
-        private void cbRgvIsEnable_CheckedChanged(object sender, EventArgs e)
+        private void cbRobotIsEnable_CheckedChanged(object sender, EventArgs e)
         {
             if (!TengDa.WF.Current.IsRunning) return;
-            Current.rgv.IsEnable = cbRgvIsEnable.Checked;
+            Current.Robot.IsEnable = cbRobotIsEnable.Checked;
         }
 
         private void cbMesIsEnable_CheckedChanged(object sender, EventArgs e)
@@ -3267,7 +3267,7 @@ namespace BakBattery.Baking.App
             kk.FilterIndex = 1;
 
             //默认文件名
-            kk.FileName = "RGV搬运任务 " + dtpStart.Value.ToString("yyyyMMddHHmmss") + "-" + dtpStop.Value.ToString("yyyyMMddHHmmss");
+            kk.FileName = "机器人搬运任务 " + dtpStart.Value.ToString("yyyyMMddHHmmss") + "-" + dtpStop.Value.ToString("yyyyMMddHHmmss");
 
             if (kk.ShowDialog() == DialogResult.OK)
             {
@@ -3345,9 +3345,9 @@ namespace BakBattery.Baking.App
                     {
                         this.propertyGridSettings.SelectedObject = Current.mes;
                     }
-                    else if (e.Node.Level == 0 && e.Node.Text == "RGV")
+                    else if (e.Node.Level == 0 && e.Node.Text == "机器人")
                     {
-                        this.propertyGridSettings.SelectedObject = Current.rgv;
+                        this.propertyGridSettings.SelectedObject = Current.Robot;
                     }
                     else if (e.Node.Level == 0 && e.Node.Text == "缓存架")
                     {
@@ -3389,13 +3389,13 @@ namespace BakBattery.Baking.App
                     {
                         this.propertyGridSettings.SelectedObject = Blanker.BlankerList.First(b => b.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
                     }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "RGV" && e.Node.Text == "PLC")
+                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人" && e.Node.Text == "PLC")
                     {
-                        this.propertyGridSettings.SelectedObject = Current.rgv.Plc;
+                        this.propertyGridSettings.SelectedObject = Current.Robot.Plc;
                     }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "RGV x轴点位")
+                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人 x轴点位")
                     {
-                        this.propertyGridSettings.SelectedObject = RgvPosition.RgvPositionList.First(r => r.Id.ToString() == e.Node.Text.Split(':')[0]);
+                        this.propertyGridSettings.SelectedObject = RobotPosition.RobotPositionList.First(r => r.Id.ToString() == e.Node.Text.Split(':')[0]);
                     }
                     else if (e.Node.Level == 2 && e.Node.Text.IndexOf("夹具") > -1)
                     {
@@ -3442,7 +3442,7 @@ namespace BakBattery.Baking.App
                 settingsStr = string.Format("将Id为 {0} 的 {1} 的 {2} 由 {3} 修改为 {4} ", Id, type.Name, e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
 
             }
-            else if (type == typeof(RGV))
+            else if (type == typeof(Robot))
             {
                 settingsStr = string.Format("将MES的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
             }
@@ -3808,7 +3808,7 @@ namespace BakBattery.Baking.App
                 Tip.Alert("请切换至手动任务模式！");
                 return;
             }
-            Current.rgv.StartGetPut();
+            Current.Robot.StartGetPut();
         }
 
         private void tsmManuStation_DropDownOpening(object sender, EventArgs e)
@@ -3994,11 +3994,11 @@ namespace BakBattery.Baking.App
                 }
                 else if (isMoveTo)
                 {
-                    int d3410 = int.Parse(station.RgvValues.Split(',')[0]);
-                    int d3411 = int.Parse(station.RgvValues.Split(',')[1]);
-                    if (Current.rgv.IsReadyGet)
+                    int d3410 = int.Parse(station.RobotValues.Split(',')[0]);
+                    int d3411 = int.Parse(station.RobotValues.Split(',')[1]);
+                    if (Current.Robot.IsReadyGet)
                     {
-                        if (Current.rgv.Move(d3410, d3411, isGet: true))
+                        if (Current.Robot.Move(d3410, d3411, isGet: true))
                         {
 
                         }

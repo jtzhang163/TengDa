@@ -38,7 +38,7 @@ namespace BakBattery.Baking
 
         public static List<Blanker> blankers = new List<Blanker>();
 
-        public static RGV rgv = new RGV(1);
+        public static Robot Robot = new Robot(1);
 
         public static Cache cache = new Cache();
 

@@ -153,9 +153,9 @@ namespace BakBattery.Baking.App.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Rgv_Track_Lime {
+        internal static System.Drawing.Bitmap Robot_Track_Lime {
             get {
-                object obj = ResourceManager.GetObject("Rgv_Track_Lime", resourceCulture);
+                object obj = ResourceManager.GetObject("Robot_Track_Lime", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

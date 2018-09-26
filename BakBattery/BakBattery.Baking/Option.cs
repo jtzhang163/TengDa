@@ -546,10 +546,10 @@ namespace BakBattery.Baking
 
         private int taskInterval = -1;
         /// <summary>
-        /// 检测是否生成RGV搬运任务时间间隔，单位：毫秒
+        /// 检测是否生成机器人搬运任务时间间隔，单位：毫秒
         /// </summary>
-        [Description("检测是否生成RGV搬运任务时间间隔，单位：毫秒")]
-        [DisplayName("检测是否生成RGV搬运任务时间间隔")]
+        [Description("检测是否生成机器人搬运任务时间间隔，单位：毫秒")]
+        [DisplayName("检测是否生成机器人搬运任务时间间隔")]
         [Category("定时器")]
         public int TaskInterval
         {
@@ -1343,87 +1343,87 @@ namespace BakBattery.Baking
             }
         }
 
-        private string rgvToPositionAdds = string.Empty;
+        private string robotToPositionAdds = string.Empty;
         /// <summary>
-        /// RGV移动至各工位指令地址
+        /// 机器人移动至各工位指令地址
         /// </summary>
-        [Description("RGV移动至各工位指令地址")]
-        [DisplayName("RGV移动至各工位指令地址")]
-        [Category("RGV")]
-        public string RgvToPositionAdds
+        [Description("机器人移动至各工位指令地址")]
+        [DisplayName("机器人移动至各工位指令地址")]
+        [Category("机器人")]
+        public string RobotToPositionAdds
         {
             get
             {
-                if (string.IsNullOrEmpty(rgvToPositionAdds))
+                if (string.IsNullOrEmpty(robotToPositionAdds))
                 {
-                    rgvToPositionAdds = TengDa.WF.Option.GetOption("RgvToPositionAdds");
+                    robotToPositionAdds = TengDa.WF.Option.GetOption("RobotToPositionAdds");
                 }
-                return rgvToPositionAdds;
+                return robotToPositionAdds;
             }
             set
             {
-                if (value != rgvToPositionAdds)
+                if (value != robotToPositionAdds)
                 {
-                    TengDa.WF.Option.SetOption("RgvToPositionAdds", value);
-                    rgvToPositionAdds = value;
+                    TengDa.WF.Option.SetOption("RobotToPositionAdds", value);
+                    robotToPositionAdds = value;
                 }
             }
         }
 
 
 
-        private string rgvToGetPutAdds = string.Empty;
+        private string robotToGetPutAdds = string.Empty;
         /// <summary>
-        /// RGV取放指令地址（取、放）
+        /// 机器人取放指令地址（取、放）
         /// </summary>
-        [Description("RGV取放指令地址（取、放）")]
-        [DisplayName("RGV取放指令地址")]
-        [Category("RGV")]
-        public string RgvToGetPutAdds
+        [Description("机器人取放指令地址（取、放）")]
+        [DisplayName("机器人取放指令地址")]
+        [Category("机器人")]
+        public string RobotToGetPutAdds
         {
             get
             {
-                if (string.IsNullOrEmpty(rgvToGetPutAdds))
+                if (string.IsNullOrEmpty(robotToGetPutAdds))
                 {
-                    rgvToGetPutAdds = TengDa.WF.Option.GetOption("RgvToGetPutAdds");
+                    robotToGetPutAdds = TengDa.WF.Option.GetOption("RobotToGetPutAdds");
                 }
-                return rgvToGetPutAdds;
+                return robotToGetPutAdds;
             }
             set
             {
-                if (value != rgvToGetPutAdds)
+                if (value != robotToGetPutAdds)
                 {
-                    TengDa.WF.Option.SetOption("RgvToGetPutAdds", value);
-                    rgvToGetPutAdds = value;
+                    TengDa.WF.Option.SetOption("RobotToGetPutAdds", value);
+                    robotToGetPutAdds = value;
                 }
             }
         }
 
 
 
-        private string rgvStartGetPutAdd = string.Empty;
+        private string robotStartGetPutAdd = string.Empty;
         /// <summary>
-        /// RGV开始取放指令地址 M76
+        /// 机器人开始取放指令地址 M76
         /// </summary>
-        [Description("RGV开始取放指令地址 M76")]
-        [DisplayName("RGV开始取放指令地址")]
-        [Category("RGV")]
-        public string RgvStartGetPutAdd
+        [Description("机器人开始取放指令地址 M76")]
+        [DisplayName("机器人开始取放指令地址")]
+        [Category("机器人")]
+        public string RobotStartGetPutAdd
         {
             get
             {
-                if (string.IsNullOrEmpty(rgvStartGetPutAdd))
+                if (string.IsNullOrEmpty(robotStartGetPutAdd))
                 {
-                    rgvStartGetPutAdd = TengDa.WF.Option.GetOption("RgvStartGetPutAdd");
+                    robotStartGetPutAdd = TengDa.WF.Option.GetOption("RobotStartGetPutAdd");
                 }
-                return rgvStartGetPutAdd;
+                return robotStartGetPutAdd;
             }
             set
             {
-                if (value != rgvStartGetPutAdd)
+                if (value != robotStartGetPutAdd)
                 {
-                    TengDa.WF.Option.SetOption("RgvStartGetPutAdd", value);
-                    rgvStartGetPutAdd = value;
+                    TengDa.WF.Option.SetOption("RobotStartGetPutAdd", value);
+                    robotStartGetPutAdd = value;
                 }
             }
         }
@@ -1458,57 +1458,57 @@ namespace BakBattery.Baking
         }
 
 
-        private string rgvIsMovingAdd = string.Empty;
+        private string robotIsMovingAdd = string.Empty;
         /// <summary>
-        /// RGV正在运行地址
+        /// 机器人正在运行地址
         /// </summary>
-        [Description("RGV正在运行地址")]
-        [DisplayName("RGV正在运行地址")]
-        [Category("RGV")]
-        public string RgvIsMovingAdd
+        [Description("机器人正在运行地址")]
+        [DisplayName("机器人正在运行地址")]
+        [Category("机器人")]
+        public string RobotIsMovingAdd
         {
             get
             {
-                if (string.IsNullOrEmpty(rgvIsMovingAdd))
+                if (string.IsNullOrEmpty(robotIsMovingAdd))
                 {
-                    rgvIsMovingAdd = TengDa.WF.Option.GetOption("RgvIsMovingAdd");
+                    robotIsMovingAdd = TengDa.WF.Option.GetOption("RobotIsMovingAdd");
                 }
-                return rgvIsMovingAdd;
+                return robotIsMovingAdd;
             }
             set
             {
-                if (value != rgvIsMovingAdd)
+                if (value != robotIsMovingAdd)
                 {
-                    TengDa.WF.Option.SetOption("RgvIsMovingAdd", value);
-                    rgvIsMovingAdd = value;
+                    TengDa.WF.Option.SetOption("RobotIsMovingAdd", value);
+                    robotIsMovingAdd = value;
                 }
             }
         }
 
 
-        private string rgvIsGettingOrPuttingAdd = string.Empty;
+        private string robotIsGettingOrPuttingAdd = string.Empty;
         /// <summary>
-        /// RGV正在取放地址
+        /// 机器人正在取放地址
         /// </summary>
-        [Description("RGV正在取放地址")]
-        [DisplayName("RGV正在取放地址")]
-        [Category("RGV")]
-        public string RgvIsGettingOrPuttingAdd
+        [Description("机器人正在取放地址")]
+        [DisplayName("机器人正在取放地址")]
+        [Category("机器人")]
+        public string RobotIsGettingOrPuttingAdd
         {
             get
             {
-                if (string.IsNullOrEmpty(rgvIsGettingOrPuttingAdd))
+                if (string.IsNullOrEmpty(robotIsGettingOrPuttingAdd))
                 {
-                    rgvIsGettingOrPuttingAdd = TengDa.WF.Option.GetOption("RgvIsGettingOrPuttingAdd");
+                    robotIsGettingOrPuttingAdd = TengDa.WF.Option.GetOption("RobotIsGettingOrPuttingAdd");
                 }
-                return rgvIsGettingOrPuttingAdd;
+                return robotIsGettingOrPuttingAdd;
             }
             set
             {
-                if (value != rgvIsGettingOrPuttingAdd)
+                if (value != robotIsGettingOrPuttingAdd)
                 {
-                    TengDa.WF.Option.SetOption("RgvIsGettingOrPuttingAdd", value);
-                    rgvIsGettingOrPuttingAdd = value;
+                    TengDa.WF.Option.SetOption("RobotIsGettingOrPuttingAdd", value);
+                    robotIsGettingOrPuttingAdd = value;
                 }
             }
         }
@@ -1516,29 +1516,29 @@ namespace BakBattery.Baking
 
 
 
-        private string rgvIsReadyGetPutAdds = string.Empty;
+        private string robotIsReadyGetPutAdds = string.Empty;
         /// <summary>
-        /// RGV取放就绪指令地址（取、放）
+        /// 机器人取放就绪指令地址（取、放）
         /// </summary>
-        [Description("RGV取放就绪指令地址（取、放）")]
-        [DisplayName("RGV取放就绪指令地址")]
-        [Category("RGV")]
-        public string RgvIsReadyGetPutAdds
+        [Description("机器人取放就绪指令地址（取、放）")]
+        [DisplayName("机器人取放就绪指令地址")]
+        [Category("机器人")]
+        public string RobotIsReadyGetPutAdds
         {
             get
             {
-                if (string.IsNullOrEmpty(rgvIsReadyGetPutAdds))
+                if (string.IsNullOrEmpty(robotIsReadyGetPutAdds))
                 {
-                    rgvIsReadyGetPutAdds = TengDa.WF.Option.GetOption("RgvIsReadyGetPutAdds");
+                    robotIsReadyGetPutAdds = TengDa.WF.Option.GetOption("RobotIsReadyGetPutAdds");
                 }
-                return rgvIsReadyGetPutAdds;
+                return robotIsReadyGetPutAdds;
             }
             set
             {
-                if (value != rgvIsReadyGetPutAdds)
+                if (value != robotIsReadyGetPutAdds)
                 {
-                    TengDa.WF.Option.SetOption("RgvIsReadyGetPutAdds", value);
-                    rgvIsReadyGetPutAdds = value;
+                    TengDa.WF.Option.SetOption("RobotIsReadyGetPutAdds", value);
+                    robotIsReadyGetPutAdds = value;
                 }
             }
         }
@@ -1579,7 +1579,7 @@ namespace BakBattery.Baking
         /// </summary>
         [Description("可确认是否放夹具到位地址 M4008")]
         [DisplayName("可确认是否放夹具到位地址")]
-        [Category("RGV")]
+        [Category("机器人")]
         public string CanCheckPutClampIsOkAdd
         {
             get
@@ -1607,7 +1607,7 @@ namespace BakBattery.Baking
         /// </summary>
         [Description("放完夹具未到位报警地址 M3207")]
         [DisplayName("放完夹具未到位报警地址")]
-        [Category("RGV")]
+        [Category("机器人")]
         public string PutClampIsNotOkAlarmAdd
         {
             get
@@ -1628,29 +1628,29 @@ namespace BakBattery.Baking
             }
         }
 
-        private string rgvXasixAddress = string.Empty;
+        private string robotXasixAddress = string.Empty;
         /// <summary>
-        /// RGV的X轴坐标地址
+        /// 机器人的X轴坐标地址
         /// </summary>
-        [Description("RGV的X轴坐标地址")]
-        [DisplayName("RGV的X轴坐标地址")]
-        [Category("RGV")]
-        public string RgvXasixAddress
+        [Description("机器人的X轴坐标地址")]
+        [DisplayName("机器人的X轴坐标地址")]
+        [Category("机器人")]
+        public string RobotXasixAddress
         {
             get
             {
-                if (string.IsNullOrEmpty(rgvXasixAddress))
+                if (string.IsNullOrEmpty(robotXasixAddress))
                 {
-                    rgvXasixAddress = TengDa.WF.Option.GetOption("RgvXasixAddress");
+                    robotXasixAddress = TengDa.WF.Option.GetOption("RobotXasixAddress");
                 }
-                return rgvXasixAddress;
+                return robotXasixAddress;
             }
             set
             {
-                if (value != rgvXasixAddress)
+                if (value != robotXasixAddress)
                 {
-                    TengDa.WF.Option.SetOption("RgvXasixAddress", value);
-                    rgvXasixAddress = value;
+                    TengDa.WF.Option.SetOption("RobotXasixAddress", value);
+                    robotXasixAddress = value;
                 }
             }
         }
