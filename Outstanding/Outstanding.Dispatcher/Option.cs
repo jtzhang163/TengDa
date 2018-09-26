@@ -143,7 +143,8 @@ namespace Outstanding.Dispatcher
 
         private static int layoutType = -1;
         /// <summary>
-        /// 打开数据库超时时间
+        /// 设备布局类型    
+        /// A/B线：1，C/D线：2
         /// </summary>
         public static int LayoutType
         {
