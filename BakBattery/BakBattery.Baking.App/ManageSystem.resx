@@ -123,8 +123,8 @@
   <metadata name="cmsFeeder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>292, 20</value>
   </metadata>
-  <metadata name="cmsRobot.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>127, 20</value>
+  <metadata name="cmsFloor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>22, 20</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pbOvenTriLamp04.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -859,9 +859,6 @@
         kxO4J7ENc9K3B9t3uLGdC6DRaBlqtgmdLGg0Go1Go9FotJTZJz7xf472BvkGZ5L8AAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="cmsFloor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>22, 20</value>
-  </metadata>
   <data name="pbOvenTriLamp08.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARIAAAEVCAYAAAAsMmqbAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -1594,6 +1591,9 @@
         kxO4J7ENc9K3B9t3uLGdC6DRaBlqtgmdLGg0Go1Go9FotJTZJz7xf472BvkGZ5L8AAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="cmsRobot.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>127, 20</value>
+  </metadata>
   <data name="pbFeederLamp02.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARIAAAEVCAYAAAAsMmqbAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
