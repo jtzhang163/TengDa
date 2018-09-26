@@ -764,7 +764,7 @@ namespace BakBattery.Baking
                 }
                 else if (this.GetPutType == GetPutType.旋转台)
                 {
-                    Current.rotater.OpenDoor();
+                    Current.Transfer.OpenDoor();
                 }
             }
         }
@@ -790,7 +790,7 @@ namespace BakBattery.Baking
                 }
                 else if (this.GetPutType == GetPutType.旋转台)
                 {
-                    Current.rotater.CloseDoor();
+                    Current.Transfer.CloseDoor();
                 }
             }
         }

@@ -58,7 +58,7 @@
     <Compile Include="Battery.cs" />
     <Compile Include="BatteryCache.cs" />
     <Compile Include="Robot.cs" />
-    <Compile Include="Rotater.cs" />
+    <Compile Include="Transfer.cs" />
     <Compile Include="Clamp.cs" />
     <Compile Include="QualityStatus.cs" />
     <Compile Include="Current.cs" />

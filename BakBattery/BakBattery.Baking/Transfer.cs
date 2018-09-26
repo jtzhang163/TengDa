@@ -10,9 +10,9 @@ using TengDa.WF;
 namespace BakBattery.Baking
 {
     /// <summary>
-    /// 旋转机构
+    /// 转移台
     /// </summary>
-    public class Rotater : TengDa.WF.Terminals.Terminal
+    public class Transfer : TengDa.WF.Terminals.Terminal
     {
         #region 属性字段
 
@@ -68,9 +68,9 @@ namespace BakBattery.Baking
 
         #region 构造方法
 
-        public Rotater() : this(-1) { }
+        public Transfer() : this(-1) { }
 
-        public Rotater(int id)
+        public Transfer(int id)
         {
             if (id < 0)
             {
@@ -123,8 +123,8 @@ namespace BakBattery.Baking
         #endregion
 
         #region 系统旋转机构列表
-        private static List<Rotater> rotaterList = new List<Rotater>();
-        public static List<Rotater> RotaterList
+        private static List<Transfer> rotaterList = new List<Transfer>();
+        public static List<Transfer> RotaterList
         {
             get
             {
@@ -144,7 +144,7 @@ namespace BakBattery.Baking
 
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            Rotater rotater = new Rotater();
+                            Transfer rotater = new Transfer();
                             rotater.InitFields(dt.Rows[i]);
                             rotaterList.Add(rotater);
                         }
@@ -211,7 +211,7 @@ namespace BakBattery.Baking
                 return;
             }
 
-            if (Current.rotater.Station.ClampOri != this.Blanker.Stations[0].ClampOri)
+            if (Current.Transfer.Station.ClampOri != this.Blanker.Stations[0].ClampOri)
             {
                 Tip.Alert("当前状态无法关门！");
                 return;

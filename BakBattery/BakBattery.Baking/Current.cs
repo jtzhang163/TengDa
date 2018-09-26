@@ -42,7 +42,7 @@ namespace BakBattery.Baking
 
         public static Cache cache = new Cache();
 
-        public static Rotater rotater = new Rotater();
+        public static Transfer Transfer = new Transfer();
 
         public static MES mes = MES.Mes;
 

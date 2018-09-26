@@ -387,7 +387,7 @@ namespace BakBattery.Baking.App
             Current.ovens = Oven.OvenList;
             Current.feeders = Feeder.FeederList;
             Current.blankers = Blanker.BlankerList;
-            Current.rotater = Rotater.RotaterList.First();
+            Current.Transfer = Transfer.RotaterList.First();
             Current.cache = Cache.CacheList.First();
             Current.Yields = Yield.YieldList;
             cbStations.Items.Add("All");
@@ -446,8 +446,8 @@ namespace BakBattery.Baking.App
 
             cbRobotIsEnable.Checked = Current.Robot.IsEnable;
 
-            lbRotaterName.Text = Current.rotater.Name;
-            lbRotaterClampCode.Text = Current.rotater.Station.Clamp.Code;
+            lbTransferName.Text = Current.Transfer.Name;
+            lbTransferClampCode.Text = Current.Transfer.Station.Clamp.Code;
 
             lbCacheName.Text = Current.cache.Name;
             for (int i = 0; i < Current.cache.Stations.Count; i++)
@@ -1003,50 +1003,38 @@ namespace BakBattery.Baking.App
 
             #region 旋转台
 
-            this.tlpRotater.BackColor = Current.rotater.IsAlive ? Color.White : SystemColors.Control;
+            this.tlpTransfer.BackColor = Current.Transfer.IsAlive ? Color.White : SystemColors.Control;
 
-            lbRotaterClampCode.Text = Current.rotater.Station.Clamp.Code;
-
-            string line = string.Empty;
-            if (Current.rotater.Station.ClampOri == ClampOri.A)
-            {
-                line = Option.LayoutType == 1 ? "A" : "C";
-            }
-            else if (Current.rotater.Station.ClampOri == ClampOri.B)
-            {
-                line = Option.LayoutType == 1 ? "B" : "D";
-            }
-
-            lbRotaterName.Text = "旋转台" + line;
+            lbTransferClampCode.Text = Current.Transfer.Station.Clamp.Code;
 
             bool canChangeVisibleRotater = DateTime.Now.Second % 3 == 1;
 
-            if (Current.cache.IsAlive && canChangeVisibleRotater && Current.rotater.Station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取))
+            if (Current.cache.IsAlive && canChangeVisibleRotater && Current.Transfer.Station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取))
             {
-                lbRotaterClampCode.Visible = false;
+                lbTransferClampCode.Visible = false;
             }
-            else if (Current.cache.IsAlive && canChangeVisibleRotater && Current.rotater.Station.Id == Current.Task.ToStationId)
+            else if (Current.cache.IsAlive && canChangeVisibleRotater && Current.Transfer.Station.Id == Current.Task.ToStationId)
             {
-                lbRotaterClampCode.Visible = true;
-                lbRotaterClampCode.BackColor = Current.Task.FromClampStatus == ClampStatus.空夹具 ? Color.Cyan : Color.LimeGreen;
+                lbTransferClampCode.Visible = true;
+                lbTransferClampCode.BackColor = Current.Task.FromClampStatus == ClampStatus.空夹具 ? Color.Cyan : Color.LimeGreen;
             }
             else
             {
 
-                lbRotaterClampCode.Visible = Current.rotater.Station.ClampStatus != ClampStatus.无夹具;
+                lbTransferClampCode.Visible = Current.Transfer.Station.ClampStatus != ClampStatus.无夹具;
 
-                if (!Current.rotater.Station.IsAlive)
+                if (!Current.Transfer.Station.IsAlive)
                 {
-                    lbRotaterClampCode.BackColor = SystemColors.Control;
+                    lbTransferClampCode.BackColor = SystemColors.Control;
                 }
                 else
                 {
-                    switch (Current.rotater.Station.ClampStatus)
+                    switch (Current.Transfer.Station.ClampStatus)
                     {
-                        case ClampStatus.满夹具: lbRotaterClampCode.BackColor = Color.LimeGreen; break;
-                        case ClampStatus.空夹具: lbRotaterClampCode.BackColor = Color.Cyan; break;
-                        case ClampStatus.异常: lbRotaterClampCode.BackColor = Color.Red; break;
-                        default: lbRotaterClampCode.BackColor = SystemColors.Control; break;
+                        case ClampStatus.满夹具: lbTransferClampCode.BackColor = Color.LimeGreen; break;
+                        case ClampStatus.空夹具: lbTransferClampCode.BackColor = Color.Cyan; break;
+                        case ClampStatus.异常: lbTransferClampCode.BackColor = Color.Red; break;
+                        default: lbTransferClampCode.BackColor = SystemColors.Control; break;
                     }
                 }
             }
@@ -3311,7 +3299,7 @@ namespace BakBattery.Baking.App
                     }
                     else if (e.Node.Level == 0 && e.Node.Text == "旋转台")
                     {
-                        this.propertyGridSettings.SelectedObject = Current.rotater;
+                        this.propertyGridSettings.SelectedObject = Current.Transfer;
                     }
                     else if (e.Node.Level == 1 && e.Node.Parent.Text == "工位列表")
                     {
@@ -3402,7 +3390,7 @@ namespace BakBattery.Baking.App
             {
                 settingsStr = string.Format("将MES的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
             }
-            else if (type == typeof(Rotater))
+            else if (type == typeof(Transfer))
             {
                 settingsStr = string.Format("将MES的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
             }
@@ -3852,8 +3840,8 @@ namespace BakBattery.Baking.App
             tsiStations.Add(tsmiCacheStation);
 
             ToolStripMenuItem tsmiRotaterStation = new ToolStripMenuItem();
-            tsmiRotaterStation.Text = Current.rotater.Name;
-            tsmiRotaterStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, Current.rotater.Name);
+            tsmiRotaterStation.Text = Current.Transfer.Name;
+            tsmiRotaterStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, Current.Transfer.Name);
             tsmiRotaterStation.Click += new System.EventHandler(this.tsmManuStation_Click);
             tsiStations.Add(tsmiRotaterStation);
             if (isGet)
@@ -4238,8 +4226,8 @@ namespace BakBattery.Baking.App
                 return;
             }
 
-            Current.rotater.Station.AddLog("手动开门");
-            Current.rotater.Station.OpenDoor();
+            Current.Transfer.Station.AddLog("手动开门");
+            Current.Transfer.Station.OpenDoor();
         }
 
         private void tsmRotaterCloseDoor_Click(object sender, EventArgs e)
@@ -4250,8 +4238,8 @@ namespace BakBattery.Baking.App
                 return;
             }
 
-            Current.rotater.Station.AddLog("手动关门");
-            Current.rotater.Station.CloseDoor();
+            Current.Transfer.Station.AddLog("手动关门");
+            Current.Transfer.Station.CloseDoor();
         }
 
         private void tsmRotaterRotate_Click(object sender, EventArgs e)
@@ -4263,17 +4251,17 @@ namespace BakBattery.Baking.App
             }
 
             ClampOri clampOri = (sender as ToolStripMenuItem).Name == "tsmRotaterRotate1" ? ClampOri.A : ClampOri.B;
-            Current.rotater.Station.AddLog("手动旋转");
-            Current.rotater.Rotate(clampOri);
+            Current.Transfer.Station.AddLog("手动旋转");
+            Current.Transfer.Rotate(clampOri);
         }
 
         private void cmsRotater_Opening(object sender, CancelEventArgs e)
         {
-            tsmRotaterCloseDoor.Enabled = Current.rotater.IsAlive && Current.rotater.Station.DoorStatus != DoorStatus.关闭
-                && Current.rotater.Station.ClampOri == Current.rotater.Blanker.Stations[0].ClampOri;
-            tsmRotaterOpenDoor.Enabled = Current.rotater.IsAlive && Current.rotater.Station.DoorStatus != DoorStatus.打开;
-            tsmRotaterRotate1.Enabled = Current.rotater.IsAlive && Current.rotater.Station.DoorStatus == DoorStatus.打开/* && Current.rotater.Station.ClampOri == ClampOri.B*/;
-            tsmRotaterRotate2.Enabled = Current.rotater.IsAlive && Current.rotater.Station.DoorStatus == DoorStatus.打开/* && Current.rotater.Station.ClampOri == ClampOri.A*/;
+            tsmRotaterCloseDoor.Enabled = Current.Transfer.IsAlive && Current.Transfer.Station.DoorStatus != DoorStatus.关闭
+                && Current.Transfer.Station.ClampOri == Current.Transfer.Blanker.Stations[0].ClampOri;
+            tsmRotaterOpenDoor.Enabled = Current.Transfer.IsAlive && Current.Transfer.Station.DoorStatus != DoorStatus.打开;
+            tsmRotaterRotate1.Enabled = Current.Transfer.IsAlive && Current.Transfer.Station.DoorStatus == DoorStatus.打开/* && Current.Transfer.Station.ClampOri == ClampOri.B*/;
+            tsmRotaterRotate2.Enabled = Current.Transfer.IsAlive && Current.Transfer.Station.DoorStatus == DoorStatus.打开/* && Current.Transfer.Station.ClampOri == ClampOri.A*/;
 
             tsmRotaterRotate1.Text = Option.LayoutType == 1 ? "手动旋转至A线" : "手动旋转至C线";
             tsmRotaterRotate2.Text = Option.LayoutType == 1 ? "手动旋转至B线" : "手动旋转至D线";

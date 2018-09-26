@@ -177,11 +177,11 @@ namespace BakBattery.Baking
         #region 该设备上的旋转台
         [Browsable(false)]
         [ReadOnly(true)]
-        public Rotater Rotater
+        public Transfer Rotater
         {
             get
             {
-                return Rotater.RotaterList.FirstOrDefault(r => r.Id == this.RotaterId);
+                return Transfer.RotaterList.FirstOrDefault(r => r.Id == this.RotaterId);
             }
         }
         #endregion
