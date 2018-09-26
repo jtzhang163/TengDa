@@ -119,42 +119,42 @@ namespace BakBattery.Baking.App
 
             if (Option.LayoutType == 1)
             {
-                this.tlpDisplayMain.ColumnStyles.Clear();
-                this.tlpDisplayMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18F));
-                this.tlpDisplayMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9F));
-                this.tlpDisplayMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55F));
-                this.tlpDisplayMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18F));
-                this.tlpDisplayMain.Controls.Clear();
-                this.tlpDisplayMain.Controls.Add(this.tlpRotater, 1, 2);
-                this.tlpDisplayMain.Controls.Add(this.tlpCache, 1, 0);
-                this.tlpDisplayMain.Controls.Add(this.tlpBlanker1, 0, 0);
-                this.tlpDisplayMain.Controls.Add(this.tlpBlanker2, 0, 2);
-                this.tlpDisplayMain.Controls.Add(this.tlpOvenLineA, 2, 0);
-                this.tlpDisplayMain.Controls.Add(this.tlpOvenLineB, 2, 2);
-                this.tlpDisplayMain.Controls.Add(this.pRobot, 0, 1);
-                this.tlpDisplayMain.Controls.Add(this.tlpFeeder1, 3, 0);
-                this.tlpDisplayMain.Controls.Add(this.tlpFeeder2, 3, 2);
+                //this.tlpDisplayMain.ColumnStyles.Clear();
+                //this.tlpDisplayMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18F));
+                //this.tlpDisplayMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9F));
+                //this.tlpDisplayMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55F));
+                //this.tlpDisplayMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18F));
+                //this.tlpDisplayMain.Controls.Clear();
+                //this.tlpDisplayMain.Controls.Add(this.tlpRotater, 1, 2);
+                //this.tlpDisplayMain.Controls.Add(this.tlpCache, 1, 0);
+                //this.tlpDisplayMain.Controls.Add(this.tlpBlanker1, 0, 0);
+                //this.tlpDisplayMain.Controls.Add(this.tlpBlanker2, 0, 2);
+                //this.tlpDisplayMain.Controls.Add(this.tlpOvenLineA, 2, 0);
+                //this.tlpDisplayMain.Controls.Add(this.tlpOvenLineB, 2, 2);
+                //this.tlpDisplayMain.Controls.Add(this.pRobot, 0, 1);
+                //this.tlpDisplayMain.Controls.Add(this.tlpFeeder1, 3, 0);
+                //this.tlpDisplayMain.Controls.Add(this.tlpFeeder2, 3, 2);
 
-                this.tlpTrack.ColumnStyles.Clear();
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.503969F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9.504436F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9.091493F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.87F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.88F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.87F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.88F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.87F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.88F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.87F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.88F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.938171F));
-                this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.938171F));
+                //this.tlpTrack.ColumnStyles.Clear();
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.503969F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9.504436F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9.091493F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.87F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.88F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.87F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.88F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.87F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.88F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.87F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.88F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.938171F));
+                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.938171F));
             }
 
             #region 上料机相关控件数组
@@ -426,7 +426,7 @@ namespace BakBattery.Baking.App
                 }
             }
 
-            for (int i = 0; i < Current.blankers.Count; i++)
+            for (int i = 0; i < BlankerCount; i++)
             {
                 lbBlankerNameN[i].Text = Current.blankers[i].Name;
                 pbBlankerLamp[i].Image = Properties.Resources.Gray_Round;
@@ -880,7 +880,7 @@ namespace BakBattery.Baking.App
 
             #region 下料机
 
-            for (int i = 0; i < Current.blankers.Count; i++)
+            for (int i = 0; i < BlankerCount; i++)
             {
                 Blanker blanker = Current.blankers[i];
                 blanker.IsAlive = blanker.IsEnable && blanker.Plc.IsAlive;
@@ -1051,23 +1051,6 @@ namespace BakBattery.Baking.App
                 }
             }
 
-            lbRotaterDoorStatus.Text = Current.rotater.Station.DoorStatus.ToString();
-            switch (Current.rotater.Station.DoorStatus)
-            {
-                case DoorStatus.打开:
-                    lbRotaterDoorStatus.ForeColor = Color.White;
-                    lbRotaterDoorStatus.BackColor = SystemColors.WindowText;
-                    break;
-                case DoorStatus.异常:
-                    lbRotaterDoorStatus.ForeColor = Color.White;
-                    lbRotaterDoorStatus.BackColor = Color.Red;
-                    break;
-                default:
-                    lbRotaterDoorStatus.ForeColor = SystemColors.WindowText;
-                    lbRotaterDoorStatus.BackColor = Color.Transparent;
-                    break;
-            }
-
             #endregion
 
             #region 当前时间，运行状态、产量
@@ -1231,7 +1214,7 @@ namespace BakBattery.Baking.App
         private PictureBox[][] pbScanerLamp = new PictureBox[FeederCount][];
         private TextBox[][] tbScanerStatus = new TextBox[FeederCount][];
 
-        private const int BlankerCount = 2;
+        private const int BlankerCount = 1;
         private const int BlankerStationCount = 2;
 
         private TableLayoutPanel[] tlpBlankers = new TableLayoutPanel[BlankerCount];
@@ -1562,7 +1545,7 @@ namespace BakBattery.Baking.App
             }
 
 
-            for (int i = 0; i < Current.blankers.Count; i++)
+            for (int i = 0; i < BlankerCount; i++)
             {
                 if (Current.blankers[i].IsEnable)
                 {
@@ -1693,7 +1676,7 @@ namespace BakBattery.Baking.App
 
         System.Timers.Timer[] timerFeederRuns = new System.Timers.Timer[FeederCount] { null, null };
 
-        System.Timers.Timer[] timerBlankerRuns = new System.Timers.Timer[BlankerCount] { null, null };
+        System.Timers.Timer[] timerBlankerRuns = new System.Timers.Timer[BlankerCount] { null };
 
         System.Timers.Timer timerRobotRun = null;
 
