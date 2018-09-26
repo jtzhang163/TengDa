@@ -1228,7 +1228,7 @@ namespace BakBattery.Baking.App
         private Label[][] lbBlankerClampCode = new Label[BlankerCount][];
         private TableLayoutPanel[][] tlpBlankerStationClamp = new TableLayoutPanel[BlankerCount][];
 
-        private const int CacheStationCount = 4;
+        private const int CacheStationCount = 3;
 
         private Label[] lbCacheClampCode = new Label[CacheStationCount];
         private TableLayoutPanel[] tlpCacheClamp = new TableLayoutPanel[CacheStationCount];
