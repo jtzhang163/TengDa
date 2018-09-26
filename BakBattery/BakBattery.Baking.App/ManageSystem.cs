@@ -103,11 +103,7 @@ namespace BakBattery.Baking.App
         {
 
             lbTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            this.Text = string.Format("{0}{1} {2}   {3}",
-                Current.option.AppName,
-                (Option.LayoutType == 1 ? "AB线" : "CD线"),
-                Version.AssemblyVersion,
-                new Version().VersionTime.ToString("yyyy/M/d"));
+            this.Text = string.Format("{0} {1}   {2}", Current.option.AppName, Version.AssemblyVersion, new Version().VersionTime.ToString("yyyy/M/d"));
             Current.runStstus = RunStatus.闲置;
             Current.TaskMode = TaskMode.手动任务;
 
