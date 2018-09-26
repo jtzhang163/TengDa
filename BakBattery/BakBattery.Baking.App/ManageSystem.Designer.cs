@@ -130,12 +130,6 @@
             this.tabContentPageMain = new System.Windows.Forms.TabPage();
             this.tlpDisplayMain = new System.Windows.Forms.TableLayoutPanel();
             this.tlpTransfer = new System.Windows.Forms.TableLayoutPanel();
-            this.cmsTransfer = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRotaterOpenDoor = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRotaterCloseDoor = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRotaterRotate1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRotaterRotate2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpTransferClamp = new System.Windows.Forms.TableLayoutPanel();
             this.lbTransferClampCode = new System.Windows.Forms.Label();
             this.lbTransferName = new System.Windows.Forms.Label();
@@ -615,7 +609,6 @@
             this.tabContentPageMain.SuspendLayout();
             this.tlpDisplayMain.SuspendLayout();
             this.tlpTransfer.SuspendLayout();
-            this.cmsTransfer.SuspendLayout();
             this.tlpTransferClamp.SuspendLayout();
             this.tlpFeeder2.SuspendLayout();
             this.cmsFeeder.SuspendLayout();
@@ -1856,7 +1849,6 @@
             this.tlpTransfer.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tlpTransfer.ColumnCount = 1;
             this.tlpTransfer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpTransfer.ContextMenuStrip = this.cmsTransfer;
             this.tlpTransfer.Controls.Add(this.tlpTransferClamp, 0, 1);
             this.tlpTransfer.Controls.Add(this.lbTransferName, 0, 0);
             this.tlpTransfer.Location = new System.Drawing.Point(8, 326);
@@ -1869,53 +1861,6 @@
             this.tlpTransfer.Size = new System.Drawing.Size(83, 68);
             this.tlpTransfer.TabIndex = 16;
             // 
-            // cmsTransfer
-            // 
-            this.cmsTransfer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.cmsTransfer.Name = "cmsInOutOven";
-            this.cmsTransfer.Size = new System.Drawing.Size(125, 26);
-            this.cmsTransfer.Opening += new System.ComponentModel.CancelEventHandler(this.cmsRotater_Opening);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmRotaterOpenDoor,
-            this.tsmRotaterCloseDoor,
-            this.tsmRotaterRotate1,
-            this.tsmRotaterRotate2});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
-            this.toolStripMenuItem1.Text = "远程控制";
-            // 
-            // tsmRotaterOpenDoor
-            // 
-            this.tsmRotaterOpenDoor.Name = "tsmRotaterOpenDoor";
-            this.tsmRotaterOpenDoor.Size = new System.Drawing.Size(131, 22);
-            this.tsmRotaterOpenDoor.Text = "开门";
-            this.tsmRotaterOpenDoor.Click += new System.EventHandler(this.tsmRotaterOpenDoor_Click);
-            // 
-            // tsmRotaterCloseDoor
-            // 
-            this.tsmRotaterCloseDoor.Name = "tsmRotaterCloseDoor";
-            this.tsmRotaterCloseDoor.Size = new System.Drawing.Size(131, 22);
-            this.tsmRotaterCloseDoor.Text = "关门";
-            this.tsmRotaterCloseDoor.Click += new System.EventHandler(this.tsmRotaterCloseDoor_Click);
-            // 
-            // tsmRotaterRotate1
-            // 
-            this.tsmRotaterRotate1.Name = "tsmRotaterRotate1";
-            this.tsmRotaterRotate1.Size = new System.Drawing.Size(131, 22);
-            this.tsmRotaterRotate1.Text = "旋转至1线";
-            this.tsmRotaterRotate1.Click += new System.EventHandler(this.tsmRotaterRotate_Click);
-            // 
-            // tsmRotaterRotate2
-            // 
-            this.tsmRotaterRotate2.Name = "tsmRotaterRotate2";
-            this.tsmRotaterRotate2.Size = new System.Drawing.Size(131, 22);
-            this.tsmRotaterRotate2.Text = "旋转至2线";
-            this.tsmRotaterRotate2.Click += new System.EventHandler(this.tsmRotaterRotate_Click);
-            // 
             // tlpTransferClamp
             // 
             this.tlpTransferClamp.ColumnCount = 1;
@@ -1927,7 +1872,7 @@
             this.tlpTransferClamp.Name = "tlpTransferClamp";
             this.tlpTransferClamp.RowCount = 1;
             this.tlpTransferClamp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpTransferClamp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
+            this.tlpTransferClamp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tlpTransferClamp.Size = new System.Drawing.Size(75, 29);
             this.tlpTransferClamp.TabIndex = 6;
             // 
@@ -2150,7 +2095,7 @@
             this.tlpOvenLineA.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpOvenLineA.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tlpOvenLineA.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpOvenLineA.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tlpOvenLineA.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tlpOvenLineA.Controls.Add(this.tableLayoutPanel28, 7, 0);
             this.tlpOvenLineA.Controls.Add(this.tlpOven05, 1, 1);
             this.tlpOvenLineA.Controls.Add(this.tlpOven07, 5, 1);
@@ -3290,7 +3235,7 @@
             this.tlpOvenLineB.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpOvenLineB.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tlpOvenLineB.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpOvenLineB.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tlpOvenLineB.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tlpOvenLineB.Controls.Add(this.tableLayoutPanel50, 7, 0);
             this.tlpOvenLineB.Controls.Add(this.tableLayoutPanel51, 5, 0);
             this.tlpOvenLineB.Controls.Add(this.tableLayoutPanel52, 3, 0);
@@ -8567,7 +8512,6 @@
             this.tlpDisplayMain.ResumeLayout(false);
             this.tlpTransfer.ResumeLayout(false);
             this.tlpTransfer.PerformLayout();
-            this.cmsTransfer.ResumeLayout(false);
             this.tlpTransferClamp.ResumeLayout(false);
             this.tlpTransferClamp.PerformLayout();
             this.tlpFeeder2.ResumeLayout(false);
@@ -9293,12 +9237,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnScanOkBackToFeeder;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ContextMenuStrip cmsTransfer;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem tsmRotaterOpenDoor;
-        private System.Windows.Forms.ToolStripMenuItem tsmRotaterCloseDoor;
-        private System.Windows.Forms.ToolStripMenuItem tsmRotaterRotate1;
-        private System.Windows.Forms.ToolStripMenuItem tsmRotaterRotate2;
         private System.Windows.Forms.GroupBox gbBatteryScanerTest;
         private System.Windows.Forms.Label label62;
         private System.Windows.Forms.Button btnBatteryScanOkBackToFeeder;

@@ -4216,58 +4216,6 @@ namespace BakBattery.Baking.App
 
         #endregion
 
-        #region 远程控制旋转台
-
-        private void tsmRotaterOpenDoor_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-
-            Current.Transfer.Station.AddLog("手动开门");
-            Current.Transfer.Station.OpenDoor();
-        }
-
-        private void tsmRotaterCloseDoor_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-
-            Current.Transfer.Station.AddLog("手动关门");
-            Current.Transfer.Station.CloseDoor();
-        }
-
-        private void tsmRotaterRotate_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-
-            ClampOri clampOri = (sender as ToolStripMenuItem).Name == "tsmRotaterRotate1" ? ClampOri.A : ClampOri.B;
-            Current.Transfer.Station.AddLog("手动旋转");
-            Current.Transfer.Rotate(clampOri);
-        }
-
-        private void cmsRotater_Opening(object sender, CancelEventArgs e)
-        {
-            tsmRotaterCloseDoor.Enabled = Current.Transfer.IsAlive && Current.Transfer.Station.DoorStatus != DoorStatus.关闭
-                && Current.Transfer.Station.ClampOri == Current.Transfer.Blanker.Stations[0].ClampOri;
-            tsmRotaterOpenDoor.Enabled = Current.Transfer.IsAlive && Current.Transfer.Station.DoorStatus != DoorStatus.打开;
-            tsmRotaterRotate1.Enabled = Current.Transfer.IsAlive && Current.Transfer.Station.DoorStatus == DoorStatus.打开/* && Current.Transfer.Station.ClampOri == ClampOri.B*/;
-            tsmRotaterRotate2.Enabled = Current.Transfer.IsAlive && Current.Transfer.Station.DoorStatus == DoorStatus.打开/* && Current.Transfer.Station.ClampOri == ClampOri.A*/;
-
-            tsmRotaterRotate1.Text = Option.LayoutType == 1 ? "手动旋转至A线" : "手动旋转至C线";
-            tsmRotaterRotate2.Text = Option.LayoutType == 1 ? "手动旋转至B线" : "手动旋转至D线";
-        }
-        #endregion
-
         #region 手动调试夹具扫码枪
 
         private void btnClampScanStart_Click(object sender, EventArgs e)

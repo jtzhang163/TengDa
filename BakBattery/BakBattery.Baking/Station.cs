@@ -762,10 +762,6 @@ namespace BakBattery.Baking
                     Feeder feeder = Feeder.FeederList.First(f => f.StationIds.Contains(this.Id.ToString()));
                     feeder.OpenDoor(feeder.Stations.IndexOf(this));
                 }
-                else if (this.GetPutType == GetPutType.旋转台)
-                {
-                    Current.Transfer.OpenDoor();
-                }
             }
         }
 
@@ -788,10 +784,7 @@ namespace BakBattery.Baking
                     Feeder feeder = Feeder.FeederList.First(f => f.StationIds.Contains(this.Id.ToString()));
                     feeder.CloseDoor(feeder.Stations.IndexOf(this));
                 }
-                else if (this.GetPutType == GetPutType.旋转台)
-                {
-                    Current.Transfer.CloseDoor();
-                }
+
             }
         }
 

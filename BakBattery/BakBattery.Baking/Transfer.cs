@@ -23,7 +23,7 @@ namespace BakBattery.Baking
             {
                 if (string.IsNullOrEmpty(tableName))
                 {
-                    tableName = Config.DbTableNamePre + ".Rotaters";
+                    tableName = Config.DbTableNamePre + ".Transfers";
                 }
                 return tableName;
             }
@@ -158,18 +158,6 @@ namespace BakBattery.Baking
 
         #endregion
 
-        #region 该设备关联的下料机
-
-        [Browsable(false)]
-        public Blanker Blanker
-        {
-            get
-            {
-                return Current.blankers.First(b => b.RotaterId > 0);
-            }
-        }
-        #endregion
-
         #region 该设备的工位
         [Browsable(false)]
         public Station Station
@@ -181,59 +169,5 @@ namespace BakBattery.Baking
         }
         #endregion
 
-        /// <summary>
-        /// 开门指令
-        /// </summary>
-        /// <returns></returns>
-        public void OpenDoor()
-        {
-
-            if (!this.Blanker.Plc.IsPingSuccess)
-            {
-                IsAlive = false;
-                LogHelper.WriteError("无法连接到 " + this.Blanker.Plc.IP);
-                return;
-            }
-
-            this.Station.toOpenDoor = true;
-        }
-
-        /// <summary>
-        /// 关门指令
-        /// </summary>
-        /// <returns></returns>
-        public void CloseDoor()
-        {
-            if (!this.Blanker.Plc.IsPingSuccess)
-            {
-                IsAlive = false;
-                LogHelper.WriteError("无法连接到 " + this.Blanker.Plc.IP);
-                return;
-            }
-
-            if (Current.Transfer.Station.ClampOri != this.Blanker.Stations[0].ClampOri)
-            {
-                Tip.Alert("当前状态无法关门！");
-                return;
-            }
-            this.Station.toCloseDoor = true;
-        }
-
-        /// <summary>
-        /// 关门指令
-        /// </summary>
-        /// <returns></returns>
-        public void Rotate(ClampOri clampOri)
-        {
-            if (!this.Blanker.Plc.IsPingSuccess)
-            {
-                IsAlive = false;
-                LogHelper.WriteError("无法连接到 " + this.Blanker.Plc.IP);
-                return;
-            }
-
-            this.Station.toRotate[0] = clampOri != this.Blanker.Stations[0].ClampOri;
-            this.Station.toRotate[1] = clampOri == this.Blanker.Stations[0].ClampOri;
-        }
     }
 }
