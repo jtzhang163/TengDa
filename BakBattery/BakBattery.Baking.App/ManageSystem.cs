@@ -107,7 +107,7 @@ namespace BakBattery.Baking.App
             Current.runStstus = RunStatus.闲置;
             Current.TaskMode = TaskMode.手动任务;
 
-            yieldDisplay.SetYieldType(Option.LayoutType);
+            yieldDisplay.SetYieldType();
             yieldDisplay.SetClearYieldTime(_Convert.StrToDateTime(Current.option.ClearYieldTime, Common.DefaultTime));
 
             if (!Current.option.IsMesUserEnable)

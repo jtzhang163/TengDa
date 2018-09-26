@@ -29,16 +29,13 @@ namespace BakBattery.Baking.Controls
 
         public void YieldUpdate()
         {
-            lbShowFeedingOK1.Text = Current.Yields[0].FeedingOK.ToString();
-            lbShowBlankingOK1.Text = Current.Yields[0].BlankingOK.ToString();
-            lbShowFeedingOK2.Text = Current.Yields[1].FeedingOK.ToString();
-            lbShowBlankingOK2.Text = Current.Yields[1].BlankingOK.ToString();
+            lbShowFeedingOK.Text = Current.Yields[0].FeedingOK.ToString();
+            lbShowBlankingOK.Text = Current.Yields[0].BlankingOK.ToString();
         }
 
-        public void SetYieldType(int layoutType)
+        public void SetYieldType()
         {
-            lbYieldType1.Text = layoutType == 1 ? "A线" : "C线";
-            lbYieldType2.Text = layoutType == 1 ? "B线" : "D线";
+
         }
 
         public void SetClearYieldTime(DateTime dateTime)
