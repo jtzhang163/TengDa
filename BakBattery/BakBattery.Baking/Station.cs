@@ -317,10 +317,6 @@ namespace BakBattery.Baking
             }
         }
 
-        [ReadOnly(true), Description("是否烘烤完成（分辨是待出还是待烤状态）")]
-        [DisplayName("是否烘烤完成")]
-        public bool IsBakeFinished { get; set; }
-
         /// <summary>
         /// 是否开门时会干涉（若为烤箱工位，当同一烤箱中其他门未关闭或有搬运任务，此门不能打开）
         /// </summary>

@@ -139,7 +139,7 @@ namespace BakBattery.Baking
         }
 
 
-        public const int TemperaturePointCount = 50;
+        public const int TemperaturePointCount = 20;
 
         private static int layoutType = -1;
         /// <summary>
@@ -160,16 +160,10 @@ namespace BakBattery.Baking
 
         public string[] TemperNames = new string[Option.TemperaturePointCount]
         {
-            "主控01", "主控02", "主控03", "主控04", "主控05",
-            "主控06", "主控07", "主控08", "主控09", "主控10",
-            "主控11", "主控12", "主控13", "主控14", "主控15",
-            "主控16", "主控17", "主控18", "主控19", "主控20",
-            "主控21", "主控22", "主控23", "主控24", "主控25",
-            "监控01", "监控02", "监控03", "监控04", "监控05",
-            "监控06", "监控07", "监控08", "监控09", "监控10",
-            "监控11", "监控12", "监控13", "监控14", "监控15",
-            "监控16", "监控17", "监控18", "监控19", "监控20",
-            "监控21", "监控22", "监控23", "监控24", "监控25"
+            "上左板", "上右板", "下左板", "下右板", "左侧板",
+            "右侧板", "后左板", "后右板", "门左板", "门右板",
+            "氮气", "运风", "上左空", "上右空", "下左空",
+            "下右空", "左侧空", "右侧空", "后左空", "后右空"
         };
 
         private int displayTemperIndex = -1;
@@ -1347,29 +1341,28 @@ namespace BakBattery.Baking
 
 
 
-        private string getBakingIsFinishedStrs = string.Empty;
+        private string getBakingIsFinishedStr = string.Empty;
         /// <summary>
         /// 获取烤箱Baking是否结束指令
         /// </summary>
-        [Description("获取烤箱Baking是否结束指令")]
         [DisplayName("获取烤箱Baking是否结束指令")]
         [Category("烤箱")]
-        public string GetBakingIsFinishedStrs
+        public string GetBakingIsFinishedStr
         {
             get
             {
-                if (string.IsNullOrEmpty(getBakingIsFinishedStrs))
+                if (string.IsNullOrEmpty(getBakingIsFinishedStr))
                 {
-                    getBakingIsFinishedStrs = TengDa.WF.Option.GetOption("GetBakingIsFinishedStrs");
+                    getBakingIsFinishedStr = TengDa.WF.Option.GetOption("GetBakingIsFinishedStr");
                 }
-                return getBakingIsFinishedStrs;
+                return getBakingIsFinishedStr;
             }
             set
             {
-                if (value != getBakingIsFinishedStrs)
+                if (value != getBakingIsFinishedStr)
                 {
-                    TengDa.WF.Option.SetOption("GetBakingIsFinishedStrs", value);
-                    getBakingIsFinishedStrs = value;
+                    TengDa.WF.Option.SetOption("GetBakingIsFinishedStr", value);
+                    getBakingIsFinishedStr = value;
                 }
             }
         }
@@ -1456,34 +1449,6 @@ namespace BakBattery.Baking
                 {
                     TengDa.WF.Option.SetOption("RobotIsReadyGetPutAdds", value);
                     robotIsReadyGetPutAdds = value;
-                }
-            }
-        }
-
-
-        private string getOvenDoorRunStrs = string.Empty;
-        /// <summary>
-        /// 获取烤箱门正在运动的指令（正在开门，正在关门
-        /// </summary>
-        [Description("获取烤箱门正在运动的指令（正在开门，正在关门）")]
-        [DisplayName("获取烤箱门正在运动的指令")]
-        [Category("烤箱")]
-        public string GetOvenDoorRunStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getOvenDoorRunStrs))
-                {
-                    getOvenDoorRunStrs = TengDa.WF.Option.GetOption("GetOvenDoorRunStrs");
-                }
-                return getOvenDoorRunStrs;
-            }
-            set
-            {
-                if (value != getOvenDoorRunStrs)
-                {
-                    TengDa.WF.Option.SetOption("GetOvenDoorRunStrs", value);
-                    getOvenDoorRunStrs = value;
                 }
             }
         }
@@ -1706,33 +1671,6 @@ namespace BakBattery.Baking
                 {
                     TengDa.WF.Option.SetOption("GetVacuumStatusStr", value);
                     getVacuumStatusStr = value;
-                }
-            }
-        }
-
-        private string getRemainTimeStr = string.Empty;
-        /// <summary>
-        /// 获取烤箱剩余时间的字符串
-        /// </summary>
-        [Description("获取烤箱剩余时间的字符串")]
-        [DisplayName("获取烤箱剩余时间的字符串")]
-        [Category("烤箱")]
-        public string GetRemainTimeStr
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getRemainTimeStr))
-                {
-                    getRemainTimeStr = TengDa.WF.Option.GetOption("GetRemainTimeStr");
-                }
-                return getRemainTimeStr;
-            }
-            set
-            {
-                if (value != getRemainTimeStr)
-                {
-                    TengDa.WF.Option.SetOption("GetRemainTimeStr", value);
-                    getRemainTimeStr = value;
                 }
             }
         }

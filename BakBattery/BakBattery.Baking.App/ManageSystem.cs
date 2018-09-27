@@ -725,16 +725,14 @@ namespace BakBattery.Baking.App
 
                         if (floor.Stations[0].ClampOri == ClampOri.A ^ Option.LayoutType == 1)
                         {
-                            this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {2}Pa {1}℃",
-                                floor.Stations[0].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5),
-                                floor.Stations[1].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5),
+                            this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {1}Pa",
+                                floor.Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5),
                                 floor.Vacuum.ToString("#0").PadLeft(6));
                         }
                         else
                         {
-                            this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {2}Pa {1}℃",
-                                floor.Stations[1].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5),
-                                floor.Stations[0].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5),
+                            this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {1}Pa",
+                                floor.Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5),
                                 floor.Vacuum.ToString("#0").PadLeft(6));
                         }
 
@@ -1963,15 +1961,15 @@ namespace BakBattery.Baking.App
                             {
                                 station.FloorStatus = FloorStatus.无盘;
                             }
-                            else if (station.IsBakeFinished && station.ClampStatus != ClampStatus.无夹具 && !floor.IsBaking)
+                            else if (floor.IsBakeFinished && station.ClampStatus != ClampStatus.无夹具 && !floor.IsBaking)
                             {
                                 station.FloorStatus = FloorStatus.待出; station.ClampStatus = ClampStatus.满夹具;
                             }
-                            else if (!station.IsBakeFinished && station.ClampStatus == ClampStatus.满夹具 && !floor.IsBaking)
+                            else if (!floor.IsBakeFinished && station.ClampStatus == ClampStatus.满夹具 && !floor.IsBaking)
                             {
                                 station.FloorStatus = FloorStatus.待烤;
                             }
-                            else if (!station.IsBakeFinished && station.ClampStatus == ClampStatus.空夹具 && !floor.IsBaking)
+                            else if (!floor.IsBakeFinished && station.ClampStatus == ClampStatus.空夹具 && !floor.IsBaking)
                             {
                                 station.FloorStatus = FloorStatus.空盘;
                             }
@@ -2954,6 +2952,13 @@ namespace BakBattery.Baking.App
                     }
                 }
             }
+
+            if ((CheckBox)sender == cbClampScanerIsEnable)
+            {
+                Current.ClampScaner.IsEnable = cbClampScanerIsEnable.Checked;
+                return;
+            }
+
         }
 
         private void cbOvenIsEnable_CheckedChanged(object sender, EventArgs e)

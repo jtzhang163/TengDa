@@ -49,11 +49,7 @@ namespace BakBattery.Baking
         {
             get
             {
-                return runRemainMinutes;
-            }
-            set
-            {
-                runRemainMinutes = value;
+                return RunMinutesSet - RunMinutes;
             }
         }
         private int runMinutes = 0;
@@ -183,6 +179,45 @@ namespace BakBattery.Baking
         }
 
         public DoorStatus DoorStatusNotFinal = DoorStatus.未知;
+
+        [ReadOnly(true), Description("是否烘烤完成（分辨是待出还是待烤状态）")]
+        [DisplayName("是否烘烤完成")]
+        public bool IsBakeFinished { get; set; }
+
+
+        public TriLamp triLamp = TriLamp.Unknown;
+        [ReadOnly(true), DisplayName("三色灯")]
+        public TriLamp TriLamp
+        {
+            get
+            {
+                if (!this.IsAlive)
+                {
+                    triLamp = TriLamp.Unknown;
+                }
+                return triLamp;
+            }
+            set
+            {
+                triLamp = value;
+            }
+        }
+
+
+        [ReadOnly(true)]
+        [DisplayName("温度数组")]
+        public float[] Temperatures
+        {
+            get
+            {
+                return temperatures;
+            }
+            set
+            {
+                temperatures = value;
+            }
+        }
+        private float[] temperatures = new float[Option.TemperaturePointCount];
 
 
         public bool DoorIsOpenning = false;

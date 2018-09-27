@@ -25,7 +25,7 @@ namespace BakBattery.Baking
             }
         }
         public int Id { get; set; }
-        public int StationId { get; set; }
+        public int FloorId { get; set; }
         public int RunMinutes { get; set; }
         public int UserId { get; set; }
         public float V1 { get; set; }
@@ -37,7 +37,7 @@ namespace BakBattery.Baking
             sb.Append(string.Format("INSERT INTO [dbo].[{0}] ", TableName));
             sb.Append("([StationId], [T1], [T2], [T3], [T4], [T5], [T6], [T7], [T8], [V1], [RunMinutes], [Time], [UserId]) ");
             sb.Append(string.Format("VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, '{11}', {12})",
-               addTVD.StationId,
+               addTVD.FloorId,
                addTVD.T[0], addTVD.T[1], addTVD.T[2], addTVD.T[3], addTVD.T[4], addTVD.T[5], addTVD.T[6], addTVD.T[7],
                addTVD.V1, addTVD.RunMinutes, DateTime.Now, addTVD.UserId));
             return Database.Insert(sb.ToString(), out msg);
@@ -74,7 +74,7 @@ namespace BakBattery.Baking
                     sbT1.Append(string.Format(",{0}", addTVD.T[i]));
                 }
 
-                sb.Append(string.Format("({0} {1}, {2}, {3}, '{4}', {5}),", addTVD.StationId, sbT1, addTVD.V1, addTVD.RunMinutes, DateTime.Now, addTVD.UserId));
+                sb.Append(string.Format("({0} {1}, {2}, {3}, '{4}', {5}),", addTVD.FloorId, sbT1, addTVD.V1, addTVD.RunMinutes, DateTime.Now, addTVD.UserId));
             }
 
             return Database.NonQuery(sb.ToString().TrimEnd(','), out msg);
@@ -92,16 +92,15 @@ namespace BakBattery.Baking
                     {
                         if (Current.ovens[i].Floors[j].IsBaking)
                         {
-                            for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
-                            {
-                                TVD tvd = new TVD();
-                                tvd.StationId = Current.ovens[i].Floors[j].Stations[k].Id;
-                                tvd.UserId = TengDa.WF.Current.user.Id;
-                                tvd.RunMinutes = Current.ovens[i].Floors[j].RunMinutes;
-                                tvd.T = Current.ovens[i].Floors[j].Stations[k].Temperatures;
-                                tvd.V1 = Current.ovens[i].Floors[j].Vacuum;
-                                TVDs.Add(tvd);
-                            }
+
+                            TVD tvd = new TVD();
+                            tvd.FloorId = Current.ovens[i].Floors[j].Id;
+                            tvd.UserId = TengDa.WF.Current.user.Id;
+                            tvd.RunMinutes = Current.ovens[i].Floors[j].RunMinutes;
+                            tvd.T = Current.ovens[i].Floors[j].Temperatures;
+                            tvd.V1 = Current.ovens[i].Floors[j].Vacuum;
+                            TVDs.Add(tvd);
+
                         }
                     }
                 }
