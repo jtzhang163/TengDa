@@ -41,7 +41,6 @@ namespace BakBattery.Baking
                 runMinutes = value;
             }
         }
-        private int runRemainMinutes = 0;
 
         [ReadOnly(true), Description("剩余时间，单位：min")]
         [DisplayName("剩余时间")]
@@ -206,6 +205,11 @@ namespace BakBattery.Baking
             }
         }
         private float[] temperatures = new float[Option.TemperaturePointCount];
+
+
+        #region 绘制温度曲线相关
+        public List<float>[] sampledDatas = new List<float>[Option.TemperaturePointCount];//采样数据1
+        #endregion
 
 
         public bool DoorIsOpenning = false;
@@ -381,6 +385,10 @@ namespace BakBattery.Baking
             this.number = rowInfo["Number"].ToString();
             this.OvenId = TengDa._Convert.StrToInt(rowInfo["OvenId"].ToString(), -1);
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
+            for (int i = 0; i < Option.TemperaturePointCount; i++)
+            {
+                this.sampledDatas[i] = new List<float>();
+            }
         }
         #endregion
 

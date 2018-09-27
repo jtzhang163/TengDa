@@ -30,17 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSystem));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbTime = new System.Windows.Forms.Label();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabMainUser = new System.Windows.Forms.TabPage();
@@ -333,24 +333,17 @@
             this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.tableLayoutPanel32 = new System.Windows.Forms.TableLayoutPanel();
-            this.cbCurveSelectedStation = new System.Windows.Forms.ComboBox();
             this.label51 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
             this.cbCurveSelectedFloor = new System.Windows.Forms.ComboBox();
             this.label52 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
             this.cbCurveSelectedOven = new System.Windows.Forms.ComboBox();
             this.cbTemperAll = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel31 = new System.Windows.Forms.TableLayoutPanel();
-            this.cbTemperIndex35 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex15 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex20 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex05 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex10 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex25 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex40 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex45 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex30 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex01 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex02 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex03 = new System.Windows.Forms.CheckBox();
@@ -367,31 +360,6 @@
             this.cbTemperIndex17 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex18 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex19 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex21 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex22 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex23 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex24 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex26 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex27 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex28 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex29 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex31 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex32 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex33 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex34 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex36 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex37 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex38 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex39 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex41 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex46 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex47 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex48 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex49 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex42 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex43 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex44 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex50 = new System.Windows.Forms.CheckBox();
             this.tabContentPageTVQuery = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvTV = new System.Windows.Forms.DataGridView();
@@ -406,7 +374,7 @@
             this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.dtpStart = new System.Windows.Forms.DateTimePicker();
-            this.cbStations = new System.Windows.Forms.ComboBox();
+            this.cbFloors = new System.Windows.Forms.ComboBox();
             this.tabContentPageTips = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -495,70 +463,70 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.groupBoxTerminal = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
-            this.tbFeederStatus02 = new System.Windows.Forms.TextBox();
             this.tbBlankerStatus01 = new System.Windows.Forms.TextBox();
-            this.pbFeederLamp02 = new System.Windows.Forms.PictureBox();
-            this.pbBlankerLamp01 = new System.Windows.Forms.PictureBox();
-            this.lbFeederNameN02 = new System.Windows.Forms.Label();
-            this.lbBlankerNameN01 = new System.Windows.Forms.Label();
-            this.cbFeederIsEnable02 = new System.Windows.Forms.CheckBox();
+            this.tbClampScanerStatus = new System.Windows.Forms.TextBox();
             this.lbMesNameN = new System.Windows.Forms.Label();
-            this.cbBlankerIsEnable01 = new System.Windows.Forms.CheckBox();
+            this.pbClampScanerLamp = new System.Windows.Forms.PictureBox();
+            this.cbClampScanerIsEnable = new System.Windows.Forms.CheckBox();
+            this.lbClampScanerNameN = new System.Windows.Forms.Label();
             this.tbMesStatus = new System.Windows.Forms.TextBox();
             this.pbMesLamp = new System.Windows.Forms.PictureBox();
             this.cbMesIsEnable = new System.Windows.Forms.CheckBox();
             this.cbFeederIsEnable01 = new System.Windows.Forms.CheckBox();
             this.lbFeederNameN01 = new System.Windows.Forms.Label();
+            this.lbBlankerNameN01 = new System.Windows.Forms.Label();
+            this.cbBlankerIsEnable01 = new System.Windows.Forms.CheckBox();
             this.tbFeederStatus01 = new System.Windows.Forms.TextBox();
             this.pbFeederLamp01 = new System.Windows.Forms.PictureBox();
-            this.cbClampScanerIsEnable = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable01 = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable02 = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable03 = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable04 = new System.Windows.Forms.CheckBox();
-            this.cbRobotIsEnable = new System.Windows.Forms.CheckBox();
-            this.cbScanerIsEnable0201 = new System.Windows.Forms.CheckBox();
-            this.pbClampScanerLamp = new System.Windows.Forms.PictureBox();
             this.pbOvenLamp01 = new System.Windows.Forms.PictureBox();
             this.pbOvenLamp02 = new System.Windows.Forms.PictureBox();
             this.pbOvenLamp03 = new System.Windows.Forms.PictureBox();
             this.pbOvenLamp04 = new System.Windows.Forms.PictureBox();
-            this.pbRobotLamp = new System.Windows.Forms.PictureBox();
-            this.pbScanerLamp0201 = new System.Windows.Forms.PictureBox();
-            this.tbClampScanerStatus = new System.Windows.Forms.TextBox();
             this.tbOvenStatus01 = new System.Windows.Forms.TextBox();
             this.tbOvenStatus02 = new System.Windows.Forms.TextBox();
             this.tbOvenStatus03 = new System.Windows.Forms.TextBox();
             this.tbOvenStatus04 = new System.Windows.Forms.TextBox();
-            this.tbRobotStatus = new System.Windows.Forms.TextBox();
-            this.tbScanerStatus0201 = new System.Windows.Forms.TextBox();
-            this.lbClampScanerNameN = new System.Windows.Forms.Label();
             this.lbOvenNameN01 = new System.Windows.Forms.Label();
             this.lbOvenNameN02 = new System.Windows.Forms.Label();
             this.lbOvenNameN03 = new System.Windows.Forms.Label();
             this.lbOvenNameN04 = new System.Windows.Forms.Label();
+            this.cbFeederIsEnable02 = new System.Windows.Forms.CheckBox();
+            this.lbFeederNameN02 = new System.Windows.Forms.Label();
+            this.pbFeederLamp02 = new System.Windows.Forms.PictureBox();
+            this.tbFeederStatus02 = new System.Windows.Forms.TextBox();
+            this.cbRobotIsEnable = new System.Windows.Forms.CheckBox();
             this.lbRobotNameN = new System.Windows.Forms.Label();
-            this.lbScanerNameN0201 = new System.Windows.Forms.Label();
-            this.cbScanerIsEnable0101 = new System.Windows.Forms.CheckBox();
+            this.pbRobotLamp = new System.Windows.Forms.PictureBox();
+            this.tbRobotStatus = new System.Windows.Forms.TextBox();
             this.cbOvenIsEnable05 = new System.Windows.Forms.CheckBox();
-            this.cbOvenIsEnable06 = new System.Windows.Forms.CheckBox();
-            this.cbOvenIsEnable07 = new System.Windows.Forms.CheckBox();
-            this.cbOvenIsEnable08 = new System.Windows.Forms.CheckBox();
-            this.lbScanerNameN0101 = new System.Windows.Forms.Label();
             this.lbOvenNameN05 = new System.Windows.Forms.Label();
-            this.lbOvenNameN06 = new System.Windows.Forms.Label();
-            this.lbOvenNameN07 = new System.Windows.Forms.Label();
-            this.lbOvenNameN08 = new System.Windows.Forms.Label();
-            this.pbScanerLamp0101 = new System.Windows.Forms.PictureBox();
             this.pbOvenLamp05 = new System.Windows.Forms.PictureBox();
-            this.pbOvenLamp06 = new System.Windows.Forms.PictureBox();
-            this.pbOvenLamp07 = new System.Windows.Forms.PictureBox();
-            this.pbOvenLamp08 = new System.Windows.Forms.PictureBox();
-            this.tbScanerStatus0101 = new System.Windows.Forms.TextBox();
             this.tbOvenStatus05 = new System.Windows.Forms.TextBox();
+            this.cbOvenIsEnable06 = new System.Windows.Forms.CheckBox();
+            this.lbOvenNameN06 = new System.Windows.Forms.Label();
+            this.pbOvenLamp06 = new System.Windows.Forms.PictureBox();
             this.tbOvenStatus06 = new System.Windows.Forms.TextBox();
+            this.cbOvenIsEnable07 = new System.Windows.Forms.CheckBox();
+            this.lbOvenNameN07 = new System.Windows.Forms.Label();
+            this.pbOvenLamp07 = new System.Windows.Forms.PictureBox();
             this.tbOvenStatus07 = new System.Windows.Forms.TextBox();
+            this.cbOvenIsEnable08 = new System.Windows.Forms.CheckBox();
+            this.lbOvenNameN08 = new System.Windows.Forms.Label();
+            this.pbOvenLamp08 = new System.Windows.Forms.PictureBox();
             this.tbOvenStatus08 = new System.Windows.Forms.TextBox();
+            this.cbScanerIsEnable0101 = new System.Windows.Forms.CheckBox();
+            this.lbScanerNameN0101 = new System.Windows.Forms.Label();
+            this.pbScanerLamp0101 = new System.Windows.Forms.PictureBox();
+            this.tbScanerStatus0101 = new System.Windows.Forms.TextBox();
+            this.pbBlankerLamp01 = new System.Windows.Forms.PictureBox();
+            this.cbScanerIsEnable0201 = new System.Windows.Forms.CheckBox();
+            this.lbScanerNameN0201 = new System.Windows.Forms.Label();
+            this.pbScanerLamp0201 = new System.Windows.Forms.PictureBox();
+            this.tbScanerStatus0201 = new System.Windows.Forms.TextBox();
             this.lbRunStatus = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -722,22 +690,22 @@
             this.tableLayoutPanel24.SuspendLayout();
             this.groupBoxTerminal.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFeederLamp02)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerLamp01)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbClampScanerLamp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMesLamp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFeederLamp01)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbClampScanerLamp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp01)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp02)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp03)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp04)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFeederLamp02)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRobotLamp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0201)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0101)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp05)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp06)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp07)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp08)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0101)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerLamp01)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0201)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -5119,9 +5087,7 @@
             this.tableLayoutPanel32.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.660132F));
             this.tableLayoutPanel32.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.86056F));
             this.tableLayoutPanel32.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.56102F));
-            this.tableLayoutPanel32.Controls.Add(this.cbCurveSelectedStation, 6, 0);
             this.tableLayoutPanel32.Controls.Add(this.label51, 0, 0);
-            this.tableLayoutPanel32.Controls.Add(this.label57, 5, 0);
             this.tableLayoutPanel32.Controls.Add(this.cbCurveSelectedFloor, 4, 0);
             this.tableLayoutPanel32.Controls.Add(this.label52, 1, 0);
             this.tableLayoutPanel32.Controls.Add(this.label53, 3, 0);
@@ -5136,18 +5102,6 @@
             this.tableLayoutPanel32.Size = new System.Drawing.Size(962, 31);
             this.tableLayoutPanel32.TabIndex = 11;
             // 
-            // cbCurveSelectedStation
-            // 
-            this.cbCurveSelectedStation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbCurveSelectedStation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCurveSelectedStation.FormattingEnabled = true;
-            this.cbCurveSelectedStation.Location = new System.Drawing.Point(575, 5);
-            this.cbCurveSelectedStation.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.cbCurveSelectedStation.Name = "cbCurveSelectedStation";
-            this.cbCurveSelectedStation.Size = new System.Drawing.Size(120, 20);
-            this.cbCurveSelectedStation.TabIndex = 6;
-            this.cbCurveSelectedStation.SelectedIndexChanged += new System.EventHandler(this.cbCurveSelected_SelectedIndexChanged);
-            // 
             // label51
             // 
             this.label51.AutoSize = true;
@@ -5159,18 +5113,6 @@
             this.label51.TabIndex = 0;
             this.label51.Text = "选择烤箱工位";
             this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label57.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label57.Location = new System.Drawing.Point(511, 0);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(58, 31);
-            this.label57.TabIndex = 3;
-            this.label57.Text = "工位:";
-            this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbCurveSelectedFloor
             // 
@@ -5236,73 +5178,37 @@
             // tableLayoutPanel31
             // 
             this.tableLayoutPanel31.BackColor = System.Drawing.SystemColors.Control;
-            this.tableLayoutPanel31.ColumnCount = 10;
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex35, 0, 4);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex15, 0, 4);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex20, 0, 4);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex05, 0, 4);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex10, 0, 4);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex25, 0, 4);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex40, 0, 4);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex45, 0, 4);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex30, 0, 4);
+            this.tableLayoutPanel31.ColumnCount = 5;
+            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex01, 0, 0);
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex02, 0, 1);
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex03, 0, 2);
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex04, 0, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex06, 1, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex07, 1, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex08, 1, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex09, 1, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex11, 2, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex12, 2, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex13, 2, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex14, 2, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex16, 3, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex17, 3, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex18, 3, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex19, 3, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex21, 4, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex22, 4, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex23, 4, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex24, 4, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex26, 5, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex27, 5, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex28, 5, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex29, 5, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex31, 6, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex32, 6, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex33, 6, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex34, 6, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex36, 7, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex37, 7, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex38, 7, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex39, 7, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex41, 8, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex46, 9, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex47, 9, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex48, 9, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex49, 9, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex42, 8, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex43, 8, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex44, 8, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex50, 9, 4);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex05, 1, 0);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex06, 1, 1);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex07, 1, 2);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex08, 1, 3);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex09, 2, 0);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex10, 2, 1);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex11, 2, 2);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex12, 2, 3);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex13, 3, 0);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex14, 3, 1);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex15, 3, 2);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex16, 3, 3);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex18, 4, 1);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex17, 4, 0);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex19, 4, 2);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex20, 4, 3);
             this.tableLayoutPanel31.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel31.Location = new System.Drawing.Point(40, 451);
             this.tableLayoutPanel31.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel31.Name = "tableLayoutPanel31";
-            this.tableLayoutPanel31.RowCount = 5;
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel31.RowCount = 4;
             this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -5310,27 +5216,14 @@
             this.tableLayoutPanel31.Size = new System.Drawing.Size(962, 127);
             this.tableLayoutPanel31.TabIndex = 10;
             // 
-            // cbTemperIndex35
-            // 
-            this.cbTemperIndex35.AutoSize = true;
-            this.cbTemperIndex35.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex35.Location = new System.Drawing.Point(576, 100);
-            this.cbTemperIndex35.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex35.Name = "cbTemperIndex35";
-            this.cbTemperIndex35.Size = new System.Drawing.Size(96, 27);
-            this.cbTemperIndex35.TabIndex = 57;
-            this.cbTemperIndex35.Text = "主控01:000℃";
-            this.cbTemperIndex35.UseVisualStyleBackColor = true;
-            this.cbTemperIndex35.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
             // cbTemperIndex15
             // 
             this.cbTemperIndex15.AutoSize = true;
             this.cbTemperIndex15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex15.Location = new System.Drawing.Point(192, 100);
+            this.cbTemperIndex15.Location = new System.Drawing.Point(576, 62);
             this.cbTemperIndex15.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex15.Name = "cbTemperIndex15";
-            this.cbTemperIndex15.Size = new System.Drawing.Size(96, 27);
+            this.cbTemperIndex15.Size = new System.Drawing.Size(192, 31);
             this.cbTemperIndex15.TabIndex = 56;
             this.cbTemperIndex15.Text = "主控01:000℃";
             this.cbTemperIndex15.UseVisualStyleBackColor = true;
@@ -5340,10 +5233,10 @@
             // 
             this.cbTemperIndex20.AutoSize = true;
             this.cbTemperIndex20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex20.Location = new System.Drawing.Point(288, 100);
+            this.cbTemperIndex20.Location = new System.Drawing.Point(768, 93);
             this.cbTemperIndex20.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex20.Name = "cbTemperIndex20";
-            this.cbTemperIndex20.Size = new System.Drawing.Size(96, 27);
+            this.cbTemperIndex20.Size = new System.Drawing.Size(194, 34);
             this.cbTemperIndex20.TabIndex = 55;
             this.cbTemperIndex20.Text = "主控01:000℃";
             this.cbTemperIndex20.UseVisualStyleBackColor = true;
@@ -5353,10 +5246,10 @@
             // 
             this.cbTemperIndex05.AutoSize = true;
             this.cbTemperIndex05.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex05.Location = new System.Drawing.Point(0, 100);
+            this.cbTemperIndex05.Location = new System.Drawing.Point(192, 0);
             this.cbTemperIndex05.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex05.Name = "cbTemperIndex05";
-            this.cbTemperIndex05.Size = new System.Drawing.Size(96, 27);
+            this.cbTemperIndex05.Size = new System.Drawing.Size(192, 31);
             this.cbTemperIndex05.TabIndex = 54;
             this.cbTemperIndex05.Text = "主控01:000℃";
             this.cbTemperIndex05.UseVisualStyleBackColor = true;
@@ -5366,66 +5259,14 @@
             // 
             this.cbTemperIndex10.AutoSize = true;
             this.cbTemperIndex10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex10.Location = new System.Drawing.Point(96, 100);
+            this.cbTemperIndex10.Location = new System.Drawing.Point(384, 31);
             this.cbTemperIndex10.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex10.Name = "cbTemperIndex10";
-            this.cbTemperIndex10.Size = new System.Drawing.Size(96, 27);
+            this.cbTemperIndex10.Size = new System.Drawing.Size(192, 31);
             this.cbTemperIndex10.TabIndex = 53;
             this.cbTemperIndex10.Text = "主控01:000℃";
             this.cbTemperIndex10.UseVisualStyleBackColor = true;
             this.cbTemperIndex10.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex25
-            // 
-            this.cbTemperIndex25.AutoSize = true;
-            this.cbTemperIndex25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex25.Location = new System.Drawing.Point(384, 100);
-            this.cbTemperIndex25.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex25.Name = "cbTemperIndex25";
-            this.cbTemperIndex25.Size = new System.Drawing.Size(96, 27);
-            this.cbTemperIndex25.TabIndex = 52;
-            this.cbTemperIndex25.Text = "主控01:000℃";
-            this.cbTemperIndex25.UseVisualStyleBackColor = true;
-            this.cbTemperIndex25.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex40
-            // 
-            this.cbTemperIndex40.AutoSize = true;
-            this.cbTemperIndex40.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex40.Location = new System.Drawing.Point(672, 100);
-            this.cbTemperIndex40.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex40.Name = "cbTemperIndex40";
-            this.cbTemperIndex40.Size = new System.Drawing.Size(96, 27);
-            this.cbTemperIndex40.TabIndex = 48;
-            this.cbTemperIndex40.Text = "主控01:000℃";
-            this.cbTemperIndex40.UseVisualStyleBackColor = true;
-            this.cbTemperIndex40.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex45
-            // 
-            this.cbTemperIndex45.AutoSize = true;
-            this.cbTemperIndex45.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex45.Location = new System.Drawing.Point(768, 100);
-            this.cbTemperIndex45.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex45.Name = "cbTemperIndex45";
-            this.cbTemperIndex45.Size = new System.Drawing.Size(96, 27);
-            this.cbTemperIndex45.TabIndex = 36;
-            this.cbTemperIndex45.Text = "主控01:000℃";
-            this.cbTemperIndex45.UseVisualStyleBackColor = true;
-            this.cbTemperIndex45.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex30
-            // 
-            this.cbTemperIndex30.AutoSize = true;
-            this.cbTemperIndex30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex30.Location = new System.Drawing.Point(480, 100);
-            this.cbTemperIndex30.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex30.Name = "cbTemperIndex30";
-            this.cbTemperIndex30.Size = new System.Drawing.Size(96, 27);
-            this.cbTemperIndex30.TabIndex = 33;
-            this.cbTemperIndex30.Text = "主控01:000℃";
-            this.cbTemperIndex30.UseVisualStyleBackColor = true;
-            this.cbTemperIndex30.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
             // 
             // cbTemperIndex01
             // 
@@ -5435,7 +5276,7 @@
             this.cbTemperIndex01.Location = new System.Drawing.Point(0, 0);
             this.cbTemperIndex01.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex01.Name = "cbTemperIndex01";
-            this.cbTemperIndex01.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex01.Size = new System.Drawing.Size(192, 31);
             this.cbTemperIndex01.TabIndex = 8;
             this.cbTemperIndex01.Text = "主控01:000℃";
             this.cbTemperIndex01.UseVisualStyleBackColor = true;
@@ -5446,10 +5287,10 @@
             this.cbTemperIndex02.AutoSize = true;
             this.cbTemperIndex02.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbTemperIndex02.ForeColor = System.Drawing.Color.Fuchsia;
-            this.cbTemperIndex02.Location = new System.Drawing.Point(0, 25);
+            this.cbTemperIndex02.Location = new System.Drawing.Point(0, 31);
             this.cbTemperIndex02.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex02.Name = "cbTemperIndex02";
-            this.cbTemperIndex02.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex02.Size = new System.Drawing.Size(192, 31);
             this.cbTemperIndex02.TabIndex = 9;
             this.cbTemperIndex02.Text = "主控01:000℃";
             this.cbTemperIndex02.UseVisualStyleBackColor = true;
@@ -5459,10 +5300,10 @@
             // 
             this.cbTemperIndex03.AutoSize = true;
             this.cbTemperIndex03.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex03.Location = new System.Drawing.Point(0, 50);
+            this.cbTemperIndex03.Location = new System.Drawing.Point(0, 62);
             this.cbTemperIndex03.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex03.Name = "cbTemperIndex03";
-            this.cbTemperIndex03.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex03.Size = new System.Drawing.Size(192, 31);
             this.cbTemperIndex03.TabIndex = 10;
             this.cbTemperIndex03.Text = "主控01:000℃";
             this.cbTemperIndex03.UseVisualStyleBackColor = true;
@@ -5472,10 +5313,10 @@
             // 
             this.cbTemperIndex04.AutoSize = true;
             this.cbTemperIndex04.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex04.Location = new System.Drawing.Point(0, 75);
+            this.cbTemperIndex04.Location = new System.Drawing.Point(0, 93);
             this.cbTemperIndex04.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex04.Name = "cbTemperIndex04";
-            this.cbTemperIndex04.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex04.Size = new System.Drawing.Size(192, 34);
             this.cbTemperIndex04.TabIndex = 11;
             this.cbTemperIndex04.Text = "主控01:000℃";
             this.cbTemperIndex04.UseVisualStyleBackColor = true;
@@ -5485,10 +5326,10 @@
             // 
             this.cbTemperIndex06.AutoSize = true;
             this.cbTemperIndex06.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex06.Location = new System.Drawing.Point(96, 0);
+            this.cbTemperIndex06.Location = new System.Drawing.Point(192, 31);
             this.cbTemperIndex06.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex06.Name = "cbTemperIndex06";
-            this.cbTemperIndex06.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex06.Size = new System.Drawing.Size(192, 31);
             this.cbTemperIndex06.TabIndex = 13;
             this.cbTemperIndex06.Text = "主控01:000℃";
             this.cbTemperIndex06.UseVisualStyleBackColor = true;
@@ -5498,10 +5339,10 @@
             // 
             this.cbTemperIndex07.AutoSize = true;
             this.cbTemperIndex07.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex07.Location = new System.Drawing.Point(96, 25);
+            this.cbTemperIndex07.Location = new System.Drawing.Point(192, 62);
             this.cbTemperIndex07.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex07.Name = "cbTemperIndex07";
-            this.cbTemperIndex07.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex07.Size = new System.Drawing.Size(192, 31);
             this.cbTemperIndex07.TabIndex = 14;
             this.cbTemperIndex07.Text = "主控01:000℃";
             this.cbTemperIndex07.UseVisualStyleBackColor = true;
@@ -5511,10 +5352,10 @@
             // 
             this.cbTemperIndex08.AutoSize = true;
             this.cbTemperIndex08.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex08.Location = new System.Drawing.Point(96, 50);
+            this.cbTemperIndex08.Location = new System.Drawing.Point(192, 93);
             this.cbTemperIndex08.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex08.Name = "cbTemperIndex08";
-            this.cbTemperIndex08.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex08.Size = new System.Drawing.Size(192, 34);
             this.cbTemperIndex08.TabIndex = 15;
             this.cbTemperIndex08.Text = "主控01:000℃";
             this.cbTemperIndex08.UseVisualStyleBackColor = true;
@@ -5524,10 +5365,10 @@
             // 
             this.cbTemperIndex09.AutoSize = true;
             this.cbTemperIndex09.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex09.Location = new System.Drawing.Point(96, 75);
+            this.cbTemperIndex09.Location = new System.Drawing.Point(384, 0);
             this.cbTemperIndex09.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex09.Name = "cbTemperIndex09";
-            this.cbTemperIndex09.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex09.Size = new System.Drawing.Size(192, 31);
             this.cbTemperIndex09.TabIndex = 18;
             this.cbTemperIndex09.Text = "主控01:000℃";
             this.cbTemperIndex09.UseVisualStyleBackColor = true;
@@ -5537,10 +5378,10 @@
             // 
             this.cbTemperIndex11.AutoSize = true;
             this.cbTemperIndex11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex11.Location = new System.Drawing.Point(192, 0);
+            this.cbTemperIndex11.Location = new System.Drawing.Point(384, 62);
             this.cbTemperIndex11.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex11.Name = "cbTemperIndex11";
-            this.cbTemperIndex11.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex11.Size = new System.Drawing.Size(192, 31);
             this.cbTemperIndex11.TabIndex = 12;
             this.cbTemperIndex11.Text = "主控01:000℃";
             this.cbTemperIndex11.UseVisualStyleBackColor = true;
@@ -5550,10 +5391,10 @@
             // 
             this.cbTemperIndex12.AutoSize = true;
             this.cbTemperIndex12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex12.Location = new System.Drawing.Point(192, 25);
+            this.cbTemperIndex12.Location = new System.Drawing.Point(384, 93);
             this.cbTemperIndex12.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex12.Name = "cbTemperIndex12";
-            this.cbTemperIndex12.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex12.Size = new System.Drawing.Size(192, 34);
             this.cbTemperIndex12.TabIndex = 17;
             this.cbTemperIndex12.Text = "主控01:000℃";
             this.cbTemperIndex12.UseVisualStyleBackColor = true;
@@ -5563,10 +5404,10 @@
             // 
             this.cbTemperIndex13.AutoSize = true;
             this.cbTemperIndex13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex13.Location = new System.Drawing.Point(192, 50);
+            this.cbTemperIndex13.Location = new System.Drawing.Point(576, 0);
             this.cbTemperIndex13.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex13.Name = "cbTemperIndex13";
-            this.cbTemperIndex13.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex13.Size = new System.Drawing.Size(192, 31);
             this.cbTemperIndex13.TabIndex = 16;
             this.cbTemperIndex13.Text = "主控01:000℃";
             this.cbTemperIndex13.UseVisualStyleBackColor = true;
@@ -5576,10 +5417,10 @@
             // 
             this.cbTemperIndex14.AutoSize = true;
             this.cbTemperIndex14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex14.Location = new System.Drawing.Point(192, 75);
+            this.cbTemperIndex14.Location = new System.Drawing.Point(576, 31);
             this.cbTemperIndex14.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex14.Name = "cbTemperIndex14";
-            this.cbTemperIndex14.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex14.Size = new System.Drawing.Size(192, 31);
             this.cbTemperIndex14.TabIndex = 19;
             this.cbTemperIndex14.Text = "主控01:000℃";
             this.cbTemperIndex14.UseVisualStyleBackColor = true;
@@ -5589,10 +5430,10 @@
             // 
             this.cbTemperIndex16.AutoSize = true;
             this.cbTemperIndex16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex16.Location = new System.Drawing.Point(288, 0);
+            this.cbTemperIndex16.Location = new System.Drawing.Point(576, 93);
             this.cbTemperIndex16.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex16.Name = "cbTemperIndex16";
-            this.cbTemperIndex16.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex16.Size = new System.Drawing.Size(192, 34);
             this.cbTemperIndex16.TabIndex = 21;
             this.cbTemperIndex16.Text = "主控01:000℃";
             this.cbTemperIndex16.UseVisualStyleBackColor = true;
@@ -5602,10 +5443,10 @@
             // 
             this.cbTemperIndex17.AutoSize = true;
             this.cbTemperIndex17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex17.Location = new System.Drawing.Point(288, 25);
+            this.cbTemperIndex17.Location = new System.Drawing.Point(768, 0);
             this.cbTemperIndex17.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex17.Name = "cbTemperIndex17";
-            this.cbTemperIndex17.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex17.Size = new System.Drawing.Size(194, 31);
             this.cbTemperIndex17.TabIndex = 23;
             this.cbTemperIndex17.Text = "主控01:000℃";
             this.cbTemperIndex17.UseVisualStyleBackColor = true;
@@ -5615,10 +5456,10 @@
             // 
             this.cbTemperIndex18.AutoSize = true;
             this.cbTemperIndex18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex18.Location = new System.Drawing.Point(288, 50);
+            this.cbTemperIndex18.Location = new System.Drawing.Point(768, 31);
             this.cbTemperIndex18.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex18.Name = "cbTemperIndex18";
-            this.cbTemperIndex18.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex18.Size = new System.Drawing.Size(194, 31);
             this.cbTemperIndex18.TabIndex = 22;
             this.cbTemperIndex18.Text = "主控01:000℃";
             this.cbTemperIndex18.UseVisualStyleBackColor = true;
@@ -5628,339 +5469,14 @@
             // 
             this.cbTemperIndex19.AutoSize = true;
             this.cbTemperIndex19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex19.Location = new System.Drawing.Point(288, 75);
+            this.cbTemperIndex19.Location = new System.Drawing.Point(768, 62);
             this.cbTemperIndex19.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex19.Name = "cbTemperIndex19";
-            this.cbTemperIndex19.Size = new System.Drawing.Size(96, 25);
+            this.cbTemperIndex19.Size = new System.Drawing.Size(194, 31);
             this.cbTemperIndex19.TabIndex = 24;
             this.cbTemperIndex19.Text = "主控01:000℃";
             this.cbTemperIndex19.UseVisualStyleBackColor = true;
             this.cbTemperIndex19.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex21
-            // 
-            this.cbTemperIndex21.AutoSize = true;
-            this.cbTemperIndex21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex21.Location = new System.Drawing.Point(384, 0);
-            this.cbTemperIndex21.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex21.Name = "cbTemperIndex21";
-            this.cbTemperIndex21.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex21.TabIndex = 32;
-            this.cbTemperIndex21.Text = "主控01:000℃";
-            this.cbTemperIndex21.UseVisualStyleBackColor = true;
-            this.cbTemperIndex21.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex22
-            // 
-            this.cbTemperIndex22.AutoSize = true;
-            this.cbTemperIndex22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex22.Location = new System.Drawing.Point(384, 25);
-            this.cbTemperIndex22.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex22.Name = "cbTemperIndex22";
-            this.cbTemperIndex22.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex22.TabIndex = 25;
-            this.cbTemperIndex22.Text = "主控01:000℃";
-            this.cbTemperIndex22.UseVisualStyleBackColor = true;
-            this.cbTemperIndex22.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex23
-            // 
-            this.cbTemperIndex23.AutoSize = true;
-            this.cbTemperIndex23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex23.Location = new System.Drawing.Point(384, 50);
-            this.cbTemperIndex23.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex23.Name = "cbTemperIndex23";
-            this.cbTemperIndex23.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex23.TabIndex = 27;
-            this.cbTemperIndex23.Text = "主控01:000℃";
-            this.cbTemperIndex23.UseVisualStyleBackColor = true;
-            this.cbTemperIndex23.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex24
-            // 
-            this.cbTemperIndex24.AutoSize = true;
-            this.cbTemperIndex24.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex24.Location = new System.Drawing.Point(384, 75);
-            this.cbTemperIndex24.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex24.Name = "cbTemperIndex24";
-            this.cbTemperIndex24.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex24.TabIndex = 20;
-            this.cbTemperIndex24.Text = "主控01:000℃";
-            this.cbTemperIndex24.UseVisualStyleBackColor = true;
-            this.cbTemperIndex24.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex26
-            // 
-            this.cbTemperIndex26.AutoSize = true;
-            this.cbTemperIndex26.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex26.Location = new System.Drawing.Point(480, 0);
-            this.cbTemperIndex26.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex26.Name = "cbTemperIndex26";
-            this.cbTemperIndex26.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex26.TabIndex = 29;
-            this.cbTemperIndex26.Text = "主控01:000℃";
-            this.cbTemperIndex26.UseVisualStyleBackColor = true;
-            this.cbTemperIndex26.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex27
-            // 
-            this.cbTemperIndex27.AutoSize = true;
-            this.cbTemperIndex27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex27.Location = new System.Drawing.Point(480, 25);
-            this.cbTemperIndex27.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex27.Name = "cbTemperIndex27";
-            this.cbTemperIndex27.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex27.TabIndex = 30;
-            this.cbTemperIndex27.Text = "主控01:000℃";
-            this.cbTemperIndex27.UseVisualStyleBackColor = true;
-            this.cbTemperIndex27.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex28
-            // 
-            this.cbTemperIndex28.AutoSize = true;
-            this.cbTemperIndex28.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex28.Location = new System.Drawing.Point(480, 50);
-            this.cbTemperIndex28.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex28.Name = "cbTemperIndex28";
-            this.cbTemperIndex28.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex28.TabIndex = 26;
-            this.cbTemperIndex28.Text = "主控01:000℃";
-            this.cbTemperIndex28.UseVisualStyleBackColor = true;
-            this.cbTemperIndex28.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex29
-            // 
-            this.cbTemperIndex29.AutoSize = true;
-            this.cbTemperIndex29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex29.Location = new System.Drawing.Point(480, 75);
-            this.cbTemperIndex29.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex29.Name = "cbTemperIndex29";
-            this.cbTemperIndex29.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex29.TabIndex = 28;
-            this.cbTemperIndex29.Text = "主控01:000℃";
-            this.cbTemperIndex29.UseVisualStyleBackColor = true;
-            this.cbTemperIndex29.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex31
-            // 
-            this.cbTemperIndex31.AutoSize = true;
-            this.cbTemperIndex31.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex31.Location = new System.Drawing.Point(576, 0);
-            this.cbTemperIndex31.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex31.Name = "cbTemperIndex31";
-            this.cbTemperIndex31.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex31.TabIndex = 34;
-            this.cbTemperIndex31.Text = "主控01:000℃";
-            this.cbTemperIndex31.UseVisualStyleBackColor = true;
-            this.cbTemperIndex31.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex32
-            // 
-            this.cbTemperIndex32.AutoSize = true;
-            this.cbTemperIndex32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex32.Location = new System.Drawing.Point(576, 25);
-            this.cbTemperIndex32.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex32.Name = "cbTemperIndex32";
-            this.cbTemperIndex32.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex32.TabIndex = 31;
-            this.cbTemperIndex32.Text = "主控01:000℃";
-            this.cbTemperIndex32.UseVisualStyleBackColor = true;
-            this.cbTemperIndex32.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex33
-            // 
-            this.cbTemperIndex33.AutoSize = true;
-            this.cbTemperIndex33.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex33.Location = new System.Drawing.Point(576, 50);
-            this.cbTemperIndex33.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex33.Name = "cbTemperIndex33";
-            this.cbTemperIndex33.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex33.TabIndex = 38;
-            this.cbTemperIndex33.Text = "主控01:000℃";
-            this.cbTemperIndex33.UseVisualStyleBackColor = true;
-            this.cbTemperIndex33.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex34
-            // 
-            this.cbTemperIndex34.AutoSize = true;
-            this.cbTemperIndex34.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex34.Location = new System.Drawing.Point(576, 75);
-            this.cbTemperIndex34.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex34.Name = "cbTemperIndex34";
-            this.cbTemperIndex34.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex34.TabIndex = 37;
-            this.cbTemperIndex34.Text = "主控01:000℃";
-            this.cbTemperIndex34.UseVisualStyleBackColor = true;
-            this.cbTemperIndex34.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex36
-            // 
-            this.cbTemperIndex36.AutoSize = true;
-            this.cbTemperIndex36.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex36.Location = new System.Drawing.Point(672, 0);
-            this.cbTemperIndex36.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex36.Name = "cbTemperIndex36";
-            this.cbTemperIndex36.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex36.TabIndex = 39;
-            this.cbTemperIndex36.Text = "主控01:000℃";
-            this.cbTemperIndex36.UseVisualStyleBackColor = true;
-            this.cbTemperIndex36.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex37
-            // 
-            this.cbTemperIndex37.AutoSize = true;
-            this.cbTemperIndex37.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex37.Location = new System.Drawing.Point(672, 25);
-            this.cbTemperIndex37.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex37.Name = "cbTemperIndex37";
-            this.cbTemperIndex37.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex37.TabIndex = 40;
-            this.cbTemperIndex37.Text = "主控01:000℃";
-            this.cbTemperIndex37.UseVisualStyleBackColor = true;
-            this.cbTemperIndex37.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex38
-            // 
-            this.cbTemperIndex38.AutoSize = true;
-            this.cbTemperIndex38.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex38.Location = new System.Drawing.Point(672, 50);
-            this.cbTemperIndex38.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex38.Name = "cbTemperIndex38";
-            this.cbTemperIndex38.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex38.TabIndex = 35;
-            this.cbTemperIndex38.Text = "主控01:000℃";
-            this.cbTemperIndex38.UseVisualStyleBackColor = true;
-            this.cbTemperIndex38.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex39
-            // 
-            this.cbTemperIndex39.AutoSize = true;
-            this.cbTemperIndex39.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex39.Location = new System.Drawing.Point(672, 75);
-            this.cbTemperIndex39.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex39.Name = "cbTemperIndex39";
-            this.cbTemperIndex39.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex39.TabIndex = 42;
-            this.cbTemperIndex39.Text = "主控01:000℃";
-            this.cbTemperIndex39.UseVisualStyleBackColor = true;
-            this.cbTemperIndex39.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex41
-            // 
-            this.cbTemperIndex41.AutoSize = true;
-            this.cbTemperIndex41.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex41.Location = new System.Drawing.Point(768, 0);
-            this.cbTemperIndex41.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex41.Name = "cbTemperIndex41";
-            this.cbTemperIndex41.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex41.TabIndex = 41;
-            this.cbTemperIndex41.Text = "主控01:000℃";
-            this.cbTemperIndex41.UseVisualStyleBackColor = true;
-            this.cbTemperIndex41.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex46
-            // 
-            this.cbTemperIndex46.AutoSize = true;
-            this.cbTemperIndex46.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex46.Location = new System.Drawing.Point(864, 0);
-            this.cbTemperIndex46.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex46.Name = "cbTemperIndex46";
-            this.cbTemperIndex46.Size = new System.Drawing.Size(98, 25);
-            this.cbTemperIndex46.TabIndex = 44;
-            this.cbTemperIndex46.Text = "主控01:000℃";
-            this.cbTemperIndex46.UseVisualStyleBackColor = true;
-            this.cbTemperIndex46.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex47
-            // 
-            this.cbTemperIndex47.AutoSize = true;
-            this.cbTemperIndex47.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex47.Location = new System.Drawing.Point(864, 25);
-            this.cbTemperIndex47.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex47.Name = "cbTemperIndex47";
-            this.cbTemperIndex47.Size = new System.Drawing.Size(98, 25);
-            this.cbTemperIndex47.TabIndex = 46;
-            this.cbTemperIndex47.Text = "主控01:000℃";
-            this.cbTemperIndex47.UseVisualStyleBackColor = true;
-            this.cbTemperIndex47.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex48
-            // 
-            this.cbTemperIndex48.AutoSize = true;
-            this.cbTemperIndex48.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex48.Location = new System.Drawing.Point(864, 50);
-            this.cbTemperIndex48.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex48.Name = "cbTemperIndex48";
-            this.cbTemperIndex48.Size = new System.Drawing.Size(98, 25);
-            this.cbTemperIndex48.TabIndex = 45;
-            this.cbTemperIndex48.Text = "主控01:000℃";
-            this.cbTemperIndex48.UseVisualStyleBackColor = true;
-            this.cbTemperIndex48.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex49
-            // 
-            this.cbTemperIndex49.AutoSize = true;
-            this.cbTemperIndex49.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex49.Location = new System.Drawing.Point(864, 75);
-            this.cbTemperIndex49.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex49.Name = "cbTemperIndex49";
-            this.cbTemperIndex49.Size = new System.Drawing.Size(98, 25);
-            this.cbTemperIndex49.TabIndex = 47;
-            this.cbTemperIndex49.Text = "主控01:000℃";
-            this.cbTemperIndex49.UseVisualStyleBackColor = true;
-            this.cbTemperIndex49.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex42
-            // 
-            this.cbTemperIndex42.AutoSize = true;
-            this.cbTemperIndex42.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex42.Location = new System.Drawing.Point(768, 25);
-            this.cbTemperIndex42.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex42.Name = "cbTemperIndex42";
-            this.cbTemperIndex42.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex42.TabIndex = 43;
-            this.cbTemperIndex42.Text = "主控01:000℃";
-            this.cbTemperIndex42.UseVisualStyleBackColor = true;
-            this.cbTemperIndex42.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex43
-            // 
-            this.cbTemperIndex43.AutoSize = true;
-            this.cbTemperIndex43.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex43.Location = new System.Drawing.Point(768, 50);
-            this.cbTemperIndex43.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex43.Name = "cbTemperIndex43";
-            this.cbTemperIndex43.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex43.TabIndex = 50;
-            this.cbTemperIndex43.Text = "主控01:000℃";
-            this.cbTemperIndex43.UseVisualStyleBackColor = true;
-            this.cbTemperIndex43.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex44
-            // 
-            this.cbTemperIndex44.AutoSize = true;
-            this.cbTemperIndex44.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex44.Location = new System.Drawing.Point(768, 75);
-            this.cbTemperIndex44.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex44.Name = "cbTemperIndex44";
-            this.cbTemperIndex44.Size = new System.Drawing.Size(96, 25);
-            this.cbTemperIndex44.TabIndex = 49;
-            this.cbTemperIndex44.Text = "主控01:000℃";
-            this.cbTemperIndex44.UseVisualStyleBackColor = true;
-            this.cbTemperIndex44.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex50
-            // 
-            this.cbTemperIndex50.AutoSize = true;
-            this.cbTemperIndex50.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex50.Location = new System.Drawing.Point(864, 100);
-            this.cbTemperIndex50.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex50.Name = "cbTemperIndex50";
-            this.cbTemperIndex50.Size = new System.Drawing.Size(98, 27);
-            this.cbTemperIndex50.TabIndex = 51;
-            this.cbTemperIndex50.Text = "主控01:000℃";
-            this.cbTemperIndex50.UseVisualStyleBackColor = true;
-            this.cbTemperIndex50.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
             // 
             // tabContentPageTVQuery
             // 
@@ -5994,23 +5510,23 @@
             // 
             // dgvTV
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTV.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTV.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvTV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTV.Location = new System.Drawing.Point(52, 57);
             this.dgvTV.Margin = new System.Windows.Forms.Padding(0);
@@ -6088,7 +5604,7 @@
             this.tableLayoutPanel13.Controls.Add(this.label36, 0, 0);
             this.tableLayoutPanel13.Controls.Add(this.label35, 2, 0);
             this.tableLayoutPanel13.Controls.Add(this.dtpStart, 3, 0);
-            this.tableLayoutPanel13.Controls.Add(this.cbStations, 1, 0);
+            this.tableLayoutPanel13.Controls.Add(this.cbFloors, 1, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel13.Location = new System.Drawing.Point(55, 3);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
@@ -6164,16 +5680,16 @@
             this.dtpStart.Size = new System.Drawing.Size(151, 21);
             this.dtpStart.TabIndex = 10;
             // 
-            // cbStations
+            // cbFloors
             // 
-            this.cbStations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbStations.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbStations.FormattingEnabled = true;
-            this.cbStations.Location = new System.Drawing.Point(81, 15);
-            this.cbStations.Margin = new System.Windows.Forms.Padding(0);
-            this.cbStations.Name = "cbStations";
-            this.cbStations.Size = new System.Drawing.Size(91, 20);
-            this.cbStations.TabIndex = 19;
+            this.cbFloors.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbFloors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFloors.FormattingEnabled = true;
+            this.cbFloors.Location = new System.Drawing.Point(81, 15);
+            this.cbFloors.Margin = new System.Windows.Forms.Padding(0);
+            this.cbFloors.Name = "cbFloors";
+            this.cbFloors.Size = new System.Drawing.Size(91, 20);
+            this.cbFloors.TabIndex = 19;
             // 
             // tabContentPageTips
             // 
@@ -6533,35 +6049,35 @@
             // 
             // dgvTaskLog
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTaskLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTaskLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvTaskLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTaskLog.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTaskLog.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvTaskLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTaskLog.Location = new System.Drawing.Point(52, 57);
             this.dgvTaskLog.Margin = new System.Windows.Forms.Padding(0);
             this.dgvTaskLog.Name = "dgvTaskLog";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTaskLog.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTaskLog.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvTaskLog.RowTemplate.Height = 23;
             this.dgvTaskLog.Size = new System.Drawing.Size(937, 462);
             this.dgvTaskLog.TabIndex = 5;
@@ -6729,23 +6245,23 @@
             // 
             // dgvAlarm
             // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlarm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlarm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvAlarm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAlarm.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAlarm.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvAlarm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAlarm.Location = new System.Drawing.Point(52, 57);
             this.dgvAlarm.Margin = new System.Windows.Forms.Padding(0);
@@ -6942,23 +6458,23 @@
             // 
             // dgViewBattery
             // 
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgViewBattery.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgViewBattery.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgViewBattery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewBattery.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewBattery.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgViewBattery.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgViewBattery.Location = new System.Drawing.Point(52, 57);
             this.dgViewBattery.Margin = new System.Windows.Forms.Padding(0);
@@ -7129,23 +6645,23 @@
             // 
             // dgViewOper
             // 
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgViewOper.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgViewOper.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgViewOper.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewOper.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewOper.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgViewOper.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgViewOper.Location = new System.Drawing.Point(52, 57);
             this.dgViewOper.Margin = new System.Windows.Forms.Padding(0);
@@ -7446,20 +6962,6 @@
             this.tableLayoutPanel14.Size = new System.Drawing.Size(264, 355);
             this.tableLayoutPanel14.TabIndex = 26;
             // 
-            // tbFeederStatus02
-            // 
-            this.tbFeederStatus02.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbFeederStatus02.BackColor = System.Drawing.SystemColors.Control;
-            this.tbFeederStatus02.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbFeederStatus02.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbFeederStatus02.ForeColor = System.Drawing.Color.Green;
-            this.tbFeederStatus02.Location = new System.Drawing.Point(138, 25);
-            this.tbFeederStatus02.Name = "tbFeederStatus02";
-            this.tbFeederStatus02.ReadOnly = true;
-            this.tbFeederStatus02.Size = new System.Drawing.Size(123, 16);
-            this.tbFeederStatus02.TabIndex = 45;
-            this.tbFeederStatus02.Text = "未连接";
-            // 
             // tbBlankerStatus01
             // 
             this.tbBlankerStatus01.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -7474,64 +6976,19 @@
             this.tbBlankerStatus01.TabIndex = 45;
             this.tbBlankerStatus01.Text = "未连接";
             // 
-            // pbFeederLamp02
+            // tbClampScanerStatus
             // 
-            this.pbFeederLamp02.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbFeederLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbFeederLamp02.Image")));
-            this.pbFeederLamp02.Location = new System.Drawing.Point(116, 25);
-            this.pbFeederLamp02.Margin = new System.Windows.Forms.Padding(2);
-            this.pbFeederLamp02.Name = "pbFeederLamp02";
-            this.pbFeederLamp02.Size = new System.Drawing.Size(17, 15);
-            this.pbFeederLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbFeederLamp02.TabIndex = 38;
-            this.pbFeederLamp02.TabStop = false;
-            // 
-            // pbBlankerLamp01
-            // 
-            this.pbBlankerLamp01.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbBlankerLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbBlankerLamp01.Image")));
-            this.pbBlankerLamp01.Location = new System.Drawing.Point(116, 311);
-            this.pbBlankerLamp01.Margin = new System.Windows.Forms.Padding(2);
-            this.pbBlankerLamp01.Name = "pbBlankerLamp01";
-            this.pbBlankerLamp01.Size = new System.Drawing.Size(17, 16);
-            this.pbBlankerLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbBlankerLamp01.TabIndex = 38;
-            this.pbBlankerLamp01.TabStop = false;
-            // 
-            // lbFeederNameN02
-            // 
-            this.lbFeederNameN02.AutoSize = true;
-            this.lbFeederNameN02.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFeederNameN02.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFeederNameN02.Location = new System.Drawing.Point(32, 22);
-            this.lbFeederNameN02.Name = "lbFeederNameN02";
-            this.lbFeederNameN02.Size = new System.Drawing.Size(79, 22);
-            this.lbFeederNameN02.TabIndex = 66;
-            this.lbFeederNameN02.Text = "XXXXX";
-            this.lbFeederNameN02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbBlankerNameN01
-            // 
-            this.lbBlankerNameN01.AutoSize = true;
-            this.lbBlankerNameN01.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerNameN01.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBlankerNameN01.Location = new System.Drawing.Point(32, 308);
-            this.lbBlankerNameN01.Name = "lbBlankerNameN01";
-            this.lbBlankerNameN01.Size = new System.Drawing.Size(79, 22);
-            this.lbBlankerNameN01.TabIndex = 66;
-            this.lbBlankerNameN01.Text = "XXXXX";
-            this.lbBlankerNameN01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // cbFeederIsEnable02
-            // 
-            this.cbFeederIsEnable02.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cbFeederIsEnable02.AutoSize = true;
-            this.cbFeederIsEnable02.Location = new System.Drawing.Point(11, 26);
-            this.cbFeederIsEnable02.Name = "cbFeederIsEnable02";
-            this.cbFeederIsEnable02.Size = new System.Drawing.Size(15, 14);
-            this.cbFeederIsEnable02.TabIndex = 31;
-            this.cbFeederIsEnable02.UseVisualStyleBackColor = true;
-            this.cbFeederIsEnable02.CheckedChanged += new System.EventHandler(this.cbFeederIsEnable_CheckedChanged);
+            this.tbClampScanerStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbClampScanerStatus.BackColor = System.Drawing.SystemColors.Control;
+            this.tbClampScanerStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbClampScanerStatus.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbClampScanerStatus.ForeColor = System.Drawing.Color.Green;
+            this.tbClampScanerStatus.Location = new System.Drawing.Point(138, 91);
+            this.tbClampScanerStatus.Name = "tbClampScanerStatus";
+            this.tbClampScanerStatus.ReadOnly = true;
+            this.tbClampScanerStatus.Size = new System.Drawing.Size(123, 16);
+            this.tbClampScanerStatus.TabIndex = 40;
+            this.tbClampScanerStatus.Text = "未连接";
             // 
             // lbMesNameN
             // 
@@ -7545,16 +7002,40 @@
             this.lbMesNameN.Text = "XXXXX";
             this.lbMesNameN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // cbBlankerIsEnable01
+            // pbClampScanerLamp
             // 
-            this.cbBlankerIsEnable01.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cbBlankerIsEnable01.AutoSize = true;
-            this.cbBlankerIsEnable01.Location = new System.Drawing.Point(11, 312);
-            this.cbBlankerIsEnable01.Name = "cbBlankerIsEnable01";
-            this.cbBlankerIsEnable01.Size = new System.Drawing.Size(15, 14);
-            this.cbBlankerIsEnable01.TabIndex = 31;
-            this.cbBlankerIsEnable01.UseVisualStyleBackColor = true;
-            this.cbBlankerIsEnable01.CheckedChanged += new System.EventHandler(this.cbBlankerIsEnable_CheckedChanged);
+            this.pbClampScanerLamp.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbClampScanerLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbClampScanerLamp.Image")));
+            this.pbClampScanerLamp.Location = new System.Drawing.Point(116, 91);
+            this.pbClampScanerLamp.Margin = new System.Windows.Forms.Padding(2);
+            this.pbClampScanerLamp.Name = "pbClampScanerLamp";
+            this.pbClampScanerLamp.Size = new System.Drawing.Size(17, 15);
+            this.pbClampScanerLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbClampScanerLamp.TabIndex = 33;
+            this.pbClampScanerLamp.TabStop = false;
+            // 
+            // cbClampScanerIsEnable
+            // 
+            this.cbClampScanerIsEnable.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cbClampScanerIsEnable.AutoSize = true;
+            this.cbClampScanerIsEnable.Location = new System.Drawing.Point(11, 92);
+            this.cbClampScanerIsEnable.Name = "cbClampScanerIsEnable";
+            this.cbClampScanerIsEnable.Size = new System.Drawing.Size(15, 14);
+            this.cbClampScanerIsEnable.TabIndex = 26;
+            this.cbClampScanerIsEnable.UseVisualStyleBackColor = true;
+            this.cbClampScanerIsEnable.CheckedChanged += new System.EventHandler(this.cbScanerIsEnable_CheckedChanged);
+            // 
+            // lbClampScanerNameN
+            // 
+            this.lbClampScanerNameN.AutoSize = true;
+            this.lbClampScanerNameN.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbClampScanerNameN.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbClampScanerNameN.Location = new System.Drawing.Point(32, 88);
+            this.lbClampScanerNameN.Name = "lbClampScanerNameN";
+            this.lbClampScanerNameN.Size = new System.Drawing.Size(79, 22);
+            this.lbClampScanerNameN.TabIndex = 47;
+            this.lbClampScanerNameN.Text = "XXXXXX";
+            this.lbClampScanerNameN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tbMesStatus
             // 
@@ -7616,6 +7097,29 @@
             this.lbFeederNameN01.Text = "XXXXX";
             this.lbFeederNameN01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lbBlankerNameN01
+            // 
+            this.lbBlankerNameN01.AutoSize = true;
+            this.lbBlankerNameN01.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbBlankerNameN01.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBlankerNameN01.Location = new System.Drawing.Point(32, 308);
+            this.lbBlankerNameN01.Name = "lbBlankerNameN01";
+            this.lbBlankerNameN01.Size = new System.Drawing.Size(79, 22);
+            this.lbBlankerNameN01.TabIndex = 66;
+            this.lbBlankerNameN01.Text = "XXXXX";
+            this.lbBlankerNameN01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cbBlankerIsEnable01
+            // 
+            this.cbBlankerIsEnable01.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cbBlankerIsEnable01.AutoSize = true;
+            this.cbBlankerIsEnable01.Location = new System.Drawing.Point(11, 312);
+            this.cbBlankerIsEnable01.Name = "cbBlankerIsEnable01";
+            this.cbBlankerIsEnable01.Size = new System.Drawing.Size(15, 14);
+            this.cbBlankerIsEnable01.TabIndex = 31;
+            this.cbBlankerIsEnable01.UseVisualStyleBackColor = true;
+            this.cbBlankerIsEnable01.CheckedChanged += new System.EventHandler(this.cbBlankerIsEnable_CheckedChanged);
+            // 
             // tbFeederStatus01
             // 
             this.tbFeederStatus01.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -7641,17 +7145,6 @@
             this.pbFeederLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbFeederLamp01.TabIndex = 3;
             this.pbFeederLamp01.TabStop = false;
-            // 
-            // cbClampScanerIsEnable
-            // 
-            this.cbClampScanerIsEnable.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cbClampScanerIsEnable.AutoSize = true;
-            this.cbClampScanerIsEnable.Location = new System.Drawing.Point(11, 92);
-            this.cbClampScanerIsEnable.Name = "cbClampScanerIsEnable";
-            this.cbClampScanerIsEnable.Size = new System.Drawing.Size(15, 14);
-            this.cbClampScanerIsEnable.TabIndex = 26;
-            this.cbClampScanerIsEnable.UseVisualStyleBackColor = true;
-            this.cbClampScanerIsEnable.CheckedChanged += new System.EventHandler(this.cbScanerIsEnable_CheckedChanged);
             // 
             // cbOvenIsEnable01
             // 
@@ -7696,40 +7189,6 @@
             this.cbOvenIsEnable04.TabIndex = 30;
             this.cbOvenIsEnable04.UseVisualStyleBackColor = true;
             this.cbOvenIsEnable04.CheckedChanged += new System.EventHandler(this.cbOvenIsEnable_CheckedChanged);
-            // 
-            // cbRobotIsEnable
-            // 
-            this.cbRobotIsEnable.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cbRobotIsEnable.AutoSize = true;
-            this.cbRobotIsEnable.Location = new System.Drawing.Point(11, 114);
-            this.cbRobotIsEnable.Name = "cbRobotIsEnable";
-            this.cbRobotIsEnable.Size = new System.Drawing.Size(15, 14);
-            this.cbRobotIsEnable.TabIndex = 31;
-            this.cbRobotIsEnable.UseVisualStyleBackColor = true;
-            this.cbRobotIsEnable.CheckedChanged += new System.EventHandler(this.cbRobotIsEnable_CheckedChanged);
-            // 
-            // cbScanerIsEnable0201
-            // 
-            this.cbScanerIsEnable0201.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cbScanerIsEnable0201.AutoSize = true;
-            this.cbScanerIsEnable0201.Location = new System.Drawing.Point(11, 70);
-            this.cbScanerIsEnable0201.Name = "cbScanerIsEnable0201";
-            this.cbScanerIsEnable0201.Size = new System.Drawing.Size(15, 14);
-            this.cbScanerIsEnable0201.TabIndex = 32;
-            this.cbScanerIsEnable0201.UseVisualStyleBackColor = true;
-            this.cbScanerIsEnable0201.CheckedChanged += new System.EventHandler(this.cbScanerIsEnable_CheckedChanged);
-            // 
-            // pbClampScanerLamp
-            // 
-            this.pbClampScanerLamp.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbClampScanerLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbClampScanerLamp.Image")));
-            this.pbClampScanerLamp.Location = new System.Drawing.Point(116, 91);
-            this.pbClampScanerLamp.Margin = new System.Windows.Forms.Padding(2);
-            this.pbClampScanerLamp.Name = "pbClampScanerLamp";
-            this.pbClampScanerLamp.Size = new System.Drawing.Size(17, 15);
-            this.pbClampScanerLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbClampScanerLamp.TabIndex = 33;
-            this.pbClampScanerLamp.TabStop = false;
             // 
             // pbOvenLamp01
             // 
@@ -7778,44 +7237,6 @@
             this.pbOvenLamp04.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbOvenLamp04.TabIndex = 37;
             this.pbOvenLamp04.TabStop = false;
-            // 
-            // pbRobotLamp
-            // 
-            this.pbRobotLamp.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbRobotLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbRobotLamp.Image")));
-            this.pbRobotLamp.Location = new System.Drawing.Point(116, 113);
-            this.pbRobotLamp.Margin = new System.Windows.Forms.Padding(2);
-            this.pbRobotLamp.Name = "pbRobotLamp";
-            this.pbRobotLamp.Size = new System.Drawing.Size(17, 15);
-            this.pbRobotLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbRobotLamp.TabIndex = 38;
-            this.pbRobotLamp.TabStop = false;
-            // 
-            // pbScanerLamp0201
-            // 
-            this.pbScanerLamp0201.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbScanerLamp0201.Image = ((System.Drawing.Image)(resources.GetObject("pbScanerLamp0201.Image")));
-            this.pbScanerLamp0201.Location = new System.Drawing.Point(116, 69);
-            this.pbScanerLamp0201.Margin = new System.Windows.Forms.Padding(2);
-            this.pbScanerLamp0201.Name = "pbScanerLamp0201";
-            this.pbScanerLamp0201.Size = new System.Drawing.Size(17, 15);
-            this.pbScanerLamp0201.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbScanerLamp0201.TabIndex = 39;
-            this.pbScanerLamp0201.TabStop = false;
-            // 
-            // tbClampScanerStatus
-            // 
-            this.tbClampScanerStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbClampScanerStatus.BackColor = System.Drawing.SystemColors.Control;
-            this.tbClampScanerStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbClampScanerStatus.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbClampScanerStatus.ForeColor = System.Drawing.Color.Green;
-            this.tbClampScanerStatus.Location = new System.Drawing.Point(138, 91);
-            this.tbClampScanerStatus.Name = "tbClampScanerStatus";
-            this.tbClampScanerStatus.ReadOnly = true;
-            this.tbClampScanerStatus.Size = new System.Drawing.Size(123, 16);
-            this.tbClampScanerStatus.TabIndex = 40;
-            this.tbClampScanerStatus.Text = "未连接";
             // 
             // tbOvenStatus01
             // 
@@ -7873,46 +7294,6 @@
             this.tbOvenStatus04.TabIndex = 44;
             this.tbOvenStatus04.Text = "未连接";
             // 
-            // tbRobotStatus
-            // 
-            this.tbRobotStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbRobotStatus.BackColor = System.Drawing.SystemColors.Control;
-            this.tbRobotStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbRobotStatus.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbRobotStatus.ForeColor = System.Drawing.Color.Green;
-            this.tbRobotStatus.Location = new System.Drawing.Point(138, 113);
-            this.tbRobotStatus.Name = "tbRobotStatus";
-            this.tbRobotStatus.ReadOnly = true;
-            this.tbRobotStatus.Size = new System.Drawing.Size(123, 16);
-            this.tbRobotStatus.TabIndex = 45;
-            this.tbRobotStatus.Text = "未连接";
-            // 
-            // tbScanerStatus0201
-            // 
-            this.tbScanerStatus0201.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbScanerStatus0201.BackColor = System.Drawing.SystemColors.Control;
-            this.tbScanerStatus0201.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbScanerStatus0201.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbScanerStatus0201.ForeColor = System.Drawing.Color.Green;
-            this.tbScanerStatus0201.Location = new System.Drawing.Point(138, 69);
-            this.tbScanerStatus0201.Name = "tbScanerStatus0201";
-            this.tbScanerStatus0201.ReadOnly = true;
-            this.tbScanerStatus0201.Size = new System.Drawing.Size(123, 16);
-            this.tbScanerStatus0201.TabIndex = 46;
-            this.tbScanerStatus0201.Text = "未连接";
-            // 
-            // lbClampScanerNameN
-            // 
-            this.lbClampScanerNameN.AutoSize = true;
-            this.lbClampScanerNameN.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbClampScanerNameN.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbClampScanerNameN.Location = new System.Drawing.Point(32, 88);
-            this.lbClampScanerNameN.Name = "lbClampScanerNameN";
-            this.lbClampScanerNameN.Size = new System.Drawing.Size(79, 22);
-            this.lbClampScanerNameN.TabIndex = 47;
-            this.lbClampScanerNameN.Text = "XXXXXX";
-            this.lbClampScanerNameN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // lbOvenNameN01
             // 
             this.lbOvenNameN01.AutoSize = true;
@@ -7961,6 +7342,66 @@
             this.lbOvenNameN04.Text = "XXXXX";
             this.lbOvenNameN04.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // cbFeederIsEnable02
+            // 
+            this.cbFeederIsEnable02.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cbFeederIsEnable02.AutoSize = true;
+            this.cbFeederIsEnable02.Location = new System.Drawing.Point(11, 26);
+            this.cbFeederIsEnable02.Name = "cbFeederIsEnable02";
+            this.cbFeederIsEnable02.Size = new System.Drawing.Size(15, 14);
+            this.cbFeederIsEnable02.TabIndex = 31;
+            this.cbFeederIsEnable02.UseVisualStyleBackColor = true;
+            this.cbFeederIsEnable02.CheckedChanged += new System.EventHandler(this.cbFeederIsEnable_CheckedChanged);
+            // 
+            // lbFeederNameN02
+            // 
+            this.lbFeederNameN02.AutoSize = true;
+            this.lbFeederNameN02.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbFeederNameN02.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFeederNameN02.Location = new System.Drawing.Point(32, 22);
+            this.lbFeederNameN02.Name = "lbFeederNameN02";
+            this.lbFeederNameN02.Size = new System.Drawing.Size(79, 22);
+            this.lbFeederNameN02.TabIndex = 66;
+            this.lbFeederNameN02.Text = "XXXXX";
+            this.lbFeederNameN02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pbFeederLamp02
+            // 
+            this.pbFeederLamp02.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbFeederLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbFeederLamp02.Image")));
+            this.pbFeederLamp02.Location = new System.Drawing.Point(116, 25);
+            this.pbFeederLamp02.Margin = new System.Windows.Forms.Padding(2);
+            this.pbFeederLamp02.Name = "pbFeederLamp02";
+            this.pbFeederLamp02.Size = new System.Drawing.Size(17, 15);
+            this.pbFeederLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbFeederLamp02.TabIndex = 38;
+            this.pbFeederLamp02.TabStop = false;
+            // 
+            // tbFeederStatus02
+            // 
+            this.tbFeederStatus02.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFeederStatus02.BackColor = System.Drawing.SystemColors.Control;
+            this.tbFeederStatus02.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbFeederStatus02.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbFeederStatus02.ForeColor = System.Drawing.Color.Green;
+            this.tbFeederStatus02.Location = new System.Drawing.Point(138, 25);
+            this.tbFeederStatus02.Name = "tbFeederStatus02";
+            this.tbFeederStatus02.ReadOnly = true;
+            this.tbFeederStatus02.Size = new System.Drawing.Size(123, 16);
+            this.tbFeederStatus02.TabIndex = 45;
+            this.tbFeederStatus02.Text = "未连接";
+            // 
+            // cbRobotIsEnable
+            // 
+            this.cbRobotIsEnable.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cbRobotIsEnable.AutoSize = true;
+            this.cbRobotIsEnable.Location = new System.Drawing.Point(11, 114);
+            this.cbRobotIsEnable.Name = "cbRobotIsEnable";
+            this.cbRobotIsEnable.Size = new System.Drawing.Size(15, 14);
+            this.cbRobotIsEnable.TabIndex = 31;
+            this.cbRobotIsEnable.UseVisualStyleBackColor = true;
+            this.cbRobotIsEnable.CheckedChanged += new System.EventHandler(this.cbRobotIsEnable_CheckedChanged);
+            // 
             // lbRobotNameN
             // 
             this.lbRobotNameN.AutoSize = true;
@@ -7973,28 +7414,31 @@
             this.lbRobotNameN.Text = "XXXX";
             this.lbRobotNameN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lbScanerNameN0201
+            // pbRobotLamp
             // 
-            this.lbScanerNameN0201.AutoSize = true;
-            this.lbScanerNameN0201.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbScanerNameN0201.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbScanerNameN0201.Location = new System.Drawing.Point(32, 66);
-            this.lbScanerNameN0201.Name = "lbScanerNameN0201";
-            this.lbScanerNameN0201.Size = new System.Drawing.Size(79, 22);
-            this.lbScanerNameN0201.TabIndex = 53;
-            this.lbScanerNameN0201.Text = "XXXXXX";
-            this.lbScanerNameN0201.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.pbRobotLamp.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbRobotLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbRobotLamp.Image")));
+            this.pbRobotLamp.Location = new System.Drawing.Point(116, 113);
+            this.pbRobotLamp.Margin = new System.Windows.Forms.Padding(2);
+            this.pbRobotLamp.Name = "pbRobotLamp";
+            this.pbRobotLamp.Size = new System.Drawing.Size(17, 15);
+            this.pbRobotLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbRobotLamp.TabIndex = 38;
+            this.pbRobotLamp.TabStop = false;
             // 
-            // cbScanerIsEnable0101
+            // tbRobotStatus
             // 
-            this.cbScanerIsEnable0101.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cbScanerIsEnable0101.AutoSize = true;
-            this.cbScanerIsEnable0101.Location = new System.Drawing.Point(11, 48);
-            this.cbScanerIsEnable0101.Name = "cbScanerIsEnable0101";
-            this.cbScanerIsEnable0101.Size = new System.Drawing.Size(15, 14);
-            this.cbScanerIsEnable0101.TabIndex = 56;
-            this.cbScanerIsEnable0101.UseVisualStyleBackColor = true;
-            this.cbScanerIsEnable0101.CheckedChanged += new System.EventHandler(this.cbScanerIsEnable_CheckedChanged);
+            this.tbRobotStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbRobotStatus.BackColor = System.Drawing.SystemColors.Control;
+            this.tbRobotStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbRobotStatus.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbRobotStatus.ForeColor = System.Drawing.Color.Green;
+            this.tbRobotStatus.Location = new System.Drawing.Point(138, 113);
+            this.tbRobotStatus.Name = "tbRobotStatus";
+            this.tbRobotStatus.ReadOnly = true;
+            this.tbRobotStatus.Size = new System.Drawing.Size(123, 16);
+            this.tbRobotStatus.TabIndex = 45;
+            this.tbRobotStatus.Text = "未连接";
             // 
             // cbOvenIsEnable05
             // 
@@ -8006,51 +7450,6 @@
             this.cbOvenIsEnable05.TabIndex = 55;
             this.cbOvenIsEnable05.UseVisualStyleBackColor = true;
             this.cbOvenIsEnable05.CheckedChanged += new System.EventHandler(this.cbOvenIsEnable_CheckedChanged);
-            // 
-            // cbOvenIsEnable06
-            // 
-            this.cbOvenIsEnable06.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cbOvenIsEnable06.AutoSize = true;
-            this.cbOvenIsEnable06.Location = new System.Drawing.Point(11, 246);
-            this.cbOvenIsEnable06.Name = "cbOvenIsEnable06";
-            this.cbOvenIsEnable06.Size = new System.Drawing.Size(15, 14);
-            this.cbOvenIsEnable06.TabIndex = 54;
-            this.cbOvenIsEnable06.UseVisualStyleBackColor = true;
-            this.cbOvenIsEnable06.CheckedChanged += new System.EventHandler(this.cbOvenIsEnable_CheckedChanged);
-            // 
-            // cbOvenIsEnable07
-            // 
-            this.cbOvenIsEnable07.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cbOvenIsEnable07.AutoSize = true;
-            this.cbOvenIsEnable07.Location = new System.Drawing.Point(11, 268);
-            this.cbOvenIsEnable07.Name = "cbOvenIsEnable07";
-            this.cbOvenIsEnable07.Size = new System.Drawing.Size(15, 14);
-            this.cbOvenIsEnable07.TabIndex = 57;
-            this.cbOvenIsEnable07.UseVisualStyleBackColor = true;
-            this.cbOvenIsEnable07.CheckedChanged += new System.EventHandler(this.cbOvenIsEnable_CheckedChanged);
-            // 
-            // cbOvenIsEnable08
-            // 
-            this.cbOvenIsEnable08.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cbOvenIsEnable08.AutoSize = true;
-            this.cbOvenIsEnable08.Location = new System.Drawing.Point(11, 290);
-            this.cbOvenIsEnable08.Name = "cbOvenIsEnable08";
-            this.cbOvenIsEnable08.Size = new System.Drawing.Size(15, 14);
-            this.cbOvenIsEnable08.TabIndex = 58;
-            this.cbOvenIsEnable08.UseVisualStyleBackColor = true;
-            this.cbOvenIsEnable08.CheckedChanged += new System.EventHandler(this.cbOvenIsEnable_CheckedChanged);
-            // 
-            // lbScanerNameN0101
-            // 
-            this.lbScanerNameN0101.AutoSize = true;
-            this.lbScanerNameN0101.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbScanerNameN0101.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbScanerNameN0101.Location = new System.Drawing.Point(32, 44);
-            this.lbScanerNameN0101.Name = "lbScanerNameN0101";
-            this.lbScanerNameN0101.Size = new System.Drawing.Size(79, 22);
-            this.lbScanerNameN0101.TabIndex = 60;
-            this.lbScanerNameN0101.Text = "XXXXXX";
-            this.lbScanerNameN0101.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbOvenNameN05
             // 
@@ -8064,54 +7463,6 @@
             this.lbOvenNameN05.Text = "XXXXX";
             this.lbOvenNameN05.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lbOvenNameN06
-            // 
-            this.lbOvenNameN06.AutoSize = true;
-            this.lbOvenNameN06.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbOvenNameN06.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOvenNameN06.Location = new System.Drawing.Point(32, 242);
-            this.lbOvenNameN06.Name = "lbOvenNameN06";
-            this.lbOvenNameN06.Size = new System.Drawing.Size(79, 22);
-            this.lbOvenNameN06.TabIndex = 62;
-            this.lbOvenNameN06.Text = "XXXXX";
-            this.lbOvenNameN06.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbOvenNameN07
-            // 
-            this.lbOvenNameN07.AutoSize = true;
-            this.lbOvenNameN07.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbOvenNameN07.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOvenNameN07.Location = new System.Drawing.Point(32, 264);
-            this.lbOvenNameN07.Name = "lbOvenNameN07";
-            this.lbOvenNameN07.Size = new System.Drawing.Size(79, 22);
-            this.lbOvenNameN07.TabIndex = 63;
-            this.lbOvenNameN07.Text = "XXXXX";
-            this.lbOvenNameN07.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbOvenNameN08
-            // 
-            this.lbOvenNameN08.AutoSize = true;
-            this.lbOvenNameN08.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbOvenNameN08.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOvenNameN08.Location = new System.Drawing.Point(32, 286);
-            this.lbOvenNameN08.Name = "lbOvenNameN08";
-            this.lbOvenNameN08.Size = new System.Drawing.Size(79, 22);
-            this.lbOvenNameN08.TabIndex = 64;
-            this.lbOvenNameN08.Text = "XXXXX";
-            this.lbOvenNameN08.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pbScanerLamp0101
-            // 
-            this.pbScanerLamp0101.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbScanerLamp0101.Image = ((System.Drawing.Image)(resources.GetObject("pbScanerLamp0101.Image")));
-            this.pbScanerLamp0101.Location = new System.Drawing.Point(116, 47);
-            this.pbScanerLamp0101.Margin = new System.Windows.Forms.Padding(2);
-            this.pbScanerLamp0101.Name = "pbScanerLamp0101";
-            this.pbScanerLamp0101.Size = new System.Drawing.Size(17, 15);
-            this.pbScanerLamp0101.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbScanerLamp0101.TabIndex = 66;
-            this.pbScanerLamp0101.TabStop = false;
-            // 
             // pbOvenLamp05
             // 
             this.pbOvenLamp05.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -8123,56 +7474,6 @@
             this.pbOvenLamp05.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbOvenLamp05.TabIndex = 67;
             this.pbOvenLamp05.TabStop = false;
-            // 
-            // pbOvenLamp06
-            // 
-            this.pbOvenLamp06.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbOvenLamp06.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp06.Image")));
-            this.pbOvenLamp06.Location = new System.Drawing.Point(116, 245);
-            this.pbOvenLamp06.Margin = new System.Windows.Forms.Padding(2);
-            this.pbOvenLamp06.Name = "pbOvenLamp06";
-            this.pbOvenLamp06.Size = new System.Drawing.Size(17, 15);
-            this.pbOvenLamp06.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenLamp06.TabIndex = 68;
-            this.pbOvenLamp06.TabStop = false;
-            // 
-            // pbOvenLamp07
-            // 
-            this.pbOvenLamp07.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbOvenLamp07.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp07.Image")));
-            this.pbOvenLamp07.Location = new System.Drawing.Point(116, 267);
-            this.pbOvenLamp07.Margin = new System.Windows.Forms.Padding(2);
-            this.pbOvenLamp07.Name = "pbOvenLamp07";
-            this.pbOvenLamp07.Size = new System.Drawing.Size(17, 15);
-            this.pbOvenLamp07.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenLamp07.TabIndex = 69;
-            this.pbOvenLamp07.TabStop = false;
-            // 
-            // pbOvenLamp08
-            // 
-            this.pbOvenLamp08.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbOvenLamp08.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp08.Image")));
-            this.pbOvenLamp08.Location = new System.Drawing.Point(116, 289);
-            this.pbOvenLamp08.Margin = new System.Windows.Forms.Padding(2);
-            this.pbOvenLamp08.Name = "pbOvenLamp08";
-            this.pbOvenLamp08.Size = new System.Drawing.Size(17, 15);
-            this.pbOvenLamp08.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenLamp08.TabIndex = 70;
-            this.pbOvenLamp08.TabStop = false;
-            // 
-            // tbScanerStatus0101
-            // 
-            this.tbScanerStatus0101.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbScanerStatus0101.BackColor = System.Drawing.SystemColors.Control;
-            this.tbScanerStatus0101.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbScanerStatus0101.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbScanerStatus0101.ForeColor = System.Drawing.Color.Green;
-            this.tbScanerStatus0101.Location = new System.Drawing.Point(138, 47);
-            this.tbScanerStatus0101.Name = "tbScanerStatus0101";
-            this.tbScanerStatus0101.ReadOnly = true;
-            this.tbScanerStatus0101.Size = new System.Drawing.Size(123, 16);
-            this.tbScanerStatus0101.TabIndex = 72;
-            this.tbScanerStatus0101.Text = "未连接";
             // 
             // tbOvenStatus05
             // 
@@ -8188,6 +7489,41 @@
             this.tbOvenStatus05.TabIndex = 73;
             this.tbOvenStatus05.Text = "未连接";
             // 
+            // cbOvenIsEnable06
+            // 
+            this.cbOvenIsEnable06.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cbOvenIsEnable06.AutoSize = true;
+            this.cbOvenIsEnable06.Location = new System.Drawing.Point(11, 246);
+            this.cbOvenIsEnable06.Name = "cbOvenIsEnable06";
+            this.cbOvenIsEnable06.Size = new System.Drawing.Size(15, 14);
+            this.cbOvenIsEnable06.TabIndex = 54;
+            this.cbOvenIsEnable06.UseVisualStyleBackColor = true;
+            this.cbOvenIsEnable06.CheckedChanged += new System.EventHandler(this.cbOvenIsEnable_CheckedChanged);
+            // 
+            // lbOvenNameN06
+            // 
+            this.lbOvenNameN06.AutoSize = true;
+            this.lbOvenNameN06.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbOvenNameN06.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbOvenNameN06.Location = new System.Drawing.Point(32, 242);
+            this.lbOvenNameN06.Name = "lbOvenNameN06";
+            this.lbOvenNameN06.Size = new System.Drawing.Size(79, 22);
+            this.lbOvenNameN06.TabIndex = 62;
+            this.lbOvenNameN06.Text = "XXXXX";
+            this.lbOvenNameN06.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pbOvenLamp06
+            // 
+            this.pbOvenLamp06.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbOvenLamp06.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp06.Image")));
+            this.pbOvenLamp06.Location = new System.Drawing.Point(116, 245);
+            this.pbOvenLamp06.Margin = new System.Windows.Forms.Padding(2);
+            this.pbOvenLamp06.Name = "pbOvenLamp06";
+            this.pbOvenLamp06.Size = new System.Drawing.Size(17, 15);
+            this.pbOvenLamp06.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenLamp06.TabIndex = 68;
+            this.pbOvenLamp06.TabStop = false;
+            // 
             // tbOvenStatus06
             // 
             this.tbOvenStatus06.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -8201,6 +7537,41 @@
             this.tbOvenStatus06.Size = new System.Drawing.Size(123, 16);
             this.tbOvenStatus06.TabIndex = 74;
             this.tbOvenStatus06.Text = "未连接";
+            // 
+            // cbOvenIsEnable07
+            // 
+            this.cbOvenIsEnable07.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cbOvenIsEnable07.AutoSize = true;
+            this.cbOvenIsEnable07.Location = new System.Drawing.Point(11, 268);
+            this.cbOvenIsEnable07.Name = "cbOvenIsEnable07";
+            this.cbOvenIsEnable07.Size = new System.Drawing.Size(15, 14);
+            this.cbOvenIsEnable07.TabIndex = 57;
+            this.cbOvenIsEnable07.UseVisualStyleBackColor = true;
+            this.cbOvenIsEnable07.CheckedChanged += new System.EventHandler(this.cbOvenIsEnable_CheckedChanged);
+            // 
+            // lbOvenNameN07
+            // 
+            this.lbOvenNameN07.AutoSize = true;
+            this.lbOvenNameN07.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbOvenNameN07.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbOvenNameN07.Location = new System.Drawing.Point(32, 264);
+            this.lbOvenNameN07.Name = "lbOvenNameN07";
+            this.lbOvenNameN07.Size = new System.Drawing.Size(79, 22);
+            this.lbOvenNameN07.TabIndex = 63;
+            this.lbOvenNameN07.Text = "XXXXX";
+            this.lbOvenNameN07.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pbOvenLamp07
+            // 
+            this.pbOvenLamp07.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbOvenLamp07.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp07.Image")));
+            this.pbOvenLamp07.Location = new System.Drawing.Point(116, 267);
+            this.pbOvenLamp07.Margin = new System.Windows.Forms.Padding(2);
+            this.pbOvenLamp07.Name = "pbOvenLamp07";
+            this.pbOvenLamp07.Size = new System.Drawing.Size(17, 15);
+            this.pbOvenLamp07.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenLamp07.TabIndex = 69;
+            this.pbOvenLamp07.TabStop = false;
             // 
             // tbOvenStatus07
             // 
@@ -8216,6 +7587,41 @@
             this.tbOvenStatus07.TabIndex = 75;
             this.tbOvenStatus07.Text = "未连接";
             // 
+            // cbOvenIsEnable08
+            // 
+            this.cbOvenIsEnable08.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cbOvenIsEnable08.AutoSize = true;
+            this.cbOvenIsEnable08.Location = new System.Drawing.Point(11, 290);
+            this.cbOvenIsEnable08.Name = "cbOvenIsEnable08";
+            this.cbOvenIsEnable08.Size = new System.Drawing.Size(15, 14);
+            this.cbOvenIsEnable08.TabIndex = 58;
+            this.cbOvenIsEnable08.UseVisualStyleBackColor = true;
+            this.cbOvenIsEnable08.CheckedChanged += new System.EventHandler(this.cbOvenIsEnable_CheckedChanged);
+            // 
+            // lbOvenNameN08
+            // 
+            this.lbOvenNameN08.AutoSize = true;
+            this.lbOvenNameN08.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbOvenNameN08.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbOvenNameN08.Location = new System.Drawing.Point(32, 286);
+            this.lbOvenNameN08.Name = "lbOvenNameN08";
+            this.lbOvenNameN08.Size = new System.Drawing.Size(79, 22);
+            this.lbOvenNameN08.TabIndex = 64;
+            this.lbOvenNameN08.Text = "XXXXX";
+            this.lbOvenNameN08.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pbOvenLamp08
+            // 
+            this.pbOvenLamp08.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbOvenLamp08.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp08.Image")));
+            this.pbOvenLamp08.Location = new System.Drawing.Point(116, 289);
+            this.pbOvenLamp08.Margin = new System.Windows.Forms.Padding(2);
+            this.pbOvenLamp08.Name = "pbOvenLamp08";
+            this.pbOvenLamp08.Size = new System.Drawing.Size(17, 15);
+            this.pbOvenLamp08.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenLamp08.TabIndex = 70;
+            this.pbOvenLamp08.TabStop = false;
+            // 
             // tbOvenStatus08
             // 
             this.tbOvenStatus08.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -8229,6 +7635,116 @@
             this.tbOvenStatus08.Size = new System.Drawing.Size(123, 16);
             this.tbOvenStatus08.TabIndex = 76;
             this.tbOvenStatus08.Text = "未连接";
+            // 
+            // cbScanerIsEnable0101
+            // 
+            this.cbScanerIsEnable0101.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cbScanerIsEnable0101.AutoSize = true;
+            this.cbScanerIsEnable0101.Location = new System.Drawing.Point(11, 48);
+            this.cbScanerIsEnable0101.Name = "cbScanerIsEnable0101";
+            this.cbScanerIsEnable0101.Size = new System.Drawing.Size(15, 14);
+            this.cbScanerIsEnable0101.TabIndex = 56;
+            this.cbScanerIsEnable0101.UseVisualStyleBackColor = true;
+            this.cbScanerIsEnable0101.CheckedChanged += new System.EventHandler(this.cbScanerIsEnable_CheckedChanged);
+            // 
+            // lbScanerNameN0101
+            // 
+            this.lbScanerNameN0101.AutoSize = true;
+            this.lbScanerNameN0101.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbScanerNameN0101.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbScanerNameN0101.Location = new System.Drawing.Point(32, 44);
+            this.lbScanerNameN0101.Name = "lbScanerNameN0101";
+            this.lbScanerNameN0101.Size = new System.Drawing.Size(79, 22);
+            this.lbScanerNameN0101.TabIndex = 60;
+            this.lbScanerNameN0101.Text = "XXXXXX";
+            this.lbScanerNameN0101.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pbScanerLamp0101
+            // 
+            this.pbScanerLamp0101.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbScanerLamp0101.Image = ((System.Drawing.Image)(resources.GetObject("pbScanerLamp0101.Image")));
+            this.pbScanerLamp0101.Location = new System.Drawing.Point(116, 47);
+            this.pbScanerLamp0101.Margin = new System.Windows.Forms.Padding(2);
+            this.pbScanerLamp0101.Name = "pbScanerLamp0101";
+            this.pbScanerLamp0101.Size = new System.Drawing.Size(17, 15);
+            this.pbScanerLamp0101.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbScanerLamp0101.TabIndex = 66;
+            this.pbScanerLamp0101.TabStop = false;
+            // 
+            // tbScanerStatus0101
+            // 
+            this.tbScanerStatus0101.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbScanerStatus0101.BackColor = System.Drawing.SystemColors.Control;
+            this.tbScanerStatus0101.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbScanerStatus0101.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbScanerStatus0101.ForeColor = System.Drawing.Color.Green;
+            this.tbScanerStatus0101.Location = new System.Drawing.Point(138, 47);
+            this.tbScanerStatus0101.Name = "tbScanerStatus0101";
+            this.tbScanerStatus0101.ReadOnly = true;
+            this.tbScanerStatus0101.Size = new System.Drawing.Size(123, 16);
+            this.tbScanerStatus0101.TabIndex = 72;
+            this.tbScanerStatus0101.Text = "未连接";
+            // 
+            // pbBlankerLamp01
+            // 
+            this.pbBlankerLamp01.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbBlankerLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbBlankerLamp01.Image")));
+            this.pbBlankerLamp01.Location = new System.Drawing.Point(116, 311);
+            this.pbBlankerLamp01.Margin = new System.Windows.Forms.Padding(2);
+            this.pbBlankerLamp01.Name = "pbBlankerLamp01";
+            this.pbBlankerLamp01.Size = new System.Drawing.Size(17, 16);
+            this.pbBlankerLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbBlankerLamp01.TabIndex = 38;
+            this.pbBlankerLamp01.TabStop = false;
+            // 
+            // cbScanerIsEnable0201
+            // 
+            this.cbScanerIsEnable0201.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cbScanerIsEnable0201.AutoSize = true;
+            this.cbScanerIsEnable0201.Location = new System.Drawing.Point(11, 70);
+            this.cbScanerIsEnable0201.Name = "cbScanerIsEnable0201";
+            this.cbScanerIsEnable0201.Size = new System.Drawing.Size(15, 14);
+            this.cbScanerIsEnable0201.TabIndex = 32;
+            this.cbScanerIsEnable0201.UseVisualStyleBackColor = true;
+            this.cbScanerIsEnable0201.CheckedChanged += new System.EventHandler(this.cbScanerIsEnable_CheckedChanged);
+            // 
+            // lbScanerNameN0201
+            // 
+            this.lbScanerNameN0201.AutoSize = true;
+            this.lbScanerNameN0201.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbScanerNameN0201.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbScanerNameN0201.Location = new System.Drawing.Point(32, 66);
+            this.lbScanerNameN0201.Name = "lbScanerNameN0201";
+            this.lbScanerNameN0201.Size = new System.Drawing.Size(79, 22);
+            this.lbScanerNameN0201.TabIndex = 53;
+            this.lbScanerNameN0201.Text = "XXXXXX";
+            this.lbScanerNameN0201.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pbScanerLamp0201
+            // 
+            this.pbScanerLamp0201.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbScanerLamp0201.Image = ((System.Drawing.Image)(resources.GetObject("pbScanerLamp0201.Image")));
+            this.pbScanerLamp0201.Location = new System.Drawing.Point(116, 69);
+            this.pbScanerLamp0201.Margin = new System.Windows.Forms.Padding(2);
+            this.pbScanerLamp0201.Name = "pbScanerLamp0201";
+            this.pbScanerLamp0201.Size = new System.Drawing.Size(17, 15);
+            this.pbScanerLamp0201.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbScanerLamp0201.TabIndex = 39;
+            this.pbScanerLamp0201.TabStop = false;
+            // 
+            // tbScanerStatus0201
+            // 
+            this.tbScanerStatus0201.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbScanerStatus0201.BackColor = System.Drawing.SystemColors.Control;
+            this.tbScanerStatus0201.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbScanerStatus0201.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbScanerStatus0201.ForeColor = System.Drawing.Color.Green;
+            this.tbScanerStatus0201.Location = new System.Drawing.Point(138, 69);
+            this.tbScanerStatus0201.Name = "tbScanerStatus0201";
+            this.tbScanerStatus0201.ReadOnly = true;
+            this.tbScanerStatus0201.Size = new System.Drawing.Size(123, 16);
+            this.tbScanerStatus0201.TabIndex = 46;
+            this.tbScanerStatus0201.Text = "未连接";
             // 
             // lbRunStatus
             // 
@@ -8609,22 +8125,22 @@
             this.groupBoxTerminal.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel14.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFeederLamp02)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerLamp01)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbClampScanerLamp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMesLamp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFeederLamp01)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbClampScanerLamp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp01)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp02)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp03)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp04)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFeederLamp02)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRobotLamp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0201)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0101)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp05)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp06)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp07)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp08)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0101)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerLamp01)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0201)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -8744,7 +8260,7 @@
         private System.Windows.Forms.DateTimePicker dtpStart;
         private System.Windows.Forms.Button btnQueryTV;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.ComboBox cbStations;
+        private System.Windows.Forms.ComboBox cbFloors;
         private System.Windows.Forms.TabPage tabContentPageSettings;
         private System.Windows.Forms.ContextMenuStrip cmsFloor;
         private System.Windows.Forms.PictureBox pbMesLamp;
@@ -9084,23 +8600,16 @@
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.Label label57;
-        private System.Windows.Forms.ComboBox cbCurveSelectedStation;
         private System.Windows.Forms.ComboBox cbCurveSelectedFloor;
         private System.Windows.Forms.ComboBox cbCurveSelectedOven;
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel32;
         private System.Windows.Forms.CheckBox cbTemperAll;
-        private System.Windows.Forms.CheckBox cbTemperIndex35;
         private System.Windows.Forms.CheckBox cbTemperIndex15;
         private System.Windows.Forms.CheckBox cbTemperIndex20;
         private System.Windows.Forms.CheckBox cbTemperIndex05;
         private System.Windows.Forms.CheckBox cbTemperIndex10;
-        private System.Windows.Forms.CheckBox cbTemperIndex25;
-        private System.Windows.Forms.CheckBox cbTemperIndex40;
-        private System.Windows.Forms.CheckBox cbTemperIndex45;
-        private System.Windows.Forms.CheckBox cbTemperIndex30;
         private System.Windows.Forms.CheckBox cbTemperIndex09;
         private System.Windows.Forms.CheckBox cbTemperIndex12;
         private System.Windows.Forms.CheckBox cbTemperIndex13;
@@ -9109,31 +8618,6 @@
         private System.Windows.Forms.CheckBox cbTemperIndex17;
         private System.Windows.Forms.CheckBox cbTemperIndex18;
         private System.Windows.Forms.CheckBox cbTemperIndex19;
-        private System.Windows.Forms.CheckBox cbTemperIndex21;
-        private System.Windows.Forms.CheckBox cbTemperIndex22;
-        private System.Windows.Forms.CheckBox cbTemperIndex23;
-        private System.Windows.Forms.CheckBox cbTemperIndex24;
-        private System.Windows.Forms.CheckBox cbTemperIndex26;
-        private System.Windows.Forms.CheckBox cbTemperIndex27;
-        private System.Windows.Forms.CheckBox cbTemperIndex28;
-        private System.Windows.Forms.CheckBox cbTemperIndex29;
-        private System.Windows.Forms.CheckBox cbTemperIndex31;
-        private System.Windows.Forms.CheckBox cbTemperIndex32;
-        private System.Windows.Forms.CheckBox cbTemperIndex33;
-        private System.Windows.Forms.CheckBox cbTemperIndex34;
-        private System.Windows.Forms.CheckBox cbTemperIndex36;
-        private System.Windows.Forms.CheckBox cbTemperIndex37;
-        private System.Windows.Forms.CheckBox cbTemperIndex38;
-        private System.Windows.Forms.CheckBox cbTemperIndex39;
-        private System.Windows.Forms.CheckBox cbTemperIndex41;
-        private System.Windows.Forms.CheckBox cbTemperIndex46;
-        private System.Windows.Forms.CheckBox cbTemperIndex47;
-        private System.Windows.Forms.CheckBox cbTemperIndex48;
-        private System.Windows.Forms.CheckBox cbTemperIndex49;
-        private System.Windows.Forms.CheckBox cbTemperIndex42;
-        private System.Windows.Forms.CheckBox cbTemperIndex43;
-        private System.Windows.Forms.CheckBox cbTemperIndex44;
-        private System.Windows.Forms.CheckBox cbTemperIndex50;
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Label label60;

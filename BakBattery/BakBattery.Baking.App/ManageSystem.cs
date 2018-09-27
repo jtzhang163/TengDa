@@ -398,7 +398,7 @@ namespace BakBattery.Baking.App
             Current.Transfer = Transfer.RotaterList.First();
             Current.cache = Cache.CacheList.First();
             Current.Yields = Yield.YieldList;
-            cbStations.Items.Add("All");
+            cbFloors.Items.Add("All");
             cbAlarmFloors.Items.Add("All");
 
             for (int i = 0; i < Current.ovens.Count; i++)
@@ -412,10 +412,10 @@ namespace BakBattery.Baking.App
                 ///查询温度真空时下拉列表数据            
                 for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
                 {
-                    Current.ovens[i].Floors[j].Stations.ForEach(s => cbStations.Items.Add(s.Name));
+                    cbFloors.Items.Add(Current.ovens[i].Floors[j].Name);
                     cbAlarmFloors.Items.Add(Current.ovens[i].Floors[j].Name);
                 }
-                cbStations.SelectedIndex = 0;
+                cbFloors.SelectedIndex = 0;
                 cbAlarmFloors.SelectedIndex = 0;
             }
 
@@ -488,13 +488,11 @@ namespace BakBattery.Baking.App
 
             //温度曲线显示工位初始化
 
-            Station curveStation = Station.StationList.Where(s => s.Id == Current.option.CurveStationId).FirstOrDefault();
-            Floor curveFloor = Floor.FloorList.First(f => f.Stations.Contains(curveStation));
+            Floor curveFloor = Floor.FloorList.First(s => s.Id == Current.option.CurveFloorId);
             Oven curveOven = Oven.OvenList.First(o => o.Floors.Contains(curveFloor));
 
             int ii = Current.ovens.IndexOf(curveOven);
             int jj = curveOven.Floors.IndexOf(curveFloor);
-            int kk = curveFloor.Stations.IndexOf(curveStation);
 
             Current.ovens.ForEach(o =>
             {
@@ -507,13 +505,6 @@ namespace BakBattery.Baking.App
                 cbCurveSelectedFloor.Items.Add(f.Name);
             });
             cbCurveSelectedFloor.SelectedIndex = jj;
-
-            curveFloor.Stations.ForEach(s =>
-            {
-                cbCurveSelectedStation.Items.Add(s.Name);
-            });
-            cbCurveSelectedStation.SelectedIndex = kk;
-
 
 
             //水分手动上传选择炉层初始化
@@ -695,16 +686,15 @@ namespace BakBattery.Baking.App
                     this.pbRunTime[i][j].Maximum = floor.RunMinutesSet;
                     this.pbRunTime[i][j].Value = floor.IsBaking && floor.IsAlive ? floor.RunMinutes : 0;
 
-                    floor.Stations.ForEach(s =>
+
+                    if (floor.Id == Current.option.CurveFloorId)
                     {
-                        if (s.Id == Current.option.CurveStationId)
+                        for (int k = 0; k < Option.TemperaturePointCount; k++)
                         {
-                            for (int k = 0; k < Option.TemperaturePointCount; k++)
-                            {
-                                cbTemperIndex[k].Text = string.Format("{0}:{1}℃", Current.option.TemperNames[k], s.Temperatures[k].ToString("#0.0").PadLeft(5));
-                            }
+                            cbTemperIndex[k].Text = string.Format("{0}:{1}℃", Current.option.TemperNames[k], floor.Temperatures[k].ToString("#0.0").PadLeft(5));
                         }
-                    });
+                    }
+
 
                     if (!string.IsNullOrEmpty(floor.AlarmStr) && floor.IsAlive)
                     {
@@ -762,15 +752,13 @@ namespace BakBattery.Baking.App
 
 
                     lbFloorStatus[i][j].Text = Current.TaskMode == TaskMode.手动任务 ?
-                        string.Format("{0} {1} {2} {3}",
+                        string.Format("{0} {1} {2}",
                         floor.Stations[0].ClampOri == ClampOri.A ^ Option.LayoutType == 1 ? "左" : "右",
-                        Current.ovens[i].Floors[j].Name.Replace("烤箱", ""),
                         Current.ovens[i].Floors[j].DoorStatus,
                         floor.Stations[0].ClampOri == ClampOri.A ^ Option.LayoutType == 1 ? "右" : "左"
                         )
                         :
-                        string.Format("{0} {1} {2}/{3}",
-                        Current.ovens[i].Floors[j].Name.Replace("烤箱", ""),
+                        string.Format("{0} {1}/{2}",
                         Current.ovens[i].Floors[j].DoorStatus,
                         Current.ovens[i].Floors[j].RunMinutes.ToString().PadLeft(3),
                         Current.ovens[i].Floors[j].RunMinutesSet.ToString().PadLeft(3)
@@ -3025,13 +3013,13 @@ namespace BakBattery.Baking.App
             }
 
             DataTable dt = null;
-            if (cbStations.Text.Trim() == "All")
+            if (cbFloors.Text.Trim() == "All")
             {
                 dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_TV] WHERE [记录时间] BETWEEN '{1}' AND '{2}' ", Config.DbTableNamePre, dtpStart.Value, dtpStop.Value), out msg);
             }
             else
             {
-                dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_TV] WHERE [腔体] = '{1}' AND [记录时间] BETWEEN '{2}' AND '{3}' ", Config.DbTableNamePre, cbStations.Text.Trim(), dtpStart.Value, dtpStop.Value), out msg);
+                dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_TV] WHERE [腔体] = '{1}' AND [记录时间] BETWEEN '{2}' AND '{3}' ", Config.DbTableNamePre, cbFloors.Text.Trim(), dtpStart.Value, dtpStop.Value), out msg);
             }
 
             if (dt == null)
@@ -3047,11 +3035,11 @@ namespace BakBattery.Baking.App
             {
                 dgvTV.Columns[i].Width = 65;
             }
-            dgvTV.Columns[51].Width = 70;
-            dgvTV.Columns[52].Width = 52;
-            dgvTV.Columns[53].Width = 80;
-            dgvTV.Columns[54].Width = 130;
-            dgvTV.Columns[54].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+            dgvTV.Columns[Option.TemperaturePointCount + 1].Width = 70;
+            dgvTV.Columns[Option.TemperaturePointCount + 2].Width = 52;
+            dgvTV.Columns[Option.TemperaturePointCount + 3].Width = 80;
+            dgvTV.Columns[Option.TemperaturePointCount + 4].Width = 130;
+            dgvTV.Columns[Option.TemperaturePointCount + 4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
             tbNumTV.Text = dt.Rows.Count.ToString();
 
         }
@@ -3924,10 +3912,7 @@ namespace BakBattery.Baking.App
 
             #region 绘制曲线
 
-            Station station = Station.StationList.Where(s => s.Id == Current.option.CurveStationId).FirstOrDefault();
-            if (station == null) return;
-
-            Floor floor = Floor.FloorList.First(f => f.Stations.Contains(station));
+            Floor floor = Floor.FloorList.First(f => f.Id == Current.option.CurveFloorId);
             Oven oven = Oven.OvenList.First(o => o.Floors.Contains(floor));
             int jj = oven.Floors.IndexOf(floor);
 
@@ -3937,15 +3922,15 @@ namespace BakBattery.Baking.App
                 {
                     if (Array.IndexOf(Current.option.CurveIndexs.Split(','), k.ToString()) > -1)
                     {
-                        if (station.sampledDatas[k].Count <= 1) return; // 一个数据就不绘制了
-                        float A = station.sampledDatas[k][0] - 20;
-                        for (int kk = 1; kk < station.sampledDatas[k].Count; kk++)
+                        if (floor.sampledDatas[k].Count <= 1) return; // 一个数据就不绘制了
+                        float A = floor.sampledDatas[k][0] - 20;
+                        for (int kk = 1; kk < floor.sampledDatas[k].Count; kk++)
                         {
-                            float B = station.sampledDatas[k][kk] - 20;
+                            float B = floor.sampledDatas[k][kk] - 20;
                             e.Graphics.DrawLine(new Pen(/*Current.option.CurveColors[k]*/Color.Lime),
-                                new Point(pCurve.ClientSize.Width - station.sampledDatas[k].Count + kk - 1, pCurve.ClientSize.Height -
+                                new Point(pCurve.ClientSize.Width - floor.sampledDatas[k].Count + kk - 1, pCurve.ClientSize.Height -
                                     (int)(((double)A / 100) * pCurve.ClientSize.Height)),
-                                new Point(pCurve.ClientSize.Width - station.sampledDatas[k].Count + kk, pCurve.ClientSize.Height -
+                                new Point(pCurve.ClientSize.Width - floor.sampledDatas[k].Count + kk, pCurve.ClientSize.Height -
                                     (int)(((double)B / 100) * pCurve.ClientSize.Height)));
                             A = B;
                         }
@@ -3968,15 +3953,14 @@ namespace BakBattery.Baking.App
                     {
                         for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
                         {
-                            for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
+
+                            for (int m = 0; m < Option.TemperaturePointCount; m++)
                             {
-                                for (int m = 0; m < Option.TemperaturePointCount; m++)
-                                {
-                                    while (Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].Count > 1000)
-                                        Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].RemoveAt(0);
-                                    Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].Add(Current.ovens[i].Floors[j].Stations[k].Temperatures[m]);
-                                }
+                                while (Current.ovens[i].Floors[j].sampledDatas[m].Count > 1000)
+                                    Current.ovens[i].Floors[j].sampledDatas[m].RemoveAt(0);
+                                Current.ovens[i].Floors[j].sampledDatas[m].Add(Current.ovens[i].Floors[j].Temperatures[m]);
                             }
+
                         }
                     }
                 }
@@ -4025,7 +4009,7 @@ namespace BakBattery.Baking.App
         {
             if (!TengDa.WF.Current.IsRunning) return;
             string cbSelectName = (sender as ComboBox).Name;
-            int ii = 0, jj = 0, kk = 0;
+            int ii = 0, jj = 0;
 
             if (cbSelectName.Contains("Oven"))
             {
@@ -4039,35 +4023,20 @@ namespace BakBattery.Baking.App
                 jj = 0;
                 cbCurveSelectedFloor.SelectedIndex = jj;
 
-                cbCurveSelectedStation.Items.Clear();
-                Current.ovens[ii].Floors[jj].Stations.ForEach(s =>
-                {
-                    cbCurveSelectedStation.Items.Add(s.Name);
-                });
-                kk = 0;
-                cbCurveSelectedStation.SelectedIndex = kk;
             }
             else if (cbSelectName.Contains("Floor"))
             {
                 ii = cbCurveSelectedOven.SelectedIndex;
                 jj = cbCurveSelectedFloor.SelectedIndex;
 
-                cbCurveSelectedStation.Items.Clear();
-                Current.ovens[ii].Floors[jj].Stations.ForEach(s =>
-                {
-                    cbCurveSelectedStation.Items.Add(s.Name);
-                });
-                kk = 0;
-                cbCurveSelectedStation.SelectedIndex = kk;
             }
             else if (cbSelectName.Contains("Station"))
             {
                 ii = cbCurveSelectedOven.SelectedIndex;
                 jj = cbCurveSelectedFloor.SelectedIndex;
-                kk = cbCurveSelectedStation.SelectedIndex;
             }
 
-            Current.option.CurveStationId = Current.ovens[ii].Floors[jj].Stations[kk].Id;
+            Current.option.CurveFloorId = Current.ovens[ii].Floors[jj].Id;
         }
 
         #endregion
