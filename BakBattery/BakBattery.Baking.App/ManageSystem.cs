@@ -116,51 +116,10 @@ namespace BakBattery.Baking.App
                 llToMesUserLogin.Visible = false;
             }
 
-
-            if (Option.LayoutType == 1)
-            {
-                //this.tlpDisplayMain.ColumnStyles.Clear();
-                //this.tlpDisplayMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18F));
-                //this.tlpDisplayMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9F));
-                //this.tlpDisplayMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55F));
-                //this.tlpDisplayMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18F));
-                //this.tlpDisplayMain.Controls.Clear();
-                //this.tlpDisplayMain.Controls.Add(this.tlpRotater, 1, 2);
-                //this.tlpDisplayMain.Controls.Add(this.tlpCache, 1, 0);
-                //this.tlpDisplayMain.Controls.Add(this.tlpBlanker1, 0, 0);
-                //this.tlpDisplayMain.Controls.Add(this.tlpBlanker2, 0, 2);
-                //this.tlpDisplayMain.Controls.Add(this.tlpOvenLineA, 2, 0);
-                //this.tlpDisplayMain.Controls.Add(this.tlpOvenLineB, 2, 2);
-                //this.tlpDisplayMain.Controls.Add(this.pRobot, 0, 1);
-                //this.tlpDisplayMain.Controls.Add(this.tlpFeeder1, 3, 0);
-                //this.tlpDisplayMain.Controls.Add(this.tlpFeeder2, 3, 2);
-
-                //this.tlpTrack.ColumnStyles.Clear();
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.503969F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9.504436F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 9.091493F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.87F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.88F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.87F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.88F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.87F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.88F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.87F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.88F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.938171F));
-                //this.tlpTrack.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.938171F));
-            }
-
             #region 上料机相关控件数组
             for (int i = 0; i < FeederCount; i++)
             {
-                int ii = Option.LayoutType == 1 ? FeederCount - i : i + 1;
+                int ii = i + 1;
 
                 tlpFeeders[i] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpFeeder{0}", ii.ToString()), true)[0]);
 
@@ -175,7 +134,7 @@ namespace BakBattery.Baking.App
 
                 for (int j = 0; j < FeederStationCount; j++)
                 {
-                    int jj = Option.LayoutType == 1 ? FeederStationCount - j : j + 1;
+                    int jj = j + 1;
                     lbFeederStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbFeederStationName{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
                     lbFeederClampCode[i][j] = (Label)(this.Controls.Find(string.Format("lbFeederClampCode{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
                     tlpFeederStationClamp[i][j] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpFeederStationClamp{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
@@ -200,7 +159,7 @@ namespace BakBattery.Baking.App
 
             for (int i = 0; i < OvenCount; i++)
             {
-                int ii = Option.LayoutType == 1 ? OvenCount - i : i + 1;
+                int ii = i + 1;
                 lbOvenName[i] = (Label)(this.Controls.Find(string.Format("lbOvenName{0}", ii.ToString("D2")), true)[0]);
                 lbOvenNameN[i] = (Label)(this.Controls.Find(string.Format("lbOvenNameN{0}", (i + 1).ToString("D2")), true)[0]);
                 cbOvenIsEnable[i] = (CheckBox)(this.Controls.Find(string.Format("cbOvenIsEnable{0}", (i + 1).ToString("D2")), true)[0]);
@@ -227,7 +186,7 @@ namespace BakBattery.Baking.App
             #region 下料机相关控件数组
             for (int i = 0; i < BlankerCount; i++)
             {
-                int ii = Option.LayoutType == 1 ? BlankerCount - i : i + 1;
+                int ii = i + 1;
 
                 tlpBlankers[i] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpBlanker{0}", ii.ToString()), true)[0]);
                 lbBlankerNameN[i] = (Label)(this.Controls.Find(string.Format("lbBlankerNameN{0}", (i + 1).ToString("D2")), true)[0]);
@@ -242,7 +201,7 @@ namespace BakBattery.Baking.App
 
                 for (int j = 0; j < BlankerStationCount; j++)
                 {
-                    int jj = Option.LayoutType == 1 ? BlankerStationCount - j : j + 1;
+                    int jj = j + 1;
                     lbBlankerStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerStationName{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
                     lbBlankerFromStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerFromStationName{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
                     lbBlankerClampCode[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerClampCode{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
@@ -713,18 +672,10 @@ namespace BakBattery.Baking.App
                     else
                     {
 
-                        if (floor.Stations[0].ClampOri == ClampOri.A ^ Option.LayoutType == 1)
-                        {
-                            this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {1}Pa",
-                                floor.Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5),
-                                floor.Vacuum.ToString("#0").PadLeft(6));
-                        }
-                        else
-                        {
-                            this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {1}Pa",
-                                floor.Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5),
-                                floor.Vacuum.ToString("#0").PadLeft(6));
-                        }
+                        this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {1}Pa",
+                            floor.Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5),
+                            floor.Vacuum.ToString("#0").PadLeft(6));
+
 
                         this.lbFloorInfoTop[i][j].ForeColor = Color.Red;
                         this.lbFloorInfoTop[i][j].BackColor = Color.Transparent;
@@ -753,9 +704,9 @@ namespace BakBattery.Baking.App
 
                     lbFloorStatus[i][j].Text = Current.TaskMode == TaskMode.手动任务 ?
                         string.Format("{0} {1} {2}",
-                        floor.Stations[0].ClampOri == ClampOri.A ^ Option.LayoutType == 1 ? "左" : "右",
+                        oven.Id < 5 ? "左" : "右",
                         Current.ovens[i].Floors[j].DoorStatus,
-                        floor.Stations[0].ClampOri == ClampOri.A ^ Option.LayoutType == 1 ? "右" : "左"
+                        oven.Id < 5 ? "右" : "左"
                         )
                         :
                         string.Format("{0} {1}/{2}",
@@ -1116,7 +1067,7 @@ namespace BakBattery.Baking.App
             if (Current.Robot.PrePosition != Current.Robot.Position && Current.Robot.Position > 0)
             {
                 this.tlpTrack.Controls.Remove(this.panelRobot);
-                int col = Option.LayoutType == 1 ? 19 - Current.Robot.Position : Current.Robot.Position - 1;
+                int col = Current.Robot.Position - 1;
                 this.tlpTrack.Controls.Add(this.panelRobot, col, 0);
             }
 
@@ -1126,7 +1077,7 @@ namespace BakBattery.Baking.App
             {
                 if (Current.Robot.IsMoving)
                 {
-                    this.lbRobotInfo.Text = Current.Robot.MovingDirection == MovingDirection.前进 ^ Option.LayoutType == 1 ? string.Format("{0}移动", Current.Robot.MovingDirSign) : string.Format("移动{0}", Current.Robot.MovingDirSign);
+                    this.lbRobotInfo.Text = Current.Robot.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动", Current.Robot.MovingDirSign) : string.Format("移动{0}", Current.Robot.MovingDirSign);
                     this.lbRobotInfo.ForeColor = Color.Blue;
                 }
                 else if (Current.Robot.IsGettingOrPutting)
@@ -3423,10 +3374,6 @@ namespace BakBattery.Baking.App
             }
 
             int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            if (Option.LayoutType == 1)
-            {
-                i = OvenCount - i - 1;
-            }
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
             Current.ovens[i].Floors[j].AddLog("手动开门");
             Current.ovens[i].OpenDoor(j);
@@ -3441,10 +3388,6 @@ namespace BakBattery.Baking.App
             }
 
             int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            if (Option.LayoutType == 1)
-            {
-                i = OvenCount - i - 1;
-            }
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
             Current.ovens[i].Floors[j].AddLog("手动关门");
             Current.ovens[i].CloseDoor(j);
@@ -3454,10 +3397,6 @@ namespace BakBattery.Baking.App
         {
             //tlpFeederStationClamp0102
             int i = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(21, 2), 0) - 1;
-            if (Option.LayoutType == 1)
-            {
-                i = FeederCount - i - 1;
-            }
             int j = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(23, 2), 0) - 1;
 
             Graphics g = e.Graphics;
@@ -3482,27 +3421,10 @@ namespace BakBattery.Baking.App
                         {
                             if (e.Row == y && e.Column == x)
                             {
-                                if (Option.LayoutType == 1 ^ Current.feeders[i].Stations[0].ClampOri == ClampOri.A)
+
+                                if ((24 - y) * 2 + x < Current.feeders[i].CurrentBatteryCount)
                                 {
-                                    if (y * 2 + x < Current.feeders[i].CurrentBatteryCount)
-                                    {
-                                        brush = Brushes.LimeGreen;
-                                    }
-                                    //else if (y * 2 + x - 2 < Current.feeders[i].CurrentBatteryCount)
-                                    //{
-                                    //  brush = DateTime.Now.Second % 3 == 1 ? Brushes.Green : Brushes.Cyan;
-                                    //}
-                                }
-                                else
-                                {
-                                    if ((24 - y) * 2 + x < Current.feeders[i].CurrentBatteryCount)
-                                    {
-                                        brush = Brushes.LimeGreen;
-                                    }
-                                    //else if ((24 - y) * 2 + x - 2 < Current.feeders[i].CurrentBatteryCount)
-                                    //{
-                                    //  brush = DateTime.Now.Second % 3 == 1 ? Brushes.Green : Brushes.Cyan;
-                                    //}
+                                    brush = Brushes.LimeGreen;
                                 }
 
                                 //g.FillRectangle(brush, r);
@@ -3524,10 +3446,6 @@ namespace BakBattery.Baking.App
             }
 
             int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            if (Option.LayoutType == 1)
-            {
-                i = OvenCount - i - 1;
-            }
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
             Current.ovens[i].Floors[j].AddLog("手动启动运行");
             Current.ovens[i].StartBaking(j);
@@ -3542,10 +3460,6 @@ namespace BakBattery.Baking.App
             }
 
             int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            if (Option.LayoutType == 1)
-            {
-                i = OvenCount - i - 1;
-            }
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
             Current.ovens[i].Floors[j].AddLog("手动停止运行");
             Current.ovens[i].StopBaking(j);
@@ -3555,10 +3469,6 @@ namespace BakBattery.Baking.App
         {
             //tlpFloor0501
             int i = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(8, 2), 0) - 1;
-            if (Option.LayoutType == 1)
-            {
-                i = OvenCount - i - 1;
-            }
             int j = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(10, 2), 0) - 1;
 
             Graphics g = e.Graphics;
@@ -3621,10 +3531,6 @@ namespace BakBattery.Baking.App
             }
 
             int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            if (Option.LayoutType == 1)
-            {
-                i = OvenCount - i - 1;
-            }
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
             Current.ovens[i].Floors[j].AddLog("手动卸真空");
             Current.ovens[i].UploadVacuum(j);
@@ -3639,10 +3545,6 @@ namespace BakBattery.Baking.App
             }
 
             int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            if (Option.LayoutType == 1)
-            {
-                i = OvenCount - i - 1;
-            }
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
             Current.ovens[i].Floors[j].AddLog("手动打开网控");
             Current.ovens[i].OpenNetControl(j);
@@ -3657,10 +3559,6 @@ namespace BakBattery.Baking.App
             }
 
             int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            if (Option.LayoutType == 1)
-            {
-                i = OvenCount - i - 1;
-            }
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
 
             Current.ovens[i].Floors[j].AddLog("手动报警复位");
@@ -4052,10 +3950,6 @@ namespace BakBattery.Baking.App
             srcFloorName = (sender as ContextMenuStrip).SourceControl.Name;
 
             int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            if (Option.LayoutType == 1)
-            {
-                i = OvenCount - i - 1;
-            }
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
 
             this.tsmOvenOpenDoor.Enabled =
