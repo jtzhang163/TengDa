@@ -425,9 +425,13 @@ namespace BakBattery.Baking.App
                 pbFeederLamp[i].Image = Properties.Resources.Gray_Round;
                 cbFeederIsEnable[i].Checked = Current.feeders[i].IsEnable;
 
-                for (int j = 0; j < Current.feeders[i].Scaners.Count; j++)
+                for (int j = 0; j < Current.feeders[i].Stations.Count; j++)
                 {
                     lbFeederStationName[i][j].Text = Current.feeders[i].Stations[j].Name;
+                }
+
+                for (int j = 0; j < Current.feeders[i].Scaners.Count; j++)
+                {
                     lbScanerNameN[i][j].Text = Current.feeders[i].Scaners[j].Name;
                     pbScanerLamp[i][j].Image = Properties.Resources.Gray_Round;
                     cbScanerIsEnable[i][j].Checked = Current.feeders[i].Scaners[j].IsEnable;

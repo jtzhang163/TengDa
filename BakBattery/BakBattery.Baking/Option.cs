@@ -601,138 +601,55 @@ namespace BakBattery.Baking
 
 
 
-        private string getVacuumStr = string.Empty;
+        private string getMultiInfoStrs = string.Empty;
         /// <summary>
-        /// 获取烤箱真空度的字符串
+        /// 获取烤箱门状态、真空和三色灯的指令
         /// </summary>
-        [Description("获取烤箱真空度的字符串")]
-        [DisplayName("获取烤箱真空度的字符串")]
+        [DisplayName("获取烤箱门状态、真空和三色灯的指令")]
         [Category("烤箱")]
-        public string GetVacuumStr
+        public string GetMultiInfoStrs
         {
             get
             {
-                if (string.IsNullOrEmpty(getVacuumStr))
+                if (string.IsNullOrEmpty(getMultiInfoStrs))
                 {
-                    getVacuumStr = TengDa.WF.Option.GetOption("GetVacuumStr");
+                    getMultiInfoStrs = TengDa.WF.Option.GetOption("GetMultiInfoStrs");
                 }
-                return getVacuumStr;
+                return getMultiInfoStrs;
             }
             set
             {
-                if (value != getVacuumStr)
+                if (value != getMultiInfoStrs)
                 {
-                    TengDa.WF.Option.SetOption("GetVacuumStr", value);
-                    getVacuumStr = value;
+                    TengDa.WF.Option.SetOption("GetMultiInfoStrs", value);
+                    getMultiInfoStrs = value;
                 }
             }
         }
 
-        private string getTemStrs1 = string.Empty;
+        private string getTemStrs = string.Empty;
         /// <summary>
         /// 获取烤箱温度的字符串1
         /// </summary>
         [Description("获取烤箱温度的字符串1,左前25")]
         [DisplayName("获取烤箱温度的字符串1")]
         [Category("烤箱")]
-        public string GetTemStrs1
+        public string GetTemStrs
         {
             get
             {
-                if (string.IsNullOrEmpty(getTemStrs1))
+                if (string.IsNullOrEmpty(getTemStrs))
                 {
-                    getTemStrs1 = TengDa.WF.Option.GetOption("GetTemStrs1");
+                    getTemStrs = TengDa.WF.Option.GetOption("GetTemStrs");
                 }
-                return getTemStrs1;
+                return getTemStrs;
             }
             set
             {
-                if (value != getTemStrs1)
+                if (value != getTemStrs)
                 {
-                    TengDa.WF.Option.SetOption("GetTemStrs1", value);
-                    getTemStrs1 = value;
-                }
-            }
-        }
-
-
-        private string getTemStrs2 = string.Empty;
-        /// <summary>
-        /// 获取烤箱温度的字符串2
-        /// </summary>
-        [Description("获取烤箱温度的字符串2,左后25")]
-        [DisplayName("获取烤箱温度的字符串2")]
-        [Category("烤箱")]
-        public string GetTemStrs2
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getTemStrs2))
-                {
-                    getTemStrs2 = TengDa.WF.Option.GetOption("GetTemStrs2");
-                }
-                return getTemStrs2;
-            }
-            set
-            {
-                if (value != getTemStrs2)
-                {
-                    TengDa.WF.Option.SetOption("GetTemStrs2", value);
-                    getTemStrs2 = value;
-                }
-            }
-        }
-
-        private string getTemStrs3 = string.Empty;
-        /// <summary>
-        /// 获取烤箱温度的字符串3
-        /// </summary>
-        [Description("获取烤箱温度的字符串3,右前25")]
-        [DisplayName("获取烤箱温度的字符串3")]
-        [Category("烤箱")]
-        public string GetTemStrs3
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getTemStrs3))
-                {
-                    getTemStrs3 = TengDa.WF.Option.GetOption("GetTemStrs3");
-                }
-                return getTemStrs3;
-            }
-            set
-            {
-                if (value != getTemStrs3)
-                {
-                    TengDa.WF.Option.SetOption("GetTemStrs3", value);
-                    getTemStrs3 = value;
-                }
-            }
-        }
-
-        private string getTemStrs4 = string.Empty;
-        /// <summary>
-        /// 获取烤箱温度的字符串4
-        /// </summary>
-        [Description("获取烤箱温度的字符串4,右后25")]
-        [DisplayName("获取烤箱温度的字符串4")]
-        [Category("烤箱")]
-        public string GetTemStrs4
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getTemStrs4))
-                {
-                    getTemStrs4 = TengDa.WF.Option.GetOption("GetTemStrs4");
-                }
-                return getTemStrs4;
-            }
-            set
-            {
-                if (value != getTemStrs4)
-                {
-                    TengDa.WF.Option.SetOption("GetTemStrs4", value);
-                    getTemStrs4 = value;
+                    TengDa.WF.Option.SetOption("GetTemStrs", value);
+                    getTemStrs = value;
                 }
             }
         }

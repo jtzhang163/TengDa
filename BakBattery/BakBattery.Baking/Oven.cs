@@ -259,12 +259,12 @@ namespace BakBattery.Baking
 
                 if (getInfoNum == 1)
                 {
-                    #region 获取温度左前25
+                    #region 获取温度
                     for (int j = 0; j < this.Floors.Count; j++)
                     {
 
                         output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.GetTemStrs1.Split(',')[j], out output, out msg))
+                        if (!this.Plc.GetInfo(false, Current.option.GetTemStrs.Split(',')[j], out output, out msg))
                         {
                             Error.Alert(msg);
                             this.Plc.IsAlive = false;
@@ -272,7 +272,7 @@ namespace BakBattery.Baking
                         }
                         if (output.Substring(3, 1) != "$")
                         {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetTemStrs1.Split(',')[j], output));
+                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetTemStrs.Split(',')[j], output));
                             return false;
                         }
 
@@ -285,25 +285,26 @@ namespace BakBattery.Baking
                     }
                     #endregion
 
-                    #region 获取真空
-                    output = string.Empty;
-                    if (!this.Plc.GetInfo(false, Current.option.GetVacuumStr, out output, out msg))
-                    {
-                        Error.Alert(msg);
-                        this.Plc.IsAlive = false;
-                        return false;
-                    }
-
-                    if (output.Substring(3, 1) != "$")
-                    {
-                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetVacuumStr, output));
-                        return false;
-                    }
-
-                    output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), true, true);
+                    #region 获取门状态、真空和三色灯
                     for (int j = 0; j < this.Floors.Count; j++)
                     {
-                        this.Floors[j].Vacuum = (float)int.Parse(output.Substring(j * 8, 8), System.Globalization.NumberStyles.AllowHexSpecifier);
+                        output = string.Empty;
+                        if (!this.Plc.GetInfo(false, Current.option.GetMultiInfoStrs.Split(',')[j], out output, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
+
+                        if (output.Substring(3, 1) != "$")
+                        {
+                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetMultiInfoStrs.Split(',')[j], output));
+                            return false;
+                        }
+
+                        output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), true, true);
+
+                        this.Floors[j].Vacuum = (float)int.Parse(output.Substring(0, 8), System.Globalization.NumberStyles.AllowHexSpecifier);
                     }
                     //for (int j = 0; j < this.Floors.Count; j++)
                     //{
@@ -315,32 +316,6 @@ namespace BakBattery.Baking
                 }
                 else if (getInfoNum == 3)
                 {
-                    #region 获取温度左后25
-                    for (int j = 0; j < this.Floors.Count; j++)
-                    {
-
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.GetTemStrs2.Split(',')[j], out output, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetTemStrs2.Split(',')[j], output));
-                            return false;
-                        }
-
-                        output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-
-                        for (int k = 0; k < this.floors[j].Stations[0].Temperatures.Length / 2; k++)
-                        {
-                            this.Floors[j].Stations[0].Temperatures[Option.TemperaturePointCount / 2 + k] = (float)int.Parse(output.Substring(k * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier) / 10;
-                        }
-                    }
-                    #endregion
-
                     #region 获取三色灯状态
                     output = string.Empty;
                     if (!this.Plc.GetInfo(false, Current.option.GetTrichromaticLampStr, out output, out msg))
@@ -377,61 +352,10 @@ namespace BakBattery.Baking
                 }
                 else if (getInfoNum == 5)
                 {
-                    #region 获取温度右前25
-                    for (int j = 0; j < this.Floors.Count; j++)
-                    {
-
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.GetTemStrs3.Split(',')[j], out output, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetTemStrs3.Split(',')[j], output));
-                            return false;
-                        }
-
-                        output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-
-                        for (int k = 0; k < this.floors[j].Stations[1].Temperatures.Length / 2; k++)
-                        {
-                            this.Floors[j].Stations[1].Temperatures[k] = (float)int.Parse(output.Substring(k * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier) / 10;
-                        }
-                    }
-                    #endregion
 
                 }
                 else if (getInfoNum == 7)
                 {
-                    #region 获取温度右后25
-                    for (int j = 0; j < this.Floors.Count; j++)
-                    {
-
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.GetTemStrs4.Split(',')[j], out output, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetTemStrs4.Split(',')[j], output));
-                            return false;
-                        }
-
-                        output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-
-                        for (int k = 0; k < this.floors[j].Stations[1].Temperatures.Length / 2; k++)
-                        {
-                            this.Floors[j].Stations[1].Temperatures[Option.TemperaturePointCount / 2 + k] = (float)int.Parse(output.Substring(k * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier) / 10;
-                        }
-                    }
-                    #endregion
-
                     #region 获取网控状态
                     output = string.Empty;
                     if (!this.Plc.GetInfo(false, Current.option.GetNetControlStatusStr, out output, out msg))
