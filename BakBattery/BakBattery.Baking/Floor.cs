@@ -69,18 +69,6 @@ namespace BakBattery.Baking
         }
         private int runMinutesSet = 0;
 
-        /// <summary>
-        /// 总运行时间(已运行时间 + 剩余时间)，单位：min
-        /// </summary>
-        [Description("总运行时间，单位：min")]
-        [DisplayName("总运行时间")]
-        public int RunMinutesTotal
-        {
-            get
-            {
-                return RunMinutes + RunRemainMinutes;
-            }
-        }
 
         [ReadOnly(true), Description("真空度，单位：Pa")]
         [DisplayName("真空度")]

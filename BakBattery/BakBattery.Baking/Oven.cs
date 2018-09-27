@@ -286,53 +286,8 @@ namespace BakBattery.Baking
                     }
                 }
                 #endregion
-
-                #region 获取门状态、真空和三色灯
-                for (int j = 0; j < this.Floors.Count; j++)
-                {
-                    output = string.Empty;
-                    if (!this.Plc.GetInfo(false, Current.option.GetMultiInfoStrs.Split(',')[j], out output, out msg))
-                    {
-                        Error.Alert(msg);
-                        this.Plc.IsAlive = false;
-                        return false;
-                    }
-
-                    if (output.Substring(3, 1) != "$")
-                    {
-                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetMultiInfoStrs.Split(',')[j], output));
-                        return false;
-                    }
-
-                    var tmpStr = output;
-
-                    output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false, false);
-
-                    switch (int.Parse(output.Substring(0, 4), System.Globalization.NumberStyles.AllowHexSpecifier))
-                    {
-                        case 1: this.Floors[j].DoorStatusNotFinal = DoorStatus.打开; break;
-                        case 2: this.Floors[j].DoorStatusNotFinal = DoorStatus.关闭; break;
-                        case 3: this.Floors[j].DoorStatusNotFinal = DoorStatus.异常; break;
-                        default: this.Floors[j].DoorStatusNotFinal = DoorStatus.未知; break;
-                    }
-
-                    switch (int.Parse(output.Substring(4, 4), System.Globalization.NumberStyles.AllowHexSpecifier))
-                    {
-                        case 1: this.Floors[j].TriLamp = TriLamp.Green; break;
-                        case 2: this.Floors[j].TriLamp = TriLamp.Yellow; break;
-                        case 3: this.Floors[j].TriLamp = TriLamp.Red; break;
-                        default: this.Floors[j].TriLamp = TriLamp.Unknown; break;
-                    }
-
-                    var tmpStr2 = PanasonicPLC.ConvertHexStr(tmpStr.TrimEnd('\r'), true, true);
-
-                    this.Floors[j].Vacuum = (float)int.Parse(tmpStr2.Substring(16, 8), System.Globalization.NumberStyles.AllowHexSpecifier);
-
-                }
-
-                #endregion
             }
-            else if (getInfoNum == 7)
+            else if (getInfoNum == 3)
             {
                 #region 获取网控状态
                 output = string.Empty;
@@ -354,9 +309,7 @@ namespace BakBattery.Baking
                     this.Floors[j].IsNetControlOpen = output.Substring(6 + j, 1) == "1";
                 }
                 #endregion
-            }
-            else if (getInfoNum == 9)
-            {
+
                 #region 获取运行时间
                 for (int j = 0; j < this.Floors.Count; j++)
                 {
@@ -379,7 +332,6 @@ namespace BakBattery.Baking
                 }
                 #endregion
             }
-
             if (getInfoNum % 2 == 0)
             {
 
@@ -473,6 +425,51 @@ namespace BakBattery.Baking
                 }
 
                 this.PreAlarm2BinString = this.Alarm2BinString;
+                #endregion
+
+                #region 获取门状态、真空和三色灯
+                for (int j = 0; j < this.Floors.Count; j++)
+                {
+                    output = string.Empty;
+                    if (!this.Plc.GetInfo(false, Current.option.GetMultiInfoStrs.Split(',')[j], out output, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    if (output.Substring(3, 1) != "$")
+                    {
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetMultiInfoStrs.Split(',')[j], output));
+                        return false;
+                    }
+
+                    var tmpStr = output;
+
+                    output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false, false);
+
+                    switch (int.Parse(output.Substring(0, 4), System.Globalization.NumberStyles.AllowHexSpecifier))
+                    {
+                        case 1: this.Floors[j].DoorStatusNotFinal = DoorStatus.打开; break;
+                        case 2: this.Floors[j].DoorStatusNotFinal = DoorStatus.关闭; break;
+                        case 3: this.Floors[j].DoorStatusNotFinal = DoorStatus.异常; break;
+                        default: this.Floors[j].DoorStatusNotFinal = DoorStatus.未知; break;
+                    }
+
+                    switch (int.Parse(output.Substring(4, 4), System.Globalization.NumberStyles.AllowHexSpecifier))
+                    {
+                        case 1: this.Floors[j].TriLamp = TriLamp.Green; break;
+                        case 2: this.Floors[j].TriLamp = TriLamp.Yellow; break;
+                        case 3: this.Floors[j].TriLamp = TriLamp.Red; break;
+                        default: this.Floors[j].TriLamp = TriLamp.Unknown; break;
+                    }
+
+                    var tmpStr2 = PanasonicPLC.ConvertHexStr(tmpStr.TrimEnd('\r'), true, true);
+
+                    this.Floors[j].Vacuum = (float)int.Parse(tmpStr2.Substring(16, 8), System.Globalization.NumberStyles.AllowHexSpecifier);
+
+                }
+
                 #endregion
 
             }
@@ -697,11 +694,11 @@ namespace BakBattery.Baking
             this.Plc.IsAlive = true;
 
             this.getInfoNum++;
-            if (getInfoNum >= 10)
+            if (getInfoNum >= 4)
             {
                 this.AlreadyGetAllInfo = true;
             }
-            this.getInfoNum %= 10;
+            this.getInfoNum %= 4;
             return true;
         }
 

@@ -692,7 +692,7 @@ namespace BakBattery.Baking.App
                 for (int j = 0; j < OvenFloorCount; j++)
                 {
                     Floor floor = oven.Floors[j];
-                    this.pbRunTime[i][j].Maximum = floor.RunMinutesTotal;
+                    this.pbRunTime[i][j].Maximum = floor.RunMinutesSet;
                     this.pbRunTime[i][j].Value = floor.IsBaking && floor.IsAlive ? floor.RunMinutes : 0;
 
                     floor.Stations.ForEach(s =>
