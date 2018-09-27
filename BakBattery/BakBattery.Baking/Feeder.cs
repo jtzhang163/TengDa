@@ -360,18 +360,6 @@ namespace BakBattery.Baking
                 return new Scaner();
             }
         }
-        [Browsable(false)]
-        public Scaner ClampScaner
-        {
-            get
-            {
-                if (this.Scaners.Count > 1)
-                {
-                    return this.Scaners[1];
-                }
-                return new Scaner();
-            }
-        }
 
         #endregion
 
@@ -466,9 +454,9 @@ namespace BakBattery.Baking
 
                 switch (iOut[5])
                 {
-                    case 0: this.Stations.ForEach(s => s.IsClampScanReady = false); this.ClampScaner.IsReady = false; break;
-                    case 1: this.Stations[0].IsClampScanReady = true; this.ClampScaner.IsReady = true; this.CurrentPutStationId = this.Stations[0].Id; break;
-                    case 2: this.Stations[1].IsClampScanReady = true; this.ClampScaner.IsReady = true; this.CurrentPutStationId = this.Stations[1].Id; break;
+                    case 0: this.Stations.ForEach(s => s.IsClampScanReady = false); Current.ClampScaner.IsReady = false; break;
+                    case 1: this.Stations[0].IsClampScanReady = true; Current.ClampScaner.IsReady = true; this.CurrentPutStationId = this.Stations[0].Id; break;
+                    case 2: this.Stations[1].IsClampScanReady = true; Current.ClampScaner.IsReady = true; this.CurrentPutStationId = this.Stations[1].Id; break;
                 }
 
                 if (iOut[6] == 1)

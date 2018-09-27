@@ -316,7 +316,15 @@ namespace BakBattery.Baking.App
             TreeNode tnRotater = new TreeNode("旋转台");
 
             List<TreeNode> tnStations = new List<TreeNode>();
-            foreach (Station station in Station.StationList)
+
+            var stationList = new List<Station>();
+            Current.feeders.ForEach(f => f.Stations.ForEach(s => stationList.Add(s)));
+            Current.ovens.ForEach(o => o.Floors.ForEach(f => f.Stations.ForEach(s => stationList.Add(s))));
+            Current.blankers.ForEach(b => b.Stations.ForEach(s => stationList.Add(s)));
+            Current.cache.Stations.ForEach(s => stationList.Add(s));
+            stationList.Add(Current.Transfer.Station);
+
+            foreach (Station station in stationList)
             {
                 List<TreeNode> tnClamps = new List<TreeNode>();
                 if (station.Clamp.Id > 0)
@@ -524,8 +532,8 @@ namespace BakBattery.Baking.App
 
 
 
-            Current.feeders.ForEach(f => cbClampScaner.Items.Add(f.ClampScaner.Name));
-            cbClampScaner.SelectedIndex = 0;
+            //Current.feeders.ForEach(f => cbClampScaner.Items.Add(f.ClampScaner.Name));
+            //cbClampScaner.SelectedIndex = 0;
 
             Current.feeders.ForEach(f => cbBatteryScaner.Items.Add(f.BatteryScaner.Name));
             cbBatteryScaner.SelectedIndex = 0;
@@ -2025,7 +2033,7 @@ namespace BakBattery.Baking.App
                 if (Current.feeders[i].AlreadyGetAllInfo)
                 {
                     #region 夹具扫码逻辑
-                    if (Current.feeders[i].ClampScaner.IsEnable && Current.feeders[i].ClampScaner.IsReady)
+                    if (Current.ClampScaner.IsEnable && Current.ClampScaner.IsReady)
                     {
                         Current.feeders[i].Stations.ForEach(s =>
                         {
@@ -2033,7 +2041,7 @@ namespace BakBattery.Baking.App
                             {
                                 string code = string.Empty;
 
-                                if (Current.feeders[i].ClampScaner.StartClampScan(out code, out msg))
+                                if (Current.ClampScaner.StartClampScan(out code, out msg))
                                 {
                                     this.BeginInvoke(new MethodInvoker(() =>
                                     {
@@ -2049,7 +2057,7 @@ namespace BakBattery.Baking.App
                                     Error.Alert(msg);
                                 }
 
-                                Current.feeders[i].ClampScaner.StopClampScan(out msg);
+                                Current.ClampScaner.StopClampScan(out msg);
 
                                 if (!Current.feeders[i].SetScanClampResultOK(out msg))
                                 {
@@ -4135,7 +4143,7 @@ namespace BakBattery.Baking.App
         {
             string code = string.Empty;
             string msg = string.Empty;
-            if (Current.feeders[cbClampScaner.SelectedIndex].ClampScaner.StartClampScan(out code, out msg))
+            if (Current.ClampScaner.StartClampScan(out code, out msg))
             {
                 Tip.Alert(code);
             }
@@ -4149,7 +4157,7 @@ namespace BakBattery.Baking.App
         private void btnClampScanStop_Click(object sender, EventArgs e)
         {
             string msg = string.Empty;
-            if (Current.feeders[cbClampScaner.SelectedIndex].ClampScaner.StopClampScan(out msg))
+            if (Current.ClampScaner.StopClampScan(out msg))
             {
                 Tip.Alert("OK");
             }
