@@ -761,10 +761,10 @@
             this.lbTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbTime.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTime.ForeColor = System.Drawing.Color.Green;
-            this.lbTime.Location = new System.Drawing.Point(3, 574);
+            this.lbTime.Location = new System.Drawing.Point(3, 568);
             this.lbTime.Margin = new System.Windows.Forms.Padding(3);
             this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(294, 27);
+            this.lbTime.Size = new System.Drawing.Size(294, 33);
             this.lbTime.TabIndex = 2;
             this.lbTime.Text = "yyyy-MM-dd HH:mm:ss";
             this.lbTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2078,14 +2078,14 @@
             this.tlpOvenLineA.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tlpOvenLineA.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpOvenLineA.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tlpOvenLineA.Controls.Add(this.tlpOven05, 7, 1);
+            this.tlpOvenLineA.Controls.Add(this.tlpOven06, 5, 1);
             this.tlpOvenLineA.Controls.Add(this.tableLayoutPanel28, 7, 0);
-            this.tlpOvenLineA.Controls.Add(this.tlpOven05, 1, 1);
-            this.tlpOvenLineA.Controls.Add(this.tlpOven07, 5, 1);
             this.tlpOvenLineA.Controls.Add(this.tableLayoutPanel27, 5, 0);
             this.tlpOvenLineA.Controls.Add(this.tableLayoutPanel25, 3, 0);
             this.tlpOvenLineA.Controls.Add(this.tableLayoutPanel26, 1, 0);
-            this.tlpOvenLineA.Controls.Add(this.tlpOven06, 3, 1);
-            this.tlpOvenLineA.Controls.Add(this.tlpOven08, 7, 1);
+            this.tlpOvenLineA.Controls.Add(this.tlpOven08, 1, 1);
+            this.tlpOvenLineA.Controls.Add(this.tlpOven07, 3, 1);
             this.tlpOvenLineA.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpOvenLineA.Location = new System.Drawing.Point(196, 3);
             this.tlpOvenLineA.Name = "tlpOvenLineA";
@@ -2100,8 +2100,8 @@
             this.tableLayoutPanel28.ColumnCount = 2;
             this.tableLayoutPanel28.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel28.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel28.Controls.Add(this.pbOvenTriLamp08, 1, 0);
-            this.tableLayoutPanel28.Controls.Add(this.lbOvenName08, 0, 0);
+            this.tableLayoutPanel28.Controls.Add(this.pbOvenTriLamp05, 1, 0);
+            this.tableLayoutPanel28.Controls.Add(this.lbOvenName05, 0, 0);
             this.tableLayoutPanel28.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel28.Location = new System.Drawing.Point(473, 0);
             this.tableLayoutPanel28.Margin = new System.Windows.Forms.Padding(0);
@@ -2145,7 +2145,7 @@
             this.tlpOven05.Controls.Add(this.tlpFloor0501, 0, 0);
             this.tlpOven05.Controls.Add(this.tlpFloor0503, 0, 2);
             this.tlpOven05.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpOven05.Location = new System.Drawing.Point(5, 25);
+            this.tlpOven05.Location = new System.Drawing.Point(473, 25);
             this.tlpOven05.Margin = new System.Windows.Forms.Padding(0);
             this.tlpOven05.Name = "tlpOven05";
             this.tlpOven05.RowCount = 3;
@@ -2439,7 +2439,7 @@
             this.tlpOven07.Controls.Add(this.tlpFloor0701, 0, 0);
             this.tlpOven07.Controls.Add(this.tlpFloor0703, 0, 2);
             this.tlpOven07.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpOven07.Location = new System.Drawing.Point(317, 25);
+            this.tlpOven07.Location = new System.Drawing.Point(161, 25);
             this.tlpOven07.Margin = new System.Windows.Forms.Padding(0);
             this.tlpOven07.Name = "tlpOven07";
             this.tlpOven07.RowCount = 3;
@@ -2654,8 +2654,8 @@
             this.tableLayoutPanel27.ColumnCount = 2;
             this.tableLayoutPanel27.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel27.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel27.Controls.Add(this.pbOvenTriLamp07, 1, 0);
-            this.tableLayoutPanel27.Controls.Add(this.lbOvenName07, 0, 0);
+            this.tableLayoutPanel27.Controls.Add(this.pbOvenTriLamp06, 1, 0);
+            this.tableLayoutPanel27.Controls.Add(this.lbOvenName06, 0, 0);
             this.tableLayoutPanel27.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel27.Location = new System.Drawing.Point(317, 0);
             this.tableLayoutPanel27.Margin = new System.Windows.Forms.Padding(0);
@@ -2694,8 +2694,8 @@
             this.tableLayoutPanel25.ColumnCount = 2;
             this.tableLayoutPanel25.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel25.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel25.Controls.Add(this.pbOvenTriLamp06, 1, 0);
-            this.tableLayoutPanel25.Controls.Add(this.lbOvenName06, 0, 0);
+            this.tableLayoutPanel25.Controls.Add(this.lbOvenName07, 0, 0);
+            this.tableLayoutPanel25.Controls.Add(this.pbOvenTriLamp07, 1, 0);
             this.tableLayoutPanel25.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel25.Location = new System.Drawing.Point(161, 0);
             this.tableLayoutPanel25.Margin = new System.Windows.Forms.Padding(0);
@@ -2720,7 +2720,6 @@
             // 
             // lbOvenName06
             // 
-            this.lbOvenName06.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbOvenName06.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbOvenName06.Location = new System.Drawing.Point(3, 0);
             this.lbOvenName06.Name = "lbOvenName06";
@@ -2734,8 +2733,8 @@
             this.tableLayoutPanel26.ColumnCount = 2;
             this.tableLayoutPanel26.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel26.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel26.Controls.Add(this.lbOvenName05, 0, 0);
-            this.tableLayoutPanel26.Controls.Add(this.pbOvenTriLamp05, 1, 0);
+            this.tableLayoutPanel26.Controls.Add(this.pbOvenTriLamp08, 1, 0);
+            this.tableLayoutPanel26.Controls.Add(this.lbOvenName08, 0, 0);
             this.tableLayoutPanel26.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel26.Location = new System.Drawing.Point(5, 0);
             this.tableLayoutPanel26.Margin = new System.Windows.Forms.Padding(0);
@@ -2748,6 +2747,7 @@
             // 
             // lbOvenName05
             // 
+            this.lbOvenName05.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbOvenName05.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbOvenName05.Location = new System.Drawing.Point(3, 0);
             this.lbOvenName05.Name = "lbOvenName05";
@@ -2778,7 +2778,7 @@
             this.tlpOven06.Controls.Add(this.tlpFloor0601, 0, 0);
             this.tlpOven06.Controls.Add(this.tlpFloor0603, 0, 2);
             this.tlpOven06.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpOven06.Location = new System.Drawing.Point(161, 25);
+            this.tlpOven06.Location = new System.Drawing.Point(317, 25);
             this.tlpOven06.Margin = new System.Windows.Forms.Padding(0);
             this.tlpOven06.Name = "tlpOven06";
             this.tlpOven06.RowCount = 3;
@@ -2998,7 +2998,7 @@
             this.tlpOven08.Controls.Add(this.tlpFloor0801, 0, 0);
             this.tlpOven08.Controls.Add(this.tlpFloor0803, 0, 2);
             this.tlpOven08.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpOven08.Location = new System.Drawing.Point(473, 25);
+            this.tlpOven08.Location = new System.Drawing.Point(5, 25);
             this.tlpOven08.Margin = new System.Windows.Forms.Padding(0);
             this.tlpOven08.Name = "tlpOven08";
             this.tlpOven08.RowCount = 3;
@@ -4307,7 +4307,7 @@
             this.tlpTrack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.tlpTrack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.68023F));
             this.tlpTrack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.555993F));
-            this.tlpTrack.Controls.Add(this.panelRobot, 3, 0);
+            this.tlpTrack.Controls.Add(this.panelRobot, 12, 0);
             this.tlpTrack.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpTrack.Location = new System.Drawing.Point(0, 0);
             this.tlpTrack.Name = "tlpTrack";
@@ -4323,7 +4323,7 @@
             this.panelRobot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelRobot.ContextMenuStrip = this.cmsRobot;
             this.panelRobot.Controls.Add(this.tableLayoutPanel21);
-            this.panelRobot.Location = new System.Drawing.Point(186, 3);
+            this.panelRobot.Location = new System.Drawing.Point(663, 3);
             this.panelRobot.Name = "panelRobot";
             this.panelRobot.Size = new System.Drawing.Size(71, 55);
             this.panelRobot.TabIndex = 1;
@@ -7351,7 +7351,7 @@
             this.groupBoxTerminal.Location = new System.Drawing.Point(15, 5);
             this.groupBoxTerminal.Margin = new System.Windows.Forms.Padding(15, 5, 15, 0);
             this.groupBoxTerminal.Name = "groupBoxTerminal";
-            this.groupBoxTerminal.Size = new System.Drawing.Size(270, 389);
+            this.groupBoxTerminal.Size = new System.Drawing.Size(270, 383);
             this.groupBoxTerminal.TabIndex = 10;
             this.groupBoxTerminal.TabStop = false;
             this.groupBoxTerminal.Text = "通讯状态";
@@ -7454,7 +7454,7 @@
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.885239F));
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(264, 367);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(264, 361);
             this.tableLayoutPanel14.TabIndex = 26;
             // 
             // tbFeederStatus02
@@ -7551,7 +7551,7 @@
             this.lbMesNameN.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbMesNameN.Location = new System.Drawing.Point(32, 336);
             this.lbMesNameN.Name = "lbMesNameN";
-            this.lbMesNameN.Size = new System.Drawing.Size(79, 31);
+            this.lbMesNameN.Size = new System.Drawing.Size(79, 25);
             this.lbMesNameN.TabIndex = 78;
             this.lbMesNameN.Text = "XXXXX";
             this.lbMesNameN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -7574,7 +7574,7 @@
             this.tbMesStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbMesStatus.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbMesStatus.ForeColor = System.Drawing.Color.Green;
-            this.tbMesStatus.Location = new System.Drawing.Point(138, 343);
+            this.tbMesStatus.Location = new System.Drawing.Point(138, 340);
             this.tbMesStatus.Name = "tbMesStatus";
             this.tbMesStatus.ReadOnly = true;
             this.tbMesStatus.Size = new System.Drawing.Size(123, 16);
@@ -7585,7 +7585,7 @@
             // 
             this.pbMesLamp.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbMesLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbMesLamp.Image")));
-            this.pbMesLamp.Location = new System.Drawing.Point(116, 342);
+            this.pbMesLamp.Location = new System.Drawing.Point(116, 339);
             this.pbMesLamp.Margin = new System.Windows.Forms.Padding(2);
             this.pbMesLamp.Name = "pbMesLamp";
             this.pbMesLamp.Size = new System.Drawing.Size(17, 18);
@@ -7597,7 +7597,7 @@
             // 
             this.cbMesIsEnable.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbMesIsEnable.AutoSize = true;
-            this.cbMesIsEnable.Location = new System.Drawing.Point(11, 344);
+            this.cbMesIsEnable.Location = new System.Drawing.Point(11, 341);
             this.cbMesIsEnable.Name = "cbMesIsEnable";
             this.cbMesIsEnable.Size = new System.Drawing.Size(15, 14);
             this.cbMesIsEnable.TabIndex = 25;
@@ -8405,29 +8405,29 @@
             this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 4;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65.3672F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.58435F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.82954F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.218916F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.37558F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.68955F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.89965F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.035211F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(300, 604);
             this.tableLayoutPanel6.TabIndex = 13;
             // 
             // userDisplay
             // 
             this.userDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userDisplay.Location = new System.Drawing.Point(15, 500);
+            this.userDisplay.Location = new System.Drawing.Point(15, 488);
             this.userDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.userDisplay.Name = "userDisplay";
-            this.userDisplay.Size = new System.Drawing.Size(270, 71);
+            this.userDisplay.Size = new System.Drawing.Size(270, 77);
             this.userDisplay.TabIndex = 13;
             // 
             // yieldDisplay
             // 
             this.yieldDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.yieldDisplay.Location = new System.Drawing.Point(15, 394);
+            this.yieldDisplay.Location = new System.Drawing.Point(15, 388);
             this.yieldDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.yieldDisplay.Name = "yieldDisplay";
-            this.yieldDisplay.Size = new System.Drawing.Size(270, 106);
+            this.yieldDisplay.Size = new System.Drawing.Size(270, 100);
             this.yieldDisplay.TabIndex = 14;
             this.yieldDisplay.btnYieldClearClick += new BakBattery.Baking.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
             // 
