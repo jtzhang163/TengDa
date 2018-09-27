@@ -39,21 +39,28 @@ namespace BakBattery.Baking
 
         public string PreAlarm2BinString = string.Empty;
 
-        public TriLamp triLamp = TriLamp.Unknown;
         [ReadOnly(true), DisplayName("三色灯")]
         public TriLamp TriLamp
         {
             get
             {
-                if (!this.IsAlive)
+                if (this.IsAlive)
                 {
-                    triLamp = TriLamp.Unknown;
+                    var tmp = this.Floors.Select(f => f.TriLamp);
+                    if (tmp.Count(t => t == TriLamp.Red) > 0)
+                    {
+                        return TriLamp.Red;
+                    }
+                    if (tmp.Count(t => t == TriLamp.Green) > 0)
+                    {
+                        return TriLamp.Green;
+                    }
+                    if (tmp.Count(t => t == TriLamp.Yellow) > 0)
+                    {
+                        return TriLamp.Yellow;
+                    }
                 }
-                return triLamp;
-            }
-            set
-            {
-                triLamp = value;
+                return TriLamp.Unknown;
             }
         }
 
