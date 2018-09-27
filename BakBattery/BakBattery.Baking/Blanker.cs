@@ -30,24 +30,6 @@ namespace BakBattery.Baking
             }
         }
 
-        private int rotaterId = -1;
-        [ReadOnly(true), Description("旋转台ID")]
-        [DisplayName("旋转台ID")]
-        public int RotaterId
-        {
-            get { return rotaterId; }
-            set { rotaterId = value; }
-        }
-
-        private int cacheId = -1;
-        [ReadOnly(true), Description("缓存架ID")]
-        [DisplayName("缓存架ID")]
-        public int CacheId
-        {
-            get { return cacheId; }
-            set { cacheId = value; }
-        }
-
         private int plcId = -1;
         [ReadOnly(true), Description("PLC ID")]
         [DisplayName("PLC ID")]
@@ -117,8 +99,6 @@ namespace BakBattery.Baking
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
             this.name = rowInfo["Name"].ToString();
             this.plcId = TengDa._Convert.StrToInt(rowInfo["PlcId"].ToString(), -1);
-            this.rotaterId = TengDa._Convert.StrToInt(rowInfo["RotaterId"].ToString(), -1);
-            this.cacheId = TengDa._Convert.StrToInt(rowInfo["CacheId"].ToString(), -1);
             this.company = rowInfo["Company"].ToString();
             this.model = rowInfo["Model"].ToString();
             this.number = rowInfo["Number"].ToString();
@@ -183,7 +163,6 @@ namespace BakBattery.Baking
             {
                 if (stations.Count < 1)
                 {
-                    // stations = Station.StationList.Where(s => Array.IndexOf(this.StationIds.Split(','), s.Id.ToString()) > -1).ToList();
                     stations.Clear();
                     for (int i = 0; i < StationIds.Split(',').Length; i++)
                     {
