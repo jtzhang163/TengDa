@@ -322,7 +322,15 @@ namespace Outstanding.Dispatcher.App
             TreeNode tnRotater = new TreeNode("旋转台");
 
             List<TreeNode> tnStations = new List<TreeNode>();
-            foreach (Station station in Station.StationList)
+
+            var stationList = new List<Station>();
+            Current.feeders.ForEach(f => f.Stations.ForEach(s => stationList.Add(s)));
+            Current.ovens.ForEach(o => o.Floors.ForEach(f => f.Stations.ForEach(s => stationList.Add(s))));
+            Current.blankers.ForEach(b => b.Stations.ForEach(s => stationList.Add(s)));
+            Current.cache.Stations.ForEach(s => stationList.Add(s));
+            stationList.Add(Current.rotater.Station);
+
+            foreach (Station station in stationList)
             {
                 List<TreeNode> tnClamps = new List<TreeNode>();
                 if (station.Clamp.Id > 0)
