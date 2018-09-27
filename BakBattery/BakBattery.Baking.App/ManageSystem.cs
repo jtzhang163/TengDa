@@ -434,6 +434,10 @@ namespace BakBattery.Baking.App
                 }
             }
 
+            lbClampScanerNameN.Text = Current.ClampScaner.Name;
+            pbClampScanerLamp.Image = Properties.Resources.Gray_Round;
+            cbClampScanerIsEnable.Checked = Current.ClampScaner.IsEnable;
+
             for (int i = 0; i < BlankerCount; i++)
             {
                 lbBlankerNameN[i].Text = Current.blankers[i].Name;
@@ -1190,7 +1194,7 @@ namespace BakBattery.Baking.App
         private Label[][] lbFeederClampCode = new Label[FeederCount][];
         private TableLayoutPanel[][] tlpFeederStationClamp = new TableLayoutPanel[FeederCount][];
 
-        private const int FeederScanerCount = 2;
+        private const int FeederScanerCount = 1;
 
         private Label[][] lbScanerNameN = new Label[FeederCount][];
         private CheckBox[][] cbScanerIsEnable = new CheckBox[FeederCount][];

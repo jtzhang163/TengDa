@@ -511,54 +511,50 @@
             this.lbFeederNameN01 = new System.Windows.Forms.Label();
             this.tbFeederStatus01 = new System.Windows.Forms.TextBox();
             this.pbFeederLamp01 = new System.Windows.Forms.PictureBox();
-            this.cbScanerIsEnable0101 = new System.Windows.Forms.CheckBox();
-            this.lbScanerNameN0101 = new System.Windows.Forms.Label();
-            this.pbScanerLamp0101 = new System.Windows.Forms.PictureBox();
-            this.tbScanerStatus0101 = new System.Windows.Forms.TextBox();
-            this.cbScanerIsEnable0102 = new System.Windows.Forms.CheckBox();
+            this.cbClampScanerIsEnable = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable01 = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable02 = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable03 = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable04 = new System.Windows.Forms.CheckBox();
             this.cbRobotIsEnable = new System.Windows.Forms.CheckBox();
             this.cbScanerIsEnable0201 = new System.Windows.Forms.CheckBox();
-            this.pbScanerLamp0102 = new System.Windows.Forms.PictureBox();
+            this.pbClampScanerLamp = new System.Windows.Forms.PictureBox();
             this.pbOvenLamp01 = new System.Windows.Forms.PictureBox();
             this.pbOvenLamp02 = new System.Windows.Forms.PictureBox();
             this.pbOvenLamp03 = new System.Windows.Forms.PictureBox();
             this.pbOvenLamp04 = new System.Windows.Forms.PictureBox();
             this.pbRobotLamp = new System.Windows.Forms.PictureBox();
             this.pbScanerLamp0201 = new System.Windows.Forms.PictureBox();
-            this.tbScanerStatus0102 = new System.Windows.Forms.TextBox();
+            this.tbClampScanerStatus = new System.Windows.Forms.TextBox();
             this.tbOvenStatus01 = new System.Windows.Forms.TextBox();
             this.tbOvenStatus02 = new System.Windows.Forms.TextBox();
             this.tbOvenStatus03 = new System.Windows.Forms.TextBox();
             this.tbOvenStatus04 = new System.Windows.Forms.TextBox();
             this.tbRobotStatus = new System.Windows.Forms.TextBox();
             this.tbScanerStatus0201 = new System.Windows.Forms.TextBox();
-            this.lbScanerNameN0102 = new System.Windows.Forms.Label();
+            this.lbClampScanerNameN = new System.Windows.Forms.Label();
             this.lbOvenNameN01 = new System.Windows.Forms.Label();
             this.lbOvenNameN02 = new System.Windows.Forms.Label();
             this.lbOvenNameN03 = new System.Windows.Forms.Label();
             this.lbOvenNameN04 = new System.Windows.Forms.Label();
             this.lbRobotNameN = new System.Windows.Forms.Label();
             this.lbScanerNameN0201 = new System.Windows.Forms.Label();
-            this.cbScanerIsEnable0202 = new System.Windows.Forms.CheckBox();
+            this.cbScanerIsEnable0101 = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable05 = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable06 = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable07 = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable08 = new System.Windows.Forms.CheckBox();
-            this.lbScanerNameN0202 = new System.Windows.Forms.Label();
+            this.lbScanerNameN0101 = new System.Windows.Forms.Label();
             this.lbOvenNameN05 = new System.Windows.Forms.Label();
             this.lbOvenNameN06 = new System.Windows.Forms.Label();
             this.lbOvenNameN07 = new System.Windows.Forms.Label();
             this.lbOvenNameN08 = new System.Windows.Forms.Label();
-            this.pbScanerLamp0202 = new System.Windows.Forms.PictureBox();
+            this.pbScanerLamp0101 = new System.Windows.Forms.PictureBox();
             this.pbOvenLamp05 = new System.Windows.Forms.PictureBox();
             this.pbOvenLamp06 = new System.Windows.Forms.PictureBox();
             this.pbOvenLamp07 = new System.Windows.Forms.PictureBox();
             this.pbOvenLamp08 = new System.Windows.Forms.PictureBox();
-            this.tbScanerStatus0202 = new System.Windows.Forms.TextBox();
+            this.tbScanerStatus0101 = new System.Windows.Forms.TextBox();
             this.tbOvenStatus05 = new System.Windows.Forms.TextBox();
             this.tbOvenStatus06 = new System.Windows.Forms.TextBox();
             this.tbOvenStatus07 = new System.Windows.Forms.TextBox();
@@ -730,15 +726,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbBlankerLamp01)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMesLamp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFeederLamp01)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0101)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0102)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbClampScanerLamp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp01)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp02)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp03)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp04)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRobotLamp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0201)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0202)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0101)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp05)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp06)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp07)).BeginInit();
@@ -7351,7 +7346,7 @@
             this.groupBoxTerminal.Location = new System.Drawing.Point(15, 5);
             this.groupBoxTerminal.Margin = new System.Windows.Forms.Padding(15, 5, 15, 0);
             this.groupBoxTerminal.Name = "groupBoxTerminal";
-            this.groupBoxTerminal.Size = new System.Drawing.Size(270, 383);
+            this.groupBoxTerminal.Size = new System.Drawing.Size(270, 377);
             this.groupBoxTerminal.TabIndex = 10;
             this.groupBoxTerminal.TabStop = false;
             this.groupBoxTerminal.Text = "通讯状态";
@@ -7363,98 +7358,92 @@
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel14.Controls.Add(this.tbBlankerStatus01, 3, 7);
-            this.tableLayoutPanel14.Controls.Add(this.tbScanerStatus0101, 3, 9);
-            this.tableLayoutPanel14.Controls.Add(this.pbScanerLamp0101, 2, 9);
-            this.tableLayoutPanel14.Controls.Add(this.lbScanerNameN0101, 1, 9);
-            this.tableLayoutPanel14.Controls.Add(this.cbScanerIsEnable0101, 0, 9);
-            this.tableLayoutPanel14.Controls.Add(this.pbBlankerLamp01, 2, 7);
-            this.tableLayoutPanel14.Controls.Add(this.lbBlankerNameN01, 1, 7);
-            this.tableLayoutPanel14.Controls.Add(this.lbMesNameN, 1, 16);
-            this.tableLayoutPanel14.Controls.Add(this.cbBlankerIsEnable01, 0, 7);
-            this.tableLayoutPanel14.Controls.Add(this.tbMesStatus, 3, 16);
-            this.tableLayoutPanel14.Controls.Add(this.pbMesLamp, 2, 16);
-            this.tableLayoutPanel14.Controls.Add(this.cbMesIsEnable, 0, 16);
+            this.tableLayoutPanel14.Controls.Add(this.tbBlankerStatus01, 3, 14);
+            this.tableLayoutPanel14.Controls.Add(this.tbClampScanerStatus, 3, 4);
+            this.tableLayoutPanel14.Controls.Add(this.lbMesNameN, 1, 15);
+            this.tableLayoutPanel14.Controls.Add(this.pbClampScanerLamp, 2, 4);
+            this.tableLayoutPanel14.Controls.Add(this.cbClampScanerIsEnable, 0, 4);
+            this.tableLayoutPanel14.Controls.Add(this.lbClampScanerNameN, 1, 4);
+            this.tableLayoutPanel14.Controls.Add(this.tbMesStatus, 3, 15);
+            this.tableLayoutPanel14.Controls.Add(this.pbMesLamp, 2, 15);
+            this.tableLayoutPanel14.Controls.Add(this.cbMesIsEnable, 0, 15);
             this.tableLayoutPanel14.Controls.Add(this.cbFeederIsEnable01, 0, 0);
             this.tableLayoutPanel14.Controls.Add(this.lbFeederNameN01, 1, 0);
+            this.tableLayoutPanel14.Controls.Add(this.lbBlankerNameN01, 1, 14);
+            this.tableLayoutPanel14.Controls.Add(this.cbBlankerIsEnable01, 0, 14);
             this.tableLayoutPanel14.Controls.Add(this.tbFeederStatus01, 3, 0);
             this.tableLayoutPanel14.Controls.Add(this.pbFeederLamp01, 2, 0);
-            this.tableLayoutPanel14.Controls.Add(this.cbScanerIsEnable0102, 0, 2);
-            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable01, 0, 3);
-            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable02, 0, 4);
-            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable03, 0, 5);
-            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable04, 0, 6);
-            this.tableLayoutPanel14.Controls.Add(this.cbRobotIsEnable, 0, 8);
-            this.tableLayoutPanel14.Controls.Add(this.cbScanerIsEnable0201, 0, 10);
-            this.tableLayoutPanel14.Controls.Add(this.pbScanerLamp0102, 2, 2);
-            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp01, 2, 3);
-            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp02, 2, 4);
-            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp03, 2, 5);
-            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp04, 2, 6);
-            this.tableLayoutPanel14.Controls.Add(this.pbRobotLamp, 2, 8);
-            this.tableLayoutPanel14.Controls.Add(this.pbScanerLamp0201, 2, 10);
-            this.tableLayoutPanel14.Controls.Add(this.tbScanerStatus0102, 3, 2);
-            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus01, 3, 3);
-            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus02, 3, 4);
-            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus03, 3, 5);
-            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus04, 3, 6);
-            this.tableLayoutPanel14.Controls.Add(this.tbRobotStatus, 3, 8);
-            this.tableLayoutPanel14.Controls.Add(this.tbScanerStatus0201, 3, 10);
-            this.tableLayoutPanel14.Controls.Add(this.lbScanerNameN0102, 1, 2);
-            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN01, 1, 3);
-            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN02, 1, 4);
-            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN03, 1, 5);
-            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN04, 1, 6);
-            this.tableLayoutPanel14.Controls.Add(this.lbRobotNameN, 1, 8);
-            this.tableLayoutPanel14.Controls.Add(this.lbScanerNameN0201, 1, 10);
-            this.tableLayoutPanel14.Controls.Add(this.cbScanerIsEnable0202, 0, 11);
-            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable05, 0, 12);
-            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable06, 0, 13);
-            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable07, 0, 14);
-            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable08, 0, 15);
-            this.tableLayoutPanel14.Controls.Add(this.lbScanerNameN0202, 1, 11);
-            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN05, 1, 12);
-            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN06, 1, 13);
-            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN07, 1, 14);
-            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN08, 1, 15);
-            this.tableLayoutPanel14.Controls.Add(this.pbScanerLamp0202, 2, 11);
-            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp05, 2, 12);
-            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp06, 2, 13);
-            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp07, 2, 14);
-            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp08, 2, 15);
-            this.tableLayoutPanel14.Controls.Add(this.tbScanerStatus0202, 3, 11);
-            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus05, 3, 12);
-            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus06, 3, 13);
-            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus07, 3, 14);
-            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus08, 3, 15);
+            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable01, 0, 6);
+            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable02, 0, 7);
+            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable03, 0, 8);
+            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable04, 0, 9);
+            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp01, 2, 6);
+            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp02, 2, 7);
+            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp03, 2, 8);
+            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp04, 2, 9);
+            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus01, 3, 6);
+            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus02, 3, 7);
+            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus03, 3, 8);
+            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus04, 3, 9);
+            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN01, 1, 6);
+            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN02, 1, 7);
+            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN03, 1, 8);
+            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN04, 1, 9);
             this.tableLayoutPanel14.Controls.Add(this.cbFeederIsEnable02, 0, 1);
             this.tableLayoutPanel14.Controls.Add(this.lbFeederNameN02, 1, 1);
             this.tableLayoutPanel14.Controls.Add(this.pbFeederLamp02, 2, 1);
             this.tableLayoutPanel14.Controls.Add(this.tbFeederStatus02, 3, 1);
+            this.tableLayoutPanel14.Controls.Add(this.cbRobotIsEnable, 0, 5);
+            this.tableLayoutPanel14.Controls.Add(this.lbRobotNameN, 1, 5);
+            this.tableLayoutPanel14.Controls.Add(this.pbRobotLamp, 2, 5);
+            this.tableLayoutPanel14.Controls.Add(this.tbRobotStatus, 3, 5);
+            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable05, 0, 10);
+            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN05, 1, 10);
+            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp05, 2, 10);
+            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus05, 3, 10);
+            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable06, 0, 11);
+            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN06, 1, 11);
+            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp06, 2, 11);
+            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus06, 3, 11);
+            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable07, 0, 12);
+            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN07, 1, 12);
+            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp07, 2, 12);
+            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus07, 3, 12);
+            this.tableLayoutPanel14.Controls.Add(this.cbOvenIsEnable08, 0, 13);
+            this.tableLayoutPanel14.Controls.Add(this.lbOvenNameN08, 1, 13);
+            this.tableLayoutPanel14.Controls.Add(this.pbOvenLamp08, 2, 13);
+            this.tableLayoutPanel14.Controls.Add(this.tbOvenStatus08, 3, 13);
+            this.tableLayoutPanel14.Controls.Add(this.cbScanerIsEnable0101, 0, 2);
+            this.tableLayoutPanel14.Controls.Add(this.lbScanerNameN0101, 1, 2);
+            this.tableLayoutPanel14.Controls.Add(this.pbScanerLamp0101, 2, 2);
+            this.tableLayoutPanel14.Controls.Add(this.tbScanerStatus0101, 3, 2);
+            this.tableLayoutPanel14.Controls.Add(this.pbBlankerLamp01, 2, 14);
+            this.tableLayoutPanel14.Controls.Add(this.cbScanerIsEnable0201, 0, 3);
+            this.tableLayoutPanel14.Controls.Add(this.lbScanerNameN0201, 1, 3);
+            this.tableLayoutPanel14.Controls.Add(this.pbScanerLamp0201, 2, 3);
+            this.tableLayoutPanel14.Controls.Add(this.tbScanerStatus0201, 3, 3);
             this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 19);
             this.tableLayoutPanel14.Margin = new System.Windows.Forms.Padding(3, 3, 3, 7);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
-            this.tableLayoutPanel14.RowCount = 17;
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.88248F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.880126F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.882298F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.885239F));
-            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(264, 361);
+            this.tableLayoutPanel14.RowCount = 16;
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.250582F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.250581F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.248783F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.248783F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.248783F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.250581F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.250581F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.250581F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.250581F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.250581F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.250774F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.250581F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.248272F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.250581F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.250581F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.248783F));
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(264, 355);
             this.tableLayoutPanel14.TabIndex = 26;
             // 
             // tbFeederStatus02
@@ -7464,7 +7453,7 @@
             this.tbFeederStatus02.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbFeederStatus02.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbFeederStatus02.ForeColor = System.Drawing.Color.Green;
-            this.tbFeederStatus02.Location = new System.Drawing.Point(138, 24);
+            this.tbFeederStatus02.Location = new System.Drawing.Point(138, 25);
             this.tbFeederStatus02.Name = "tbFeederStatus02";
             this.tbFeederStatus02.ReadOnly = true;
             this.tbFeederStatus02.Size = new System.Drawing.Size(123, 16);
@@ -7478,7 +7467,7 @@
             this.tbBlankerStatus01.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbBlankerStatus01.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbBlankerStatus01.ForeColor = System.Drawing.Color.Green;
-            this.tbBlankerStatus01.Location = new System.Drawing.Point(138, 150);
+            this.tbBlankerStatus01.Location = new System.Drawing.Point(138, 311);
             this.tbBlankerStatus01.Name = "tbBlankerStatus01";
             this.tbBlankerStatus01.ReadOnly = true;
             this.tbBlankerStatus01.Size = new System.Drawing.Size(123, 16);
@@ -7489,7 +7478,7 @@
             // 
             this.pbFeederLamp02.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbFeederLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbFeederLamp02.Image")));
-            this.pbFeederLamp02.Location = new System.Drawing.Point(116, 24);
+            this.pbFeederLamp02.Location = new System.Drawing.Point(116, 25);
             this.pbFeederLamp02.Margin = new System.Windows.Forms.Padding(2);
             this.pbFeederLamp02.Name = "pbFeederLamp02";
             this.pbFeederLamp02.Size = new System.Drawing.Size(17, 15);
@@ -7501,7 +7490,7 @@
             // 
             this.pbBlankerLamp01.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbBlankerLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbBlankerLamp01.Image")));
-            this.pbBlankerLamp01.Location = new System.Drawing.Point(116, 149);
+            this.pbBlankerLamp01.Location = new System.Drawing.Point(116, 311);
             this.pbBlankerLamp01.Margin = new System.Windows.Forms.Padding(2);
             this.pbBlankerLamp01.Name = "pbBlankerLamp01";
             this.pbBlankerLamp01.Size = new System.Drawing.Size(17, 16);
@@ -7514,9 +7503,9 @@
             this.lbFeederNameN02.AutoSize = true;
             this.lbFeederNameN02.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFeederNameN02.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFeederNameN02.Location = new System.Drawing.Point(32, 21);
+            this.lbFeederNameN02.Location = new System.Drawing.Point(32, 22);
             this.lbFeederNameN02.Name = "lbFeederNameN02";
-            this.lbFeederNameN02.Size = new System.Drawing.Size(79, 21);
+            this.lbFeederNameN02.Size = new System.Drawing.Size(79, 22);
             this.lbFeederNameN02.TabIndex = 66;
             this.lbFeederNameN02.Text = "XXXXX";
             this.lbFeederNameN02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -7526,9 +7515,9 @@
             this.lbBlankerNameN01.AutoSize = true;
             this.lbBlankerNameN01.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbBlankerNameN01.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBlankerNameN01.Location = new System.Drawing.Point(32, 147);
+            this.lbBlankerNameN01.Location = new System.Drawing.Point(32, 308);
             this.lbBlankerNameN01.Name = "lbBlankerNameN01";
-            this.lbBlankerNameN01.Size = new System.Drawing.Size(79, 21);
+            this.lbBlankerNameN01.Size = new System.Drawing.Size(79, 22);
             this.lbBlankerNameN01.TabIndex = 66;
             this.lbBlankerNameN01.Text = "XXXXX";
             this.lbBlankerNameN01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -7537,7 +7526,7 @@
             // 
             this.cbFeederIsEnable02.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbFeederIsEnable02.AutoSize = true;
-            this.cbFeederIsEnable02.Location = new System.Drawing.Point(11, 24);
+            this.cbFeederIsEnable02.Location = new System.Drawing.Point(11, 26);
             this.cbFeederIsEnable02.Name = "cbFeederIsEnable02";
             this.cbFeederIsEnable02.Size = new System.Drawing.Size(15, 14);
             this.cbFeederIsEnable02.TabIndex = 31;
@@ -7549,7 +7538,7 @@
             this.lbMesNameN.AutoSize = true;
             this.lbMesNameN.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbMesNameN.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMesNameN.Location = new System.Drawing.Point(32, 336);
+            this.lbMesNameN.Location = new System.Drawing.Point(32, 330);
             this.lbMesNameN.Name = "lbMesNameN";
             this.lbMesNameN.Size = new System.Drawing.Size(79, 25);
             this.lbMesNameN.TabIndex = 78;
@@ -7560,7 +7549,7 @@
             // 
             this.cbBlankerIsEnable01.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbBlankerIsEnable01.AutoSize = true;
-            this.cbBlankerIsEnable01.Location = new System.Drawing.Point(11, 150);
+            this.cbBlankerIsEnable01.Location = new System.Drawing.Point(11, 312);
             this.cbBlankerIsEnable01.Name = "cbBlankerIsEnable01";
             this.cbBlankerIsEnable01.Size = new System.Drawing.Size(15, 14);
             this.cbBlankerIsEnable01.TabIndex = 31;
@@ -7574,7 +7563,7 @@
             this.tbMesStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbMesStatus.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbMesStatus.ForeColor = System.Drawing.Color.Green;
-            this.tbMesStatus.Location = new System.Drawing.Point(138, 340);
+            this.tbMesStatus.Location = new System.Drawing.Point(138, 334);
             this.tbMesStatus.Name = "tbMesStatus";
             this.tbMesStatus.ReadOnly = true;
             this.tbMesStatus.Size = new System.Drawing.Size(123, 16);
@@ -7585,7 +7574,7 @@
             // 
             this.pbMesLamp.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbMesLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbMesLamp.Image")));
-            this.pbMesLamp.Location = new System.Drawing.Point(116, 339);
+            this.pbMesLamp.Location = new System.Drawing.Point(116, 333);
             this.pbMesLamp.Margin = new System.Windows.Forms.Padding(2);
             this.pbMesLamp.Name = "pbMesLamp";
             this.pbMesLamp.Size = new System.Drawing.Size(17, 18);
@@ -7597,7 +7586,7 @@
             // 
             this.cbMesIsEnable.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbMesIsEnable.AutoSize = true;
-            this.cbMesIsEnable.Location = new System.Drawing.Point(11, 341);
+            this.cbMesIsEnable.Location = new System.Drawing.Point(11, 335);
             this.cbMesIsEnable.Name = "cbMesIsEnable";
             this.cbMesIsEnable.Size = new System.Drawing.Size(15, 14);
             this.cbMesIsEnable.TabIndex = 25;
@@ -7608,7 +7597,7 @@
             // 
             this.cbFeederIsEnable01.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbFeederIsEnable01.AutoSize = true;
-            this.cbFeederIsEnable01.Location = new System.Drawing.Point(11, 3);
+            this.cbFeederIsEnable01.Location = new System.Drawing.Point(11, 4);
             this.cbFeederIsEnable01.Name = "cbFeederIsEnable01";
             this.cbFeederIsEnable01.Size = new System.Drawing.Size(15, 14);
             this.cbFeederIsEnable01.TabIndex = 21;
@@ -7622,7 +7611,7 @@
             this.lbFeederNameN01.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFeederNameN01.Location = new System.Drawing.Point(32, 0);
             this.lbFeederNameN01.Name = "lbFeederNameN01";
-            this.lbFeederNameN01.Size = new System.Drawing.Size(79, 21);
+            this.lbFeederNameN01.Size = new System.Drawing.Size(79, 22);
             this.lbFeederNameN01.TabIndex = 7;
             this.lbFeederNameN01.Text = "XXXXX";
             this.lbFeederNameN01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -7653,70 +7642,22 @@
             this.pbFeederLamp01.TabIndex = 3;
             this.pbFeederLamp01.TabStop = false;
             // 
-            // cbScanerIsEnable0101
+            // cbClampScanerIsEnable
             // 
-            this.cbScanerIsEnable0101.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cbScanerIsEnable0101.AutoSize = true;
-            this.cbScanerIsEnable0101.Location = new System.Drawing.Point(11, 192);
-            this.cbScanerIsEnable0101.Name = "cbScanerIsEnable0101";
-            this.cbScanerIsEnable0101.Size = new System.Drawing.Size(15, 14);
-            this.cbScanerIsEnable0101.TabIndex = 22;
-            this.cbScanerIsEnable0101.UseVisualStyleBackColor = true;
-            this.cbScanerIsEnable0101.CheckedChanged += new System.EventHandler(this.cbScanerIsEnable_CheckedChanged);
-            // 
-            // lbScanerNameN0101
-            // 
-            this.lbScanerNameN0101.AutoSize = true;
-            this.lbScanerNameN0101.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbScanerNameN0101.Location = new System.Drawing.Point(32, 189);
-            this.lbScanerNameN0101.Name = "lbScanerNameN0101";
-            this.lbScanerNameN0101.Size = new System.Drawing.Size(56, 17);
-            this.lbScanerNameN0101.TabIndex = 23;
-            this.lbScanerNameN0101.Text = "XXXXXX";
-            this.lbScanerNameN0101.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pbScanerLamp0101
-            // 
-            this.pbScanerLamp0101.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbScanerLamp0101.Image = ((System.Drawing.Image)(resources.GetObject("pbScanerLamp0101.Image")));
-            this.pbScanerLamp0101.Location = new System.Drawing.Point(116, 192);
-            this.pbScanerLamp0101.Margin = new System.Windows.Forms.Padding(2);
-            this.pbScanerLamp0101.Name = "pbScanerLamp0101";
-            this.pbScanerLamp0101.Size = new System.Drawing.Size(17, 15);
-            this.pbScanerLamp0101.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbScanerLamp0101.TabIndex = 24;
-            this.pbScanerLamp0101.TabStop = false;
-            // 
-            // tbScanerStatus0101
-            // 
-            this.tbScanerStatus0101.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbScanerStatus0101.BackColor = System.Drawing.SystemColors.Control;
-            this.tbScanerStatus0101.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbScanerStatus0101.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbScanerStatus0101.ForeColor = System.Drawing.Color.Green;
-            this.tbScanerStatus0101.Location = new System.Drawing.Point(138, 192);
-            this.tbScanerStatus0101.Name = "tbScanerStatus0101";
-            this.tbScanerStatus0101.ReadOnly = true;
-            this.tbScanerStatus0101.Size = new System.Drawing.Size(123, 16);
-            this.tbScanerStatus0101.TabIndex = 25;
-            this.tbScanerStatus0101.Text = "未连接";
-            // 
-            // cbScanerIsEnable0102
-            // 
-            this.cbScanerIsEnable0102.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cbScanerIsEnable0102.AutoSize = true;
-            this.cbScanerIsEnable0102.Location = new System.Drawing.Point(11, 45);
-            this.cbScanerIsEnable0102.Name = "cbScanerIsEnable0102";
-            this.cbScanerIsEnable0102.Size = new System.Drawing.Size(15, 14);
-            this.cbScanerIsEnable0102.TabIndex = 26;
-            this.cbScanerIsEnable0102.UseVisualStyleBackColor = true;
-            this.cbScanerIsEnable0102.CheckedChanged += new System.EventHandler(this.cbScanerIsEnable_CheckedChanged);
+            this.cbClampScanerIsEnable.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cbClampScanerIsEnable.AutoSize = true;
+            this.cbClampScanerIsEnable.Location = new System.Drawing.Point(11, 92);
+            this.cbClampScanerIsEnable.Name = "cbClampScanerIsEnable";
+            this.cbClampScanerIsEnable.Size = new System.Drawing.Size(15, 14);
+            this.cbClampScanerIsEnable.TabIndex = 26;
+            this.cbClampScanerIsEnable.UseVisualStyleBackColor = true;
+            this.cbClampScanerIsEnable.CheckedChanged += new System.EventHandler(this.cbScanerIsEnable_CheckedChanged);
             // 
             // cbOvenIsEnable01
             // 
             this.cbOvenIsEnable01.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbOvenIsEnable01.AutoSize = true;
-            this.cbOvenIsEnable01.Location = new System.Drawing.Point(11, 66);
+            this.cbOvenIsEnable01.Location = new System.Drawing.Point(11, 136);
             this.cbOvenIsEnable01.Name = "cbOvenIsEnable01";
             this.cbOvenIsEnable01.Size = new System.Drawing.Size(15, 14);
             this.cbOvenIsEnable01.TabIndex = 27;
@@ -7727,7 +7668,7 @@
             // 
             this.cbOvenIsEnable02.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbOvenIsEnable02.AutoSize = true;
-            this.cbOvenIsEnable02.Location = new System.Drawing.Point(11, 87);
+            this.cbOvenIsEnable02.Location = new System.Drawing.Point(11, 158);
             this.cbOvenIsEnable02.Name = "cbOvenIsEnable02";
             this.cbOvenIsEnable02.Size = new System.Drawing.Size(15, 14);
             this.cbOvenIsEnable02.TabIndex = 28;
@@ -7738,7 +7679,7 @@
             // 
             this.cbOvenIsEnable03.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbOvenIsEnable03.AutoSize = true;
-            this.cbOvenIsEnable03.Location = new System.Drawing.Point(11, 108);
+            this.cbOvenIsEnable03.Location = new System.Drawing.Point(11, 180);
             this.cbOvenIsEnable03.Name = "cbOvenIsEnable03";
             this.cbOvenIsEnable03.Size = new System.Drawing.Size(15, 14);
             this.cbOvenIsEnable03.TabIndex = 29;
@@ -7749,7 +7690,7 @@
             // 
             this.cbOvenIsEnable04.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbOvenIsEnable04.AutoSize = true;
-            this.cbOvenIsEnable04.Location = new System.Drawing.Point(11, 129);
+            this.cbOvenIsEnable04.Location = new System.Drawing.Point(11, 202);
             this.cbOvenIsEnable04.Name = "cbOvenIsEnable04";
             this.cbOvenIsEnable04.Size = new System.Drawing.Size(15, 14);
             this.cbOvenIsEnable04.TabIndex = 30;
@@ -7760,7 +7701,7 @@
             // 
             this.cbRobotIsEnable.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbRobotIsEnable.AutoSize = true;
-            this.cbRobotIsEnable.Location = new System.Drawing.Point(11, 171);
+            this.cbRobotIsEnable.Location = new System.Drawing.Point(11, 114);
             this.cbRobotIsEnable.Name = "cbRobotIsEnable";
             this.cbRobotIsEnable.Size = new System.Drawing.Size(15, 14);
             this.cbRobotIsEnable.TabIndex = 31;
@@ -7771,30 +7712,30 @@
             // 
             this.cbScanerIsEnable0201.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbScanerIsEnable0201.AutoSize = true;
-            this.cbScanerIsEnable0201.Location = new System.Drawing.Point(11, 213);
+            this.cbScanerIsEnable0201.Location = new System.Drawing.Point(11, 70);
             this.cbScanerIsEnable0201.Name = "cbScanerIsEnable0201";
             this.cbScanerIsEnable0201.Size = new System.Drawing.Size(15, 14);
             this.cbScanerIsEnable0201.TabIndex = 32;
             this.cbScanerIsEnable0201.UseVisualStyleBackColor = true;
             this.cbScanerIsEnable0201.CheckedChanged += new System.EventHandler(this.cbScanerIsEnable_CheckedChanged);
             // 
-            // pbScanerLamp0102
+            // pbClampScanerLamp
             // 
-            this.pbScanerLamp0102.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbScanerLamp0102.Image = ((System.Drawing.Image)(resources.GetObject("pbScanerLamp0102.Image")));
-            this.pbScanerLamp0102.Location = new System.Drawing.Point(116, 45);
-            this.pbScanerLamp0102.Margin = new System.Windows.Forms.Padding(2);
-            this.pbScanerLamp0102.Name = "pbScanerLamp0102";
-            this.pbScanerLamp0102.Size = new System.Drawing.Size(17, 15);
-            this.pbScanerLamp0102.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbScanerLamp0102.TabIndex = 33;
-            this.pbScanerLamp0102.TabStop = false;
+            this.pbClampScanerLamp.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbClampScanerLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbClampScanerLamp.Image")));
+            this.pbClampScanerLamp.Location = new System.Drawing.Point(116, 91);
+            this.pbClampScanerLamp.Margin = new System.Windows.Forms.Padding(2);
+            this.pbClampScanerLamp.Name = "pbClampScanerLamp";
+            this.pbClampScanerLamp.Size = new System.Drawing.Size(17, 15);
+            this.pbClampScanerLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbClampScanerLamp.TabIndex = 33;
+            this.pbClampScanerLamp.TabStop = false;
             // 
             // pbOvenLamp01
             // 
             this.pbOvenLamp01.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbOvenLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp01.Image")));
-            this.pbOvenLamp01.Location = new System.Drawing.Point(116, 66);
+            this.pbOvenLamp01.Location = new System.Drawing.Point(116, 135);
             this.pbOvenLamp01.Margin = new System.Windows.Forms.Padding(2);
             this.pbOvenLamp01.Name = "pbOvenLamp01";
             this.pbOvenLamp01.Size = new System.Drawing.Size(17, 15);
@@ -7806,7 +7747,7 @@
             // 
             this.pbOvenLamp02.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbOvenLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp02.Image")));
-            this.pbOvenLamp02.Location = new System.Drawing.Point(116, 87);
+            this.pbOvenLamp02.Location = new System.Drawing.Point(116, 157);
             this.pbOvenLamp02.Margin = new System.Windows.Forms.Padding(2);
             this.pbOvenLamp02.Name = "pbOvenLamp02";
             this.pbOvenLamp02.Size = new System.Drawing.Size(17, 15);
@@ -7818,7 +7759,7 @@
             // 
             this.pbOvenLamp03.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbOvenLamp03.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp03.Image")));
-            this.pbOvenLamp03.Location = new System.Drawing.Point(116, 108);
+            this.pbOvenLamp03.Location = new System.Drawing.Point(116, 179);
             this.pbOvenLamp03.Margin = new System.Windows.Forms.Padding(2);
             this.pbOvenLamp03.Name = "pbOvenLamp03";
             this.pbOvenLamp03.Size = new System.Drawing.Size(17, 15);
@@ -7830,7 +7771,7 @@
             // 
             this.pbOvenLamp04.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbOvenLamp04.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp04.Image")));
-            this.pbOvenLamp04.Location = new System.Drawing.Point(116, 129);
+            this.pbOvenLamp04.Location = new System.Drawing.Point(116, 201);
             this.pbOvenLamp04.Margin = new System.Windows.Forms.Padding(2);
             this.pbOvenLamp04.Name = "pbOvenLamp04";
             this.pbOvenLamp04.Size = new System.Drawing.Size(17, 15);
@@ -7842,7 +7783,7 @@
             // 
             this.pbRobotLamp.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbRobotLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbRobotLamp.Image")));
-            this.pbRobotLamp.Location = new System.Drawing.Point(116, 171);
+            this.pbRobotLamp.Location = new System.Drawing.Point(116, 113);
             this.pbRobotLamp.Margin = new System.Windows.Forms.Padding(2);
             this.pbRobotLamp.Name = "pbRobotLamp";
             this.pbRobotLamp.Size = new System.Drawing.Size(17, 15);
@@ -7854,7 +7795,7 @@
             // 
             this.pbScanerLamp0201.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbScanerLamp0201.Image = ((System.Drawing.Image)(resources.GetObject("pbScanerLamp0201.Image")));
-            this.pbScanerLamp0201.Location = new System.Drawing.Point(116, 213);
+            this.pbScanerLamp0201.Location = new System.Drawing.Point(116, 69);
             this.pbScanerLamp0201.Margin = new System.Windows.Forms.Padding(2);
             this.pbScanerLamp0201.Name = "pbScanerLamp0201";
             this.pbScanerLamp0201.Size = new System.Drawing.Size(17, 15);
@@ -7862,19 +7803,19 @@
             this.pbScanerLamp0201.TabIndex = 39;
             this.pbScanerLamp0201.TabStop = false;
             // 
-            // tbScanerStatus0102
+            // tbClampScanerStatus
             // 
-            this.tbScanerStatus0102.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbScanerStatus0102.BackColor = System.Drawing.SystemColors.Control;
-            this.tbScanerStatus0102.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbScanerStatus0102.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbScanerStatus0102.ForeColor = System.Drawing.Color.Green;
-            this.tbScanerStatus0102.Location = new System.Drawing.Point(138, 45);
-            this.tbScanerStatus0102.Name = "tbScanerStatus0102";
-            this.tbScanerStatus0102.ReadOnly = true;
-            this.tbScanerStatus0102.Size = new System.Drawing.Size(123, 16);
-            this.tbScanerStatus0102.TabIndex = 40;
-            this.tbScanerStatus0102.Text = "未连接";
+            this.tbClampScanerStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbClampScanerStatus.BackColor = System.Drawing.SystemColors.Control;
+            this.tbClampScanerStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbClampScanerStatus.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbClampScanerStatus.ForeColor = System.Drawing.Color.Green;
+            this.tbClampScanerStatus.Location = new System.Drawing.Point(138, 91);
+            this.tbClampScanerStatus.Name = "tbClampScanerStatus";
+            this.tbClampScanerStatus.ReadOnly = true;
+            this.tbClampScanerStatus.Size = new System.Drawing.Size(123, 16);
+            this.tbClampScanerStatus.TabIndex = 40;
+            this.tbClampScanerStatus.Text = "未连接";
             // 
             // tbOvenStatus01
             // 
@@ -7883,7 +7824,7 @@
             this.tbOvenStatus01.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbOvenStatus01.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbOvenStatus01.ForeColor = System.Drawing.Color.Green;
-            this.tbOvenStatus01.Location = new System.Drawing.Point(138, 66);
+            this.tbOvenStatus01.Location = new System.Drawing.Point(138, 135);
             this.tbOvenStatus01.Name = "tbOvenStatus01";
             this.tbOvenStatus01.ReadOnly = true;
             this.tbOvenStatus01.Size = new System.Drawing.Size(123, 16);
@@ -7897,7 +7838,7 @@
             this.tbOvenStatus02.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbOvenStatus02.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbOvenStatus02.ForeColor = System.Drawing.Color.Green;
-            this.tbOvenStatus02.Location = new System.Drawing.Point(138, 87);
+            this.tbOvenStatus02.Location = new System.Drawing.Point(138, 157);
             this.tbOvenStatus02.Name = "tbOvenStatus02";
             this.tbOvenStatus02.ReadOnly = true;
             this.tbOvenStatus02.Size = new System.Drawing.Size(123, 16);
@@ -7911,7 +7852,7 @@
             this.tbOvenStatus03.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbOvenStatus03.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbOvenStatus03.ForeColor = System.Drawing.Color.Green;
-            this.tbOvenStatus03.Location = new System.Drawing.Point(138, 108);
+            this.tbOvenStatus03.Location = new System.Drawing.Point(138, 179);
             this.tbOvenStatus03.Name = "tbOvenStatus03";
             this.tbOvenStatus03.ReadOnly = true;
             this.tbOvenStatus03.Size = new System.Drawing.Size(123, 16);
@@ -7925,7 +7866,7 @@
             this.tbOvenStatus04.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbOvenStatus04.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbOvenStatus04.ForeColor = System.Drawing.Color.Green;
-            this.tbOvenStatus04.Location = new System.Drawing.Point(138, 129);
+            this.tbOvenStatus04.Location = new System.Drawing.Point(138, 201);
             this.tbOvenStatus04.Name = "tbOvenStatus04";
             this.tbOvenStatus04.ReadOnly = true;
             this.tbOvenStatus04.Size = new System.Drawing.Size(123, 16);
@@ -7939,7 +7880,7 @@
             this.tbRobotStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbRobotStatus.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbRobotStatus.ForeColor = System.Drawing.Color.Green;
-            this.tbRobotStatus.Location = new System.Drawing.Point(138, 171);
+            this.tbRobotStatus.Location = new System.Drawing.Point(138, 113);
             this.tbRobotStatus.Name = "tbRobotStatus";
             this.tbRobotStatus.ReadOnly = true;
             this.tbRobotStatus.Size = new System.Drawing.Size(123, 16);
@@ -7953,33 +7894,33 @@
             this.tbScanerStatus0201.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbScanerStatus0201.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbScanerStatus0201.ForeColor = System.Drawing.Color.Green;
-            this.tbScanerStatus0201.Location = new System.Drawing.Point(138, 213);
+            this.tbScanerStatus0201.Location = new System.Drawing.Point(138, 69);
             this.tbScanerStatus0201.Name = "tbScanerStatus0201";
             this.tbScanerStatus0201.ReadOnly = true;
             this.tbScanerStatus0201.Size = new System.Drawing.Size(123, 16);
             this.tbScanerStatus0201.TabIndex = 46;
             this.tbScanerStatus0201.Text = "未连接";
             // 
-            // lbScanerNameN0102
+            // lbClampScanerNameN
             // 
-            this.lbScanerNameN0102.AutoSize = true;
-            this.lbScanerNameN0102.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbScanerNameN0102.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbScanerNameN0102.Location = new System.Drawing.Point(32, 42);
-            this.lbScanerNameN0102.Name = "lbScanerNameN0102";
-            this.lbScanerNameN0102.Size = new System.Drawing.Size(79, 21);
-            this.lbScanerNameN0102.TabIndex = 47;
-            this.lbScanerNameN0102.Text = "XXXXXX";
-            this.lbScanerNameN0102.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbClampScanerNameN.AutoSize = true;
+            this.lbClampScanerNameN.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbClampScanerNameN.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbClampScanerNameN.Location = new System.Drawing.Point(32, 88);
+            this.lbClampScanerNameN.Name = "lbClampScanerNameN";
+            this.lbClampScanerNameN.Size = new System.Drawing.Size(79, 22);
+            this.lbClampScanerNameN.TabIndex = 47;
+            this.lbClampScanerNameN.Text = "XXXXXX";
+            this.lbClampScanerNameN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbOvenNameN01
             // 
             this.lbOvenNameN01.AutoSize = true;
             this.lbOvenNameN01.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbOvenNameN01.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOvenNameN01.Location = new System.Drawing.Point(32, 63);
+            this.lbOvenNameN01.Location = new System.Drawing.Point(32, 132);
             this.lbOvenNameN01.Name = "lbOvenNameN01";
-            this.lbOvenNameN01.Size = new System.Drawing.Size(79, 21);
+            this.lbOvenNameN01.Size = new System.Drawing.Size(79, 22);
             this.lbOvenNameN01.TabIndex = 48;
             this.lbOvenNameN01.Text = "XXXXX";
             this.lbOvenNameN01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -7989,9 +7930,9 @@
             this.lbOvenNameN02.AutoSize = true;
             this.lbOvenNameN02.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbOvenNameN02.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOvenNameN02.Location = new System.Drawing.Point(32, 84);
+            this.lbOvenNameN02.Location = new System.Drawing.Point(32, 154);
             this.lbOvenNameN02.Name = "lbOvenNameN02";
-            this.lbOvenNameN02.Size = new System.Drawing.Size(79, 21);
+            this.lbOvenNameN02.Size = new System.Drawing.Size(79, 22);
             this.lbOvenNameN02.TabIndex = 49;
             this.lbOvenNameN02.Text = "XXXXX";
             this.lbOvenNameN02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -8001,9 +7942,9 @@
             this.lbOvenNameN03.AutoSize = true;
             this.lbOvenNameN03.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbOvenNameN03.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOvenNameN03.Location = new System.Drawing.Point(32, 105);
+            this.lbOvenNameN03.Location = new System.Drawing.Point(32, 176);
             this.lbOvenNameN03.Name = "lbOvenNameN03";
-            this.lbOvenNameN03.Size = new System.Drawing.Size(79, 21);
+            this.lbOvenNameN03.Size = new System.Drawing.Size(79, 22);
             this.lbOvenNameN03.TabIndex = 50;
             this.lbOvenNameN03.Text = "XXXXX";
             this.lbOvenNameN03.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -8013,9 +7954,9 @@
             this.lbOvenNameN04.AutoSize = true;
             this.lbOvenNameN04.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbOvenNameN04.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOvenNameN04.Location = new System.Drawing.Point(32, 126);
+            this.lbOvenNameN04.Location = new System.Drawing.Point(32, 198);
             this.lbOvenNameN04.Name = "lbOvenNameN04";
-            this.lbOvenNameN04.Size = new System.Drawing.Size(79, 21);
+            this.lbOvenNameN04.Size = new System.Drawing.Size(79, 22);
             this.lbOvenNameN04.TabIndex = 51;
             this.lbOvenNameN04.Text = "XXXXX";
             this.lbOvenNameN04.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -8025,9 +7966,9 @@
             this.lbRobotNameN.AutoSize = true;
             this.lbRobotNameN.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbRobotNameN.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRobotNameN.Location = new System.Drawing.Point(32, 168);
+            this.lbRobotNameN.Location = new System.Drawing.Point(32, 110);
             this.lbRobotNameN.Name = "lbRobotNameN";
-            this.lbRobotNameN.Size = new System.Drawing.Size(79, 21);
+            this.lbRobotNameN.Size = new System.Drawing.Size(79, 22);
             this.lbRobotNameN.TabIndex = 52;
             this.lbRobotNameN.Text = "XXXX";
             this.lbRobotNameN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -8037,29 +7978,29 @@
             this.lbScanerNameN0201.AutoSize = true;
             this.lbScanerNameN0201.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbScanerNameN0201.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbScanerNameN0201.Location = new System.Drawing.Point(32, 210);
+            this.lbScanerNameN0201.Location = new System.Drawing.Point(32, 66);
             this.lbScanerNameN0201.Name = "lbScanerNameN0201";
-            this.lbScanerNameN0201.Size = new System.Drawing.Size(79, 21);
+            this.lbScanerNameN0201.Size = new System.Drawing.Size(79, 22);
             this.lbScanerNameN0201.TabIndex = 53;
             this.lbScanerNameN0201.Text = "XXXXXX";
             this.lbScanerNameN0201.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // cbScanerIsEnable0202
+            // cbScanerIsEnable0101
             // 
-            this.cbScanerIsEnable0202.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cbScanerIsEnable0202.AutoSize = true;
-            this.cbScanerIsEnable0202.Location = new System.Drawing.Point(11, 234);
-            this.cbScanerIsEnable0202.Name = "cbScanerIsEnable0202";
-            this.cbScanerIsEnable0202.Size = new System.Drawing.Size(15, 14);
-            this.cbScanerIsEnable0202.TabIndex = 56;
-            this.cbScanerIsEnable0202.UseVisualStyleBackColor = true;
-            this.cbScanerIsEnable0202.CheckedChanged += new System.EventHandler(this.cbScanerIsEnable_CheckedChanged);
+            this.cbScanerIsEnable0101.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cbScanerIsEnable0101.AutoSize = true;
+            this.cbScanerIsEnable0101.Location = new System.Drawing.Point(11, 48);
+            this.cbScanerIsEnable0101.Name = "cbScanerIsEnable0101";
+            this.cbScanerIsEnable0101.Size = new System.Drawing.Size(15, 14);
+            this.cbScanerIsEnable0101.TabIndex = 56;
+            this.cbScanerIsEnable0101.UseVisualStyleBackColor = true;
+            this.cbScanerIsEnable0101.CheckedChanged += new System.EventHandler(this.cbScanerIsEnable_CheckedChanged);
             // 
             // cbOvenIsEnable05
             // 
             this.cbOvenIsEnable05.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbOvenIsEnable05.AutoSize = true;
-            this.cbOvenIsEnable05.Location = new System.Drawing.Point(11, 255);
+            this.cbOvenIsEnable05.Location = new System.Drawing.Point(11, 224);
             this.cbOvenIsEnable05.Name = "cbOvenIsEnable05";
             this.cbOvenIsEnable05.Size = new System.Drawing.Size(15, 14);
             this.cbOvenIsEnable05.TabIndex = 55;
@@ -8070,7 +8011,7 @@
             // 
             this.cbOvenIsEnable06.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbOvenIsEnable06.AutoSize = true;
-            this.cbOvenIsEnable06.Location = new System.Drawing.Point(11, 276);
+            this.cbOvenIsEnable06.Location = new System.Drawing.Point(11, 246);
             this.cbOvenIsEnable06.Name = "cbOvenIsEnable06";
             this.cbOvenIsEnable06.Size = new System.Drawing.Size(15, 14);
             this.cbOvenIsEnable06.TabIndex = 54;
@@ -8081,7 +8022,7 @@
             // 
             this.cbOvenIsEnable07.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbOvenIsEnable07.AutoSize = true;
-            this.cbOvenIsEnable07.Location = new System.Drawing.Point(11, 297);
+            this.cbOvenIsEnable07.Location = new System.Drawing.Point(11, 268);
             this.cbOvenIsEnable07.Name = "cbOvenIsEnable07";
             this.cbOvenIsEnable07.Size = new System.Drawing.Size(15, 14);
             this.cbOvenIsEnable07.TabIndex = 57;
@@ -8092,33 +8033,33 @@
             // 
             this.cbOvenIsEnable08.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbOvenIsEnable08.AutoSize = true;
-            this.cbOvenIsEnable08.Location = new System.Drawing.Point(11, 318);
+            this.cbOvenIsEnable08.Location = new System.Drawing.Point(11, 290);
             this.cbOvenIsEnable08.Name = "cbOvenIsEnable08";
             this.cbOvenIsEnable08.Size = new System.Drawing.Size(15, 14);
             this.cbOvenIsEnable08.TabIndex = 58;
             this.cbOvenIsEnable08.UseVisualStyleBackColor = true;
             this.cbOvenIsEnable08.CheckedChanged += new System.EventHandler(this.cbOvenIsEnable_CheckedChanged);
             // 
-            // lbScanerNameN0202
+            // lbScanerNameN0101
             // 
-            this.lbScanerNameN0202.AutoSize = true;
-            this.lbScanerNameN0202.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbScanerNameN0202.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbScanerNameN0202.Location = new System.Drawing.Point(32, 231);
-            this.lbScanerNameN0202.Name = "lbScanerNameN0202";
-            this.lbScanerNameN0202.Size = new System.Drawing.Size(79, 21);
-            this.lbScanerNameN0202.TabIndex = 60;
-            this.lbScanerNameN0202.Text = "XXXXXX";
-            this.lbScanerNameN0202.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbScanerNameN0101.AutoSize = true;
+            this.lbScanerNameN0101.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbScanerNameN0101.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbScanerNameN0101.Location = new System.Drawing.Point(32, 44);
+            this.lbScanerNameN0101.Name = "lbScanerNameN0101";
+            this.lbScanerNameN0101.Size = new System.Drawing.Size(79, 22);
+            this.lbScanerNameN0101.TabIndex = 60;
+            this.lbScanerNameN0101.Text = "XXXXXX";
+            this.lbScanerNameN0101.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbOvenNameN05
             // 
             this.lbOvenNameN05.AutoSize = true;
             this.lbOvenNameN05.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbOvenNameN05.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOvenNameN05.Location = new System.Drawing.Point(32, 252);
+            this.lbOvenNameN05.Location = new System.Drawing.Point(32, 220);
             this.lbOvenNameN05.Name = "lbOvenNameN05";
-            this.lbOvenNameN05.Size = new System.Drawing.Size(79, 21);
+            this.lbOvenNameN05.Size = new System.Drawing.Size(79, 22);
             this.lbOvenNameN05.TabIndex = 61;
             this.lbOvenNameN05.Text = "XXXXX";
             this.lbOvenNameN05.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -8128,9 +8069,9 @@
             this.lbOvenNameN06.AutoSize = true;
             this.lbOvenNameN06.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbOvenNameN06.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOvenNameN06.Location = new System.Drawing.Point(32, 273);
+            this.lbOvenNameN06.Location = new System.Drawing.Point(32, 242);
             this.lbOvenNameN06.Name = "lbOvenNameN06";
-            this.lbOvenNameN06.Size = new System.Drawing.Size(79, 21);
+            this.lbOvenNameN06.Size = new System.Drawing.Size(79, 22);
             this.lbOvenNameN06.TabIndex = 62;
             this.lbOvenNameN06.Text = "XXXXX";
             this.lbOvenNameN06.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -8140,9 +8081,9 @@
             this.lbOvenNameN07.AutoSize = true;
             this.lbOvenNameN07.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbOvenNameN07.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOvenNameN07.Location = new System.Drawing.Point(32, 294);
+            this.lbOvenNameN07.Location = new System.Drawing.Point(32, 264);
             this.lbOvenNameN07.Name = "lbOvenNameN07";
-            this.lbOvenNameN07.Size = new System.Drawing.Size(79, 21);
+            this.lbOvenNameN07.Size = new System.Drawing.Size(79, 22);
             this.lbOvenNameN07.TabIndex = 63;
             this.lbOvenNameN07.Text = "XXXXX";
             this.lbOvenNameN07.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -8152,30 +8093,30 @@
             this.lbOvenNameN08.AutoSize = true;
             this.lbOvenNameN08.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbOvenNameN08.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOvenNameN08.Location = new System.Drawing.Point(32, 315);
+            this.lbOvenNameN08.Location = new System.Drawing.Point(32, 286);
             this.lbOvenNameN08.Name = "lbOvenNameN08";
-            this.lbOvenNameN08.Size = new System.Drawing.Size(79, 21);
+            this.lbOvenNameN08.Size = new System.Drawing.Size(79, 22);
             this.lbOvenNameN08.TabIndex = 64;
             this.lbOvenNameN08.Text = "XXXXX";
             this.lbOvenNameN08.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pbScanerLamp0202
+            // pbScanerLamp0101
             // 
-            this.pbScanerLamp0202.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbScanerLamp0202.Image = ((System.Drawing.Image)(resources.GetObject("pbScanerLamp0202.Image")));
-            this.pbScanerLamp0202.Location = new System.Drawing.Point(116, 234);
-            this.pbScanerLamp0202.Margin = new System.Windows.Forms.Padding(2);
-            this.pbScanerLamp0202.Name = "pbScanerLamp0202";
-            this.pbScanerLamp0202.Size = new System.Drawing.Size(17, 15);
-            this.pbScanerLamp0202.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbScanerLamp0202.TabIndex = 66;
-            this.pbScanerLamp0202.TabStop = false;
+            this.pbScanerLamp0101.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbScanerLamp0101.Image = ((System.Drawing.Image)(resources.GetObject("pbScanerLamp0101.Image")));
+            this.pbScanerLamp0101.Location = new System.Drawing.Point(116, 47);
+            this.pbScanerLamp0101.Margin = new System.Windows.Forms.Padding(2);
+            this.pbScanerLamp0101.Name = "pbScanerLamp0101";
+            this.pbScanerLamp0101.Size = new System.Drawing.Size(17, 15);
+            this.pbScanerLamp0101.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbScanerLamp0101.TabIndex = 66;
+            this.pbScanerLamp0101.TabStop = false;
             // 
             // pbOvenLamp05
             // 
             this.pbOvenLamp05.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbOvenLamp05.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp05.Image")));
-            this.pbOvenLamp05.Location = new System.Drawing.Point(116, 255);
+            this.pbOvenLamp05.Location = new System.Drawing.Point(116, 223);
             this.pbOvenLamp05.Margin = new System.Windows.Forms.Padding(2);
             this.pbOvenLamp05.Name = "pbOvenLamp05";
             this.pbOvenLamp05.Size = new System.Drawing.Size(17, 15);
@@ -8187,7 +8128,7 @@
             // 
             this.pbOvenLamp06.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbOvenLamp06.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp06.Image")));
-            this.pbOvenLamp06.Location = new System.Drawing.Point(116, 276);
+            this.pbOvenLamp06.Location = new System.Drawing.Point(116, 245);
             this.pbOvenLamp06.Margin = new System.Windows.Forms.Padding(2);
             this.pbOvenLamp06.Name = "pbOvenLamp06";
             this.pbOvenLamp06.Size = new System.Drawing.Size(17, 15);
@@ -8199,7 +8140,7 @@
             // 
             this.pbOvenLamp07.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbOvenLamp07.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp07.Image")));
-            this.pbOvenLamp07.Location = new System.Drawing.Point(116, 297);
+            this.pbOvenLamp07.Location = new System.Drawing.Point(116, 267);
             this.pbOvenLamp07.Margin = new System.Windows.Forms.Padding(2);
             this.pbOvenLamp07.Name = "pbOvenLamp07";
             this.pbOvenLamp07.Size = new System.Drawing.Size(17, 15);
@@ -8211,7 +8152,7 @@
             // 
             this.pbOvenLamp08.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbOvenLamp08.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp08.Image")));
-            this.pbOvenLamp08.Location = new System.Drawing.Point(116, 318);
+            this.pbOvenLamp08.Location = new System.Drawing.Point(116, 289);
             this.pbOvenLamp08.Margin = new System.Windows.Forms.Padding(2);
             this.pbOvenLamp08.Name = "pbOvenLamp08";
             this.pbOvenLamp08.Size = new System.Drawing.Size(17, 15);
@@ -8219,19 +8160,19 @@
             this.pbOvenLamp08.TabIndex = 70;
             this.pbOvenLamp08.TabStop = false;
             // 
-            // tbScanerStatus0202
+            // tbScanerStatus0101
             // 
-            this.tbScanerStatus0202.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbScanerStatus0202.BackColor = System.Drawing.SystemColors.Control;
-            this.tbScanerStatus0202.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbScanerStatus0202.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbScanerStatus0202.ForeColor = System.Drawing.Color.Green;
-            this.tbScanerStatus0202.Location = new System.Drawing.Point(138, 234);
-            this.tbScanerStatus0202.Name = "tbScanerStatus0202";
-            this.tbScanerStatus0202.ReadOnly = true;
-            this.tbScanerStatus0202.Size = new System.Drawing.Size(123, 16);
-            this.tbScanerStatus0202.TabIndex = 72;
-            this.tbScanerStatus0202.Text = "未连接";
+            this.tbScanerStatus0101.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbScanerStatus0101.BackColor = System.Drawing.SystemColors.Control;
+            this.tbScanerStatus0101.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbScanerStatus0101.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbScanerStatus0101.ForeColor = System.Drawing.Color.Green;
+            this.tbScanerStatus0101.Location = new System.Drawing.Point(138, 47);
+            this.tbScanerStatus0101.Name = "tbScanerStatus0101";
+            this.tbScanerStatus0101.ReadOnly = true;
+            this.tbScanerStatus0101.Size = new System.Drawing.Size(123, 16);
+            this.tbScanerStatus0101.TabIndex = 72;
+            this.tbScanerStatus0101.Text = "未连接";
             // 
             // tbOvenStatus05
             // 
@@ -8240,7 +8181,7 @@
             this.tbOvenStatus05.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbOvenStatus05.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbOvenStatus05.ForeColor = System.Drawing.Color.Green;
-            this.tbOvenStatus05.Location = new System.Drawing.Point(138, 255);
+            this.tbOvenStatus05.Location = new System.Drawing.Point(138, 223);
             this.tbOvenStatus05.Name = "tbOvenStatus05";
             this.tbOvenStatus05.ReadOnly = true;
             this.tbOvenStatus05.Size = new System.Drawing.Size(123, 16);
@@ -8254,7 +8195,7 @@
             this.tbOvenStatus06.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbOvenStatus06.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbOvenStatus06.ForeColor = System.Drawing.Color.Green;
-            this.tbOvenStatus06.Location = new System.Drawing.Point(138, 276);
+            this.tbOvenStatus06.Location = new System.Drawing.Point(138, 245);
             this.tbOvenStatus06.Name = "tbOvenStatus06";
             this.tbOvenStatus06.ReadOnly = true;
             this.tbOvenStatus06.Size = new System.Drawing.Size(123, 16);
@@ -8268,7 +8209,7 @@
             this.tbOvenStatus07.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbOvenStatus07.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbOvenStatus07.ForeColor = System.Drawing.Color.Green;
-            this.tbOvenStatus07.Location = new System.Drawing.Point(138, 297);
+            this.tbOvenStatus07.Location = new System.Drawing.Point(138, 267);
             this.tbOvenStatus07.Name = "tbOvenStatus07";
             this.tbOvenStatus07.ReadOnly = true;
             this.tbOvenStatus07.Size = new System.Drawing.Size(123, 16);
@@ -8282,7 +8223,7 @@
             this.tbOvenStatus08.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbOvenStatus08.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbOvenStatus08.ForeColor = System.Drawing.Color.Green;
-            this.tbOvenStatus08.Location = new System.Drawing.Point(138, 318);
+            this.tbOvenStatus08.Location = new System.Drawing.Point(138, 289);
             this.tbOvenStatus08.Name = "tbOvenStatus08";
             this.tbOvenStatus08.ReadOnly = true;
             this.tbOvenStatus08.Size = new System.Drawing.Size(123, 16);
@@ -8404,26 +8345,26 @@
             this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 4;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.37558F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.68955F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.89965F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.035211F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 63.37698F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.68876F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.89934F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.034924F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(300, 604);
             this.tableLayoutPanel6.TabIndex = 13;
             // 
             // userDisplay
             // 
             this.userDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userDisplay.Location = new System.Drawing.Point(15, 488);
+            this.userDisplay.Location = new System.Drawing.Point(15, 482);
             this.userDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.userDisplay.Name = "userDisplay";
-            this.userDisplay.Size = new System.Drawing.Size(270, 77);
+            this.userDisplay.Size = new System.Drawing.Size(270, 83);
             this.userDisplay.TabIndex = 13;
             // 
             // yieldDisplay
             // 
             this.yieldDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.yieldDisplay.Location = new System.Drawing.Point(15, 388);
+            this.yieldDisplay.Location = new System.Drawing.Point(15, 382);
             this.yieldDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.yieldDisplay.Name = "yieldDisplay";
             this.yieldDisplay.Size = new System.Drawing.Size(270, 100);
@@ -8672,15 +8613,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbBlankerLamp01)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMesLamp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFeederLamp01)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0101)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0102)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbClampScanerLamp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp01)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp02)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp03)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp04)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRobotLamp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0201)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0202)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0101)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp05)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp06)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOvenLamp07)).EndInit();
@@ -9006,54 +8946,50 @@
         private System.Windows.Forms.ProgressBar pbRunTime0803;
         private System.Windows.Forms.Label lbFloorStatus0803;
         private System.Windows.Forms.PictureBox pbFeederLamp01;
-        private System.Windows.Forms.CheckBox cbScanerIsEnable0101;
-        private System.Windows.Forms.Label lbScanerNameN0101;
-        private System.Windows.Forms.PictureBox pbScanerLamp0101;
-        private System.Windows.Forms.TextBox tbScanerStatus0101;
-        private System.Windows.Forms.CheckBox cbScanerIsEnable0102;
+        private System.Windows.Forms.CheckBox cbClampScanerIsEnable;
         private System.Windows.Forms.CheckBox cbOvenIsEnable01;
         private System.Windows.Forms.CheckBox cbOvenIsEnable02;
         private System.Windows.Forms.CheckBox cbOvenIsEnable03;
         private System.Windows.Forms.CheckBox cbOvenIsEnable04;
         private System.Windows.Forms.CheckBox cbRobotIsEnable;
         private System.Windows.Forms.CheckBox cbScanerIsEnable0201;
-        private System.Windows.Forms.PictureBox pbScanerLamp0102;
+        private System.Windows.Forms.PictureBox pbClampScanerLamp;
         private System.Windows.Forms.PictureBox pbOvenLamp01;
         private System.Windows.Forms.PictureBox pbOvenLamp02;
         private System.Windows.Forms.PictureBox pbOvenLamp03;
         private System.Windows.Forms.PictureBox pbOvenLamp04;
         private System.Windows.Forms.PictureBox pbRobotLamp;
         private System.Windows.Forms.PictureBox pbScanerLamp0201;
-        private System.Windows.Forms.TextBox tbScanerStatus0102;
+        private System.Windows.Forms.TextBox tbClampScanerStatus;
         private System.Windows.Forms.TextBox tbOvenStatus01;
         private System.Windows.Forms.TextBox tbOvenStatus02;
         private System.Windows.Forms.TextBox tbOvenStatus03;
         private System.Windows.Forms.TextBox tbOvenStatus04;
         private System.Windows.Forms.TextBox tbRobotStatus;
         private System.Windows.Forms.TextBox tbScanerStatus0201;
-        private System.Windows.Forms.Label lbScanerNameN0102;
+        private System.Windows.Forms.Label lbClampScanerNameN;
         private System.Windows.Forms.Label lbOvenNameN01;
         private System.Windows.Forms.Label lbOvenNameN02;
         private System.Windows.Forms.Label lbOvenNameN03;
         private System.Windows.Forms.Label lbOvenNameN04;
         private System.Windows.Forms.Label lbRobotNameN;
         private System.Windows.Forms.Label lbScanerNameN0201;
-        private System.Windows.Forms.CheckBox cbScanerIsEnable0202;
+        private System.Windows.Forms.CheckBox cbScanerIsEnable0101;
         private System.Windows.Forms.CheckBox cbOvenIsEnable05;
         private System.Windows.Forms.CheckBox cbOvenIsEnable06;
         private System.Windows.Forms.CheckBox cbOvenIsEnable07;
         private System.Windows.Forms.CheckBox cbOvenIsEnable08;
-        private System.Windows.Forms.Label lbScanerNameN0202;
+        private System.Windows.Forms.Label lbScanerNameN0101;
         private System.Windows.Forms.Label lbOvenNameN05;
         private System.Windows.Forms.Label lbOvenNameN06;
         private System.Windows.Forms.Label lbOvenNameN07;
         private System.Windows.Forms.Label lbOvenNameN08;
-        private System.Windows.Forms.PictureBox pbScanerLamp0202;
+        private System.Windows.Forms.PictureBox pbScanerLamp0101;
         private System.Windows.Forms.PictureBox pbOvenLamp05;
         private System.Windows.Forms.PictureBox pbOvenLamp06;
         private System.Windows.Forms.PictureBox pbOvenLamp07;
         private System.Windows.Forms.PictureBox pbOvenLamp08;
-        private System.Windows.Forms.TextBox tbScanerStatus0202;
+        private System.Windows.Forms.TextBox tbScanerStatus0101;
         private System.Windows.Forms.TextBox tbOvenStatus05;
         private System.Windows.Forms.TextBox tbOvenStatus06;
         private System.Windows.Forms.TextBox tbOvenStatus07;
