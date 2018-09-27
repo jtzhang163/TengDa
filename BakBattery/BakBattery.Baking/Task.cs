@@ -742,7 +742,7 @@ namespace BakBattery.Baking
         上料机,
         烤箱,
         下料机,
-        旋转台,
+        转移台,
         缓存架
     }
 
