@@ -35,7 +35,7 @@ namespace BakBattery.Baking
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(string.Format("INSERT INTO [dbo].[{0}] ", TableName));
-            sb.Append("([StationId], [T1], [T2], [T3], [T4], [T5], [T6], [T7], [T8], [V1], [RunMinutes], [Time], [UserId]) ");
+            sb.Append("([FloorId], [T1], [T2], [T3], [T4], [T5], [T6], [T7], [T8], [V1], [RunMinutes], [Time], [UserId]) ");
             sb.Append(string.Format("VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, '{11}', {12})",
                addTVD.FloorId,
                addTVD.T[0], addTVD.T[1], addTVD.T[2], addTVD.T[3], addTVD.T[4], addTVD.T[5], addTVD.T[6], addTVD.T[7],
@@ -64,7 +64,7 @@ namespace BakBattery.Baking
 
             StringBuilder sb = new StringBuilder();
             sb.Append(string.Format("INSERT INTO [dbo].[{0}] ", TableName));
-            sb.Append("([StationId]" + sbT + ",[V1], [RunMinutes], [Time], [UserId]) VALUES ");
+            sb.Append("([FloorId]" + sbT + ",[V1], [RunMinutes], [Time], [UserId]) VALUES ");
 
             foreach (TVD addTVD in addTVDs)
             {
