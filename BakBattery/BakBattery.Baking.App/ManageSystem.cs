@@ -280,7 +280,7 @@ namespace BakBattery.Baking.App
             Current.feeders.ForEach(f => f.Stations.ForEach(s => stationList.Add(s)));
             Current.ovens.ForEach(o => o.Floors.ForEach(f => f.Stations.ForEach(s => stationList.Add(s))));
             Current.blankers.ForEach(b => b.Stations.ForEach(s => stationList.Add(s)));
-            Current.cache.Stations.ForEach(s => stationList.Add(s));
+            Current.Cache.Stations.ForEach(s => stationList.Add(s));
             stationList.Add(Current.Transfer.Station);
 
             foreach (Station station in stationList)
@@ -354,8 +354,6 @@ namespace BakBattery.Baking.App
             Current.ovens = Oven.OvenList;
             Current.feeders = Feeder.FeederList;
             Current.blankers = Blanker.BlankerList;
-            Current.Transfer = Transfer.RotaterList.First();
-            Current.cache = Cache.CacheList.First();
             Current.Yields = Yield.YieldList;
             cbFloors.Items.Add("All");
             cbAlarmFloors.Items.Add("All");
@@ -424,10 +422,10 @@ namespace BakBattery.Baking.App
             lbTransferName.Text = Current.Transfer.Name;
             lbTransferClampCode.Text = Current.Transfer.Station.Clamp.Code;
 
-            lbCacheName.Text = Current.cache.Name;
-            for (int i = 0; i < Current.cache.Stations.Count; i++)
+            lbCacheName.Text = Current.Cache.Name;
+            for (int i = 0; i < Current.Cache.Stations.Count; i++)
             {
-                lbCacheClampCode[i].Text = Current.cache.Stations[i].Clamp.Code;
+                lbCacheClampCode[i].Text = Current.Cache.Stations[i].Clamp.Code;
             }
 
             bool isAll = true;
@@ -485,13 +483,6 @@ namespace BakBattery.Baking.App
                 cbSampleSelectedFloor.Items.Add(f.Name);
             });
             cbSampleSelectedFloor.SelectedIndex = jjj;
-
-
-
-
-
-            //Current.feeders.ForEach(f => cbClampScaner.Items.Add(f.ClampScaner.Name));
-            //cbClampScaner.SelectedIndex = 0;
 
             Current.feeders.ForEach(f => cbBatteryScaner.Items.Add(f.BatteryScaner.Name));
             cbBatteryScaner.SelectedIndex = 0;
@@ -898,20 +889,22 @@ namespace BakBattery.Baking.App
 
             #region 缓存架
 
-            this.tlpCache.BackColor = Current.cache.IsAlive ? Color.White : SystemColors.Control;
+            Current.Cache.Stations.ForEach(s => s.IsAlive = s.IsEnable && Current.Cache.IsAlive);
 
-            for (int j = 0; j < Current.cache.Stations.Count; j++)
+            this.tlpCache.BackColor = Current.Cache.IsAlive ? Color.White : SystemColors.Control;
+
+            for (int j = 0; j < Current.Cache.Stations.Count; j++)
             {
-                lbCacheClampCode[j].Text = Current.cache.Stations[j].Clamp.Code;
+                lbCacheClampCode[j].Text = Current.Cache.Stations[j].Clamp.Code;
 
-                Station station = Current.cache.Stations[j];
+                Station station = Current.Cache.Stations[j];
                 bool canChangeVisible = DateTime.Now.Second % 3 == 1;
 
-                if (Current.cache.IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取))
+                if (Current.Cache.IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取))
                 {
                     lbCacheClampCode[j].Visible = false;
                 }
-                else if (Current.cache.IsAlive && canChangeVisible && station.Id == Current.Task.ToStationId)
+                else if (Current.Cache.IsAlive && canChangeVisible && station.Id == Current.Task.ToStationId)
                 {
                     lbCacheClampCode[j].Visible = true;
                     lbCacheClampCode[j].BackColor = Current.Task.FromClampStatus == ClampStatus.空夹具 ? Color.Cyan : Color.LimeGreen;
@@ -943,17 +936,19 @@ namespace BakBattery.Baking.App
 
             #region 旋转台
 
+            Current.Transfer.Station.IsAlive = Current.Transfer.IsAlive;
+
             this.tlpTransfer.BackColor = Current.Transfer.IsAlive ? Color.White : SystemColors.Control;
 
             lbTransferClampCode.Text = Current.Transfer.Station.Clamp.Code;
 
             bool canChangeVisibleRotater = DateTime.Now.Second % 3 == 1;
 
-            if (Current.cache.IsAlive && canChangeVisibleRotater && Current.Transfer.Station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取))
+            if (Current.Transfer.IsAlive && canChangeVisibleRotater && Current.Transfer.Station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取))
             {
                 lbTransferClampCode.Visible = false;
             }
-            else if (Current.cache.IsAlive && canChangeVisibleRotater && Current.Transfer.Station.Id == Current.Task.ToStationId)
+            else if (Current.Transfer.IsAlive && canChangeVisibleRotater && Current.Transfer.Station.Id == Current.Task.ToStationId)
             {
                 lbTransferClampCode.Visible = true;
                 lbTransferClampCode.BackColor = Current.Task.FromClampStatus == ClampStatus.空夹具 ? Color.Cyan : Color.LimeGreen;
@@ -3242,7 +3237,7 @@ namespace BakBattery.Baking.App
                     }
                     else if (e.Node.Level == 0 && e.Node.Text == "缓存架")
                     {
-                        this.propertyGridSettings.SelectedObject = Current.cache;
+                        this.propertyGridSettings.SelectedObject = Current.Cache;
                     }
                     else if (e.Node.Level == 0 && e.Node.Text == "旋转台")
                     {
@@ -3676,8 +3671,8 @@ namespace BakBattery.Baking.App
 
             ToolStripMenuItem tsmiCacheStation = new ToolStripMenuItem();
             List<ToolStripItem> tsiCacheStations = new List<ToolStripItem>();
-            tsmiCacheStation.Text = Current.cache.Name;
-            Current.cache.Stations.ForEach(s =>
+            tsmiCacheStation.Text = Current.Cache.Name;
+            Current.Cache.Stations.ForEach(s =>
             {
                 ToolStripMenuItem tsiStation = new ToolStripMenuItem();
                 tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);

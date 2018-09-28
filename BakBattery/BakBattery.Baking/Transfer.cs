@@ -70,6 +70,8 @@ namespace BakBattery.Baking
 
             //释放资源
             dt.Dispose();
+
+            this.IsAlive = true;
         }
 
         #endregion

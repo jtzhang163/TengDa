@@ -40,9 +40,9 @@ namespace BakBattery.Baking
 
         public static Robot Robot = new Robot(1);
 
-        public static Cache cache = new Cache();
+        public static Cache Cache = new Cache(1);
 
-        public static Transfer Transfer = new Transfer();
+        public static Transfer Transfer = new Transfer(1);
 
         public static Scaner ClampScaner = new Scaner(3);
 

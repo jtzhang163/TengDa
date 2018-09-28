@@ -94,6 +94,8 @@ namespace BakBattery.Baking
 
             //释放资源
             dt.Dispose();
+
+            this.IsAlive = true;
         }
 
         #endregion
@@ -121,7 +123,6 @@ namespace BakBattery.Baking
             this.stationIds = rowInfo["StationIds"].ToString();
         }
         #endregion
-
 
         #region 该设备上的工位列表
         private List<Station> stations = new List<Station>();

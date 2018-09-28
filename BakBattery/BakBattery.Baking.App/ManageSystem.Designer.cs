@@ -150,8 +150,10 @@
             this.tsmOvenCloseDoor = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStartBaking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmOpenNetControl = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmLoadVacuum = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUploadVacuum = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStopBaking = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmClearRunTime = new System.Windows.Forms.ToolStripMenuItem();
             this.lbFloorInfoTop0502 = new System.Windows.Forms.Label();
             this.pbRunTime0502 = new System.Windows.Forms.ProgressBar();
             this.lbFloorStatus0502 = new System.Windows.Forms.Label();
@@ -536,8 +538,6 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
-            this.tsmLoadVacuum = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmClearRunTime = new System.Windows.Forms.ToolStripMenuItem();
             this.yieldDisplay = new BakBattery.Baking.Controls.YieldDisplay();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
@@ -1820,7 +1820,7 @@
             this.tlpTransfer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpTransfer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpTransfer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpTransfer.Size = new System.Drawing.Size(83, 68);
+            this.tlpTransfer.Size = new System.Drawing.Size(83, 65);
             this.tlpTransfer.TabIndex = 16;
             // 
             // tlpTransferClamp
@@ -1835,7 +1835,7 @@
             this.tlpTransferClamp.RowCount = 1;
             this.tlpTransferClamp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpTransferClamp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tlpTransferClamp.Size = new System.Drawing.Size(75, 29);
+            this.tlpTransferClamp.Size = new System.Drawing.Size(75, 26);
             this.tlpTransferClamp.TabIndex = 6;
             // 
             // lbTransferClampCode
@@ -1848,7 +1848,7 @@
             this.lbTransferClampCode.Location = new System.Drawing.Point(0, 0);
             this.lbTransferClampCode.Margin = new System.Windows.Forms.Padding(0);
             this.lbTransferClampCode.Name = "lbTransferClampCode";
-            this.lbTransferClampCode.Size = new System.Drawing.Size(75, 29);
+            this.lbTransferClampCode.Size = new System.Drawing.Size(75, 26);
             this.lbTransferClampCode.TabIndex = 3;
             this.lbTransferClampCode.Text = "XXXX";
             this.lbTransferClampCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2132,21 +2132,21 @@
             // 
             this.tsmAlarmReset.Image = global::BakBattery.Baking.App.Properties.Resources.Reset_green;
             this.tsmAlarmReset.Name = "tsmAlarmReset";
-            this.tsmAlarmReset.Size = new System.Drawing.Size(180, 22);
+            this.tsmAlarmReset.Size = new System.Drawing.Size(148, 22);
             this.tsmAlarmReset.Text = "报警复位";
             this.tsmAlarmReset.Click += new System.EventHandler(this.tsmAlarmReset_Click);
             // 
             // tsmOvenOpenDoor
             // 
             this.tsmOvenOpenDoor.Name = "tsmOvenOpenDoor";
-            this.tsmOvenOpenDoor.Size = new System.Drawing.Size(180, 22);
+            this.tsmOvenOpenDoor.Size = new System.Drawing.Size(148, 22);
             this.tsmOvenOpenDoor.Text = "开门";
             this.tsmOvenOpenDoor.Click += new System.EventHandler(this.tsmOvenOpenDoor_Click);
             // 
             // tsmOvenCloseDoor
             // 
             this.tsmOvenCloseDoor.Name = "tsmOvenCloseDoor";
-            this.tsmOvenCloseDoor.Size = new System.Drawing.Size(180, 22);
+            this.tsmOvenCloseDoor.Size = new System.Drawing.Size(148, 22);
             this.tsmOvenCloseDoor.Text = "关门";
             this.tsmOvenCloseDoor.Click += new System.EventHandler(this.tsmOvenCloseDoor_Click);
             // 
@@ -2154,7 +2154,7 @@
             // 
             this.tsmStartBaking.Image = global::BakBattery.Baking.App.Properties.Resources.Start_Green;
             this.tsmStartBaking.Name = "tsmStartBaking";
-            this.tsmStartBaking.Size = new System.Drawing.Size(180, 22);
+            this.tsmStartBaking.Size = new System.Drawing.Size(148, 22);
             this.tsmStartBaking.Text = "启动";
             this.tsmStartBaking.Click += new System.EventHandler(this.tsmStartBaking_Click);
             // 
@@ -2163,14 +2163,21 @@
             this.tsmOpenNetControl.BackColor = System.Drawing.Color.LightGray;
             this.tsmOpenNetControl.ForeColor = System.Drawing.Color.White;
             this.tsmOpenNetControl.Name = "tsmOpenNetControl";
-            this.tsmOpenNetControl.Size = new System.Drawing.Size(180, 22);
+            this.tsmOpenNetControl.Size = new System.Drawing.Size(148, 22);
             this.tsmOpenNetControl.Text = "打开网控";
             this.tsmOpenNetControl.Click += new System.EventHandler(this.tsmOpenNetControl_Click);
+            // 
+            // tsmLoadVacuum
+            // 
+            this.tsmLoadVacuum.Name = "tsmLoadVacuum";
+            this.tsmLoadVacuum.Size = new System.Drawing.Size(148, 22);
+            this.tsmLoadVacuum.Text = "抽真空";
+            this.tsmLoadVacuum.Click += new System.EventHandler(this.tsmLoadVacuum_Click);
             // 
             // tsmUploadVacuum
             // 
             this.tsmUploadVacuum.Name = "tsmUploadVacuum";
-            this.tsmUploadVacuum.Size = new System.Drawing.Size(180, 22);
+            this.tsmUploadVacuum.Size = new System.Drawing.Size(148, 22);
             this.tsmUploadVacuum.Text = "泄真空";
             this.tsmUploadVacuum.Click += new System.EventHandler(this.tsmUploadVacuum_Click);
             // 
@@ -2178,9 +2185,16 @@
             // 
             this.tsmStopBaking.Image = global::BakBattery.Baking.App.Properties.Resources.Stop_Red;
             this.tsmStopBaking.Name = "tsmStopBaking";
-            this.tsmStopBaking.Size = new System.Drawing.Size(180, 22);
+            this.tsmStopBaking.Size = new System.Drawing.Size(148, 22);
             this.tsmStopBaking.Text = "停止";
             this.tsmStopBaking.Click += new System.EventHandler(this.tsmStopBaking_Click);
+            // 
+            // tsmClearRunTime
+            // 
+            this.tsmClearRunTime.Name = "tsmClearRunTime";
+            this.tsmClearRunTime.Size = new System.Drawing.Size(148, 22);
+            this.tsmClearRunTime.Text = "运行时间清零";
+            this.tsmClearRunTime.Click += new System.EventHandler(this.tsmClearRunTime_Click);
             // 
             // lbFloorInfoTop0502
             // 
@@ -7882,20 +7896,6 @@
             this.userDisplay.Name = "userDisplay";
             this.userDisplay.Size = new System.Drawing.Size(270, 83);
             this.userDisplay.TabIndex = 13;
-            // 
-            // tsmLoadVacuum
-            // 
-            this.tsmLoadVacuum.Name = "tsmLoadVacuum";
-            this.tsmLoadVacuum.Size = new System.Drawing.Size(180, 22);
-            this.tsmLoadVacuum.Text = "抽真空";
-            this.tsmLoadVacuum.Click += new System.EventHandler(this.tsmLoadVacuum_Click);
-            // 
-            // tsmClearRunTime
-            // 
-            this.tsmClearRunTime.Name = "tsmClearRunTime";
-            this.tsmClearRunTime.Size = new System.Drawing.Size(180, 22);
-            this.tsmClearRunTime.Text = "运行时间清零";
-            this.tsmClearRunTime.Click += new System.EventHandler(this.tsmClearRunTime_Click);
             // 
             // yieldDisplay
             // 
