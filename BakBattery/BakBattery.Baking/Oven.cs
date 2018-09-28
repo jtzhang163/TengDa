@@ -453,13 +453,14 @@ namespace BakBattery.Baking
 
                     var tmpStr = output;
 
-                    output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false, false);
+                    output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
 
                     switch (int.Parse(output.Substring(0, 4), System.Globalization.NumberStyles.AllowHexSpecifier))
                     {
                         case 1: this.Floors[j].DoorStatusNotFinal = DoorStatus.打开; break;
                         case 2: this.Floors[j].DoorStatusNotFinal = DoorStatus.关闭; break;
-                        case 3: this.Floors[j].DoorStatusNotFinal = DoorStatus.异常; break;
+                        case 3: this.Floors[j].DoorStatusNotFinal = DoorStatus.未知; break;
+                        case 4: this.Floors[j].DoorStatusNotFinal = DoorStatus.异常; break;
                         default: this.Floors[j].DoorStatusNotFinal = DoorStatus.未知; break;
                     }
 
