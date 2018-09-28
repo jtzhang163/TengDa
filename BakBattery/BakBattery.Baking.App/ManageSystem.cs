@@ -1858,6 +1858,7 @@ namespace BakBattery.Baking.App
             {
                 cbBlankerIsEnable[i].Enabled = IsEnable;
             }
+            cbClampScaner.Enabled = IsEnable;
             cbMesIsEnable.Enabled = IsEnable;
             cbRobotIsEnable.Enabled = IsEnable;
         }
