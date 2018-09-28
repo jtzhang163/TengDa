@@ -3477,7 +3477,7 @@ namespace BakBattery.Baking.App
 
             for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
             {
-                if (e.Column == (Current.ovens[i].ClampOri == ClampOri.A ^ Option.LayoutType == 1 ? k * 2 : Current.ovens[i].Floors[j].Stations.Count - k * 2))
+                if (e.Column == (Current.ovens[i].Id < 5 ? k * 2 : Current.ovens[i].Floors[j].Stations.Count - k * 2))
                 {
 
                     Station station = Current.ovens[i].Floors[j].Stations[k];
