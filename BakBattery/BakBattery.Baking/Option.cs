@@ -1648,6 +1648,59 @@ namespace BakBattery.Baking
             }
         }
 
+        private string loadVacuumStrs = string.Empty;
+        /// <summary>
+        /// 抽真空指令
+        /// </summary>
+        [DisplayName("抽真空指令")]
+        [Category("烤箱")]
+        public string LoadVacuumStrs
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(loadVacuumStrs))
+                {
+                    loadVacuumStrs = TengDa.WF.Option.GetOption("LoadVacuumStrs");
+                }
+                return loadVacuumStrs;
+            }
+            set
+            {
+                if (value != loadVacuumStrs)
+                {
+                    TengDa.WF.Option.SetOption("LoadVacuumStrs", value);
+                    loadVacuumStrs = value;
+                }
+            }
+        }
+
+
+        private string clearRunTimeStrs = string.Empty;
+        /// <summary>
+        /// 运行时间清零指令
+        /// </summary>
+        [DisplayName("运行时间清零指令")]
+        [Category("烤箱")]
+        public string ClearRunTimeStrs
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(clearRunTimeStrs))
+                {
+                    clearRunTimeStrs = TengDa.WF.Option.GetOption("ClearRunTimeStrs");
+                }
+                return clearRunTimeStrs;
+            }
+            set
+            {
+                if (value != clearRunTimeStrs)
+                {
+                    TengDa.WF.Option.SetOption("ClearRunTimeStrs", value);
+                    clearRunTimeStrs = value;
+                }
+            }
+        }
+
         private string getVacuumStatusStr = string.Empty;
         /// <summary>
         /// 获取炉腔真空状态指令

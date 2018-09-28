@@ -670,6 +670,27 @@ namespace BakBattery.Baking
                 }
                 #endregion
 
+                #region 抽真空
+                if (this.Floors[j].toLoadVacuum)
+                {
+                    output = string.Empty;
+                    if (!this.Plc.GetInfo(false, Current.option.LoadVacuumStrs.Split(',')[j], out output, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    if (output.Substring(3, 1) != "$")
+                    {
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.LoadVacuumStrs.Split(',')[j], output));
+                        return false;
+                    }
+                    LogHelper.WriteInfo(string.Format("成功发送抽真空指令到{0}:{1}", this.Floors[j].Name, Current.option.LoadVacuumStrs.Split(',')[j]));
+                    this.Floors[j].toLoadVacuum = false;
+                }
+                #endregion
+
                 #region 泄真空
                 if (this.Floors[j].toUploadVacuum)
                 {
@@ -688,6 +709,27 @@ namespace BakBattery.Baking
                     }
                     LogHelper.WriteInfo(string.Format("成功发送泄真空指令到{0}:{1}", this.Floors[j].Name, Current.option.UnloadVacuumStrs.Split(',')[j]));
                     this.Floors[j].toUploadVacuum = false;
+                }
+                #endregion
+
+                #region 运行时间清零
+                if (this.Floors[j].toClearRunTime)
+                {
+                    output = string.Empty;
+                    if (!this.Plc.GetInfo(false, Current.option.ClearRunTimeStrs.Split(',')[j], out output, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    if (output.Substring(3, 1) != "$")
+                    {
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.ClearRunTimeStrs.Split(',')[j], output));
+                        return false;
+                    }
+                    LogHelper.WriteInfo(string.Format("成功发送运行时间清零指令到{0}:{1}", this.Floors[j].Name, Current.option.ClearRunTimeStrs.Split(',')[j]));
+                    this.Floors[j].toClearRunTime = false;
                 }
                 #endregion
             }
@@ -848,6 +890,30 @@ namespace BakBattery.Baking
         }
 
         /// <summary>
+        /// 抽真空
+        /// </summary>
+        /// <param name="j">炉腔序号</param>
+        /// <returns></returns>
+        public void LoadVacuum(int j)
+        {
+            if (!this.Plc.IsPingSuccess)
+            {
+                this.Plc.IsAlive = false;
+                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
+                return;
+            }
+
+            if (!this.Floors[j].IsNetControlOpen)
+            {
+                Tip.Alert(this.Floors[j].Name + "网控未开启，无法远程抽真空 ");
+                return;
+            }
+
+
+            this.Floors[j].toLoadVacuum = true;
+        }
+
+        /// <summary>
         /// 泄真空
         /// </summary>
         /// <param name="j">炉腔序号</param>
@@ -874,6 +940,30 @@ namespace BakBattery.Baking
             }
 
             this.Floors[j].toUploadVacuum = true;
+        }
+
+        /// <summary>
+        /// 运行时间清零
+        /// </summary>
+        /// <param name="j">炉腔序号</param>
+        /// <returns></returns>
+        public void ClearRunTime(int j)
+        {
+            if (!this.Plc.IsPingSuccess)
+            {
+                this.Plc.IsAlive = false;
+                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
+                return;
+            }
+
+            if (!this.Floors[j].IsNetControlOpen)
+            {
+                Tip.Alert(this.Floors[j].Name + "网控未开启，无法清零运行时间 ");
+                return;
+            }
+
+
+            this.Floors[j].toClearRunTime = true;
         }
 
         /// <summary>

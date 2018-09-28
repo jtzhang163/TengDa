@@ -3536,6 +3536,34 @@ namespace BakBattery.Baking.App
             Current.ovens[i].UploadVacuum(j);
         }
 
+        private void tsmLoadVacuum_Click(object sender, EventArgs e)
+        {
+            if (Current.runStstus != RunStatus.运行)
+            {
+                Tip.Alert("请先启动！");
+                return;
+            }
+
+            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
+            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
+            Current.ovens[i].Floors[j].AddLog("手动抽真空");
+            Current.ovens[i].LoadVacuum(j);
+        }
+
+        private void tsmClearRunTime_Click(object sender, EventArgs e)
+        {
+            if (Current.runStstus != RunStatus.运行)
+            {
+                Tip.Alert("请先启动！");
+                return;
+            }
+
+            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
+            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
+            Current.ovens[i].Floors[j].AddLog("手动运行时间清零");
+            Current.ovens[i].ClearRunTime(j);
+        }
+
         private void tsmOpenNetControl_Click(object sender, EventArgs e)
         {
             if (Current.runStstus != RunStatus.运行)
@@ -3963,11 +3991,18 @@ namespace BakBattery.Baking.App
                 && Current.ovens[i].Floors[j].IsAlive
                 && Current.ovens[i].Floors[j].DoorStatus != DoorStatus.关闭;
             this.tsmOpenNetControl.Enabled = Current.ovens[i].Floors[j].IsAlive && !Current.ovens[i].Floors[j].IsNetControlOpen;
+            this.tsmLoadVacuum.Enabled =
+                Current.ovens[i].Floors[j].IsNetControlOpen
+                && Current.ovens[i].Floors[j].IsAlive
+                && !Current.ovens[i].Floors[j].IsVacuum;
             this.tsmUploadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].Floors[j].IsAlive
                 && !Current.ovens[i].Floors[j].IsBaking
                 && Current.ovens[i].Floors[j].IsVacuum;
+            this.tsmClearRunTime.Enabled =
+                Current.ovens[i].Floors[j].IsNetControlOpen
+                && Current.ovens[i].Floors[j].IsAlive;
             this.tsmStartBaking.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].Floors[j].IsAlive

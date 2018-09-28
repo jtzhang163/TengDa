@@ -220,7 +220,9 @@ namespace BakBattery.Baking
         public bool toCloseDoor = false;
         public bool toStartBaking = false;
         public bool toStopBaking = false;
+        public bool toLoadVacuum = false;
         public bool toUploadVacuum = false;
+        public bool toClearRunTime = false;
         public bool toOpenNetControl = false;
         public bool toAlarmReset = false;
         #endregion
