@@ -694,19 +694,21 @@ namespace BakBattery.Baking.App
 
 
                     lbFloorStatus[i][j].Text = Current.TaskMode == TaskMode.手动任务 ?
-                        string.Format("{0} {1} {2}",
+                        string.Format("{0} {1} {2}/{3} {4}",
                         oven.Id < 5 ? "左" : "右",
-                        Current.ovens[i].Floors[j].DoorStatus,
+                        floor.DoorStatus,
+                        floor.RunMinutes.ToString().PadLeft(3),
+                        floor.RunMinutesSet.ToString().PadLeft(3),
                         oven.Id < 5 ? "右" : "左"
                         )
                         :
                         string.Format("{0} {1}/{2}",
-                        Current.ovens[i].Floors[j].DoorStatus,
-                        Current.ovens[i].Floors[j].RunMinutes.ToString().PadLeft(3),
-                        Current.ovens[i].Floors[j].RunMinutesSet.ToString().PadLeft(3)
+                        floor.DoorStatus,
+                        floor.RunMinutes.ToString().PadLeft(3),
+                        floor.RunMinutesSet.ToString().PadLeft(3)
                         );
 
-                    switch (Current.ovens[i].Floors[j].DoorStatus)
+                    switch (floor.DoorStatus)
                     {
                         case DoorStatus.打开:
                             lbFloorStatus[i][j].ForeColor = Color.White;
