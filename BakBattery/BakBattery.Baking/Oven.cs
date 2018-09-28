@@ -482,6 +482,28 @@ namespace BakBattery.Baking
 
             }
 
+            #region 获取真空控制指令信息
+            output = string.Empty;
+            if (!this.Plc.GetInfo(false, Current.option.GetVacuumCommandStr, out output, out msg))
+            {
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            if (output.Substring(3, 1) != "$")
+            {
+                LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetVacuumCommandStr, output));
+                return false;
+            }
+
+            for (int j = 0; j < this.Floors.Count; j++)
+            {
+                this.Floors[j].VacuumIsLoading = output.Substring(6 + j, 1) == "1";
+                this.Floors[j].VacuumIsUploading = output.Substring(9 + j, 1) == "1";
+            }
+            #endregion
+
             #region 获取运行状态
             output = string.Empty;
             if (!this.Plc.GetInfo(false, Current.option.GetRunStatusStr, out output, out msg))
@@ -674,8 +696,13 @@ namespace BakBattery.Baking
                 #region 抽真空
                 if (this.Floors[j].toLoadVacuum)
                 {
+                    var command = Current.option.LoadVacuumStrs.Split(',')[j];
+                    if (this.Floors[j].VacuumIsLoading)
+                    {
+                        command = command.Replace("1**","0**");
+                    }
                     output = string.Empty;
-                    if (!this.Plc.GetInfo(false, Current.option.LoadVacuumStrs.Split(',')[j], out output, out msg))
+                    if (!this.Plc.GetInfo(false, command, out output, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;
@@ -684,10 +711,10 @@ namespace BakBattery.Baking
 
                     if (output.Substring(3, 1) != "$")
                     {
-                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.LoadVacuumStrs.Split(',')[j], output));
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", command, output));
                         return false;
                     }
-                    LogHelper.WriteInfo(string.Format("成功发送抽真空指令到{0}:{1}", this.Floors[j].Name, Current.option.LoadVacuumStrs.Split(',')[j]));
+                    LogHelper.WriteInfo(string.Format("成功发送抽真空指令到{0}:{1}", this.Floors[j].Name, command));
                     this.Floors[j].toLoadVacuum = false;
                 }
                 #endregion
@@ -695,8 +722,13 @@ namespace BakBattery.Baking
                 #region 泄真空
                 if (this.Floors[j].toUploadVacuum)
                 {
+                    var command = Current.option.UnloadVacuumStrs.Split(',')[j];
+                    if (this.Floors[j].VacuumIsUploading)
+                    {
+                        command = command.Replace("1**", "0**");
+                    }
                     output = string.Empty;
-                    if (!this.Plc.GetInfo(false, Current.option.UnloadVacuumStrs.Split(',')[j], out output, out msg))
+                    if (!this.Plc.GetInfo(false, command, out output, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;
@@ -705,10 +737,10 @@ namespace BakBattery.Baking
 
                     if (output.Substring(3, 1) != "$")
                     {
-                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.UnloadVacuumStrs.Split(',')[j], output));
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", command, output));
                         return false;
                     }
-                    LogHelper.WriteInfo(string.Format("成功发送泄真空指令到{0}:{1}", this.Floors[j].Name, Current.option.UnloadVacuumStrs.Split(',')[j]));
+                    LogHelper.WriteInfo(string.Format("成功发送泄真空指令到{0}:{1}", this.Floors[j].Name, command));
                     this.Floors[j].toUploadVacuum = false;
                 }
                 #endregion

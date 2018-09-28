@@ -215,6 +215,16 @@ namespace BakBattery.Baking
         public bool DoorIsOpenning = false;
         public bool DoorIsClosing = false;
 
+        /// <summary>
+        /// 正在抽真空
+        /// </summary>
+        public bool VacuumIsLoading = false;
+
+        /// <summary>
+        /// 正在泄真空
+        /// </summary>
+        public bool VacuumIsUploading = false;
+
         #region 控制标志
         public bool toOpenDoor = false;
         public bool toCloseDoor = false;

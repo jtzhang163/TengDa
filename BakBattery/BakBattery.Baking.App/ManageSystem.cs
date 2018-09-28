@@ -4011,6 +4011,11 @@ namespace BakBattery.Baking.App
                 && Current.ovens[i].Floors[j].IsAlive
                 && Current.ovens[i].Floors[j].IsBaking;
             this.tsmAlarmReset.Enabled = Current.ovens[i].Floors[j].IsAlive;
+
+            this.tsmLoadVacuum.Text = Current.ovens[i].Floors[j].VacuumIsLoading ? "取消抽真空" : "抽真空";
+
+            this.tsmUploadVacuum.Text = Current.ovens[i].Floors[j].VacuumIsUploading ? "取消泄真空" : "泄真空";
+
         }
 
         #endregion
