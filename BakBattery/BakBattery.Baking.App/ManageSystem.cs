@@ -1892,7 +1892,7 @@ namespace BakBattery.Baking.App
                             Station station = Current.ovens[i].Floors[j].Stations[k];
                             if (floor.IsBaking)
                             {
-                                station.FloorStatus = FloorStatus.烘烤; station.ClampStatus = ClampStatus.满夹具;
+                                station.FloorStatus = FloorStatus.烘烤;
                             }
                             else if (station.ClampStatus == ClampStatus.无夹具 && !floor.IsBaking)
                             {
@@ -1900,7 +1900,7 @@ namespace BakBattery.Baking.App
                             }
                             else if (floor.IsBakeFinished && station.ClampStatus != ClampStatus.无夹具 && !floor.IsBaking)
                             {
-                                station.FloorStatus = FloorStatus.待出; station.ClampStatus = ClampStatus.满夹具;
+                                station.FloorStatus = FloorStatus.待出;
                             }
                             else if (!floor.IsBakeFinished && station.ClampStatus == ClampStatus.满夹具 && !floor.IsBaking)
                             {
