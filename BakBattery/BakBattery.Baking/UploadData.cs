@@ -312,6 +312,39 @@ namespace BakBattery.Baking
             return Database.NonQuery(sb.ToString().TrimEnd(','), out msg);
         }
 
+        /// <summary>
+        /// 根据SQL语句查询数据
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public static List<UploadData> GetList(string sql, out string msg)
+        {
+            var list = new List<UploadData>();
+            var dt = Database.Query(sql, out msg);
+
+            if (!string.IsNullOrEmpty(msg))
+            {
+                Error.Alert(msg);
+                return list;
+            }
+
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                return list;
+            }
+            else
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    var data = new UploadData();
+                    data.InitFields(dt.Rows[i]);
+                    list.Add(data);
+                }
+            }
+            return list;
+        }
+
         #endregion
     }
 }
