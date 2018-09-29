@@ -129,6 +129,9 @@ namespace TengDa.WF.Terminals
         //public bool IsCommunicatting = false;
 
         private MelsecNet melsec_net = new MelsecNet();
+
+        private SiemensNet siemens_net = new SiemensNet();
+
         #endregion
 
         #region 开启/断开连接
@@ -148,6 +151,17 @@ namespace TengDa.WF.Terminals
 
                     // 如果需要长连接，就取消下面这行代码的注释，对于数据读写的代码，没有影响
                     melsec_net.ConnectServer(); // 切换长连接，这行代码可以放在其他任何地方
+                    IsAlive = true;
+                }
+                else if (this.Company == PlcCompany.Siemens.ToString())
+                {
+
+                    siemens_net.PLCIpAddress = System.Net.IPAddress.Parse(this.IP);    // PLC的IP地址
+                    siemens_net.PortRead = Port;                                           // 端口
+                    siemens_net.PortWrite = 6001;                                          // 写入端口，最好和读取分开
+                    siemens_net.ConnectTimeout = 500;                                      // 连接超时时间
+
+                    siemens_net.ConnectServer(); 
                     IsAlive = true;
                 }
                 else if (!Socket.Connected)
@@ -175,7 +189,12 @@ namespace TengDa.WF.Terminals
                     melsec_net.ConnectClose();// 关闭长连接，并切换为短连接，在系统退出时可以调用
                     IsAlive = false;
                 }
-                else
+                else if (this.Company == PlcCompany.Siemens.ToString())
+                {
+                    siemens_net.ConnectClose();
+                    IsAlive = false;
+                }
+                else if (Socket != null)
                 {
                     Socket.Close();
                     Socket = null;
@@ -402,73 +421,6 @@ namespace TengDa.WF.Terminals
             return false;
         }
 
-        public bool GetInfo<T>(PlcCompany plcCompany, bool isRead, string address, T value, out T output, out string msg) where T : IDataTransfer, new()
-        {
-            return GetInfo<T>(true, plcCompany, isRead, address, value, out output, out msg);
-        }
-
-        public bool GetInfo<T>(bool checkPingSuccess, PlcCompany plcCompany, bool isRead, string address, T value, out T output, out string msg) where T : IDataTransfer, new()
-        {
-
-            output = default(T);
-            msg = string.Empty;
-
-            try
-            {
-                if (plcCompany == PlcCompany.Mitsubishi)
-                {
-                    if (checkPingSuccess)
-                    {
-                        if (!IsPingSuccess)
-                        {
-                            IsAlive = false;
-                            msg = string.Format("无法连接到【{0}】，IP：{1}", this.Name, this.IP);
-                            return false;
-                        }
-                    }
-
-                    if (isRead)//读
-                    {
-                        OperateResult<T> result = melsec_net.ReadFromPLC<T>(address);
-                        if (result.IsSuccess)
-                        {
-                            output = result.Content;
-                            IsAlive = true;
-                            return true;
-                        }
-                        else
-                        {
-                            msg = string.Format("从{0} 中读取数据出现错误，代码：{1}", address, result.ErrorCode);
-                            IsAlive = false;
-                            return false;
-                        }
-                    }
-                    else//写
-                    {
-                        OperateResult result = melsec_net.WriteIntoPLC<T>(address, value);
-                        if (result.IsSuccess)
-                        {
-                            IsAlive = true;
-                            return true;
-                        }
-                        else
-                        {
-                            msg = string.Format("{0} 中写入 {1} 出现错误，代码：{2}", address, value, result.ErrorCode);
-                            IsAlive = false;
-                            return false;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                msg = string.Format("和{0}通信出现异常！原因：{1}", Name, ex.Message);
-            }
-
-            IsAlive = false;
-            return false;
-        }
-
         public bool GetInfo(bool checkPingSuccess, PlcCompany plcCompany, bool isRead, string address, bool value, out bool output, out string msg)
         {
 
@@ -583,6 +535,50 @@ namespace TengDa.WF.Terminals
                         }
                     }
                 }
+                else if (plcCompany == PlcCompany.Siemens)
+                {
+                    if (checkPingSuccess)
+                    {
+                        if (!IsPingSuccess)
+                        {
+                            IsAlive = false;
+                            msg = string.Format("无法连接到【{0}】，IP：{1}", this.Name, this.IP);
+                            return false;
+                        }
+                    }
+
+                    if (isRead)//读
+                    {
+                        OperateResult<byte[]> result = siemens_net.ReadFromPLC(SiemensDataType.M,ushort.Parse(address),1);
+                        if (result.IsSuccess)
+                        {
+                            output = result.Content[0];
+                            IsAlive = true;
+                            return true;
+                        }
+                        else
+                        {
+                            msg = string.Format("从{0}中读取数据出现错误，代码：{1}", address, result.ErrorCode);
+                            IsAlive = false;
+                            return false;
+                        }
+                    }
+                    else//写
+                    {
+                        OperateResult result = siemens_net.WriteIntoPLC(SiemensDataType.M, ushort.Parse(address), new short[] { (short)value });
+                        if (result.IsSuccess)
+                        {
+                            IsAlive = true;
+                            return true;
+                        }
+                        else
+                        {
+                            msg = string.Format("{0} 中写入 {1} 出现错误，代码：{2}", address, value, result.ErrorCode);
+                            IsAlive = false;
+                            return false;
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -592,6 +588,74 @@ namespace TengDa.WF.Terminals
             IsAlive = false;
             return false;
         }
+
+        //public bool GetInfo<T>(PlcCompany plcCompany, bool isRead, string address, T value, out T output, out string msg) where T : IDataTransfer, new()
+        //{
+        //    return GetInfo<T>(true, plcCompany, isRead, address, value, out output, out msg);
+        //}
+
+        //public bool GetInfo<T>(bool checkPingSuccess, PlcCompany plcCompany, bool isRead, string address, T value, out T output, out string msg) where T : IDataTransfer, new()
+        //{
+
+        //    output = default(T);
+        //    msg = string.Empty;
+
+        //    try
+        //    {
+        //        if (plcCompany == PlcCompany.Mitsubishi)
+        //        {
+        //            if (checkPingSuccess)
+        //            {
+        //                if (!IsPingSuccess)
+        //                {
+        //                    IsAlive = false;
+        //                    msg = string.Format("无法连接到【{0}】，IP：{1}", this.Name, this.IP);
+        //                    return false;
+        //                }
+        //            }
+
+        //            if (isRead)//读
+        //            {
+        //                OperateResult<T> result = melsec_net.ReadFromPLC<T>(address);
+        //                if (result.IsSuccess)
+        //                {
+        //                    output = result.Content;
+        //                    IsAlive = true;
+        //                    return true;
+        //                }
+        //                else
+        //                {
+        //                    msg = string.Format("从{0} 中读取数据出现错误，代码：{1}", address, result.ErrorCode);
+        //                    IsAlive = false;
+        //                    return false;
+        //                }
+        //            }
+        //            else//写
+        //            {
+        //                OperateResult result = melsec_net.WriteIntoPLC<T>(address, value);
+        //                if (result.IsSuccess)
+        //                {
+        //                    IsAlive = true;
+        //                    return true;
+        //                }
+        //                else
+        //                {
+        //                    msg = string.Format("{0} 中写入 {1} 出现错误，代码：{2}", address, value, result.ErrorCode);
+        //                    IsAlive = false;
+        //                    return false;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        msg = string.Format("和{0}通信出现异常！原因：{1}", Name, ex.Message);
+        //    }
+
+        //    IsAlive = false;
+        //    return false;
+        //}
+
         #endregion
     }
 }
