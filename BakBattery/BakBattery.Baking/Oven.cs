@@ -464,7 +464,7 @@ namespace BakBattery.Baking
                         {
                             case 1: this.Floors[j].DoorStatusNotFinal = DoorStatus.打开; break;
                             case 2: this.Floors[j].DoorStatusNotFinal = DoorStatus.关闭; break;
-                            case 3: this.Floors[j].DoorStatusNotFinal = DoorStatus.未知; break;
+                            case 3: 
                             case 4: this.Floors[j].DoorStatusNotFinal = DoorStatus.异常; break;
                             default: this.Floors[j].DoorStatusNotFinal = DoorStatus.未知; break;
                         }
