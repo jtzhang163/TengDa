@@ -54,21 +54,21 @@ namespace TengDa.WF.Terminals
             }
         }
 
-        private TcpClient tcpClient = null;
+        private Socket socket = null;
 
-        private TcpClient TcpClient
+        private Socket Socket
         {
             get
             {
-                if (tcpClient == null)
+                if (socket == null)
                 {
-                    tcpClient = new TcpClient();
+                    socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 }
-                return tcpClient;
+                return socket;
             }
             set
             {
-                tcpClient = value;
+                socket = value;
             }
         }
 
@@ -150,9 +150,9 @@ namespace TengDa.WF.Terminals
                     melsec_net.ConnectServer(); // 切换长连接，这行代码可以放在其他任何地方
                     IsAlive = true;
                 }
-                else if (!TcpClient.Connected)
+                else if (!Socket.Connected)
                 {
-                    TcpClient.Connect(IpAddress, Port);
+                    Socket.Connect(IpAddress, Port);
                     IsAlive = true;
                 }
             }
@@ -177,8 +177,8 @@ namespace TengDa.WF.Terminals
                 }
                 else
                 {
-                    TcpClient.Close();
-                    TcpClient = null;
+                    Socket.Close();
+                    Socket = null;
                     IsAlive = false;
                 }
             }
@@ -221,24 +221,22 @@ namespace TengDa.WF.Terminals
                     }
                 }
 
-                if (!TcpClient.Connected)
+                if (!Socket.Connected)
                 {
-                    tcpClient = null;
-                    tcpClient = new TcpClient();
+                    Socket = null;
+                    Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                     TcpConnect(out msg);
                 }
-                NetworkStream ns = TcpClient.GetStream();
-                Byte[] sendBytes = Encoding.UTF8.GetBytes(input + "\r");
-                ns.Write(sendBytes, 0, sendBytes.Length);
 
-                Thread.Sleep(100);
+                Byte[] sendBytes = Encoding.UTF8.GetBytes(input + "\r");
+                Socket.Send(sendBytes);
+
+                Thread.Sleep(10);
 
                 Byte[] Data = new Byte[1024];
-                NetworkStream nsData = TcpClient.GetStream();
-                Int32 bytes = nsData.Read(Data, 0, Data.Length);
+                Socket.Receive(Data);
 
-
-                output = Encoding.ASCII.GetString(Data, 0, bytes);
+                output = Encoding.ASCII.GetString(Data).Trim('\0');
 
                 msg = string.Empty;
                 IsAlive = true;
@@ -289,21 +287,21 @@ namespace TengDa.WF.Terminals
                     }
                 }
 
-                if (!TcpClient.Connected)
+                if (!Socket.Connected)
                 {
-                    tcpClient = null;
-                    tcpClient = new TcpClient();
+                    socket = null;
+                    socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                     TcpConnect(out msg);
                 }
-                NetworkStream ns = TcpClient.GetStream();
-                Byte[] sendBytes = new byte[] { input };
-                ns.Write(sendBytes, 0, sendBytes.Length);
 
-                Thread.Sleep(100);
+                Byte[] sendBytes = new byte[] { input };
+
+                Socket.Send(sendBytes);
+
+                Thread.Sleep(10);
 
                 getStr = string.Empty;
                 Byte[] Data = new Byte[1024];
-                NetworkStream nsData = TcpClient.GetStream();
 
                 Stopwatch sw = new Stopwatch();
                 connectSuccess = false;
@@ -313,8 +311,8 @@ namespace TengDa.WF.Terminals
                     try
                     {
                         sw.Start();
-                        Int32 bytes = nsData.Read(Data, 0, Data.Length);
-                        getStr = Encoding.ASCII.GetString(Data, 0, bytes);
+                        Socket.Receive(Data);
+                        getStr = Encoding.ASCII.GetString(Data).Trim('\0');
                         connectSuccess = true;
                     }
                     catch { }
@@ -383,15 +381,14 @@ namespace TengDa.WF.Terminals
                         return false;
                     }
                 }
-                if (!TcpClient.Connected)
+                if (!Socket.Connected)
                 {
-                    tcpClient = null;
-                    tcpClient = new TcpClient();
+                    socket = null;
+                    socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                     TcpConnect(out msg);
                 }
-                NetworkStream ns = TcpClient.GetStream();
-                Byte[] sendBytes = new byte[] { input };
-                ns.Write(sendBytes, 0, sendBytes.Length);
+
+                Socket.Send(new byte[] { input });
                 msg = string.Empty;
                 IsAlive = true;
                 return true;
