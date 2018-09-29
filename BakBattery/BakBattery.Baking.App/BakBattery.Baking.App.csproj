@@ -53,18 +53,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TengDa, Version=2.0.6793.19148, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\TengDa\TengDa.Dll\TengDa.dll</HintPath>
-    </Reference>
-    <Reference Include="TengDa.WF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\TengDa\TengDa.Dll\TengDa.WF.dll</HintPath>
-    </Reference>
-    <Reference Include="TengDa.WF.Controls, Version=1.0.6793.19148, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\TengDa\TengDa.Dll\TengDa.WF.Controls.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ManageSystem.cs">
@@ -127,6 +115,18 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\TengDa\TengDa.WF.Controls\TengDa.WF.Controls.csproj">
+      <Project>{d420804d-cabe-4221-93f1-e67f7526e331}</Project>
+      <Name>TengDa.WF.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TengDa\TengDa.WF\TengDa.WF.csproj">
+      <Project>{dfd6cb8d-d1fd-4712-8c4e-c611bbe12d08}</Project>
+      <Name>TengDa.WF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TengDa\TengDa\TengDa.csproj">
+      <Project>{313161d4-a305-47fb-8935-d7c0a0cf4b3d}</Project>
+      <Name>TengDa</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BakBattery.Baking.Controls\BakBattery.Baking.Controls.csproj">
       <Project>{ae976e0b-2434-48bd-b683-1bc4bd019eef}</Project>
       <Name>BakBattery.Baking.Controls</Name>

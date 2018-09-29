@@ -44,10 +44,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TengDa, Version=2.0.6793.19148, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\TengDa\TengDa.Dll\TengDa.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alarm.cs" />
@@ -77,6 +73,10 @@
     <ProjectReference Include="..\..\TengDa\TengDa.WF\TengDa.WF.csproj">
       <Project>{dfd6cb8d-d1fd-4712-8c4e-c611bbe12d08}</Project>
       <Name>TengDa.WF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TengDa\TengDa\TengDa.csproj">
+      <Project>{313161d4-a305-47fb-8935-d7c0a0cf4b3d}</Project>
+      <Name>TengDa</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
