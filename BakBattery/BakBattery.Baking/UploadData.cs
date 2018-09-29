@@ -1,14 +1,7 @@
-﻿using Microsoft.CSharp;
-using System;
-using System.CodeDom;
-using System.CodeDom.Compiler;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Reflection;
 using System.Text;
 using TengDa;
 using TengDa.WF;
@@ -33,6 +26,8 @@ namespace BakBattery.Baking
                 return tableName;
             }
         }
+
+        public int ClampId { get; set; } = -1;
 
         protected string parameterName = string.Empty;
         /// <summary>
@@ -264,20 +259,58 @@ namespace BakBattery.Baking
         protected void InitFields(DataRow rowInfo)
         {
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
+            this.ClampId = TengDa._Convert.StrToInt(rowInfo["ClampId"].ToString(), -1);
             this.parameterName = rowInfo["ParameterName"].ToString();
             this.parameterUnit = rowInfo["ParameterUnit"].ToString();
             this.parameterValue = rowInfo["ParameterValue"].ToString();
             this.parameterFlag = TengDa._Convert.StrToInt(rowInfo["ParameterFlag"].ToString(), -1);
             this.deviceStatus = TengDa._Convert.StrToInt(rowInfo["DeviceStatus"].ToString(), -1);
-            this.collectorTime = TengDa._Convert.StrToDateTime(rowInfo["CollectorTime"].ToString(), Common.DefaultTime);
             this.isEnabled = Convert.ToBoolean(rowInfo["IsEnabled"]);
             this.isUploaded = Convert.ToBoolean(rowInfo["IsUploaded"]);
             this.UserId = TengDa._Convert.StrToInt(rowInfo["UserId"].ToString(), -1);
+            this.collectorTime = TengDa._Convert.StrToDateTime(rowInfo["CollectorTime"].ToString(), Common.DefaultTime);
         }
         #endregion
-       
+
         #region 方法
 
+        //INSERT INTO [dbo].[TengDa.Test] ([Value]) VALUES ('1'),('2');
+
+        /// <summary>
+        /// 多条数据一次插入
+        /// </summary>
+        /// <param name="datas"></param>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public static bool Add(List<UploadData> datas, out string msg)
+        {
+            if (datas == null || datas.Count < 1)
+            {
+                msg = string.Empty;
+                return true;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append(string.Format("INSERT INTO [dbo].[{0}] ([ClampId],[ParameterName],[ParameterUnit],[ParameterValue],[ParameterFlag],[DeviceStatus],[IsEnabled],[IsUploaded],[UserId],[CollectorTime]) VALUES ", TableName));
+
+            foreach (var data in datas)
+            {
+                sb.Append(string.Format("({0} '{1}', '{2}', '{3}', {4}, {5}, '{6}', '{7}', {8}, '{9}'),",
+                    data.ClampId,
+                    data.ParameterName,
+                    data.ParameterUnit,
+                    data.ParameterValue,
+                    data.ParameterFlag,
+                    data.DeviceStatus,
+                    data.IsEnabled,
+                    data.IsUploaded,
+                    data.UserId,
+                    data.CollectorTime
+                    ));
+            }
+
+            return Database.NonQuery(sb.ToString().TrimEnd(','), out msg);
+        }
 
         #endregion
     }
