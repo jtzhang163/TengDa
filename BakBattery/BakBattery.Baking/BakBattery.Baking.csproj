@@ -49,6 +49,7 @@
     <Compile Include="Alarm.cs" />
     <Compile Include="Battery.cs" />
     <Compile Include="BatteryCache.cs" />
+    <Compile Include="UploadData.cs" />
     <Compile Include="Robot.cs" />
     <Compile Include="Transfer.cs" />
     <Compile Include="Clamp.cs" />
