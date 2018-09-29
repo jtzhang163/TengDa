@@ -215,13 +215,19 @@ namespace Outstanding.Dispatcher
 
         #region 该设备上的PLC
 
+        private PLC plc = new PLC();
+
         [Browsable(false)]
         [ReadOnly(true)]
         public PLC Plc
         {
             get
             {
-                return PLC.PlcList.First(p => p.Id == this.PlcId);
+                if (plc.Id < 1)
+                {
+                    plc = new PLC(PlcId);
+                }
+                return plc;
             }
         }
         #endregion

@@ -213,7 +213,9 @@ namespace BakBattery.Baking
 
         #endregion
 
-        #region 该烤箱上的PLC
+        #region 该设备上的PLC
+
+        private PLC plc = new PLC();
 
         [Browsable(false)]
         [ReadOnly(true)]
@@ -221,10 +223,13 @@ namespace BakBattery.Baking
         {
             get
             {
-                return PLC.PlcList.First(p => p.Id == this.PlcId);
+                if (plc.Id < 1)
+                {
+                    plc = new PLC(PlcId);
+                }
+                return plc;
             }
         }
-
         #endregion
 
         #region 该烤箱腔体列表
