@@ -219,8 +219,7 @@ namespace TengDa.WF.Terminals
 
                 Byte[] InputBuf = new Byte[128];
                 SerialPort.Read(InputBuf, 0, SerialPort.BytesToRead);
-                ASCIIEncoding encoding = new ASCIIEncoding();
-                ReceiveString = encoding.GetString(InputBuf).Trim('\0');
+                ReceiveString = Encoding.ASCII.GetString(InputBuf).Trim('\0');
                 IsAlive = true;
 
                 if (!string.IsNullOrEmpty(ReceiveString))
