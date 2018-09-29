@@ -48,10 +48,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\TengDa\TengDa.Dll\TengDa.dll</HintPath>
     </Reference>
-    <Reference Include="TengDa.WF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\TengDa\TengDa.Dll\TengDa.WF.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alarm.cs" />
@@ -76,6 +72,12 @@
     <Compile Include="Task.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="TVD.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TengDa\TengDa.WF\TengDa.WF.csproj">
+      <Project>{dfd6cb8d-d1fd-4712-8c4e-c611bbe12d08}</Project>
+      <Name>TengDa.WF</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
