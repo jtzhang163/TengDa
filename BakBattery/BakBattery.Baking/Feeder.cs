@@ -30,6 +30,32 @@ namespace BakBattery.Baking
             }
         }
 
+        private TriLamp triLamp = TriLamp.Unknown;
+
+        /// <summary>
+        /// 三色灯
+        /// </summary>
+        [ReadOnly(true), DisplayName("三色灯")]
+        public TriLamp TriLamp
+        {
+            get
+            {
+                return triLamp;
+            }
+            set
+            {
+                if (value == TriLamp.Red)
+                {
+                    this.AlarmStr = "设备报警...";
+                }
+                else
+                {
+                    this.AlarmStr = "";
+                }
+                triLamp = value;
+            }
+        }
+
         private int plcId = -1;
         [ReadOnly(true), Description("PLC ID")]
         [DisplayName("PLC Id")]
@@ -127,28 +153,10 @@ namespace BakBattery.Baking
             }
         }
 
-        private TriLamp triLamp = TriLamp.Unknown;
-        [ReadOnly(true), DisplayName("三色灯")]
-        public TriLamp TriLamp
-        {
-            get
-            {
-                return triLamp;
-            }
-            set
-            {
-                if(value == TriLamp.Red)
-                {
-                    this.AlarmStr = "设备报警...";
-                }
-                else
-                {
-                    this.AlarmStr = "";
-                }
-                triLamp = value;
-            }
-        }
-
+        /// <summary>
+        /// 缓存电池
+        /// </summary>
+        [ReadOnly(true), DisplayName("缓存电池")]
         public List<Battery> CacheBatteries
         {
             get

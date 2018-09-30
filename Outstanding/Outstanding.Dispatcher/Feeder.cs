@@ -127,6 +127,10 @@ namespace Outstanding.Dispatcher
             }
         }
 
+        /// <summary>
+        /// 缓存电池
+        /// </summary>
+        [ReadOnly(true), DisplayName("缓存电池")]
         public List<Battery> CacheBatteries
         {
             get
