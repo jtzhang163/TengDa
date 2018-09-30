@@ -3038,7 +3038,7 @@ namespace BakBattery.Baking.App
             }
             else
             {
-                dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_TV] WHERE [腔体] = '{1}' AND [记录时间] BETWEEN '{2}' AND '{3}' ", Config.DbTableNamePre, cbFloors.Text.Trim(), dtpStart.Value, dtpStop.Value), out msg);
+                dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_TV] WHERE [炉腔] = '{1}' AND [记录时间] BETWEEN '{2}' AND '{3}' ", Config.DbTableNamePre, cbFloors.Text.Trim(), dtpStart.Value, dtpStop.Value), out msg);
             }
 
             if (dt == null)
@@ -3055,9 +3055,9 @@ namespace BakBattery.Baking.App
                 dgvTV.Columns[i].Width = 65;
             }
             dgvTV.Columns[Option.TemperaturePointCount + 1].Width = 70;
-            dgvTV.Columns[Option.TemperaturePointCount + 2].Width = 52;
-            dgvTV.Columns[Option.TemperaturePointCount + 3].Width = 80;
-            dgvTV.Columns[Option.TemperaturePointCount + 4].Width = 130;
+            dgvTV.Columns[Option.TemperaturePointCount + 2].Width = 100;
+            dgvTV.Columns[Option.TemperaturePointCount + 3].Width = 100;
+            dgvTV.Columns[Option.TemperaturePointCount + 4].Width = 140;
             dgvTV.Columns[Option.TemperaturePointCount + 4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
             tbNumTV.Text = dt.Rows.Count.ToString();
 
