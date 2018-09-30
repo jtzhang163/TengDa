@@ -295,7 +295,7 @@ namespace BakBattery.Baking
             {
                 if (plc.Id < 1)
                 {
-                    plc = PLC.PlcList.First(p => p.Id == this.PlcId);
+                    plc = new PLC(PlcId);
                 }
                 return plc;
             }
@@ -400,16 +400,31 @@ namespace BakBattery.Baking
                     return false;
                 }
 
-                int[] iOut = new int[10];
+                int[] iOut = new int[4];
                 output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
                 for (int j = 0; j < iOut.Length; j++)
                 {
                     iOut[j] = int.Parse(output.Substring(j * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
                 }
 
+                if (iOut[0] == 1)
+                {
+                    if (!this.BatteryScaner.IsReady)
+                    {
+                        this.BatteryScaner.CanScan = true;
+                    }
+                    this.BatteryScaner.IsReady = true;
+                }
+                else
+                {
+                    this.BatteryScaner.IsReady = false;
+                    this.BatteryScaner.CanScan = false;
+                }
+
+
                 for (int j = 0; j < this.Stations.Count; j++)
                 {
-                    switch (iOut[j])
+                    switch (iOut[j + 1])
                     {
                         case 1: this.EmptyClampCount[j]++; break;
                         case 2: this.Stations[j].ClampStatus = ClampStatus.空夹具; break;
@@ -419,9 +434,9 @@ namespace BakBattery.Baking
                         default: this.Stations[j].ClampStatus = ClampStatus.未知; break;
                     }
 
-                    if (iOut[j] == 1)
+                    if (iOut[j + 1] == 1)
                     {
-                        if(EmptyClampCount[j] > 2)
+                        if (EmptyClampCount[j] > 2)
                         {
                             this.Stations[j].ClampStatus = ClampStatus.无夹具;
                             EmptyClampCount[j] = 3;
@@ -430,15 +445,8 @@ namespace BakBattery.Baking
                     else
                     {
                         EmptyClampCount[j] = 0;
-                    }          
-
-                    switch (iOut[j + 2])
-                    {
-                        case 1: this.Stations[j].DoorStatus = DoorStatus.打开; break;
-                        case 2: this.Stations[j].DoorStatus = DoorStatus.关闭; break;
-                        case 4: this.Stations[j].DoorStatus = DoorStatus.异常; break;
-                        default: this.Stations[j].DoorStatus = DoorStatus.未知; break;
                     }
+
 
                     if (this.Stations[j].ClampStatus == ClampStatus.无夹具)
                     {
@@ -458,73 +466,59 @@ namespace BakBattery.Baking
                     }
                 }
 
-                switch (iOut[5])
-                {
-                    case 0: this.Stations.ForEach(s => s.IsClampScanReady = false); Current.ClampScaner.IsReady = false; break;
-                    case 1: this.Stations[0].IsClampScanReady = true; Current.ClampScaner.IsReady = true; this.CurrentPutStationId = this.Stations[0].Id; break;
-                    case 2: this.Stations[1].IsClampScanReady = true; Current.ClampScaner.IsReady = true; this.CurrentPutStationId = this.Stations[1].Id; break;
-                }
-
-                if (iOut[6] == 1)
-                {
-                    if (!this.BatteryScaner.IsReady)
-                    {
-                        this.BatteryScaner.CanScan = true;
-                    }
-                    this.BatteryScaner.IsReady = true;
-                }
-                else
-                {
-                    this.BatteryScaner.IsReady = false;
-                    this.BatteryScaner.CanScan = false;
-                }
+                //switch (iOut[5])
+                //{
+                //    case 0: this.Stations.ForEach(s => s.IsClampScanReady = false); Current.ClampScaner.IsReady = false; break;
+                //    case 1: this.Stations[0].IsClampScanReady = true; Current.ClampScaner.IsReady = true; this.CurrentPutStationId = this.Stations[0].Id; break;
+                //    case 2: this.Stations[1].IsClampScanReady = true; Current.ClampScaner.IsReady = true; this.CurrentPutStationId = this.Stations[1].Id; break;
+                //}
 
 
-                switch (iOut[7])
-                {
-                    case 0:
-                        if (this.JawMoveType == JawMoveType.PulltabToRotary)
-                        {
-                            //if(this.CurrentPutClampBatteryCount < Clamp.BatteryCount)
-                            //{
-                            if (!Battery.UpdateClampId(this.CacheBatteryOut(), Station.GetStation(CurrentPutStationId).ClampId, out msg))
-                            {
-                                LogHelper.WriteError(msg);
-                            }
-                            //}
-                        }
-                        else if (this.JawMoveType == JawMoveType.PulltabToBatteryCache)
-                        {
-                            this.BatteryCache.Push(this.CacheBatteryOut());
-                        }
-                        else if (this.JawMoveType == JawMoveType.BatteryCacheToRotary)
-                        {
-                            if (this.CurrentBatteryCount < Clamp.BatteryCount)
-                            {
-                                if (!Battery.UpdateClampId(this.BatteryCache.Pop().ToString(), Station.GetStation(CurrentPutStationId).ClampId, out msg))
-                                {
-                                    LogHelper.WriteError(msg);
-                                }
-                            }
-                        }
-                        else if (this.JawMoveType == JawMoveType.SampleToRotary)
-                        {
-                            ///
+                //switch (iOut[7])
+                //{
+                //    case 0:
+                //        if (this.JawMoveType == JawMoveType.PulltabToRotary)
+                //        {
+                //            //if(this.CurrentPutClampBatteryCount < Clamp.BatteryCount)
+                //            //{
+                //            if (!Battery.UpdateClampId(this.CacheBatteryOut(), Station.GetStation(CurrentPutStationId).ClampId, out msg))
+                //            {
+                //                LogHelper.WriteError(msg);
+                //            }
+                //            //}
+                //        }
+                //        else if (this.JawMoveType == JawMoveType.PulltabToBatteryCache)
+                //        {
+                //            this.BatteryCache.Push(this.CacheBatteryOut());
+                //        }
+                //        else if (this.JawMoveType == JawMoveType.BatteryCacheToRotary)
+                //        {
+                //            if (this.CurrentBatteryCount < Clamp.BatteryCount)
+                //            {
+                //                if (!Battery.UpdateClampId(this.BatteryCache.Pop().ToString(), Station.GetStation(CurrentPutStationId).ClampId, out msg))
+                //                {
+                //                    LogHelper.WriteError(msg);
+                //                }
+                //            }
+                //        }
+                //        else if (this.JawMoveType == JawMoveType.SampleToRotary)
+                //        {
+                //            ///
 
-                        }
-                        this.JawMoveType = JawMoveType.Motionless;
-                        break;
-                    case 1: this.JawMoveType = JawMoveType.PulltabToRotary; break;
-                    case 2: this.JawMoveType = JawMoveType.PulltabToBatteryCache; break;
-                    case 3: this.JawMoveType = JawMoveType.BatteryCacheToRotary; break;
-                    case 4: this.JawMoveType = JawMoveType.SampleToRotary; break;
-                }
+                //        }
+                //        this.JawMoveType = JawMoveType.Motionless;
+                //        break;
+                //    case 1: this.JawMoveType = JawMoveType.PulltabToRotary; break;
+                //    case 2: this.JawMoveType = JawMoveType.PulltabToBatteryCache; break;
+                //    case 3: this.JawMoveType = JawMoveType.BatteryCacheToRotary; break;
+                //    case 4: this.JawMoveType = JawMoveType.SampleToRotary; break;
+                //}
 
-                this.CurrentBatteryCount = iOut[8];
+                //this.CurrentBatteryCount = iOut[8];
 
-                this.BatteryCache.SetCount(iOut[9]);
+                //this.BatteryCache.SetCount(iOut[9]);
 
-                Thread.Sleep(100);
+                Thread.Sleep(10);
             }
             catch (Exception ex)
             {
