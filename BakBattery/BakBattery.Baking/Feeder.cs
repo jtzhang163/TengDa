@@ -127,6 +127,28 @@ namespace BakBattery.Baking
             }
         }
 
+        private TriLamp triLamp = TriLamp.Unknown;
+        [ReadOnly(true), DisplayName("三色灯")]
+        public TriLamp TriLamp
+        {
+            get
+            {
+                return triLamp;
+            }
+            set
+            {
+                if(value == TriLamp.Red)
+                {
+                    this.AlarmStr = "设备报警...";
+                }
+                else
+                {
+                    this.AlarmStr = "";
+                }
+                triLamp = value;
+            }
+        }
+
         public List<Battery> CacheBatteries
         {
             get
@@ -464,6 +486,14 @@ namespace BakBattery.Baking
                     {
                         this.Stations[j].Status = StationStatus.不可用;
                     }
+                }
+
+                switch (iOut[3])
+                {
+                    case 1: this.TriLamp = TriLamp.Green; break;
+                    case 2: this.TriLamp = TriLamp.Yellow; break;
+                    case 3: this.TriLamp = TriLamp.Red; break;
+                    default: this.TriLamp = TriLamp.Unknown; break;
                 }
 
                 //switch (iOut[5])

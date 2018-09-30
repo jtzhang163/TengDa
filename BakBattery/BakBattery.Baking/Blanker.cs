@@ -48,6 +48,9 @@ namespace BakBattery.Baking
             private set { stationIds = value; }
         }
 
+        [ReadOnly(true), DisplayName("三色灯")]
+        public TriLamp TriLamp { get; set; } = TriLamp.Unknown;
+
         #endregion
 
         #region 构造方法

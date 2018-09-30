@@ -122,11 +122,12 @@ namespace BakBattery.Baking.App
                 int ii = i + 1;
 
                 tlpFeeders[i] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpFeeder{0}", ii.ToString()), true)[0]);
-
-                lbFeederNameN[i] = (Label)(this.Controls.Find(string.Format("lbFeederNameN{0}", (i + 1).ToString("D2")), true)[0]);
-                cbFeederIsEnable[i] = (CheckBox)(this.Controls.Find(string.Format("cbFeederIsEnable{0}", (i + 1).ToString("D2")), true)[0]);
-                pbFeederLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbFeederLamp{0}", (i + 1).ToString("D2")), true)[0]);
-                tbFeederStatus[i] = (TextBox)(this.Controls.Find(string.Format("tbFeederStatus{0}", (i + 1).ToString("D2")), true)[0]);
+                lbFeederName[i] = (Label)(this.Controls.Find(string.Format("lbFeederName{0}", ii.ToString("D2")), true)[0]);
+                lbFeederNameN[i] = (Label)(this.Controls.Find(string.Format("lbFeederNameN{0}", ii.ToString("D2")), true)[0]);
+                cbFeederIsEnable[i] = (CheckBox)(this.Controls.Find(string.Format("cbFeederIsEnable{0}", ii.ToString("D2")), true)[0]);
+                pbFeederLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbFeederLamp{0}", ii.ToString("D2")), true)[0]);
+                tbFeederStatus[i] = (TextBox)(this.Controls.Find(string.Format("tbFeederStatus{0}", ii.ToString("D2")), true)[0]);
+                pbFeederTriLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbFeederTriLamp{0}", ii.ToString("D2")), true)[0]);
 
                 lbFeederStationName[i] = new Label[FeederStationCount];
                 lbFeederClampCode[i] = new Label[FeederStationCount];
@@ -147,10 +148,10 @@ namespace BakBattery.Baking.App
 
                 for (int j = 0; j < FeederScanerCount; j++)
                 {
-                    lbScanerNameN[i][j] = (Label)(this.Controls.Find(string.Format("lbScanerNameN{0}{1}", (i + 1).ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    cbScanerIsEnable[i][j] = (CheckBox)(this.Controls.Find(string.Format("cbScanerIsEnable{0}{1}", (i + 1).ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    pbScanerLamp[i][j] = (PictureBox)(this.Controls.Find(string.Format("pbScanerLamp{0}{1}", (i + 1).ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    tbScanerStatus[i][j] = (TextBox)(this.Controls.Find(string.Format("tbScanerStatus{0}{1}", (i + 1).ToString("D2"), (j + 1).ToString("D2")), true)[0]);
+                    lbScanerNameN[i][j] = (Label)(this.Controls.Find(string.Format("lbScanerNameN{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
+                    cbScanerIsEnable[i][j] = (CheckBox)(this.Controls.Find(string.Format("cbScanerIsEnable{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
+                    pbScanerLamp[i][j] = (PictureBox)(this.Controls.Find(string.Format("pbScanerLamp{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
+                    tbScanerStatus[i][j] = (TextBox)(this.Controls.Find(string.Format("tbScanerStatus{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
                 }
             }
             #endregion
@@ -161,10 +162,10 @@ namespace BakBattery.Baking.App
             {
                 int ii = i + 1;
                 lbOvenName[i] = (Label)(this.Controls.Find(string.Format("lbOvenName{0}", ii.ToString("D2")), true)[0]);
-                lbOvenNameN[i] = (Label)(this.Controls.Find(string.Format("lbOvenNameN{0}", (i + 1).ToString("D2")), true)[0]);
-                cbOvenIsEnable[i] = (CheckBox)(this.Controls.Find(string.Format("cbOvenIsEnable{0}", (i + 1).ToString("D2")), true)[0]);
-                pbOvenLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbOvenLamp{0}", (i + 1).ToString("D2")), true)[0]);
-                tbOvenStatus[i] = (TextBox)(this.Controls.Find(string.Format("tbOvenStatus{0}", (i + 1).ToString("D2")), true)[0]);
+                lbOvenNameN[i] = (Label)(this.Controls.Find(string.Format("lbOvenNameN{0}", ii.ToString("D2")), true)[0]);
+                cbOvenIsEnable[i] = (CheckBox)(this.Controls.Find(string.Format("cbOvenIsEnable{0}", ii.ToString("D2")), true)[0]);
+                pbOvenLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbOvenLamp{0}", ii.ToString("D2")), true)[0]);
+                tbOvenStatus[i] = (TextBox)(this.Controls.Find(string.Format("tbOvenStatus{0}", ii.ToString("D2")), true)[0]);
                 pbOvenTriLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbOvenTriLamp{0}", ii.ToString("D2")), true)[0]);
 
                 tlpFloor[i] = new TableLayoutPanel[OvenFloorCount];
@@ -189,10 +190,12 @@ namespace BakBattery.Baking.App
                 int ii = i + 1;
 
                 tlpBlankers[i] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpBlanker{0}", ii.ToString()), true)[0]);
-                lbBlankerNameN[i] = (Label)(this.Controls.Find(string.Format("lbBlankerNameN{0}", (i + 1).ToString("D2")), true)[0]);
-                cbBlankerIsEnable[i] = (CheckBox)(this.Controls.Find(string.Format("cbBlankerIsEnable{0}", (i + 1).ToString("D2")), true)[0]);
-                pbBlankerLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbBlankerLamp{0}", (i + 1).ToString("D2")), true)[0]);
-                tbBlankerStatus[i] = (TextBox)(this.Controls.Find(string.Format("tbBlankerStatus{0}", (i + 1).ToString("D2")), true)[0]);
+                lbBlankerName[i] = (Label)(this.Controls.Find(string.Format("lbBlankerName{0}", ii.ToString("D2")), true)[0]);
+                lbBlankerNameN[i] = (Label)(this.Controls.Find(string.Format("lbBlankerNameN{0}", ii.ToString("D2")), true)[0]);
+                cbBlankerIsEnable[i] = (CheckBox)(this.Controls.Find(string.Format("cbBlankerIsEnable{0}", ii.ToString("D2")), true)[0]);
+                pbBlankerLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbBlankerLamp{0}", ii.ToString("D2")), true)[0]);
+                tbBlankerStatus[i] = (TextBox)(this.Controls.Find(string.Format("tbBlankerStatus{0}", ii.ToString("D2")), true)[0]);
+                pbBlankerTriLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbBlankerTriLamp{0}", ii.ToString("D2")), true)[0]);
 
                 lbBlankerStationName[i] = new Label[BlankerStationCount];
                 lbBlankerFromStationName[i] = new Label[BlankerStationCount];
@@ -202,10 +205,10 @@ namespace BakBattery.Baking.App
                 for (int j = 0; j < BlankerStationCount; j++)
                 {
                     int jj = j + 1;
-                    lbBlankerStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerStationName{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    lbBlankerFromStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerFromStationName{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    lbBlankerClampCode[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerClampCode{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    tlpBlankerStationClamp[i][j] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpBlankerStationClamp{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
+                    lbBlankerStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerStationName{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
+                    lbBlankerFromStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerFromStationName{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
+                    lbBlankerClampCode[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerClampCode{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
+                    tlpBlankerStationClamp[i][j] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpBlankerStationClamp{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
                 }
             }
             #endregion
@@ -360,8 +363,8 @@ namespace BakBattery.Baking.App
 
             for (int i = 0; i < Current.ovens.Count; i++)
             {
-                lbOvenNameN[i].Text = Current.ovens[i].Name;
                 lbOvenName[i].Text = Current.ovens[i].Name;
+                lbOvenNameN[i].Text = Current.ovens[i].Name;
                 pbOvenLamp[i].Image = Properties.Resources.Gray_Round;
                 cbOvenIsEnable[i].Checked = Current.ovens[i].IsEnable;
                 cbAlarmFloors.Items.Add(Current.ovens[i].Name);
@@ -378,6 +381,7 @@ namespace BakBattery.Baking.App
 
             for (int i = 0; i < Current.feeders.Count; i++)
             {
+                lbFeederName[i].Text = Current.feeders[i].Name;
                 lbFeederNameN[i].Text = Current.feeders[i].Name;
                 pbFeederLamp[i].Image = Properties.Resources.Gray_Round;
                 cbFeederIsEnable[i].Checked = Current.feeders[i].IsEnable;
@@ -401,6 +405,7 @@ namespace BakBattery.Baking.App
 
             for (int i = 0; i < BlankerCount; i++)
             {
+                lbBlankerName[i].Text = Current.blankers[i].Name;
                 lbBlankerNameN[i].Text = Current.blankers[i].Name;
                 pbBlankerLamp[i].Image = Properties.Resources.Gray_Round;
                 cbBlankerIsEnable[i].Checked = Current.blankers[i].IsEnable;
@@ -608,7 +613,7 @@ namespace BakBattery.Baking.App
 
                 if (!string.IsNullOrEmpty(oven.AlarmStr) && oven.Plc.IsAlive)
                 {
-                    if (Current.ovens[i].PreAlarmStr != oven.AlarmStr)
+                    if (oven.PreAlarmStr != oven.AlarmStr)
                     {
                         this.lbOvenName[i].Text = oven.AlarmStr.TrimEnd(',') + "...";
                     }
@@ -762,6 +767,37 @@ namespace BakBattery.Baking.App
                 feeder.Plc.PreIsAlive = feeder.Plc.IsAlive;
                 this.pbFeederLamp[i].Image = feeder.Plc.IsAlive ? Properties.Resources.Green_Round : Properties.Resources.Gray_Round;
 
+                switch (feeder.TriLamp)
+                {
+                    case TriLamp.Green: this.pbFeederTriLamp[i].Image = Properties.Resources.Green_Round; break;
+                    case TriLamp.Yellow: this.pbFeederTriLamp[i].Image = Properties.Resources.Yellow_Round; break;
+                    case TriLamp.Red: this.pbFeederTriLamp[i].Image = Properties.Resources.Red_Round; break;
+                    case TriLamp.Unknown: this.pbFeederTriLamp[i].Image = Properties.Resources.Gray_Round; break;
+                }
+
+                if (!string.IsNullOrEmpty(feeder.AlarmStr) && feeder.Plc.IsAlive)
+                {
+                    if (feeder.PreAlarmStr != feeder.AlarmStr)
+                    {
+                        this.lbFeederName[i].Text = feeder.AlarmStr.TrimEnd(',') + "...";
+                    }
+                    else
+                    {
+                        string alarmStr = this.lbFeederName[i].Text;
+                        this.lbFeederName[i].Text = alarmStr.Substring(1, alarmStr.Length - 1) + alarmStr.Substring(0, 1);
+                    }
+
+                    this.lbFeederName[i].ForeColor = Color.White;
+                    this.lbFeederName[i].BackColor = Color.Red;
+                }
+                else
+                {
+                    this.lbFeederName[i].Text = feeder.Name;
+                    this.lbFeederName[i].ForeColor = SystemColors.WindowText;
+                    this.lbFeederName[i].BackColor = Color.Transparent;
+                }
+                feeder.PreAlarmStr = feeder.AlarmStr;
+
                 for (int j = 0; j < Current.feeders[i].Scaners.Count; j++)
                 {
                     Scaner scaner = Current.feeders[i].Scaners[j];
@@ -838,6 +874,37 @@ namespace BakBattery.Baking.App
 
                 this.tlpBlankers[i].BackColor = blanker.Plc.IsAlive ? Color.White : SystemColors.Control;
                 this.pbBlankerLamp[i].Image = blanker.Plc.IsAlive ? Properties.Resources.Green_Round : Properties.Resources.Gray_Round;
+
+                switch (blanker.TriLamp)
+                {
+                    case TriLamp.Green: this.pbBlankerTriLamp[i].Image = Properties.Resources.Green_Round; break;
+                    case TriLamp.Yellow: this.pbBlankerTriLamp[i].Image = Properties.Resources.Yellow_Round; break;
+                    case TriLamp.Red: this.pbBlankerTriLamp[i].Image = Properties.Resources.Red_Round; break;
+                    case TriLamp.Unknown: this.pbBlankerTriLamp[i].Image = Properties.Resources.Gray_Round; break;
+                }
+
+                if (!string.IsNullOrEmpty(blanker.AlarmStr) && blanker.Plc.IsAlive)
+                {
+                    if (blanker.PreAlarmStr != blanker.AlarmStr)
+                    {
+                        this.lbBlankerName[i].Text = blanker.AlarmStr.TrimEnd(',') + "...";
+                    }
+                    else
+                    {
+                        string alarmStr = this.lbBlankerName[i].Text;
+                        this.lbBlankerName[i].Text = alarmStr.Substring(1, alarmStr.Length - 1) + alarmStr.Substring(0, 1);
+                    }
+
+                    this.lbBlankerName[i].ForeColor = Color.White;
+                    this.lbBlankerName[i].BackColor = Color.Red;
+                }
+                else
+                {
+                    this.lbBlankerName[i].Text = blanker.Name;
+                    this.lbBlankerName[i].ForeColor = SystemColors.WindowText;
+                    this.lbBlankerName[i].BackColor = Color.Transparent;
+                }
+                blanker.PreAlarmStr = blanker.AlarmStr;
 
                 for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
                 {
@@ -1122,11 +1189,12 @@ namespace BakBattery.Baking.App
         private const int FeederStationCount = 2;
 
         private TableLayoutPanel[] tlpFeeders = new TableLayoutPanel[FeederCount];
-
+        private Label[] lbFeederName = new Label[FeederCount];
         private Label[] lbFeederNameN = new Label[FeederCount];
         private CheckBox[] cbFeederIsEnable = new CheckBox[FeederCount];
         private PictureBox[] pbFeederLamp = new PictureBox[FeederCount];
         private TextBox[] tbFeederStatus = new TextBox[FeederCount];
+        private PictureBox[] pbFeederTriLamp = new PictureBox[FeederCount];
 
         private Label[][] lbFeederStationName = new Label[FeederCount][];
         private Label[][] lbFeederClampCode = new Label[FeederCount][];
@@ -1143,10 +1211,12 @@ namespace BakBattery.Baking.App
         private const int BlankerStationCount = 2;
 
         private TableLayoutPanel[] tlpBlankers = new TableLayoutPanel[BlankerCount];
+        private Label[] lbBlankerName = new Label[BlankerCount];
         private Label[] lbBlankerNameN = new Label[BlankerCount];
         private CheckBox[] cbBlankerIsEnable = new CheckBox[BlankerCount];
         private PictureBox[] pbBlankerLamp = new PictureBox[BlankerCount];
         private TextBox[] tbBlankerStatus = new TextBox[BlankerCount];
+        private PictureBox[] pbBlankerTriLamp = new PictureBox[BlankerCount];
 
         private Label[][] lbBlankerStationName = new Label[BlankerCount][];
         private Label[][] lbBlankerFromStationName = new Label[BlankerCount][];
