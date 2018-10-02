@@ -224,7 +224,7 @@ namespace BakBattery.Baking.App
             for (int i = 0; i < Option.TemperaturePointCount; i++)
             {
                 cbTemperIndex[i] = (CheckBox)(this.Controls.Find(string.Format("cbTemperIndex{0}", (i + 1).ToString("D2")), true)[0]);
-                cbTemperIndex[i].ForeColor = SystemColors.WindowText;//;Current.option.CurveColors[i];
+                cbTemperIndex[i].ForeColor = Current.option.CurveColors[i];
             }
         }
 
@@ -3921,7 +3921,7 @@ namespace BakBattery.Baking.App
                         for (int kk = 1; kk < floor.sampledDatas[k].Count; kk++)
                         {
                             float B = floor.sampledDatas[k][kk] - 20;
-                            e.Graphics.DrawLine(new Pen(/*Current.option.CurveColors[k]*/Color.Lime),
+                            e.Graphics.DrawLine(new Pen(Current.option.CurveColors[k]),
                                 new Point(pCurve.ClientSize.Width - floor.sampledDatas[k].Count + kk - 1, pCurve.ClientSize.Height -
                                     (int)(((double)A / 100) * pCurve.ClientSize.Height)),
                                 new Point(pCurve.ClientSize.Width - floor.sampledDatas[k].Count + kk, pCurve.ClientSize.Height -

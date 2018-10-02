@@ -139,7 +139,7 @@ namespace BakBattery.Baking
         }
 
 
-        public const int TemperaturePointCount = 20;
+        public const int TemperaturePointCount = 8;
 
         private static int layoutType = -1;
         /// <summary>
@@ -160,11 +160,21 @@ namespace BakBattery.Baking
 
         public string[] TemperNames = new string[Option.TemperaturePointCount]
         {
-            "上左板", "上右板", "下左板", "下右板", "左侧板",
-            "右侧板", "后左板", "后右板", "门左板", "门右板",
-            "氮气", "运风", "上左空", "上右空", "下左空",
-            "下右空", "左侧空", "右侧空", "后左空", "后右空"
+            "上左空", "上右空", "下左空", "下右空",
+            "左侧空", "右侧空", "后左空", "后右空"
         };
+
+        [Description("温度曲线颜色")]
+        [DisplayName("温度曲线颜色")]
+        [Category("温度曲线")]
+        [Browsable(false)]
+        public List<Color> CurveColors
+        {
+            get
+            {
+                return new List<Color> { Color.Green, Color.Fuchsia, Color.Blue, Color.Lime, Color.Pink, Color.Cyan, Color.Orange, Color.Purple };
+            }
+        }
 
         private int displayTemperIndex = -1;
         /// <summary>

@@ -290,11 +290,9 @@ namespace BakBattery.Baking
 
                         output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
 
-                        var tmpStr = output.Substring(0, 48) + output.Substring(64, 32);
-
                         for (int k = 0; k < this.floors[j].Temperatures.Length; k++)
                         {
-                            this.Floors[j].Temperatures[k] = (float)int.Parse(tmpStr.Substring(k * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                            this.Floors[j].Temperatures[k] = (float)int.Parse(output.Substring(k * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
                         }
                     }
                     #endregion

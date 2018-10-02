@@ -31,17 +31,6 @@ namespace BakBattery.Baking
         public float V1 { get; set; }
         public float[] T = new float[Option.TemperaturePointCount];
 
-        public static int Add(TVD addTVD, out string msg)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(string.Format("INSERT INTO [dbo].[{0}] ", TableName));
-            sb.Append("([FloorId], [T1], [T2], [T3], [T4], [T5], [T6], [T7], [T8], [V1], [RunMinutes], [Time], [UserId]) ");
-            sb.Append(string.Format("VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, '{11}', {12})",
-               addTVD.FloorId,
-               addTVD.T[0], addTVD.T[1], addTVD.T[2], addTVD.T[3], addTVD.T[4], addTVD.T[5], addTVD.T[6], addTVD.T[7],
-               addTVD.V1, addTVD.RunMinutes, DateTime.Now, addTVD.UserId));
-            return Database.Insert(sb.ToString(), out msg);
-        }
         /// <summary>
         /// 多条数据一次插入
         /// </summary>
