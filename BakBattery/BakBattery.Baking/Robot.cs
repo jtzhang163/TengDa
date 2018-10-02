@@ -272,120 +272,120 @@ namespace BakBattery.Baking
 
                 var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
-                int d0500 = -1;
-                if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotXasixAddress, 0, out d0500, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                this.D0500 = d0500;
+                //int d0500 = -1;
+                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotXasixAddress, 0, out d0500, out msg))
+                //{
+                //    Error.Alert(msg);
+                //    this.Plc.IsAlive = false;
+                //    return false;
+                //}
+                //this.D0500 = d0500;
 
-                RobotPosition rp = RobotPosition.RobotPositionList.FirstOrDefault(r => r.XMinValue < this.D0500 && r.XMaxValue > this.D0500);
+                //RobotPosition rp = RobotPosition.RobotPositionList.FirstOrDefault(r => r.XMinValue < this.D0500 && r.XMaxValue > this.D0500);
 
-                this.Position = rp == null ? this.position : rp.Position;
+                //this.Position = rp == null ? this.position : rp.Position;
 
-                if (this.D0500 < this.PreD0500) { this.MovingDirection = MovingDirection.前进; }
-                else if (this.D0500 > this.PreD0500) { this.MovingDirection = MovingDirection.后退; }
-                else { this.MovingDirection = MovingDirection.停止; }
+                //if (this.D0500 < this.PreD0500) { this.MovingDirection = MovingDirection.前进; }
+                //else if (this.D0500 > this.PreD0500) { this.MovingDirection = MovingDirection.后退; }
+                //else { this.MovingDirection = MovingDirection.停止; }
 
-                this.PreD0500 = this.D0500;
+                //this.PreD0500 = this.D0500;
 
-                bool isNotGettingOrPutting = false;
-                if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotIsGettingOrPuttingAdd, false, out isNotGettingOrPutting, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
+                //bool isNotGettingOrPutting = false;
+                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotIsGettingOrPuttingAdd, false, out isNotGettingOrPutting, out msg))
+                //{
+                //    Error.Alert(msg);
+                //    this.Plc.IsAlive = false;
+                //    return false;
+                //}
 
-                this.IsGettingOrPutting = !isNotGettingOrPutting;
+                //this.IsGettingOrPutting = !isNotGettingOrPutting;
 
-                bool isMoving = false;
-                if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotIsMovingAdd, false, out isMoving, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                this.IsMoving = isMoving;
+                //bool isMoving = false;
+                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotIsMovingAdd, false, out isMoving, out msg))
+                //{
+                //    Error.Alert(msg);
+                //    this.Plc.IsAlive = false;
+                //    return false;
+                //}
+                //this.IsMoving = isMoving;
 
-                bool isReadyGet = false;
-                if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotIsReadyGetPutAdds.Split(',')[0], false, out isReadyGet, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                this.IsReadyGet = isReadyGet;
+                //bool isReadyGet = false;
+                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotIsReadyGetPutAdds.Split(',')[0], false, out isReadyGet, out msg))
+                //{
+                //    Error.Alert(msg);
+                //    this.Plc.IsAlive = false;
+                //    return false;
+                //}
+                //this.IsReadyGet = isReadyGet;
 
-                bool isReadyPut = false;
-                if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotIsReadyGetPutAdds.Split(',')[1], false, out isReadyPut, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                this.IsReadyPut = isReadyPut;
-
-
-                bool canCheckPutClampIsOk = false;
-                if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.CanCheckPutClampIsOkAdd, false, out canCheckPutClampIsOk, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                if (canCheckPutClampIsOk)
-                {
-                    this.CanCheckPutClampIsOkCount++;
-                }
-                else
-                {
-                    this.CanCheckPutClampIsOkCount = 0;
-                }
-
-                this.CanCheckGetPutClampIsOk = CanCheckPutClampIsOkCount > 1;
-
-                int d3410 = -1;
-                if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotToPositionAdds.Split(',')[0], 0, out d3410, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                this.D3410 = d3410;
+                //bool isReadyPut = false;
+                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotIsReadyGetPutAdds.Split(',')[1], false, out isReadyPut, out msg))
+                //{
+                //    Error.Alert(msg);
+                //    this.Plc.IsAlive = false;
+                //    return false;
+                //}
+                //this.IsReadyPut = isReadyPut;
 
 
-                int d3411 = -1;
-                if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotToPositionAdds.Split(',')[1], 0, out d3411, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                this.D3411 = d3411;
+                //bool canCheckPutClampIsOk = false;
+                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.CanCheckPutClampIsOkAdd, false, out canCheckPutClampIsOk, out msg))
+                //{
+                //    Error.Alert(msg);
+                //    this.Plc.IsAlive = false;
+                //    return false;
+                //}
 
-                bool m70 = false;
-                if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotToGetPutAdds.Split(',')[0], false, out m70, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                this.M70 = m70;
+                //if (canCheckPutClampIsOk)
+                //{
+                //    this.CanCheckPutClampIsOkCount++;
+                //}
+                //else
+                //{
+                //    this.CanCheckPutClampIsOkCount = 0;
+                //}
 
-                bool m71 = false;
-                if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotToGetPutAdds.Split(',')[0], false, out m71, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                this.M71 = m71;
+                //this.CanCheckGetPutClampIsOk = CanCheckPutClampIsOkCount > 1;
 
-                bool m76 = false;
+                //int d3410 = -1;
+                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotToPositionAdds.Split(',')[0], 0, out d3410, out msg))
+                //{
+                //    Error.Alert(msg);
+                //    this.Plc.IsAlive = false;
+                //    return false;
+                //}
+                //this.D3410 = d3410;
+
+
+                //int d3411 = -1;
+                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotToPositionAdds.Split(',')[1], 0, out d3411, out msg))
+                //{
+                //    Error.Alert(msg);
+                //    this.Plc.IsAlive = false;
+                //    return false;
+                //}
+                //this.D3411 = d3411;
+
+                //bool m70 = false;
+                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotToGetPutAdds.Split(',')[0], false, out m70, out msg))
+                //{
+                //    Error.Alert(msg);
+                //    this.Plc.IsAlive = false;
+                //    return false;
+                //}
+                //this.M70 = m70;
+
+                //bool m71 = false;
+                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotToGetPutAdds.Split(',')[0], false, out m71, out msg))
+                //{
+                //    Error.Alert(msg);
+                //    this.Plc.IsAlive = false;
+                //    return false;
+                //}
+                //this.M71 = m71;
+
+                bool m76 = true;
                 if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotStartGetPutAdd, false, out m76, out msg))
                 {
                     Error.Alert(msg);

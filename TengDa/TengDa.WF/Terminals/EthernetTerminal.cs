@@ -130,7 +130,7 @@ namespace TengDa.WF.Terminals
 
         private MelsecNet melsec_net = new MelsecNet();
 
-        private SiemensNet siemens_net = new SiemensNet();
+        private SiemensTcpNet siemens_net = null;// = new SiemensTcpNet();
 
         #endregion
 
@@ -155,12 +155,12 @@ namespace TengDa.WF.Terminals
                 }
                 else if (this.Company == PlcCompany.Siemens.ToString())
                 {
+                    siemens_net = new SiemensTcpNet(SiemensPLCS.S1200);
 
                     siemens_net.PLCIpAddress = System.Net.IPAddress.Parse(this.IP);    // PLC的IP地址
                     siemens_net.PortRead = Port;                                           // 端口
-                    siemens_net.PortWrite = 6001;                                          // 写入端口，最好和读取分开
+                    siemens_net.PortWrite = 102;                                          // 写入端口，最好和读取分开
                     siemens_net.ConnectTimeout = 500;                                      // 连接超时时间
-
                     siemens_net.ConnectServer(); 
                     IsAlive = true;
                 }
@@ -427,19 +427,21 @@ namespace TengDa.WF.Terminals
             output = false;
             msg = string.Empty;
 
+            if (checkPingSuccess)
+            {
+                if (!IsPingSuccess)
+                {
+                    IsAlive = false;
+                    msg = string.Format("无法连接到【{0}】，IP：{1}", this.Name, this.IP);
+                    return false;
+                }
+            }
+
             try
             {
+
                 if (plcCompany == PlcCompany.Mitsubishi)
                 {
-                    if (checkPingSuccess)
-                    {
-                        if (!IsPingSuccess)
-                        {
-                            IsAlive = false;
-                            msg = string.Format("无法连接到【{0}】，IP：{1}", this.Name, this.IP);
-                            return false;
-                        }
-                    }
 
                     if (isRead)//读
                     {
@@ -473,6 +475,40 @@ namespace TengDa.WF.Terminals
                         }
                     }
                 }
+                else if (this.Company == PlcCompany.Siemens.ToString())
+                {
+                    if (isRead)//读
+                    {
+                        OperateResult<bool> result = siemens_net.ReadBoolFromPLC(address);
+                        if (result.IsSuccess)
+                        {
+                            output = result.Content;
+                            IsAlive = true;
+                            return true;
+                        }
+                        else
+                        {
+                            msg = string.Format("从{0}中读取数据出现错误，代码：{1}", address, result.ErrorCode);
+                            IsAlive = false;
+                            return false;
+                        }
+                    }
+                    else//写
+                    {
+                        OperateResult result = siemens_net.WriteAsciiStringIntoPLC(address, value.ToString());
+                        if (result.IsSuccess)
+                        {
+                            IsAlive = true;
+                            return true;
+                        }
+                        else
+                        {
+                            msg = string.Format("{0} 中写入 {1} 出现错误，代码：{2}", address, value, result.ErrorCode);
+                            IsAlive = false;
+                            return false;
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -489,19 +525,20 @@ namespace TengDa.WF.Terminals
             output = -1;
             msg = string.Empty;
 
+            if (checkPingSuccess)
+            {
+                if (!IsPingSuccess)
+                {
+                    IsAlive = false;
+                    msg = string.Format("无法连接到【{0}】，IP：{1}", this.Name, this.IP);
+                    return false;
+                }
+            }
+
             try
             {
                 if (plcCompany == PlcCompany.Mitsubishi)
                 {
-                    if (checkPingSuccess)
-                    {
-                        if (!IsPingSuccess)
-                        {
-                            IsAlive = false;
-                            msg = string.Format("无法连接到【{0}】，IP：{1}", this.Name, this.IP);
-                            return false;
-                        }
-                    }
 
                     if (isRead)//读
                     {
@@ -537,22 +574,13 @@ namespace TengDa.WF.Terminals
                 }
                 else if (plcCompany == PlcCompany.Siemens)
                 {
-                    if (checkPingSuccess)
-                    {
-                        if (!IsPingSuccess)
-                        {
-                            IsAlive = false;
-                            msg = string.Format("无法连接到【{0}】，IP：{1}", this.Name, this.IP);
-                            return false;
-                        }
-                    }
 
                     if (isRead)//读
                     {
-                        OperateResult<byte[]> result = siemens_net.ReadFromPLC(SiemensDataType.M,ushort.Parse(address),1);
+                        OperateResult<int> result = siemens_net.ReadIntFromPLC(address);
                         if (result.IsSuccess)
                         {
-                            output = result.Content[0];
+                            output = result.Content;
                             IsAlive = true;
                             return true;
                         }
@@ -565,7 +593,7 @@ namespace TengDa.WF.Terminals
                     }
                     else//写
                     {
-                        OperateResult result = siemens_net.WriteIntoPLC(SiemensDataType.M, ushort.Parse(address), new short[] { (short)value });
+                        OperateResult result = siemens_net.WriteAsciiStringIntoPLC(address, value.ToString());
                         if (result.IsSuccess)
                         {
                             IsAlive = true;
