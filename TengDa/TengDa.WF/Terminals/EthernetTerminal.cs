@@ -186,12 +186,18 @@ namespace TengDa.WF.Terminals
             {
                 if (this.Company == PlcCompany.Mitsubishi.ToString())
                 {
-                    melsec_net.ConnectClose();// 关闭长连接，并切换为短连接，在系统退出时可以调用
+                    if (melsec_net != null)
+                    {
+                        melsec_net.ConnectClose();// 关闭长连接，并切换为短连接，在系统退出时可以调用
+                    }
                     IsAlive = false;
                 }
                 else if (this.Company == PlcCompany.Siemens.ToString())
                 {
-                    siemens_net.ConnectClose();
+                    if (siemens_net != null)
+                    {
+                        siemens_net.ConnectClose();
+                    }
                     IsAlive = false;
                 }
                 else if (Socket != null)
