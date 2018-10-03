@@ -3400,6 +3400,36 @@ namespace BakBattery.Baking.App
                 int Id = (int)propertyInfoId.GetValue(o, null); //获取属性值
                 settingsStr = string.Format("将Id为 {0} 的 {1} 的 {2} 由 {3} 修改为 {4} ", Id, type.Name, e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
 
+                //用来写入参数值
+                if (type == typeof(Floor))
+                {
+                    var floor = (Floor)o;
+                    var oven = floor.GetOven();
+                    var j = oven.Floors.IndexOf(floor);
+                    var propertyName = ((PropertyGrid)s).SelectedGridItem.PropertyDescriptor.Name;
+
+                    string command = "";
+
+                    if (propertyName == "PreheatTimeSet")
+                    {
+                        command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.PreheatTimeSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
+                    }
+                    else if (propertyName == "BakingTimeSet")
+                    {
+                        command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.BakingTimeSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
+                    }
+                    else if (propertyName == "BreathingCycleSet")
+                    {
+                        command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.BreathingCycleSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
+                    }
+
+                    if (!string.IsNullOrEmpty(command))
+                    {
+                        oven.ControlCommands.Add(command);
+                    }
+
+                }
+
             }
             else if (type == typeof(Robot))
             {

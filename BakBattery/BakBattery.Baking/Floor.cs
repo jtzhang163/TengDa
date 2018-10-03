@@ -126,6 +126,15 @@ namespace BakBattery.Baking
         [DisplayName("所在烤箱Id")]
         public int OvenId { get; private set; }
 
+        /// <summary>
+        /// 该炉腔所在烤箱
+        /// </summary>
+        /// <returns></returns>
+        public Oven GetOven()
+        {
+            return Oven.OvenList.First(o => o.Floors.Contains(this));
+        }
+
         private string stationIds = string.Empty;
         [ReadOnly(true), Description("工位Id集合")]
         [DisplayName("工位Id集合")]
@@ -236,6 +245,69 @@ namespace BakBattery.Baking
         public bool toOpenNetControl = false;
         public bool toAlarmReset = false;
         #endregion
+
+        #endregion
+
+        #region 要设置的参数
+
+        private int preheatTimeSet = -1;
+
+        /// <summary>
+        /// 设置预热时间
+        /// </summary>
+        [Description("设置预热时间，单位：min")]
+        [DisplayName("设置预热时间")]
+        public int PreheatTimeSet
+        {
+            get
+            {
+                return preheatTimeSet;
+            }
+            set
+            {
+                preheatTimeSet = value;
+            }
+        }
+
+
+        private int bakingTimeSet = -1;
+
+        /// <summary>
+        /// 设置烘烤时间
+        /// </summary>
+        [Description("设置烘烤时间，单位：min")]
+        [DisplayName("设置烘烤时间")]
+        public int BakingTimeSet
+        {
+            get
+            {
+                return bakingTimeSet;
+            }
+            set
+            {
+                bakingTimeSet = value;
+            }
+        }
+
+
+        private int breathingCycleSet = -1;
+
+        /// <summary>
+        /// 设置呼吸周期
+        /// </summary>
+        [Description("设置呼吸周期，单位：min")]
+        [DisplayName("设置呼吸周期")]
+        public int BreathingCycleSet
+        {
+            get
+            {
+                return breathingCycleSet;
+            }
+            set
+            {
+                breathingCycleSet = value;
+            }
+        }
 
         #endregion
 

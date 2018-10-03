@@ -123,5 +123,18 @@ namespace TengDa
 
             return new string(cs);
         }
+
+        /// <summary>
+        /// 整形转十六进制并反转
+        /// 用来拼接向PLC中写入数值的指令字符串
+        /// 例如： 12 -> 0C00
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public static string ToRevertHexString(int val)
+        {
+            string s = String.Format("{0:X4}", val);
+            return RevertEndian(s);
+        }
     }
 }

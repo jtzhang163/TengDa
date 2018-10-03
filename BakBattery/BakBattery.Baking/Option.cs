@@ -633,10 +633,9 @@ namespace BakBattery.Baking
 
         private string getTemStrs = string.Empty;
         /// <summary>
-        /// 获取烤箱温度的字符串1
+        /// 获取烤箱温度的字符串
         /// </summary>
-        [Description("获取烤箱温度的字符串1,左前25")]
-        [DisplayName("获取烤箱温度的字符串1")]
+        [DisplayName("获取烤箱温度的字符串")]
         [Category("烤箱")]
         public string GetTemStrs
         {
@@ -657,6 +656,112 @@ namespace BakBattery.Baking
                 }
             }
         }
+
+
+        private string getParamSettingStrs = string.Empty;
+        /// <summary>
+        /// 获取烤箱预热时间、烘烤时间、呼吸周期参数的指令
+        /// </summary>
+        [DisplayName("获取烤箱设置参数的指令")]
+        [Category("烤箱")]
+        public string GetParamSettingStrs
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(getParamSettingStrs))
+                {
+                    getParamSettingStrs = TengDa.WF.Option.GetOption("GetParamSettingStrs");
+                }
+                return getParamSettingStrs;
+            }
+            set
+            {
+                if (value != getParamSettingStrs)
+                {
+                    TengDa.WF.Option.SetOption("GetParamSettingStrs", value);
+                    getParamSettingStrs = value;
+                }
+            }
+        }
+
+        private string preheatTimeSetAddrs = string.Empty;
+        /// <summary>
+        /// 烤箱预热时间地址
+        /// </summary>
+        [DisplayName("烤箱预热时间地址")]
+        [Category("烤箱")]
+        public string PreheatTimeSetAddrs
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(preheatTimeSetAddrs))
+                {
+                    preheatTimeSetAddrs = TengDa.WF.Option.GetOption("PreheatTimeSetAddrs");
+                }
+                return preheatTimeSetAddrs;
+            }
+            set
+            {
+                if (value != preheatTimeSetAddrs)
+                {
+                    TengDa.WF.Option.SetOption("PreheatTimeSetAddrs", value);
+                    preheatTimeSetAddrs = value;
+                }
+            }
+        }
+
+        private string bakingTimeSetAddrs = string.Empty;
+        /// <summary>
+        /// 烤箱烘烤时间地址
+        /// </summary>
+        [DisplayName("烤箱烘烤时间地址")]
+        [Category("烤箱")]
+        public string BakingTimeSetAddrs
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(bakingTimeSetAddrs))
+                {
+                    bakingTimeSetAddrs = TengDa.WF.Option.GetOption("BakingTimeSetAddrs");
+                }
+                return bakingTimeSetAddrs;
+            }
+            set
+            {
+                if (value != bakingTimeSetAddrs)
+                {
+                    TengDa.WF.Option.SetOption("BakingTimeSetAddrs", value);
+                    bakingTimeSetAddrs = value;
+                }
+            }
+        }
+
+        private string breathingCycleSetAddrs = string.Empty;
+        /// <summary>
+        /// 烤箱呼吸周期地址
+        /// </summary>
+        [DisplayName("烤箱呼吸周期地址")]
+        [Category("烤箱")]
+        public string BreathingCycleSetAddrs
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(breathingCycleSetAddrs))
+                {
+                    breathingCycleSetAddrs = TengDa.WF.Option.GetOption("BreathingCycleSetAddrs");
+                }
+                return breathingCycleSetAddrs;
+            }
+            set
+            {
+                if (value != breathingCycleSetAddrs)
+                {
+                    TengDa.WF.Option.SetOption("BreathingCycleSetAddrs", value);
+                    breathingCycleSetAddrs = value;
+                }
+            }
+        }
+
 
         private string getRuntimeStrs = string.Empty;
         /// <summary>

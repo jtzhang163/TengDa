@@ -94,6 +94,12 @@ namespace BakBattery.Baking
             }
         }
 
+        /// <summary>
+        /// 要设置参数的指令
+        /// </summary>
+        [Browsable(false)]
+        public List<string> ControlCommands = new List<string>();
+
         #endregion
 
         #region 构造方法
@@ -292,10 +298,36 @@ namespace BakBattery.Baking
 
                         for (int k = 0; k < this.floors[j].Temperatures.Length; k++)
                         {
-                            this.Floors[j].Temperatures[k] = (float)int.Parse(output.Substring(k * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                            this.Floors[j].Temperatures[k] = (float)int.Parse(output.Substring(k * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier) / 10;
                         }
                     }
                     #endregion
+
+                    #region 获取烤箱设置参数
+                    for (int j = 0; j < this.Floors.Count; j++)
+                    {
+
+                        output = string.Empty;
+                        if (!this.Plc.GetInfo(false, Current.option.GetParamSettingStrs.Split(',')[j], out output, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
+                        if (output.Substring(3, 1) != "$")
+                        {
+                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetParamSettingStrs.Split(',')[j], output));
+                            return false;
+                        }
+
+                        output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
+
+                        this.Floors[j].PreheatTimeSet = int.Parse(output.Substring(4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                        this.Floors[j].BakingTimeSet = int.Parse(output.Substring(12, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                        this.Floors[j].BreathingCycleSet = int.Parse(output.Substring(20, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                    }
+                    #endregion
+
                 }
                 else if (getInfoNum == 3)
                 {
@@ -769,6 +801,31 @@ namespace BakBattery.Baking
                     }
                     #endregion
                 }
+                #endregion
+
+                #region 参数设置
+
+                for (int x = 0; x < this.ControlCommands.Count; x++)
+                {
+                    output = string.Empty;
+                    if (!this.Plc.GetInfo(false, this.ControlCommands[x], out output, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    if (output.Substring(3, 1) != "$")
+                    {
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", this.ControlCommands[x], output));
+                        return false;
+                    }
+                    LogHelper.WriteInfo(string.Format("成功发送参数设置指令到{0}:{1}", this.Name, this.ControlCommands[x]));
+
+                    this.ControlCommands.Remove(this.ControlCommands[x]);
+                    x--;
+                }
+
                 #endregion
             }
             catch (Exception ex)
