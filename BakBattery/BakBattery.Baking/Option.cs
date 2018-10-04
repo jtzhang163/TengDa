@@ -1369,29 +1369,29 @@ namespace BakBattery.Baking
             }
         }
 
-        private string robotToPositionAdds = string.Empty;
+        private string robotToPositionAdd = string.Empty;
         /// <summary>
         /// 机器人移动至各工位指令地址
         /// </summary>
         [Description("机器人移动至各工位指令地址")]
         [DisplayName("机器人移动至各工位指令地址")]
         [Category("机器人")]
-        public string RobotToPositionAdds
+        public string RobotToPositionAdd
         {
             get
             {
-                if (string.IsNullOrEmpty(robotToPositionAdds))
+                if (string.IsNullOrEmpty(robotToPositionAdd))
                 {
-                    robotToPositionAdds = TengDa.WF.Option.GetOption("RobotToPositionAdds");
+                    robotToPositionAdd = TengDa.WF.Option.GetOption("RobotToPositionAdd");
                 }
-                return robotToPositionAdds;
+                return robotToPositionAdd;
             }
             set
             {
-                if (value != robotToPositionAdds)
+                if (value != robotToPositionAdd)
                 {
-                    TengDa.WF.Option.SetOption("RobotToPositionAdds", value);
-                    robotToPositionAdds = value;
+                    TengDa.WF.Option.SetOption("RobotToPositionAdd", value);
+                    robotToPositionAdd = value;
                 }
             }
         }

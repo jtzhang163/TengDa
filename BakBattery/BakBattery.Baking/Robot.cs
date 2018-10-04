@@ -152,6 +152,12 @@ namespace BakBattery.Baking
             }
         }
 
+        [ReadOnly(true), DisplayName("可启动")]
+        public bool CanStart { get; set; } = false;
+
+        [ReadOnly(true), DisplayName("已启动")]
+        public bool IsStartting { get; set; } = false;
+
         #endregion
 
         #region 构造方法
@@ -310,32 +316,47 @@ namespace BakBattery.Baking
                 //}
                 //this.IsMoving = isMoving;
 
-                //bool isReadyGet = false;
-                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotIsReadyGetPutAdds.Split(',')[0], false, out isReadyGet, out msg))
-                //{
-                //    Error.Alert(msg);
-                //    this.Plc.IsAlive = false;
-                //    return false;
-                //}
-                //this.IsReadyGet = isReadyGet;
 
-                //bool isReadyPut = false;
-                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotIsReadyGetPutAdds.Split(',')[1], false, out isReadyPut, out msg))
-                //{
-                //    Error.Alert(msg);
-                //    this.Plc.IsAlive = false;
-                //    return false;
-                //}
-                //this.IsReadyPut = isReadyPut;
+                bool proIsRuning = false;
+                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out proIsRuning, out msg))
+                {
+                    Error.Alert(msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+
+                int stationNum = -1;
+                if (!this.Plc.GetInfo(false, plcCompany, true, "Q4", 0, out stationNum, out msg))
+                {
+                    Error.Alert(msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
 
 
-                //bool canCheckPutClampIsOk = false;
-                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.CanCheckPutClampIsOkAdd, false, out canCheckPutClampIsOk, out msg))
-                //{
-                //    Error.Alert(msg);
-                //    this.Plc.IsAlive = false;
-                //    return false;
-                //}
+                this.IsReadyGet = proIsRuning && (stationNum == 0);
+                this.IsReadyPut = proIsRuning && (stationNum == 0);
+
+
+                bool canStart = false;
+                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.0", false, out canStart, out msg))
+                {
+                    Error.Alert(msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+                CanStart = canStart;
+
+                bool isStartting = false;
+                if (!this.Plc.GetInfo(false, plcCompany, true, "I10.0", false, out isStartting, out msg))
+                {
+                    Error.Alert(msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+                IsStartting = isStartting;
+
+
 
                 //if (canCheckPutClampIsOk)
                 //{
@@ -394,7 +415,7 @@ namespace BakBattery.Baking
                 }
                 this.M76 = m76;
 
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(10);
 
             }
             catch (Exception ex)
@@ -407,7 +428,7 @@ namespace BakBattery.Baking
             return true;
         }
 
-        public bool Move(int D3410, int D3411, bool isGet)
+        public bool Move(int pos)
         {
             if (!this.Plc.IsPingSuccess)
             {
@@ -419,31 +440,14 @@ namespace BakBattery.Baking
             try
             {
                 int o1 = 0;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, false, Current.option.RobotToPositionAdds.Split(',')[0], D3410, out o1, out msg))
+                if (!this.Plc.GetInfo(false, (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company), false, Current.option.RobotToPositionAdd, D3410, out o1, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
                     return false;
                 }
 
-
-                int o2 = 0;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, false, Current.option.RobotToPositionAdds.Split(',')[1], D3411, out o2, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                bool m = false;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, false, isGet ? Current.option.RobotToGetPutAdds.Split(',')[0] : Current.option.RobotToGetPutAdds.Split(',')[1], true, out m, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                LogHelper.WriteInfo(string.Format("给机器人发送到位取放指令------D3410：{0}   D3411：{1}   {2}：true  ", D3410, D3411, isGet ? Current.option.RobotToGetPutAdds.Split(',')[0] : Current.option.RobotToGetPutAdds.Split(',')[1]));
+                LogHelper.WriteInfo(string.Format("给机器人发送到位取放指令------{0}：{1}  ", Current.option.RobotToPositionAdd, pos));
             }
             catch (Exception ex)
             {

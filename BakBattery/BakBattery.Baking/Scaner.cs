@@ -160,7 +160,7 @@ namespace BakBattery.Baking
             code = string.Empty;
             string output = string.Empty;
 
-            if (!GetInfo(Current.option.BatteryScanerTriggerStr, out output, out msg))
+            if (!GetInfo(Current.option.BatteryScanerTriggerStr, 200, out output, out msg))
             {
                 return ScanResult.Error;
             }

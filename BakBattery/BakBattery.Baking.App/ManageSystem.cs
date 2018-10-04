@@ -2785,11 +2785,11 @@ namespace BakBattery.Baking.App
             string userNumber = tbMesUserNumber.Text.Trim();
             string userName = string.Empty;
 
-            if (!MES.GetUserName(userNumber, out userName, out msg))
-            {
-                Error.Alert(msg);
-                return;
-            }
+            //if (!MES.GetUserName(userNumber, out userName, out msg))
+            //{
+            //    Error.Alert(msg);
+            //    return;
+            //}
 
             User user = new User();
             user.Name = userName;
@@ -3884,15 +3884,15 @@ namespace BakBattery.Baking.App
                 }
                 else if (isMoveTo)
                 {
-                    int d3410 = int.Parse(station.RobotValues.Split(',')[0]);
-                    int d3411 = int.Parse(station.RobotValues.Split(',')[1]);
-                    if (Current.Robot.IsReadyGet)
-                    {
-                        if (Current.Robot.Move(d3410, d3411, isGet: true))
-                        {
+                    //int d3410 = int.Parse(station.RobotValues.Split(',')[0]);
+                    //int d3411 = int.Parse(station.RobotValues.Split(',')[1]);
+                    //if (Current.Robot.IsReadyGet)
+                    //{
+                    //    if (Current.Robot.Move(d3410, d3411, isGet: true))
+                    //    {
 
-                        }
-                    }
+                    //    }
+                    //}
                 }
             }
             catch (Exception ex)
@@ -4308,6 +4308,11 @@ namespace BakBattery.Baking.App
             {
                 Error.Alert("输入水含量数据格式错误！");
             }
+        }
+
+        private void tsmRobotStart_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

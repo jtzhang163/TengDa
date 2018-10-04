@@ -221,8 +221,19 @@ namespace TengDa.WF.Terminals
         #region 通信
         public bool GetInfo(string input, out string output, out string msg)
         {
-            return GetInfo(true, input, out output, out msg);
+            return GetInfo(true, 0, input, out output, out msg);
         }
+
+        public bool GetInfo(string input, int readtimeout, out string output, out string msg)
+        {
+            return GetInfo(true, readtimeout, input, out output, out msg);
+        }
+
+        public bool GetInfo(bool checkPingSuccess, string input, out string output, out string msg)
+        {
+            return GetInfo(checkPingSuccess, 0, input, out output, out msg);
+        }
+
         /// <summary>
         /// 避免每次调用IsPingSuccess出现异常
         /// </summary>
@@ -231,16 +242,17 @@ namespace TengDa.WF.Terminals
         /// <param name="output"></param>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public bool GetInfo(bool checkPingSuccess, string input, out string output, out string msg)
+        public bool GetInfo(bool checkPingSuccess, int readtimeout, string input, out string output, out string msg)
         {
             try
             {
+                output = string.Empty;
+                msg = string.Empty;
                 if (checkPingSuccess)
                 {
                     if (!IsPingSuccess)
                     {
                         IsAlive = false;
-                        output = string.Empty;
                         msg = string.Format("无法连接到【{0}】，IP：{1}", this.Name, this.IP);
                         return false;
                     }
@@ -258,10 +270,54 @@ namespace TengDa.WF.Terminals
 
                 Thread.Sleep(10);
 
+                getStr = string.Empty;
                 Byte[] Data = new Byte[1024];
-                Socket.Receive(Data);
 
-                output = Encoding.ASCII.GetString(Data).Trim('\0');
+                if (readtimeout > 0)
+                {
+                    Stopwatch sw = new Stopwatch();
+                    connectSuccess = false;
+                    // Try to open the connection, if anything goes wrong, make sure we set connectSuccess = false
+                    Thread t = new Thread(delegate ()
+                    {
+                        try
+                        {
+                            sw.Start();
+                            Socket.Receive(Data);
+                            getStr = Encoding.ASCII.GetString(Data).Trim('\0');
+                            connectSuccess = true;
+                        }
+                        catch { }
+                    });
+
+                    // Make sure it's marked as a background thread so it'll get cleaned up automatically
+                    t.IsBackground = true;
+                    t.Start();
+
+                    // Keep trying to join the thread until we either succeed or the timeout value has been exceeded
+                    while (readtimeout > sw.ElapsedMilliseconds)
+                        if (t.Join(1))
+                            break;
+                    // IsCommunicatting = false;
+                    // If we didn't connect successfully, throw an exception
+                    if (connectSuccess)
+                    {
+                        //throw new Exception("Timed out while trying to connect.");
+                        output = getStr.Replace("\r", "").Replace("\n", "").Trim('\0').Trim();
+                        IsAlive = true;
+                        return true;
+                    }
+                    else
+                    {
+                        msg = this.Name + "超时...";
+                        return false;
+                    }
+                }
+                else
+                {
+                    Socket.Receive(Data);
+                    output = Encoding.ASCII.GetString(Data).Trim('\0');
+                }
 
                 msg = string.Empty;
                 IsAlive = true;

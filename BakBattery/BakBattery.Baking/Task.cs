@@ -452,11 +452,10 @@ namespace BakBattery.Baking
 
                     if (Current.Task.Status == TaskStatus.就绪)
                     {
-                        int d3410 = int.Parse(Current.Task.FromStation.RobotValues.Split(',')[0]);
-                        int d3411 = int.Parse(Current.Task.FromStation.RobotValues.Split(',')[1]);
+                        int pos = int.Parse(Current.Task.FromStation.RobotValues.Split(',')[0]);
                         if (Current.Robot.IsReadyGet)
                         {
-                            if (Current.Robot.Move(d3410, d3411, isGet: true))
+                            if (Current.Robot.Move(pos))
                             {
                                 Current.Task.Status = TaskStatus.可取;
                             }
@@ -499,12 +498,11 @@ namespace BakBattery.Baking
                     }
                     else if (Current.Task.Status == TaskStatus.取完 && Current.Task.ToStation != null)
                     {
-                        int d3410 = int.Parse(Current.Task.ToStation.RobotValues.Split(',')[0]);
-                        int d3411 = int.Parse(Current.Task.ToStation.RobotValues.Split(',')[1]);
+                        int pos = int.Parse(Current.Task.ToStation.RobotValues.Split(',')[1]);
 
                         if (Current.Robot.IsReadyPut)
                         {
-                            if (Current.Robot.Move(d3410, d3411, isGet: false))
+                            if (Current.Robot.Move(pos))
                             {
                                 Current.Task.Status = TaskStatus.可放;
                             }
@@ -603,11 +601,10 @@ namespace BakBattery.Baking
 
                     if (Current.Task.FromStation.DoorStatus == DoorStatus.打开)
                     {
-                        int d3410 = int.Parse(Current.Task.FromStation.RobotValues.Split(',')[0]);
-                        int d3411 = int.Parse(Current.Task.FromStation.RobotValues.Split(',')[1]);
+                        int pos = int.Parse(Current.Task.FromStation.RobotValues.Split(',')[0]);
                         if (Current.Robot.IsReadyGet)
                         {
-                            if (Current.Robot.Move(d3410, d3411, isGet: true))
+                            if (Current.Robot.Move(pos))
                             {
                                 if (Current.Task.FromStation.DoorStatus == DoorStatus.打开)
                                 {
@@ -656,12 +653,11 @@ namespace BakBattery.Baking
                         }
                         if (Current.Task.ToStation.DoorStatus == DoorStatus.打开)
                         {
-                            int d3410 = int.Parse(Current.Task.ToStation.RobotValues.Split(',')[0]);
-                            int d3411 = int.Parse(Current.Task.ToStation.RobotValues.Split(',')[1]);
+                            int pos = int.Parse(Current.Task.ToStation.RobotValues.Split(',')[1]);
 
                             if (Current.Robot.IsReadyPut)
                             {
-                                if (Current.Robot.Move(d3410, d3411, isGet: false))
+                                if (Current.Robot.Move(pos))
                                 {
                                     if (Current.Task.ToStation.DoorStatus == DoorStatus.打开)
                                     {
