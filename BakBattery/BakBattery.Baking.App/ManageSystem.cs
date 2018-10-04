@@ -399,10 +399,6 @@ namespace BakBattery.Baking.App
                 }
             }
 
-            lbClampScanerNameN.Text = Current.ClampScaner.Name;
-            pbClampScanerLamp.Image = Properties.Resources.Gray_Round;
-            cbClampScanerIsEnable.Checked = Current.ClampScaner.IsEnable;
-
             for (int i = 0; i < BlankerCount; i++)
             {
                 lbBlankerName[i].Text = Current.blankers[i].Name;
@@ -1200,7 +1196,7 @@ namespace BakBattery.Baking.App
         private Label[][] lbFeederClampCode = new Label[FeederCount][];
         private TableLayoutPanel[][] tlpFeederStationClamp = new TableLayoutPanel[FeederCount][];
 
-        private const int FeederScanerCount = 1;
+        private const int FeederScanerCount = 2;
 
         private Label[][] lbScanerNameN = new Label[FeederCount][];
         private CheckBox[][] cbScanerIsEnable = new CheckBox[FeederCount][];
@@ -1928,7 +1924,7 @@ namespace BakBattery.Baking.App
             {
                 cbBlankerIsEnable[i].Enabled = IsEnable;
             }
-            cbClampScanerIsEnable.Enabled = IsEnable;
+            cbScanerIsEnable0102.Enabled = IsEnable;
             cbMesIsEnable.Enabled = IsEnable;
             cbRobotIsEnable.Enabled = IsEnable;
         }
@@ -2046,7 +2042,7 @@ namespace BakBattery.Baking.App
                 if (Current.feeders[i].AlreadyGetAllInfo)
                 {
                     #region 夹具扫码逻辑
-                    if (Current.ClampScaner.IsEnable && Current.ClampScaner.IsReady)
+                    if (Current.feeders[i].ClampScaner.IsEnable && Current.feeders[i].ClampScaner.IsReady)
                     {
                         Current.feeders[i].Stations.ForEach(s =>
                         {
@@ -2054,7 +2050,7 @@ namespace BakBattery.Baking.App
                             {
                                 string code = string.Empty;
 
-                                if (Current.ClampScaner.StartClampScan(out code, out msg))
+                                if (Current.feeders[i].ClampScaner.StartClampScan(out code, out msg))
                                 {
                                     this.BeginInvoke(new MethodInvoker(() =>
                                     {
@@ -2070,7 +2066,7 @@ namespace BakBattery.Baking.App
                                     Error.Alert(msg);
                                 }
 
-                                Current.ClampScaner.StopClampScan(out msg);
+                                Current.feeders[i].ClampScaner.StopClampScan(out msg);
 
                                 if (!Current.feeders[i].SetScanClampResultOK(out msg))
                                 {
@@ -2959,13 +2955,6 @@ namespace BakBattery.Baking.App
                     }
                 }
             }
-
-            if ((CheckBox)sender == cbClampScanerIsEnable)
-            {
-                Current.ClampScaner.IsEnable = cbClampScanerIsEnable.Checked;
-                return;
-            }
-
         }
 
         private void cbOvenIsEnable_CheckedChanged(object sender, EventArgs e)
@@ -4157,7 +4146,7 @@ namespace BakBattery.Baking.App
         {
             string code = string.Empty;
             string msg = string.Empty;
-            if (Current.ClampScaner.StartClampScan(out code, out msg))
+            if (Current.feeders[cbClampScaner.SelectedIndex].ClampScaner.StartClampScan(out code, out msg))
             {
                 Tip.Alert(code);
             }
@@ -4171,7 +4160,7 @@ namespace BakBattery.Baking.App
         private void btnClampScanStop_Click(object sender, EventArgs e)
         {
             string msg = string.Empty;
-            if (Current.ClampScaner.StopClampScan(out msg))
+            if (Current.feeders[cbClampScaner.SelectedIndex].ClampScaner.StopClampScan(out msg))
             {
                 Tip.Alert("OK");
             }

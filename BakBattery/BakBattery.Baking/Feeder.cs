@@ -384,6 +384,7 @@ namespace BakBattery.Baking
                 return scaners;
             }
         }
+
         [Browsable(false)]
         public Scaner BatteryScaner
         {
@@ -392,6 +393,19 @@ namespace BakBattery.Baking
                 if (this.Scaners.Count > 0)
                 {
                     return this.Scaners[0];
+                }
+                return new Scaner();
+            }
+        }
+
+        [Browsable(false)]
+        public Scaner ClampScaner
+        {
+            get
+            {
+                if (this.Scaners.Count > 0)
+                {
+                    return this.Scaners[1];
                 }
                 return new Scaner();
             }

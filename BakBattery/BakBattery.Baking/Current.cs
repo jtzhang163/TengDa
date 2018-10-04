@@ -44,8 +44,6 @@ namespace BakBattery.Baking
 
         public static Transfer Transfer = new Transfer(1);
 
-        public static Scaner ClampScaner = new Scaner(3);
-
         public static MES mes = MES.Mes;
 
         public static Option option = new Option();
