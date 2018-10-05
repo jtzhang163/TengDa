@@ -557,7 +557,7 @@ namespace TengDa.WF.Terminals
                     }
                     else//写
                     {
-                        OperateResult result = siemens_net.WriteAsciiStringIntoPLC(address, value.ToString());
+                        OperateResult result = siemens_net.WriteIntoPLC(address, value);
                         if (result.IsSuccess)
                         {
                             IsAlive = true;
@@ -639,7 +639,7 @@ namespace TengDa.WF.Terminals
 
                     if (isRead)//读
                     {
-                        OperateResult<int> result = siemens_net.ReadIntFromPLC(address);
+                        OperateResult<byte> result = siemens_net.ReadByteFromPLC(address);
                         if (result.IsSuccess)
                         {
                             output = result.Content;
@@ -655,7 +655,70 @@ namespace TengDa.WF.Terminals
                     }
                     else//写
                     {
-                        OperateResult result = siemens_net.WriteAsciiStringIntoPLC(address, value.ToString());
+                        OperateResult result = siemens_net.WriteIntoPLC(address, value);
+                        if (result.IsSuccess)
+                        {
+                            IsAlive = true;
+                            return true;
+                        }
+                        else
+                        {
+                            msg = string.Format("{0} 中写入 {1} 出现错误，代码：{2}", address, value, result.ErrorCode);
+                            IsAlive = false;
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                msg = string.Format("和{0}通信出现异常！原因：{1}", Name, ex.Message);
+            }
+
+            IsAlive = false;
+            return false;
+        }
+
+        public bool GetInfo(bool checkPingSuccess, PlcCompany plcCompany, bool isRead, string address, byte value, out int output, out string msg)
+        {
+
+            output = -1;
+            msg = string.Empty;
+
+            if (checkPingSuccess)
+            {
+                if (!IsPingSuccess)
+                {
+                    IsAlive = false;
+                    msg = string.Format("无法连接到【{0}】，IP：{1}", this.Name, this.IP);
+                    return false;
+                }
+            }
+
+            try
+            {
+                if (plcCompany == PlcCompany.Siemens)
+                {
+
+                    if (isRead)//读
+                    {
+                        OperateResult<byte> result = siemens_net.ReadByteFromPLC(address);
+                        if (result.IsSuccess)
+                        {
+                            output = result.Content;
+                            IsAlive = true;
+                            return true;
+                        }
+                        else
+                        {
+                            msg = string.Format("从{0}中读取数据出现错误，代码：{1}", address, result.ErrorCode);
+                            IsAlive = false;
+                            return false;
+                        }
+                    }
+                    else//写
+                    {
+                        OperateResult result = siemens_net.WriteIntoPLC(address, value);
                         if (result.IsSuccess)
                         {
                             IsAlive = true;

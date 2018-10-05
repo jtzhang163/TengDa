@@ -823,7 +823,7 @@ namespace BakBattery.Baking.App
 
                     bool canChangeVisible = DateTime.Now.Second % 3 == 1;
 
-                    if (Current.feeders[i].IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取))
+                    if (Current.feeders[i].IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
                     {
                         tlpFeederStationClamp[i][j].Visible = false;
                     }
@@ -908,7 +908,7 @@ namespace BakBattery.Baking.App
                     lbBlankerClampCode[i][j].Text = station.Clamp.Code;
                     bool canChangeVisible = DateTime.Now.Second % 3 == 1;
 
-                    if (Current.blankers[i].IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取))
+                    if (Current.blankers[i].IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
                     {
                         tlpBlankerStationClamp[i][j].Visible = false;
                     }
@@ -965,7 +965,7 @@ namespace BakBattery.Baking.App
                 Station station = Current.Cache.Stations[j];
                 bool canChangeVisible = DateTime.Now.Second % 3 == 1;
 
-                if (Current.Cache.IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取))
+                if (Current.Cache.IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
                 {
                     lbCacheClampCode[j].Visible = false;
                 }
@@ -1009,7 +1009,7 @@ namespace BakBattery.Baking.App
 
             bool canChangeVisibleRotater = DateTime.Now.Second % 3 == 1;
 
-            if (Current.Transfer.IsAlive && canChangeVisibleRotater && Current.Transfer.Station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取))
+            if (Current.Transfer.IsAlive && canChangeVisibleRotater && Current.Transfer.Station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
             {
                 lbTransferClampCode.Visible = false;
             }
@@ -1142,7 +1142,7 @@ namespace BakBattery.Baking.App
                 }
                 else if (Current.Robot.IsGettingOrPutting)
                 {
-                    this.lbRobotInfo.Text = Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.可取 ? "取盘中" : "放盘中";
+                    this.lbRobotInfo.Text = Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取 ? "取盘中" : "放盘中";
                     this.lbRobotInfo.ForeColor = Color.Blue;
                 }
                 else
@@ -1482,6 +1482,13 @@ namespace BakBattery.Baking.App
                     Error.Alert(string.Format("打开机器人连接失败，原因：{0}", msg));
                     return false;
                 }
+
+                if (!Current.Robot.Start(out msg))
+                {
+                    Error.Alert(string.Format("打开机器人启动失败，原因：{0}", msg));
+                    return false;
+                }
+
                 this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "连接成功"; }));
             }
 
@@ -3571,7 +3578,7 @@ namespace BakBattery.Baking.App
 
                     bool canChangeColor = DateTime.Now.Second % 3 == 1;
 
-                    if (canChangeColor && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取))
+                    if (canChangeColor && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
                     {
                         brush = Brushes.White;
                     }
@@ -3687,7 +3694,7 @@ namespace BakBattery.Baking.App
                 Tip.Alert("请切换至手动任务模式！");
                 return;
             }
-            Current.Robot.StartGetPut();
+           // Current.Robot.StartGetPut();
         }
 
         private void tsmManuStation_DropDownOpening(object sender, EventArgs e)
@@ -3724,6 +3731,9 @@ namespace BakBattery.Baking.App
                     tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
                     tsiStation.Text = s.Name;
                     tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+
+                    tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+
                     tsmiFeederStation.DropDownItems.Add(tsiStation);
                 });
                 tsiStations.Add(tsmiFeederStation);
@@ -3740,6 +3750,9 @@ namespace BakBattery.Baking.App
                     tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
                     tsiStation.Text = s.Name;
                     tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+
+                    tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+
                     tsmiOvenStation.DropDownItems.Add(tsiStation);
                 }));
                 tsiStations.Add(tsmiOvenStation);
@@ -3756,6 +3769,9 @@ namespace BakBattery.Baking.App
                     tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
                     tsiStation.Text = s.Name;
                     tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+
+                    tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+
                     tsmiBlankerStation.DropDownItems.Add(tsiStation);
                 });
                 tsiStations.Add(tsmiBlankerStation);
@@ -3770,6 +3786,9 @@ namespace BakBattery.Baking.App
                 tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
                 tsiStation.Text = s.Name;
                 tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+
+                tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+
                 tsmiCacheStation.DropDownItems.Add(tsiStation);
             });
             tsiStations.Add(tsmiCacheStation);
@@ -3778,7 +3797,11 @@ namespace BakBattery.Baking.App
             tsmiRotaterStation.Text = Current.Transfer.Name;
             tsmiRotaterStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, Current.Transfer.Name);
             tsmiRotaterStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+
+            tsmiRotaterStation.Enabled = GetTsiEnabled(ManuFlag, Current.Transfer.Station);
+
             tsiStations.Add(tsmiRotaterStation);
+
             if (isGet)
             {
                 this.tsmManuGetStation.DropDownItems.Clear();
@@ -3794,6 +3817,26 @@ namespace BakBattery.Baking.App
                 this.tsmManuMoveToStation.DropDownItems.Clear();
                 this.tsmManuMoveToStation.DropDownItems.AddRange(tsiStations.ToArray());
             }
+        }
+    
+        /// <summary>
+        /// 手动时取放盘的按钮变灰防呆
+        /// </summary>
+        /// <param name="manuFlag"></param>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        private bool GetTsiEnabled(string manuFlag, Station s)
+        {
+            var result = true;
+            if(manuFlag == "Get")
+            {
+                result = s.DoorStatus == DoorStatus.打开 && s.ClampStatus != ClampStatus.无夹具;
+            }
+            else if (manuFlag == "Put")
+            {
+                result = s.DoorStatus == DoorStatus.打开 && s.ClampStatus == ClampStatus.无夹具;
+            }
+            return result;
         }
 
         private void tsmManuStation_Click(object sender, EventArgs e)
@@ -3844,7 +3887,7 @@ namespace BakBattery.Baking.App
                 else if (isPut)
                 {
 
-                    if (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取)
+                    if (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取)
                     {
                         Tip.Alert("取盘任务尚未完成！");
                         return;

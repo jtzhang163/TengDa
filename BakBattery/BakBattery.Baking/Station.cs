@@ -229,7 +229,7 @@ namespace BakBattery.Baking
         {
             get
             {
-                if (this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.下料机)
+                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.转移台 || this.GetPutType == GetPutType.下料机)
                 {
                     doorStatus = DoorStatus.打开;
                 }

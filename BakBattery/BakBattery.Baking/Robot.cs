@@ -96,20 +96,8 @@ namespace BakBattery.Baking
             }
         }
 
-        [ReadOnly(true), DisplayName("目标标识1：D3410")]
-        public int D3410 { get; set; } = -1;
-
-        [ReadOnly(true), DisplayName("目标标识2：D3411")]
-        public int D3411 { get; set; } = -1;
-
-        [ReadOnly(true), DisplayName("准备取盘：M70")]
-        public bool M70 { get; set; } = false;
-
-        [ReadOnly(true), DisplayName("准备放盘：M71")]
-        public bool M71 { get; set; } = false;
-
-        [ReadOnly(true), DisplayName("伸出货叉：M76")]
-        public bool M76 { get; set; } = false;
+        [ReadOnly(true), DisplayName("已启动")]
+        public bool IsStartting { get; set; } = false;
 
         [ReadOnly(true), DisplayName("可发送取盘指令")]
         public bool IsReadyGet { get; set; } = false;
@@ -125,8 +113,8 @@ namespace BakBattery.Baking
         [ReadOnly(true), DisplayName("机器人正在移动")]
         public bool IsMoving { get; set; } = false;
 
-        [ReadOnly(true), DisplayName("可确认是否取放夹具到位")]
-        public bool CanCheckGetPutClampIsOk { get; set; } = false;
+        //[ReadOnly(true), DisplayName("可确认是否取放夹具到位")]
+        //public bool CanCheckGetPutClampIsOk { get; set; } = false;
 
         [ReadOnly(true), DisplayName("可确认放夹具到位信号出现次数")]
         public int CanCheckPutClampIsOkCount { get; set; } = 0;
@@ -151,12 +139,6 @@ namespace BakBattery.Baking
                 return this.MovingDirection == MovingDirection.前进 ^ Option.LayoutType == 1 ? "←" : "→";
             }
         }
-
-        [ReadOnly(true), DisplayName("可启动")]
-        public bool CanStart { get; set; } = false;
-
-        [ReadOnly(true), DisplayName("已启动")]
-        public bool IsStartting { get; set; } = false;
 
         #endregion
 
@@ -278,52 +260,16 @@ namespace BakBattery.Baking
 
                 var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
-                //int d0500 = -1;
-                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotXasixAddress, 0, out d0500, out msg))
-                //{
-                //    Error.Alert(msg);
-                //    this.Plc.IsAlive = false;
-                //    return false;
-                //}
-                //this.D0500 = d0500;
+                bool isStartting = false;
 
-                //RobotPosition rp = RobotPosition.RobotPositionList.FirstOrDefault(r => r.XMinValue < this.D0500 && r.XMaxValue > this.D0500);
-
-                //this.Position = rp == null ? this.position : rp.Position;
-
-                //if (this.D0500 < this.PreD0500) { this.MovingDirection = MovingDirection.前进; }
-                //else if (this.D0500 > this.PreD0500) { this.MovingDirection = MovingDirection.后退; }
-                //else { this.MovingDirection = MovingDirection.停止; }
-
-                //this.PreD0500 = this.D0500;
-
-                //bool isNotGettingOrPutting = false;
-                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotIsGettingOrPuttingAdd, false, out isNotGettingOrPutting, out msg))
-                //{
-                //    Error.Alert(msg);
-                //    this.Plc.IsAlive = false;
-                //    return false;
-                //}
-
-                //this.IsGettingOrPutting = !isNotGettingOrPutting;
-
-                //bool isMoving = false;
-                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotIsMovingAdd, false, out isMoving, out msg))
-                //{
-                //    Error.Alert(msg);
-                //    this.Plc.IsAlive = false;
-                //    return false;
-                //}
-                //this.IsMoving = isMoving;
-
-
-                bool proIsRuning = false;
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out proIsRuning, out msg))
+                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out isStartting, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
                     return false;
                 }
+                IsStartting = isStartting;
+
 
                 int stationNum = -1;
                 if (!this.Plc.GetInfo(false, plcCompany, true, "Q4", 0, out stationNum, out msg))
@@ -333,89 +279,13 @@ namespace BakBattery.Baking
                     return false;
                 }
 
+                this.IsGettingOrPutting = stationNum != 0;
 
-                this.IsReadyGet = proIsRuning && (stationNum == 0);
-                this.IsReadyPut = proIsRuning && (stationNum == 0);
-
-
-                bool canStart = false;
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.0", false, out canStart, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                CanStart = canStart;
-
-                bool isStartting = false;
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I10.0", false, out isStartting, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                IsStartting = isStartting;
+                this.IsReadyGet = IsStartting && (stationNum == 0);
+                this.IsReadyPut = IsStartting && (stationNum == 0);
 
 
-
-                //if (canCheckPutClampIsOk)
-                //{
-                //    this.CanCheckPutClampIsOkCount++;
-                //}
-                //else
-                //{
-                //    this.CanCheckPutClampIsOkCount = 0;
-                //}
-
-                //this.CanCheckGetPutClampIsOk = CanCheckPutClampIsOkCount > 1;
-
-                //int d3410 = -1;
-                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotToPositionAdds.Split(',')[0], 0, out d3410, out msg))
-                //{
-                //    Error.Alert(msg);
-                //    this.Plc.IsAlive = false;
-                //    return false;
-                //}
-                //this.D3410 = d3410;
-
-
-                //int d3411 = -1;
-                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotToPositionAdds.Split(',')[1], 0, out d3411, out msg))
-                //{
-                //    Error.Alert(msg);
-                //    this.Plc.IsAlive = false;
-                //    return false;
-                //}
-                //this.D3411 = d3411;
-
-                //bool m70 = false;
-                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotToGetPutAdds.Split(',')[0], false, out m70, out msg))
-                //{
-                //    Error.Alert(msg);
-                //    this.Plc.IsAlive = false;
-                //    return false;
-                //}
-                //this.M70 = m70;
-
-                //bool m71 = false;
-                //if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotToGetPutAdds.Split(',')[0], false, out m71, out msg))
-                //{
-                //    Error.Alert(msg);
-                //    this.Plc.IsAlive = false;
-                //    return false;
-                //}
-                //this.M71 = m71;
-
-                bool m76 = true;
-                if (!this.Plc.GetInfo(false, plcCompany, true, Current.option.RobotStartGetPutAdd, false, out m76, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                this.M76 = m76;
-
-                System.Threading.Thread.Sleep(10);
+                System.Threading.Thread.Sleep(50);
 
             }
             catch (Exception ex)
@@ -428,7 +298,7 @@ namespace BakBattery.Baking
             return true;
         }
 
-        public bool Move(int pos)
+        public bool Move(byte pos)
         {
             if (!this.Plc.IsPingSuccess)
             {
@@ -440,7 +310,7 @@ namespace BakBattery.Baking
             try
             {
                 int o1 = 0;
-                if (!this.Plc.GetInfo(false, (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company), false, Current.option.RobotToPositionAdd, D3410, out o1, out msg))
+                if (!this.Plc.GetInfo(false, (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company), false, Current.option.RobotToPositionAdd, pos, out o1, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -448,39 +318,6 @@ namespace BakBattery.Baking
                 }
 
                 LogHelper.WriteInfo(string.Format("给机器人发送到位取放指令------{0}：{1}  ", Current.option.RobotToPositionAdd, pos));
-            }
-            catch (Exception ex)
-            {
-                Error.Alert(ex);
-            }
-
-            return true;
-        }
-
-        public bool StartGetPut()
-        {
-            if (!this.Plc.IsPingSuccess)
-            {
-                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
-                return false;
-            }
-
-            //if (this.M76)
-            //{
-            //    return true;
-            //}
-
-            string msg = string.Empty;
-            try
-            {
-                bool m = false;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, false, Current.option.RobotStartGetPutAdd, true, out m, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                LogHelper.WriteInfo(string.Format("给机器人发送开始取放指令------{0}：true  ", Current.option.RobotStartGetPutAdd));
             }
             catch (Exception ex)
             {
@@ -513,6 +350,122 @@ namespace BakBattery.Baking
             catch (Exception ex)
             {
                 Error.Alert(ex);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// 启动机器人
+        /// </summary>
+        /// <returns></returns>
+        public bool Start(out string msg)
+        {
+
+            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
+
+            //请求启动
+            bool tmpBool1 = false;
+            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.1", true, out tmpBool1, out msg))
+            {
+                Error.Alert("请求启动失败！原因：" + msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            System.Threading.Thread.Sleep(100);
+
+            //是否有报警
+            bool tmpBool4 = false;
+            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.5", false, out tmpBool4, out msg))
+            {
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+            System.Threading.Thread.Sleep(100);
+
+            if (tmpBool4)
+            {
+                //报警复位
+                bool tmpBool0 = false;
+                if (!this.Plc.GetInfo(false, plcCompany, false, "I10.3", true, out tmpBool0, out msg))
+                {
+                    Error.Alert("请求启动失败！原因：" + msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+                System.Threading.Thread.Sleep(100);
+            }
+
+
+
+            //判断是否为暂停
+            bool tmpBool5 = false;
+            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.3", false, out tmpBool5, out msg))
+            {
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+            System.Threading.Thread.Sleep(100);
+
+            if (tmpBool5)
+            {
+                //如果暂停，继续
+                bool tmpBool0 = false;
+                if (!this.Plc.GetInfo(false, plcCompany, false, "I10.4", true, out tmpBool0, out msg))
+                {
+                    Error.Alert("请求启动失败！原因：" + msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+                System.Threading.Thread.Sleep(100);
+            }
+
+
+
+            bool tmpBool2 = false;
+            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.0", false, out tmpBool2, out msg))
+            {
+                Error.Alert("请求启动失败！原因：" + msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            if (!tmpBool2)
+            {
+                Error.Alert("I1.0 == False");
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            System.Threading.Thread.Sleep(100);
+
+            //将I10.0置为ture
+            bool tmpBool3 = false;
+            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.0", true, out tmpBool3, out msg))
+            {
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            System.Threading.Thread.Sleep(100);
+
+            bool tmpBool6 = false;
+            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out tmpBool6, out msg))
+            {
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            if (!tmpBool6)
+            {
+                Error.Alert("启动失败！");
+                this.Plc.IsAlive = false;
+                return false;
             }
 
             return true;
