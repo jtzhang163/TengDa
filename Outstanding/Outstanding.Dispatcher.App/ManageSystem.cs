@@ -3857,6 +3857,7 @@ namespace Outstanding.Dispatcher.App
                     tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
                     tsiStation.Text = s.Name;
                     tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+                    tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
                     tsmiFeederStation.DropDownItems.Add(tsiStation);
                 });
                 tsiStations.Add(tsmiFeederStation);
@@ -3873,6 +3874,7 @@ namespace Outstanding.Dispatcher.App
                     tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
                     tsiStation.Text = s.Name;
                     tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+                    tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
                     tsmiOvenStation.DropDownItems.Add(tsiStation);
                 }));
                 tsiStations.Add(tsmiOvenStation);
@@ -3889,6 +3891,7 @@ namespace Outstanding.Dispatcher.App
                     tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
                     tsiStation.Text = s.Name;
                     tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+                    tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
                     tsmiBlankerStation.DropDownItems.Add(tsiStation);
                 });
                 tsiStations.Add(tsmiBlankerStation);
@@ -3903,6 +3906,7 @@ namespace Outstanding.Dispatcher.App
                 tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
                 tsiStation.Text = s.Name;
                 tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+                tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
                 tsmiCacheStation.DropDownItems.Add(tsiStation);
             });
             tsiStations.Add(tsmiCacheStation);
@@ -3911,6 +3915,7 @@ namespace Outstanding.Dispatcher.App
             tsmiRotaterStation.Text = Current.rotater.Name;
             tsmiRotaterStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, Current.rotater.Name);
             tsmiRotaterStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+            tsmiRotaterStation.Enabled = GetTsiEnabled(ManuFlag, Current.rotater.Station);
             tsiStations.Add(tsmiRotaterStation);
             if (isGet)
             {
@@ -4024,6 +4029,25 @@ namespace Outstanding.Dispatcher.App
 
         }
 
+        /// <summary>
+        /// 手动时取放盘的按钮变灰防呆
+        /// </summary>
+        /// <param name="manuFlag"></param>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        private bool GetTsiEnabled(string manuFlag, Station s)
+        {
+            var result = true;
+            if (manuFlag == "Get")
+            {
+                result = s.DoorStatus == DoorStatus.打开 && s.ClampStatus != ClampStatus.无夹具;
+            }
+            else if (manuFlag == "Put")
+            {
+                result = s.DoorStatus == DoorStatus.打开 && s.ClampStatus == ClampStatus.无夹具;
+            }
+            return result;
+        }
         #endregion
 
         #region 绘制温度曲线
