@@ -1185,6 +1185,9 @@ namespace BakBattery.Baking.App
             }
             Current.Robot.PreAlarmStr = Current.Robot.AlarmStr;
 
+            //机器人急停按钮显示逻辑
+            tlpEmergencyStop.Visible = Current.Robot.IsAlive && TengDa.WF.Current.IsRunning && TengDa.WF.Current.user.Id > 0;
+
             #endregion
         }
 
@@ -4421,6 +4424,19 @@ namespace BakBattery.Baking.App
             this.tsmManuGetStation.Enabled = Current.Robot.IsAlive;
             this.tsmManuPutStation.Enabled = Current.Robot.IsAlive;
 
+        }
+
+        private void pbEmergencyStop_Click(object sender, EventArgs e)
+        {
+            var msg = string.Empty;
+            if (Current.Robot.Stop(out msg))
+            {
+                Tip.Alert(Current.Robot.Name + "急停成功！");
+            }
+            else
+            {
+                Error.Alert(msg);
+            }
         }
     }
 }

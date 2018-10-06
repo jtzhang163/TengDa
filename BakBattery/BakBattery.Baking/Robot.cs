@@ -618,6 +618,26 @@ namespace BakBattery.Baking
             return true;
         }
 
+        /// <summary>
+        /// 机器人急停
+        /// </summary>
+        /// <returns></returns>
+        public bool Stop(out string msg)
+        {
+
+            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
+
+            bool tmp = false;
+            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.1", false, out tmp, out msg))
+            {
+                Error.Alert("机器人急停失败！原因：" + msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            return true;
+        }
+
         #endregion
     }
 
