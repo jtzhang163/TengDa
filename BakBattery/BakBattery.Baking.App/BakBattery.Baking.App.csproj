@@ -108,6 +108,7 @@
     <None Include="Resources\Gray_Round.png" />
     <None Include="Resources\Switch_green.png" />
     <None Include="Resources\Reset_Lime.png" />
+    <None Include="Resources\Continue_Green.png" />
     <Content Include="Resources\Robot_Track_Lime.PNG" />
     <Content Include="TengDa.ico" />
   </ItemGroup>

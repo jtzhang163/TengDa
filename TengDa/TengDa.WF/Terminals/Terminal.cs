@@ -125,6 +125,13 @@ namespace TengDa.WF.Terminals
             }
         }
 
+        /// <summary>
+        /// 是否在报警
+        /// </summary>
+        [ReadOnly(true)]
+        [DisplayName("是否在报警")]
+        public bool IsAlarming { get; set; } = false;
+
         private string alarmStr = string.Empty;
         /// <summary>
         /// 报警字符串
@@ -180,6 +187,12 @@ namespace TengDa.WF.Terminals
             }
         }
 
+        /// <summary>
+        /// 是否处于暂停状态
+        /// </summary>
+        [ReadOnly(true)]
+        [DisplayName("是否处于暂停状态")]
+        public bool IsPausing { get; set; } = false;
 
         /// <summary>
         /// X轴坐标

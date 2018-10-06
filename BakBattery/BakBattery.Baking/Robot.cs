@@ -96,6 +96,9 @@ namespace BakBattery.Baking
             }
         }
 
+        /// <summary>
+        /// 机器人正在运行
+        /// </summary>
         [ReadOnly(true), DisplayName("已启动")]
         public bool IsStartting { get; set; } = false;
 
@@ -243,6 +246,7 @@ namespace BakBattery.Baking
         #region 通信
 
         public bool AlreadyGetAllInfo = false;
+
         public bool GetInfo()
         {
             if (!this.Plc.IsPingSuccess)
@@ -260,6 +264,8 @@ namespace BakBattery.Baking
 
                 var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
+                #region 获取是否启动完成
+
                 bool isStartting = false;
 
                 if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out isStartting, out msg))
@@ -270,6 +276,63 @@ namespace BakBattery.Baking
                 }
                 IsStartting = isStartting;
 
+                #endregion
+
+                #region 获取报警状态
+
+                bool isAlarming = false;
+
+                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.5", false, out isAlarming, out msg))
+                {
+                    Error.Alert(msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+
+                this.IsAlarming = isAlarming;
+                this.AlarmStr = isAlarming ? this.Name + "报警中" : "";
+
+                #endregion
+
+                #region 获取暂停状态
+
+                bool isPausing = false;
+
+                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.3", false, out isPausing, out msg))
+                {
+                    Error.Alert(msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+
+                this.IsPausing = isPausing;
+
+                #endregion
+
+                #region 获取夹具状态
+
+                int clampStatus = -1;
+
+                if (!this.Plc.GetInfo(false, plcCompany, true, "Q15", (byte)0, out clampStatus, out msg))
+                {
+                    Error.Alert(msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+
+                switch (clampStatus)
+                {
+                    case 1: this.ClampStatus = this.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具; break;
+                    case 2: this.ClampStatus = ClampStatus.无夹具; break;
+                    case 4: this.ClampStatus = ClampStatus.异常; break;
+                    default: this.ClampStatus = ClampStatus.未知; break;
+                }
+
+                this.IsPausing = isPausing;
+
+                #endregion
+
+                #region 获取正在执行取放的位置编号
 
                 int stationNum = -1;
                 if (!this.Plc.GetInfo(false, plcCompany, true, "Q4", 0, out stationNum, out msg))
@@ -284,6 +347,7 @@ namespace BakBattery.Baking
                 this.IsReadyGet = IsStartting && (stationNum == 0);
                 this.IsReadyPut = IsStartting && (stationNum == 0);
 
+                #endregion
 
                 System.Threading.Thread.Sleep(50);
 
@@ -309,8 +373,28 @@ namespace BakBattery.Baking
             string msg = string.Empty;
             try
             {
+
+                var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
+
+                #region 获取正在执行取放的位置编号
+
+                int stationNum = -1;
+                if (!this.Plc.GetInfo(false, plcCompany, true, "Q4", 0, out stationNum, out msg))
+                {
+                    Error.Alert(msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+
+                #endregion
+
+                if ((int)pos == stationNum)
+                {
+                    return true;
+                }
+
                 int o1 = 0;
-                if (!this.Plc.GetInfo(false, (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company), false, Current.option.RobotToPositionAdd, pos, out o1, out msg))
+                if (!this.Plc.GetInfo(false, plcCompany, false, "Q4", pos, out o1, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -356,7 +440,7 @@ namespace BakBattery.Baking
         }
 
         /// <summary>
-        /// 启动机器人
+        /// 首次开机启动机器人
         /// </summary>
         /// <returns></returns>
         public bool Start(out string msg)
@@ -470,6 +554,70 @@ namespace BakBattery.Baking
 
             return true;
         }
+
+
+        /// <summary>
+        /// 机器人暂停运行
+        /// </summary>
+        /// <returns></returns>
+        public bool Pause(out string msg)
+        {
+
+            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
+
+            bool tmp = false;
+            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.2", true, out tmp, out msg))
+            {
+                Error.Alert("暂停运行失败！原因：" + msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            return true;
+        }
+
+
+
+        /// <summary>
+        /// 机器人继续运行
+        /// </summary>
+        /// <returns></returns>
+        public bool Restart(out string msg)
+        {
+
+            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
+
+            bool tmp = false;
+            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.4", true, out tmp, out msg))
+            {
+                Error.Alert("继续运行失败！原因：" + msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// 机器人报警复位
+        /// </summary>
+        /// <returns></returns>
+        public bool AlarmReset(out string msg)
+        {
+
+            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
+
+            bool tmp = false;
+            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.3", true, out tmp, out msg))
+            {
+                Error.Alert("机器人报警复位失败！原因：" + msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            return true;
+        }
+
         #endregion
     }
 

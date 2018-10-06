@@ -613,9 +613,14 @@ namespace BakBattery.Baking
                     {
                         if (Current.Robot.Move(pos))
                         {
-                            Current.Task.Status = TaskStatus.正取;
+                            
                         }
                     }
+
+                    if (Current.Robot.IsGettingOrPutting)
+                    {
+                        Current.Task.Status = TaskStatus.正取;
+                    }                    
                 }
                 else if (Current.Task.Status == TaskStatus.正取)
                 {
@@ -661,8 +666,13 @@ namespace BakBattery.Baking
                     {
                         if (Current.Robot.Move(pos))
                         {
-                            Current.Task.Status = TaskStatus.正放;
+                      
                         }
+                    }
+
+                    if (Current.Robot.IsGettingOrPutting)
+                    {
+                        Current.Task.Status = TaskStatus.正放;
                     }
                 }
                 else if (Current.Task.Status == TaskStatus.正放)

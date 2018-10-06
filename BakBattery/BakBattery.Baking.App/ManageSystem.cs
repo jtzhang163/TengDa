@@ -418,6 +418,8 @@ namespace BakBattery.Baking.App
 
             lbRobotClampCode.Text = Current.Robot.Clamp.Code;
 
+            lbRobotClampCode.BackColor = Current.Robot.ClampStatus == ClampStatus.异常 ? Color.Red : Color.Transparent;
+
             cbRobotIsEnable.Checked = Current.Robot.IsEnable;
 
             lbTransferName.Text = Current.Transfer.Name;
@@ -1158,6 +1160,31 @@ namespace BakBattery.Baking.App
             }
 
             lbRobotClampCode.Text = Current.Robot.Clamp.Code;
+
+
+            if (!string.IsNullOrEmpty(Current.Robot.AlarmStr) && Current.Robot.IsAlive)
+            {
+                if (Current.Robot.PreAlarmStr != Current.Robot.AlarmStr)
+                {
+                    this.lbRobotName.Text = Current.Robot.AlarmStr.TrimEnd(',') + "...";
+                }
+                else
+                {
+                    string alarmStr = this.lbRobotName.Text;
+                    this.lbRobotName.Text = alarmStr.Substring(1, alarmStr.Length - 1) + alarmStr.Substring(0, 1);
+                }
+
+                this.lbRobotName.ForeColor = Color.White;
+                this.lbRobotName.BackColor = Color.Red;
+            }
+            else
+            {
+                this.lbRobotName.Text = Current.Robot.Name;
+                this.lbRobotName.ForeColor = SystemColors.WindowText;
+                this.lbRobotName.BackColor = Color.Transparent;
+            }
+            Current.Robot.PreAlarmStr = Current.Robot.AlarmStr;
+
             #endregion
         }
 
@@ -1480,12 +1507,6 @@ namespace BakBattery.Baking.App
                 if (!Current.Robot.Plc.TcpConnect(out msg))
                 {
                     Error.Alert(string.Format("打开机器人连接失败，原因：{0}", msg));
-                    return false;
-                }
-
-                if (!Current.Robot.Start(out msg))
-                {
-                    Error.Alert(string.Format("打开机器人启动失败，原因：{0}", msg));
                     return false;
                 }
 
@@ -3812,11 +3833,7 @@ namespace BakBattery.Baking.App
                 this.tsmManuPutStation.DropDownItems.Clear();
                 this.tsmManuPutStation.DropDownItems.AddRange(tsiStations.ToArray());
             }
-            else if (isMoveTo)
-            {
-                this.tsmManuMoveToStation.DropDownItems.Clear();
-                this.tsmManuMoveToStation.DropDownItems.AddRange(tsiStations.ToArray());
-            }
+
         }
     
         /// <summary>
@@ -4344,6 +4361,65 @@ namespace BakBattery.Baking.App
 
         private void tsmRobotStart_Click(object sender, EventArgs e)
         {
+            var msg = string.Empty;
+            if (Current.Robot.Start(out msg))
+            {
+                Tip.Alert(Current.Robot.Name + "启动成功！");
+            }
+            else
+            {
+                Error.Alert(string.Format("打开机器人启动失败，原因：{0}", msg));
+            }
+        }
+
+        private void tsmRobotPause_Click(object sender, EventArgs e)
+        {
+            var msg = string.Empty;
+            if (Current.Robot.Pause(out msg))
+            {
+                Tip.Alert(Current.Robot.Name + "暂停运行成功！");
+            }
+            else
+            {
+                Error.Alert(msg);
+            }
+        }
+
+        private void tsmRobotRestart_Click(object sender, EventArgs e)
+        {
+            var msg = string.Empty;
+            if (Current.Robot.Restart(out msg))
+            {
+                Tip.Alert(Current.Robot.Name + "继续运行成功！");
+            }
+            else
+            {
+                Error.Alert(msg);
+            }
+        }
+
+        private void tsmRobotAlarmReset_Click(object sender, EventArgs e)
+        {
+            var msg = string.Empty;
+            if (Current.Robot.AlarmReset(out msg))
+            {
+                Tip.Alert(Current.Robot.Name + "报警复位成功！");
+            }
+            else
+            {
+                Error.Alert(msg);
+            }
+        }
+
+        private void cmsRobot_Opening(object sender, CancelEventArgs e)
+        {
+            this.tsmRobotStart.Enabled = Current.Robot.IsAlive && !Current.Robot.IsStartting;
+            this.tsmRobotPause.Enabled = Current.Robot.IsAlive && !Current.Robot.IsPausing;
+            this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing;
+            this.tsmRobotAlarmReset.Enabled = Current.Robot.IsAlive && Current.Robot.IsAlarming;
+
+            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive;
+            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive;
 
         }
     }
