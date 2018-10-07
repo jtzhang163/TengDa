@@ -54,14 +54,6 @@ namespace BakBattery.Baking
         {
             get
             {
-                if (position > 19)
-                {
-                    return 19;
-                }
-                else if (position < 1)
-                {
-                    return 1;
-                }
                 return position;
             }
             set
@@ -122,10 +114,10 @@ namespace BakBattery.Baking
         [ReadOnly(true), DisplayName("可确认放夹具到位信号出现次数")]
         public int CanCheckPutClampIsOkCount { get; set; } = 0;
 
-        [DisplayName("X轴坐标：D0500")]
-        public int D0500 { get; set; } = -1;
+        [DisplayName("轴坐标：I5")]
+        public int I5 { get; set; } = -1;
 
-        public int PreD0500 = -1;
+        public int PreI5 = -1;
 
         [ReadOnly(true), DisplayName("运动方向")]
         public MovingDirection MovingDirection { get; set; } = MovingDirection.未知;
@@ -142,6 +134,12 @@ namespace BakBattery.Baking
                 return this.MovingDirection == MovingDirection.前进 ^ Option.LayoutType == 1 ? "←" : "→";
             }
         }
+
+        /// <summary>
+        /// 已请求启动
+        /// </summary>
+        [DisplayName("已请求启动")]
+        public bool IsRequestStart { get; set; } = false;
 
         #endregion
 
@@ -266,6 +264,20 @@ namespace BakBattery.Baking
 
                 #region 获取是否启动完成
 
+                bool isRequestStart = false;
+
+                if (!this.Plc.GetInfo(false, plcCompany, true, "I10.1", false, out isRequestStart, out msg))
+                {
+                    Error.Alert(msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+                this.IsRequestStart = !isRequestStart;
+
+                #endregion
+
+                #region 获取是否启动完成
+
                 bool isStartting = false;
 
                 if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out isStartting, out msg))
@@ -349,6 +361,40 @@ namespace BakBattery.Baking
 
                 #endregion
 
+                #region 获取位置
+                int i5 = -1;
+                if (!this.Plc.GetInfo(false, plcCompany, true, "I5", (byte)0, out i5, out msg))
+                {
+                    Error.Alert(msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+
+                if(i5 < 0)
+                {
+                    this.I5 = 0;
+                }
+                else if (i5 < 170)
+                {
+                    this.I5 = i5;
+                }
+                else
+                {
+                    this.I5 = 170;
+                }
+
+                // RobotPosition rp = RobotPosition.RobotPositionList.FirstOrDefault(r => r.XMinValue < this.I4 && r.XMaxValue > this.I4);
+                this.Position = this.I5 * 6;
+              //  this.Position = rp == null ? this.position : rp.Position;
+
+                if (this.I5 < this.PreI5) { this.MovingDirection = MovingDirection.后退; }
+                else if (this.I5 > this.PreI5) { this.MovingDirection = MovingDirection.前进; }
+                else { this.MovingDirection = MovingDirection.停止; }
+
+                this.PreI5 = this.I5;
+
+                #endregion
+
                 System.Threading.Thread.Sleep(50);
 
             }
@@ -362,7 +408,12 @@ namespace BakBattery.Baking
             return true;
         }
 
-        public bool Move(byte pos)
+        /// <summary>
+        /// 执行取放
+        /// </summary>
+        /// <param name="pos">取放位置编号</param>
+        /// <returns></returns>
+        public bool GetOrPut(byte pos)
         {
             if (!this.Plc.IsPingSuccess)
             {
@@ -448,16 +499,19 @@ namespace BakBattery.Baking
 
             var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
-            //请求启动
-            bool tmpBool1 = false;
-            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.1", true, out tmpBool1, out msg))
+            if (!this.IsRequestStart)
             {
-                Error.Alert("请求启动失败！原因：" + msg);
-                this.Plc.IsAlive = false;
-                return false;
-            }
+                //请求启动
+                bool tmpBool1 = false;
+                if (!this.Plc.GetInfo(false, plcCompany, false, "I10.1", true, out tmpBool1, out msg))
+                {
+                    Error.Alert("请求启动失败！原因：" + msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
 
-            System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(10);
+            }
 
             //是否有报警
             bool tmpBool4 = false;
@@ -467,7 +521,7 @@ namespace BakBattery.Baking
                 this.Plc.IsAlive = false;
                 return false;
             }
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(10);
 
             if (tmpBool4)
             {
@@ -479,7 +533,7 @@ namespace BakBattery.Baking
                     this.Plc.IsAlive = false;
                     return false;
                 }
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(10);
             }
 
 
@@ -492,7 +546,7 @@ namespace BakBattery.Baking
                 this.Plc.IsAlive = false;
                 return false;
             }
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(10);
 
             if (tmpBool5)
             {
@@ -504,7 +558,7 @@ namespace BakBattery.Baking
                     this.Plc.IsAlive = false;
                     return false;
                 }
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(10);
             }
 
 
@@ -519,12 +573,11 @@ namespace BakBattery.Baking
 
             if (!tmpBool2)
             {
-                Error.Alert("I1.0 == False");
                 this.Plc.IsAlive = false;
                 return false;
             }
 
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(10);
 
             //将I10.0置为ture
             bool tmpBool3 = false;
@@ -535,7 +588,7 @@ namespace BakBattery.Baking
                 return false;
             }
 
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(10);
 
             bool tmpBool6 = false;
             if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out tmpBool6, out msg))
@@ -606,6 +659,20 @@ namespace BakBattery.Baking
         {
 
             var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
+
+            if (!this.IsRequestStart)
+            {
+                //请求启动
+                bool tmpBool1 = false;
+                if (!this.Plc.GetInfo(false, plcCompany, false, "I10.1", true, out tmpBool1, out msg))
+                {
+                    Error.Alert("请求启动失败！原因：" + msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+
+                System.Threading.Thread.Sleep(10);
+            }
 
             bool tmp = false;
             if (!this.Plc.GetInfo(false, plcCompany, false, "I10.3", true, out tmp, out msg))

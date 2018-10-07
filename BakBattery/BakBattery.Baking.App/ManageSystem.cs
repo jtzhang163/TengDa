@@ -1043,7 +1043,7 @@ namespace BakBattery.Baking.App
 
             #endregion
 
-            #region 当前时间，运行状态、产量
+            #region 当前时间，运行状态、产量、任务状态
 
             lbTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             lbRunStatus.Text = Current.runStstus.ToString();
@@ -1077,6 +1077,8 @@ namespace BakBattery.Baking.App
                 Current.option.ClearYieldTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 yieldDisplay.SetClearYieldTime(DateTime.Now);
             }
+
+            this.lbTaskStatus.Text = Current.Task.Status.ToString();
 
             #endregion
 
@@ -1137,7 +1139,13 @@ namespace BakBattery.Baking.App
 
             if (Current.Robot.IsAlive)
             {
-                if (Current.Robot.IsMoving)
+                if (Current.Robot.IsPausing)
+                {
+                    this.lbRobotInfo.Text = "暂停中";
+                    this.lbRobotInfo.ForeColor = Color.Red;
+
+                }
+                else if (Current.Robot.IsMoving)
                 {
                     this.lbRobotInfo.Text = Current.Robot.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动", Current.Robot.MovingDirSign) : string.Format("移动{0}", Current.Robot.MovingDirSign);
                     this.lbRobotInfo.ForeColor = Color.Blue;
@@ -1187,6 +1195,8 @@ namespace BakBattery.Baking.App
 
             //机器人急停按钮显示逻辑
             tlpEmergencyStop.Visible = Current.Robot.IsAlive && TengDa.WF.Current.IsRunning && TengDa.WF.Current.user.Id > 0;
+
+            panelRobot.Margin = new Padding(Current.Robot.Position + 3, 3, 0, 3);
 
             #endregion
         }
@@ -1379,22 +1389,22 @@ namespace BakBattery.Baking.App
                     return;
                 }
 
-                Station dangerousStation = null;
-                int dangerousDoorCount = 0;
-                Current.feeders.ForEach(f => f.Stations.ForEach(s =>
-                {
-                    if (s.Status == StationStatus.可取 && s.DoorStatus != DoorStatus.关闭)
-                    {
-                        dangerousStation = s;
-                        dangerousDoorCount++;
-                    }
-                }));
+                //Station dangerousStation = null;
+                //int dangerousDoorCount = 0;
+                //Current.feeders.ForEach(f => f.Stations.ForEach(s =>
+                //{
+                //    if (s.Status == StationStatus.可取 && s.DoorStatus != DoorStatus.关闭)
+                //    {
+                //        dangerousStation = s;
+                //        dangerousDoorCount++;
+                //    }
+                //}));
 
-                if (Current.TaskMode == TaskMode.手动任务 && dangerousDoorCount > 0)
-                {
-                    Tip.Alert(string.Format("请先关闭{0}的门！", dangerousStation.Name));
-                    return;
-                }
+                //if (Current.TaskMode == TaskMode.手动任务 && dangerousDoorCount > 0)
+                //{
+                //    Tip.Alert(string.Format("请先关闭{0}的门！", dangerousStation.Name));
+                //    return;
+                //}
 
                 TaskReset();
                 Current.TaskMode = Current.TaskMode == TaskMode.自动任务 ? TaskMode.手动任务 : TaskMode.自动任务;
@@ -2275,14 +2285,14 @@ namespace BakBattery.Baking.App
                                 && (floor.Stations[0].Distance(Current.Robot) > 1
                                 || Current.Task.TaskId < 1 && Current.Robot.IsAlive && !Current.Robot.IsGettingOrPutting && Current.Robot.ClampStatus == ClampStatus.无夹具)))
                             {
-                                Current.ovens[i].CloseDoor(j);
+                              //  Current.ovens[i].CloseDoor(j);
                             }
                         }
                         if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤) == floor.Stations.Count)
                         {
                             if (floor.Stations[0].IsAlive && floor.Stations[1].IsAlive && floor.DoorStatus == DoorStatus.关闭)
                             {
-                                Current.ovens[i].StartBaking(j);
+                               // Current.ovens[i].StartBaking(j);
                             }
                         }
                     }
@@ -2317,7 +2327,7 @@ namespace BakBattery.Baking.App
                     if (oFloor.DoorStatus == DoorStatus.关闭 && !oFloor.IsVacuum && (!Current.Robot.IsGettingOrPutting && Current.Robot.ClampStatus == ClampStatus.无夹具
                       || oStation.RobotRelativeMove == RelativeMove.远离 && oStation.Distance(Current.Robot) > 1))
                     {
-                        oOven.OpenDoor(jj);
+                       // oOven.OpenDoor(jj);
                     }
                 }
 
@@ -2326,11 +2336,11 @@ namespace BakBattery.Baking.App
                 {
                     if (s.Id != Current.Task.FromStationId && s.Id != Current.Task.ToStationId && s.DoorStatus != DoorStatus.关闭 && !Current.Robot.IsGettingOrPutting)
                     {
-                        s.CloseDoor();
+                       // s.CloseDoor();
                     }
                     else if (s.Id == Current.Task.FromStationId && Current.Task.Status != TaskStatus.就绪 && Current.Task.Status != TaskStatus.可取 && s.DoorStatus != DoorStatus.关闭 && !Current.Robot.IsGettingOrPutting)
                     {
-                        s.CloseDoor();
+                      //  s.CloseDoor();
                     }
                 }));
             }

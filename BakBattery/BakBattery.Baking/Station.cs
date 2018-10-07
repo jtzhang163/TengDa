@@ -37,7 +37,21 @@ namespace BakBattery.Baking
         [DisplayName("工位状态")]
         public StationStatus Status
         {
-            get { return status; }
+            get
+            {
+               // if (this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.转移台)
+               // {
+                    if (this.ClampStatus == ClampStatus.无夹具)
+                    {
+                        status = StationStatus.可放;
+                    }
+                    else
+                    {
+                        status = StationStatus.可取;
+                    }
+               // }
+                return status;
+            }
             set
             {
                 if (status != value && (value == StationStatus.可取 || value == StationStatus.可放))
