@@ -956,6 +956,8 @@ namespace BakBattery.Baking.App
 
             #region 缓存架
 
+            Current.Cache.IsAlive = Current.Cache.IsEnable;
+
             Current.Cache.Stations.ForEach(s => s.IsAlive = s.IsEnable && Current.Cache.IsAlive);
 
             this.tlpCache.BackColor = Current.Cache.IsAlive ? Color.White : SystemColors.Control;
@@ -978,15 +980,15 @@ namespace BakBattery.Baking.App
                 }
                 else
                 {
-
                     lbCacheClampCode[j].Visible = station.ClampStatus != ClampStatus.无夹具;
-
                     if (!station.IsAlive)
                     {
+                        lbCacheClampCode[j].Visible = true;
                         lbCacheClampCode[j].BackColor = SystemColors.Control;
                     }
                     else
                     {
+                        lbCacheClampCode[j].Visible = station.ClampStatus != ClampStatus.无夹具;
                         switch (station.ClampStatus)
                         {
                             case ClampStatus.满夹具: lbCacheClampCode[j].BackColor = Color.LimeGreen; break;
@@ -1003,7 +1005,9 @@ namespace BakBattery.Baking.App
 
             #region 旋转台
 
-            Current.Transfer.Station.IsAlive = Current.Transfer.IsAlive;
+            Current.Transfer.IsAlive = Current.Transfer.IsEnable;
+
+            Current.Transfer.Station.IsAlive = Current.Transfer.IsAlive && Current.Transfer.Station.IsEnable;
 
             this.tlpTransfer.BackColor = Current.Transfer.IsAlive ? Color.White : SystemColors.Control;
 
@@ -1023,14 +1027,14 @@ namespace BakBattery.Baking.App
             else
             {
 
-                lbTransferClampCode.Visible = Current.Transfer.Station.ClampStatus != ClampStatus.无夹具;
-
                 if (!Current.Transfer.Station.IsAlive)
                 {
+                    lbTransferClampCode.Visible = true;
                     lbTransferClampCode.BackColor = SystemColors.Control;
                 }
                 else
                 {
+                    lbTransferClampCode.Visible = Current.Transfer.Station.ClampStatus != ClampStatus.无夹具;
                     switch (Current.Transfer.Station.ClampStatus)
                     {
                         case ClampStatus.满夹具: lbTransferClampCode.BackColor = Color.LimeGreen; break;

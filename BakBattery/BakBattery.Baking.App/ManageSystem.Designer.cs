@@ -4644,6 +4644,7 @@
             this.panelRobot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelRobot.ContextMenuStrip = this.cmsRobot;
             this.panelRobot.Controls.Add(this.tableLayoutPanel21);
+            this.panelRobot.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelRobot.Location = new System.Drawing.Point(3, 3);
             this.panelRobot.Name = "panelRobot";
             this.panelRobot.Size = new System.Drawing.Size(71, 52);
@@ -5109,7 +5110,7 @@
             this.tableLayoutPanel33.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.35519F));
             this.tableLayoutPanel33.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.64481F));
             this.tableLayoutPanel33.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 822F));
-            this.tableLayoutPanel33.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel33.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tableLayoutPanel33.Controls.Add(this.lbTaskStatus, 1, 0);
             this.tableLayoutPanel33.Controls.Add(this.label67, 0, 0);
             this.tableLayoutPanel33.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -5130,7 +5131,7 @@
             this.lbTaskStatus.Location = new System.Drawing.Point(78, 0);
             this.lbTaskStatus.Margin = new System.Windows.Forms.Padding(0);
             this.lbTaskStatus.Name = "lbTaskStatus";
-            this.lbTaskStatus.Size = new System.Drawing.Size(95, 20);
+            this.lbTaskStatus.Size = new System.Drawing.Size(94, 20);
             this.lbTaskStatus.TabIndex = 14;
             this.lbTaskStatus.Text = "闲置";
             this.lbTaskStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

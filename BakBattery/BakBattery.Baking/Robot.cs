@@ -138,7 +138,7 @@ namespace BakBattery.Baking
         /// <summary>
         /// 已请求启动
         /// </summary>
-        [DisplayName("已请求启动")]
+        [ReadOnly(true), DisplayName("已请求启动")]
         public bool IsRequestStart { get; set; } = false;
 
         #endregion

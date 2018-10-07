@@ -46,7 +46,7 @@ namespace BakBattery.Baking
             {
                 if (value == TriLamp.Red)
                 {
-                    this.AlarmStr = "设备报警...";
+                    this.AlarmStr = this.Name + "报警";
                 }
                 else
                 {
