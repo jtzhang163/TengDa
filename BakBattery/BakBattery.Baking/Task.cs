@@ -1017,6 +1017,23 @@ namespace BakBattery.Baking
         }
 
         /// <summary>
+        /// 任务名称
+        /// </summary>
+        [DisplayName("任务名称")]
+        public string TaskName
+        {
+            get
+            {
+                if (Current.TaskMode == TaskMode.手动任务)
+                {
+                    return "手动任务";
+                }
+                var task = Task.TaskList.FirstOrDefault(t => t.Id == this.TaskId);
+                return task == null ? "尚未生成任务" : task.Description;
+            }
+        }
+
+        /// <summary>
         /// 目的工位名称
         /// </summary>
         [DisplayName("目的工位名称")]

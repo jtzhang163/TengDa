@@ -1082,9 +1082,8 @@ namespace BakBattery.Baking.App
                 yieldDisplay.SetClearYieldTime(DateTime.Now);
             }
 
-            taskState1.UpdateState();
-           // this.lbTaskStatus.Text = Current.Task.Status.ToString();
-
+            // this.lbTaskStatus.Text = Current.Task.Status.ToString();
+            this.taskInfo1.UpdateInfo();
             #endregion
 
             #region MES
@@ -2088,7 +2087,7 @@ namespace BakBattery.Baking.App
                 if (Current.feeders[i].AlreadyGetAllInfo)
                 {
                     #region 夹具扫码逻辑
-                    if (Current.feeders[i].ClampScaner.IsEnable && Current.feeders[i].ClampScaner.IsReady)
+                    if (Current.feeders[i].ClampScaner.IsEnable && Current.feeders[i].ClampScaner.CanScan)
                     {
                         Current.feeders[i].Stations.ForEach(s =>
                         {
@@ -3739,7 +3738,7 @@ namespace BakBattery.Baking.App
         private void tsmManuStation_DropDownOpening(object sender, EventArgs e)
         {
             string ManuFlag = string.Empty;
-            bool isGet = false, isPut = false, isMoveTo = false; // (sender as ToolStripItem).Name.Contains("Get");
+            bool isGet = false, isPut = false; // (sender as ToolStripItem).Name.Contains("Get");
 
             if ((sender as ToolStripItem).Name.Contains("Get"))
             {
@@ -3750,11 +3749,6 @@ namespace BakBattery.Baking.App
             {
                 isPut = true;
                 ManuFlag = "Put";
-            }
-            else if ((sender as ToolStripItem).Name.Contains("MoveTo"))
-            {
-                isMoveTo = true;
-                ManuFlag = "MoveTo";
             }
 
             List<ToolStripItem> tsiStations = new List<ToolStripItem>();

@@ -535,10 +535,6 @@ namespace Outstanding.Dispatcher
         [DisplayName("是否可夹具扫码")]
         public bool IsClampScanReady { get; set; }
 
-        [ReadOnly(true)]
-        [DisplayName("是否可夹具扫码")]
-        public bool IsBatteryScanReady { get; set; }
-
 
         [ReadOnly(true)]
         [DisplayName("温度数组")]

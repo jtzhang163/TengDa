@@ -42,11 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TaskState.cs">
+    <Compile Include="TaskInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TaskState.Designer.cs">
-      <DependentUpon>TaskState.cs</DependentUpon>
+    <Compile Include="TaskInfo.Designer.cs">
+      <DependentUpon>TaskInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="YieldDisplay.cs">
       <SubType>UserControl</SubType>
@@ -58,8 +58,8 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="TaskState.resx">
-      <DependentUpon>TaskState.cs</DependentUpon>
+    <EmbeddedResource Include="TaskInfo.resx">
+      <DependentUpon>TaskInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="YieldDisplay.resx">
       <DependentUpon>YieldDisplay.cs</DependentUpon>

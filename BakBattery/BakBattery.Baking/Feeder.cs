@@ -444,7 +444,7 @@ namespace BakBattery.Baking
                     return false;
                 }
 
-                int[] iOut = new int[4];
+                int[] iOut = new int[6];
                 output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
                 for (int j = 0; j < iOut.Length; j++)
                 {
@@ -508,6 +508,8 @@ namespace BakBattery.Baking
                     {
                         this.Stations[j].Status = StationStatus.不可用;
                     }
+
+                    this.Stations[j].IsClampScanReady = iOut[j + 4] == 1;
                 }
 
                 switch (iOut[3])
@@ -517,6 +519,22 @@ namespace BakBattery.Baking
                     case 3: this.TriLamp = TriLamp.Red; break;
                     default: this.TriLamp = TriLamp.Unknown; break;
                 }
+
+
+                if (iOut[4] == 1 || iOut[5] == 1)
+                {
+                    if (!this.ClampScaner.IsReady)
+                    {
+                        this.ClampScaner.CanScan = true;
+                    }
+                    this.ClampScaner.IsReady = true;
+                }
+                else
+                {
+                    this.ClampScaner.IsReady = false;
+                    this.ClampScaner.CanScan = false;
+                }
+
 
                 //switch (iOut[5])
                 //{

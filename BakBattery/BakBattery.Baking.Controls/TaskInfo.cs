@@ -10,10 +10,11 @@ using System.Windows.Forms;
 
 namespace BakBattery.Baking.Controls
 {
-    public partial class TaskState : UserControl
+    public partial class TaskInfo : UserControl
     {
         Label[] state = new Label[7];
-        public TaskState()
+
+        public TaskInfo()
         {
             InitializeComponent();
             for (int i = 0; i < state.Length; i++)
@@ -22,7 +23,7 @@ namespace BakBattery.Baking.Controls
             }
         }
 
-        public void UpdateState()
+        public void UpdateInfo()
         {
             for (int i = 0; i < state.Length; i++)
             {
@@ -38,6 +39,10 @@ namespace BakBattery.Baking.Controls
                     state[i].ForeColor = Color.Green;
                 }
             }
+            lbTaskName.Text = Current.Task.TaskName;
+            lbFromStation.Text = Current.Task.FromStationName;
+            lbToStation.Text = Current.Task.ToStationName;
+
 
         }
     }
