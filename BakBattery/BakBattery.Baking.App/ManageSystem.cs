@@ -1082,7 +1082,8 @@ namespace BakBattery.Baking.App
                 yieldDisplay.SetClearYieldTime(DateTime.Now);
             }
 
-            this.lbTaskStatus.Text = Current.Task.Status.ToString();
+            taskState1.UpdateState();
+           // this.lbTaskStatus.Text = Current.Task.Status.ToString();
 
             #endregion
 

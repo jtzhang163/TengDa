@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace BakBattery.Baking.Controls
+{
+    public partial class TaskState : UserControl
+    {
+        Label[] state = new Label[7];
+        public TaskState()
+        {
+            InitializeComponent();
+            for (int i = 0; i < state.Length; i++)
+            {
+                state[i] = (Label)(this.Controls.Find("state" + (i + 1), true)[0]);
+            }
+        }
+
+        public void UpdateState()
+        {
+            for (int i = 0; i < state.Length; i++)
+            {
+
+                if (state[i].Text == Current.Task.Status.ToString())
+                {
+                    state[i].BackColor = Color.Green;
+                    state[i].ForeColor = Color.White;
+                }
+                else
+                {
+                    state[i].BackColor = Color.LightGray;
+                    state[i].ForeColor = Color.Green;
+                }
+            }
+
+        }
+    }
+}

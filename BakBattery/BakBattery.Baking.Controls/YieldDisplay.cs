@@ -15,6 +15,7 @@ namespace BakBattery.Baking.Controls
         public YieldDisplay()
         {
             InitializeComponent();
+
         }
 
 
