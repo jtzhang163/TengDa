@@ -2118,6 +2118,32 @@ namespace BakBattery.Baking
             }
         }
 
+        private float robotPositionAmplify = -1;
+        /// <summary>
+        /// 机器人X轴位置放大倍数
+        /// </summary>
+        [DisplayName("机器人X轴位置放大倍数")]
+        [Category("机器人")]
+        public float RobotPositionAmplify
+        {
+            get
+            {
+                if (robotPositionAmplify < 0)
+                {
+                    robotPositionAmplify = _Convert.StrToFloat(TengDa.WF.Option.GetOption("RobotPositionAmplify"), 6);
+                }
+                return robotPositionAmplify;
+            }
+            set
+            {
+                if (value != robotPositionAmplify)
+                {
+                    TengDa.WF.Option.SetOption("RobotPositionAmplify", value.ToString());
+                    robotPositionAmplify = value;
+                }
+            }
+        }
+
         //private string xxxXXXXXXXXXXXX = string.Empty;
         ///// <summary>
         ///// YYYYYYYYYYYYYYYYY

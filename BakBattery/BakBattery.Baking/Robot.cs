@@ -272,7 +272,7 @@ namespace BakBattery.Baking
                     this.Plc.IsAlive = false;
                     return false;
                 }
-                this.IsRequestStart = !isRequestStart;
+                this.IsRequestStart = isRequestStart;
 
                 #endregion
 
@@ -384,7 +384,7 @@ namespace BakBattery.Baking
                 }
 
                 // RobotPosition rp = RobotPosition.RobotPositionList.FirstOrDefault(r => r.XMinValue < this.I4 && r.XMaxValue > this.I4);
-                this.Position = this.I5 * 6;
+                this.Position = (int)(this.I5 * Current.option.RobotPositionAmplify);
               //  this.Position = rp == null ? this.position : rp.Position;
 
                 if (this.I5 < this.PreI5) { this.MovingDirection = MovingDirection.后退; }

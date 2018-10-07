@@ -5110,7 +5110,7 @@
             this.tableLayoutPanel33.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.35519F));
             this.tableLayoutPanel33.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.64481F));
             this.tableLayoutPanel33.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 822F));
-            this.tableLayoutPanel33.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel33.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel33.Controls.Add(this.lbTaskStatus, 1, 0);
             this.tableLayoutPanel33.Controls.Add(this.label67, 0, 0);
             this.tableLayoutPanel33.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -5128,10 +5128,10 @@
             this.lbTaskStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbTaskStatus.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTaskStatus.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbTaskStatus.Location = new System.Drawing.Point(78, 0);
+            this.lbTaskStatus.Location = new System.Drawing.Point(77, 0);
             this.lbTaskStatus.Margin = new System.Windows.Forms.Padding(0);
             this.lbTaskStatus.Name = "lbTaskStatus";
-            this.lbTaskStatus.Size = new System.Drawing.Size(94, 20);
+            this.lbTaskStatus.Size = new System.Drawing.Size(93, 20);
             this.lbTaskStatus.TabIndex = 14;
             this.lbTaskStatus.Text = "闲置";
             this.lbTaskStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5146,7 +5146,7 @@
             this.label67.Location = new System.Drawing.Point(0, 0);
             this.label67.Margin = new System.Windows.Forms.Padding(0);
             this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(78, 20);
+            this.label67.Size = new System.Drawing.Size(77, 20);
             this.label67.TabIndex = 13;
             this.label67.Text = "任务状态：";
             this.label67.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -7959,7 +7959,7 @@
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 467F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 505F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 586F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
             this.tableLayoutPanel1.Controls.Add(this.tabMain, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbRunStatus, 3, 0);
@@ -7993,7 +7993,7 @@
             this.tlpEmergencyStop.Controls.Add(this.label57, 0, 1);
             this.tlpEmergencyStop.Controls.Add(this.pbEmergencyStop, 0, 0);
             this.tlpEmergencyStop.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tlpEmergencyStop.Location = new System.Drawing.Point(609, 3);
+            this.tlpEmergencyStop.Location = new System.Drawing.Point(528, 3);
             this.tlpEmergencyStop.Name = "tlpEmergencyStop";
             this.tlpEmergencyStop.RowCount = 2;
             this.tlpEmergencyStop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.95652F));
