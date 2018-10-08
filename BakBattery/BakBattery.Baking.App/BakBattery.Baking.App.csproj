@@ -111,6 +111,7 @@
     <None Include="Resources\Reset_Lime.png" />
     <None Include="Resources\Continue_Green.png" />
     <None Include="Resources\emergency_stop.png" />
+    <None Include="Resources\maintenance.png" />
     <Content Include="Resources\Robot_Track_Lime.PNG" />
     <Content Include="TengDa.ico" />
   </ItemGroup>

@@ -41,7 +41,8 @@
     public enum ScanerCompany
     {
         Unknown = 0,
-        Datalogic = 1
+        Datalogic = 1,
+        KEYENCE = 2
     }
 
     /// <summary>

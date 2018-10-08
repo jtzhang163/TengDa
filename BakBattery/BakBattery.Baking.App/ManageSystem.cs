@@ -1047,7 +1047,7 @@ namespace BakBattery.Baking.App
 
             #endregion
 
-            #region 当前时间，运行状态、产量、任务状态
+            #region 当前时间，运行状态、产量、任务信息
 
             lbTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             lbRunStatus.Text = Current.runStstus.ToString();
@@ -4429,6 +4429,7 @@ namespace BakBattery.Baking.App
             this.tsmRobotPause.Enabled = Current.Robot.IsAlive && !Current.Robot.IsPausing;
             this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing;
             this.tsmRobotAlarmReset.Enabled = Current.Robot.IsAlive && Current.Robot.IsAlarming;
+            this.tsmRobotMaintenance.Enabled = Current.Robot.IsAlive;
 
             this.tsmManuGetStation.Enabled = Current.Robot.IsAlive;
             this.tsmManuPutStation.Enabled = Current.Robot.IsAlive;
@@ -4439,6 +4440,19 @@ namespace BakBattery.Baking.App
         {
             var msg = string.Empty;
             if (Current.Robot.Stop(out msg))
+            {
+                Tip.Alert(Current.Robot.Name + "急停成功！");
+            }
+            else
+            {
+                Error.Alert(msg);
+            }
+        }
+
+        private void tsmRobotMaintenance_Click(object sender, EventArgs e)
+        {
+            var msg = string.Empty;
+            if (Current.Robot.Maintenance(out msg))
             {
                 Tip.Alert(Current.Robot.Name + "急停成功！");
             }

@@ -452,35 +452,7 @@ namespace BakBattery.Baking
                     return false;
                 }
 
-                LogHelper.WriteInfo(string.Format("给机器人发送到位取放指令------{0}：{1}  ", Current.option.RobotToPositionAdd, pos));
-            }
-            catch (Exception ex)
-            {
-                Error.Alert(ex);
-            }
-
-            return true;
-        }
-
-        public bool PutClampIsNotOkAlarm()
-        {
-            if (!this.Plc.IsPingSuccess)
-            {
-                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
-                return false;
-            }
-
-            string msg = string.Empty;
-            try
-            {
-                bool m = false;
-                if (!this.Plc.GetInfo(false, PlcCompany.Mitsubishi, false, Current.option.PutClampIsNotOkAlarmAdd, true, out m, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                LogHelper.WriteInfo(string.Format("给机器人发送报警指令------{0}：true  ", Current.option.PutClampIsNotOkAlarmAdd));
+                LogHelper.WriteInfo(string.Format("给机器人发送到位取放指令------{0}：{1}  ", "Q4", pos));
             }
             catch (Exception ex)
             {
@@ -696,6 +668,27 @@ namespace BakBattery.Baking
 
             bool tmp = false;
             if (!this.Plc.GetInfo(false, plcCompany, false, "I10.1", false, out tmp, out msg))
+            {
+                Error.Alert("机器人急停失败！原因：" + msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// 机器人维护保养
+        /// </summary>
+        /// <returns></returns>
+        public bool Maintenance(out string msg)
+        {
+
+            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
+
+            bool tmp = false;
+            if (!this.Plc.GetInfo(false, plcCompany, false, "000", false, out tmp, out msg))
             {
                 Error.Alert("机器人急停失败！原因：" + msg);
                 this.Plc.IsAlive = false;
