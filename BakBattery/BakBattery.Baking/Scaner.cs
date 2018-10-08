@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
-using System.IO.Ports;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 using TengDa;
 using TengDa.WF;
 
@@ -145,23 +141,20 @@ namespace BakBattery.Baking
         }
         #endregion
 
-        public bool StartClampScan(out string code, out string msg)
-        {
-            return this.GetInfo(Current.option.StartClampScan, ClampScanerTimeout, out code, out msg);
-        }
+        #region 方法
 
-        public bool StopClampScan(out string msg)
-        {
-            return this.SetInfo(Current.option.StopClampScan, out msg);
-        }
-
-        public ScanResult BatteryScan(out string code, out string msg)
+        public ScanResult StartBatteryScan(out string code, out string msg)
         {
             code = string.Empty;
             string output = string.Empty;
 
             if (!GetInfo(Current.option.BatteryScanerTriggerStr, 200, out output, out msg))
             {
+                if (msg.Contains("超时"))
+                {
+                    StopBatteryScan();
+                    return ScanResult.Timeout;
+                }
                 return ScanResult.Error;
             }
 
@@ -186,5 +179,59 @@ namespace BakBattery.Baking
             msg = "扫码枪返回字符串无法识别！";
             return ScanResult.Unknown;
         }
+
+        public ScanResult StartClampScan(out string code, out string msg)
+        {
+            code = string.Empty;
+            string output = string.Empty;
+
+            if (!GetInfo(Current.option.ClampScanerTriggerStr, 200, out output, out msg))
+            {
+                if (msg.Contains("超时"))
+                {
+                    StopClampScan();
+                    return ScanResult.Timeout;
+                }
+                return ScanResult.Error;
+            }
+
+            if (string.IsNullOrEmpty(output))
+            {
+                msg = "指定时间未接收到串口数据！";
+                return ScanResult.Error;
+            }
+
+            code = Regex.Match(output, Current.option.ClampCodeRegularExpression).Value;
+            if (!string.IsNullOrEmpty(code))
+            {
+                return ScanResult.OK;
+            }
+
+            code = Regex.Match(output, Current.option.ClampScanerFailedStr).Value;
+            if (!string.IsNullOrEmpty(code))
+            {
+                return ScanResult.NG;
+            }
+
+            msg = "扫码枪返回字符串无法识别！";
+            return ScanResult.Unknown;
+        }
+
+        public void StopBatteryScan()
+        {
+            string output = string.Empty;
+            string msg = string.Empty;
+            SetInfo(Current.option.BatteryScanerStopStr, out msg);
+        }
+
+        public void StopClampScan()
+        {
+            string output = string.Empty;
+            string msg = string.Empty;
+            SetInfo(Current.option.ClampScanerStopStr, out msg);
+        }
+
+
+        #endregion
     }
 }

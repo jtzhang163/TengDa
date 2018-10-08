@@ -72,7 +72,6 @@ namespace TengDa.WF.Terminals
             }
         }
 
-        [Description("端口")]
         [DisplayName("端口")]
         [Category("基本设置")]
         public int Port
@@ -130,7 +129,7 @@ namespace TengDa.WF.Terminals
 
         private MelsecNet melsec_net = new MelsecNet();
 
-        private SiemensTcpNet siemens_net = null;// = new SiemensTcpNet();
+        private SiemensTcpNet siemens_net = null;
 
         #endregion
 
@@ -219,6 +218,11 @@ namespace TengDa.WF.Terminals
         #endregion
 
         #region 通信
+
+        private bool connectSuccess = false;
+
+        private string getStr = string.Empty;
+
         public bool GetInfo(string input, out string output, out string msg)
         {
             return GetInfo(true, 0, input, out output, out msg);
@@ -234,14 +238,6 @@ namespace TengDa.WF.Terminals
             return GetInfo(checkPingSuccess, 0, input, out output, out msg);
         }
 
-        /// <summary>
-        /// 避免每次调用IsPingSuccess出现异常
-        /// </summary>
-        /// <param name="checkPingSuccess"></param>
-        /// <param name="input"></param>
-        /// <param name="output"></param>
-        /// <param name="msg"></param>
-        /// <returns></returns>
         public bool GetInfo(bool checkPingSuccess, int readtimeout, string input, out string output, out string msg)
         {
             try
@@ -334,21 +330,11 @@ namespace TengDa.WF.Terminals
             return false;
         }
 
-        public bool GetInfo(Byte input, int readtimeout, out string output, out string msg)
+        public bool GetInfo(byte input, int readtimeout, out string output, out string msg)
         {
             return GetInfo(true, input, readtimeout, out output, out msg);
         }
 
-        private bool connectSuccess = false;
-        private string getStr = string.Empty;
-        /// <summary>
-        /// 避免每次调用IsPingSuccess出现异常
-        /// </summary>
-        /// <param name="checkPingSuccess"></param>
-        /// <param name="input"></param>
-        /// <param name="output"></param>
-        /// <param name="msg"></param>
-        /// <returns></returns>
         public bool GetInfo(bool checkPingSuccess, byte input, int readtimeout, out string output, out string msg)
         {
 
@@ -430,25 +416,11 @@ namespace TengDa.WF.Terminals
             }
         }
 
-        /// <summary>
-        /// 避免每次调用IsPingSuccess出现异常
-        /// </summary>
-        /// <param name="checkPingSuccess"></param>
-        /// <param name="input"></param>
-        /// <param name="msg"></param>
-        /// <returns></returns>
         public bool SetInfo(byte input, out string msg)
         {
-            return SetInfo(true, input, out msg);
+            return SetInfo(false, input, out msg);
         }
 
-        /// <summary>
-        /// 避免每次调用IsPingSuccess出现异常
-        /// </summary>
-        /// <param name="checkPingSuccess"></param>
-        /// <param name="input"></param>
-        /// <param name="msg"></param>
-        /// <returns></returns>
         public bool SetInfo(bool checkPingSuccess, byte input, out string msg)
         {
             try
@@ -470,6 +442,45 @@ namespace TengDa.WF.Terminals
                 }
 
                 Socket.Send(new byte[] { input });
+                msg = string.Empty;
+                IsAlive = true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                msg = string.Format("和{0}通信出现异常！原因：{1}", Name, ex.Message);
+            }
+
+            IsAlive = false;
+            return false;
+        }
+
+        public bool SetInfo(string input, out string msg)
+        {
+            return SetInfo(false, input, out msg);
+        }
+
+        public bool SetInfo(bool checkPingSuccess, string input, out string msg)
+        {
+            try
+            {
+                if (checkPingSuccess)
+                {
+                    if (!IsPingSuccess)
+                    {
+                        IsAlive = false;
+                        msg = string.Format("无法连接到【{0}】，IP：{1}", this.Name, this.IP);
+                        return false;
+                    }
+                }
+                if (!Socket.Connected)
+                {
+                    socket = null;
+                    socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                    TcpConnect(out msg);
+                }
+                Byte[] sendBytes = Encoding.UTF8.GetBytes(input + "\r");
+                Socket.Send(sendBytes);
                 msg = string.Empty;
                 IsAlive = true;
                 return true;

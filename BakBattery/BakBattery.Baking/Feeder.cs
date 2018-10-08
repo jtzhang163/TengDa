@@ -602,58 +602,6 @@ namespace BakBattery.Baking
             return true;
         }
 
-        /// <summary>
-        /// 开门指令
-        /// </summary>
-        /// <param name="j">工位序号</param>
-        /// <returns></returns>
-        public void OpenDoor(int j)
-        {
-
-            if (!this.Plc.IsPingSuccess)
-            {
-                IsAlive = false;
-                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
-                return;
-            }
-
-            this.Stations[j].toOpenDoor = true;
-        }
-
-        /// <summary>
-        /// 关门指令
-        /// </summary>
-        /// <param name="j">工位序号</param>
-        /// <returns></returns>
-        public void CloseDoor(int j)
-        {
-            if (!this.Plc.IsPingSuccess)
-            {
-                IsAlive = false;
-                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
-                return;
-            }
-            this.Stations[j].toCloseDoor = true;
-        }
-
-        public bool SetScanClampResultOK(out string msg)
-        {
-            string input = Current.option.ScanClampCodeOK;
-            string output = string.Empty;
-            if (this.Plc.GetInfo(input, out output, out msg))
-            {
-                if (output.Substring(3, 1) == "$")
-                {
-                    return true;
-                }
-                else
-                {
-                    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", input, output));
-                }
-            }
-            return false;
-        }
-
         public bool SetScanBatteryResult(ScanResult scanResult, out string msg)
         {
             string input = string.Empty;
@@ -665,9 +613,32 @@ namespace BakBattery.Baking
             {
                 input = Current.option.ScanBatteryCodeNG;
             }
-            else
+
+            string output = string.Empty;
+            if (this.Plc.GetInfo(input, out output, out msg))
             {
-                throw new ArgumentOutOfRangeException("bool SetScanResult(ScanResult scanResult) 参数值与预期不符！");
+                if (output.Substring(3, 1) == "$")
+                {
+                    return true;
+                }
+                else
+                {
+                    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", input, output));
+                }
+            }
+            return false;
+        }
+
+        public bool SetScanClampResult(ScanResult scanResult, out string msg)
+        {
+            string input = string.Empty;
+            if (scanResult == ScanResult.OK)
+            {
+                input = Current.option.ScanClampCodeOK;
+            }
+            else if (scanResult == ScanResult.NG)
+            {
+                input = Current.option.ScanClampCodeNG;
             }
 
             string output = string.Empty;
@@ -684,6 +655,7 @@ namespace BakBattery.Baking
             }
             return false;
         }
+
         #endregion
 
     }

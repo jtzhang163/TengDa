@@ -487,8 +487,12 @@ namespace BakBattery.Baking.App
             });
             cbSampleSelectedFloor.SelectedIndex = jjj;
 
-            Current.feeders.ForEach(f => cbBatteryScaner.Items.Add(f.BatteryScaner.Name));
+            Current.feeders.ForEach(f => {
+                cbBatteryScaner.Items.Add(f.BatteryScaner.Name);
+                cbClampScaner.Items.Add(f.ClampScaner.Name);
+            });
             cbBatteryScaner.SelectedIndex = 0;
+            cbClampScaner.SelectedIndex = 0;
         }
 
         private void InitMES()
@@ -2094,8 +2098,8 @@ namespace BakBattery.Baking.App
                             if (s.IsClampScanReady)
                             {
                                 string code = string.Empty;
-
-                                if (Current.feeders[i].ClampScaner.StartClampScan(out code, out msg))
+                                ScanResult result = Current.feeders[i].ClampScaner.StartClampScan(out code, out msg);
+                                if (result == ScanResult.OK)
                                 {
                                     this.BeginInvoke(new MethodInvoker(() =>
                                     {
@@ -2105,15 +2109,19 @@ namespace BakBattery.Baking.App
                                     s.Clamp.Code = code;
                                     s.Clamp.ScanTime = DateTime.Now;
 
+                                    if (!Current.feeders[i].SetScanClampResult(ScanResult.OK, out msg))
+                                    {
+                                        Error.Alert(msg);
+                                    }
+                                }
+                                else if (result == ScanResult.NG)
+                                {
+                                    if (!Current.feeders[i].SetScanClampResult(ScanResult.NG, out msg))
+                                    {
+                                        Error.Alert(msg);
+                                    }
                                 }
                                 else if (!string.IsNullOrEmpty(msg))
-                                {
-                                    Error.Alert(msg);
-                                }
-
-                                Current.feeders[i].ClampScaner.StopClampScan(out msg);
-
-                                if (!Current.feeders[i].SetScanClampResultOK(out msg))
                                 {
                                     Error.Alert(msg);
                                 }
@@ -2128,7 +2136,7 @@ namespace BakBattery.Baking.App
                     {
 
                         string code = string.Empty;
-                        ScanResult result = Current.feeders[i].BatteryScaner.BatteryScan(out code, out msg);
+                        ScanResult result = Current.feeders[i].BatteryScaner.StartBatteryScan(out code, out msg);
                         if (result == ScanResult.OK)
                         {
                             this.BeginInvoke(new MethodInvoker(() =>
@@ -2151,7 +2159,7 @@ namespace BakBattery.Baking.App
                         else if (result == ScanResult.NG)
                         {
                             //再扫一次
-                            result = Current.feeders[i].BatteryScaner.BatteryScan(out code, out msg);
+                            result = Current.feeders[i].BatteryScaner.StartBatteryScan(out code, out msg);
                             if (result == ScanResult.OK)
                             {
                                 this.BeginInvoke(new MethodInvoker(() =>
@@ -4218,35 +4226,38 @@ namespace BakBattery.Baking.App
         {
             string code = string.Empty;
             string msg = string.Empty;
-            if (Current.feeders[cbClampScaner.SelectedIndex].ClampScaner.StartClampScan(out code, out msg))
+            ScanResult scanResult = Current.feeders[cbClampScaner.SelectedIndex].ClampScaner.StartClampScan(out code, out msg);
+            if (scanResult == ScanResult.OK)
             {
                 Tip.Alert(code);
             }
+            else if (scanResult == ScanResult.NG)
+            {
+                Tip.Alert("扫码返回NG！");
+            }
             else
             {
                 Error.Alert(msg);
             }
-
         }
 
-        private void btnClampScanStop_Click(object sender, EventArgs e)
+        private void btnClampScanOkBackToFeeder_Click(object sender, EventArgs e)
         {
             string msg = string.Empty;
-            if (Current.feeders[cbClampScaner.SelectedIndex].ClampScaner.StopClampScan(out msg))
+            if (!Current.feeders[cbClampScaner.SelectedIndex].SetScanClampResult(ScanResult.OK, out msg))
+            {
+                Error.Alert(msg);
+            }
+            else
             {
                 Tip.Alert("OK");
             }
-            else
-            {
-                Error.Alert(msg);
-            }
-
         }
 
-        private void btnScanOkBackToFeeder_Click(object sender, EventArgs e)
+        private void btnClampScanNgBackToFeeder_Click(object sender, EventArgs e)
         {
             string msg = string.Empty;
-            if (Current.feeders[cbClampScaner.SelectedIndex].SetScanClampResultOK(out msg))
+            if (!Current.feeders[cbClampScaner.SelectedIndex].SetScanClampResult(ScanResult.NG, out msg))
             {
                 Error.Alert(msg);
             }
@@ -4264,7 +4275,7 @@ namespace BakBattery.Baking.App
         {
             string code = string.Empty;
             string msg = string.Empty;
-            ScanResult scanResult = Current.feeders[cbBatteryScaner.SelectedIndex].BatteryScaner.BatteryScan(out code, out msg);
+            ScanResult scanResult = Current.feeders[cbBatteryScaner.SelectedIndex].BatteryScaner.StartBatteryScan(out code, out msg);
             if (scanResult == ScanResult.OK)
             {
                 Tip.Alert(code);
@@ -4282,7 +4293,7 @@ namespace BakBattery.Baking.App
         private void btnBatteryScanOkBackToFeeder_Click(object sender, EventArgs e)
         {
             string msg = string.Empty;
-            if (!Current.feeders[cbClampScaner.SelectedIndex].SetScanBatteryResult(ScanResult.OK, out msg))
+            if (!Current.feeders[cbBatteryScaner.SelectedIndex].SetScanBatteryResult(ScanResult.OK, out msg))
             {
                 Error.Alert(msg);
             }
@@ -4295,7 +4306,7 @@ namespace BakBattery.Baking.App
         private void btnBatteryScanNgBackToFeeder_Click(object sender, EventArgs e)
         {
             string msg = string.Empty;
-            if (!Current.feeders[cbClampScaner.SelectedIndex].SetScanBatteryResult(ScanResult.NG, out msg))
+            if (!Current.feeders[cbBatteryScaner.SelectedIndex].SetScanBatteryResult(ScanResult.NG, out msg))
             {
                 Error.Alert(msg);
             }
@@ -4306,6 +4317,8 @@ namespace BakBattery.Baking.App
         }
 
         #endregion
+
+        #region 水含量手动输入
 
         private void cbSampleSelected_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -4371,6 +4384,21 @@ namespace BakBattery.Baking.App
             }
         }
 
+        #endregion
+
+        #region 机器人手动操作
+
+        private void cmsRobot_Opening(object sender, CancelEventArgs e)
+        {
+            this.tsmRobotStart.Enabled = Current.Robot.IsAlive && !Current.Robot.IsStartting;
+            this.tsmRobotPause.Enabled = Current.Robot.IsAlive && !Current.Robot.IsPausing;
+            this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing;
+            this.tsmRobotAlarmReset.Enabled = Current.Robot.IsAlive && Current.Robot.IsAlarming;
+            this.tsmRobotMaintenance.Enabled = Current.Robot.IsAlive;
+            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive;
+            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive;
+        }
+
         private void tsmRobotStart_Click(object sender, EventArgs e)
         {
             var msg = string.Empty;
@@ -4423,19 +4451,6 @@ namespace BakBattery.Baking.App
             }
         }
 
-        private void cmsRobot_Opening(object sender, CancelEventArgs e)
-        {
-            this.tsmRobotStart.Enabled = Current.Robot.IsAlive && !Current.Robot.IsStartting;
-            this.tsmRobotPause.Enabled = Current.Robot.IsAlive && !Current.Robot.IsPausing;
-            this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing;
-            this.tsmRobotAlarmReset.Enabled = Current.Robot.IsAlive && Current.Robot.IsAlarming;
-            this.tsmRobotMaintenance.Enabled = Current.Robot.IsAlive;
-
-            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive;
-            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive;
-
-        }
-
         private void pbEmergencyStop_Click(object sender, EventArgs e)
         {
             var msg = string.Empty;
@@ -4461,5 +4476,7 @@ namespace BakBattery.Baking.App
                 Error.Alert(msg);
             }
         }
+
+        #endregion
     }
 }

@@ -248,6 +248,7 @@ namespace BakBattery.Baking
             }
         }
 
+        #region 扫码枪
 
         private string batteryScanerTriggerStr = string.Empty;
         /// <summary>
@@ -330,6 +331,145 @@ namespace BakBattery.Baking
                 }
             }
         }
+
+
+        private string clampScanerTriggerStr = string.Empty;
+        /// <summary>
+        /// 夹具扫码枪触发字符串
+        /// </summary>
+        [Description("夹具扫码枪触发字符串")]
+        [DisplayName("夹具扫码枪触发字符串")]
+        [Category("扫码枪")]
+        public string ClampScanerTriggerStr
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(clampScanerTriggerStr))
+                {
+                    clampScanerTriggerStr = TengDa.WF.Option.GetOption("ClampScanerTriggerStr");
+                }
+                return clampScanerTriggerStr;
+            }
+            set
+            {
+                if (value != clampScanerTriggerStr)
+                {
+                    TengDa.WF.Option.SetOption("ClampScanerTriggerStr", value);
+                    clampScanerTriggerStr = value;
+                }
+            }
+        }
+
+        private string clampCodeRegularExpression = string.Empty;
+        /// <summary>
+        /// 夹具条码正则表达式
+        /// </summary>
+        [Description("夹具条码正则表达式")]
+        [DisplayName("夹具条码正则表达式")]
+        [Category("扫码枪")]
+        public string ClampCodeRegularExpression
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(clampCodeRegularExpression))
+                {
+                    clampCodeRegularExpression = TengDa.WF.Option.GetOption("ClampCodeRegularExpression");
+                }
+                return clampCodeRegularExpression;
+            }
+            set
+            {
+                if (value != clampCodeRegularExpression)
+                {
+                    TengDa.WF.Option.SetOption("ClampCodeRegularExpression", value);
+                    clampCodeRegularExpression = value;
+                }
+            }
+        }
+
+
+        private string clampScanerFailedStr = string.Empty;
+        /// <summary>
+        /// 夹具扫码枪扫码失败返回字符串
+        /// </summary>
+        [DisplayName("夹具扫码枪扫码失败返回字符串")]
+        [Category("扫码枪")]
+        public string ClampScanerFailedStr
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(clampScanerFailedStr))
+                {
+                    clampScanerFailedStr = TengDa.WF.Option.GetOption("ClampScanerFailedStr");
+                }
+                return clampScanerFailedStr;
+            }
+            set
+            {
+                if (value != clampScanerFailedStr)
+                {
+                    TengDa.WF.Option.SetOption("ClampScanerFailedStr", value);
+                    clampScanerFailedStr = value;
+                }
+            }
+        }
+
+
+        private string batteryScanerStopStr = string.Empty;
+        /// <summary>
+        /// 电池扫码枪停止扫码指令
+        /// </summary>
+        [DisplayName("电池扫码枪停止扫码指令")]
+        [Category("扫码枪")]
+        public string BatteryScanerStopStr
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(batteryScanerStopStr))
+                {
+                    batteryScanerStopStr = TengDa.WF.Option.GetOption("BatteryScanerStopStr");
+                }
+                return batteryScanerStopStr;
+            }
+            set
+            {
+                if (value != batteryScanerStopStr)
+                {
+                    TengDa.WF.Option.SetOption("BatteryScanerStopStr", value);
+                    batteryScanerStopStr = value;
+                }
+            }
+        }
+
+
+        private string clampScanerStopStr = string.Empty;
+        /// <summary>
+        /// 夹具扫码枪停止扫码指令
+        /// </summary>
+        [DisplayName("夹具扫码枪停止扫码指令")]
+        [Category("扫码枪")]
+        public string ClampScanerStopStr
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(clampScanerStopStr))
+                {
+                    clampScanerStopStr = TengDa.WF.Option.GetOption("ClampScanerStopStr");
+                }
+                return clampScanerStopStr;
+            }
+            set
+            {
+                if (value != clampScanerStopStr)
+                {
+                    TengDa.WF.Option.SetOption("ClampScanerStopStr", value);
+                    clampScanerStopStr = value;
+                }
+            }
+        }
+
+
+        #endregion
 
         private string queryBatteryTimeSpan = string.Empty;
         /// <summary>
@@ -1042,63 +1182,6 @@ namespace BakBattery.Baking
         }
 
 
-        private string feederClampScanerResultBackStrs = string.Empty;
-        /// <summary>
-        /// 上料机夹具扫码枪扫描结果反馈指令：OK，NG
-        /// </summary>
-        [Description("上料机夹具扫码枪扫描结果反馈指令：OK，NG")]
-        [DisplayName("上料机夹具扫码枪扫描结果反馈指令")]
-        [Category("扫码枪")]
-        public string FeederClampScanerResultBackStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(feederClampScanerResultBackStrs))
-                {
-                    feederClampScanerResultBackStrs = TengDa.WF.Option.GetOption("FeederClampScanerResultBackStrs");
-                }
-                return feederClampScanerResultBackStrs;
-            }
-            set
-            {
-                if (value != feederClampScanerResultBackStrs)
-                {
-                    TengDa.WF.Option.SetOption("FeederClampScanerResultBackStrs", value);
-                    feederClampScanerResultBackStrs = value;
-                }
-            }
-        }
-
-
-        private string feederBatteryScanerResultBackStrs = string.Empty;
-        /// <summary>
-        /// 上料机电池扫码枪扫描结果反馈指令：OK，NG
-        /// </summary>
-        [Description("上料机电池扫码枪扫描结果反馈指令：OK，NG")]
-        [DisplayName("上料机电池扫码枪扫描结果反馈指令")]
-        [Category("扫码枪")]
-        public string FeederBatteryScanerResultBackStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(feederBatteryScanerResultBackStrs))
-                {
-                    feederBatteryScanerResultBackStrs = TengDa.WF.Option.GetOption("FeederBatteryScanerResultBackStrs");
-                }
-                return feederBatteryScanerResultBackStrs;
-            }
-            set
-            {
-                if (value != feederBatteryScanerResultBackStrs)
-                {
-                    TengDa.WF.Option.SetOption("FeederBatteryScanerResultBackStrs", value);
-                    feederBatteryScanerResultBackStrs = value;
-                }
-            }
-        }
-
-
-
         private string blankerStationHasWaterSampleBackStrs = string.Empty;
         /// <summary>
         /// 下料机工位夹具包含水分测试电池
@@ -1744,6 +1827,32 @@ namespace BakBattery.Baking
             }
         }
 
+        private string scanClampCodeNG = string.Empty;
+        /// <summary>
+        /// 夹具扫码NG返回给上料机的指令
+        /// </summary>
+        [Description("夹具扫码NG返回给上料机的指令")]
+        [DisplayName("夹具扫码NG返回给上料机的指令")]
+        [Category("扫码枪")]
+        public string ScanClampCodeNG
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(scanClampCodeNG))
+                {
+                    scanClampCodeNG = TengDa.WF.Option.GetOption("ScanClampCodeNG");
+                }
+                return scanClampCodeNG;
+            }
+            set
+            {
+                if (value != scanClampCodeNG)
+                {
+                    TengDa.WF.Option.SetOption("ScanClampCodeNG", value);
+                    scanClampCodeNG = value;
+                }
+            }
+        }
 
 
 

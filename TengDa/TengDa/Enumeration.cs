@@ -64,7 +64,8 @@
         OK = 1,
         NG = 2,
         Unknown = 3,
-        Error = 4
+        Timeout = 4,
+        Error = 5
     }
     /// <summary>
     /// 产量类型
