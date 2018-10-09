@@ -11,7 +11,7 @@ using TengDa.WF;
 namespace BakBattery.Baking
 {
     /// <summary>
-    /// 下料机/冷却炉
+    /// 下料机
     /// </summary>
     public class Blanker : TengDa.WF.Terminals.Terminal
     {
@@ -48,8 +48,31 @@ namespace BakBattery.Baking
             private set { stationIds = value; }
         }
 
+        private TriLamp triLamp = TriLamp.Unknown;
+
+        /// <summary>
+        /// 三色灯
+        /// </summary>
         [ReadOnly(true), DisplayName("三色灯")]
-        public TriLamp TriLamp { get; set; } = TriLamp.Unknown;
+        public TriLamp TriLamp
+        {
+            get
+            {
+                return triLamp;
+            }
+            set
+            {
+                if (value == TriLamp.Red)
+                {
+                    this.AlarmStr = this.Name + "报警";
+                }
+                else
+                {
+                    this.AlarmStr = "";
+                }
+                triLamp = value;
+            }
+        }
 
         #endregion
 
@@ -213,7 +236,7 @@ namespace BakBattery.Baking
                     return false;
                 }
 
-                int[] iOut = new int[13];
+                int[] iOut = new int[3];
                 output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
                 for (int j = 0; j < iOut.Length; j++)
                 {
@@ -241,6 +264,14 @@ namespace BakBattery.Baking
                             this.Stations[j].Status = StationStatus.不可用;
                             break;
                     }
+                }
+
+                switch (iOut[2])
+                {
+                    case 1: this.TriLamp = TriLamp.Green; break;
+                    case 2: this.TriLamp = TriLamp.Yellow; break;
+                    case 3: this.TriLamp = TriLamp.Red; break;
+                    default: this.TriLamp = TriLamp.Unknown; break;
                 }
 
                 Thread.Sleep(100);
