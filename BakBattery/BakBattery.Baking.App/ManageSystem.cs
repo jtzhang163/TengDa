@@ -850,6 +850,7 @@ namespace BakBattery.Baking.App
                         }
                     }
                 }
+                tlpFeeders[i].Invalidate();
             }
 
             #endregion
@@ -946,6 +947,7 @@ namespace BakBattery.Baking.App
                         lbBlankerFromStationName[i][j].Text = string.Empty;
                     }
                 }
+                tlpBlankers[i].Invalidate();
             }
 
             #endregion
@@ -956,7 +958,7 @@ namespace BakBattery.Baking.App
 
             Current.Cache.Stations.ForEach(s => s.IsAlive = s.IsEnable && Current.Cache.IsAlive);
 
-            this.tlpCache.BackColor = Current.Cache.IsAlive ? Color.White : SystemColors.Control;
+            this.tlpCache.BackColor = Current.Cache.IsAlive ? Color.White : Color.LightGray;
 
             for (int j = 0; j < Current.Cache.Stations.Count; j++)
             {
@@ -976,7 +978,6 @@ namespace BakBattery.Baking.App
                 }
                 else
                 {
-                    lbCacheClampCode[j].Visible = station.ClampStatus != ClampStatus.无夹具;
                     if (!station.IsAlive)
                     {
                         lbCacheClampCode[j].Visible = true;
@@ -3636,6 +3637,50 @@ namespace BakBattery.Baking.App
                         }
                     }
 
+                }
+            }
+            g.FillRectangle(brush, r);
+        }
+
+        private void tlpBlanker_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+        {
+            //tlpBlanker1
+            int i = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(10, 1), 0) - 1;
+
+            Graphics g = e.Graphics;
+            Rectangle r = e.CellBounds;
+            Brush brush = Brushes.White;
+
+            for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
+            {
+                if (e.Column == 2 - j - 1)
+                {
+                    if (!Current.blankers[i].Stations[j].IsAlive)
+                    {
+                        brush = Brushes.LightGray;
+                    }
+                }
+            }
+            g.FillRectangle(brush, r);
+        }
+
+        private void tlpFeeder_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+        {
+            //tlpFeeder1
+            int i = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(9, 1), 0) - 1;
+
+            Graphics g = e.Graphics;
+            Rectangle r = e.CellBounds;
+            Brush brush = Brushes.White;
+
+            for (int j = 0; j < Current.feeders[i].Stations.Count; j++)
+            {
+                if (e.Column == 2 - j - 1)
+                {
+                    if (!Current.feeders[i].Stations[j].IsAlive)
+                    {
+                        brush = Brushes.LightGray;
+                    }
                 }
             }
             g.FillRectangle(brush, r);
