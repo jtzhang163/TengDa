@@ -338,18 +338,11 @@ namespace BakBattery.Baking.App
             tnRobotNodes.AddRange(tnRobotClamps);
             TreeNode tnRobot = new TreeNode("机器人", tnRobotNodes.ToArray());
 
-            List<TreeNode> tnRobotPositions = new List<TreeNode>();
-            RobotPosition.RobotPositionList.ForEach(r =>
-            {
-                tnRobotPositions.Add(new TreeNode(string.Format("{0}:{1}", r.Id, r.XValue)));
-            });
-            TreeNode tnRobotPositionList = new TreeNode("机器人 x轴点位", tnRobotPositions.ToArray());
-
             TreeNode tnMES = new TreeNode("MES");
 
             TreeNode tnCurrentTask = new TreeNode("当前任务");
 
-            tvSettings.Nodes.AddRange(new TreeNode[] { tnCurrentTask, tnConfig, tnOvenList, tnFeederList, tnBlankerList, tnScanerList, tnCache, tnRotater, tnStationList, tnTaskList, tnEnabledTaskList, tnRobot, tnRobotPositionList, tnMES });
+            tvSettings.Nodes.AddRange(new TreeNode[] { tnCurrentTask, tnConfig, tnOvenList, tnFeederList, tnBlankerList, tnScanerList, tnCache, tnRotater, tnStationList, tnTaskList, tnEnabledTaskList, tnRobot, tnMES });
         }
 
         private void InitTerminal()
@@ -3394,10 +3387,6 @@ namespace BakBattery.Baking.App
                     {
                         this.propertyGridSettings.SelectedObject = Current.Robot.Plc;
                     }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人 x轴点位")
-                    {
-                        this.propertyGridSettings.SelectedObject = RobotPosition.RobotPositionList.First(r => r.Id.ToString() == e.Node.Text.Split(':')[0]);
-                    }
                     else if (e.Node.Level == 2 && e.Node.Text.IndexOf("夹具") > -1)
                     {
                         int stationId = _Convert.StrToInt(e.Node.Parent.Text.Split(':')[0], -1);
@@ -4242,7 +4231,7 @@ namespace BakBattery.Baking.App
         private void tsmManuStation_DropDownOpening(object sender, EventArgs e)
         {
             string ManuFlag = string.Empty;
-            bool isGet = false, isPut = false; // (sender as ToolStripItem).Name.Contains("Get");
+            bool isGet = false, isPut = false; 
 
             if ((sender as ToolStripItem).Name.Contains("Get"))
             {
@@ -4388,11 +4377,11 @@ namespace BakBattery.Baking.App
             var result = true;
             if (manuFlag == "Get")
             {
-                result = s.DoorStatus == DoorStatus.打开 && s.ClampStatus != ClampStatus.无夹具;
+                result = s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.ClampStatus != ClampStatus.无夹具;
             }
             else if (manuFlag == "Put")
             {
-                result = s.DoorStatus == DoorStatus.打开 && s.ClampStatus == ClampStatus.无夹具;
+                result = s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.ClampStatus == ClampStatus.无夹具;
             }
             return result;
         }
