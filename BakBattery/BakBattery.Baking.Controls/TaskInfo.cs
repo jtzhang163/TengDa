@@ -35,7 +35,7 @@ namespace BakBattery.Baking.Controls
                 }
                 else
                 {
-                    state[i].BackColor = Color.LightGray;
+                    state[i].BackColor = Color.Lime;
                     state[i].ForeColor = Color.Green;
                 }
             }

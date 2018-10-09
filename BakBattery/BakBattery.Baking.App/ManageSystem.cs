@@ -689,7 +689,7 @@ namespace BakBattery.Baking.App
                     }
                     else
                     {
-                        this.tlpFloor[i][j].BackColor = SystemColors.Control;
+                        this.tlpFloor[i][j].BackColor = Color.LightGray;
                     }
 
 
@@ -757,7 +757,7 @@ namespace BakBattery.Baking.App
                 else { this.tbFeederStatus[i].Text = "未连接"; }
 
                 //两次离线再变灰（避免一直闪烁）
-                this.tlpFeeders[i].BackColor = feeder.Plc.IsAlive || feeder.Plc.PreIsAlive ? Color.White : SystemColors.Control;
+                this.tlpFeeders[i].BackColor = feeder.Plc.IsAlive || feeder.Plc.PreIsAlive ? Color.White : Color.LightGray;
 
                 feeder.Plc.PreIsAlive = feeder.Plc.IsAlive;
                 this.pbFeederLamp[i].Image = feeder.Plc.IsAlive ? Properties.Resources.Green_Round : Properties.Resources.Gray_Round;
@@ -867,7 +867,7 @@ namespace BakBattery.Baking.App
                 else { this.tbBlankerStatus[i].Text = "未连接"; }
 
 
-                this.tlpBlankers[i].BackColor = blanker.Plc.IsAlive ? Color.White : SystemColors.Control;
+                this.tlpBlankers[i].BackColor = blanker.Plc.IsAlive ? Color.White : Color.LightGray;
                 this.pbBlankerLamp[i].Image = blanker.Plc.IsAlive ? Properties.Resources.Green_Round : Properties.Resources.Gray_Round;
 
                 switch (blanker.TriLamp)
@@ -981,7 +981,7 @@ namespace BakBattery.Baking.App
                     if (!station.IsAlive)
                     {
                         lbCacheClampCode[j].Visible = true;
-                        lbCacheClampCode[j].BackColor = SystemColors.Control;
+                        lbCacheClampCode[j].BackColor = Color.LightGray;
                     }
                     else
                     {
@@ -1006,7 +1006,7 @@ namespace BakBattery.Baking.App
 
             Current.Transfer.Station.IsAlive = Current.Transfer.IsAlive && Current.Transfer.Station.IsEnable;
 
-            this.tlpTransfer.BackColor = Current.Transfer.IsAlive ? Color.White : SystemColors.Control;
+            this.tlpTransfer.BackColor = Current.Transfer.IsAlive ? Color.White : Color.LightGray;
 
             lbTransferClampCode.Text = Current.Transfer.Station.Clamp.Code;
 
@@ -2107,7 +2107,7 @@ namespace BakBattery.Baking.App
                                         Error.Alert(msg);
                                     }
                                 }
-                                else if (result == ScanResult.NG)
+                                else if (result == ScanResult.NG || result == ScanResult.Timeout)
                                 {
                                     if (!Current.feeders[i].SetScanClampResult(ScanResult.NG, out msg))
                                     {
@@ -2149,7 +2149,7 @@ namespace BakBattery.Baking.App
                             //Current.feeders[i].CacheBatteryIn(Battery.GetBattery(id));
                             Current.feeders[i].CacheBatteryIn(new Battery { Id = id, Code = code, ScanTime = DateTime.Now });
                         }
-                        else if (result == ScanResult.NG)
+                        else if (result == ScanResult.NG || result == ScanResult.Timeout)
                         {
                             //再扫一次
                             result = Current.feeders[i].BatteryScaner.StartBatteryScan(out code, out msg);
@@ -2172,7 +2172,7 @@ namespace BakBattery.Baking.App
                                 //Current.feeders[i].CacheBatteryIn(Battery.GetBattery(id));
                                 Current.feeders[i].CacheBatteryIn(new Battery { Id = id, Code = code, ScanTime = DateTime.Now });
                             }
-                            else if (result == ScanResult.NG)
+                            else if (result == ScanResult.NG || result == ScanResult.Timeout)
                             {
                                 if (!Current.feeders[i].SetScanBatteryResult(ScanResult.NG, out msg))
                                 {
