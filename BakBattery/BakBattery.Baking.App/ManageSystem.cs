@@ -634,8 +634,7 @@ namespace BakBattery.Baking.App
                 {
                     Floor floor = oven.Floors[j];
                     this.pbRunTime[i][j].Maximum = floor.RunMinutesSet;
-                    this.pbRunTime[i][j].Value = floor.IsBaking && floor.IsAlive ? floor.RunMinutes : 0;
-
+                    this.pbRunTime[i][j].Value = floor.IsBaking && floor.IsAlive ? (floor.RunMinutesSet > floor.RunMinutes ? floor.RunMinutes : floor.RunMinutesSet) : 0;
 
                     if (floor.Id == Current.option.CurveFloorId)
                     {
@@ -1456,7 +1455,7 @@ namespace BakBattery.Baking.App
                 {
                     if (!Current.feeders[i].Plc.IsPingSuccess)
                     {
-                        Error.Alert(string.Format("无法连接到{0}的PLC, IP:{1}", Current.feeders[i].Name, Current.feeders[i].Plc.IP));
+                        Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.feeders[i].Plc.Name, Current.feeders[i].Plc.IP));
                         return false;
                     }
 
@@ -1476,7 +1475,7 @@ namespace BakBattery.Baking.App
                 {
                     if (!Current.ovens[i].Plc.IsPingSuccess)
                     {
-                        Error.Alert(string.Format("无法连接到{0}的PLC, IP:{1}", Current.ovens[i].Name, Current.ovens[i].Plc.IP));
+                        Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.ovens[i].Plc.Name, Current.ovens[i].Plc.IP));
                         return false;
                     }
 
@@ -1496,7 +1495,7 @@ namespace BakBattery.Baking.App
                 {
                     if (!Current.blankers[i].Plc.IsPingSuccess)
                     {
-                        Error.Alert(string.Format("无法连接到{0}的PLC, IP:{1}", Current.blankers[i].Name, Current.blankers[i].Plc.IP));
+                        Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.blankers[i].Plc.Name, Current.blankers[i].Plc.IP));
                         return false;
                     }
 
@@ -1514,7 +1513,7 @@ namespace BakBattery.Baking.App
             {
                 if (!Current.Robot.Plc.IsPingSuccess)
                 {
-                    Error.Alert(string.Format("无法连接到{0}的PLC, IP:{1}", Current.Robot.Name, Current.Robot.Plc.IP));
+                    Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.Robot.Plc.Name, Current.Robot.Plc.IP));
                     return false;
                 }
 
@@ -2002,21 +2001,21 @@ namespace BakBattery.Baking.App
                             {
                                 station.FloorStatus = FloorStatus.烘烤;
                             }
-                            else if (station.ClampStatus == ClampStatus.无夹具 && !floor.IsBaking)
+                            else if (station.ClampStatus == ClampStatus.无夹具)
                             {
                                 station.FloorStatus = FloorStatus.无盘;
                             }
-                            else if (floor.IsBakeFinished && station.ClampStatus != ClampStatus.无夹具 && !floor.IsBaking)
+                            else if (station.ClampStatus == ClampStatus.空夹具)
                             {
-                                station.FloorStatus = FloorStatus.待出;
+                                station.FloorStatus = FloorStatus.空盘;
                             }
-                            else if (!floor.IsBakeFinished && station.ClampStatus == ClampStatus.满夹具 && !floor.IsBaking)
+                            else if (station.ClampStatus == ClampStatus.满夹具 && (station.PreFloorStatus == FloorStatus.无盘 || station.PreFloorStatus == FloorStatus.待烤))
                             {
                                 station.FloorStatus = FloorStatus.待烤;
                             }
-                            else if (!floor.IsBakeFinished && station.ClampStatus == ClampStatus.空夹具 && !floor.IsBaking)
+                            else if (station.ClampStatus == ClampStatus.满夹具 && (station.PreFloorStatus == FloorStatus.烘烤 || station.PreFloorStatus == FloorStatus.待出))
                             {
-                                station.FloorStatus = FloorStatus.空盘;
+                                station.FloorStatus = FloorStatus.待出;
                             }
                             else
                             {
@@ -2286,18 +2285,23 @@ namespace BakBattery.Baking.App
                             if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) < 1
                                 && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) < 1
                                 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
-                                && ((floor.Stations[0].RobotRelativeMove == RelativeMove.远离 || floor.Stations[0].RobotRelativeMove == RelativeMove.不变)
-                                && (floor.Stations[0].Distance(Current.Robot) > 1
-                                || Current.Task.TaskId < 1 && Current.Robot.IsAlive && !Current.Robot.IsGettingOrPutting && Current.Robot.ClampStatus == ClampStatus.无夹具)))
+                                && Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具)
                             {
-                              //  Current.ovens[i].CloseDoor(j);
+                                Current.ovens[i].CloseDoor(j);
+                            }
+
+                            //从某一炉子取完盘后，立即关门，无需等到整个任务结束
+                            if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
+                                && Current.Robot.IsAlive && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
+                            {
+                                Current.ovens[i].CloseDoor(j);
                             }
                         }
                         if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤) == floor.Stations.Count)
                         {
                             if (floor.Stations[0].IsAlive && floor.Stations[1].IsAlive && floor.DoorStatus == DoorStatus.关闭)
                             {
-                               // Current.ovens[i].StartBaking(j);
+                                Current.ovens[i].StartBaking(j);
                             }
                         }
                     }
@@ -2329,25 +2333,11 @@ namespace BakBattery.Baking.App
                         oOven.UploadVacuum(jj);
                     }
 
-                    if (oFloor.DoorStatus == DoorStatus.关闭 && !oFloor.IsVacuum && (!Current.Robot.IsGettingOrPutting && Current.Robot.ClampStatus == ClampStatus.无夹具
-                      || oStation.RobotRelativeMove == RelativeMove.远离 && oStation.Distance(Current.Robot) > 1))
+                    if (oFloor.DoorStatus == DoorStatus.关闭 && !oFloor.IsVacuum && !Current.Robot.IsGettingOrPutting)
                     {
-                       // oOven.OpenDoor(jj);
+                        oOven.OpenDoor(jj);
                     }
                 }
-
-                //上料机工位无任务则关门
-                Current.feeders.ForEach(f => f.Stations.ForEach(s =>
-                {
-                    if (s.Id != Current.Task.FromStationId && s.Id != Current.Task.ToStationId && s.DoorStatus != DoorStatus.关闭 && !Current.Robot.IsGettingOrPutting)
-                    {
-                       // s.CloseDoor();
-                    }
-                    else if (s.Id == Current.Task.FromStationId && Current.Task.Status != TaskStatus.就绪 && Current.Task.Status != TaskStatus.可取 && s.DoorStatus != DoorStatus.关闭 && !Current.Robot.IsGettingOrPutting)
-                    {
-                      //  s.CloseDoor();
-                    }
-                }));
             }
         }
 
@@ -4453,9 +4443,16 @@ namespace BakBattery.Baking.App
                         return;
                     }
 
+
                     Current.Task.TaskId = -1;
                     Current.Task.NextToStationId = station.Id;
                     Current.Task.Status = TaskStatus.取完;
+
+                    if (Current.Task.FromClampStatus != ClampStatus.空夹具 && Current.Task.FromClampStatus != ClampStatus.满夹具)
+                    {
+                        Current.Task.FromClampStatus = Current.Robot.ClampStatus;
+                    }
+
                 }
 
             }

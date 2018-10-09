@@ -355,20 +355,19 @@ namespace BakBattery.Baking
             if (Current.TaskMode == TaskMode.自动任务)
             {
 
-                //烤箱只有一个空位时，不要搬运空夹具至烤箱
-                List<ClampOri> ClampOris = new List<ClampOri> { ClampOri.A, ClampOri.B };
 
-                foreach (ClampOri clampOri in ClampOris)
-                {
-                    List<Station> stations = Station.StationList.Where(s =>
-                            s.ClampOri == clampOri
-                            && s.IsAlive
-                            && s.GetPutType == GetPutType.烤箱
-                            && s.FloorStatus == FloorStatus.无盘).ToList();
+                ////烤箱只有一个空位时，不要搬运空夹具至烤箱
 
-                    Task.TaskList.Where(t => t.FromClampStatus == ClampStatus.空夹具 && t.ToType == GetPutType.烤箱 && t.ClampOri == clampOri).ToList().
-                        ForEach(t => t.IsEnable = stations.Count > 1);
-                }
+                //if (Task.TaskList.Where(t => t.FromClampStatus == ClampStatus.空夹具 && t.ToType == GetPutType.烤箱).ToList().Count(t => t.IsEnable) > 0)
+                //{
+
+                //}
+
+                //List<Station> stations = Station.StationList.Where(s => s.IsAlive && s.GetPutType == GetPutType.烤箱 && s.FloorStatus == FloorStatus.无盘).ToList();
+                //Task.TaskList.Where(t => t.FromClampStatus == ClampStatus.空夹具 && t.ToType == GetPutType.烤箱).ToList().
+                //    ForEach(t => t.IsEnable = stations.Count > 1);
+            
+
 
                 if (Current.Task.Status == TaskStatus.完成)
                 {
@@ -402,7 +401,6 @@ namespace BakBattery.Baking
                             && s.Status == StationStatus.可放
                             && task.IsSuitSampleStatus(s))
                             .OrderBy(s => s.Priority)
-                            //.OrderBy(s => s.Distance(Current.Robot))
                             .OrderBy(s => s.GetPutTime)
                             .ToList();
 

@@ -177,10 +177,6 @@ namespace BakBattery.Baking
             }
         }
 
-        /// <summary>
-        /// 接收到空夹具的信息计数，防止上料机急停返回的异常数据导致生成错误指令
-        /// </summary>
-        private int[] EmptyClampCount = new int[] { 0, 0 };
 
         public void CacheBatteryIn(Battery battery)
         {
@@ -470,43 +466,31 @@ namespace BakBattery.Baking
                 {
                     switch (iOut[j + 1])
                     {
-                        case 1: this.EmptyClampCount[j]++; break;
-                        case 2: this.Stations[j].ClampStatus = ClampStatus.空夹具; break;
-                        case 3: this.Stations[j].ClampStatus = ClampStatus.满夹具; this.Stations[j].SampleStatus = SampleStatus.非样品位; break;
-                        case 31: this.Stations[j].ClampStatus = ClampStatus.满夹具; this.Stations[j].SampleStatus = SampleStatus.样品位; break;
-                        case 4: this.Stations[j].ClampStatus = ClampStatus.异常; break;
-                        default: this.Stations[j].ClampStatus = ClampStatus.未知; break;
-                    }
-
-                    if (iOut[j + 1] == 1)
-                    {
-                        if (EmptyClampCount[j] > 2)
-                        {
+                        case 1:
                             this.Stations[j].ClampStatus = ClampStatus.无夹具;
-                            EmptyClampCount[j] = 3;
-                        }
-                    }
-                    else
-                    {
-                        EmptyClampCount[j] = 0;
-                    }
-
-
-                    if (this.Stations[j].ClampStatus == ClampStatus.无夹具)
-                    {
-                        this.Stations[j].Status = StationStatus.可放;
-                    }
-                    else if (this.Stations[j].ClampStatus == ClampStatus.满夹具)
-                    {
-                        this.Stations[j].Status = StationStatus.可取;
-                    }
-                    else if (this.Stations[j].ClampStatus == ClampStatus.空夹具)
-                    {
-                        this.Stations[j].Status = StationStatus.工作中;
-                    }
-                    else
-                    {
-                        this.Stations[j].Status = StationStatus.不可用;
+                            this.Stations[j].Status = StationStatus.可放;
+                            break;
+                        case 2:
+                            this.Stations[j].ClampStatus = ClampStatus.空夹具;
+                            this.Stations[j].Status = StationStatus.工作中;
+                            break;
+                        case 3:
+                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                            this.Stations[j].SampleStatus = SampleStatus.非样品位;
+                            this.Stations[j].Status = StationStatus.可取;
+                            break;
+                        case 31:
+                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                            this.Stations[j].SampleStatus = SampleStatus.样品位;
+                            this.Stations[j].Status = StationStatus.可取;
+                            break;
+                        case 4:
+                            this.Stations[j].ClampStatus = ClampStatus.异常;
+                            break;
+                        default:
+                            this.Stations[j].ClampStatus = ClampStatus.未知;
+                            this.Stations[j].Status = StationStatus.不可用;
+                            break;
                     }
 
                     this.Stations[j].IsClampScanReady = iOut[j + 4] == 1;

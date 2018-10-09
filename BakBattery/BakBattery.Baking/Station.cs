@@ -39,8 +39,8 @@ namespace BakBattery.Baking
         {
             get
             {
-               // if (this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.转移台)
-               // {
+                if (this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.转移台)
+                {
                     if (this.ClampStatus == ClampStatus.无夹具)
                     {
                         status = StationStatus.可放;
@@ -49,7 +49,7 @@ namespace BakBattery.Baking
                     {
                         status = StationStatus.可取;
                     }
-               // }
+                }
                 return status;
             }
             set
@@ -601,24 +601,6 @@ namespace BakBattery.Baking
                     UpdateDbField("SampleStatus", value);
                 }
                 sampleStatus = value;
-            }
-        }
-
-        [Description("与机器人的相对距离，根据此属性判断是否可开关门")]
-        [DisplayName("与机器人的相对距离")]
-        public RelativeMove RobotRelativeMove
-        {
-            get
-            {
-                if ((Current.Robot.X <= this.X && Current.Robot.MovingDirection == MovingDirection.前进) || (Current.Robot.X >= this.X && Current.Robot.MovingDirection == MovingDirection.后退))
-                {
-                    return RelativeMove.远离;
-                }
-                else if ((Current.Robot.X < this.X && Current.Robot.MovingDirection == MovingDirection.后退) || (Current.Robot.X > this.X && Current.Robot.MovingDirection == MovingDirection.前进))
-                {
-                    return RelativeMove.靠近;
-                }
-                else return RelativeMove.不变;
             }
         }
 

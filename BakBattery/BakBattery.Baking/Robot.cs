@@ -387,9 +387,9 @@ namespace BakBattery.Baking
                 this.Position = (int)(this.I5 * Current.option.RobotPositionAmplify);
               //  this.Position = rp == null ? this.position : rp.Position;
 
-                if (this.I5 < this.PreI5) { this.MovingDirection = MovingDirection.后退; }
-                else if (this.I5 > this.PreI5) { this.MovingDirection = MovingDirection.前进; }
-                else { this.MovingDirection = MovingDirection.停止; }
+                if (this.I5 < this.PreI5) { this.MovingDirection = MovingDirection.前进; this.IsMoving = true; }
+                else if (this.I5 > this.PreI5) { this.MovingDirection = MovingDirection.后退; this.IsMoving = true; }
+                else { this.MovingDirection = MovingDirection.停止; this.IsMoving = false; }
 
                 this.PreI5 = this.I5;
 
