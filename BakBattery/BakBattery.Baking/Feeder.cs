@@ -486,6 +486,7 @@ namespace BakBattery.Baking
                             break;
                         case 4:
                             this.Stations[j].ClampStatus = ClampStatus.异常;
+                            this.Stations[j].Status = StationStatus.不可用;
                             break;
                         default:
                             this.Stations[j].ClampStatus = ClampStatus.未知;

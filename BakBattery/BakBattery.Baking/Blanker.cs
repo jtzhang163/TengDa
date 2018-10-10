@@ -259,6 +259,10 @@ namespace BakBattery.Baking
                             this.Stations[j].ClampStatus = ClampStatus.空夹具;
                             this.Stations[j].Status = StationStatus.可取;
                             break;
+                        case 4:
+                            this.Stations[j].ClampStatus = ClampStatus.异常;
+                            this.Stations[j].Status = StationStatus.不可用;
+                            break;
                         default:
                             this.Stations[j].ClampStatus = ClampStatus.未知;
                             this.Stations[j].Status = StationStatus.不可用;

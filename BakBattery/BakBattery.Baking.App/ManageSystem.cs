@@ -2307,6 +2307,7 @@ namespace BakBattery.Baking.App
                         {
                             if (floor.Stations[0].IsAlive && floor.Stations[1].IsAlive && floor.DoorStatus == DoorStatus.关闭)
                             {
+                                Current.ovens[i].ClearRunTime(j);
                                 Current.ovens[i].StartBaking(j);
                             }
                         }
@@ -3701,8 +3702,10 @@ namespace BakBattery.Baking.App
 
             int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
+
             Current.ovens[i].Floors[j].AddLog("手动卸真空");
             Current.ovens[i].UploadVacuum(j);
+
         }
 
         private void tsmLoadVacuum_Click(object sender, EventArgs e)
@@ -3715,8 +3718,40 @@ namespace BakBattery.Baking.App
 
             int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
+
             Current.ovens[i].Floors[j].AddLog("手动抽真空");
             Current.ovens[i].LoadVacuum(j);
+
+        }
+
+        private void tsmCancelLoadVacuum_Click(object sender, EventArgs e)
+        {
+            if (Current.runStstus != RunStatus.运行)
+            {
+                Tip.Alert("请先启动！");
+                return;
+            }
+
+            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
+            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
+
+            Current.ovens[i].Floors[j].AddLog("手动取消卸真空");
+            Current.ovens[i].CancelUploadVacuum(j);
+        }
+
+        private void tsmCancelUploadVacuum_Click(object sender, EventArgs e)
+        {
+            if (Current.runStstus != RunStatus.运行)
+            {
+                Tip.Alert("请先启动！");
+                return;
+            }
+
+            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
+            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
+
+            Current.ovens[i].Floors[j].AddLog("手动取消抽真空");
+            Current.ovens[i].CancelLoadVacuum(j);
         }
 
         private void tsmClearRunTime_Click(object sender, EventArgs e)
@@ -3952,12 +3987,23 @@ namespace BakBattery.Baking.App
             this.tsmLoadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].Floors[j].IsAlive
+                 && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.关闭
+                && !Current.ovens[i].Floors[j].VacuumIsLoading
                 && !Current.ovens[i].Floors[j].IsVacuum;
+            this.tsmCancelLoadVacuum.Enabled =
+                Current.ovens[i].Floors[j].IsNetControlOpen
+                && Current.ovens[i].Floors[j].IsAlive
+                && Current.ovens[i].Floors[j].VacuumIsLoading;
             this.tsmUploadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].Floors[j].IsAlive
                 && !Current.ovens[i].Floors[j].IsBaking
+                && !Current.ovens[i].Floors[j].VacuumIsUploading
                 && Current.ovens[i].Floors[j].IsVacuum;
+            this.tsmCancelUploadVacuum.Enabled =
+                Current.ovens[i].Floors[j].IsNetControlOpen
+                && Current.ovens[i].Floors[j].IsAlive
+                && Current.ovens[i].Floors[j].VacuumIsUploading;
             this.tsmClearRunTime.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].Floors[j].IsAlive;

@@ -241,6 +241,8 @@ namespace BakBattery.Baking
         public bool toStopBaking = false;
         public bool toLoadVacuum = false;
         public bool toUploadVacuum = false;
+        public bool toCancelLoadVacuum = false;
+        public bool toCancelUploadVacuum = false;
         public bool toClearRunTime = false;
         public bool toOpenNetControl = false;
         public bool toAlarmReset = false;

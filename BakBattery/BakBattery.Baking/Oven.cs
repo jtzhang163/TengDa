@@ -585,7 +585,7 @@ namespace BakBattery.Baking
 
                 #endregion
 
-                #region 写指令 控制开关门、启动运行、卸真空
+                #region 写指令 控制开关门、启动运行、抽卸真空
                 for (int j = 0; j < this.Floors.Count; j++)
                 {
 
@@ -732,10 +732,6 @@ namespace BakBattery.Baking
                     if (this.Floors[j].toLoadVacuum)
                     {
                         var command = Current.option.LoadVacuumStrs.Split(',')[j];
-                        if (this.Floors[j].VacuumIsLoading)
-                        {
-                            command = command.Replace("1**", "0**");
-                        }
                         output = string.Empty;
                         if (!this.Plc.GetInfo(false, command, out output, out msg))
                         {
@@ -749,13 +745,58 @@ namespace BakBattery.Baking
                             LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", command, output));
                             return false;
                         }
-                        LogHelper.WriteInfo(string.Format("成功发送{2}抽真空指令到{0}:{1}", this.Floors[j].Name, command, this.Floors[j].VacuumIsLoading ? "取消" : ""));
+                        LogHelper.WriteInfo(string.Format("成功发送抽真空指令到{0}:{1}", this.Floors[j].Name, command));
                         this.Floors[j].toLoadVacuum = false;
+                    }
+                    #endregion
+
+                    #region 取消抽真空
+                    if (this.Floors[j].toCancelLoadVacuum)
+                    {
+                        var command = Current.option.LoadVacuumStrs.Split(',')[j];
+                        command = command.Replace("1**", "0**");                  
+                        output = string.Empty;
+                        if (!this.Plc.GetInfo(false, command, out output, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
+
+                        if (output.Substring(3, 1) != "$")
+                        {
+                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", command, output));
+                            return false;
+                        }
+                        LogHelper.WriteInfo(string.Format("成功发送取消抽真空指令到{0}:{1}", this.Floors[j].Name, command));
+                        this.Floors[j].toCancelLoadVacuum = false;
                     }
                     #endregion
 
                     #region 泄真空
                     if (this.Floors[j].toUploadVacuum)
+                    {
+                        var command = Current.option.UnloadVacuumStrs.Split(',')[j];
+                        output = string.Empty;
+                        if (!this.Plc.GetInfo(false, command, out output, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
+
+                        if (output.Substring(3, 1) != "$")
+                        {
+                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", command, output));
+                            return false;
+                        }
+                        LogHelper.WriteInfo(string.Format("成功发送泄真空指令到{0}:{1}", this.Floors[j].Name, command));
+                        this.Floors[j].toUploadVacuum = false;
+                    }
+                    #endregion
+
+                    #region 取消泄真空
+                    if (this.Floors[j].toCancelUploadVacuum)
                     {
                         var command = Current.option.UnloadVacuumStrs.Split(',')[j];
                         if (this.Floors[j].VacuumIsUploading)
@@ -775,8 +816,8 @@ namespace BakBattery.Baking
                             LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", command, output));
                             return false;
                         }
-                        LogHelper.WriteInfo(string.Format("成功发送{2}泄真空指令到{0}:{1}", this.Floors[j].Name, command, this.Floors[j].VacuumIsUploading ? "取消" : ""));
-                        this.Floors[j].toUploadVacuum = false;
+                        LogHelper.WriteInfo(string.Format("成功发送取消泄真空指令到{0}:{1}", this.Floors[j].Name, command));
+                        this.Floors[j].toCancelUploadVacuum = false;
                     }
                     #endregion
 
@@ -1033,6 +1074,59 @@ namespace BakBattery.Baking
             }
 
             this.Floors[j].toUploadVacuum = true;
+        }
+
+        /// <summary>
+        /// 取消抽真空
+        /// </summary>
+        /// <param name="j">炉腔序号</param>
+        /// <returns></returns>
+        public void CancelLoadVacuum(int j)
+        {
+            if (!this.Plc.IsPingSuccess)
+            {
+                this.Plc.IsAlive = false;
+                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
+                return;
+            }
+
+            if (!this.Floors[j].IsNetControlOpen)
+            {
+                Tip.Alert(this.Floors[j].Name + "网控未开启，无法远程取消抽真空 ");
+                return;
+            }
+
+
+            this.Floors[j].toCancelLoadVacuum = true;
+        }
+
+        /// <summary>
+        /// 取消泄真空
+        /// </summary>
+        /// <param name="j">炉腔序号</param>
+        /// <returns></returns>
+        public void CancelUploadVacuum(int j)
+        {
+            if (!this.Plc.IsPingSuccess)
+            {
+                this.Plc.IsAlive = false;
+                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
+                return;
+            }
+
+            if (!this.Floors[j].IsNetControlOpen)
+            {
+                Tip.Alert(this.Floors[j].Name + "网控未开启，无法远程取消卸真空 ");
+                return;
+            }
+
+            if (this.Floors[j].IsBaking)
+            {
+                Tip.Alert(this.Floors[j].Name + "运行未完成，无法远程取消卸真空 ");
+                return;
+            }
+
+            this.Floors[j].toCancelUploadVacuum = true;
         }
 
         /// <summary>
