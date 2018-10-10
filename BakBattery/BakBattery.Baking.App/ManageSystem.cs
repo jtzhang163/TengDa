@@ -1596,6 +1596,11 @@ namespace BakBattery.Baking.App
 
             if (Current.Robot.IsEnable)
             {
+                if (Current.Robot.IsStartting && !Current.Robot.IsPausing)
+                {
+                    Current.Robot.Pause(out msg);
+                }
+
                 if (!Current.Robot.Plc.TcpDisConnect(out msg))
                 {
                     Error.Alert(msg);
@@ -4194,7 +4199,7 @@ namespace BakBattery.Baking.App
             }
             else
             {
-                Error.Alert(string.Format("打开机器人启动失败，原因：{0}", msg));
+                Error.Alert("启动失败！原因：" + msg);
             }
         }
 
@@ -4255,11 +4260,11 @@ namespace BakBattery.Baking.App
             var msg = string.Empty;
             if (Current.Robot.Maintenance(out msg))
             {
-                Tip.Alert(Current.Robot.Name + "急停成功！");
+                Tip.Alert(Current.Robot.Name + "设置为维护状态成功！");
             }
             else
             {
-                Error.Alert(msg);
+                Error.Alert("设置为维护状态失败！" + msg);
             }
         }
 

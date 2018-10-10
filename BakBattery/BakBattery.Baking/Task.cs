@@ -556,10 +556,14 @@ namespace BakBattery.Baking
                             if (Current.Robot.ClampId > 0)
                             {
                                 Current.Task.ToStation.ClampId = Current.Robot.ClampId;
+                                Current.Robot.ClampId = -1;
+                            }
+                            else if(Current.Task.FromStation.ClampId > 0)
+                            {
+                                Current.Task.ToStation.ClampId = Current.Task.FromStation.ClampId;
+                                Current.Task.FromStation.ClampId = -1;
                             }
 
-                            Current.Robot.ClampId = -1;
-                            Current.Robot.ClampStatus = ClampStatus.无夹具;
                         }
 
                         if (!Current.Robot.IsGettingOrPutting)
@@ -624,16 +628,18 @@ namespace BakBattery.Baking
                 else if (Current.Task.Status == TaskStatus.正取 && Current.Task.FromStation != null)
                 {
 
-                    if (!Current.Robot.IsGettingOrPutting)
+                    if(Current.Robot.ClampStatus != ClampStatus.无夹具)
                     {
                         Current.Robot.ClampStatus = Current.Task.FromClampStatus;
                         Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
-                        Current.Robot.Location = Current.Task.FromStation.Location;
                         if (Current.Task.FromStation.ClampId > 0)
                         {
                             Current.Robot.ClampId = Current.Task.FromStation.ClampId;
-                            Current.Task.FromStation.ClampId = -1;
                         }
+                    }
+
+                    if (!Current.Robot.IsGettingOrPutting)
+                    {
                         Current.Task.Status = TaskStatus.取完;
                     }
                 }
@@ -676,50 +682,42 @@ namespace BakBattery.Baking
                 }
                 else if (Current.Task.Status == TaskStatus.正放 && Current.Task.ToStation != null)
                 {
-
-                    if (!Current.Robot.IsGettingOrPutting)
+                    if (Current.Robot.ClampStatus == ClampStatus.无夹具)
                     {
-
                         Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                         Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
 
-                        if (Current.Task.ToStation.ClampId < 1 && Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
-                        {
-                            int clampId = Clamp.Add(new Clamp(Current.Robot.ClampId).Code, out msg);
-                            if (clampId > 0)
-                            {
-                                Current.Task.ToStation.ClampId = clampId;
-                            }
-                            else
-                            {
-                                LogHelper.WriteError(msg);
-                            }
-                        }
-                        else if (Current.Robot.ClampId > 0)
-                        {
-                            Current.Task.ToStation.ClampId = Current.Robot.ClampId;
-                        }
-                        Current.Robot.ClampId = -1;
-
-                        Current.Robot.ClampStatus = ClampStatus.无夹具;
-                        Current.Robot.Location = Current.Task.ToStation.Location;
-
-
-                        //if (Current.Robot.CanCheckGetPutClampIsOk)
+                        //if (Current.Task.ToStation.ClampId < 1 && Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
                         //{
-                        //    Current.Robot.ClampStatus = ClampStatus.无夹具;
-                        //    if (Current.Task.ToStation.ClampStatus == ClampStatus.无夹具)
+                        //    int clampId = Clamp.Add(new Clamp(Current.Robot.ClampId).Code, out msg);
+                        //    if (clampId > 0)
                         //    {
-                        //        //放盘无效报警
-                        //        Current.Robot.PutClampIsNotOkAlarm();
+                        //        Current.Task.ToStation.ClampId = clampId;
+                        //    }
+                        //    else
+                        //    {
+                        //        LogHelper.WriteError(msg);
                         //    }
                         //}
+                        //else 
+                        if (Current.Robot.ClampId > 0)
+                        {
+                            Current.Task.ToStation.ClampId = Current.Robot.ClampId;
+                            Current.Robot.ClampId = -1;
+                        }
+                        else if (Current.Task.FromStation.ClampId > 0)
+                        {
+                            Current.Task.ToStation.ClampId = Current.Task.FromStation.ClampId;
+                            Current.Task.FromStation.ClampId = -1;
+                        }
+                    }
 
+                    if (!Current.Robot.IsGettingOrPutting)
+                    {
                         if (!TaskLog.Add(out msg))//记录
                         {
                             Error.Alert("保存搬运记录失败：" + msg);
                         }
-
                         Current.Task.Status = TaskStatus.完成;
                     }
                 }

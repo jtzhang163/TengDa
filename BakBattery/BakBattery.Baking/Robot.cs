@@ -469,82 +469,19 @@ namespace BakBattery.Baking
         public bool Start(out string msg)
         {
 
+            msg = string.Empty;
             var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
-            if (!this.IsRequestStart)
+            bool tmpBool1 = false;
+            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.0", false, out tmpBool1, out msg))
             {
-                //请求启动
-                bool tmpBool1 = false;
-                if (!this.Plc.GetInfo(false, plcCompany, false, "I10.1", true, out tmpBool1, out msg))
-                {
-                    Error.Alert("请求启动失败！原因：" + msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                System.Threading.Thread.Sleep(10);
-            }
-
-            //是否有报警
-            bool tmpBool4 = false;
-            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.5", false, out tmpBool4, out msg))
-            {
-                Error.Alert(msg);
-                this.Plc.IsAlive = false;
-                return false;
-            }
-            System.Threading.Thread.Sleep(10);
-
-            if (tmpBool4)
-            {
-                //报警复位
-                bool tmpBool0 = false;
-                if (!this.Plc.GetInfo(false, plcCompany, false, "I10.3", true, out tmpBool0, out msg))
-                {
-                    Error.Alert("请求启动失败！原因：" + msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                System.Threading.Thread.Sleep(10);
-            }
-
-
-
-            //判断是否为暂停
-            bool tmpBool5 = false;
-            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.3", false, out tmpBool5, out msg))
-            {
-                Error.Alert(msg);
-                this.Plc.IsAlive = false;
-                return false;
-            }
-            System.Threading.Thread.Sleep(10);
-
-            if (tmpBool5)
-            {
-                //如果暂停，继续
-                bool tmpBool0 = false;
-                if (!this.Plc.GetInfo(false, plcCompany, false, "I10.4", true, out tmpBool0, out msg))
-                {
-                    Error.Alert("请求启动失败！原因：" + msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                System.Threading.Thread.Sleep(10);
-            }
-
-
-
-            bool tmpBool2 = false;
-            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.0", false, out tmpBool2, out msg))
-            {
-                Error.Alert("请求启动失败！原因：" + msg);
                 this.Plc.IsAlive = false;
                 return false;
             }
 
-            if (!tmpBool2)
+            if (!tmpBool1)
             {
+                msg = "启动条件不满足！";
                 this.Plc.IsAlive = false;
                 return false;
             }
@@ -552,27 +489,25 @@ namespace BakBattery.Baking
             System.Threading.Thread.Sleep(10);
 
             //将I10.0置为ture
-            bool tmpBool3 = false;
-            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.0", true, out tmpBool3, out msg))
+            bool tmpBool2 = false;
+            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.0", true, out tmpBool2, out msg))
             {
-                Error.Alert(msg);
                 this.Plc.IsAlive = false;
                 return false;
             }
 
             System.Threading.Thread.Sleep(10);
 
-            bool tmpBool6 = false;
-            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out tmpBool6, out msg))
+            bool tmpBool3 = false;
+            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out tmpBool3, out msg))
             {
-                Error.Alert(msg);
                 this.Plc.IsAlive = false;
                 return false;
             }
 
-            if (!tmpBool6)
+            if (!tmpBool3)
             {
-                Error.Alert("启动失败！");
+                msg = "启动成功标识为False";
                 this.Plc.IsAlive = false;
                 return false;
             }
@@ -632,20 +567,6 @@ namespace BakBattery.Baking
 
             var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
-            if (!this.IsRequestStart)
-            {
-                //请求启动
-                bool tmpBool1 = false;
-                if (!this.Plc.GetInfo(false, plcCompany, false, "I10.1", true, out tmpBool1, out msg))
-                {
-                    Error.Alert("请求启动失败！原因：" + msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                System.Threading.Thread.Sleep(10);
-            }
-
             bool tmp = false;
             if (!this.Plc.GetInfo(false, plcCompany, false, "I10.3", true, out tmp, out msg))
             {
@@ -667,7 +588,7 @@ namespace BakBattery.Baking
             var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
             bool tmp = false;
-            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.1", false, out tmp, out msg))
+            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.1", true, out tmp, out msg))
             {
                 Error.Alert("机器人急停失败！原因：" + msg);
                 this.Plc.IsAlive = false;
@@ -684,17 +605,14 @@ namespace BakBattery.Baking
         /// <returns></returns>
         public bool Maintenance(out string msg)
         {
-
             var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
             bool tmp = false;
             if (!this.Plc.GetInfo(false, plcCompany, false, "000", false, out tmp, out msg))
             {
-                Error.Alert("机器人急停失败！原因：" + msg);
-                this.Plc.IsAlive = false;
+                 this.Plc.IsAlive = false;
                 return false;
             }
-
             return true;
         }
 
