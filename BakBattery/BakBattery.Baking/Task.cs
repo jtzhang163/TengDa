@@ -315,20 +315,20 @@ namespace BakBattery.Baking
             get
             {
                 canGetPutTaskList.Clear();
-                List<Task> tasks = TaskList.OrderBy(t => t.CycleOrder).ToList();
+                List<Task> tasks = TaskList.OrderBy(t => t.Priority).OrderBy(t => t.CycleOrder).ToList();
                 for (int i = 0; i < tasks.Count; i++)
                 {
-                    if (TaskList[i].IsEnable && TaskList[i].CycleOrder > Current.Task.PreCycleOrder)
+                    if (tasks[i].IsEnable && tasks[i].CycleOrder > Current.Task.PreCycleOrder)
                     {
-                        canGetPutTaskList.Add(TaskList[i]);
+                        canGetPutTaskList.Add(tasks[i]);
                     }
                 }
 
                 for (int i = 0; i < tasks.Count; i++)
                 {
-                    if (TaskList[i].IsEnable && TaskList[i].CycleOrder <= Current.Task.PreCycleOrder)
+                    if (tasks[i].IsEnable && tasks[i].CycleOrder <= Current.Task.PreCycleOrder)
                     {
-                        canGetPutTaskList.Add(TaskList[i]);
+                        canGetPutTaskList.Add(tasks[i]);
                     }
                 }
                 return canGetPutTaskList;
