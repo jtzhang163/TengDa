@@ -488,8 +488,14 @@ namespace BakBattery.Baking
 
                 for (int j = 0; j < this.Floors.Count; j++)
                 {
-                    this.Floors[j].DoorIsOpenning = output.Substring(6 + j, 1) == "1";
-                    this.Floors[j].DoorIsClosing = output.Substring(9 + j, 1) == "1";
+                    if(output.Substring(6 + j, 1) == "1")
+                    {
+                       //this.Floors[j].DoorIsOpenning = true;
+                    }
+                    if (output.Substring(9 + j, 1) == "1")
+                    {
+                       //this.Floors[j].DoorIsClosing = true;
+                    }
                 }
                 #endregion
 
@@ -516,9 +522,9 @@ namespace BakBattery.Baking
 
                     switch (int.Parse(output.Substring(0, 4), System.Globalization.NumberStyles.AllowHexSpecifier))
                     {
-                        case 1: this.Floors[j].DoorStatusNotFinal = DoorStatus.打开; break;
-                        case 2: this.Floors[j].DoorStatusNotFinal = DoorStatus.关闭; break;
-                        case 3:
+                        case 1: this.Floors[j].DoorStatusNotFinal = DoorStatus.打开; this.Floors[j].DoorIsOpenning = false; break;
+                        case 2: this.Floors[j].DoorStatusNotFinal = DoorStatus.关闭; this.Floors[j].DoorIsClosing = false; break;
+                        case 3: break;
                         case 4: this.Floors[j].DoorStatusNotFinal = DoorStatus.异常; break;
                         default: this.Floors[j].DoorStatusNotFinal = DoorStatus.未知; break;
                     }
@@ -625,6 +631,11 @@ namespace BakBattery.Baking
                     }
 
                     #region 控制开门
+                    if(this.Floors[j].DoorStatus == DoorStatus.打开)
+                    {
+                        this.Floors[j].toOpenDoor = false;
+                    }
+
                     if (this.Floors[j].toOpenDoor)
                     {
                         output = string.Empty;
@@ -642,10 +653,16 @@ namespace BakBattery.Baking
                         }
                         LogHelper.WriteInfo(string.Format("成功发送开门指令到{0}:{1}", this.Floors[j].Name, Current.option.OpenOvenDoorStrs.Split(',')[j]));
                         this.Floors[j].toOpenDoor = false;
+                        this.Floors[j].DoorIsOpenning = true;
                     }
                     #endregion
 
                     #region 控制关门
+                    if (this.Floors[j].DoorStatus == DoorStatus.关闭)
+                    {
+                        this.Floors[j].toCloseDoor = false;
+                    }
+
                     if (this.Floors[j].toCloseDoor)
                     {
                         output = string.Empty;
@@ -663,6 +680,7 @@ namespace BakBattery.Baking
                         }
                         LogHelper.WriteInfo(string.Format("成功发送关门指令到{0}:{1}", this.Floors[j].Name, Current.option.CloseOvenDoorStrs.Split(',')[j]));
                         this.Floors[j].toCloseDoor = false;
+                        this.Floors[j].DoorIsClosing = true;
                     }
                     #endregion
 

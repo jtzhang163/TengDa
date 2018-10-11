@@ -3975,48 +3975,49 @@ namespace BakBattery.Baking.App
 
             this.tsmOvenOpenDoor.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].Floors[j].IsAlive
+                && Current.ovens[i].IsAlive
                 && Current.ovens[i].Floors[j].DoorStatus != DoorStatus.打开
                 && !Current.ovens[i].Floors[j].IsBaking
                 && !Current.ovens[i].Floors[j].IsVacuum
                 && !Current.ovens[i].Floors[j].Stations[0].IsOpenDoorIntervene;
-            this.tsmOvenCloseDoor.Enabled = Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].Floors[j].IsAlive
+            this.tsmOvenCloseDoor.Enabled = 
+                Current.ovens[i].Floors[j].IsNetControlOpen
+                && Current.ovens[i].IsAlive
                 && Current.ovens[i].Floors[j].DoorStatus != DoorStatus.关闭;
             this.tsmOpenNetControl.Enabled = Current.ovens[i].Floors[j].IsAlive && !Current.ovens[i].Floors[j].IsNetControlOpen;
             this.tsmLoadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].Floors[j].IsAlive
+                && Current.ovens[i].IsAlive
                  && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.关闭
                 && !Current.ovens[i].Floors[j].VacuumIsLoading
                 && !Current.ovens[i].Floors[j].IsVacuum;
             this.tsmCancelLoadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].Floors[j].IsAlive
+                && Current.ovens[i].IsAlive
                 && Current.ovens[i].Floors[j].VacuumIsLoading;
             this.tsmUploadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].Floors[j].IsAlive
+                && Current.ovens[i].IsAlive
                 && !Current.ovens[i].Floors[j].IsBaking
                 && !Current.ovens[i].Floors[j].VacuumIsUploading
                 && Current.ovens[i].Floors[j].IsVacuum;
             this.tsmCancelUploadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].Floors[j].IsAlive
+                && Current.ovens[i].IsAlive
                 && Current.ovens[i].Floors[j].VacuumIsUploading;
             this.tsmClearRunTime.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].Floors[j].IsAlive;
+                && Current.ovens[i].IsAlive;
             this.tsmStartBaking.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].Floors[j].IsAlive
+                && Current.ovens[i].IsAlive
                 && !Current.ovens[i].Floors[j].IsBaking
                 && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.关闭;
             this.tsmStopBaking.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].Floors[j].IsAlive
+                && Current.ovens[i].IsAlive
                 && Current.ovens[i].Floors[j].IsBaking;
-            this.tsmAlarmReset.Enabled = Current.ovens[i].Floors[j].IsAlive;
+            this.tsmAlarmReset.Enabled = Current.ovens[i].IsAlive;
 
         }
 

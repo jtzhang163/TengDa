@@ -41,13 +41,19 @@ namespace BakBattery.Baking
             {
                 if (this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.转移台)
                 {
+                    var _status = StationStatus.不可用;
                     if (this.ClampStatus == ClampStatus.无夹具)
                     {
-                        status = StationStatus.可放;
+                        _status = StationStatus.可放;
                     }
                     else
                     {
-                        status = StationStatus.可取;
+                        _status = StationStatus.可取;
+                    }
+                    if (status != _status)
+                    {
+                        this.GetPutTime = DateTime.Now;
+                        status = _status;
                     }
                 }
                 return status;
