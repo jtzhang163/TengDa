@@ -1573,6 +1573,7 @@ namespace BakBattery.Baking.App
                 Current.ovens[i].PreAlarmStr = string.Empty;
                 for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
                 {
+                    Current.ovens[i].Floors[j].DoorStatus = DoorStatus.未知;
                     Current.ovens[i].Floors[j].PreAlarmStr = string.Empty;
                 }
             }
