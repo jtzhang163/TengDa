@@ -469,53 +469,75 @@ namespace BakBattery.Baking
                     this.PreAlarm2BinString = this.Alarm2BinString;
                     #endregion
 
-                    #region 获取门状态、真空和三色灯
-                    for (int j = 0; j < this.Floors.Count; j++)
+                }
+
+                #region 获取门控制指令信息
+                output = string.Empty;
+                if (!this.Plc.GetInfo(false, Current.option.GetDoorCommandStr, out output, out msg))
+                {
+                    Error.Alert(msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+
+                if (output.Substring(3, 1) != "$")
+                {
+                    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetDoorCommandStr, output));
+                    return false;
+                }
+
+                for (int j = 0; j < this.Floors.Count; j++)
+                {
+                    this.Floors[j].DoorIsOpenning = output.Substring(6 + j, 1) == "1";
+                    this.Floors[j].DoorIsClosing = output.Substring(9 + j, 1) == "1";
+                }
+                #endregion
+
+                #region 获取门状态、真空和三色灯
+                for (int j = 0; j < this.Floors.Count; j++)
+                {
+                    output = string.Empty;
+                    if (!this.Plc.GetInfo(false, Current.option.GetMultiInfoStrs.Split(',')[j], out output, out msg))
                     {
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.GetMultiInfoStrs.Split(',')[j], out output, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
-
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetMultiInfoStrs.Split(',')[j], output));
-                            return false;
-                        }
-
-                        var tmpStr = output;
-
-                        output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-
-                        switch (int.Parse(output.Substring(0, 4), System.Globalization.NumberStyles.AllowHexSpecifier))
-                        {
-                            case 1: this.Floors[j].DoorStatusNotFinal = DoorStatus.打开; break;
-                            case 2: this.Floors[j].DoorStatusNotFinal = DoorStatus.关闭; break;
-                            case 3: 
-                            case 4: this.Floors[j].DoorStatusNotFinal = DoorStatus.异常; break;
-                            default: this.Floors[j].DoorStatusNotFinal = DoorStatus.未知; break;
-                        }
-
-                        switch (int.Parse(output.Substring(4, 4), System.Globalization.NumberStyles.AllowHexSpecifier))
-                        {
-                            case 1: this.Floors[j].TriLamp = TriLamp.Green; break;
-                            case 2: this.Floors[j].TriLamp = TriLamp.Yellow; break;
-                            case 3: this.Floors[j].TriLamp = TriLamp.Red; break;
-                            default: this.Floors[j].TriLamp = TriLamp.Unknown; break;
-                        }
-
-                        var tmpStr2 = PanasonicPLC.ConvertHexStr(tmpStr.TrimEnd('\r'), true, true);
-
-                        this.Floors[j].Vacuum = (float)int.Parse(tmpStr2.Substring(16, 8), System.Globalization.NumberStyles.AllowHexSpecifier);
-
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
                     }
 
-                    #endregion
+                    if (output.Substring(3, 1) != "$")
+                    {
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetMultiInfoStrs.Split(',')[j], output));
+                        return false;
+                    }
+
+                    var tmpStr = output;
+
+                    output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
+
+                    switch (int.Parse(output.Substring(0, 4), System.Globalization.NumberStyles.AllowHexSpecifier))
+                    {
+                        case 1: this.Floors[j].DoorStatusNotFinal = DoorStatus.打开; break;
+                        case 2: this.Floors[j].DoorStatusNotFinal = DoorStatus.关闭; break;
+                        case 3:
+                        case 4: this.Floors[j].DoorStatusNotFinal = DoorStatus.异常; break;
+                        default: this.Floors[j].DoorStatusNotFinal = DoorStatus.未知; break;
+                    }
+
+                    switch (int.Parse(output.Substring(4, 4), System.Globalization.NumberStyles.AllowHexSpecifier))
+                    {
+                        case 1: this.Floors[j].TriLamp = TriLamp.Green; break;
+                        case 2: this.Floors[j].TriLamp = TriLamp.Yellow; break;
+                        case 3: this.Floors[j].TriLamp = TriLamp.Red; break;
+                        default: this.Floors[j].TriLamp = TriLamp.Unknown; break;
+                    }
+
+                    var tmpStr2 = PanasonicPLC.ConvertHexStr(tmpStr.TrimEnd('\r'), true, true);
+
+                    this.Floors[j].Vacuum = (float)int.Parse(tmpStr2.Substring(16, 8), System.Globalization.NumberStyles.AllowHexSpecifier);
 
                 }
+
+                #endregion
 
                 #region 获取真空控制指令信息
                 output = string.Empty;

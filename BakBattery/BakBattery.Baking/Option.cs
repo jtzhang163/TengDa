@@ -1751,6 +1751,32 @@ namespace BakBattery.Baking
             }
         }
 
+        private string getDoorCommandStr = string.Empty;
+        /// <summary>
+        /// 获取门指令状态指令
+        /// </summary>
+        [DisplayName("获取门指令状态指令")]
+        [Category("烤箱")]
+        public string GetDoorCommandStr
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(getDoorCommandStr))
+                {
+                    getDoorCommandStr = TengDa.WF.Option.GetOption("GetDoorCommandStr");
+                }
+                return getDoorCommandStr;
+            }
+            set
+            {
+                if (value != getDoorCommandStr)
+                {
+                    TengDa.WF.Option.SetOption("GetDoorCommandStr", value);
+                    getDoorCommandStr = value;
+                }
+            }
+        }
+
 
 
         private string curveIndexs = string.Empty;
