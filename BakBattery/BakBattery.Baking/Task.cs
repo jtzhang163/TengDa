@@ -456,11 +456,6 @@ namespace BakBattery.Baking
                             Current.Task.FromStation.OpenDoor();
                         }
 
-                        if (Current.Task.ToStation.DoorStatus != DoorStatus.打开 && Current.Task.ToStation != null && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Robot.IsGettingOrPutting)
-                        {
-                            Current.Task.ToStation.OpenDoor();
-                        }
-
                         if (Current.Task.FromStation.DoorStatus == DoorStatus.打开)
                         {
                             Current.Task.Status = TaskStatus.可取;
@@ -487,6 +482,12 @@ namespace BakBattery.Baking
                     }
                     else if (Current.Task.Status == TaskStatus.正取 && Current.Task.FromStation != null)
                     {
+                        //提前把放盘位门打开
+                        if (Current.Task.ToStation.DoorStatus != DoorStatus.打开 && Current.Task.ToStation != null && Current.Task.ToStation.GetPutType == GetPutType.烤箱)
+                        {
+                            Current.Task.ToStation.OpenDoor();
+                        }
+
                         if (Current.Robot.ClampStatus != ClampStatus.无夹具)
                         {
                             Current.Robot.ClampStatus = Current.Task.FromClampStatus;

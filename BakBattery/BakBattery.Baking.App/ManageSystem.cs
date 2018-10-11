@@ -2015,11 +2015,11 @@ namespace BakBattery.Baking.App
                             {
                                 station.FloorStatus = FloorStatus.空盘;
                             }
-                            else if (station.ClampStatus == ClampStatus.满夹具 && (station.PreFloorStatus == FloorStatus.无盘 || station.PreFloorStatus == FloorStatus.待烤))
+                            else if (station.ClampStatus == ClampStatus.满夹具 && (station.PreFloorStatus == FloorStatus.无盘 || station.PreFloorStatus == FloorStatus.待烤 || station.PreFloorStatus == FloorStatus.未知))
                             {
                                 station.FloorStatus = FloorStatus.待烤;
                             }
-                            else if (station.ClampStatus == ClampStatus.满夹具 && (station.PreFloorStatus == FloorStatus.烘烤 || station.PreFloorStatus == FloorStatus.待出))
+                            else if (station.ClampStatus == ClampStatus.满夹具 && (station.PreFloorStatus == FloorStatus.烘烤 || station.PreFloorStatus == FloorStatus.待出 || station.PreFloorStatus == FloorStatus.未知))
                             {
                                 station.FloorStatus = FloorStatus.待出;
                             }
@@ -2290,8 +2290,7 @@ namespace BakBattery.Baking.App
                         {
                             if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) < 1
                                 && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) < 1
-                                && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
-                                && Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具)
+                                && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
                             {
                                 Current.ovens[i].CloseDoor(j);
                             }
@@ -2340,7 +2339,7 @@ namespace BakBattery.Baking.App
                         oOven.UploadVacuum(jj);
                     }
 
-                    if (oFloor.DoorStatus == DoorStatus.关闭 && !oFloor.IsVacuum && !Current.Robot.IsGettingOrPutting)
+                    if (oFloor.DoorStatus == DoorStatus.关闭 && !oFloor.IsVacuum)
                     {
                         oOven.OpenDoor(jj);
                     }
@@ -3736,7 +3735,7 @@ namespace BakBattery.Baking.App
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
 
             Current.ovens[i].Floors[j].AddLog("手动取消卸真空");
-            Current.ovens[i].CancelUploadVacuum(j);
+            Current.ovens[i].CancelLoadVacuum(j);
         }
 
         private void tsmCancelUploadVacuum_Click(object sender, EventArgs e)
@@ -3751,7 +3750,7 @@ namespace BakBattery.Baking.App
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
 
             Current.ovens[i].Floors[j].AddLog("手动取消抽真空");
-            Current.ovens[i].CancelLoadVacuum(j);
+            Current.ovens[i].CancelUploadVacuum(j);
         }
 
         private void tsmClearRunTime_Click(object sender, EventArgs e)
@@ -4017,10 +4016,6 @@ namespace BakBattery.Baking.App
                 && Current.ovens[i].Floors[j].IsAlive
                 && Current.ovens[i].Floors[j].IsBaking;
             this.tsmAlarmReset.Enabled = Current.ovens[i].Floors[j].IsAlive;
-
-            this.tsmLoadVacuum.Text = Current.ovens[i].Floors[j].VacuumIsLoading ? "取消抽真空" : "抽真空";
-
-            this.tsmUploadVacuum.Text = Current.ovens[i].Floors[j].VacuumIsUploading ? "取消泄真空" : "泄真空";
 
         }
 
@@ -4539,6 +4534,10 @@ namespace BakBattery.Baking.App
                         return;
                     }
 
+                    if (Current.Task.StartTime == TengDa.Common.DefaultTime)
+                    {
+                        Current.Task.StartTime = DateTime.Now;
+                    }
 
                     Current.Task.TaskId = -1;
                     Current.Task.NextToStationId = station.Id;

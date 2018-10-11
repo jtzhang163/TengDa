@@ -799,10 +799,9 @@ namespace BakBattery.Baking
                     if (this.Floors[j].toCancelUploadVacuum)
                     {
                         var command = Current.option.UnloadVacuumStrs.Split(',')[j];
-                        if (this.Floors[j].VacuumIsUploading)
-                        {
-                            command = command.Replace("1**", "0**");
-                        }
+
+                        command = command.Replace("1**", "0**");
+                        
                         output = string.Empty;
                         if (!this.Plc.GetInfo(false, command, out output, out msg))
                         {

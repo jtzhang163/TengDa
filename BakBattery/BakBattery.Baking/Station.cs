@@ -311,7 +311,6 @@ namespace BakBattery.Baking
         public FloorStatus PreFloorStatus;
 
         protected FloorStatus floorStatus = FloorStatus.未知;
-        [ReadOnly(true)]
         [DisplayName("当前腔体状态")]
         public FloorStatus FloorStatus
         {
@@ -345,10 +344,9 @@ namespace BakBattery.Baking
                     }
                 }
 
-
-
                 if (floorStatus != value && this.IsAlive)
                 {
+                    PreFloorStatus = value;
                     UpdateDbField("FloorStatus", value);
                 }
                 floorStatus = value;
