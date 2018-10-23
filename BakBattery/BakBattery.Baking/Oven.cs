@@ -325,6 +325,7 @@ namespace BakBattery.Baking
                         this.Floors[j].PreheatTimeSet = int.Parse(output.Substring(4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
                         this.Floors[j].BakingTimeSet = int.Parse(output.Substring(12, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
                         this.Floors[j].BreathingCycleSet = int.Parse(output.Substring(20, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                        this.Floors[j].VacuumSet = int.Parse(output.Substring(84, 4) + output.Substring(80, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
                     }
                     #endregion
 
@@ -469,6 +470,33 @@ namespace BakBattery.Baking
                     this.PreAlarm2BinString = this.Alarm2BinString;
                     #endregion
 
+                    #region 获取烤箱设定温度
+                    for (int j = 0; j < this.Floors.Count; j++)
+                    {
+
+                        output = string.Empty;
+                        if (!this.Plc.GetInfo(false, Current.option.GetTemSetStrs.Split(',')[j], out output, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
+                        if (output.Substring(3, 1) != "$")
+                        {
+                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetTemSetStrs.Split(',')[j], output));
+                            return false;
+                        }
+
+                        output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
+
+                        for (int k = 0; k < this.floors[j].TemperatureSets.Length; k++)
+                        {
+                            this.Floors[j].TemperatureSets[k] = (float)int.Parse(output.Substring(k * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                        }
+
+                        this.Floors[j].YunfengTemperatureSet = (float)int.Parse(output.Substring(44, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                    }
+                    #endregion
                 }
 
                 #region 获取门控制指令信息
@@ -488,13 +516,13 @@ namespace BakBattery.Baking
 
                 for (int j = 0; j < this.Floors.Count; j++)
                 {
-                    if(output.Substring(6 + j, 1) == "1")
+                    if (output.Substring(6 + j, 1) == "1")
                     {
-                       //this.Floors[j].DoorIsOpenning = true;
+                        //this.Floors[j].DoorIsOpenning = true;
                     }
                     if (output.Substring(9 + j, 1) == "1")
                     {
-                       //this.Floors[j].DoorIsClosing = true;
+                        //this.Floors[j].DoorIsClosing = true;
                     }
                 }
                 #endregion
@@ -631,7 +659,7 @@ namespace BakBattery.Baking
                     }
 
                     #region 控制开门
-                    if(this.Floors[j].DoorStatus == DoorStatus.打开)
+                    if (this.Floors[j].DoorStatus == DoorStatus.打开)
                     {
                         this.Floors[j].toOpenDoor = false;
                     }
@@ -794,7 +822,7 @@ namespace BakBattery.Baking
                     if (this.Floors[j].toCancelLoadVacuum)
                     {
                         var command = Current.option.LoadVacuumStrs.Split(',')[j];
-                        command = command.Replace("1**", "0**");                  
+                        command = command.Replace("1**", "0**");
                         output = string.Empty;
                         if (!this.Plc.GetInfo(false, command, out output, out msg))
                         {
@@ -841,7 +869,7 @@ namespace BakBattery.Baking
                         var command = Current.option.UnloadVacuumStrs.Split(',')[j];
 
                         command = command.Replace("1**", "0**");
-                        
+
                         output = string.Empty;
                         if (!this.Plc.GetInfo(false, command, out output, out msg))
                         {
@@ -1240,6 +1268,21 @@ namespace BakBattery.Baking
                 if (s.FloorStatus == floorStatus) count++;
             }));
             return count;
+        }
+        /// <summary>
+        /// 改变该烤箱测试炉层
+        /// </summary>
+        public void ChangeWaterContentTestFloor()
+        {
+            Floor floor = this.Floors.FirstOrDefault(f => f.IsTestWaterContent);
+            if (floor == null)
+            {
+                this.Floors[0].IsTestWaterContent = true;
+                return;
+            }
+            int j = this.Floors.IndexOf(floor);
+            j = (++j) % this.Floors.Count;
+            this.Floors[j].IsTestWaterContent = true;
         }
     }
 }

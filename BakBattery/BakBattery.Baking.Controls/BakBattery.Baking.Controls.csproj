@@ -66,6 +66,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\TengDa\TengDa.WF\TengDa.WF.csproj">
+      <Project>{dfd6cb8d-d1fd-4712-8c4e-c611bbe12d08}</Project>
+      <Name>TengDa.WF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BakBattery.Baking\BakBattery.Baking.csproj">
       <Project>{af2bdc78-1a2d-438e-8fb2-8383d2db324e}</Project>
       <Name>BakBattery.Baking</Name>

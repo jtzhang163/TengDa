@@ -50,6 +50,7 @@
     <Compile Include="Battery.cs" />
     <Compile Include="BatteryCache.cs" />
     <Compile Include="UploadData.cs" />
+    <Compile Include="UploadTVD.cs" />
     <Compile Include="Robot.cs" />
     <Compile Include="Transfer.cs" />
     <Compile Include="Clamp.cs" />
@@ -71,6 +72,10 @@
     <Compile Include="TVD.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\TengDa\TengDa.Web\TengDa.Web.csproj">
+      <Project>{7D900ED1-B54C-405F-ADB2-6C87A7A0EE02}</Project>
+      <Name>TengDa.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\TengDa\TengDa.WF\TengDa.WF.csproj">
       <Project>{dfd6cb8d-d1fd-4712-8c4e-c611bbe12d08}</Project>
       <Name>TengDa.WF</Name>

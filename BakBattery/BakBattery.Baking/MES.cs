@@ -10,8 +10,10 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Services.Description;
 using TengDa;
+using TengDa.Web;
 using TengDa.WF;
 
 namespace BakBattery.Baking
@@ -41,74 +43,6 @@ namespace BakBattery.Baking
                 webServiceUrl = value;
             }
         }
-
-        //protected string workstationSn = string.Empty;
-        ///// <summary>
-        ///// 工作中心SN
-        ///// </summary>
-        //[DisplayName("工作中心SN")]
-        //[Category("参数配置")]
-        //public string WorkstationSn
-        //{
-        //    get
-        //    {
-        //        return workstationSn;
-        //    }
-        //    set
-        //    {
-        //        if (workstationSn != value)
-        //        {
-        //            UpdateDbField("WorkstationSn", value);
-        //        }
-        //        workstationSn = value;
-        //    }
-        //}
-
-        protected string employeeNo = string.Empty;
-        /// <summary>
-        /// 员工号
-        /// </summary>
-        [DisplayName("员工号")]
-        [Category("参数配置")]
-        public string EmployeeNo
-        {
-            get
-            {
-                return employeeNo;
-            }
-            set
-            {
-                if (employeeNo != value)
-                {
-                    UpdateDbField("EmployeeNo", value);
-                }
-                employeeNo = value;
-            }
-        }
-
-
-        protected string manufactureOrder = string.Empty;
-        /// <summary>
-        /// 制令单号
-        /// </summary>
-        [DisplayName("制令单号")]
-        [Category("参数配置")]
-        public string ManufactureOrder
-        {
-            get
-            {
-                return manufactureOrder;
-            }
-            set
-            {
-                if (manufactureOrder != value)
-                {
-                    UpdateDbField("ManufactureOrder", value);
-                }
-                manufactureOrder = value;
-            }
-        }
-
 
         #endregion
 
@@ -165,9 +99,6 @@ namespace BakBattery.Baking
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
             this.isOffline = Convert.ToBoolean(rowInfo["IsOffline"]);
             this.webServiceUrl = rowInfo["WebServiceUrl"].ToString();
-           //this.workstationSn = rowInfo["WorkstationSn"].ToString();
-            this.employeeNo = rowInfo["EmployeeNo"].ToString();
-            this.manufactureOrder = rowInfo["ManufactureOrder"].ToString();
         }
         #endregion
 
@@ -240,11 +171,314 @@ namespace BakBattery.Baking
 
         #region MES方法
 
-
-        public bool UploadCellInfo(Clamp clamp, out string msg)
+        /// <summary>
+        /// MES上传公用方法
+        /// </summary>
+        /// <param name="uploadDatas"></param>
+        /// <returns></returns>
+        public static async Task<bool> UploadAsync(List<UploadData> uploadDatas)
         {
-            msg = string.Empty;
+            if (uploadDatas.Count < 1)
+            {
+                return true;
+            }
+
+            try
+            {
+                var values = new List<KeyValuePair<string, string>>();
+                string val = JsonHelper.SerializeObjectList<UploadData>(uploadDatas);
+                values.Add(new KeyValuePair<string, string>("data", val));
+                string s = await HttpHelper.HttpPostAsync(Current.mes.WebServiceUrl, values);
+                MesResponse ret = JsonHelper.DeserializeJsonToObject<MesResponse>(s);
+                if (ret.status == 0)
+                {
+                    LogHelper.WriteInfo("上传MES成功，data：" + val);
+                    return true;
+                }
+                LogHelper.WriteError("上传MES失败，msg：" + ret.msg);
+                LogHelper.WriteError("data：" + val);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError("上传MES出现错误，msg：" + ex.Message);
+            }
             return false;
+        }
+
+        /// <summary>
+        /// 上传真空温度数据
+        /// </summary>
+        /// <param name="uploadTVDs"></param>
+        /// <returns></returns>
+        public static async System.Threading.Tasks.Task UploadTvdInfoAsync(List<UploadTVD> uploadTVDs)
+        {
+            for (int i = 0; i < uploadTVDs.Count; i++)
+            {
+                var uploadTVD = uploadTVDs[i];
+                var clamp = new Clamp(uploadTVD.ClampId);
+                var station = Station.StationList.FirstOrDefault(s => s.Id == clamp.OvenStationId);
+                var floor = station.GetFloor();
+                var oven = floor.GetOven();
+
+                var uploadDatas = new List<UploadData>();
+
+                foreach (var battery in clamp.Batteries)
+                {
+                    var uploadData = new UploadData();
+
+                    uploadData.batch_number = battery.Code.Split('-')[0];
+                    uploadData.parameter_flag = uploadTVD.ParameterFlag.ToString();
+                    uploadData.device_status = uploadTVD.DeviceStatus.ToString();
+                    uploadData.collector_time = uploadTVD.CollectorTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+                    uploadData.materialCodeInfo = new List<MaterialCodeInfo>();
+                    uploadData.materialCodeInfo.Add(new MaterialCodeInfo()
+                    {
+                        materialCodeName = "电芯编号",
+                        materialCode = battery.Code
+                    });
+
+                    uploadData.deviceCodeInfo = new List<DeviceCodeInfo>();
+                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
+                    {
+                        deviceCodeName = "机台号",
+                        deviceCode = oven.Number
+                    });
+                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
+                    {
+                        deviceCodeName = "烤箱编号",
+                        deviceCode = station.Number
+                    });
+                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
+                    {
+                        deviceCodeName = "料框编号",
+                        deviceCode = clamp.Code
+                    });
+
+                    uploadData.deviceParamData = new List<DeviceParamData>();
+                    for (int k = 0; k < Option.TemperaturePointCount; k++)
+                    {
+                        uploadData.deviceParamData.Add(new DeviceParamData
+                        {
+                            parameter_flag = uploadTVD.ParameterFlag.ToString(),
+                            parameter_name = Current.option.TemperNames[k] + "实际值",
+                            parameter_unit = "℃",
+                            parameter_value = uploadTVD.T[k].ToString()
+                        });
+                    }
+
+                    uploadData.deviceParamData.Add(new DeviceParamData
+                    {
+                        parameter_flag = uploadTVD.ParameterFlag.ToString(),
+                        parameter_name = "真空度实际值",
+                        parameter_unit = "Pa",
+                        parameter_value = uploadTVD.V1.ToString()
+                    });
+
+                    uploadDatas.Add(uploadData);
+                }
+
+                if (await UploadAsync(uploadDatas))
+                {
+                    uploadTVD.IsUploaded = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 入炉数据上传
+        /// </summary>
+        /// <param name="clamps"></param>
+        /// <returns></returns>
+        public static async System.Threading.Tasks.Task UploadInOvenAsync(List<Clamp> clamps)
+        {
+            for (int i = 0; i < clamps.Count; i++)
+            {
+                var clamp = clamps[i];
+                var station = Station.StationList.FirstOrDefault(s => s.Id == clamp.OvenStationId);
+                var floor = station.GetFloor();
+                var oven = floor.GetOven();
+
+                var uploadDatas = new List<UploadData>();
+
+                foreach (var battery in clamp.Batteries)
+                {
+                    var uploadData = new UploadData();
+
+                    uploadData.batch_number = battery.Code.Split('-')[0];
+                    uploadData.parameter_flag = "0";
+                    uploadData.device_status = "0";
+                    uploadData.collector_time = clamp.InOvenTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+                    uploadData.materialCodeInfo = new List<MaterialCodeInfo>();
+                    uploadData.materialCodeInfo.Add(new MaterialCodeInfo()
+                    {
+                        materialCodeName = "电芯编号",
+                        materialCode = battery.Code
+                    });
+
+                    uploadData.deviceCodeInfo = new List<DeviceCodeInfo>();
+                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
+                    {
+                        deviceCodeName = "机台号",
+                        deviceCode = oven.Number
+                    });
+                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
+                    {
+                        deviceCodeName = "烤箱编号",
+                        deviceCode = station.Number
+                    });
+                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
+                    {
+                        deviceCodeName = "料框编号",
+                        deviceCode = clamp.Code
+                    });
+
+                    uploadData.deviceParamData = new List<DeviceParamData>();
+
+                    uploadData.deviceParamData.Add(new DeviceParamData
+                    {
+                        parameter_flag = "0",
+                        parameter_name = "工艺温度",
+                        parameter_unit = "℃",
+                        parameter_value = clamp.ProcessTemperSet.ToString()
+                    });
+
+                    for (int k = 0; k < Option.TemperatureSetPointCount; k++)
+                    {
+                        uploadData.deviceParamData.Add(new DeviceParamData
+                        {
+                            parameter_flag = "0",
+                            parameter_name = Current.option.TemperSetNames[k],
+                            parameter_unit = "℃",
+                            parameter_value = clamp.TsSet[k].ToString()
+                        });
+                    }
+
+                    uploadData.deviceParamData.Add(new DeviceParamData
+                    {
+                        parameter_flag = "0",
+                        parameter_name = "真空度设定值",
+                        parameter_unit = "Pa",
+                        parameter_value = clamp.VacuumSet.ToString()
+                    });
+
+                    uploadData.deviceParamData.Add(new DeviceParamData
+                    {
+                        parameter_flag = "0",
+                        parameter_name = "热风循环温度",
+                        parameter_unit = "℃",
+                        parameter_value = clamp.YunFengTSet.ToString()
+                    });
+
+                    uploadData.deviceParamData.Add(new DeviceParamData
+                    {
+                        parameter_flag = "0",
+                        parameter_name = "进烤箱时间",
+                        parameter_unit = "",
+                        parameter_value = clamp.InOvenTime.ToString("yyyy-MM-dd HH:mm:ss")
+                    });
+
+                    uploadData.deviceParamData.Add(new DeviceParamData
+                    {
+                        parameter_flag = "0",
+                        parameter_name = "预热时间设置",
+                        parameter_unit = "min",
+                        parameter_value = clamp.PreheatTimeSet.ToString()
+                    });
+
+                    uploadData.deviceParamData.Add(new DeviceParamData
+                    {
+                        parameter_flag = "0",
+                        parameter_name = "烘烤时间设置",
+                        parameter_unit = "min",
+                        parameter_value = clamp.BakingTimeSet.ToString()
+                    });
+
+                    uploadData.deviceParamData.Add(new DeviceParamData
+                    {
+                        parameter_flag = "0",
+                        parameter_name = "呼吸周期设置",
+                        parameter_unit = "min",
+                        parameter_value = clamp.BreathingCycleSet.ToString()
+                    });
+                    uploadDatas.Add(uploadData);
+                }
+
+                if (await UploadAsync(uploadDatas))
+                {
+                    clamp.IsInUploaded = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 出炉数据上传
+        /// </summary>
+        /// <param name="clamps"></param>
+        /// <returns></returns>
+        public static async System.Threading.Tasks.Task UploadOutOvenAsync(List<Clamp> clamps)
+        {
+            for (int i = 0; i < clamps.Count; i++)
+            {
+                var clamp = clamps[i];
+                var station = Station.StationList.FirstOrDefault(s => s.Id == clamp.OvenStationId);
+                var floor = station.GetFloor();
+                var oven = floor.GetOven();
+
+                var uploadDatas = new List<UploadData>();
+
+                foreach (var battery in clamp.Batteries)
+                {
+                    var uploadData = new UploadData();
+
+                    uploadData.batch_number = battery.Code.Split('-')[0];
+                    uploadData.parameter_flag = "0";
+                    uploadData.device_status = "0";
+                    uploadData.collector_time = clamp.OutOvenTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+                    uploadData.materialCodeInfo = new List<MaterialCodeInfo>();
+                    uploadData.materialCodeInfo.Add(new MaterialCodeInfo()
+                    {
+                        materialCodeName = "电芯编号",
+                        materialCode = battery.Code
+                    });
+
+                    uploadData.deviceCodeInfo = new List<DeviceCodeInfo>();
+                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
+                    {
+                        deviceCodeName = "机台号",
+                        deviceCode = oven.Number
+                    });
+                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
+                    {
+                        deviceCodeName = "烤箱编号",
+                        deviceCode = station.Number
+                    });
+                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
+                    {
+                        deviceCodeName = "料框编号",
+                        deviceCode = clamp.Code
+                    });
+
+                    uploadData.deviceParamData = new List<DeviceParamData>();
+                    uploadData.deviceParamData.Add(new DeviceParamData
+                    {
+                        parameter_flag = "0",
+                        parameter_name = "出烤箱时间",
+                        parameter_unit = "",
+                        parameter_value = clamp.OutOvenTime.ToString("yyyy-MM-dd HH:mm:ss")
+                    });
+
+                    uploadDatas.Add(uploadData);
+                }
+
+                if (await UploadAsync(uploadDatas))
+                {
+                    clamp.IsOutUploaded = true;
+                }
+            }
         }
 
         #endregion

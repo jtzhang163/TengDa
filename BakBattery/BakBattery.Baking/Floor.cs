@@ -30,17 +30,7 @@ namespace BakBattery.Baking
 
         [ReadOnly(true), Description("已运行时间，单位：min")]
         [DisplayName("已运行时间")]
-        public int RunMinutes
-        {
-            get
-            {
-                return runMinutes;
-            }
-            set
-            {
-                runMinutes = value;
-            }
-        }
+        public int RunMinutes { get; set; } = 0;
 
         [ReadOnly(true), Description("剩余时间，单位：min")]
         [DisplayName("剩余时间")]
@@ -51,38 +41,15 @@ namespace BakBattery.Baking
                 return RunMinutesSet - RunMinutes;
             }
         }
-        private int runMinutes = 0;
 
         [ReadOnly(true), Description("总运行时间设置，单位：min")]
         [DisplayName("总运行时间设置")]
-        public int RunMinutesSet
-        {
-            get
-            {
-                return runMinutesSet;
-            }
-            set
-            {
-                runMinutesSet = value;
-            }
-        }
-        private int runMinutesSet = 0;
+        public int RunMinutesSet { get; set; } = 0;
 
 
         [ReadOnly(true), Description("真空度，单位：Pa")]
         [DisplayName("真空度")]
-        public float Vacuum
-        {
-            get
-            {
-                return vacuum;
-            }
-            set
-            {
-                vacuum = value;
-            }
-        }
-        private float vacuum = 0f;
+        public float Vacuum { get; set; } = 0f;
 
 
         [ReadOnly(true), Description("是否正在烘烤")]
@@ -134,15 +101,9 @@ namespace BakBattery.Baking
         {
             return Oven.OvenList.First(o => o.Floors.Contains(this));
         }
-
-        private string stationIds = string.Empty;
         [ReadOnly(true), Description("工位Id集合")]
         [DisplayName("工位Id集合")]
-        public string StationIds
-        {
-            get { return stationIds; }
-            set { stationIds = value; }
-        }
+        public string StationIds { get; set; } = string.Empty;
 
         private DoorStatus doorStatus = DoorStatus.未知;
 
@@ -180,6 +141,59 @@ namespace BakBattery.Baking
         [DisplayName("是否烘烤完成")]
         public bool IsBakeFinished { get; set; }
 
+        private bool isTestWaterContent = false;
+        /// <summary>
+        /// 是否测试水分
+        /// </summary>
+        [DisplayName("是否测试水分")]
+        public bool IsTestWaterContent
+        {
+            get
+            {
+                return isTestWaterContent;
+            }
+            set
+            {
+                if (isTestWaterContent != value)
+                {
+                    UpdateDbField("IsTestWaterContent", value);
+                    if (value)
+                    {
+                        foreach (Floor f in this.GetOven().Floors)
+                        {
+                            if (this != f)
+                            {
+                                f.IsTestWaterContent = false;
+                            }
+                        }
+                    }
+                }
+                isTestWaterContent = value;
+            }
+        }
+
+        private int ngTimes = 0;
+
+        /// <summary>
+        /// 水分测试NG次数
+        /// </summary>
+        [DisplayName("水分测试NG次数")]
+        public int NgTimes
+        {
+            get
+            {
+                return ngTimes;
+            }
+            set
+            {
+                if (ngTimes != value)
+                {
+                    UpdateDbField("NgTimes", value);
+                }
+                ngTimes = value;
+            }
+        }
+
 
         public TriLamp triLamp = TriLamp.Unknown;
         [ReadOnly(true), DisplayName("三色灯")]
@@ -199,22 +213,33 @@ namespace BakBattery.Baking
             }
         }
 
-
+        /// <summary>
+        /// 温度数组
+        /// </summary>
         [ReadOnly(true)]
         [DisplayName("温度数组")]
-        public float[] Temperatures
-        {
-            get
-            {
-                return temperatures;
-            }
-            set
-            {
-                temperatures = value;
-            }
-        }
-        private float[] temperatures = new float[Option.TemperaturePointCount];
+        public float[] Temperatures { get; set; } = new float[Option.TemperaturePointCount];
 
+        /// <summary>
+        /// 温度设定数组
+        /// </summary>
+        [ReadOnly(true)]
+        [DisplayName("温度设定数组")]
+        public float[] TemperatureSets { get; set; } = new float[Option.TemperatureSetPointCount];
+
+        /// <summary>
+        /// 运风温度设置值
+        /// </summary>
+        [ReadOnly(true)]
+        [DisplayName("运风温度设置值")]
+        public float YunfengTemperatureSet { get; set; }
+
+        /// <summary>
+        /// 真空度设置值
+        /// </summary>
+        [ReadOnly(true)]
+        [DisplayName("真空度设置值")]
+        public float VacuumSet { get; set; }
 
         #region 绘制温度曲线相关
         public List<float>[] sampledDatas = new List<float>[Option.TemperaturePointCount];//采样数据1
@@ -252,64 +277,33 @@ namespace BakBattery.Baking
 
         #region 要设置的参数
 
-        private int preheatTimeSet = -1;
-
         /// <summary>
         /// 设置预热时间
         /// </summary>
         [Description("设置预热时间，单位：min")]
         [DisplayName("设置预热时间")]
-        public int PreheatTimeSet
-        {
-            get
-            {
-                return preheatTimeSet;
-            }
-            set
-            {
-                preheatTimeSet = value;
-            }
-        }
-
-
-        private int bakingTimeSet = -1;
+        public int PreheatTimeSet { get; set; } = -1;
 
         /// <summary>
         /// 设置烘烤时间
         /// </summary>
         [Description("设置烘烤时间，单位：min")]
         [DisplayName("设置烘烤时间")]
-        public int BakingTimeSet
-        {
-            get
-            {
-                return bakingTimeSet;
-            }
-            set
-            {
-                bakingTimeSet = value;
-            }
-        }
-
-
-        private int breathingCycleSet = -1;
+        public int BakingTimeSet { get; set; } = -1;
 
         /// <summary>
         /// 设置呼吸周期
         /// </summary>
         [Description("设置呼吸周期，单位：min")]
         [DisplayName("设置呼吸周期")]
-        public int BreathingCycleSet
-        {
-            get
-            {
-                return breathingCycleSet;
-            }
-            set
-            {
-                breathingCycleSet = value;
-            }
-        }
+        public int BreathingCycleSet { get; set; } = -1;
+
+        /// <summary>
+        /// 设置工艺温度
+        /// </summary>
+        [Description("设置工艺温度，单位：℃")]
+        [DisplayName("设置工艺温度")]
+        public int ProcessTemperSet { get; set; } = -1;
 
         #endregion
 
@@ -465,12 +459,14 @@ namespace BakBattery.Baking
         {
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
             this.name = rowInfo["Name"].ToString();
-            this.stationIds = rowInfo["StationIds"].ToString();
+            this.StationIds = rowInfo["StationIds"].ToString();
             this.company = rowInfo["Company"].ToString();
             this.model = rowInfo["Model"].ToString();
             this.number = rowInfo["Number"].ToString();
             this.OvenId = TengDa._Convert.StrToInt(rowInfo["OvenId"].ToString(), -1);
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
+            this.isTestWaterContent = Convert.ToBoolean(rowInfo["IsTestWaterContent"]);
+            this.ngTimes = TengDa._Convert.StrToInt(rowInfo["NgTimes"].ToString(), 0);
             for (int i = 0; i < Option.TemperaturePointCount; i++)
             {
                 this.sampledDatas[i] = new List<float>();

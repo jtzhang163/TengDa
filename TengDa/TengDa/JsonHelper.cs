@@ -21,6 +21,20 @@ namespace TengDa
         }
 
         /// <summary>
+        /// 将对象集合序列化为JSON格式
+        /// </summary>
+        /// <param name="o">对象</param>
+        /// <returns>json字符串</returns>
+        public static string SerializeObjectList<T>(List<T> list)
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            StringWriter sw = new StringWriter();
+            serializer.Serialize(new JsonTextWriter(sw), list);
+            string json = sw.GetStringBuilder().ToString();
+            return json;
+        }
+
+        /// <summary>
         /// 解析JSON字符串生成对象实体
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>

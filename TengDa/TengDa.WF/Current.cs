@@ -33,5 +33,13 @@ namespace TengDa.WF
         public static bool IsTerminalInitFinished { get; set; } = false;
 
         public static User user = new User();
+
+        public static bool IsLogin
+        {
+            get
+            {
+                return user.Id > 0;
+            }
+        }
     }
 }

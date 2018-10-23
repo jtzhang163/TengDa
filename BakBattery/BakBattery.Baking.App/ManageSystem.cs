@@ -101,7 +101,7 @@ namespace BakBattery.Baking.App
 
         private void InitControls()
         {
-
+            cbCount.SelectedIndex = 1;
             lbTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             this.Text = string.Format("{0} {1}   {2}", Current.option.AppName, Version.AssemblyVersion, new Version().VersionTime.ToString("yyyy/M/d"));
             Current.runStstus = RunStatus.闲置;
@@ -661,10 +661,13 @@ namespace BakBattery.Baking.App
                     }
                     else
                     {
-
-                        this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {1}Pa",
+                        //NG两次用✘标记
+                        //需测试水分用★标记
+                        this.lbFloorInfoTop[i][j].Text = string.Format("{2}{0}℃ {1}Pa",
                             floor.Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5),
-                            floor.Vacuum.ToString("#0").PadLeft(6));
+                            floor.Vacuum.ToString("#0").PadLeft(6),
+                            (floor.NgTimes < 2 ? "" : "✘ ") + (floor.IsTestWaterContent ? "★" : "")
+                            );
 
 
                         this.lbFloorInfoTop[i][j].ForeColor = Color.Red;
@@ -1008,7 +1011,8 @@ namespace BakBattery.Baking.App
 
             this.tlpTransfer.BackColor = Current.Transfer.IsAlive ? Color.White : Color.LightGray;
 
-            lbTransferClampCode.Text = Current.Transfer.Station.Clamp.Code;
+            var sampleStatusFlag = Current.Transfer.Station.SampleStatus == SampleStatus.待测试 ? "" : Current.Transfer.Station.SampleStatus == SampleStatus.测试OK ? "✔ " : "✘ ";
+            lbTransferClampCode.Text = sampleStatusFlag + Current.Transfer.Station.Clamp.Code;
 
             bool canChangeVisibleRotater = DateTime.Now.Second % 3 == 1;
 
@@ -1378,13 +1382,46 @@ namespace BakBattery.Baking.App
                 }
 
                 if (Current.TaskMode == TaskMode.手动任务 && Current.Task.Status != TaskStatus.完成)
-                {
+                {   
                     Tip.Alert("当前手动任务尚未完成，无法切换为自动任务！若要强制切换，请先点击任务复位。");
                     return;
                 }
 
+
+                if (Current.TaskMode == TaskMode.手动任务)
+                {
+                    for (int i = 0; i < OvenCount; i++)
+                    {
+                        for (int j = 0; j < OvenFloorCount; j++)
+                        {
+                            if (Current.ovens[i].Floors[j].IsAlive && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.打开)
+                            {
+                                Tip.Alert(Current.ovens[i].Floors[j].Name + "门尚未关闭，请手动关闭后再切换自动");
+                                return;
+                            }
+                        }
+                    }
+                    if (Current.Robot.IsAlive)
+                    {
+                        if (!Current.Robot.IsStartting)
+                        {
+                            Tip.Alert("机器人尚未成功启动，不能切换自动");
+                            return;
+                        }
+
+                        if (Current.Robot.ClampStatus != ClampStatus.无夹具)
+                        {
+                            Tip.Alert("机器人负载有夹具，不能切换自动");
+                            return;
+                        }
+                    }
+                }
+
+                   
+
                 if (Current.TaskMode == TaskMode.自动任务 && Current.Task.Status != TaskStatus.完成)
                 {
+                 
                     Tip.Alert("当前任务完成后会切换至手动任务。若要立即切换，请点击任务复位");
                     CurrentTask.ToSwitchManuTaskMode = true;
                     return;
@@ -1872,7 +1909,7 @@ namespace BakBattery.Baking.App
 
 
                 this.timerUploadMes = new System.Timers.Timer();
-                this.timerUploadMes.Interval = TengDa._Convert.StrToInt(Current.option.UploadMesInterval, 600000);
+                this.timerUploadMes.Interval = TengDa._Convert.StrToInt(Current.option.UploadMesInterval, 60) * 1000;
                 this.timerUploadMes.Elapsed += new System.Timers.ElapsedEventHandler(Timer_UploadMes);
                 this.timerUploadMes.AutoReset = true;
                 this.timerUploadMes.Start();
@@ -2100,11 +2137,7 @@ namespace BakBattery.Baking.App
                                 ScanResult result = Current.feeders[i].ClampScaner.StartClampScan(out code, out msg);
                                 if (result == ScanResult.OK)
                                 {
-                                    this.BeginInvoke(new MethodInvoker(() =>
-                                    {
-                                        this.tbScanerStatus[i][1].Text = "+" + code;
-                                    }));
-                           
+                                    this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][1].Text = "+" + code; }));                           
                                     s.Clamp.Code = code;
                                     s.Clamp.ScanTime = DateTime.Now;
 
@@ -2115,6 +2148,7 @@ namespace BakBattery.Baking.App
                                 }
                                 else if (result == ScanResult.NG || result == ScanResult.Timeout)
                                 {
+                                    this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][1].Text = "扫码NG"; }));
                                     if (!Current.feeders[i].SetScanClampResult(ScanResult.NG, out msg))
                                     {
                                         Error.Alert(msg);
@@ -2143,7 +2177,7 @@ namespace BakBattery.Baking.App
                                 this.tbScanerStatus[i][0].Text = "+" + code;
                             }));
 
-                            int id = Battery.Add(new Battery(code), out msg);
+                            int id = Battery.Add(new Battery(code, Current.feeders[i].Id), out msg);
                             if (id < 1)
                             {
                                 Error.Alert(msg);
@@ -2153,7 +2187,7 @@ namespace BakBattery.Baking.App
                                 Error.Alert(msg);
                             }
                             //Current.feeders[i].CacheBatteryIn(Battery.GetBattery(id));
-                            Current.feeders[i].CacheBatteryIn(new Battery { Id = id, Code = code, ScanTime = DateTime.Now });
+                            //Current.feeders[i].CacheBatteryIn(new Battery { Id = id, Code = code, ScanTime = DateTime.Now });
                         }
                         else if (result == ScanResult.NG || result == ScanResult.Timeout)
                         {
@@ -2161,12 +2195,9 @@ namespace BakBattery.Baking.App
                             result = Current.feeders[i].BatteryScaner.StartBatteryScan(out code, out msg);
                             if (result == ScanResult.OK)
                             {
-                                this.BeginInvoke(new MethodInvoker(() =>
-                                {
-                                    this.tbScanerStatus[i][0].Text = "+" + code;
-                                }));
+                                this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][0].Text = "+" + code; }));
 
-                                int id = Battery.Add(new Battery(code), out msg);
+                                int id = Battery.Add(new Battery(code, Current.feeders[i].Id), out msg);
                                 if (id < 1)
                                 {
                                     Error.Alert(msg);
@@ -2176,10 +2207,11 @@ namespace BakBattery.Baking.App
                                     Error.Alert(msg);
                                 }
                                 //Current.feeders[i].CacheBatteryIn(Battery.GetBattery(id));
-                                Current.feeders[i].CacheBatteryIn(new Battery { Id = id, Code = code, ScanTime = DateTime.Now });
+                                //Current.feeders[i].CacheBatteryIn(new Battery { Id = id, Code = code, ScanTime = DateTime.Now });
                             }
                             else if (result == ScanResult.NG || result == ScanResult.Timeout)
                             {
+                                this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][0].Text = "扫码NG"; }));
                                 if (!Current.feeders[i].SetScanBatteryResult(ScanResult.NG, out msg))
                                 {
                                     Error.Alert(msg);
@@ -2286,23 +2318,23 @@ namespace BakBattery.Baking.App
                     for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
                     {
                         Floor floor = Current.ovens[i].Floors[j];
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤 || s.FloorStatus == FloorStatus.空盘) == floor.Stations.Count
-                            || floor.Stations.Count(s => s.FloorStatus == FloorStatus.无盘) == floor.Stations.Count)
-                        {
-                            if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) < 1
-                                && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) < 1
-                                && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
-                            {
-                                Current.ovens[i].CloseDoor(j);
-                            }
 
-                            //从某一炉子取完盘后，立即关门，无需等到整个任务结束
-                            if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
-                                && Current.Robot.IsAlive && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
-                            {
-                                Current.ovens[i].CloseDoor(j);
-                            }
+                        //无任务默认关门
+                        if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) < 1
+                            && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) < 1
+                            && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
+                        {
+                            Current.ovens[i].CloseDoor(j);
                         }
+
+                        //从某一炉子取完盘后，立即关门，无需等到整个任务结束
+                        if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
+                            && Current.Robot.IsAlive && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
+                        {
+                            Current.ovens[i].CloseDoor(j);
+                        }
+ 
+                        //开始烘烤
                         if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤) == floor.Stations.Count)
                         {
                             if (floor.Stations[0].IsAlive && floor.Stations[1].IsAlive && floor.DoorStatus == DoorStatus.关闭)
@@ -2311,6 +2343,25 @@ namespace BakBattery.Baking.App
                                 Current.ovens[i].StartBaking(j);
                             }
                         }
+
+                        //水分NG回炉的重新开始烘烤
+                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤 && s.SampleStatus == SampleStatus.测试NG) == 1 && floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleStatus == SampleStatus.待结果) == 1)
+                        {
+                            if (floor.Stations[0].IsAlive && floor.Stations[1].IsAlive && floor.DoorStatus == DoorStatus.关闭)
+                            {
+                                if (floor.NgTimes < 2)
+                                {
+                                    Current.ovens[i].ClearRunTime(j);
+                                    Current.ovens[i].StartBaking(j);
+                                }
+                                else
+                                {
+                                    //水分测试两次NG，禁用炉腔
+                                    floor.IsEnable = false;
+                                }
+                            }
+                        }
+
                     }
                 }
 
@@ -2340,10 +2391,10 @@ namespace BakBattery.Baking.App
                         oOven.UploadVacuum(jj);
                     }
 
-                    if (oFloor.DoorStatus == DoorStatus.关闭 && !oFloor.IsVacuum)
-                    {
-                        oOven.OpenDoor(jj);
-                    }
+                    //if (oFloor.DoorStatus == DoorStatus.关闭 && !oFloor.IsVacuum)
+                    //{
+                    //    oOven.OpenDoor(jj);
+                    //}
                 }
             }
         }
@@ -2384,20 +2435,24 @@ namespace BakBattery.Baking.App
         private void Timer_UploadMes(object sender, ElapsedEventArgs e)
         {
             string msg = string.Empty;
-            if (timerlock && Current.mes.IsAlive)
+            if (timerlock)
             {
-                UploadBatteriesInfo(new List<Clamp>());
+                UploadMesTVD();
+
+                UploadInOvenInfo(new List<Clamp>());
+
+                UploadOutOvenInfo(new List<Clamp>());
             }
         }
 
-        public void UploadBatteriesInfo(object obj)
+        public async void UploadInOvenInfo(object obj)
         {
             Thread.Sleep(200);
             List<Clamp> clamps = (List<Clamp>)obj;
             string msg = string.Empty;
             if (clamps.Count < 1)
             {
-                clamps = Clamp.GetList(string.Format("SELECT TOP 6 * FROM [dbo].[{0}] WHERE IsUploaded = 'false' AND IsFinished = 'true' AND WaterContent > 0  ORDER BY ScanTime DESC", Clamp.TableName), out msg);
+                clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsInUploaded] = 'false' AND [IsInFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
                 if (!string.IsNullOrEmpty(msg))
                 {
                     Error.Alert(msg);
@@ -2409,32 +2464,98 @@ namespace BakBattery.Baking.App
             {
                 return;
             }
-            //上传数据
 
-            foreach (Clamp clamp in clamps)
+            this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传入烤箱数据..."; }));
+            await MES.UploadInOvenAsync(clamps);
+            this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "入烤箱数据上传完成..."; }));
+        }
+
+        public async void UploadOutOvenInfo(object obj)
+        {
+            Thread.Sleep(200);
+            List<Clamp> clamps = (List<Clamp>)obj;
+            string msg = string.Empty;
+            if (clamps.Count < 1)
             {
-
-                Station station = Station.StationList.FirstOrDefault(s => s.Id == clamp.OvenStationId);
-                string stationName = station == null ? string.Empty : station.Name;
-
-                this.BeginInvoke(new UpdateUI1PDelegate(RefreshMesStatus), "开始上传" + stationName);
-                AddTips("开始上传MES:" + stationName);
-
-                if (Current.mes.UploadCellInfo(clamp, out msg))
+                clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsOutUploaded] = 'false' AND [IsOutFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
+                if (!string.IsNullOrEmpty(msg))
                 {
-                    this.BeginInvoke(new UpdateUI1PDelegate(RefreshMesStatus), "上传完成" + stationName);
-                    AddTips("上传MES完成:" + stationName);
-                    clamp.IsUploaded = true;
+                    Error.Alert(msg);
+                    return;
                 }
-                else
+            }
+
+            if (clamps.Count < 1)
+            {
+                return;
+            }
+
+            this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传出烤箱数据..."; }));
+            await MES.UploadOutOvenAsync(clamps);
+            this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "出烤箱数据上传完成..."; }));
+        }
+
+        /// <summary>
+        /// 定时上传真空温度数据
+        /// </summary>
+        public async void UploadMesTVD()
+        {
+            var uploadTVDs = new List<UploadTVD>();
+            for (int i = 0; i < OvenCount; i++)
+            {
+                for (int j = 0; j < OvenFloorCount; j++)
                 {
-                    LogHelper.WriteError(msg);
-                    this.BeginInvoke(new UpdateUI1PDelegate(RefreshMesStatus), "上传失败" + stationName);
-                    AddTips("上传MES失败:" + stationName);
+                    for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
+                    {
+                        var station = Current.ovens[i].Floors[j].Stations[k];
+                        if (station.IsAlive && station.FloorStatus == FloorStatus.烘烤 && station.ClampId > 0)
+                        {
+                            uploadTVDs.Add(new UploadTVD()
+                            {
+                                ClampId = station.ClampId,
+                                DeviceStatus = 0,
+                                CollectorTime = DateTime.Now,
+                                IsUploaded = false,
+                                ParameterFlag = 0,
+                                T = Current.ovens[i].Floors[j].Temperatures,
+                                V1 = Current.ovens[i].Floors[j].Vacuum
+                            });
+                        }
+                    }
                 }
-                Thread.Sleep(200);
+            }
+
+            if(uploadTVDs.Count > 0 && Current.mes.IsAlive)
+            {
+                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传实时温度真空数据..."; }));
+                await MES.UploadTvdInfoAsync(uploadTVDs);
+                Thread.Sleep(100);
+                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "实时温度真空数据上传完成"; }));
+            }
+
+            //保存进数据库
+            var msg = string.Empty;
+            if (!UploadTVD.Add(uploadTVDs, out msg))
+            {
+                LogHelper.WriteError(msg);
+            }
+
+            if (Current.mes.IsAlive)
+            {
+                //检测上传失败的
+                uploadTVDs.Clear();
+                uploadTVDs = UploadTVD.GetList("SELECT TOP 100 * FROM [" + UploadTVD.TableName + "] WHERE IsUploaded = 'False' ORDER BY [CollectorTime] DESC", out msg);
+
+                if (uploadTVDs.Count > 0)
+                {
+                    this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传历史温度真空数据..."; }));
+                    await MES.UploadTvdInfoAsync(uploadTVDs);
+                    Thread.Sleep(100);
+                    this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "历史温度真空数据上传完成"; }));
+                }
             }
         }
+
         #endregion
 
         #region 用户登录、注销、注册、管理
@@ -3055,22 +3176,22 @@ namespace BakBattery.Baking.App
         {
             string msg = string.Empty;
 
-            TimeSpan ts = dtpStart.Value - dtpStop.Value;
-            int timeSpan = TengDa._Convert.StrToInt(Current.option.QueryTVTimeSpan, -1);
-            if (Math.Abs(ts.Days) > timeSpan)
-            {
-                Tip.Alert("查询时间范围太大，请将时间范围设置在 " + timeSpan + " 天 之内！");
-                return;
-            }
+            //TimeSpan ts = dtpStart.Value - dtpStop.Value;
+            //int timeSpan = TengDa._Convert.StrToInt(Current.option.QueryTVTimeSpan, -1);
+            //if (Math.Abs(ts.Days) > timeSpan)
+            //{
+            //    Tip.Alert("查询时间范围太大，请将时间范围设置在 " + timeSpan + " 天 之内！");
+            //    return;
+            //}
 
             DataTable dt = null;
             if (cbFloors.Text.Trim() == "All")
             {
-                dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_TV] WHERE [记录时间] BETWEEN '{1}' AND '{2}' ", Config.DbTableNamePre, dtpStart.Value, dtpStop.Value), out msg);
+                dt = Database.Query(string.Format("SELECT TOP {3} * FROM [dbo].[{0}.V_TV] WHERE [记录时间] BETWEEN '{1}' AND '{2}' ", Config.DbTableNamePre, dtpStart.Value, dtpStop.Value, cbCount.Text), out msg);
             }
             else
             {
-                dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_TV] WHERE [炉腔] = '{1}' AND [记录时间] BETWEEN '{2}' AND '{3}' ", Config.DbTableNamePre, cbFloors.Text.Trim(), dtpStart.Value, dtpStop.Value), out msg);
+                dt = Database.Query(string.Format("SELECT TOP {4} * FROM [dbo].[{0}.V_TV] WHERE [炉腔] = '{1}' AND [记录时间] BETWEEN '{2}' AND '{3}' ", Config.DbTableNamePre, cbFloors.Text.Trim(), dtpStart.Value, dtpStop.Value, cbCount.Text), out msg);
             }
 
             if (dt == null)
@@ -3175,6 +3296,7 @@ namespace BakBattery.Baking.App
             dgvAlarm.Columns[5].Width = 150;
             tbNumAlarm.Text = dt.Rows.Count.ToString();
         }
+
 
         private void btnAlarmExport_Click(object sender, EventArgs e)
         {
@@ -3358,10 +3480,20 @@ namespace BakBattery.Baking.App
                     }
                     else if (e.Node.Level == 1 && e.Node.Parent.Text == "全部任务列表")
                     {
+                        if (TengDa.WF.Current.user.Group.Level < 3)
+                        {
+                            this.propertyGridSettings.Enabled = false;
+                            Tip.Alert("当前用户权限不足！");
+                        }
                         this.propertyGridSettings.SelectedObject = Task.TaskList.First(t => t.Id.ToString() == e.Node.Text.Split(':')[0]);
                     }
                     else if (e.Node.Level == 1 && e.Node.Parent.Text == "有效任务排序")
                     {
+                        if (TengDa.WF.Current.user.Group.Level < 3)
+                        {
+                            this.propertyGridSettings.Enabled = false;
+                            Tip.Alert("当前用户权限不足！");
+                        }
                         this.propertyGridSettings.SelectedObject = Task.TaskList.First(t => t.Id.ToString() == e.Node.Text.Split(':')[0]);
                     }
                     else if (e.Node.Level == 1 && e.Node.Parent.Text == "上料机")
@@ -3521,6 +3653,8 @@ namespace BakBattery.Baking.App
 
         private void tlpFeederStationClamp_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
         {
+            return;
+            /*
             //tlpFeederStationClamp0102
             int i = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(21, 2), 0) - 1;
             int j = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(23, 2), 0) - 1;
@@ -3561,6 +3695,7 @@ namespace BakBattery.Baking.App
             }
             g.FillRectangle(brush, r);
             //tableLayoutPanel1.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(tableLayoutPanel1, true, null); 
+            */
         }
 
         private void tsmStartBaking_Click(object sender, EventArgs e)
@@ -4209,7 +4344,7 @@ namespace BakBattery.Baking.App
                 Tip.Alert("水含量数据输入成功！");
                 if (timerlock && Current.mes.IsAlive)
                 {
-                    UploadBatteriesInfo(new List<Clamp>());
+                    //UploadBatteriesInfo(new List<Clamp>());
                 }
             }
             else
@@ -4229,8 +4364,8 @@ namespace BakBattery.Baking.App
             this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing;
             this.tsmRobotAlarmReset.Enabled = Current.Robot.IsAlive && Current.Robot.IsAlarming;
             this.tsmRobotMaintenance.Enabled = Current.Robot.IsAlive;
-            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具;
-            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus != ClampStatus.无夹具;
+            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && Current.Robot.IsStartting;
+            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus != ClampStatus.无夹具 && Current.Robot.IsStartting;
         }
 
         private void tsmRobotStart_Click(object sender, EventArgs e)
@@ -4530,7 +4665,7 @@ namespace BakBattery.Baking.App
                         return;
                     }
 
-                    if (Current.Task.FromClampStatus == ClampStatus.满夹具 && station.GetPutType == GetPutType.上料机)
+                    if (Current.Robot.ClampStatus == ClampStatus.满夹具 && station.GetPutType == GetPutType.上料机)
                     {
                         Tip.Alert("上料机不允许放满夹具！");
                         return;
@@ -4562,5 +4697,61 @@ namespace BakBattery.Baking.App
 
 
         #endregion
+
+        private void btnDebug_Click(object sender, EventArgs e)
+        {
+            string msg = string.Empty;
+
+            Tip.Alert(msg);
+        }
+
+        private void cmsTransfer_Opening(object sender, CancelEventArgs e)
+        {
+            tsmTestResultOK.Enabled = Current.Transfer.Station.ClampStatus != ClampStatus.无夹具;
+            tsmTestResultNG.Enabled = Current.Transfer.Station.ClampStatus != ClampStatus.无夹具;
+        }
+
+        private void tsmTestResultOK_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定水分测试结果OK？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            if (dr == DialogResult.OK)
+            {
+                Current.Transfer.Station.SampleStatus = SampleStatus.测试OK;
+                if (Current.Transfer.Station.FromStationId > 0)
+                {
+                    var ovenSamFromStation = Station.StationList.FirstOrDefault(s => s.Id == Current.Transfer.Station.FromStationId);
+                    if (ovenSamFromStation.GetPutType == GetPutType.烤箱)
+                    {
+                        ovenSamFromStation.GetFloor().Stations.ForEach(s => s.SampleStatus = SampleStatus.未知);
+
+                        //该炉腔水分测试OK，下次换该烤箱另一个炉腔测试水分
+                        ovenSamFromStation.GetFloor().GetOven().ChangeWaterContentTestFloor();
+
+                        //测试ng次数复位为0
+                        ovenSamFromStation.GetFloor().NgTimes = 0;
+                    }
+                }
+            }
+        }
+
+        private void tsmTestResultNG_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定水分测试结果NG？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            if (dr == DialogResult.OK)
+            {
+                Current.Transfer.Station.SampleStatus = SampleStatus.测试NG;
+                if (Current.Transfer.Station.FromStationId > 0)
+                {
+                    var ovenSamFromStation = Station.StationList.FirstOrDefault(s => s.Id == Current.Transfer.Station.FromStationId);
+                    ovenSamFromStation.SampleStatus = SampleStatus.测试NG;
+                    if (ovenSamFromStation.GetPutType == GetPutType.烤箱)
+                    {
+                        //水分NG次数增加1
+                        ovenSamFromStation.GetFloor().NgTimes++;
+                    }
+                }
+            }
+        }
+
     }
 }

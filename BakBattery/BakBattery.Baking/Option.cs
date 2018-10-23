@@ -138,8 +138,9 @@ namespace BakBattery.Baking
             }
         }
 
-
         public const int TemperaturePointCount = 8;
+
+        public const int TemperatureSetPointCount = 10;
 
         private static int layoutType = -1;
         /// <summary>
@@ -160,8 +161,14 @@ namespace BakBattery.Baking
 
         public string[] TemperNames = new string[Option.TemperaturePointCount]
         {
-            "上左空", "上右空", "下左空", "下右空",
-            "左侧空", "右侧空", "后左空", "后右空"
+            "上左温度", "上右温度", "下左温度", "下右温度",
+            "左侧温度", "右侧温度", "后左温度", "后右温度"
+        };
+
+        public string[] TemperSetNames = new string[Option.TemperatureSetPointCount]
+        {
+            "上左温度设定值", "上右温度设定值", "下左温度设定值", "下右温度设定值","左侧温度设定值",
+            "右侧温度设定值", "后左温度设定值", "后右温度设定值", "门左温度设定值","门右温度设定值"
         };
 
         [Description("温度曲线颜色")]
@@ -245,6 +252,30 @@ namespace BakBattery.Baking
             {
                 TengDa.WF.Option.SetOption("SampleFloorId", value.ToString());
                 sampleFloorId = value;
+            }
+        }
+
+
+        private int clampBatteryCount = -1;
+        /// <summary>
+        /// 夹具中可以装载的电池个数
+        /// </summary>
+        [ReadOnly(true)]
+        [DisplayName("夹具中可以装载的电池个数")]
+        public int ClampBatteryCount
+        {
+            get
+            {
+                if (clampBatteryCount < 0)
+                {
+                    clampBatteryCount = _Convert.StrToInt(TengDa.WF.Option.GetOption("ClampBatteryCount"), 1);
+                }
+                return clampBatteryCount;
+            }
+            set
+            {
+                TengDa.WF.Option.SetOption("ClampBatteryCount", value.ToString());
+                clampBatteryCount = value;
             }
         }
 
@@ -608,11 +639,11 @@ namespace BakBattery.Baking
 
         private string uploadMesInterval = string.Empty;
         /// <summary>
-        /// MES上传数据间隔时间，单位：毫秒
+        /// MES上传数据间隔时间，单位：秒
         /// </summary>
-        [Description("MES上传数据间隔时间，单位：毫秒")]
+        [Description("MES上传数据间隔时间，单位：秒")]
         [DisplayName("MES上传数据间隔时间")]
-        [Category("定时器")]
+        [Category("MES")]
         public string UploadMesInterval
         {
             get
@@ -773,9 +804,9 @@ namespace BakBattery.Baking
 
         private string getTemStrs = string.Empty;
         /// <summary>
-        /// 获取烤箱温度的字符串
+        /// 获取烤箱温度的指令
         /// </summary>
-        [DisplayName("获取烤箱温度的字符串")]
+        [DisplayName("获取烤箱温度的指令")]
         [Category("烤箱")]
         public string GetTemStrs
         {
@@ -797,10 +828,35 @@ namespace BakBattery.Baking
             }
         }
 
+        private string getTemSetStrs = string.Empty;
+        /// <summary>
+        /// 获取烤箱设定温度的指令
+        /// </summary>
+        [DisplayName("获取烤箱设定温度的指令")]
+        [Category("烤箱")]
+        public string GetTemSetStrs
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(getTemSetStrs))
+                {
+                    getTemSetStrs = TengDa.WF.Option.GetOption("GetTemSetStrs");
+                }
+                return getTemSetStrs;
+            }
+            set
+            {
+                if (value != getTemSetStrs)
+                {
+                    TengDa.WF.Option.SetOption("GetTemSetStrs", value);
+                    getTemSetStrs = value;
+                }
+            }
+        }
 
         private string getParamSettingStrs = string.Empty;
         /// <summary>
-        /// 获取烤箱预热时间、烘烤时间、呼吸周期参数的指令
+        /// 获取烤箱预热时间、烘烤时间、呼吸周期、真空设定参数的指令
         /// </summary>
         [DisplayName("获取烤箱设置参数的指令")]
         [Category("烤箱")]
@@ -1120,172 +1176,6 @@ namespace BakBattery.Baking
                 {
                     TengDa.WF.Option.SetOption("GetBlankerInfoStr", value);
                     getBlankerInfoStr = value;
-                }
-            }
-        }
-
-
-        private string openFeederDoorStrs = string.Empty;
-        /// <summary>
-        /// 上料机开门指令
-        /// </summary>
-        [Description("上料机开门指令")]
-        [DisplayName("上料机开门指令")]
-        [Category("上料机")]
-        public string OpenFeederDoorStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(openFeederDoorStrs))
-                {
-                    openFeederDoorStrs = TengDa.WF.Option.GetOption("OpenFeederDoorStrs");
-                }
-                return openFeederDoorStrs;
-            }
-            set
-            {
-                if (value != openFeederDoorStrs)
-                {
-                    TengDa.WF.Option.SetOption("OpenFeederDoorStrs", value);
-                    openFeederDoorStrs = value;
-                }
-            }
-        }
-
-
-
-        private string closeFeederDoorStrs = string.Empty;
-        /// <summary>
-        /// 上料机关门指令
-        /// </summary>
-        [Description("上料机关门指令")]
-        [DisplayName("上料机关门指令")]
-        [Category("上料机")]
-        public string CloseFeederDoorStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(closeFeederDoorStrs))
-                {
-                    closeFeederDoorStrs = TengDa.WF.Option.GetOption("CloseFeederDoorStrs");
-                }
-                return closeFeederDoorStrs;
-            }
-            set
-            {
-                if (value != closeFeederDoorStrs)
-                {
-                    TengDa.WF.Option.SetOption("CloseFeederDoorStrs", value);
-                    closeFeederDoorStrs = value;
-                }
-            }
-        }
-
-
-        private string blankerStationHasWaterSampleBackStrs = string.Empty;
-        /// <summary>
-        /// 下料机工位夹具包含水分测试电池
-        /// </summary>
-        [Description("下料机工位夹具包含水分测试电池")]
-        [DisplayName("下料机工位夹具包含水分测试电池")]
-        [Category("下料机")]
-        public string BlankerStationHasWaterSampleBackStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(blankerStationHasWaterSampleBackStrs))
-                {
-                    blankerStationHasWaterSampleBackStrs = TengDa.WF.Option.GetOption("BlankerStationHasWaterSampleBackStrs");
-                }
-                return blankerStationHasWaterSampleBackStrs;
-            }
-            set
-            {
-                if (value != blankerStationHasWaterSampleBackStrs)
-                {
-                    TengDa.WF.Option.SetOption("BlankerStationHasWaterSampleBackStrs", value);
-                    blankerStationHasWaterSampleBackStrs = value;
-                }
-            }
-        }
-
-        private string blankerStationNotHasWaterSampleBackStrs = string.Empty;
-        /// <summary>
-        /// 下料机工位夹具不包含水分测试电池
-        /// </summary>
-        [Description("下料机工位夹具不包含水分测试电池")]
-        [DisplayName("下料机工位夹具不包含水分测试电池")]
-        [Category("下料机")]
-        public string BlankerStationNotHasWaterSampleBackStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(blankerStationNotHasWaterSampleBackStrs))
-                {
-                    blankerStationNotHasWaterSampleBackStrs = TengDa.WF.Option.GetOption("BlankerStationNotHasWaterSampleBackStrs");
-                }
-                return blankerStationNotHasWaterSampleBackStrs;
-            }
-            set
-            {
-                if (value != blankerStationNotHasWaterSampleBackStrs)
-                {
-                    TengDa.WF.Option.SetOption("BlankerStationNotHasWaterSampleBackStrs", value);
-                    blankerStationNotHasWaterSampleBackStrs = value;
-                }
-            }
-        }
-
-        private string waterSampleTestResultOkStrs = string.Empty;
-        /// <summary>
-        /// 水分测试OK反馈指令
-        /// </summary>
-        [Description("水分测试OK反馈指令")]
-        [DisplayName("水分测试OK反馈指令")]
-        [Category("下料机")]
-        public string WaterSampleTestResultOkStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(waterSampleTestResultOkStrs))
-                {
-                    waterSampleTestResultOkStrs = TengDa.WF.Option.GetOption("WaterSampleTestResultOkStrs");
-                }
-                return waterSampleTestResultOkStrs;
-            }
-            set
-            {
-                if (value != waterSampleTestResultOkStrs)
-                {
-                    TengDa.WF.Option.SetOption("WaterSampleTestResultOkStrs", value);
-                    waterSampleTestResultOkStrs = value;
-                }
-            }
-        }
-
-        private string waterSampleTestResultNgStrs = string.Empty;
-        /// <summary>
-        /// 水分测试NG反馈指令
-        /// </summary>
-        [Description("水分测试NG反馈指令")]
-        [DisplayName("水分测试NG反馈指令")]
-        [Category("下料机")]
-        public string WaterSampleTestResultNgStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(waterSampleTestResultNgStrs))
-                {
-                    waterSampleTestResultNgStrs = TengDa.WF.Option.GetOption("WaterSampleTestResultNgStrs");
-                }
-                return waterSampleTestResultNgStrs;
-            }
-            set
-            {
-                if (value != waterSampleTestResultNgStrs)
-                {
-                    TengDa.WF.Option.SetOption("WaterSampleTestResultNgStrs", value);
-                    waterSampleTestResultNgStrs = value;
                 }
             }
         }
@@ -1935,13 +1825,6 @@ namespace BakBattery.Baking
                 }
             }
         }
-
-
-
-
-
-
-
 
         private byte startClampScan = 0;
         /// <summary>

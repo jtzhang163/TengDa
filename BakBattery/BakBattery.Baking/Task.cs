@@ -50,9 +50,9 @@ namespace BakBattery.Baking
 
         private GetPutType fromType = GetPutType.未知;
         /// <summary>
-        /// 源工位类型
+        /// 取盘工位类型
         /// </summary>
-        [DisplayName("源工位类型")]
+        [DisplayName("取盘工位类型")]
         public GetPutType FromType
         {
             get { return fromType; }
@@ -68,9 +68,9 @@ namespace BakBattery.Baking
 
         private ClampStatus fromClampStatus = ClampStatus.未知;
         /// <summary>
-        /// 源夹具状态
+        /// 取盘夹具状态
         /// </summary>
-        [DisplayName("源夹具状态")]
+        [DisplayName("取盘夹具状态")]
         public ClampStatus FromClampStatus
         {
             get { return fromClampStatus; }
@@ -86,9 +86,9 @@ namespace BakBattery.Baking
 
         private GetPutType toType = GetPutType.未知;
         /// <summary>
-        /// 目的工位类型
+        /// 放盘工位类型
         /// </summary>
-        [DisplayName("目的工位类型")]
+        [DisplayName("放盘工位类型")]
         public GetPutType ToType
         {
             get { return toType; }
@@ -104,10 +104,10 @@ namespace BakBattery.Baking
 
         private ClampStatus toClampStatus = ClampStatus.未知;
         /// <summary>
-        /// 目的夹具状态
+        /// 放盘夹具状态
         /// </summary>
         [ReadOnly(true)]
-        [DisplayName("目的夹具状态")]
+        [DisplayName("放盘夹具状态")]
         public ClampStatus ToClampStatus
         {
             get { return toClampStatus; }
@@ -121,22 +121,39 @@ namespace BakBattery.Baking
             }
         }
 
-        protected SampleStatus sampleStatus = SampleStatus.未知;
-        [Description("样品工位信息")]
-        [DisplayName("样品工位信息")]
-        public SampleStatus SampleStatus
+        private SampleStatus fromSampleStatus = SampleStatus.未知;
+        /// <summary>
+        /// 取盘样品状态
+        /// </summary>
+        [DisplayName("取盘样品状态")]
+        public SampleStatus FromSampleStatus
         {
-            get
-            {
-                return sampleStatus;
-            }
+            get { return fromSampleStatus; }
             set
             {
-                if (sampleStatus != value)
+                if (fromSampleStatus != value)
                 {
-                    UpdateDbField("SampleStatus", value);
+                    UpdateDbField("FromSampleStatus", value);
                 }
-                sampleStatus = value;
+                fromSampleStatus = value;
+            }
+        }
+
+        private SampleStatus toSampleStatus = SampleStatus.未知;
+        /// <summary>
+        /// 放盘样品状态
+        /// </summary>
+        [DisplayName("放盘样品状态")]
+        public SampleStatus ToSampleStatus
+        {
+            get { return toSampleStatus; }
+            set
+            {
+                if (toSampleStatus != value)
+                {
+                    UpdateDbField("ToSampleStatus", value);
+                }
+                toSampleStatus = value;
             }
         }
 
@@ -244,7 +261,7 @@ namespace BakBattery.Baking
 
             Init(dt.Rows[0]);
 
-            //释放资源
+            //释放资取盘
             dt.Dispose();
         }
 
@@ -268,9 +285,10 @@ namespace BakBattery.Baking
             this.clampOri = (ClampOri)Enum.Parse(typeof(ClampOri), rowInfo["ClampOri"].ToString());
             this.fromType = (GetPutType)Enum.Parse(typeof(GetPutType), rowInfo["FromType"].ToString());
             this.fromClampStatus = (ClampStatus)Enum.Parse(typeof(ClampStatus), rowInfo["FromClampStatus"].ToString());
+            this.fromSampleStatus = (SampleStatus)Enum.Parse(typeof(SampleStatus), rowInfo["FromSampleStatus"].ToString());
             this.toType = (GetPutType)Enum.Parse(typeof(GetPutType), rowInfo["ToType"].ToString());
             this.toClampStatus = (ClampStatus)Enum.Parse(typeof(ClampStatus), rowInfo["ToClampStatus"].ToString());
-            this.sampleStatus = (SampleStatus)Enum.Parse(typeof(SampleStatus), rowInfo["SampleStatus"].ToString());
+            this.toSampleStatus = (SampleStatus)Enum.Parse(typeof(SampleStatus), rowInfo["ToSampleStatus"].ToString());
             this.priority = TengDa._Convert.StrToInt(rowInfo["Priority"].ToString(), 1);
             this.cycleOrder = TengDa._Convert.StrToInt(rowInfo["CycleOrder"].ToString(), 1);
             this.description = rowInfo["Description"].ToString();
@@ -336,19 +354,6 @@ namespace BakBattery.Baking
         }
         #endregion
 
-        public bool IsSuitSampleStatus(Station station)
-        {
-            if (this.SampleStatus != SampleStatus.未知 && this.SampleStatus == station.SampleStatus)
-            {
-                return true;
-            }
-            else if (this.SampleStatus == SampleStatus.未知)
-            {
-                return true;
-            }
-            return false;
-        }
-
         public static void Run()
         {
             string msg = string.Empty;
@@ -390,8 +395,7 @@ namespace BakBattery.Baking
                             .Where(s => s.ClampOri == task.ClampOri
                             && s.GetPutType == task.FromType && s.ClampStatus == task.FromClampStatus
                             && s.Status == StationStatus.可取
-                            && task.IsSuitSampleStatus(s))
-                            .OrderBy(s => s.Distance(Current.Robot))
+                            && s.SampleStatus == task.FromSampleStatus)
                             .OrderBy(s => s.Priority)
                             .OrderBy(s => s.GetPutTime)
                             .ToList();
@@ -399,7 +403,7 @@ namespace BakBattery.Baking
                             .Where(s => s.ClampOri == task.ClampOri
                             && s.GetPutType == task.ToType && s.ClampStatus == task.ToClampStatus
                             && s.Status == StationStatus.可放
-                            && task.IsSuitSampleStatus(s))
+                            && s.SampleStatus == task.ToSampleStatus)
                             .OrderBy(s => s.Priority)
                             .OrderBy(s => s.GetPutTime)
                             .ToList();
@@ -540,31 +544,43 @@ namespace BakBattery.Baking
                             Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                             Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
 
-                            //if (Current.Task.ToStation.ClampId < 1 && Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
-                            //{
-
-                            //    int clampId = Clamp.Add(new Clamp(Current.Robot.ClampId).Code, out msg);
-                            //    if (clampId > 0)
-                            //    {
-                            //        Current.Task.ToStation.ClampId = clampId;
-                            //    }
-                            //    else
-                            //    {
-                            //        LogHelper.WriteError(msg);
-                            //    }
-                            //}
-                           // else 
-                            if (Current.Robot.ClampId > 0)
+                            if (Current.Task.ToStation.ClampId < 1 && Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
                             {
-                                Current.Task.ToStation.ClampId = Current.Robot.ClampId;
-                                Current.Robot.ClampId = -1;
+                                int oldClampId = -1;
+                                if (Current.Task.FromStation != null)
+                                {
+                                    oldClampId = Current.Task.FromStation.ClampId;
+                                }
+                                if (oldClampId < 1)
+                                {
+                                    oldClampId = Current.Robot.ClampId;
+                                }
+
+                                int clampId = Clamp.Add(new Clamp(oldClampId).Code, out msg);
+                                if (clampId > 0)
+                                {
+                                    Current.Task.ToStation.ClampId = clampId;
+                                }
+                                else
+                                {
+                                    LogHelper.WriteError(msg);
+                                }
                             }
-                            else if(Current.Task.FromStation.ClampId > 0)
+
+                            if (Current.Task.FromStation != null && Current.Task.FromStation.ClampId > 0)
                             {
                                 Current.Task.ToStation.ClampId = Current.Task.FromStation.ClampId;
+                            }
+                            else if (Current.Robot.ClampId > 0)
+                            {
+                                Current.Task.ToStation.ClampId = Current.Robot.ClampId;
+                            }
+                            Current.Robot.ClampId = -1;
+
+                            if (Current.Task.FromStation != null)
+                            {
                                 Current.Task.FromStation.ClampId = -1;
                             }
-
                         }
 
                         if (!Current.Robot.IsGettingOrPutting)
@@ -688,27 +704,41 @@ namespace BakBattery.Baking
                         Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                         Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
 
-                        //if (Current.Task.ToStation.ClampId < 1 && Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
-                        //{
-                        //    int clampId = Clamp.Add(new Clamp(Current.Robot.ClampId).Code, out msg);
-                        //    if (clampId > 0)
-                        //    {
-                        //        Current.Task.ToStation.ClampId = clampId;
-                        //    }
-                        //    else
-                        //    {
-                        //        LogHelper.WriteError(msg);
-                        //    }
-                        //}
-                        //else 
-                        if (Current.Robot.ClampId > 0)
+                        if (Current.Task.ToStation.ClampId < 1 && Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
                         {
-                            Current.Task.ToStation.ClampId = Current.Robot.ClampId;
-                            Current.Robot.ClampId = -1;
+                            int oldClampId = -1;
+                            if (Current.Task.FromStation != null)
+                            {
+                                oldClampId = Current.Task.FromStation.ClampId;
+                            }
+                            if (oldClampId < 1)
+                            {
+                                oldClampId = Current.Robot.ClampId;
+                            }
+
+                            int clampId = Clamp.Add(new Clamp(oldClampId).Code, out msg);
+                            if (clampId > 0)
+                            {
+                                Current.Task.ToStation.ClampId = clampId;
+                            }
+                            else
+                            {
+                                LogHelper.WriteError(msg);
+                            }
                         }
-                        else if (Current.Task.FromStation.ClampId > 0)
+
+                        if (Current.Task.FromStation != null && Current.Task.FromStation.ClampId > 0)
                         {
                             Current.Task.ToStation.ClampId = Current.Task.FromStation.ClampId;
+                        }
+                        else if (Current.Robot.ClampId > 0)
+                        {
+                            Current.Task.ToStation.ClampId = Current.Robot.ClampId;
+                        }
+                        Current.Robot.ClampId = -1;
+
+                        if(Current.Task.FromStation != null)
+                        {
                             Current.Task.FromStation.ClampId = -1;
                         }
                     }
@@ -863,9 +893,9 @@ namespace BakBattery.Baking
 
         private int fromStationId = -1;
         /// <summary>
-        /// 源工位Id
+        /// 取盘工位Id
         /// </summary>
-        [DisplayName("源工位ID")]
+        [DisplayName("取盘工位ID")]
         public int FromStationId
         {
             get { return fromStationId; }
@@ -881,9 +911,9 @@ namespace BakBattery.Baking
 
         private int toStationId = -1;
         /// <summary>
-        /// 目的工位Id
+        /// 放盘工位Id
         /// </summary>
-        [DisplayName("目的工位ID")]
+        [DisplayName("放盘工位ID")]
         public int ToStationId
         {
             get { return toStationId; }
@@ -899,9 +929,9 @@ namespace BakBattery.Baking
 
         private int nextFromStationId = -1;
         /// <summary>
-        /// 手动下一任务源工位ID
+        /// 手动下一任务取盘工位ID
         /// </summary>
-        [ReadOnly(true), DisplayName("手动下一任务源工位ID")]
+        [ReadOnly(true), DisplayName("手动下一任务取盘工位ID")]
         public int NextFromStationId
         {
             get { return nextFromStationId; }
@@ -910,9 +940,9 @@ namespace BakBattery.Baking
 
         private int nextToStationId = -1;
         /// <summary>
-        /// 手动下一任务目的工位ID
+        /// 手动下一任务放盘工位ID
         /// </summary>
-        [ReadOnly(true), DisplayName("手动下一任务目的工位ID")]
+        [ReadOnly(true), DisplayName("手动下一任务放盘工位ID")]
         public int NextToStationId
         {
             get { return nextToStationId; }
@@ -978,7 +1008,7 @@ namespace BakBattery.Baking
         }
 
         /// <summary>
-        /// 源工位
+        /// 取盘工位
         /// </summary>
         [Browsable(false)]
         public Station FromStation
@@ -990,7 +1020,7 @@ namespace BakBattery.Baking
         }
 
         /// <summary>
-        /// 目的工位
+        /// 放盘工位
         /// </summary>
         [Browsable(false)]
         public Station ToStation
@@ -1002,9 +1032,9 @@ namespace BakBattery.Baking
         }
 
         /// <summary>
-        /// 源工位名称
+        /// 取盘工位名称
         /// </summary>
-        [DisplayName("源工位名称")]
+        [DisplayName("取盘工位名称")]
         public string FromStationName
         {
             get
@@ -1031,9 +1061,9 @@ namespace BakBattery.Baking
         }
 
         /// <summary>
-        /// 目的工位名称
+        /// 放盘工位名称
         /// </summary>
-        [DisplayName("目的工位名称")]
+        [DisplayName("放盘工位名称")]
         public string ToStationName
         {
             get
@@ -1044,9 +1074,9 @@ namespace BakBattery.Baking
 
         private ClampStatus fromClampStatus = ClampStatus.未知;
         /// <summary>
-        /// 源夹具状态
+        /// 取盘夹具状态
         /// </summary>
-        [ReadOnly(true), DisplayName("源夹具状态")]
+        [ReadOnly(true), DisplayName("取盘夹具状态")]
         public ClampStatus FromClampStatus
         {
             get { return fromClampStatus; }
@@ -1090,7 +1120,7 @@ namespace BakBattery.Baking
 
             Init(dt.Rows[0]);
 
-            //释放资源
+            //释放资取盘
             dt.Dispose();
         }
 

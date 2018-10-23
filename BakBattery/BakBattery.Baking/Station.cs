@@ -102,19 +102,32 @@ namespace BakBattery.Baking
             {
                 if (TengDa.WF.Current.IsTerminalInitFinished && clampStatus != value)
                 {
-                    if (value == ClampStatus.空夹具 && this.GetPutType == GetPutType.烤箱)
+                    if (value == ClampStatus.满夹具 && clampStatus == ClampStatus.空夹具 && this.GetPutType == GetPutType.上料机)
                     {
-                        this.FloorStatus = FloorStatus.空盘;
+                        //上料计数逻辑
+                        Current.Yields.First(y => y.ClampOri == this.ClampOri).FeedingOK++;
+
+                        //电池夹具绑定
+                        if (this.Clamp.Batteries.Count == 0)
+                        {
+                            var msg = string.Empty;
+                            if (!Battery.Update(this.Clamp.Id, Current.feeders.First(f => f.Stations.Contains(this)).Id, out msg))
+                            {
+                                Error.Alert(msg);
+                            }
+                        }
                     }
 
+                    //下料计数逻辑
                     if (value == ClampStatus.空夹具 && clampStatus == ClampStatus.满夹具 && this.GetPutType == GetPutType.下料机)
                     {
                         Current.Yields.First(y => y.ClampOri == this.ClampOri).BlankingOK++;
                     }
 
-                    if (value == ClampStatus.满夹具 && clampStatus == ClampStatus.空夹具 && this.GetPutType == GetPutType.上料机)
+                    //样品信息复位
+                    if(value == ClampStatus.无夹具 && this.GetPutType == GetPutType.转移台)
                     {
-                        Current.Yields.First(y => y.ClampOri == this.ClampOri).FeedingOK++;
+                        this.SampleStatus = SampleStatus.待测试;
                     }
 
                     AddLog(string.Format("{0}——>{1}", clampStatus, value));
@@ -271,11 +284,29 @@ namespace BakBattery.Baking
             }
         }
 
+        /// <summary>
+        /// 可开门（烤箱真空未泄完成，则不可开门）
+        /// </summary>
+        [DisplayName("可开门")]
+        public bool CanOpenDoor
+        {
+            get
+            {
+                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.转移台 || this.GetPutType == GetPutType.下料机)
+                {
+                    return true;
+                }
+
+                Floor oFloor = this.GetFloor();
+                return !oFloor.IsVacuum;
+            }
+        }
+
         private string robotValues = string.Empty;
         /// <summary>
         /// 机器人取放位置编码(取编码,放编码)
         /// </summary>
-        [DisplayName("机器人取放位置编码")]
+        [ReadOnly(true), DisplayName("机器人取放位置编码")]
         [Description("机器人取放位置编码(取编码,放编码)")]
         public string RobotValues
         {
@@ -327,26 +358,52 @@ namespace BakBattery.Baking
             set
             {
 
-                if (TengDa.WF.Current.IsTerminalInitFinished && this.GetPutType == GetPutType.烤箱 && floorStatus != value)
+                if (this.GetPutType == GetPutType.烤箱 && floorStatus != value)
                 {
-                    if (value == FloorStatus.烘烤)
+                    if (value == FloorStatus.待烤)
                     {
                         this.Clamp.OvenStationId = this.Id;
+                        this.Clamp.InOvenTime = DateTime.Now;
+                    }
+
+                    if (value == FloorStatus.烘烤)
+                    {
+                        var floor = this.GetFloor();
+
                         this.Clamp.BakingStartTime = DateTime.Now;
+
+                        this.Clamp.ProcessTemperSet = floor.ProcessTemperSet;
+                        this.Clamp.TsSet = floor.TemperatureSets;
+                        this.Clamp.YunFengTSet = floor.YunfengTemperatureSet;
+                        this.Clamp.VacuumSet = floor.VacuumSet;
+
+                        this.Clamp.PreheatTimeSet = floor.PreheatTimeSet;
+                        this.Clamp.BakingTimeSet = floor.BakingTimeSet;
+                        this.Clamp.BreathingCycleSet = floor.BreathingCycleSet;
+
+                        this.Clamp.IsInFinished = true;
+
+                        //样品状态复位
+                        this.GetFloor().Stations.ForEach(s => s.SampleStatus = SampleStatus.未知);
                     }
 
                     if (value == FloorStatus.待出)
                     {
                         this.Clamp.BakingStopTime = DateTime.Now;
-                        Floor floor = Floor.FloorList.FirstOrDefault(f => f.Stations.Contains(this));
-                        if (floor != null)
+
+                        //要测试水分的炉子设置状态
+                        var floor = this.GetFloor();
+                        if (floor.IsTestWaterContent)
                         {
-                            this.Clamp.Vacuum = floor.Vacuum;
-                            this.Clamp.Temperature = this.Temperatures[Current.option.DisplayTemperIndex];
-                            this.Clamp.OutOvenTemp = this.Temperatures.Average();
-                            this.Clamp.QualityStatus = QualityStatus.OK;
-                            this.Clamp.IsFinished = true;
+                            var index = floor.Stations.IndexOf(this);
+                            this.SampleStatus = index == 0 ? SampleStatus.待测试 : SampleStatus.待结果;
                         }
+                    }
+
+                    if (value == FloorStatus.无盘 && floorStatus == FloorStatus.待出)
+                    {
+                        this.Clamp.OutOvenTime = DateTime.Now;
+                        this.Clamp.IsOutFinished = true; 
                     }
                 }
 
@@ -718,11 +775,7 @@ namespace BakBattery.Baking
         {
             get
             {
-                return StationList.Where(s => s.IsAlive
-                && (s.GetPutType == GetPutType.烤箱 && (s.FloorStatus != FloorStatus.空盘 && s.FloorStatus != FloorStatus.无盘) && s.DoorStatus == DoorStatus.打开
-                || s.GetPutType == GetPutType.烤箱 && (s.FloorStatus == FloorStatus.空盘 || s.FloorStatus == FloorStatus.无盘) && !s.IsOpenDoorIntervene
-                || s.GetPutType != GetPutType.烤箱
-                )).ToList();
+                return StationList.Where(s => s.IsAlive && !s.IsOpenDoorIntervene && s.CanOpenDoor).ToList();
             }
         }
 
@@ -903,8 +956,10 @@ namespace BakBattery.Baking
 
     public enum SampleStatus
     {
-        样品位,
-        非样品位,
+        待测试,
+        测试OK,
+        测试NG,
+        待结果,
         未知
     }
 

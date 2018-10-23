@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TengDa.WF;
 
 namespace BakBattery.Baking.Controls
 {
@@ -25,6 +26,7 @@ namespace BakBattery.Baking.Controls
 
         private void btnYieldClear_Click(object sender, EventArgs e)
         {
+            if (!Check.Login()) return;
             btnYieldClearClick?.Invoke(sender, new EventArgs());
         }
 

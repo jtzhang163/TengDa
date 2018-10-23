@@ -34,6 +34,12 @@ namespace BakBattery.Baking
         [ReadOnly(true), DisplayName("所在夹具Id")]
         public int ClampId { get; set; } = -1;
 
+        /// <summary>
+        /// 上料机Id
+        /// </summary>
+        [ReadOnly(true), DisplayName("上料机Id")]
+        public int FeederId { get; set; } = -1;
+
         #endregion
 
         public Battery() : this(-1) { }
@@ -44,9 +50,15 @@ namespace BakBattery.Baking
             this.Id = id;
         }
 
-        public Battery(string code)
+        public Battery(string code) : this(code, -1)
+        {
+
+        }
+
+        public Battery(string code, int feederId)
         {
             this.code = code;
+            this.FeederId = FeederId;
         }
 
         #region 初始化方法
@@ -65,6 +77,7 @@ namespace BakBattery.Baking
         {
             this.code = rowInfo["Code"].ToString().Trim();
             this.ClampId = TengDa._Convert.StrToInt(rowInfo["ClampId"].ToString(), -1);
+            this.FeederId = TengDa._Convert.StrToInt(rowInfo["FeederId"].ToString(), -1);
             this.location = rowInfo["Location"].ToString().Trim();
             this.scanTime = TengDa._Convert.StrToDateTime(rowInfo["ScanTime"].ToString(), Common.DefaultTime);
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
@@ -133,10 +146,13 @@ namespace BakBattery.Baking
 
         public static int Add(Battery addBattery, out string msg)
         {
+            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [FeederId], [Location], [ScanTime]) VALUES ('{1}', {2}, '{3}', '{4}')", TableName, addBattery.Code, addBattery.ClampId, addBattery.FeederId, addBattery.Location, DateTime.Now), out msg);
+        }
 
-            //Yield.FeedingOK += 1;
-            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [Location], [ScanTime]) VALUES ('{1}', {2}, '{3}', '{4}')", TableName, addBattery.Code, addBattery.ClampId, addBattery.Location, DateTime.Now), out msg);
-
+        public static bool Update(int clampId, int feederId, out string msg)
+        {
+            return Database.NonQuery(string.Format("UPDATE [dbo].[{0}] SET [ClampId] = {1} WHERE [Id] IN (SELECT TOP {2} [Id] FROM [dbo].[{0}] WHERE [ClampId] = -1 AND [FeederId] = {3} ORDER BY	[ScanTime])",
+                 TableName, clampId, Current.option.ClampBatteryCount, feederId), out msg);
         }
 
         /// <summary>

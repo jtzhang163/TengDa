@@ -476,12 +476,10 @@ namespace BakBattery.Baking
                             break;
                         case 3:
                             this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[j].SampleStatus = SampleStatus.非样品位;
                             this.Stations[j].Status = StationStatus.可取;
                             break;
                         case 31:
                             this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[j].SampleStatus = SampleStatus.样品位;
                             this.Stations[j].Status = StationStatus.可取;
                             break;
                         case 4:
