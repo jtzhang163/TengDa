@@ -235,7 +235,7 @@ namespace Soundon.Dispatcher.App
             TreeNode tnConfig = new TreeNode("配置");
 
             List<TreeNode> tnOvens = new List<TreeNode>();
-            for (int i = 0; i < Current.ovens.Count; i++)
+            for (int i = 0; i < OvenCount; i++)
             {
                 List<TreeNode> tnFloors = new List<TreeNode>();
                 TreeNode tnOvenPlc = new TreeNode("PLC");
@@ -354,7 +354,7 @@ namespace Soundon.Dispatcher.App
             cbFloors.Items.Add("All");
             cbAlarmFloors.Items.Add("All");
 
-            for (int i = 0; i < Current.ovens.Count; i++)
+            for (int i = 0; i < OvenCount; i++)
             {
                 lbOvenName[i].Text = Current.ovens[i].Name;
                 lbOvenNameN[i].Text = Current.ovens[i].Name;
@@ -587,7 +587,7 @@ namespace Soundon.Dispatcher.App
 
             #region 烤箱
 
-            for (int i = 0; i < Current.ovens.Count; i++)
+            for (int i = 0; i < OvenCount; i++)
             {
                 Oven oven = Current.ovens[i];
                 oven.IsAlive = oven.IsEnable && oven.Plc.IsAlive;
@@ -1210,8 +1210,8 @@ namespace Soundon.Dispatcher.App
 
         #region 控件数组
 
-        private const int OvenCount = 8;
-        private static int OvenFloorCount = 3;
+        private const int OvenCount = 10;
+        private const int OvenFloorCount = 3;
 
         private Label[] lbOvenName = new Label[OvenCount];
         private Label[] lbOvenNameN = new Label[OvenCount];
@@ -1248,7 +1248,7 @@ namespace Soundon.Dispatcher.App
         private PictureBox[][] pbScanerLamp = new PictureBox[FeederCount][];
         private TextBox[][] tbScanerStatus = new TextBox[FeederCount][];
 
-        private const int BlankerCount = 1;
+        private const int BlankerCount = 2;
         private const int BlankerStationCount = 2;
 
         private TableLayoutPanel[] tlpBlankers = new TableLayoutPanel[BlankerCount];
@@ -1507,7 +1507,7 @@ namespace Soundon.Dispatcher.App
                 }
             }
 
-            for (int i = 0; i < Current.ovens.Count; i++)
+            for (int i = 0; i < OvenCount; i++)
             {
                 if (Current.ovens[i].IsEnable)
                 {
@@ -1590,7 +1590,7 @@ namespace Soundon.Dispatcher.App
                 Current.feeders[i].PreAlarmStr = string.Empty;
             }
 
-            for (int i = 0; i < Current.ovens.Count; i++)
+            for (int i = 0; i < OvenCount; i++)
             {
                 if (Current.ovens[i].IsEnable)
                 {
@@ -1748,11 +1748,11 @@ namespace Soundon.Dispatcher.App
 
         delegate void UpdateUI1PDelegate(string text);
 
-        System.Timers.Timer[] timerOvenRuns = new System.Timers.Timer[OvenCount] { null, null, null, null, null, null, null, null };
+        System.Timers.Timer[] timerOvenRuns = new System.Timers.Timer[OvenCount] { null, null, null, null, null, null, null, null, null, null };
 
         System.Timers.Timer[] timerFeederRuns = new System.Timers.Timer[FeederCount] { null, null };
 
-        System.Timers.Timer[] timerBlankerRuns = new System.Timers.Timer[BlankerCount] { null };
+        System.Timers.Timer[] timerBlankerRuns = new System.Timers.Timer[BlankerCount] { null, null };
 
         System.Timers.Timer timerRobotRun = null;
 
@@ -1766,7 +1766,7 @@ namespace Soundon.Dispatcher.App
         /// <returns></returns>
         public bool CheckStart(out string msg)
         {
-            for (int i = 0; i < Current.ovens.Count; i++)
+            for (int i = 0; i < OvenCount; i++)
             {
                 if (cbOvenIsEnable[i].Checked && !Current.ovens[i].Plc.IsAlive)
                 {
@@ -2001,7 +2001,7 @@ namespace Soundon.Dispatcher.App
                     cbScanerIsEnable[i][j].Enabled = IsEnable;
                 }
             }
-            for (int i = 0; i < Current.ovens.Count; i++)
+            for (int i = 0; i < OvenCount; i++)
             {
                 cbOvenIsEnable[i].Enabled = IsEnable;
             }
@@ -2313,7 +2313,7 @@ namespace Soundon.Dispatcher.App
                     return;
                 }
                 //待烤层关门启动
-                for (int i = 0; i < Current.ovens.Count; i++)
+                for (int i = 0; i < OvenCount; i++)
                 {
                     for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
                     {
@@ -4001,7 +4001,7 @@ namespace Soundon.Dispatcher.App
         {
             if (timerlock)
             {
-                for (int i = 0; i < Current.ovens.Count; i++)
+                for (int i = 0; i < OvenCount; i++)
                 {
                     if (Current.ovens[i].IsAlive && Current.ovens[i].AlreadyGetAllInfo)
                     {
@@ -4490,7 +4490,7 @@ namespace Soundon.Dispatcher.App
                 tsiStations.Add(tsmiFeederStation);
             }
 
-            for (int i = 0; i < Current.ovens.Count; i++)
+            for (int i = 0; i < OvenCount; i++)
             {
                 ToolStripMenuItem tsmiOvenStation = new ToolStripMenuItem();
                 List<ToolStripItem> tsiOvenStations = new List<ToolStripItem>();
