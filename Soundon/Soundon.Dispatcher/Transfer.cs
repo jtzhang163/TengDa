@@ -70,8 +70,6 @@ namespace Soundon.Dispatcher
 
             //释放资源
             dt.Dispose();
-
-            this.IsAlive = true;
         }
 
         #endregion

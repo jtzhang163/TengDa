@@ -198,7 +198,6 @@ namespace Soundon.Dispatcher.App
                 pbBlankerTriLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbBlankerTriLamp{0}", ii.ToString("D2")), true)[0]);
 
                 lbBlankerStationName[i] = new Label[BlankerStationCount];
-                lbBlankerFromStationName[i] = new Label[BlankerStationCount];
                 lbBlankerClampCode[i] = new Label[BlankerStationCount];
                 tlpBlankerStationClamp[i] = new TableLayoutPanel[BlankerStationCount];
 
@@ -206,7 +205,6 @@ namespace Soundon.Dispatcher.App
                 {
                     int jj = j + 1;
                     lbBlankerStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerStationName{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
-                    lbBlankerFromStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerFromStationName{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
                     lbBlankerClampCode[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerClampCode{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
                     tlpBlankerStationClamp[i][j] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpBlankerStationClamp{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
                 }
@@ -379,9 +377,9 @@ namespace Soundon.Dispatcher.App
                 pbFeederLamp[i].Image = Properties.Resources.Gray_Round;
                 cbFeederIsEnable[i].Checked = Current.feeders[i].IsEnable;
 
-                for (int j = 0; j < Current.feeders[i].Stations.Count; j++)
+                for (int j = 0; j < FeederStationCount; j++)
                 {
-                    lbFeederStationName[i][j].Text = Current.feeders[i].Stations[j].Name;
+                    lbFeederStationName[i][j].Text = Current.feeders[i].Stations[j].Name.Replace("上料","");
                 }
 
                 for (int j = 0; j < Current.feeders[i].Scaners.Count; j++)
@@ -401,7 +399,7 @@ namespace Soundon.Dispatcher.App
 
                 for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
                 {
-                    lbBlankerStationName[i][j].Text = Current.blankers[i].Stations[j].Name;
+                    lbBlankerStationName[i][j].Text = Current.blankers[i].Stations[j].Name.Replace("下料", "");
                 }
             }
 
@@ -817,7 +815,7 @@ namespace Soundon.Dispatcher.App
                 }
 
 
-                for (int j = 0; j < Current.feeders[i].Stations.Count; j++)
+                for (int j = 0; j < FeederStationCount; j++)
                 {
                     Station station = Current.feeders[i].Stations[j];
                     lbFeederClampCode[i][j].Text = station.Clamp.Code;
@@ -938,16 +936,6 @@ namespace Soundon.Dispatcher.App
                                 default: tlpBlankerStationClamp[i][j].BackColor = SystemColors.Control; break;
                             }
                         }
-                    }
-
-
-                    if (Current.blankers[i].Stations[j].ClampStatus != ClampStatus.无夹具 && Current.blankers[i].Stations[j].FromStationId > 0)
-                    {
-                        lbBlankerFromStationName[i][j].Text = Station.StationList.FirstOrDefault(s => s.Id == Current.blankers[i].Stations[j].FromStationId).Name;
-                    }
-                    else
-                    {
-                        lbBlankerFromStationName[i][j].Text = string.Empty;
                     }
                 }
                 tlpBlankers[i].Invalidate();
@@ -1227,7 +1215,7 @@ namespace Soundon.Dispatcher.App
         private Label[][] lbFloorStatus = new Label[OvenCount][];
 
         private const int FeederCount = 2;
-        private const int FeederStationCount = 2;
+        private const int FeederStationCount = 3;
 
         private TableLayoutPanel[] tlpFeeders = new TableLayoutPanel[FeederCount];
         private Label[] lbFeederName = new Label[FeederCount];
@@ -1260,7 +1248,6 @@ namespace Soundon.Dispatcher.App
         private PictureBox[] pbBlankerTriLamp = new PictureBox[BlankerCount];
 
         private Label[][] lbBlankerStationName = new Label[BlankerCount][];
-        private Label[][] lbBlankerFromStationName = new Label[BlankerCount][];
         private Label[][] lbBlankerClampCode = new Label[BlankerCount][];
         private TableLayoutPanel[][] tlpBlankerStationClamp = new TableLayoutPanel[BlankerCount][];
 
@@ -3814,9 +3801,9 @@ namespace Soundon.Dispatcher.App
             Rectangle r = e.CellBounds;
             Brush brush = Brushes.White;
 
-            for (int j = 0; j < Current.feeders[i].Stations.Count; j++)
+            for (int j = 0; j < FeederStationCount; j++)
             {
-                if (e.Column == 2 - j - 1)
+                if (e.Column == FeederStationCount - j - 1)
                 {
                     if (!Current.feeders[i].Stations[j].IsAlive)
                     {
