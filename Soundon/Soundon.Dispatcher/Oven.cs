@@ -339,7 +339,6 @@ namespace Soundon.Dispatcher
 
                 #endregion
 
-
                 #region 获取其他信息1
 
                 for (int j = 0; j < this.Floors.Count; j++)
@@ -361,7 +360,6 @@ namespace Soundon.Dispatcher
 
                 #endregion
 
-
                 #region 获取其他信息2
 
                 for (int j = 0; j < this.Floors.Count; j++)
@@ -380,7 +378,6 @@ namespace Soundon.Dispatcher
                 }
 
                 #endregion
-
 
                 #region 获取左夹具温度
 
@@ -857,20 +854,17 @@ namespace Soundon.Dispatcher
                     #region 启动运行
                     if (this.Floors[j].toStartBaking)
                     {
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.StartBakingStrs.Split(',')[j], out output, out msg))
+                        var addr = Current.option.OvenStartBakingAddrVals.Split(',')[j].Split(':')[0];
+                        var val = Convert.ToUInt16(Current.option.OvenStartBakingAddrVals.Split(',')[j].Split(':')[1]);
+
+                        if (!this.Plc.SetInfo(addr, val, out msg))
                         {
                             Error.Alert(msg);
                             this.Plc.IsAlive = false;
                             return false;
                         }
 
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.StartBakingStrs.Split(',')[j], output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送启动运行指令到{0}:{1}", this.Floors[j].Name, Current.option.StartBakingStrs.Split(',')[j]));
+                        LogHelper.WriteInfo(string.Format("成功发送启动运行指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenStartBakingAddrVals.Split(',')[j]));
                         this.Floors[j].toStartBaking = false;
                     }
                     #endregion
@@ -878,177 +872,152 @@ namespace Soundon.Dispatcher
                     #region 结束运行
                     if (this.Floors[j].toStopBaking)
                     {
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.StopBakingStrs.Split(',')[j], out output, out msg))
+                        var addr = Current.option.OvenStopBakingAddrVals.Split(',')[j].Split(':')[0];
+                        var val = Convert.ToUInt16(Current.option.OvenStopBakingAddrVals.Split(',')[j].Split(':')[1]);
+
+                        if (!this.Plc.SetInfo(addr, val, out msg))
                         {
                             Error.Alert(msg);
                             this.Plc.IsAlive = false;
                             return false;
                         }
 
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.StopBakingStrs.Split(',')[j], output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送停止运行指令到{0}:{1}", this.Floors[j].Name, Current.option.StopBakingStrs.Split(',')[j]));
+                        LogHelper.WriteInfo(string.Format("成功发送停止运行指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenStopBakingAddrVals.Split(',')[j]));
                         this.Floors[j].toStopBaking = false;
                     }
                     #endregion
 
                     #region 开启网控
-                    if (this.Floors[j].toOpenNetControl)
-                    {
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.OpenNetControlStrs.Split(',')[j], out output, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
+                    //if (this.Floors[j].toOpenNetControl)
+                    //{
+                    //    output = string.Empty;
+                    //    if (!this.Plc.GetInfo(false, Current.option.OpenNetControlStrs.Split(',')[j], out output, out msg))
+                    //    {
+                    //        Error.Alert(msg);
+                    //        this.Plc.IsAlive = false;
+                    //        return false;
+                    //    }
 
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.OpenNetControlStrs.Split(',')[j], output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送开启网控指令到{0}:{1}", this.Floors[j].Name, Current.option.OpenNetControlStrs.Split(',')[j]));
-                        this.Floors[j].toOpenNetControl = false;
-                    }
+                    //    if (output.Substring(3, 1) != "$")
+                    //    {
+                    //        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.OpenNetControlStrs.Split(',')[j], output));
+                    //        return false;
+                    //    }
+                    //    LogHelper.WriteInfo(string.Format("成功发送开启网控指令到{0}:{1}", this.Floors[j].Name, Current.option.OpenNetControlStrs.Split(',')[j]));
+                    //    this.Floors[j].toOpenNetControl = false;
+                    //}
                     #endregion
 
                     #region 报警复位
-                    if (this.Floors[j].toAlarmReset)
-                    {
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.OvenAlarmResetStrs.Split(',')[j], out output, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
+                    //if (this.Floors[j].toAlarmReset)
+                    //{
+                    //    output = string.Empty;
+                    //    if (!this.Plc.GetInfo(false, Current.option.OvenAlarmResetStrs.Split(',')[j], out output, out msg))
+                    //    {
+                    //        Error.Alert(msg);
+                    //        this.Plc.IsAlive = false;
+                    //        return false;
+                    //    }
 
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.OvenAlarmResetStrs.Split(',')[j], output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送报警复位指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenAlarmResetStrs.Split(',')[j]));
-                        this.Floors[j].toAlarmReset = false;
-                    }
+                    //    if (output.Substring(3, 1) != "$")
+                    //    {
+                    //        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.OvenAlarmResetStrs.Split(',')[j], output));
+                    //        return false;
+                    //    }
+                    //    LogHelper.WriteInfo(string.Format("成功发送报警复位指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenAlarmResetStrs.Split(',')[j]));
+                    //    this.Floors[j].toAlarmReset = false;
+                    //}
                     #endregion
 
                     #region 抽真空
                     if (this.Floors[j].toLoadVacuum)
                     {
-                        var command = Current.option.LoadVacuumStrs.Split(',')[j];
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, command, out output, out msg))
+                        var addr = Current.option.OvenLoadVacuumAddrVals.Split(',')[j].Split(':')[0];
+                        var val = Convert.ToUInt16(Current.option.OvenLoadVacuumAddrVals.Split(',')[j].Split(':')[1]);
+
+                        if (!this.Plc.SetInfo(addr, val, out msg))
                         {
                             Error.Alert(msg);
                             this.Plc.IsAlive = false;
                             return false;
                         }
 
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", command, output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送抽真空指令到{0}:{1}", this.Floors[j].Name, command));
+                        LogHelper.WriteInfo(string.Format("成功发送抽真空指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenLoadVacuumAddrVals.Split(',')[j]));
                         this.Floors[j].toLoadVacuum = false;
                     }
                     #endregion
 
-                    #region 取消抽真空
+                    #region 停止抽真空
                     if (this.Floors[j].toCancelLoadVacuum)
                     {
-                        var command = Current.option.LoadVacuumStrs.Split(',')[j];
-                        command = command.Replace("1**", "0**");
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, command, out output, out msg))
+                        var addr = Current.option.OvenStopLoadVacuumAddrVals.Split(',')[j].Split(':')[0];
+                        var val = Convert.ToUInt16(Current.option.OvenStopLoadVacuumAddrVals.Split(',')[j].Split(':')[1]);
+
+                        if (!this.Plc.SetInfo(addr, val, out msg))
                         {
                             Error.Alert(msg);
                             this.Plc.IsAlive = false;
                             return false;
                         }
 
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", command, output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送取消抽真空指令到{0}:{1}", this.Floors[j].Name, command));
+                        LogHelper.WriteInfo(string.Format("成功发送取消抽真空指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenStopLoadVacuumAddrVals.Split(',')[j]));
                         this.Floors[j].toCancelLoadVacuum = false;
                     }
                     #endregion
 
-                    #region 泄真空
+                    #region 破真空
                     if (this.Floors[j].toUploadVacuum)
                     {
-                        var command = Current.option.UnloadVacuumStrs.Split(',')[j];
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, command, out output, out msg))
+                        var addr = Current.option.OvenUploadVacuumAddrVals.Split(',')[j].Split(':')[0];
+                        var val = Convert.ToUInt16(Current.option.OvenUploadVacuumAddrVals.Split(',')[j].Split(':')[1]);
+
+                        if (!this.Plc.SetInfo(addr, val, out msg))
                         {
                             Error.Alert(msg);
                             this.Plc.IsAlive = false;
                             return false;
                         }
-
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", command, output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送泄真空指令到{0}:{1}", this.Floors[j].Name, command));
+                        LogHelper.WriteInfo(string.Format("成功发送泄真空指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenUploadVacuumAddrVals.Split(',')[j]));
                         this.Floors[j].toUploadVacuum = false;
                     }
                     #endregion
 
-                    #region 取消泄真空
+                    #region 停止破真空
                     if (this.Floors[j].toCancelUploadVacuum)
                     {
-                        var command = Current.option.UnloadVacuumStrs.Split(',')[j];
+                        var addr = Current.option.OvenStopUploadVacuumAddrVals.Split(',')[j].Split(':')[0];
+                        var val = Convert.ToUInt16(Current.option.OvenStopUploadVacuumAddrVals.Split(',')[j].Split(':')[1]);
 
-                        command = command.Replace("1**", "0**");
-
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, command, out output, out msg))
+                        if (!this.Plc.SetInfo(addr, val, out msg))
                         {
                             Error.Alert(msg);
                             this.Plc.IsAlive = false;
                             return false;
                         }
-
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", command, output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送取消泄真空指令到{0}:{1}", this.Floors[j].Name, command));
+                        LogHelper.WriteInfo(string.Format("成功发送取消泄真空指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenStopUploadVacuumAddrVals.Split(',')[j]));
                         this.Floors[j].toCancelUploadVacuum = false;
                     }
                     #endregion
 
                     #region 运行时间清零
-                    if (this.Floors[j].toClearRunTime)
-                    {
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.ClearRunTimeStrs.Split(',')[j], out output, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
+                    //if (this.Floors[j].toClearRunTime)
+                    //{
+                    //    output = string.Empty;
+                    //    if (!this.Plc.GetInfo(false, Current.option.ClearRunTimeStrs.Split(',')[j], out output, out msg))
+                    //    {
+                    //        Error.Alert(msg);
+                    //        this.Plc.IsAlive = false;
+                    //        return false;
+                    //    }
 
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.ClearRunTimeStrs.Split(',')[j], output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送运行时间清零指令到{0}:{1}", this.Floors[j].Name, Current.option.ClearRunTimeStrs.Split(',')[j]));
-                        this.Floors[j].toClearRunTime = false;
-                    }
+                    //    if (output.Substring(3, 1) != "$")
+                    //    {
+                    //        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.ClearRunTimeStrs.Split(',')[j], output));
+                    //        return false;
+                    //    }
+                    //    LogHelper.WriteInfo(string.Format("成功发送运行时间清零指令到{0}:{1}", this.Floors[j].Name, Current.option.ClearRunTimeStrs.Split(',')[j]));
+                    //    this.Floors[j].toClearRunTime = false;
+                    //}
                     #endregion
                 }
                 #endregion

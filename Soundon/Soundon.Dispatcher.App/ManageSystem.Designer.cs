@@ -2360,14 +2360,14 @@
             // 
             this.tsmUploadVacuum.Name = "tsmUploadVacuum";
             this.tsmUploadVacuum.Size = new System.Drawing.Size(148, 22);
-            this.tsmUploadVacuum.Text = "泄真空";
+            this.tsmUploadVacuum.Text = "破真空";
             this.tsmUploadVacuum.Click += new System.EventHandler(this.tsmUploadVacuum_Click);
             // 
             // tsmCancelUploadVacuum
             // 
             this.tsmCancelUploadVacuum.Name = "tsmCancelUploadVacuum";
             this.tsmCancelUploadVacuum.Size = new System.Drawing.Size(148, 22);
-            this.tsmCancelUploadVacuum.Text = "取消泄真空";
+            this.tsmCancelUploadVacuum.Text = "取消破真空";
             this.tsmCancelUploadVacuum.Click += new System.EventHandler(this.tsmCancelUploadVacuum_Click);
             // 
             // tsmStopBaking

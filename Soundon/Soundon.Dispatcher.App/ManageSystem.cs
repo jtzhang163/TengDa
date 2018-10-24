@@ -4111,22 +4111,22 @@ namespace Soundon.Dispatcher.App
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].IsAlive
                  && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.关闭
-                && !Current.ovens[i].Floors[j].VacuumIsLoading
+               // && !Current.ovens[i].Floors[j].VacuumIsLoading
                 && !Current.ovens[i].Floors[j].IsVacuum;
             this.tsmCancelLoadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].IsAlive
-                && Current.ovens[i].Floors[j].VacuumIsLoading;
+                && Current.ovens[i].IsAlive;
+            //  && Current.ovens[i].Floors[j].VacuumIsLoading;
             this.tsmUploadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].IsAlive
-                && !Current.ovens[i].Floors[j].IsBaking
-                && !Current.ovens[i].Floors[j].VacuumIsUploading
-                && Current.ovens[i].Floors[j].IsVacuum;
+                && !Current.ovens[i].Floors[j].IsBaking;
+            //  && !Current.ovens[i].Floors[j].VacuumIsUploading
+            //  && Current.ovens[i].Floors[j].IsVacuum;
             this.tsmCancelUploadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].IsAlive
-                && Current.ovens[i].Floors[j].VacuumIsUploading;
+                && Current.ovens[i].IsAlive;
+                //&& Current.ovens[i].Floors[j].VacuumIsUploading;
             this.tsmClearRunTime.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].IsAlive;
