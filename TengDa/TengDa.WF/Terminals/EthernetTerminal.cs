@@ -446,40 +446,6 @@ namespace TengDa.WF.Terminals
             }
         }
 
-        public bool GetInfo(string address, ushort length, out int[] output, out string msg)
-        {
-            output = new int[] { };
-            msg = string.Empty;
-            if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
-            {
-                HslCommunice533.OperateResult<int[]> result = omron_net.ReadInt32(address, length);
-                if (result.IsSuccess)
-                {
-                    output = result.Content;
-                    return true;
-                }
-                msg = result.Message;
-            }
-            return false;
-        }
-
-        public bool GetInfo(string address, ushort length, out string output, out string msg)
-        {
-            output = "";
-            msg = string.Empty;
-            if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
-            {
-                HslCommunice533.OperateResult<string> result = omron_net.ReadString(address, length);
-                if (result.IsSuccess)
-                {
-                    output = result.Content;
-                    return true;
-                }
-                msg = result.Message;
-            }
-            return false;
-        }
-
         public bool GetInfo(string address, ushort length, out ushort[] output, out string msg)
         {
             output = new ushort[] { };
@@ -490,6 +456,21 @@ namespace TengDa.WF.Terminals
                 if (result.IsSuccess)
                 {
                     output = result.Content;
+                    return true;
+                }
+                msg = result.Message;
+            }
+            return false;
+        }
+
+        public bool SetInfo(string address, ushort val, out string msg)
+        {
+            msg = string.Empty;
+            if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
+            {
+                HslCommunice533.OperateResult result = omron_net.Write(address, val);
+                if (result.IsSuccess)
+                {
                     return true;
                 }
                 msg = result.Message;

@@ -815,20 +815,16 @@ namespace Soundon.Dispatcher
 
                     if (this.Floors[j].toOpenDoor)
                     {
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.OpenOvenDoorStrs.Split(',')[j], out output, out msg))
+                        var addr = Current.option.OvenOpenDoorAddrVals.Split(',')[j].Split(':')[0];
+                        var val = Convert.ToUInt16(Current.option.OvenOpenDoorAddrVals.Split(',')[j].Split(':')[1]);
+
+                        if (!this.Plc.SetInfo(addr, val, out msg))
                         {
                             Error.Alert(msg);
                             this.Plc.IsAlive = false;
                             return false;
                         }
-
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.OpenOvenDoorStrs.Split(',')[j], output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送开门指令到{0}:{1}", this.Floors[j].Name, Current.option.OpenOvenDoorStrs.Split(',')[j]));
+                        LogHelper.WriteInfo(string.Format("成功发送开门指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenOpenDoorAddrVals.Split(',')[j]));
                         this.Floors[j].toOpenDoor = false;
                         this.Floors[j].DoorIsOpenning = true;
                     }
@@ -842,20 +838,17 @@ namespace Soundon.Dispatcher
 
                     if (this.Floors[j].toCloseDoor)
                     {
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.CloseOvenDoorStrs.Split(',')[j], out output, out msg))
+                        var addr = Current.option.OvenCloseDoorAddrVals.Split(',')[j].Split(':')[0];
+                        var val = Convert.ToUInt16(Current.option.OvenCloseDoorAddrVals.Split(',')[j].Split(':')[1]);
+
+                        if (!this.Plc.SetInfo(addr, val, out msg))
                         {
                             Error.Alert(msg);
                             this.Plc.IsAlive = false;
                             return false;
                         }
 
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.CloseOvenDoorStrs.Split(',')[j], output));
-                            return false;
-                        }
-                        LogHelper.WriteInfo(string.Format("成功发送关门指令到{0}:{1}", this.Floors[j].Name, Current.option.CloseOvenDoorStrs.Split(',')[j]));
+                        LogHelper.WriteInfo(string.Format("成功发送关门指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenCloseDoorAddrVals.Split(',')[j]));
                         this.Floors[j].toCloseDoor = false;
                         this.Floors[j].DoorIsClosing = true;
                     }

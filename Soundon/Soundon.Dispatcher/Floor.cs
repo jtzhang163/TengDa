@@ -93,7 +93,7 @@ namespace Soundon.Dispatcher
 
         [ReadOnly(true), Description("网控已开启")]
         [DisplayName("网控已开启")]
-        public bool IsNetControlOpen { get; set; }
+        public bool IsNetControlOpen { get; set; } = true;
 
         [ReadOnly(true), Description("所在烤箱Id")]
         [DisplayName("所在烤箱Id")]
