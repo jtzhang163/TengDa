@@ -695,11 +695,11 @@ namespace Soundon.Dispatcher.App
 
                     lbFloorStatus[i][j].Text = Current.TaskMode == TaskMode.手动任务 ?
                         string.Format("{0} {1} {2}/{3} {4}",
-                        oven.Id < 5 ? "左" : "右",
+                        oven.ClampOri == ClampOri.B ? "左" : "右",
                         floor.DoorStatus,
                         floor.RunMinutes.ToString().PadLeft(3),
                         floor.RunMinutesSet.ToString().PadLeft(3),
-                        oven.Id < 5 ? "右" : "左"
+                        oven.ClampOri == ClampOri.B ? "右" : "左"
                         )
                         :
                         string.Format("{0} {1}/{2}",
