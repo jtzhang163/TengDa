@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Text.RegularExpressions;
 
 namespace TengDa
 {
@@ -22,5 +25,27 @@ namespace TengDa
             }
             return ipadrslist;
         }
+
+        public static byte GetIpLastValue(string ip)
+        {
+            var result = (byte)0;
+            if (ip.Split('.').Length == 4)
+            {
+                result = Convert.ToByte(ip.Split('.')[3]);
+            }
+            return result;
+        }
+
+        public static string GetLocalIpByRegex(string iPAddressRegex)
+        {
+            var result = string.Empty;
+            List<IPAddress> ips = GetIPList().Where(i => Regex.IsMatch(i.ToString(), iPAddressRegex)).ToList();
+            if (ips.Count > 0)
+            {
+                result = ips[0].ToString();
+            }
+            return result;
+        }
+
     }
 }

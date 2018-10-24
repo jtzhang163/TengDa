@@ -1906,59 +1906,56 @@ namespace Soundon.Dispatcher
             }
         }
 
-        //private string xxxXXXXXXXXXXXX = string.Empty;
-        ///// <summary>
-        ///// YYYYYYYYYYYYYYYYY
-        ///// </summary>
-        //[Description("YYYYYYYYYYYYYYYYY")]
-        //[DisplayName("YYYYYYYYYYYYYYYYY")]
-        //[Category("ZZZZZ")]
-        //public string XXXXXXXXXXXXXXX
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(xxxXXXXXXXXXXXX))
-        //        {
-        //            xxxXXXXXXXXXXXX = TengDa.WF.Option.GetOption("XXXXXXXXXXXXXXX");
-        //        }
-        //        return xxxXXXXXXXXXXXX;
-        //    }
-        //    set
-        //    {
-        //        if (value != xxxXXXXXXXXXXXX)
-        //        {
-        //            TengDa.WF.Option.SetOption("XXXXXXXXXXXXXXX", value);
-        //            xxxXXXXXXXXXXXX = value;
-        //        }
-        //    }
-        //}
+        private string ovenDoorStatusAddrs = string.Empty;
+        /// <summary>
+        /// 烤箱门状态地址
+        /// </summary>
+        [DisplayName("烤箱门状态地址")]
+        [Category("烤箱")]
+        public string OvenDoorStatusAddrs
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(ovenDoorStatusAddrs))
+                {
+                    ovenDoorStatusAddrs = TengDa.WF.Option.GetOption("OvenDoorStatusAddrs");
+                }
+                return ovenDoorStatusAddrs;
+            }
+            set
+            {
+                if (value != ovenDoorStatusAddrs)
+                {
+                    TengDa.WF.Option.SetOption("OvenDoorStatusAddrs", value);
+                    ovenDoorStatusAddrs = value;
+                }
+            }
+        }
 
-        //private string xxxXXXXXXXXXXXX = string.Empty;
-        ///// <summary>
-        ///// YYYYYYYYYYYYYYYYY
-        ///// </summary>
-        //[Description("YYYYYYYYYYYYYYYYY")]
-        //[DisplayName("YYYYYYYYYYYYYYYYY")]
-        //[Category("ZZZZZ")]
-        //public string XXXXXXXXXXXXXXX
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(xxxXXXXXXXXXXXX))
-        //        {
-        //            xxxXXXXXXXXXXXX = TengDa.WF.Option.GetOption("XXXXXXXXXXXXXXX");
-        //        }
-        //        return xxxXXXXXXXXXXXX;
-        //    }
-        //    set
-        //    {
-        //        if (value != xxxXXXXXXXXXXXX)
-        //        {
-        //            TengDa.WF.Option.SetOption("XXXXXXXXXXXXXXX", value);
-        //            xxxXXXXXXXXXXXX = value;
-        //        }
-        //    }
-        //}
+        private string iPAddressRegex = string.Empty;
+        /// <summary>
+        /// 局域网IP地址正则表达式
+        /// </summary>
+        [DisplayName("局域网IP地址正则表达式")]
+        public string IPAddressRegex
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(iPAddressRegex))
+                {
+                    iPAddressRegex = TengDa.WF.Option.GetOption("IPAddressRegex");
+                }
+                return iPAddressRegex;
+            }
+            set
+            {
+                if (value != iPAddressRegex)
+                {
+                    TengDa.WF.Option.SetOption("IPAddressRegex", value);
+                    iPAddressRegex = value;
+                }
+            }
+        }
 
 
         //private string xxxXXXXXXXXXXXX = string.Empty;

@@ -131,11 +131,14 @@ namespace TengDa.WF.Terminals
 
         private SiemensTcpNet siemens_net = null;
 
+        private HslCommunice533.Profinet.Omron.OmronFinsNet omron_net = null;
+
         #endregion
 
         #region 开启/断开连接
         public bool TcpConnect(out string msg)
         {
+            msg = string.Empty;
             try
             {
                 if (this.Company == PlcCompany.Mitsubishi.ToString())
@@ -163,6 +166,24 @@ namespace TengDa.WF.Terminals
                     siemens_net.ConnectServer(); 
                     IsAlive = true;
                 }
+                else if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
+                {
+
+                    omron_net = new HslCommunice533.Profinet.Omron.OmronFinsNet(this.IP, this.Port);
+                    omron_net.SA1 = TengDa.Net.GetIpLastValue(Net.GetLocalIpByRegex("192.168.*"));  // PC网络号，PC的IP地址的最后一个数
+                    omron_net.DA1 = TengDa.Net.GetIpLastValue(this.IP);  // PLC网络号，PLC的IP地址的最后一个数0
+                    omron_net.DA2 = 0x00; // PLC单元号，通常为0
+
+                    omron_net.ReceiveTimeOut = 1000;
+                    omron_net.ConnectTimeOut = 1000;
+                    HslCommunice533.OperateResult result = omron_net.ConnectServer();
+                    if (!result.IsSuccess)
+                    {
+                        IsAlive = false;
+                        return false;
+                    }
+                    IsAlive = true;
+                }
                 else if (!Socket.Connected)
                 {
                     Socket.Connect(IpAddress, Port);
@@ -175,7 +196,6 @@ namespace TengDa.WF.Terminals
                 IsAlive = false;
                 return false;
             }
-            msg = string.Empty;
             return true;
         }
 
@@ -196,6 +216,16 @@ namespace TengDa.WF.Terminals
                     if (siemens_net != null)
                     {
                         siemens_net.ConnectClose();
+                        siemens_net = null;
+                    }
+                    IsAlive = false;
+                }
+                else if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
+                {
+                    if (omron_net != null)
+                    {
+                        omron_net.ConnectClose();
+                        omron_net = null;
                     }
                     IsAlive = false;
                 }
@@ -414,6 +444,57 @@ namespace TengDa.WF.Terminals
                 IsAlive = false;
                 return false;
             }
+        }
+
+        public bool GetInfo(string address, ushort length, out int[] output, out string msg)
+        {
+            output = new int[] { };
+            msg = string.Empty;
+            if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
+            {
+                HslCommunice533.OperateResult<int[]> result = omron_net.ReadInt32(address, length);
+                if (result.IsSuccess)
+                {
+                    output = result.Content;
+                    return true;
+                }
+                msg = result.Message;
+            }
+            return false;
+        }
+
+        public bool GetInfo(string address, ushort length, out string output, out string msg)
+        {
+            output = "";
+            msg = string.Empty;
+            if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
+            {
+                HslCommunice533.OperateResult<string> result = omron_net.ReadString(address, length);
+                if (result.IsSuccess)
+                {
+                    output = result.Content;
+                    return true;
+                }
+                msg = result.Message;
+            }
+            return false;
+        }
+
+        public bool GetInfo(string address, ushort length, out short[] output, out string msg)
+        {
+            output = new short[] { };
+            msg = string.Empty;
+            if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
+            {
+                HslCommunice533.OperateResult<short[]> result = omron_net.ReadInt16(address, length);
+                if (result.IsSuccess)
+                {
+                    output = result.Content;
+                    return true;
+                }
+                msg = result.Message;
+            }
+            return false;
         }
 
         public bool SetInfo(byte input, out string msg)

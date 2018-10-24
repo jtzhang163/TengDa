@@ -275,6 +275,38 @@ namespace Soundon.Dispatcher
             try
             {
 
+                #region 获取门状态
+                output = string.Empty;
+                for (int j = 0; j < this.Floors.Count; j++)
+                {
+                    var bOutputs = new short[] { };
+                    if (!this.Plc.GetInfo(Current.option.OvenDoorStatusAddrs.Split(',')[j], (ushort)1, out bOutputs, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    output = OmronPLC.GetBitStr(bOutputs[0], 8);
+
+                    if (output.Substring(6, 1) == "1")
+                    {
+                        this.Floors[j].DoorStatusNotFinal = DoorStatus.打开; this.Floors[j].DoorIsOpenning = false;
+                    }
+                    else if (output.Substring(5, 1) == "1")
+                    {
+                        this.Floors[j].DoorStatusNotFinal = DoorStatus.关闭; this.Floors[j].DoorIsClosing = false;
+                    }
+                    else
+                    {
+                        this.Floors[j].DoorStatusNotFinal = DoorStatus.异常;
+                    }
+                }
+                #endregion
+
+
+                /*
+
                 if (getInfoNum == 1)
                 {
                     #region 获取温度
@@ -640,6 +672,7 @@ namespace Soundon.Dispatcher
                 }
 
                 #endregion
+                */
 
                 #region 写指令 控制开关门、启动运行、抽卸真空
                 for (int j = 0; j < this.Floors.Count; j++)
@@ -935,6 +968,8 @@ namespace Soundon.Dispatcher
                 }
 
                 #endregion
+
+              
             }
             catch (Exception ex)
             {

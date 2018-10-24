@@ -58,6 +58,7 @@
     <Compile Include="Common.cs" />
     <Compile Include="Net.cs" />
     <Compile Include="JsonHelper.cs" />
+    <Compile Include="OmronPLC.cs" />
     <Compile Include="PanasonicPLC.cs" />
     <Compile Include="SqlExtensions.cs" />
     <Compile Include="Encrypt\Base64.cs" />
