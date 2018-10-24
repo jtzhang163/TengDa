@@ -219,11 +219,11 @@ namespace Soundon.Dispatcher.App
             }
             #endregion
 
-            for (int i = 0; i < Option.TemperaturePointCount; i++)
-            {
-                cbTemperIndex[i] = (CheckBox)(this.Controls.Find(string.Format("cbTemperIndex{0}", (i + 1).ToString("D2")), true)[0]);
-                cbTemperIndex[i].ForeColor = Current.option.CurveColors[i];
-            }
+            //for (int i = 0; i < Option.TemperaturePointCount; i++)
+            //{
+            //    cbTemperIndex[i] = (CheckBox)(this.Controls.Find(string.Format("cbTemperIndex{0}", (i + 1).ToString("D2")), true)[0]);
+            //    cbTemperIndex[i].ForeColor = Current.option.CurveColors[i];
+            //}
         }
 
         private void InitSettingsTreeView()
@@ -423,18 +423,18 @@ namespace Soundon.Dispatcher.App
             }
 
             bool isAll = true;
-            for (int k = 0; k < Option.TemperaturePointCount; k++)
-            {
-                if (Array.IndexOf(Current.option.CurveIndexs.Split(','), k.ToString()) > -1)
-                {
-                    cbTemperIndex[k].Checked = true;
-                }
-                else
-                {
-                    cbTemperIndex[k].Checked = false;
-                    isAll = false;
-                }
-            }
+            //for (int k = 0; k < Option.TemperaturePointCount; k++)
+            //{
+            //    if (Array.IndexOf(Current.option.CurveIndexs.Split(','), k.ToString()) > -1)
+            //    {
+            //        cbTemperIndex[k].Checked = true;
+            //    }
+            //    else
+            //    {
+            //        cbTemperIndex[k].Checked = false;
+            //        isAll = false;
+            //    }
+            //}
             cbTemperAll.Checked = isAll;
 
             //温度曲线显示工位初始化
@@ -638,7 +638,7 @@ namespace Soundon.Dispatcher.App
                     {
                         for (int k = 0; k < Option.TemperaturePointCount; k++)
                         {
-                            cbTemperIndex[k].Text = string.Format("{0}:{1}℃", Current.option.TemperNames[k], floor.Temperatures[k].ToString("#0.0").PadLeft(5));
+                          //  cbTemperIndex[k].Text = string.Format("{0}:{1}℃", Current.option.TemperNames[k], floor.Temperatures[k].ToString("#0.0").PadLeft(5));
                         }
                     }
 
@@ -661,10 +661,10 @@ namespace Soundon.Dispatcher.App
                     {
                         //NG两次用✘标记
                         //需测试水分用★标记
-                        this.lbFloorInfoTop[i][j].Text = string.Format("{2}{0}℃ {1}Pa",
-                            floor.Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5),
-                            floor.Vacuum.ToString("#0").PadLeft(6),
-                            (floor.NgTimes < 2 ? "" : "✘ ") + (floor.IsTestWaterContent ? "★" : "")
+                        this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {1}Pa {2}℃",
+                             floor.Stations[0].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5),
+                             floor.Vacuum.ToString("#0").PadLeft(6),
+                             floor.Stations[1].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5)
                             );
 
 
@@ -724,16 +724,16 @@ namespace Soundon.Dispatcher.App
                             break;
                     }
 
-                    if (oven.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 || floor.Stations.Count(s => s.Id == Current.Task.ToStationId) > 0)
-                    {
-                        this.tlpFloor[i][j].Invalidate();
-                    }
+                    //if (oven.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 || floor.Stations.Count(s => s.Id == Current.Task.ToStationId) > 0)
+                    //{
+                    //    this.tlpFloor[i][j].Invalidate();
+                    //}
 
-                    if (floor.PreIsAlive != floor.IsAlive)
-                    {
-                        this.tlpFloor[i][j].Invalidate();
-                    }
-
+                    //if (floor.PreIsAlive != floor.IsAlive)
+                    //{
+                    //    this.tlpFloor[i][j].Invalidate();
+                    //}
+                    this.tlpFloor[i][j].Invalidate();
                 }
 
                 oven.PreIsAlive = oven.IsAlive;
@@ -1256,7 +1256,7 @@ namespace Soundon.Dispatcher.App
         private Label[] lbCacheClampCode = new Label[CacheStationCount];
         private TableLayoutPanel[] tlpCacheClamp = new TableLayoutPanel[CacheStationCount];
 
-        private CheckBox[] cbTemperIndex = new CheckBox[Option.TemperaturePointCount];
+      //  private CheckBox[] cbTemperIndex = new CheckBox[Option.TemperaturePointCount];
 
         #endregion
 
@@ -4019,14 +4019,14 @@ namespace Soundon.Dispatcher.App
             StringBuilder sb = new StringBuilder();
             for (int k = 0; k < Option.TemperaturePointCount; k++)
             {
-                if (cbTemperIndex[k].Checked)
-                {
-                    sb.Append(k + ",");
-                }
-                else
-                {
-                    isAll = false;
-                }
+                //if (cbTemperIndex[k].Checked)
+                //{
+                //    sb.Append(k + ",");
+                //}
+                //else
+                //{
+                //    isAll = false;
+                //}
             }
             cbTemperAll.CheckedChanged -= cbTemperAll_CheckedChanged;
             cbTemperAll.Checked = isAll;
@@ -4039,9 +4039,9 @@ namespace Soundon.Dispatcher.App
             if (!TengDa.WF.Current.IsRunning) return;
             for (int k = 0; k < Option.TemperaturePointCount; k++)
             {
-                cbTemperIndex[k].CheckedChanged -= cbTemperIndex_CheckedChanged;
-                cbTemperIndex[k].Checked = (sender as CheckBox).Checked;
-                cbTemperIndex[k].CheckedChanged += cbTemperIndex_CheckedChanged;
+                //cbTemperIndex[k].CheckedChanged -= cbTemperIndex_CheckedChanged;
+                //cbTemperIndex[k].Checked = (sender as CheckBox).Checked;
+                //cbTemperIndex[k].CheckedChanged += cbTemperIndex_CheckedChanged;
             }
             cbTemperIndex_CheckedChanged(null, e);
         }

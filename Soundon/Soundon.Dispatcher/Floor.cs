@@ -44,7 +44,13 @@ namespace Soundon.Dispatcher
 
         [ReadOnly(true), Description("总运行时间设置，单位：min")]
         [DisplayName("总运行时间设置")]
-        public int RunMinutesSet { get; set; } = 0;
+        public int RunMinutesSet
+        {
+            get
+            {
+                return this.PreheatTimeSet + this.BakingTimeSet;
+            }
+        }
 
 
         [ReadOnly(true), Description("真空度，单位：Pa")]
@@ -282,21 +288,21 @@ namespace Soundon.Dispatcher
         /// </summary>
         [Description("设置预热时间，单位：min")]
         [DisplayName("设置预热时间")]
-        public int PreheatTimeSet { get; set; } = -1;
+        public int PreheatTimeSet { get; set; } = 0;
 
         /// <summary>
         /// 设置烘烤时间
         /// </summary>
         [Description("设置烘烤时间，单位：min")]
         [DisplayName("设置烘烤时间")]
-        public int BakingTimeSet { get; set; } = -1;
+        public int BakingTimeSet { get; set; } = 0;
 
         /// <summary>
         /// 设置呼吸周期
         /// </summary>
         [Description("设置呼吸周期，单位：min")]
         [DisplayName("设置呼吸周期")]
-        public int BreathingCycleSet { get; set; } = -1;
+        public int BreathingCycleSet { get; set; } = 0;
 
         /// <summary>
         /// 设置工艺温度

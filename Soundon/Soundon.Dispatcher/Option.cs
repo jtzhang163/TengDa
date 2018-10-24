@@ -138,7 +138,7 @@ namespace Soundon.Dispatcher
             }
         }
 
-        public const int TemperaturePointCount = 8;
+        public const int TemperaturePointCount = 32;
 
         public const int TemperatureSetPointCount = 10;
 
@@ -161,8 +161,10 @@ namespace Soundon.Dispatcher
 
         public string[] TemperNames = new string[Option.TemperaturePointCount]
         {
-            "上左温度", "上右温度", "下左温度", "下右温度",
-            "左侧温度", "右侧温度", "后左温度", "后右温度"
+            "温度1", "温度1", "温度1",  "温度1",  "温度1", "温度1", "温度1", "温度1",
+            "温度1", "温度1", "温度1",  "温度1",  "温度1", "温度1", "温度1", "温度1",
+            "温度1", "温度1", "温度1",  "温度1",  "温度1", "温度1", "温度1", "温度1",
+            "温度1", "温度1", "温度1",  "温度1",  "温度1", "温度1", "温度1", "温度1"
         };
 
         public string[] TemperSetNames = new string[Option.TemperatureSetPointCount]
@@ -1932,6 +1934,84 @@ namespace Soundon.Dispatcher
             }
         }
 
+        private string ovenClampStatusAddrs = string.Empty;
+        /// <summary>
+        /// 烤箱门状态地址
+        /// </summary>
+        [DisplayName("烤箱夹具状态地址")]
+        [Category("烤箱")]
+        public string OvenClampStatusAddrs
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(ovenClampStatusAddrs))
+                {
+                    ovenClampStatusAddrs = TengDa.WF.Option.GetOption("OvenClampStatusAddrs");
+                }
+                return ovenClampStatusAddrs;
+            }
+            set
+            {
+                if (value != ovenClampStatusAddrs)
+                {
+                    TengDa.WF.Option.SetOption("OvenClampStatusAddrs", value);
+                    ovenClampStatusAddrs = value;
+                }
+            }
+        }
+
+        private string ovenInfo1StartAddrs = string.Empty;
+        /// <summary>
+        /// 烤箱信息1起始地址
+        /// </summary>
+        [DisplayName("烤箱信息1起始地址")]
+        [Category("烤箱")]
+        public string OvenInfo1StartAddrs
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(ovenInfo1StartAddrs))
+                {
+                    ovenInfo1StartAddrs = TengDa.WF.Option.GetOption("OvenInfo1StartAddrs");
+                }
+                return ovenInfo1StartAddrs;
+            }
+            set
+            {
+                if (value != ovenInfo1StartAddrs)
+                {
+                    TengDa.WF.Option.SetOption("OvenInfo1StartAddrs", value);
+                    ovenInfo1StartAddrs = value;
+                }
+            }
+        }
+
+        private string ovenInfo2StartAddrs = string.Empty;
+        /// <summary>
+        /// 烤箱信息2起始地址
+        /// </summary>
+        [DisplayName("烤箱信息2起始地址")]
+        [Category("ZZZZZ")]
+        public string OvenInfo2StartAddrs
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(ovenInfo2StartAddrs))
+                {
+                    ovenInfo2StartAddrs = TengDa.WF.Option.GetOption("OvenInfo2StartAddrs");
+                }
+                return ovenInfo2StartAddrs;
+            }
+            set
+            {
+                if (value != ovenInfo2StartAddrs)
+                {
+                    TengDa.WF.Option.SetOption("OvenInfo2StartAddrs", value);
+                    ovenInfo2StartAddrs = value;
+                }
+            }
+        }
+
         private string iPAddressRegex = string.Empty;
         /// <summary>
         /// 局域网IP地址正则表达式
@@ -1958,88 +2038,59 @@ namespace Soundon.Dispatcher
         }
 
 
-        //private string xxxXXXXXXXXXXXX = string.Empty;
-        ///// <summary>
-        ///// YYYYYYYYYYYYYYYYY
-        ///// </summary>
-        //[Description("YYYYYYYYYYYYYYYYY")]
-        //[DisplayName("YYYYYYYYYYYYYYYYY")]
-        //[Category("ZZZZZ")]
-        //public string XXXXXXXXXXXXXXX
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(xxxXXXXXXXXXXXX))
-        //        {
-        //            xxxXXXXXXXXXXXX = TengDa.WF.Option.GetOption("XXXXXXXXXXXXXXX");
-        //        }
-        //        return xxxXXXXXXXXXXXX;
-        //    }
-        //    set
-        //    {
-        //        if (value != xxxXXXXXXXXXXXX)
-        //        {
-        //            TengDa.WF.Option.SetOption("XXXXXXXXXXXXXXX", value);
-        //            xxxXXXXXXXXXXXX = value;
-        //        }
-        //    }
-        //}
+
+        private string ovenLeftTempStartAddrs = string.Empty;
+        /// <summary>
+        /// 烤箱左夹具温度起始地址
+        /// </summary>
+        [DisplayName("烤箱左夹具温度起始地址")]
+        [Category("烤箱")]
+        public string OvenLeftTempStartAddrs
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(ovenLeftTempStartAddrs))
+                {
+                    ovenLeftTempStartAddrs = TengDa.WF.Option.GetOption("OvenLeftTempStartAddrs");
+                }
+                return ovenLeftTempStartAddrs;
+            }
+            set
+            {
+                if (value != ovenLeftTempStartAddrs)
+                {
+                    TengDa.WF.Option.SetOption("OvenLeftTempStartAddrs", value);
+                    ovenLeftTempStartAddrs = value;
+                }
+            }
+        }
 
 
-        //private string xxxXXXXXXXXXXXX = string.Empty;
-        ///// <summary>
-        ///// YYYYYYYYYYYYYYYYY
-        ///// </summary>
-        //[Description("YYYYYYYYYYYYYYYYY")]
-        //[DisplayName("YYYYYYYYYYYYYYYYY")]
-        //[Category("ZZZZZ")]
-        //public string XXXXXXXXXXXXXXX
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(xxxXXXXXXXXXXXX))
-        //        {
-        //            xxxXXXXXXXXXXXX = TengDa.WF.Option.GetOption("XXXXXXXXXXXXXXX");
-        //        }
-        //        return xxxXXXXXXXXXXXX;
-        //    }
-        //    set
-        //    {
-        //        if (value != xxxXXXXXXXXXXXX)
-        //        {
-        //            TengDa.WF.Option.SetOption("XXXXXXXXXXXXXXX", value);
-        //            xxxXXXXXXXXXXXX = value;
-        //        }
-        //    }
-        //}
-
-
-        //private string xxxXXXXXXXXXXXX = string.Empty;
-        ///// <summary>
-        ///// YYYYYYYYYYYYYYYYY
-        ///// </summary>
-        //[Description("YYYYYYYYYYYYYYYYY")]
-        //[DisplayName("YYYYYYYYYYYYYYYYY")]
-        //[Category("ZZZZZ")]
-        //public string XXXXXXXXXXXXXXX
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(xxxXXXXXXXXXXXX))
-        //        {
-        //            xxxXXXXXXXXXXXX = TengDa.WF.Option.GetOption("XXXXXXXXXXXXXXX");
-        //        }
-        //        return xxxXXXXXXXXXXXX;
-        //    }
-        //    set
-        //    {
-        //        if (value != xxxXXXXXXXXXXXX)
-        //        {
-        //            TengDa.WF.Option.SetOption("XXXXXXXXXXXXXXX", value);
-        //            xxxXXXXXXXXXXXX = value;
-        //        }
-        //    }
-        //}
+        private string ovenRightTempStartAddrs = string.Empty;
+        /// <summary>
+        /// 烤箱右夹具温度起始地址
+        /// </summary>
+        [DisplayName("烤箱右夹具温度起始地址")]
+        [Category("烤箱")]
+        public string OvenRightTempStartAddrs
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(ovenRightTempStartAddrs))
+                {
+                    ovenRightTempStartAddrs = TengDa.WF.Option.GetOption("OvenRightTempStartAddrs");
+                }
+                return ovenRightTempStartAddrs;
+            }
+            set
+            {
+                if (value != ovenRightTempStartAddrs)
+                {
+                    TengDa.WF.Option.SetOption("OvenRightTempStartAddrs", value);
+                    ovenRightTempStartAddrs = value;
+                }
+            }
+        }
 
         //private string xxxXXXXXXXXXXXX = string.Empty;
         ///// <summary>

@@ -276,10 +276,12 @@ namespace Soundon.Dispatcher
             {
 
                 #region 获取门状态
+
                 output = string.Empty;
+
                 for (int j = 0; j < this.Floors.Count; j++)
                 {
-                    var bOutputs = new short[] { };
+                    var bOutputs = new ushort[] { };
                     if (!this.Plc.GetInfo(Current.option.OvenDoorStatusAddrs.Split(',')[j], (ushort)1, out bOutputs, out msg))
                     {
                         Error.Alert(msg);
@@ -301,7 +303,121 @@ namespace Soundon.Dispatcher
                     {
                         this.Floors[j].DoorStatusNotFinal = DoorStatus.异常;
                     }
+                    this.Floors[j].IsBaking = output.Substring(2, 1) == "1" && output.Substring(3, 1) == "1";
                 }
+
+                #endregion
+
+                #region 获取夹具状态
+
+                output = string.Empty;
+
+                for (int j = 0; j < this.Floors.Count; j++)
+                {
+                    var bOutputs = new ushort[] { };
+                    if (!this.Plc.GetInfo(Current.option.OvenClampStatusAddrs.Split(',')[j], (ushort)1, out bOutputs, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    output = OmronPLC.GetBitStr(bOutputs[0], 8);
+
+                    for (int k = 0; k < this.Floors[j].Stations.Count; k++)
+                    {
+                        if (output.Substring(6 + k, 1) == "1")
+                        {
+                            this.Floors[j].Stations[k].ClampStatus = this.Floors[j].Stations[k].ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
+                        }
+                        else
+                        {
+                            this.Floors[j].Stations[k].ClampStatus = ClampStatus.无夹具;
+                        }
+                    }
+                }
+
+                #endregion
+
+
+                #region 获取其他信息1
+
+                for (int j = 0; j < this.Floors.Count; j++)
+                {
+                    var bOutputs = new ushort[] { };
+                    if (!this.Plc.GetInfo(Current.option.OvenInfo1StartAddrs.Split(',')[j], (ushort)17, out bOutputs, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    this.Floors[j].ProcessTemperSet = bOutputs[0] / 10;
+                    this.Floors[j].PreheatTimeSet = bOutputs[2];
+                    this.Floors[j].BakingTimeSet = bOutputs[3];
+                    this.Floors[j].BreathingCycleSet = bOutputs[11];
+
+                }
+
+                #endregion
+
+
+                #region 获取其他信息2
+
+                for (int j = 0; j < this.Floors.Count; j++)
+                {
+                    var bOutputs = new ushort[] { };
+                    if (!this.Plc.GetInfo(Current.option.OvenInfo2StartAddrs.Split(',')[j], (ushort)5, out bOutputs, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    this.Floors[j].RunMinutes = bOutputs[0];
+                    this.Floors[j].Vacuum = bOutputs[2] + bOutputs[3] * 65535;
+                   
+                }
+
+                #endregion
+
+
+                #region 获取左夹具温度
+
+                for (int j = 0; j < this.Floors.Count; j++)
+                {
+                    var bOutputs = new ushort[] { };
+                    if (!this.Plc.GetInfo(Current.option.OvenLeftTempStartAddrs.Split(',')[j], (ushort)Option.TemperaturePointCount, out bOutputs, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+                    for (int n = 0; n < Option.TemperaturePointCount; n++)
+                    {
+                        this.Floors[j].Stations[0].Temperatures[n] = bOutputs[n] / 10f;
+                    }
+                }
+
+                #endregion
+
+                #region 获取右夹具温度
+
+                for (int j = 0; j < this.Floors.Count; j++)
+                {
+                    var bOutputs = new ushort[] { };
+                    if (!this.Plc.GetInfo(Current.option.OvenRightTempStartAddrs.Split(',')[j], (ushort)Option.TemperaturePointCount, out bOutputs, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+                    for (int n = 0; n < Option.TemperaturePointCount; n++)
+                    {
+                        this.Floors[j].Stations[1].Temperatures[n] = bOutputs[n] / 10f;
+                    }
+                }
+
                 #endregion
 
 

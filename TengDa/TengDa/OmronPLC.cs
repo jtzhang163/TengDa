@@ -8,7 +8,7 @@ namespace TengDa
 {
     public class OmronPLC
     {
-        public static string GetBitStr(short val, int totalWidth)
+        public static string GetBitStr(ushort val, int totalWidth)
         {
             return Convert.ToString(val, 2).PadLeft(totalWidth, '0');
         }

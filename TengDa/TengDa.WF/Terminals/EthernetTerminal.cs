@@ -480,13 +480,13 @@ namespace TengDa.WF.Terminals
             return false;
         }
 
-        public bool GetInfo(string address, ushort length, out short[] output, out string msg)
+        public bool GetInfo(string address, ushort length, out ushort[] output, out string msg)
         {
-            output = new short[] { };
+            output = new ushort[] { };
             msg = string.Empty;
             if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
             {
-                HslCommunice533.OperateResult<short[]> result = omron_net.ReadInt16(address, length);
+                HslCommunice533.OperateResult<ushort[]> result = omron_net.ReadUInt16(address, length);
                 if (result.IsSuccess)
                 {
                     output = result.Content;
