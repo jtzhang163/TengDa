@@ -1908,54 +1908,54 @@ namespace Soundon.Dispatcher
             }
         }
 
-        private string ovenDoorStatusAddrs = string.Empty;
+        private string ovenIsBakingStatusAddrs = string.Empty;
         /// <summary>
-        /// 烤箱门状态地址
+        /// 烤箱烘烤状态地址
         /// </summary>
-        [DisplayName("烤箱门状态地址")]
+        [DisplayName("烤箱烘烤状态地址")]
         [Category("烤箱")]
-        public string OvenDoorStatusAddrs
+        public string OvenIsBakingStatusAddrs
         {
             get
             {
-                if (string.IsNullOrEmpty(ovenDoorStatusAddrs))
+                if (string.IsNullOrEmpty(ovenIsBakingStatusAddrs))
                 {
-                    ovenDoorStatusAddrs = TengDa.WF.Option.GetOption("OvenDoorStatusAddrs");
+                    ovenIsBakingStatusAddrs = TengDa.WF.Option.GetOption("OvenIsBakingStatusAddrs");
                 }
-                return ovenDoorStatusAddrs;
+                return ovenIsBakingStatusAddrs;
             }
             set
             {
-                if (value != ovenDoorStatusAddrs)
+                if (value != ovenIsBakingStatusAddrs)
                 {
-                    TengDa.WF.Option.SetOption("OvenDoorStatusAddrs", value);
-                    ovenDoorStatusAddrs = value;
+                    TengDa.WF.Option.SetOption("OvenIsBakingStatusAddrs", value);
+                    ovenIsBakingStatusAddrs = value;
                 }
             }
         }
 
-        private string ovenClampStatusAddrs = string.Empty;
+        private string ovenDoorClampStatusAddrs = string.Empty;
         /// <summary>
-        /// 烤箱门状态地址
+        /// 烤箱门和夹具状态地址
         /// </summary>
-        [DisplayName("烤箱夹具状态地址")]
+        [DisplayName("烤箱门和夹具状态地址")]
         [Category("烤箱")]
-        public string OvenClampStatusAddrs
+        public string OvenDoorClampStatusAddrs
         {
             get
             {
-                if (string.IsNullOrEmpty(ovenClampStatusAddrs))
+                if (string.IsNullOrEmpty(ovenDoorClampStatusAddrs))
                 {
-                    ovenClampStatusAddrs = TengDa.WF.Option.GetOption("OvenClampStatusAddrs");
+                    ovenDoorClampStatusAddrs = TengDa.WF.Option.GetOption("OvenDoorClampStatusAddrs");
                 }
-                return ovenClampStatusAddrs;
+                return ovenDoorClampStatusAddrs;
             }
             set
             {
-                if (value != ovenClampStatusAddrs)
+                if (value != ovenDoorClampStatusAddrs)
                 {
-                    TengDa.WF.Option.SetOption("OvenClampStatusAddrs", value);
-                    ovenClampStatusAddrs = value;
+                    TengDa.WF.Option.SetOption("OvenDoorClampStatusAddrs", value);
+                    ovenDoorClampStatusAddrs = value;
                 }
             }
         }

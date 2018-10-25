@@ -416,7 +416,7 @@ namespace Soundon.Dispatcher
         /// </summary>
         /// <param name="pos">取放位置编号</param>
         /// <returns></returns>
-        public bool GetOrPut(byte pos)
+        public bool GetOrPut(ushort pos)
         {
             if (!this.Plc.IsPingSuccess)
             {
@@ -428,34 +428,30 @@ namespace Soundon.Dispatcher
             try
             {
 
-                var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
-
                 #region 获取正在执行取放的位置编号
 
-                int stationNum = -1;
-                if (!this.Plc.GetInfo(false, plcCompany, true, "Q4", 0, out stationNum, out msg))
+                var bOutputs = new ushort[] { };
+                if (!Current.Robot.Plc.GetInfo("D1000", (ushort)1, out bOutputs, out msg))
                 {
                     Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
                 }
+
 
                 #endregion
 
-                if ((int)pos == stationNum)
+                if (pos == bOutputs[0])
                 {
                     return true;
                 }
 
-                int o1 = 0;
-                if (!this.Plc.GetInfo(false, plcCompany, false, "Q4", pos, out o1, out msg))
+                if (!Current.Robot.Plc.SetInfo("D1000", pos, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
                     return false;
                 }
 
-                LogHelper.WriteInfo(string.Format("给机器人发送到位取放指令------{0}：{1}  ", "Q4", pos));
+                LogHelper.WriteInfo(string.Format("给机器人发送到位取放指令------{0}：{1}  ", "D1000", pos));
             }
             catch (Exception ex)
             {

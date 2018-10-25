@@ -118,7 +118,7 @@ namespace TengDa.WF.Terminals
                 try
                 {
                     Ping ping = new Ping();
-                    PingReply pingReply = ping.Send(IP, 500);
+                    PingReply pingReply = ping.Send(IP, 1000);
                     if (pingReply.Status == IPStatus.Success)
                     {
                         return true;

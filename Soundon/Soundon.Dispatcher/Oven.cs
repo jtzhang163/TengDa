@@ -275,14 +275,14 @@ namespace Soundon.Dispatcher
             try
             {
 
-                #region 获取门状态
+                #region 获取烘烤状态
 
                 output = string.Empty;
 
                 for (int j = 0; j < this.Floors.Count; j++)
                 {
                     var bOutputs = new ushort[] { };
-                    if (!this.Plc.GetInfo(Current.option.OvenDoorStatusAddrs.Split(',')[j], (ushort)1, out bOutputs, out msg))
+                    if (!this.Plc.GetInfo(Current.option.OvenIsBakingStatusAddrs.Split(',')[j], (ushort)1, out bOutputs, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;
@@ -291,42 +291,35 @@ namespace Soundon.Dispatcher
 
                     output = OmronPLC.GetBitStr(bOutputs[0], 8);
 
-                    if (output.Substring(6, 1) == "1")
-                    {
-                        this.Floors[j].DoorStatusNotFinal = DoorStatus.打开; this.Floors[j].DoorIsOpenning = false;
-                    }
-                    else if (output.Substring(5, 1) == "1")
-                    {
-                        this.Floors[j].DoorStatusNotFinal = DoorStatus.关闭; this.Floors[j].DoorIsClosing = false;
-                    }
-                    else
-                    {
-                        this.Floors[j].DoorStatusNotFinal = DoorStatus.异常;
-                    }
                     this.Floors[j].IsBaking = output.Substring(2, 1) == "1" && output.Substring(3, 1) == "1";
                 }
 
                 #endregion
 
-                #region 获取夹具状态
+                #region 获取门和夹具状态
 
                 output = string.Empty;
 
                 for (int j = 0; j < this.Floors.Count; j++)
                 {
                     var bOutputs = new ushort[] { };
-                    if (!this.Plc.GetInfo(Current.option.OvenClampStatusAddrs.Split(',')[j], (ushort)1, out bOutputs, out msg))
+                    if (!this.Plc.GetInfo(Current.option.OvenDoorClampStatusAddrs.Split(',')[j], (ushort)3, out bOutputs, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;
                         return false;
                     }
 
-                    output = OmronPLC.GetBitStr(bOutputs[0], 8);
+                    switch (bOutputs[0])
+                    {
+                        case 1: this.Floors[j].DoorStatusNotFinal = DoorStatus.关闭; this.Floors[j].DoorIsClosing = false; break;
+                        case 2: this.Floors[j].DoorStatusNotFinal = DoorStatus.打开; this.Floors[j].DoorIsOpenning = false; break;
+                        default: this.Floors[j].DoorStatusNotFinal = DoorStatus.异常; break;
+                    }
 
                     for (int k = 0; k < this.Floors[j].Stations.Count; k++)
                     {
-                        if (output.Substring(6 + k, 1) == "1")
+                        if (bOutputs[k + 1] == 1)
                         {
                             this.Floors[j].Stations[k].ClampStatus = this.Floors[j].Stations[k].ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
                         }
@@ -335,6 +328,25 @@ namespace Soundon.Dispatcher
                             this.Floors[j].Stations[k].ClampStatus = ClampStatus.无夹具;
                         }
                     }
+                }
+
+                #endregion
+
+                #region 获取网控状态
+
+                output = string.Empty;
+
+                for (int j = 0; j < this.Floors.Count; j++)
+                {
+                    var bOutputs = new ushort[] { };
+                    if (!this.Plc.GetInfo("D3692,D3648,D3604".Split(',')[j], (ushort)1, out bOutputs, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    this.Floors[j].IsNetControlOpen = bOutputs[0] == 0;
                 }
 
                 #endregion
@@ -374,7 +386,7 @@ namespace Soundon.Dispatcher
 
                     this.Floors[j].RunMinutes = bOutputs[0];
                     this.Floors[j].Vacuum = bOutputs[2] + bOutputs[3] * 65535;
-                   
+                    this.Floors[j].IsVacuum = this.Floors[j].Vacuum < 95000;
                 }
 
                 #endregion
