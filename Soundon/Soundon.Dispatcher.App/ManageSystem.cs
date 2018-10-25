@@ -16,6 +16,8 @@ using TengDa.Encrypt;
 using System.IO;
 using System.Timers;
 using TengDa.WF;
+using System.Net;
+using System.Net.Sockets;
 
 namespace Soundon.Dispatcher.App
 {
@@ -945,7 +947,7 @@ namespace Soundon.Dispatcher.App
 
             #region 缓存架
 
-            Current.Cache.IsAlive = Current.Cache.IsEnable;
+           // Current.Cache.IsAlive = Current.Cache.IsEnable;
 
             Current.Cache.Stations.ForEach(s => s.IsAlive = s.IsEnable && Current.Cache.IsAlive);
 
@@ -993,7 +995,7 @@ namespace Soundon.Dispatcher.App
 
             #region 旋转台
 
-            Current.Transfer.IsAlive = Current.Transfer.IsEnable;
+           // Current.Transfer.IsAlive = Current.Transfer.IsEnable;
 
             Current.Transfer.Station.IsAlive = Current.Transfer.IsAlive && Current.Transfer.Station.IsEnable;
 
@@ -4685,9 +4687,23 @@ namespace Soundon.Dispatcher.App
 
         #endregion
 
-        private void btnDebug_Click(object sender, EventArgs e)
+        private void btnDebug_Click(object sende, EventArgs e)
         {
             string msg = string.Empty;
+
+            IPEndPoint point = new IPEndPoint(IPAddress.Parse("192.168.250.17"), 9600);
+            Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            string send = "80000200-11-0000-FE-0000-0101-82-03E8-0000-02";
+            //"80000200-03-00-00-64  00  00  0102   82       000100       0001      0010"
+            byte[] data = _Convert.HexStrTobyte(send.Replace("-",""));
+            server.SendTo(data, point);
+
+            IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+            EndPoint remote = (EndPoint)sender;
+            byte[] receiveData = new byte[1024];
+            int length = server.ReceiveFrom(receiveData, ref remote);
+
+            string s = BitConverter.ToString(receiveData, 0, length);
 
             Tip.Alert(msg);
         }

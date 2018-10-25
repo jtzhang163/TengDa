@@ -9,6 +9,7 @@ using System.ComponentModel;
 using HslCommunication.Profinet;
 using HslCommunication;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace TengDa.WF.Terminals
 {
@@ -62,7 +63,14 @@ namespace TengDa.WF.Terminals
             {
                 if (socket == null)
                 {
-                    socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                    if(this.Company == PlcCompany.OMRON.ToString() && this.Model == "NX1P2")
+                    {
+                        socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                    }
+                    else
+                    {
+                        socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                    }
                 }
                 return socket;
             }
@@ -133,6 +141,8 @@ namespace TengDa.WF.Terminals
 
         private HslCommunice533.Profinet.Omron.OmronFinsNet omron_net = null;
 
+        IPEndPoint point = null;
+
         #endregion
 
         #region 开启/断开连接
@@ -184,6 +194,11 @@ namespace TengDa.WF.Terminals
                     }
                     IsAlive = true;
                 }
+                else if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "NX1P2")
+                {
+                    point = new IPEndPoint(IPAddress.Parse(this.IP), this.Port);
+                    IsAlive = true;
+                }
                 else if (!Socket.Connected)
                 {
                     Socket.Connect(IpAddress, Port);
@@ -227,6 +242,19 @@ namespace TengDa.WF.Terminals
                         omron_net.ConnectClose();
                         omron_net = null;
                     }
+                    IsAlive = false;
+                }
+                else if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "NX1P2")
+                {
+                    if (Socket != null)
+                    {
+                        Socket.Close();
+                        Socket = null;
+                    }
+                    if (point != null)
+                    {
+                        point = null;
+                    }                   
                     IsAlive = false;
                 }
                 else if (Socket != null)
@@ -460,6 +488,38 @@ namespace TengDa.WF.Terminals
                 }
                 msg = result.Message;
             }
+            else if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "NX1P2")
+            {
+                try
+                {
+                    // string send = "80000200-11-0000-FE-0000-0101-82-03E8-0000-02";
+                    string send = string.Format("80000200-{0:X2}-0000-{1:X2}-0000-0101-82-{2:X4}-0000-{3:X2}", TengDa.Net.GetIpLastValue(this.IP),
+                        TengDa.Net.GetIpLastValue(Net.GetLocalIpByRegex("192.168.*")), Convert.ToUInt32(address.Replace("D", "")), length);
+                    byte[] data = _Convert.HexStrTobyte(send.Replace("-", ""));
+                    Socket.SendTo(data, point);
+                    IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+                    EndPoint remote = (EndPoint)sender;
+                    byte[] receiveData = new byte[1024];
+                    int len = Socket.ReceiveFrom(receiveData, ref remote);
+                    string recv = BitConverter.ToString(receiveData, 0, len);
+                    string[] recvs = recv.Split('-');
+                    var results = new List<ushort>();
+                    //if (recvs[12] == "00" && recvs[13] == "00")
+                    //{
+                    for (int n = 0; n < length; n++)
+                    {
+                        results.Add(Convert.ToUInt16(recvs[14 + 2 * n] + recvs[15 + 2 * n], 16));
+                    }
+                    output = results.ToArray();
+                    return true;
+                    //}
+                    //msg = "读取数据出现错误";
+                }
+                catch (Exception ex)
+                {
+                    msg = ex.ToString();
+                }
+            }
             return false;
         }
 
@@ -474,6 +534,26 @@ namespace TengDa.WF.Terminals
                     return true;
                 }
                 msg = result.Message;
+            }
+            else if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "NX1P2")
+            {
+                // string send = "80000200-11-0000-FE-0000-0101-82-03E8-0000-02";
+                string send = string.Format("80000200-{0:X2}-0000-{1:X2}-0000-0102-82-{2:X4}-0001-{3:X2}", TengDa.Net.GetIpLastValue(this.IP),
+                    TengDa.Net.GetIpLastValue(Net.GetLocalIpByRegex("192.168.*")), Convert.ToUInt32(address.Replace("D", "")), val);
+                byte[] data = _Convert.HexStrTobyte(send.Replace("-", ""));
+                Socket.SendTo(data, point);
+                IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+                EndPoint remote = (EndPoint)sender;
+                byte[] receiveData = new byte[1024];
+                int len = Socket.ReceiveFrom(receiveData, ref remote);
+                string recv = BitConverter.ToString(receiveData, 0, len);
+                string[] recvs = recv.Split('-');
+                var results = new List<ushort>();
+                if(recvs[12] == "00" && recvs[13] == "00")
+                {
+                    return true;
+                }
+                msg = "写入出现错误";
             }
             return false;
         }

@@ -428,43 +428,20 @@ namespace Soundon.Dispatcher
 
             try
             {
-                if (!this.Plc.GetInfo(false, Current.option.GetFeederInfoStr, out output, out msg))
+
+                #region 获取其他信息1
+
+                var bOutputs = new ushort[] { };
+                if (!this.Plc.GetInfo("D1000", (ushort)12, out bOutputs, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
                     return false;
                 }
-                if (output.Substring(3, 1) != "$")
-                {
-                    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetFeederInfoStr, output));
-                    return false;
-                }
-
-                int[] iOut = new int[6];
-                output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-                for (int j = 0; j < iOut.Length; j++)
-                {
-                    iOut[j] = int.Parse(output.Substring(j * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                }
-
-                if (iOut[0] == 1)
-                {
-                    if (!this.BatteryScaner.IsReady)
-                    {
-                        this.BatteryScaner.CanScan = true;
-                    }
-                    this.BatteryScaner.IsReady = true;
-                }
-                else
-                {
-                    this.BatteryScaner.IsReady = false;
-                    this.BatteryScaner.CanScan = false;
-                }
-
 
                 for (int j = 0; j < this.Stations.Count; j++)
                 {
-                    switch (iOut[j + 1])
+                    switch (bOutputs[j + 4])
                     {
                         case 1:
                             this.Stations[j].ClampStatus = ClampStatus.无夹具;
@@ -475,48 +452,119 @@ namespace Soundon.Dispatcher
                             this.Stations[j].Status = StationStatus.工作中;
                             break;
                         case 3:
-                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[j].Status = StationStatus.可取;
-                            break;
-                        case 31:
-                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[j].Status = StationStatus.可取;
-                            break;
-                        case 4:
                             this.Stations[j].ClampStatus = ClampStatus.异常;
                             this.Stations[j].Status = StationStatus.不可用;
+                            break;
+                        case 4:
+                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                            this.Stations[j].Status = StationStatus.可取;
+                            this.Stations[j].SampleStatus = SampleStatus.未知;
+                            break;
+                        case 5:
+                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                            this.Stations[j].Status = StationStatus.可取;
+                            this.Stations[j].SampleStatus = SampleStatus.待测试;
                             break;
                         default:
                             this.Stations[j].ClampStatus = ClampStatus.未知;
                             this.Stations[j].Status = StationStatus.不可用;
                             break;
                     }
-
-                    this.Stations[j].IsClampScanReady = iOut[j + 4] == 1;
                 }
+            
 
-                switch (iOut[3])
-                {
-                    case 1: this.TriLamp = TriLamp.Green; break;
-                    case 2: this.TriLamp = TriLamp.Yellow; break;
-                    case 3: this.TriLamp = TriLamp.Red; break;
-                    default: this.TriLamp = TriLamp.Unknown; break;
-                }
+                #endregion
 
 
-                if (iOut[4] == 1 || iOut[5] == 1)
-                {
-                    if (!this.ClampScaner.IsReady)
-                    {
-                        this.ClampScaner.CanScan = true;
-                    }
-                    this.ClampScaner.IsReady = true;
-                }
-                else
-                {
-                    this.ClampScaner.IsReady = false;
-                    this.ClampScaner.CanScan = false;
-                }
+                //if (!this.Plc.GetInfo(false, Current.option.GetFeederInfoStr, out output, out msg))
+                //{
+                //    Error.Alert(msg);
+                //    this.Plc.IsAlive = false;
+                //    return false;
+                //}
+                //if (output.Substring(3, 1) != "$")
+                //{
+                //    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetFeederInfoStr, output));
+                //    return false;
+                //}
+
+                //int[] iOut = new int[6];
+                //output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
+                //for (int j = 0; j < iOut.Length; j++)
+                //{
+                //    iOut[j] = int.Parse(output.Substring(j * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                //}
+
+                //if (iOut[0] == 1)
+                //{
+                //    if (!this.BatteryScaner.IsReady)
+                //    {
+                //        this.BatteryScaner.CanScan = true;
+                //    }
+                //    this.BatteryScaner.IsReady = true;
+                //}
+                //else
+                //{
+                //    this.BatteryScaner.IsReady = false;
+                //    this.BatteryScaner.CanScan = false;
+                //}
+
+
+                //for (int j = 0; j < this.Stations.Count; j++)
+                //{
+                //    switch (iOut[j + 1])
+                //    {
+                //        case 1:
+                //            this.Stations[j].ClampStatus = ClampStatus.无夹具;
+                //            this.Stations[j].Status = StationStatus.可放;
+                //            break;
+                //        case 2:
+                //            this.Stations[j].ClampStatus = ClampStatus.空夹具;
+                //            this.Stations[j].Status = StationStatus.工作中;
+                //            break;
+                //        case 3:
+                //            this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                //            this.Stations[j].Status = StationStatus.可取;
+                //            break;
+                //        case 31:
+                //            this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                //            this.Stations[j].Status = StationStatus.可取;
+                //            break;
+                //        case 4:
+                //            this.Stations[j].ClampStatus = ClampStatus.异常;
+                //            this.Stations[j].Status = StationStatus.不可用;
+                //            break;
+                //        default:
+                //            this.Stations[j].ClampStatus = ClampStatus.未知;
+                //            this.Stations[j].Status = StationStatus.不可用;
+                //            break;
+                //    }
+
+                //    this.Stations[j].IsClampScanReady = iOut[j + 4] == 1;
+                //}
+
+                //switch (iOut[3])
+                //{
+                //    case 1: this.TriLamp = TriLamp.Green; break;
+                //    case 2: this.TriLamp = TriLamp.Yellow; break;
+                //    case 3: this.TriLamp = TriLamp.Red; break;
+                //    default: this.TriLamp = TriLamp.Unknown; break;
+                //}
+
+
+                //if (iOut[4] == 1 || iOut[5] == 1)
+                //{
+                //    if (!this.ClampScaner.IsReady)
+                //    {
+                //        this.ClampScaner.CanScan = true;
+                //    }
+                //    this.ClampScaner.IsReady = true;
+                //}
+                //else
+                //{
+                //    this.ClampScaner.IsReady = false;
+                //    this.ClampScaner.CanScan = false;
+                //}
 
 
                 //switch (iOut[5])
@@ -571,7 +619,7 @@ namespace Soundon.Dispatcher
 
                 //this.BatteryCache.SetCount(iOut[9]);
 
-                Thread.Sleep(10);
+                Thread.Sleep(20);
             }
             catch (Exception ex)
             {
