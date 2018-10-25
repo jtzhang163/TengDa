@@ -1021,7 +1021,7 @@ namespace Soundon.Dispatcher.App
                 if (!Current.Transfer.Station.IsAlive)
                 {
                     lbTransferClampCode.Visible = true;
-                    lbTransferClampCode.BackColor = SystemColors.Control;
+                    lbTransferClampCode.BackColor = Color.LightGray;
                 }
                 else
                 {
@@ -4687,27 +4687,6 @@ namespace Soundon.Dispatcher.App
 
         #endregion
 
-        private void btnDebug_Click(object sende, EventArgs e)
-        {
-            string msg = string.Empty;
-
-            IPEndPoint point = new IPEndPoint(IPAddress.Parse("192.168.250.17"), 9600);
-            Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            string send = "80000200-11-0000-FE-0000-0101-82-03E8-0000-02";
-            //"80000200-03-00-00-64  00  00  0102   82       000100       0001      0010"
-            byte[] data = _Convert.HexStrTobyte(send.Replace("-",""));
-            server.SendTo(data, point);
-
-            IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
-            EndPoint remote = (EndPoint)sender;
-            byte[] receiveData = new byte[1024];
-            int length = server.ReceiveFrom(receiveData, ref remote);
-
-            string s = BitConverter.ToString(receiveData, 0, length);
-
-            Tip.Alert(msg);
-        }
-
         private void cmsTransfer_Opening(object sender, CancelEventArgs e)
         {
             tsmTestResultOK.Enabled = Current.Transfer.Station.ClampStatus != ClampStatus.无夹具;
@@ -4755,6 +4734,25 @@ namespace Soundon.Dispatcher.App
                 }
             }
         }
+
+        private void btnDebug_Click(object sende, EventArgs e)
+        {
+            string msg = string.Empty;
+
+            if (!Current.Robot.Plc.SetInfo("D2000", (ushort)99, out msg))
+            {
+                Error.Alert(msg);
+            }
+
+            var bOutputs = new ushort[] { };
+            if (!Current.Robot.Plc.GetInfo("D2000", (ushort)1, out bOutputs, out msg))
+            {
+                Error.Alert(msg);
+            }
+
+            Tip.Alert(msg);
+        }
+
 
     }
 }

@@ -471,6 +471,13 @@ namespace Soundon.Dispatcher
                             break;
                     }
                 }
+
+                if (Current.Robot.IsEnable && Current.Robot.Plc.Id == this.Plc.Id)
+                {
+
+                    Current.Robot.Plc.IsAlive = true;
+                    Current.Robot.AlreadyGetAllInfo = true;
+                }
             
 
                 #endregion

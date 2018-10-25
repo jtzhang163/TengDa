@@ -497,23 +497,23 @@ namespace TengDa.WF.Terminals
                         TengDa.Net.GetIpLastValue(Net.GetLocalIpByRegex("192.168.*")), Convert.ToUInt32(address.Replace("D", "")), length);
                     byte[] data = _Convert.HexStrTobyte(send.Replace("-", ""));
                     Socket.SendTo(data, point);
-                    IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+                    IPEndPoint sender = new IPEndPoint(IPAddress.Any,0);
                     EndPoint remote = (EndPoint)sender;
                     byte[] receiveData = new byte[1024];
                     int len = Socket.ReceiveFrom(receiveData, ref remote);
                     string recv = BitConverter.ToString(receiveData, 0, len);
                     string[] recvs = recv.Split('-');
                     var results = new List<ushort>();
-                    //if (recvs[12] == "00" && recvs[13] == "00")
-                    //{
-                    for (int n = 0; n < length; n++)
+                    if (recvs[12] == "00")
                     {
-                        results.Add(Convert.ToUInt16(recvs[14 + 2 * n] + recvs[15 + 2 * n], 16));
+                        for (int n = 0; n < length; n++)
+                        {
+                            results.Add(Convert.ToUInt16(recvs[14 + 2 * n] + recvs[15 + 2 * n], 16));
+                        }
+                        output = results.ToArray();
+                        return true;
                     }
-                    output = results.ToArray();
-                    return true;
-                    //}
-                    //msg = "读取数据出现错误";
+                    msg = "读取数据出现错误";
                 }
                 catch (Exception ex)
                 {
@@ -537,23 +537,30 @@ namespace TengDa.WF.Terminals
             }
             else if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "NX1P2")
             {
-                // string send = "80000200-11-0000-FE-0000-0101-82-03E8-0000-02";
-                string send = string.Format("80000200-{0:X2}-0000-{1:X2}-0000-0102-82-{2:X4}-0001-{3:X2}", TengDa.Net.GetIpLastValue(this.IP),
-                    TengDa.Net.GetIpLastValue(Net.GetLocalIpByRegex("192.168.*")), Convert.ToUInt32(address.Replace("D", "")), val);
-                byte[] data = _Convert.HexStrTobyte(send.Replace("-", ""));
-                Socket.SendTo(data, point);
-                IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
-                EndPoint remote = (EndPoint)sender;
-                byte[] receiveData = new byte[1024];
-                int len = Socket.ReceiveFrom(receiveData, ref remote);
-                string recv = BitConverter.ToString(receiveData, 0, len);
-                string[] recvs = recv.Split('-');
-                var results = new List<ushort>();
-                if(recvs[12] == "00" && recvs[13] == "00")
+                try
                 {
-                    return true;
+                    // string send = "80000200-11-0000-FE-0000-0101-82-03E8-0000-02";
+                    string send = string.Format("80000200-{0:X2}-0000-{1:X2}-0000-0102-82-{2:X4}-000001-{3:X4}", TengDa.Net.GetIpLastValue(this.IP),
+                        TengDa.Net.GetIpLastValue(Net.GetLocalIpByRegex("192.168.*")), Convert.ToUInt32(address.Replace("D", "")), val);
+                    byte[] data = _Convert.HexStrTobyte(send.Replace("-", ""));
+                    Socket.SendTo(data, point);
+                    IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+                    EndPoint remote = (EndPoint)sender;
+                    byte[] receiveData = new byte[1024];
+                    int len = Socket.ReceiveFrom(receiveData, ref remote);
+                    string recv = BitConverter.ToString(receiveData, 0, len);
+                    string[] recvs = recv.Split('-');
+                    var results = new List<ushort>();
+                    if (recvs[12] == "00")
+                    {
+                        return true;
+                    }
+                    msg = "写入出现错误";
                 }
-                msg = "写入出现错误";
+                catch (Exception ex)
+                {
+                    msg = ex.Message;
+                }
             }
             return false;
         }

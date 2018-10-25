@@ -247,6 +247,7 @@ namespace Soundon.Dispatcher
 
         public bool GetInfo()
         {
+            /*
             if (!this.Plc.IsPingSuccess)
             {
                 this.Plc.IsAlive = false;
@@ -402,10 +403,12 @@ namespace Soundon.Dispatcher
             {
                 Error.Alert(ex);
             }
-
+                        
             this.Plc.IsAlive = true;
             this.AlreadyGetAllInfo = true;
+               */
             return true;
+         
         }
 
         /// <summary>
