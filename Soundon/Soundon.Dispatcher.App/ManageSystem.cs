@@ -1623,10 +1623,10 @@ namespace Soundon.Dispatcher.App
 
             if (Current.Robot.IsEnable)
             {
-                if (Current.Robot.IsStartting && !Current.Robot.IsPausing)
-                {
-                    Current.Robot.Pause(out msg);
-                }
+                //if (Current.Robot.IsStartting && !Current.Robot.IsPausing)
+                //{
+                //    Current.Robot.Pause(out msg);
+                //}
 
                 if (!Current.Robot.Plc.TcpDisConnect(out msg))
                 {
@@ -4104,7 +4104,7 @@ namespace Soundon.Dispatcher.App
                 && !Current.ovens[i].Floors[j].IsBaking
                 && !Current.ovens[i].Floors[j].IsVacuum
                 && !Current.ovens[i].Floors[j].Stations[0].IsOpenDoorIntervene;
-            this.tsmOvenCloseDoor.Enabled = 
+            this.tsmOvenCloseDoor.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].IsAlive
                 && Current.ovens[i].Floors[j].DoorStatus != DoorStatus.关闭;
@@ -4113,22 +4113,22 @@ namespace Soundon.Dispatcher.App
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].IsAlive
                  && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.关闭
-               // && !Current.ovens[i].Floors[j].VacuumIsLoading
+                && !Current.ovens[i].Floors[j].VacuumIsLoading
                 && !Current.ovens[i].Floors[j].IsVacuum;
             this.tsmCancelLoadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].IsAlive;
-            //  && Current.ovens[i].Floors[j].VacuumIsLoading;
+                && Current.ovens[i].IsAlive
+              && Current.ovens[i].Floors[j].VacuumIsLoading;
             this.tsmUploadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].IsAlive
-                && !Current.ovens[i].Floors[j].IsBaking;
-            //  && !Current.ovens[i].Floors[j].VacuumIsUploading
-            //  && Current.ovens[i].Floors[j].IsVacuum;
+                && !Current.ovens[i].Floors[j].IsBaking
+              && !Current.ovens[i].Floors[j].VacuumIsUploading
+              && Current.ovens[i].Floors[j].IsVacuum;
             this.tsmCancelUploadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].IsAlive;
-                //&& Current.ovens[i].Floors[j].VacuumIsUploading;
+                && Current.ovens[i].IsAlive
+                && Current.ovens[i].Floors[j].VacuumIsUploading;
             this.tsmClearRunTime.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].IsAlive;
@@ -4353,8 +4353,8 @@ namespace Soundon.Dispatcher.App
             this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing;
             this.tsmRobotAlarmReset.Enabled = Current.Robot.IsAlive && Current.Robot.IsAlarming;
             this.tsmRobotMaintenance.Enabled = Current.Robot.IsAlive;
-            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && Current.Robot.IsStartting;
-            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus != ClampStatus.无夹具 && Current.Robot.IsStartting;
+            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive && Current.Robot.IsReadyGet;
+            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive && Current.Robot.IsReadyPut;
         }
 
         private void tsmRobotStart_Click(object sender, EventArgs e)
@@ -4739,13 +4739,13 @@ namespace Soundon.Dispatcher.App
         {
             string msg = string.Empty;
 
-            if (!Current.Robot.Plc.SetInfo("D2000", (ushort)99, out msg))
+            if (!Current.Robot.Plc.SetInfo("D1000", ushort.Parse(tbWaterContent.Text.Trim()), out msg))
             {
                 Error.Alert(msg);
             }
 
             var bOutputs = new ushort[] { };
-            if (!Current.Robot.Plc.GetInfo("D2000", (ushort)1, out bOutputs, out msg))
+            if (!Current.Robot.Plc.GetInfo("D1000", (ushort)1, out bOutputs, out msg))
             {
                 Error.Alert(msg);
             }

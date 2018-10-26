@@ -429,10 +429,10 @@ namespace Soundon.Dispatcher
             try
             {
 
-                #region 获取其他信息1
+                #region 获取信息
 
                 var bOutputs = new ushort[] { };
-                if (!this.Plc.GetInfo("D1000", (ushort)12, out bOutputs, out msg))
+                if (!this.Plc.GetInfo("D1000", (ushort)20, out bOutputs, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -445,7 +445,7 @@ namespace Soundon.Dispatcher
                     {
                         case 1:
                             this.Stations[j].ClampStatus = ClampStatus.无夹具;
-                            this.Stations[j].Status = StationStatus.可放;
+                            this.Stations[j].Status = bOutputs[j + 8] == 1 ? StationStatus.可放 : StationStatus.工作中;
                             break;
                         case 2:
                             this.Stations[j].ClampStatus = ClampStatus.空夹具;
@@ -457,12 +457,12 @@ namespace Soundon.Dispatcher
                             break;
                         case 4:
                             this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[j].Status = StationStatus.可取;
+                            this.Stations[j].Status = bOutputs[j + 8] == 1 ? StationStatus.可取 : StationStatus.工作中;
                             this.Stations[j].SampleStatus = SampleStatus.未知;
                             break;
                         case 5:
                             this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[j].Status = StationStatus.可取;
+                            this.Stations[j].Status = bOutputs[j + 8] == 1 ? StationStatus.可取 : StationStatus.工作中;
                             this.Stations[j].SampleStatus = SampleStatus.待测试;
                             break;
                         default:
@@ -474,6 +474,84 @@ namespace Soundon.Dispatcher
 
                 if (Current.Robot.IsEnable && Current.Robot.Plc.Id == this.Plc.Id)
                 {
+
+
+                    #region 获取是否启动完成
+
+                    Current.Robot.IsStartting = true;
+
+                    #endregion
+
+                    #region 获取报警状态
+
+
+                    Current.Robot.IsAlarming = false;
+                    Current.Robot.AlarmStr = Current.Robot.IsAlarming ? this.Name + "报警中" : "";
+
+                    #endregion
+
+                    #region 获取暂停状态
+
+
+                    Current.Robot.IsPausing = bOutputs[12] == 1;
+
+                    #endregion
+
+                    #region 获取夹具状态
+
+                    switch (bOutputs[14])
+                    {
+                        case 2: Current.Robot.ClampStatus = Current.Robot.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具; break;
+                        case 1: Current.Robot.ClampStatus = ClampStatus.无夹具; break;
+                        case 3: Current.Robot.ClampStatus = ClampStatus.异常; break;
+                        default: Current.Robot.ClampStatus = ClampStatus.未知; break;
+                    }
+
+                    #endregion
+
+                    #region 获取正在执行取放的位置编号
+
+                    Current.Robot.IsGettingOrPutting = bOutputs[0] != 0;
+
+                    Current.Robot.IsReadyGet = Current.Robot.IsStartting && (bOutputs[0] == 0) && Current.Robot.ClampStatus == ClampStatus.无夹具;
+                    Current.Robot.IsReadyPut = Current.Robot.IsStartting && (bOutputs[0] == 0) && Current.Robot.ClampStatus != ClampStatus.无夹具;
+
+                    #endregion
+
+                    #region 获取位置
+                    //int i5 = -1;
+                    //if (!this.Plc.GetInfo(false, plcCompany, true, "I5", (byte)0, out i5, out msg))
+                    //{
+                    //    Error.Alert(msg);
+                    //    this.Plc.IsAlive = false;
+                    //    return false;
+                    //}
+
+                    //if (i5 < 0)
+                    //{
+                    //    this.I5 = 0;
+                    //}
+                    //else if (i5 < 170)
+                    //{
+                    //    this.I5 = i5;
+                    //}
+                    //else
+                    //{
+                    //    this.I5 = 170;
+                    //}
+
+                    //RobotPosition rp = RobotPosition.RobotPositionList.FirstOrDefault(r => r.XMinValue < this.I4 && r.XMaxValue > this.I4);
+                    //this.Position = (int)(this.I5 * Current.option.RobotPositionAmplify);
+                    //this.Position = rp == null ? this.position : rp.Position;
+
+                    //if (this.I5 < this.PreI5) { this.MovingDirection = MovingDirection.前进; this.IsMoving = true; }
+                    //else if (this.I5 > this.PreI5) { this.MovingDirection = MovingDirection.后退; this.IsMoving = true; }
+                    //else { this.MovingDirection = MovingDirection.停止; this.IsMoving = false; }
+
+                    //this.PreI5 = this.I5;
+
+                    #endregion
+
 
                     Current.Robot.Plc.IsAlive = true;
                     Current.Robot.AlreadyGetAllInfo = true;

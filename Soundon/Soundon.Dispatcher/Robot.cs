@@ -247,166 +247,7 @@ namespace Soundon.Dispatcher
 
         public bool GetInfo()
         {
-            /*
-            if (!this.Plc.IsPingSuccess)
-            {
-                this.Plc.IsAlive = false;
-                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
-                return false;
-            }
 
-            string msg = string.Empty;
-            string output = string.Empty;
-
-            try
-            {
-
-                var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
-
-                #region 获取是否启动完成
-
-                bool isRequestStart = false;
-
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I10.1", false, out isRequestStart, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                this.IsRequestStart = isRequestStart;
-
-                #endregion
-
-                #region 获取是否启动完成
-
-                bool isStartting = false;
-
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out isStartting, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                IsStartting = isStartting;
-
-                #endregion
-
-                #region 获取报警状态
-
-                bool isAlarming = false;
-
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.5", false, out isAlarming, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                this.IsAlarming = isAlarming;
-                this.AlarmStr = isAlarming ? this.Name + "报警中" : "";
-
-                #endregion
-
-                #region 获取暂停状态
-
-                bool isPausing = false;
-
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.3", false, out isPausing, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                this.IsPausing = isPausing;
-
-                #endregion
-
-                #region 获取夹具状态
-
-                int clampStatus = -1;
-
-                if (!this.Plc.GetInfo(false, plcCompany, true, "Q15", (byte)0, out clampStatus, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                switch (clampStatus)
-                {
-                    case 1: this.ClampStatus = this.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具; break;
-                    case 2: this.ClampStatus = ClampStatus.无夹具; break;
-                    case 4: this.ClampStatus = ClampStatus.异常; break;
-                    default: this.ClampStatus = ClampStatus.未知; break;
-                }
-
-                this.IsPausing = isPausing;
-
-                #endregion
-
-                #region 获取正在执行取放的位置编号
-
-                int stationNum = -1;
-                if (!this.Plc.GetInfo(false, plcCompany, true, "Q4", 0, out stationNum, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                this.IsGettingOrPutting = stationNum != 0;
-
-                this.IsReadyGet = IsStartting && (stationNum == 0);
-                this.IsReadyPut = IsStartting && (stationNum == 0);
-
-                #endregion
-
-                #region 获取位置
-                int i5 = -1;
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I5", (byte)0, out i5, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                if(i5 < 0)
-                {
-                    this.I5 = 0;
-                }
-                else if (i5 < 170)
-                {
-                    this.I5 = i5;
-                }
-                else
-                {
-                    this.I5 = 170;
-                }
-
-                // RobotPosition rp = RobotPosition.RobotPositionList.FirstOrDefault(r => r.XMinValue < this.I4 && r.XMaxValue > this.I4);
-                this.Position = (int)(this.I5 * Current.option.RobotPositionAmplify);
-              //  this.Position = rp == null ? this.position : rp.Position;
-
-                if (this.I5 < this.PreI5) { this.MovingDirection = MovingDirection.前进; this.IsMoving = true; }
-                else if (this.I5 > this.PreI5) { this.MovingDirection = MovingDirection.后退; this.IsMoving = true; }
-                else { this.MovingDirection = MovingDirection.停止; this.IsMoving = false; }
-
-                this.PreI5 = this.I5;
-
-                #endregion
-
-                System.Threading.Thread.Sleep(50);
-
-            }
-            catch (Exception ex)
-            {
-                Error.Alert(ex);
-            }
-                        
-            this.Plc.IsAlive = true;
-            this.AlreadyGetAllInfo = true;
-               */
             return true;
          
         }
@@ -425,38 +266,32 @@ namespace Soundon.Dispatcher
             }
 
             string msg = string.Empty;
-            try
+
+
+            #region 获取正在执行取放的位置编号
+
+            var bOutputs = new ushort[] { };
+            if (!Current.Robot.Plc.GetInfo("D1000", (ushort)1, out bOutputs, out msg))
             {
-
-                #region 获取正在执行取放的位置编号
-
-                var bOutputs = new ushort[] { };
-                if (!Current.Robot.Plc.GetInfo("D1000", (ushort)1, out bOutputs, out msg))
-                {
-                    Error.Alert(msg);
-                }
-
-
-                #endregion
-
-                if (pos == bOutputs[0])
-                {
-                    return true;
-                }
-
-                if (!Current.Robot.Plc.SetInfo("D1000", pos, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                LogHelper.WriteInfo(string.Format("给机器人发送到位取放指令------{0}：{1}  ", "D1000", pos));
+                Error.Alert(msg);
             }
-            catch (Exception ex)
+
+
+            #endregion
+
+            if (pos == bOutputs[0])
             {
-                Error.Alert(ex);
+                return true;
             }
+
+            if (!Current.Robot.Plc.SetInfo("D1000", pos, out msg))
+            {
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            LogHelper.WriteInfo(string.Format("给机器人发送到位取放指令------{0}：{1}  ", "D1000", pos));
 
             return true;
         }
@@ -467,50 +302,7 @@ namespace Soundon.Dispatcher
         /// <returns></returns>
         public bool Start(out string msg)
         {
-
-            msg = string.Empty;
-            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
-
-            bool tmpBool1 = false;
-            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.0", false, out tmpBool1, out msg))
-            {
-                this.Plc.IsAlive = false;
-                return false;
-            }
-
-            if (!tmpBool1)
-            {
-                msg = "启动条件不满足！";
-                this.Plc.IsAlive = false;
-                return false;
-            }
-
-            System.Threading.Thread.Sleep(10);
-
-            //将I10.0置为ture
-            bool tmpBool2 = false;
-            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.0", true, out tmpBool2, out msg))
-            {
-                this.Plc.IsAlive = false;
-                return false;
-            }
-
-            System.Threading.Thread.Sleep(10);
-
-            bool tmpBool3 = false;
-            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out tmpBool3, out msg))
-            {
-                this.Plc.IsAlive = false;
-                return false;
-            }
-
-            if (!tmpBool3)
-            {
-                msg = "启动成功标识为False";
-                this.Plc.IsAlive = false;
-                return false;
-            }
-
+            msg = "";
             return true;
         }
 
@@ -522,15 +314,14 @@ namespace Soundon.Dispatcher
         public bool Pause(out string msg)
         {
 
-            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
-
-            bool tmp = false;
-            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.2", true, out tmp, out msg))
+            if (!Current.Robot.Plc.SetInfo("D1012", (ushort)1, out msg))
             {
-                Error.Alert("暂停运行失败！原因：" + msg);
+                Error.Alert(msg);
                 this.Plc.IsAlive = false;
                 return false;
             }
+
+            LogHelper.WriteInfo(string.Format("给机器人发送暂停运行指令------{0}：{1}  ", "D1012", 1));
 
             return true;
         }
@@ -544,15 +335,14 @@ namespace Soundon.Dispatcher
         public bool Restart(out string msg)
         {
 
-            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
-
-            bool tmp = false;
-            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.4", true, out tmp, out msg))
+            if (!Current.Robot.Plc.SetInfo("D1012", (ushort)0, out msg))
             {
-                Error.Alert("继续运行失败！原因：" + msg);
+                Error.Alert(msg);
                 this.Plc.IsAlive = false;
                 return false;
             }
+
+            LogHelper.WriteInfo(string.Format("给机器人发送继续运行指令------{0}：{1}  ", "D1012", 0));
 
             return true;
         }
@@ -583,17 +373,7 @@ namespace Soundon.Dispatcher
         /// <returns></returns>
         public bool Stop(out string msg)
         {
-
-            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
-
-            bool tmp = false;
-            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.1", true, out tmp, out msg))
-            {
-                Error.Alert("机器人急停失败！原因：" + msg);
-                this.Plc.IsAlive = false;
-                return false;
-            }
-
+            Current.Robot.Pause(out msg);
             return true;
         }
 
