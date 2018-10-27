@@ -161,10 +161,10 @@ namespace Soundon.Dispatcher
 
         public string[] TemperNames = new string[Option.TemperaturePointCount]
         {
-            "温度1", "温度1", "温度1",  "温度1",  "温度1", "温度1", "温度1", "温度1",
-            "温度1", "温度1", "温度1",  "温度1",  "温度1", "温度1", "温度1", "温度1",
-            "温度1", "温度1", "温度1",  "温度1",  "温度1", "温度1", "温度1", "温度1",
-            "温度1", "温度1", "温度1",  "温度1",  "温度1", "温度1", "温度1", "温度1"
+            "温度1", "温度2", "温度3",  "温度4",  "温度5", "温度6", "温度7", "温度8",
+            "温度9", "温度10", "温度11",  "温度12",  "温度13", "温度14", "温度15", "温度16",
+            "温度17", "温度18", "温度19",  "温度20",  "温度21", "温度22", "温度23", "温度24",
+            "温度25", "温度26", "温度27",  "温度28",  "温度29", "温度30", "温度31", "温度32"
         };
 
         public string[] TemperSetNames = new string[Option.TemperatureSetPointCount]
@@ -173,7 +173,7 @@ namespace Soundon.Dispatcher
             "右侧温度设定值", "后左温度设定值", "后右温度设定值", "门左温度设定值","门右温度设定值"
         };
 
-        [Description("温度曲线颜色")]
+        private List<Color> curveColors = new List<Color>();
         [DisplayName("温度曲线颜色")]
         [Category("温度曲线")]
         [Browsable(false)]
@@ -181,7 +181,14 @@ namespace Soundon.Dispatcher
         {
             get
             {
-                return new List<Color> { Color.Green, Color.Fuchsia, Color.Blue, Color.Lime, Color.Pink, Color.Cyan, Color.Orange, Color.Purple };
+                if (curveColors.Count == 0)
+                {
+                    for (int i = 0; i < TemperaturePointCount; i++)
+                    {
+                        curveColors.Add(Color.FromArgb(i * 6 + 30, 255 - i * 6, i * 6 + 30));
+                    }
+                }
+                return curveColors;
             }
         }
 
@@ -208,27 +215,27 @@ namespace Soundon.Dispatcher
             }
         }
 
-        private int curveFloorId = -1;
+        private int curveStationId = -1;
         /// <summary>
-        /// 温度曲线炉层Id
+        /// 温度曲线工位Id
         /// </summary>
         [ReadOnly(true)]
-        [DisplayName("温度曲线炉层Id")]
+        [DisplayName("温度曲线工位Id")]
         [Category("温度曲线")]
-        public int CurveFloorId
+        public int CurveStationId
         {
             get
             {
-                if (curveFloorId < 0)
+                if (curveStationId < 0)
                 {
-                    curveFloorId = _Convert.StrToInt(TengDa.WF.Option.GetOption("CurveFloorId"), 1);
+                    curveStationId = _Convert.StrToInt(TengDa.WF.Option.GetOption("CurveStationId"), 1);
                 }
-                return curveFloorId;
+                return curveStationId;
             }
             set
             {
-                TengDa.WF.Option.SetOption("CurveFloorId", value.ToString());
-                curveFloorId = value;
+                TengDa.WF.Option.SetOption("CurveStationId", value.ToString());
+                curveStationId = value;
             }
         }
 
