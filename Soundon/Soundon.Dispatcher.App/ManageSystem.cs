@@ -1647,6 +1647,9 @@ namespace Soundon.Dispatcher.App
                 this.pbRobotLamp.Image = Properties.Resources.Gray_Round;
             }
 
+            Current.Transfer.IsAlive = false;
+            Current.Cache.IsAlive = false;
+
             return true;
         }
 
@@ -4150,9 +4153,9 @@ namespace Soundon.Dispatcher.App
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].IsAlive
                 && Current.ovens[i].Floors[j].VacuumIsUploading;
-            this.tsmClearRunTime.Enabled =
-                Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].IsAlive;
+            this.tsmClearRunTime.Enabled = false;
+                //Current.ovens[i].Floors[j].IsNetControlOpen
+                //&& Current.ovens[i].IsAlive;
             this.tsmStartBaking.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].IsAlive

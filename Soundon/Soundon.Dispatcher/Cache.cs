@@ -63,7 +63,9 @@ namespace Soundon.Dispatcher
         ///// </summary>
         //[Browsable(false)]
         //public int ScanNgCount { get { return Current.option.ScanNgCount; } }
-
+        [ReadOnly(true)]
+        [DisplayName("PLC Id")]
+        public int PlcId { get; set; } = -1;
         #endregion
 
         #region 构造方法
@@ -119,6 +121,7 @@ namespace Soundon.Dispatcher
             this.number = rowInfo["Number"].ToString();
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
             this.stationIds = rowInfo["StationIds"].ToString();
+            this.PlcId = TengDa._Convert.StrToInt(rowInfo["PlcId"].ToString(), -1);
         }
         #endregion
 

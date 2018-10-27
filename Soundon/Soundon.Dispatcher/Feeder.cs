@@ -472,9 +472,21 @@ namespace Soundon.Dispatcher
                     }
                 }
 
+                //获取转移台信息
+                if (Current.Transfer.IsEnable && Current.Transfer.PlcId == this.Plc.Id)
+                {
+                    Current.Transfer.IsAlive = true;
+                }
+
+                //获取转移台信息
+                if (Current.Cache.IsEnable && Current.Cache.PlcId == this.Plc.Id)
+                {
+                    Current.Cache.IsAlive = true;
+                }
+
+                //获取搬运机器人信息
                 if (Current.Robot.IsEnable && Current.Robot.Plc.Id == this.Plc.Id)
                 {
-
 
                     #region 获取是否启动完成
 
@@ -552,11 +564,9 @@ namespace Soundon.Dispatcher
 
                     #endregion
 
-
                     Current.Robot.Plc.IsAlive = true;
                     Current.Robot.AlreadyGetAllInfo = true;
                 }
-            
 
                 #endregion
 

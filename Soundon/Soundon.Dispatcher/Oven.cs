@@ -39,30 +39,28 @@ namespace Soundon.Dispatcher
 
         public string PreAlarm2BinString = string.Empty;
 
+        private TriLamp triLamp = TriLamp.Unknown;
+
+        /// <summary>
+        /// 三色灯
+        /// </summary>
         [ReadOnly(true), DisplayName("三色灯")]
         public TriLamp TriLamp
         {
             get
             {
-                if (this.IsAlive)
+                if (!this.IsAlive)
                 {
-                    var tmp = this.Floors.Select(f => f.TriLamp);
-                    if (tmp.Count(t => t == TriLamp.Red) > 0)
-                    {
-                        return TriLamp.Red;
-                    }
-                    if (tmp.Count(t => t == TriLamp.Green) > 0)
-                    {
-                        return TriLamp.Green;
-                    }
-                    if (tmp.Count(t => t == TriLamp.Yellow) > 0)
-                    {
-                        return TriLamp.Yellow;
-                    }
+                    triLamp = TriLamp.Unknown;
                 }
-                return TriLamp.Unknown;
+                return triLamp;
+            }
+            set
+            {
+                triLamp = value;
             }
         }
+
 
         public float[] Temperature = new float[Option.TemperaturePointCount];
 
@@ -377,7 +375,7 @@ namespace Soundon.Dispatcher
                 for (int j = 0; j < this.Floors.Count; j++)
                 {
                     var bOutputs = new ushort[] { };
-                    if (!this.Plc.GetInfo(Current.option.OvenInfo2StartAddrs.Split(',')[j], (ushort)5, out bOutputs, out msg))
+                    if (!this.Plc.GetInfo(Current.option.OvenInfo2StartAddrs.Split(',')[j], (ushort)7, out bOutputs, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;
@@ -387,6 +385,18 @@ namespace Soundon.Dispatcher
                     this.Floors[j].RunMinutes = bOutputs[0];
                     this.Floors[j].Vacuum = bOutputs[2] + bOutputs[3] * 65535;
                     this.Floors[j].IsVacuum = this.Floors[j].Vacuum < 95000;
+
+                    if(j == 0)
+                    {
+                        switch (bOutputs[6])
+                        {
+                            case 1: this.TriLamp = TriLamp.Red; break;
+                            case 2: this.TriLamp = TriLamp.Yellow; break;
+                            case 3: this.TriLamp = TriLamp.Green; break;
+                            default: this.TriLamp = TriLamp.Unknown; break;
+                        }
+                    }
+
                 }
 
                 #endregion
@@ -921,24 +931,19 @@ namespace Soundon.Dispatcher
                     #endregion
 
                     #region 报警复位
-                    //if (this.Floors[j].toAlarmReset)
-                    //{
-                    //    output = string.Empty;
-                    //    if (!this.Plc.GetInfo(false, Current.option.OvenAlarmResetStrs.Split(',')[j], out output, out msg))
-                    //    {
-                    //        Error.Alert(msg);
-                    //        this.Plc.IsAlive = false;
-                    //        return false;
-                    //    }
+                    if (this.Floors[j].toAlarmReset)
+                    {
 
-                    //    if (output.Substring(3, 1) != "$")
-                    //    {
-                    //        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.OvenAlarmResetStrs.Split(',')[j], output));
-                    //        return false;
-                    //    }
-                    //    LogHelper.WriteInfo(string.Format("成功发送报警复位指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenAlarmResetStrs.Split(',')[j]));
-                    //    this.Floors[j].toAlarmReset = false;
-                    //}
+                        if (!this.Plc.SetInfo("D5303", (ushort)1, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
+
+                        LogHelper.WriteInfo(string.Format("成功发送报警复位指令到{0}:{1}", this.Name, "D5303"));
+                        this.Floors[j].toAlarmReset = false;
+                    }
                     #endregion
 
                     #region 抽真空

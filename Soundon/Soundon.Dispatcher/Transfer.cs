@@ -39,6 +39,10 @@ namespace Soundon.Dispatcher
             private set { stationId = value; }
         }
 
+        [ReadOnly(true)]
+        [DisplayName("PLC Id")]
+        public int PlcId { get; set; } = -1;
+
 
         #endregion
 
@@ -95,6 +99,7 @@ namespace Soundon.Dispatcher
             this.number = rowInfo["Number"].ToString();
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
             this.stationId = TengDa._Convert.StrToInt(rowInfo["StationId"].ToString(), -1);
+            this.PlcId = TengDa._Convert.StrToInt(rowInfo["PlcId"].ToString(), -1);
         }
         #endregion
 
