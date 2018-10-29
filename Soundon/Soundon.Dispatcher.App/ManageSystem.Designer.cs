@@ -347,6 +347,7 @@
             this.tlpFeederStationClamp0103 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFeederClampCode0103 = new System.Windows.Forms.Label();
             this.tableLayoutPanel33 = new System.Windows.Forms.TableLayoutPanel();
+            this.taskInfo1 = new Soundon.Dispatcher.Controls.TaskInfo();
             this.tlpCache = new System.Windows.Forms.TableLayoutPanel();
             this.tlpCacheClamp01 = new System.Windows.Forms.TableLayoutPanel();
             this.lbCacheClampCode01 = new System.Windows.Forms.Label();
@@ -356,10 +357,6 @@
             this.tlpCacheClamp03 = new System.Windows.Forms.TableLayoutPanel();
             this.lbCacheClampCode03 = new System.Windows.Forms.Label();
             this.tlpTransfer = new System.Windows.Forms.TableLayoutPanel();
-            this.cmsTransfer = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmTestResult = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmTestResultOK = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmTestResultNG = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpTransferClamp = new System.Windows.Forms.TableLayoutPanel();
             this.lbTransferClampCode = new System.Windows.Forms.Label();
             this.lbTransferName = new System.Windows.Forms.Label();
@@ -547,6 +544,10 @@
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
             this.label37 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.cmsTransfer = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmTestResult = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmTestResultOK = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmTestResultNG = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxTerminal = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.tbBlankerStatus01 = new System.Windows.Forms.TextBox();
@@ -643,7 +644,6 @@
             this.lbTime = new System.Windows.Forms.Label();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
             this.yieldDisplay = new Soundon.Dispatcher.Controls.YieldDisplay();
-            this.taskInfo1 = new Soundon.Dispatcher.Controls.TaskInfo();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -765,7 +765,6 @@
             this.tlpCacheClamp02.SuspendLayout();
             this.tlpCacheClamp03.SuspendLayout();
             this.tlpTransfer.SuspendLayout();
-            this.cmsTransfer.SuspendLayout();
             this.tlpTransferClamp.SuspendLayout();
             this.tableLayoutPanel20.SuspendLayout();
             this.tableLayoutPanel36.SuspendLayout();
@@ -826,6 +825,7 @@
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             this.tableLayoutPanel24.SuspendLayout();
+            this.cmsTransfer.SuspendLayout();
             this.groupBoxTerminal.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0202)).BeginInit();
@@ -2333,21 +2333,21 @@
             // 
             this.tsmAlarmReset.Image = global::Soundon.Dispatcher.App.Properties.Resources.Reset_green;
             this.tsmAlarmReset.Name = "tsmAlarmReset";
-            this.tsmAlarmReset.Size = new System.Drawing.Size(180, 22);
+            this.tsmAlarmReset.Size = new System.Drawing.Size(148, 22);
             this.tsmAlarmReset.Text = "报警复位";
             this.tsmAlarmReset.Click += new System.EventHandler(this.tsmAlarmReset_Click);
             // 
             // tsmOvenOpenDoor
             // 
             this.tsmOvenOpenDoor.Name = "tsmOvenOpenDoor";
-            this.tsmOvenOpenDoor.Size = new System.Drawing.Size(180, 22);
+            this.tsmOvenOpenDoor.Size = new System.Drawing.Size(148, 22);
             this.tsmOvenOpenDoor.Text = "开门";
             this.tsmOvenOpenDoor.Click += new System.EventHandler(this.tsmOvenOpenDoor_Click);
             // 
             // tsmOvenCloseDoor
             // 
             this.tsmOvenCloseDoor.Name = "tsmOvenCloseDoor";
-            this.tsmOvenCloseDoor.Size = new System.Drawing.Size(180, 22);
+            this.tsmOvenCloseDoor.Size = new System.Drawing.Size(148, 22);
             this.tsmOvenCloseDoor.Text = "关门";
             this.tsmOvenCloseDoor.Click += new System.EventHandler(this.tsmOvenCloseDoor_Click);
             // 
@@ -2355,7 +2355,7 @@
             // 
             this.tsmStartBaking.Image = global::Soundon.Dispatcher.App.Properties.Resources.Start_Green;
             this.tsmStartBaking.Name = "tsmStartBaking";
-            this.tsmStartBaking.Size = new System.Drawing.Size(180, 22);
+            this.tsmStartBaking.Size = new System.Drawing.Size(148, 22);
             this.tsmStartBaking.Text = "启动";
             this.tsmStartBaking.Click += new System.EventHandler(this.tsmStartBaking_Click);
             // 
@@ -2364,35 +2364,35 @@
             this.tsmOpenNetControl.BackColor = System.Drawing.Color.Red;
             this.tsmOpenNetControl.ForeColor = System.Drawing.Color.White;
             this.tsmOpenNetControl.Name = "tsmOpenNetControl";
-            this.tsmOpenNetControl.Size = new System.Drawing.Size(180, 22);
+            this.tsmOpenNetControl.Size = new System.Drawing.Size(148, 22);
             this.tsmOpenNetControl.Text = "打开网控";
             this.tsmOpenNetControl.Click += new System.EventHandler(this.tsmOpenNetControl_Click);
             // 
             // tsmLoadVacuum
             // 
             this.tsmLoadVacuum.Name = "tsmLoadVacuum";
-            this.tsmLoadVacuum.Size = new System.Drawing.Size(180, 22);
+            this.tsmLoadVacuum.Size = new System.Drawing.Size(148, 22);
             this.tsmLoadVacuum.Text = "抽真空";
             this.tsmLoadVacuum.Click += new System.EventHandler(this.tsmLoadVacuum_Click);
             // 
             // tsmCancelLoadVacuum
             // 
             this.tsmCancelLoadVacuum.Name = "tsmCancelLoadVacuum";
-            this.tsmCancelLoadVacuum.Size = new System.Drawing.Size(180, 22);
+            this.tsmCancelLoadVacuum.Size = new System.Drawing.Size(148, 22);
             this.tsmCancelLoadVacuum.Text = "取消抽真空";
             this.tsmCancelLoadVacuum.Click += new System.EventHandler(this.tsmCancelLoadVacuum_Click);
             // 
             // tsmUploadVacuum
             // 
             this.tsmUploadVacuum.Name = "tsmUploadVacuum";
-            this.tsmUploadVacuum.Size = new System.Drawing.Size(180, 22);
+            this.tsmUploadVacuum.Size = new System.Drawing.Size(148, 22);
             this.tsmUploadVacuum.Text = "破真空";
             this.tsmUploadVacuum.Click += new System.EventHandler(this.tsmUploadVacuum_Click);
             // 
             // tsmCancelUploadVacuum
             // 
             this.tsmCancelUploadVacuum.Name = "tsmCancelUploadVacuum";
-            this.tsmCancelUploadVacuum.Size = new System.Drawing.Size(180, 22);
+            this.tsmCancelUploadVacuum.Size = new System.Drawing.Size(148, 22);
             this.tsmCancelUploadVacuum.Text = "取消破真空";
             this.tsmCancelUploadVacuum.Click += new System.EventHandler(this.tsmCancelUploadVacuum_Click);
             // 
@@ -2400,14 +2400,14 @@
             // 
             this.tsmStopBaking.Image = global::Soundon.Dispatcher.App.Properties.Resources.Stop_Red;
             this.tsmStopBaking.Name = "tsmStopBaking";
-            this.tsmStopBaking.Size = new System.Drawing.Size(180, 22);
+            this.tsmStopBaking.Size = new System.Drawing.Size(148, 22);
             this.tsmStopBaking.Text = "停止";
             this.tsmStopBaking.Click += new System.EventHandler(this.tsmStopBaking_Click);
             // 
             // tsmClearRunTime
             // 
             this.tsmClearRunTime.Name = "tsmClearRunTime";
-            this.tsmClearRunTime.Size = new System.Drawing.Size(180, 22);
+            this.tsmClearRunTime.Size = new System.Drawing.Size(148, 22);
             this.tsmClearRunTime.Text = "运行时间清零";
             this.tsmClearRunTime.Click += new System.EventHandler(this.tsmClearRunTime_Click);
             // 
@@ -5498,6 +5498,16 @@
             this.tableLayoutPanel33.Size = new System.Drawing.Size(1026, 36);
             this.tableLayoutPanel33.TabIndex = 20;
             // 
+            // taskInfo1
+            // 
+            this.taskInfo1.BackColor = System.Drawing.SystemColors.Control;
+            this.taskInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.taskInfo1.Location = new System.Drawing.Point(2, 8);
+            this.taskInfo1.Margin = new System.Windows.Forms.Padding(2, 8, 2, 3);
+            this.taskInfo1.Name = "taskInfo1";
+            this.taskInfo1.Size = new System.Drawing.Size(1022, 25);
+            this.taskInfo1.TabIndex = 0;
+            // 
             // tlpCache
             // 
             this.tlpCache.BackColor = System.Drawing.SystemColors.Control;
@@ -5639,37 +5649,6 @@
             this.tlpTransfer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpTransfer.Size = new System.Drawing.Size(54, 56);
             this.tlpTransfer.TabIndex = 16;
-            // 
-            // cmsTransfer
-            // 
-            this.cmsTransfer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmTestResult});
-            this.cmsTransfer.Name = "cmsInOutOven";
-            this.cmsTransfer.Size = new System.Drawing.Size(149, 26);
-            this.cmsTransfer.Opening += new System.ComponentModel.CancelEventHandler(this.cmsTransfer_Opening);
-            // 
-            // tsmTestResult
-            // 
-            this.tsmTestResult.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmTestResultOK,
-            this.tsmTestResultNG});
-            this.tsmTestResult.Name = "tsmTestResult";
-            this.tsmTestResult.Size = new System.Drawing.Size(148, 22);
-            this.tsmTestResult.Text = "水分测试结果";
-            // 
-            // tsmTestResultOK
-            // 
-            this.tsmTestResultOK.Name = "tsmTestResultOK";
-            this.tsmTestResultOK.Size = new System.Drawing.Size(119, 22);
-            this.tsmTestResultOK.Text = "结果OK";
-            this.tsmTestResultOK.Click += new System.EventHandler(this.tsmTestResultOK_Click);
-            // 
-            // tsmTestResultNG
-            // 
-            this.tsmTestResultNG.Name = "tsmTestResultNG";
-            this.tsmTestResultNG.Size = new System.Drawing.Size(119, 22);
-            this.tsmTestResultNG.Text = "结果NG";
-            this.tsmTestResultNG.Click += new System.EventHandler(this.tsmTestResultNG_Click);
             // 
             // tlpTransferClamp
             // 
@@ -8379,6 +8358,37 @@
             this.panel8.Size = new System.Drawing.Size(1, 578);
             this.panel8.TabIndex = 0;
             // 
+            // cmsTransfer
+            // 
+            this.cmsTransfer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmTestResult});
+            this.cmsTransfer.Name = "cmsInOutOven";
+            this.cmsTransfer.Size = new System.Drawing.Size(149, 26);
+            this.cmsTransfer.Opening += new System.ComponentModel.CancelEventHandler(this.cmsTransfer_Opening);
+            // 
+            // tsmTestResult
+            // 
+            this.tsmTestResult.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmTestResultOK,
+            this.tsmTestResultNG});
+            this.tsmTestResult.Name = "tsmTestResult";
+            this.tsmTestResult.Size = new System.Drawing.Size(148, 22);
+            this.tsmTestResult.Text = "水分测试结果";
+            // 
+            // tsmTestResultOK
+            // 
+            this.tsmTestResultOK.Name = "tsmTestResultOK";
+            this.tsmTestResultOK.Size = new System.Drawing.Size(119, 22);
+            this.tsmTestResultOK.Text = "结果OK";
+            this.tsmTestResultOK.Click += new System.EventHandler(this.tsmTestResultOK_Click);
+            // 
+            // tsmTestResultNG
+            // 
+            this.tsmTestResultNG.Name = "tsmTestResultNG";
+            this.tsmTestResultNG.Size = new System.Drawing.Size(119, 22);
+            this.tsmTestResultNG.Text = "结果NG";
+            this.tsmTestResultNG.Click += new System.EventHandler(this.tsmTestResultNG_Click);
+            // 
             // groupBoxTerminal
             // 
             this.groupBoxTerminal.BackColor = System.Drawing.SystemColors.Control;
@@ -9685,16 +9695,6 @@
             this.yieldDisplay.TabIndex = 14;
             this.yieldDisplay.btnYieldClearClick += new Soundon.Dispatcher.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
             // 
-            // taskInfo1
-            // 
-            this.taskInfo1.BackColor = System.Drawing.SystemColors.Control;
-            this.taskInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.taskInfo1.Location = new System.Drawing.Point(2, 8);
-            this.taskInfo1.Margin = new System.Windows.Forms.Padding(2, 8, 2, 3);
-            this.taskInfo1.Name = "taskInfo1";
-            this.taskInfo1.Size = new System.Drawing.Size(1022, 25);
-            this.taskInfo1.TabIndex = 0;
-            // 
             // ManageSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -9887,7 +9887,6 @@
             this.tlpCacheClamp03.PerformLayout();
             this.tlpTransfer.ResumeLayout(false);
             this.tlpTransfer.PerformLayout();
-            this.cmsTransfer.ResumeLayout(false);
             this.tlpTransferClamp.ResumeLayout(false);
             this.tlpTransferClamp.PerformLayout();
             this.tableLayoutPanel20.ResumeLayout(false);
@@ -9972,6 +9971,7 @@
             this.splitContainer4.ResumeLayout(false);
             this.tableLayoutPanel24.ResumeLayout(false);
             this.tableLayoutPanel24.PerformLayout();
+            this.cmsTransfer.ResumeLayout(false);
             this.groupBoxTerminal.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel14.PerformLayout();

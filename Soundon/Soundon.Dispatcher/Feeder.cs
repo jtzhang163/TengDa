@@ -432,7 +432,7 @@ namespace Soundon.Dispatcher
                 #region 获取信息
 
                 var bOutputs = new ushort[] { };
-                if (!this.Plc.GetInfo("D1000", (ushort)20, out bOutputs, out msg))
+                if (!this.Plc.GetInfo("D1000", (ushort)30, out bOutputs, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
@@ -472,17 +472,61 @@ namespace Soundon.Dispatcher
                     }
                 }
 
+
+                //获取缓存架信息
+                if (Current.Cache.IsEnable && Current.Cache.PlcId == this.Plc.Id)
+                {
+                    for (int j = 0; j < Current.Cache.Stations.Count; j++)
+                    {
+                        switch (bOutputs[22 - j])
+                        {
+                            case 1:
+                                Current.Cache.Stations[j].ClampStatus = ClampStatus.无夹具;
+                                Current.Cache.Stations[j].Status = StationStatus.可放;
+                                break;
+                            case 2:
+                                Current.Cache.Stations[j].ClampStatus = Current.Cache.Stations[j].ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
+                                Current.Cache.Stations[j].Status = StationStatus.可取;
+                                break;
+                            case 3:
+                                Current.Cache.Stations[j].ClampStatus = ClampStatus.异常;
+                                Current.Cache.Stations[j].Status = StationStatus.不可用;
+                                break;
+                            default:
+                                Current.Cache.Stations[j].ClampStatus = ClampStatus.未知;
+                                Current.Cache.Stations[j].Status = StationStatus.不可用;
+                                break;
+                        }
+                    }
+                    Current.Cache.IsAlive = true;
+                }
+
+
                 //获取转移台信息
                 if (Current.Transfer.IsEnable && Current.Transfer.PlcId == this.Plc.Id)
                 {
+                    switch (bOutputs[23])
+                    {
+                        case 1:
+                            Current.Transfer.Station.ClampStatus = ClampStatus.无夹具;
+                            Current.Transfer.Station.Status = StationStatus.可放;
+                            break;
+                        case 2:
+                            Current.Transfer.Station.ClampStatus = Current.Transfer.Station.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
+                            Current.Transfer.Station.Status = StationStatus.可取;
+                            break;
+                        case 3:
+                            Current.Transfer.Station.ClampStatus = ClampStatus.异常;
+                            Current.Transfer.Station.Status = StationStatus.不可用;
+                            break;
+                        default:
+                            Current.Transfer.Station.ClampStatus = ClampStatus.未知;
+                            Current.Transfer.Station.Status = StationStatus.不可用;
+                            break;
+                    }
                     Current.Transfer.IsAlive = true;
                 }
 
-                //获取转移台信息
-                if (Current.Cache.IsEnable && Current.Cache.PlcId == this.Plc.Id)
-                {
-                    Current.Cache.IsAlive = true;
-                }
 
                 //获取搬运机器人信息
                 if (Current.Robot.IsEnable && Current.Robot.Plc.Id == this.Plc.Id)
@@ -490,7 +534,7 @@ namespace Soundon.Dispatcher
 
                     #region 获取是否启动完成
 
-                    Current.Robot.IsStartting = true;
+                    Current.Robot.IsStartting = bOutputs[3] == 1;
 
                     #endregion
 

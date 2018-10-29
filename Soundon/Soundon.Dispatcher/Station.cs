@@ -840,7 +840,7 @@ namespace Soundon.Dispatcher
                 {
                     Floor floor = Floor.FloorList.First(f => f.StationIds.Contains(this.Id.ToString()));
                     Oven oven = Oven.OvenList.First(o => o.Id == floor.OvenId);
-                    oven.CloseDoor(oven.Floors.IndexOf(floor));
+                 //   oven.CloseDoor(oven.Floors.IndexOf(floor));
                 }
             }
         }

@@ -1011,8 +1011,8 @@ namespace Soundon.Dispatcher.App
 
             this.tlpTransfer.BackColor = Current.Transfer.IsAlive ? Color.White : Color.LightGray;
 
-            var sampleStatusFlag = Current.Transfer.Station.SampleStatus == SampleStatus.待测试 ? "" : Current.Transfer.Station.SampleStatus == SampleStatus.测试OK ? "✔ " : "✘ ";
-            lbTransferClampCode.Text = sampleStatusFlag + Current.Transfer.Station.Clamp.Code;
+          //  var sampleStatusFlag = Current.Transfer.Station.SampleStatus == SampleStatus.待测试 ? "" : Current.Transfer.Station.SampleStatus == SampleStatus.测试OK ? "✔ " : "✘ ";
+            lbTransferClampCode.Text = Current.Transfer.Station.Clamp.Code;
 
             bool canChangeVisibleRotater = DateTime.Now.Second % 3 == 1;
 
@@ -2326,14 +2326,14 @@ namespace Soundon.Dispatcher.App
                             && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) < 1
                             && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
                         {
-                            Current.ovens[i].CloseDoor(j);
+                           // Current.ovens[i].CloseDoor(j);
                         }
 
                         //从某一炉子取完盘后，立即关门，无需等到整个任务结束
                         if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
                             && Current.Robot.IsAlive && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
                         {
-                            Current.ovens[i].CloseDoor(j);
+                           // Current.ovens[i].CloseDoor(j);
                         }
  
                         //开始烘烤
@@ -4762,21 +4762,19 @@ namespace Soundon.Dispatcher.App
         private void btnDebug_Click(object sende, EventArgs e)
         {
             string msg = string.Empty;
-
-            if (!Current.Robot.Plc.SetInfo("D1000", ushort.Parse(tbWaterContent.Text.Trim()), out msg))
+            for (int i = 4600; i < 5000; i++)
             {
-                Error.Alert(msg);
-            }
+                StringBuilder sb = new StringBuilder();
+                sb.Append("INSERT INTO [dbo].[Soundon.Dispatcher.Alarm] ([WordAdd], [BitAdd1], [BitAdd2], [AlarmStr], [FloorNum]) VALUES ");
 
-            var bOutputs = new ushort[] { };
-            if (!Current.Robot.Plc.GetInfo("D1000", (ushort)1, out bOutputs, out msg))
-            {
-                Error.Alert(msg);
+                for (int j = 0; j < 16; j++)
+                {
+                    var wordAdd = string.Format("D{0:D4}.{1:D2}", i, j);
+                    sb.Append(string.Format("('{0}', '{1}', '{2}', '{3}',  {4}),", wordAdd, "", "", "", -2));
+                }
+                Database.NonQuery(sb.ToString().TrimEnd(','), out msg);
+                Thread.Sleep(10);
             }
-
-            Tip.Alert(msg);
         }
-
-
     }
 }

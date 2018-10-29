@@ -96,6 +96,19 @@ namespace TengDa
             return returnBytes;
         }
 
+        /// <summary>
+        /// 字符串反转
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string Revert(string str)
+        {
+
+            char[] cs = str.ToCharArray();
+            Array.Reverse(cs);
+            return new string(cs);
+        }
+
         public static DataTable ToDataTable<T>(this IEnumerable<T> list)
         {
             return ToDataTable<T>(list, false);
