@@ -671,12 +671,10 @@ namespace Soundon.Dispatcher.App
                     }
                     else
                     {
-                        //NG两次用✘标记
-                        //需测试水分用★标记
                         this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {1}Pa {2}℃",
-                             floor.Stations[0].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5),
+                             floor.Stations[0].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4),
                              floor.Vacuum.ToString("#0").PadLeft(6),
-                             floor.Stations[1].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(5)
+                             floor.Stations[1].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4)
                             );
 
 

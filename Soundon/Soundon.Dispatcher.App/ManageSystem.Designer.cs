@@ -2424,7 +2424,7 @@
             this.lbFloorInfoTop1002.Name = "lbFloorInfoTop1002";
             this.lbFloorInfoTop1002.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop1002.TabIndex = 13;
-            this.lbFloorInfoTop1002.Text = "0.0℃";
+            this.lbFloorInfoTop1002.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop1002.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime1002
@@ -2445,14 +2445,14 @@
             this.lbFloorStatus1002.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor1002.SetColumnSpan(this.lbFloorStatus1002, 3);
             this.lbFloorStatus1002.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus1002.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus1002.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus1002.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus1002.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus1002.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus1002.Name = "lbFloorStatus1002";
             this.lbFloorStatus1002.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus1002.TabIndex = 17;
-            this.lbFloorStatus1002.Text = "空腔";
+            this.lbFloorStatus1002.Text = "右 关闭 100/200 左";
             this.lbFloorStatus1002.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor1001
@@ -2491,7 +2491,7 @@
             this.lbFloorInfoTop1001.Name = "lbFloorInfoTop1001";
             this.lbFloorInfoTop1001.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop1001.TabIndex = 13;
-            this.lbFloorInfoTop1001.Text = "0.0℃";
+            this.lbFloorInfoTop1001.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop1001.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime1001
@@ -2512,14 +2512,14 @@
             this.lbFloorStatus1001.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor1001.SetColumnSpan(this.lbFloorStatus1001, 3);
             this.lbFloorStatus1001.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus1001.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus1001.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus1001.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus1001.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus1001.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus1001.Name = "lbFloorStatus1001";
             this.lbFloorStatus1001.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus1001.TabIndex = 17;
-            this.lbFloorStatus1001.Text = "空腔";
+            this.lbFloorStatus1001.Text = "右 关闭 100/200 左";
             this.lbFloorStatus1001.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor1003
@@ -2558,7 +2558,7 @@
             this.lbFloorInfoTop1003.Name = "lbFloorInfoTop1003";
             this.lbFloorInfoTop1003.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop1003.TabIndex = 13;
-            this.lbFloorInfoTop1003.Text = "0.0℃";
+            this.lbFloorInfoTop1003.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop1003.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime1003
@@ -2579,14 +2579,14 @@
             this.lbFloorStatus1003.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor1003.SetColumnSpan(this.lbFloorStatus1003, 3);
             this.lbFloorStatus1003.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus1003.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus1003.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus1003.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus1003.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus1003.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus1003.Name = "lbFloorStatus1003";
             this.lbFloorStatus1003.Size = new System.Drawing.Size(120, 13);
             this.lbFloorStatus1003.TabIndex = 17;
-            this.lbFloorStatus1003.Text = "空腔";
+            this.lbFloorStatus1003.Text = "右 关闭 100/200 左";
             this.lbFloorStatus1003.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpOven06
@@ -2647,7 +2647,7 @@
             this.lbFloorInfoTop0602.Name = "lbFloorInfoTop0602";
             this.lbFloorInfoTop0602.Size = new System.Drawing.Size(121, 12);
             this.lbFloorInfoTop0602.TabIndex = 13;
-            this.lbFloorInfoTop0602.Text = "0.0℃";
+            this.lbFloorInfoTop0602.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0602.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0602
@@ -2668,14 +2668,14 @@
             this.lbFloorStatus0602.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0602.SetColumnSpan(this.lbFloorStatus0602, 3);
             this.lbFloorStatus0602.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0602.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0602.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0602.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0602.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0602.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0602.Name = "lbFloorStatus0602";
             this.lbFloorStatus0602.Size = new System.Drawing.Size(121, 12);
             this.lbFloorStatus0602.TabIndex = 17;
-            this.lbFloorStatus0602.Text = "空腔";
+            this.lbFloorStatus0602.Text = "右 关闭 100/200 左";
             this.lbFloorStatus0602.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0601
@@ -2714,7 +2714,7 @@
             this.lbFloorInfoTop0601.Name = "lbFloorInfoTop0601";
             this.lbFloorInfoTop0601.Size = new System.Drawing.Size(121, 12);
             this.lbFloorInfoTop0601.TabIndex = 13;
-            this.lbFloorInfoTop0601.Text = "0.0℃";
+            this.lbFloorInfoTop0601.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0601.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0601
@@ -2735,14 +2735,14 @@
             this.lbFloorStatus0601.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0601.SetColumnSpan(this.lbFloorStatus0601, 3);
             this.lbFloorStatus0601.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0601.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0601.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0601.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0601.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0601.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0601.Name = "lbFloorStatus0601";
             this.lbFloorStatus0601.Size = new System.Drawing.Size(121, 12);
             this.lbFloorStatus0601.TabIndex = 17;
-            this.lbFloorStatus0601.Text = "空腔";
+            this.lbFloorStatus0601.Text = "右 关闭 100/200 左";
             this.lbFloorStatus0601.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0603
@@ -2781,7 +2781,7 @@
             this.lbFloorInfoTop0603.Name = "lbFloorInfoTop0603";
             this.lbFloorInfoTop0603.Size = new System.Drawing.Size(121, 12);
             this.lbFloorInfoTop0603.TabIndex = 13;
-            this.lbFloorInfoTop0603.Text = "0.0℃";
+            this.lbFloorInfoTop0603.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0603.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0603
@@ -2802,14 +2802,14 @@
             this.lbFloorStatus0603.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0603.SetColumnSpan(this.lbFloorStatus0603, 3);
             this.lbFloorStatus0603.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0603.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0603.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0603.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0603.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0603.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0603.Name = "lbFloorStatus0603";
             this.lbFloorStatus0603.Size = new System.Drawing.Size(121, 13);
             this.lbFloorStatus0603.TabIndex = 17;
-            this.lbFloorStatus0603.Text = "空腔";
+            this.lbFloorStatus0603.Text = "右 关闭 100/200 左";
             this.lbFloorStatus0603.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel27
@@ -2990,7 +2990,7 @@
             this.lbFloorInfoTop0802.Name = "lbFloorInfoTop0802";
             this.lbFloorInfoTop0802.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0802.TabIndex = 13;
-            this.lbFloorInfoTop0802.Text = "0.0℃";
+            this.lbFloorInfoTop0802.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0802.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0802
@@ -3011,14 +3011,14 @@
             this.lbFloorStatus0802.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0802.SetColumnSpan(this.lbFloorStatus0802, 3);
             this.lbFloorStatus0802.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0802.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0802.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0802.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0802.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0802.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0802.Name = "lbFloorStatus0802";
             this.lbFloorStatus0802.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus0802.TabIndex = 17;
-            this.lbFloorStatus0802.Text = "空腔";
+            this.lbFloorStatus0802.Text = "右 关闭 100/200 左";
             this.lbFloorStatus0802.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0801
@@ -3057,7 +3057,7 @@
             this.lbFloorInfoTop0801.Name = "lbFloorInfoTop0801";
             this.lbFloorInfoTop0801.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0801.TabIndex = 13;
-            this.lbFloorInfoTop0801.Text = "0.0℃";
+            this.lbFloorInfoTop0801.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0801.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0801
@@ -3078,14 +3078,14 @@
             this.lbFloorStatus0801.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0801.SetColumnSpan(this.lbFloorStatus0801, 3);
             this.lbFloorStatus0801.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0801.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0801.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0801.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0801.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0801.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0801.Name = "lbFloorStatus0801";
             this.lbFloorStatus0801.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus0801.TabIndex = 17;
-            this.lbFloorStatus0801.Text = "空腔";
+            this.lbFloorStatus0801.Text = "右 关闭 100/200 左";
             this.lbFloorStatus0801.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0803
@@ -3124,7 +3124,7 @@
             this.lbFloorInfoTop0803.Name = "lbFloorInfoTop0803";
             this.lbFloorInfoTop0803.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0803.TabIndex = 13;
-            this.lbFloorInfoTop0803.Text = "0.0℃";
+            this.lbFloorInfoTop0803.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0803.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0803
@@ -3145,14 +3145,14 @@
             this.lbFloorStatus0803.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0803.SetColumnSpan(this.lbFloorStatus0803, 3);
             this.lbFloorStatus0803.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0803.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0803.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0803.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0803.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0803.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0803.Name = "lbFloorStatus0803";
             this.lbFloorStatus0803.Size = new System.Drawing.Size(120, 13);
             this.lbFloorStatus0803.TabIndex = 17;
-            this.lbFloorStatus0803.Text = "空腔";
+            this.lbFloorStatus0803.Text = "右 关闭 100/200 左";
             this.lbFloorStatus0803.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpOven07
@@ -3213,7 +3213,7 @@
             this.lbFloorInfoTop0702.Name = "lbFloorInfoTop0702";
             this.lbFloorInfoTop0702.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0702.TabIndex = 13;
-            this.lbFloorInfoTop0702.Text = "0.0℃";
+            this.lbFloorInfoTop0702.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0702.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0702
@@ -3234,14 +3234,14 @@
             this.lbFloorStatus0702.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0702.SetColumnSpan(this.lbFloorStatus0702, 3);
             this.lbFloorStatus0702.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0702.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0702.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0702.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0702.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0702.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0702.Name = "lbFloorStatus0702";
             this.lbFloorStatus0702.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus0702.TabIndex = 17;
-            this.lbFloorStatus0702.Text = "空腔";
+            this.lbFloorStatus0702.Text = "右 关闭 100/200 左";
             this.lbFloorStatus0702.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0701
@@ -3280,7 +3280,7 @@
             this.lbFloorInfoTop0701.Name = "lbFloorInfoTop0701";
             this.lbFloorInfoTop0701.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0701.TabIndex = 13;
-            this.lbFloorInfoTop0701.Text = "0.0℃";
+            this.lbFloorInfoTop0701.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0701.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0701
@@ -3301,14 +3301,14 @@
             this.lbFloorStatus0701.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0701.SetColumnSpan(this.lbFloorStatus0701, 3);
             this.lbFloorStatus0701.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0701.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0701.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0701.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0701.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0701.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0701.Name = "lbFloorStatus0701";
             this.lbFloorStatus0701.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus0701.TabIndex = 17;
-            this.lbFloorStatus0701.Text = "空腔";
+            this.lbFloorStatus0701.Text = "右 关闭 100/200 左";
             this.lbFloorStatus0701.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0703
@@ -3347,7 +3347,7 @@
             this.lbFloorInfoTop0703.Name = "lbFloorInfoTop0703";
             this.lbFloorInfoTop0703.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0703.TabIndex = 14;
-            this.lbFloorInfoTop0703.Text = "0.0℃";
+            this.lbFloorInfoTop0703.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0703.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0703
@@ -3368,14 +3368,14 @@
             this.lbFloorStatus0703.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0703.SetColumnSpan(this.lbFloorStatus0703, 3);
             this.lbFloorStatus0703.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0703.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0703.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0703.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0703.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0703.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0703.Name = "lbFloorStatus0703";
             this.lbFloorStatus0703.Size = new System.Drawing.Size(120, 13);
             this.lbFloorStatus0703.TabIndex = 17;
-            this.lbFloorStatus0703.Text = "空腔";
+            this.lbFloorStatus0703.Text = "右 关闭 100/200 左";
             this.lbFloorStatus0703.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel37
@@ -3516,7 +3516,7 @@
             this.lbFloorInfoTop0902.Name = "lbFloorInfoTop0902";
             this.lbFloorInfoTop0902.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0902.TabIndex = 13;
-            this.lbFloorInfoTop0902.Text = "0.0℃";
+            this.lbFloorInfoTop0902.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0902.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0902
@@ -3537,14 +3537,14 @@
             this.lbFloorStatus0902.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0902.SetColumnSpan(this.lbFloorStatus0902, 3);
             this.lbFloorStatus0902.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0902.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0902.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0902.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0902.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0902.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0902.Name = "lbFloorStatus0902";
             this.lbFloorStatus0902.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus0902.TabIndex = 17;
-            this.lbFloorStatus0902.Text = "空腔";
+            this.lbFloorStatus0902.Text = "右 关闭 100/200 左";
             this.lbFloorStatus0902.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0901
@@ -3583,7 +3583,7 @@
             this.lbFloorInfoTop0901.Name = "lbFloorInfoTop0901";
             this.lbFloorInfoTop0901.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0901.TabIndex = 13;
-            this.lbFloorInfoTop0901.Text = "0.0℃";
+            this.lbFloorInfoTop0901.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0901.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0901
@@ -3604,14 +3604,14 @@
             this.lbFloorStatus0901.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0901.SetColumnSpan(this.lbFloorStatus0901, 3);
             this.lbFloorStatus0901.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0901.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0901.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0901.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0901.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0901.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0901.Name = "lbFloorStatus0901";
             this.lbFloorStatus0901.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus0901.TabIndex = 17;
-            this.lbFloorStatus0901.Text = "空腔";
+            this.lbFloorStatus0901.Text = "右 关闭 100/200 左";
             this.lbFloorStatus0901.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0903
@@ -3650,7 +3650,7 @@
             this.lbFloorInfoTop0903.Name = "lbFloorInfoTop0903";
             this.lbFloorInfoTop0903.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0903.TabIndex = 13;
-            this.lbFloorInfoTop0903.Text = "0.0℃";
+            this.lbFloorInfoTop0903.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0903.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0903
@@ -3671,14 +3671,14 @@
             this.lbFloorStatus0903.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0903.SetColumnSpan(this.lbFloorStatus0903, 3);
             this.lbFloorStatus0903.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0903.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0903.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0903.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0903.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0903.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0903.Name = "lbFloorStatus0903";
             this.lbFloorStatus0903.Size = new System.Drawing.Size(120, 13);
             this.lbFloorStatus0903.TabIndex = 17;
-            this.lbFloorStatus0903.Text = "空腔";
+            this.lbFloorStatus0903.Text = "右 关闭 100/200 左";
             this.lbFloorStatus0903.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpOvenLineB
@@ -3772,7 +3772,7 @@
             this.lbFloorInfoTop0502.Name = "lbFloorInfoTop0502";
             this.lbFloorInfoTop0502.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0502.TabIndex = 13;
-            this.lbFloorInfoTop0502.Text = "0.0℃";
+            this.lbFloorInfoTop0502.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0502.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0502
@@ -3793,14 +3793,14 @@
             this.lbFloorStatus0502.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0502.SetColumnSpan(this.lbFloorStatus0502, 3);
             this.lbFloorStatus0502.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0502.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0502.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0502.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0502.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0502.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0502.Name = "lbFloorStatus0502";
             this.lbFloorStatus0502.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus0502.TabIndex = 17;
-            this.lbFloorStatus0502.Text = "空腔";
+            this.lbFloorStatus0502.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0502.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0501
@@ -3839,7 +3839,7 @@
             this.lbFloorInfoTop0501.Name = "lbFloorInfoTop0501";
             this.lbFloorInfoTop0501.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0501.TabIndex = 13;
-            this.lbFloorInfoTop0501.Text = "0.0℃";
+            this.lbFloorInfoTop0501.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0501.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0501
@@ -3860,14 +3860,14 @@
             this.lbFloorStatus0501.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0501.SetColumnSpan(this.lbFloorStatus0501, 3);
             this.lbFloorStatus0501.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0501.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0501.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0501.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0501.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0501.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0501.Name = "lbFloorStatus0501";
             this.lbFloorStatus0501.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus0501.TabIndex = 17;
-            this.lbFloorStatus0501.Text = "空腔";
+            this.lbFloorStatus0501.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0501.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0503
@@ -3906,7 +3906,7 @@
             this.lbFloorInfoTop0503.Name = "lbFloorInfoTop0503";
             this.lbFloorInfoTop0503.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0503.TabIndex = 13;
-            this.lbFloorInfoTop0503.Text = "0.0℃";
+            this.lbFloorInfoTop0503.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0503.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0503
@@ -3927,14 +3927,14 @@
             this.lbFloorStatus0503.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0503.SetColumnSpan(this.lbFloorStatus0503, 3);
             this.lbFloorStatus0503.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0503.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0503.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0503.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0503.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0503.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0503.Name = "lbFloorStatus0503";
             this.lbFloorStatus0503.Size = new System.Drawing.Size(120, 13);
             this.lbFloorStatus0503.TabIndex = 17;
-            this.lbFloorStatus0503.Text = "空腔";
+            this.lbFloorStatus0503.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0503.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel28
@@ -4195,7 +4195,7 @@
             this.lbFloorInfoTop0102.Name = "lbFloorInfoTop0102";
             this.lbFloorInfoTop0102.Size = new System.Drawing.Size(121, 12);
             this.lbFloorInfoTop0102.TabIndex = 13;
-            this.lbFloorInfoTop0102.Text = "0.0℃";
+            this.lbFloorInfoTop0102.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0102
@@ -4216,14 +4216,14 @@
             this.lbFloorStatus0102.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0102.SetColumnSpan(this.lbFloorStatus0102, 3);
             this.lbFloorStatus0102.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0102.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0102.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0102.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0102.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0102.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0102.Name = "lbFloorStatus0102";
             this.lbFloorStatus0102.Size = new System.Drawing.Size(121, 12);
             this.lbFloorStatus0102.TabIndex = 17;
-            this.lbFloorStatus0102.Text = "空腔";
+            this.lbFloorStatus0102.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0101
@@ -4262,7 +4262,7 @@
             this.lbFloorInfoTop0101.Name = "lbFloorInfoTop0101";
             this.lbFloorInfoTop0101.Size = new System.Drawing.Size(121, 12);
             this.lbFloorInfoTop0101.TabIndex = 13;
-            this.lbFloorInfoTop0101.Text = "0.0℃";
+            this.lbFloorInfoTop0101.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0101.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0101
@@ -4283,14 +4283,14 @@
             this.lbFloorStatus0101.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0101.SetColumnSpan(this.lbFloorStatus0101, 3);
             this.lbFloorStatus0101.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0101.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0101.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0101.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0101.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0101.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0101.Name = "lbFloorStatus0101";
             this.lbFloorStatus0101.Size = new System.Drawing.Size(121, 12);
             this.lbFloorStatus0101.TabIndex = 17;
-            this.lbFloorStatus0101.Text = "空腔";
+            this.lbFloorStatus0101.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0101.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0103
@@ -4329,7 +4329,7 @@
             this.lbFloorInfoTop0103.Name = "lbFloorInfoTop0103";
             this.lbFloorInfoTop0103.Size = new System.Drawing.Size(121, 12);
             this.lbFloorInfoTop0103.TabIndex = 13;
-            this.lbFloorInfoTop0103.Text = "0.0℃";
+            this.lbFloorInfoTop0103.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0103.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0103
@@ -4350,14 +4350,14 @@
             this.lbFloorStatus0103.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0103.SetColumnSpan(this.lbFloorStatus0103, 3);
             this.lbFloorStatus0103.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0103.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0103.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0103.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0103.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0103.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0103.Name = "lbFloorStatus0103";
             this.lbFloorStatus0103.Size = new System.Drawing.Size(121, 13);
             this.lbFloorStatus0103.TabIndex = 17;
-            this.lbFloorStatus0103.Text = "空腔";
+            this.lbFloorStatus0103.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0103.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpOven03
@@ -4418,7 +4418,7 @@
             this.lbFloorInfoTop0301.Name = "lbFloorInfoTop0301";
             this.lbFloorInfoTop0301.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0301.TabIndex = 13;
-            this.lbFloorInfoTop0301.Text = "0.0℃";
+            this.lbFloorInfoTop0301.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0301.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0301
@@ -4439,14 +4439,14 @@
             this.lbFloorStatus0301.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0301.SetColumnSpan(this.lbFloorStatus0301, 3);
             this.lbFloorStatus0301.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0301.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0301.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0301.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0301.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0301.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0301.Name = "lbFloorStatus0301";
             this.lbFloorStatus0301.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus0301.TabIndex = 17;
-            this.lbFloorStatus0301.Text = "空腔";
+            this.lbFloorStatus0301.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0301.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0302
@@ -4485,7 +4485,7 @@
             this.lbFloorInfoTop0302.Name = "lbFloorInfoTop0302";
             this.lbFloorInfoTop0302.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0302.TabIndex = 13;
-            this.lbFloorInfoTop0302.Text = "0.0℃";
+            this.lbFloorInfoTop0302.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0302.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0302
@@ -4506,14 +4506,14 @@
             this.lbFloorStatus0302.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0302.SetColumnSpan(this.lbFloorStatus0302, 3);
             this.lbFloorStatus0302.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0302.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0302.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0302.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0302.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0302.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0302.Name = "lbFloorStatus0302";
             this.lbFloorStatus0302.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus0302.TabIndex = 17;
-            this.lbFloorStatus0302.Text = "空腔";
+            this.lbFloorStatus0302.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0302.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0303
@@ -4552,7 +4552,7 @@
             this.lbFloorInfoTop0303.Name = "lbFloorInfoTop0303";
             this.lbFloorInfoTop0303.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0303.TabIndex = 13;
-            this.lbFloorInfoTop0303.Text = "0.0℃";
+            this.lbFloorInfoTop0303.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0303.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0303
@@ -4573,14 +4573,14 @@
             this.lbFloorStatus0303.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0303.SetColumnSpan(this.lbFloorStatus0303, 3);
             this.lbFloorStatus0303.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0303.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0303.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0303.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0303.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0303.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0303.Name = "lbFloorStatus0303";
             this.lbFloorStatus0303.Size = new System.Drawing.Size(120, 13);
             this.lbFloorStatus0303.TabIndex = 17;
-            this.lbFloorStatus0303.Text = "空腔";
+            this.lbFloorStatus0303.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0303.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpOven04
@@ -4641,7 +4641,7 @@
             this.lbFloorInfoTop0402.Name = "lbFloorInfoTop0402";
             this.lbFloorInfoTop0402.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0402.TabIndex = 13;
-            this.lbFloorInfoTop0402.Text = "0.0℃";
+            this.lbFloorInfoTop0402.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0402.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0402
@@ -4662,14 +4662,14 @@
             this.lbFloorStatus0402.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0402.SetColumnSpan(this.lbFloorStatus0402, 3);
             this.lbFloorStatus0402.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0402.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0402.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0402.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0402.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0402.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0402.Name = "lbFloorStatus0402";
             this.lbFloorStatus0402.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus0402.TabIndex = 17;
-            this.lbFloorStatus0402.Text = "空腔";
+            this.lbFloorStatus0402.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0402.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0401
@@ -4708,7 +4708,7 @@
             this.lbFloorInfoTop0401.Name = "lbFloorInfoTop0401";
             this.lbFloorInfoTop0401.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0401.TabIndex = 13;
-            this.lbFloorInfoTop0401.Text = "0.0℃";
+            this.lbFloorInfoTop0401.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0401.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0401
@@ -4729,14 +4729,14 @@
             this.lbFloorStatus0401.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0401.SetColumnSpan(this.lbFloorStatus0401, 3);
             this.lbFloorStatus0401.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0401.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0401.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0401.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0401.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0401.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0401.Name = "lbFloorStatus0401";
             this.lbFloorStatus0401.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus0401.TabIndex = 17;
-            this.lbFloorStatus0401.Text = "空腔";
+            this.lbFloorStatus0401.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0401.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0403
@@ -4775,7 +4775,7 @@
             this.lbFloorInfoTop0403.Name = "lbFloorInfoTop0403";
             this.lbFloorInfoTop0403.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0403.TabIndex = 13;
-            this.lbFloorInfoTop0403.Text = "0.0℃";
+            this.lbFloorInfoTop0403.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0403.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0403
@@ -4796,14 +4796,14 @@
             this.lbFloorStatus0403.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0403.SetColumnSpan(this.lbFloorStatus0403, 3);
             this.lbFloorStatus0403.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0403.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0403.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0403.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0403.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0403.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0403.Name = "lbFloorStatus0403";
             this.lbFloorStatus0403.Size = new System.Drawing.Size(120, 13);
             this.lbFloorStatus0403.TabIndex = 17;
-            this.lbFloorStatus0403.Text = "空腔";
+            this.lbFloorStatus0403.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0403.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpOven02
@@ -4864,7 +4864,7 @@
             this.lbFloorInfoTop0202.Name = "lbFloorInfoTop0202";
             this.lbFloorInfoTop0202.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0202.TabIndex = 13;
-            this.lbFloorInfoTop0202.Text = "0.0℃";
+            this.lbFloorInfoTop0202.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0202.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0202
@@ -4885,14 +4885,14 @@
             this.lbFloorStatus0202.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0202.SetColumnSpan(this.lbFloorStatus0202, 3);
             this.lbFloorStatus0202.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0202.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0202.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0202.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0202.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0202.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0202.Name = "lbFloorStatus0202";
             this.lbFloorStatus0202.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus0202.TabIndex = 17;
-            this.lbFloorStatus0202.Text = "空腔";
+            this.lbFloorStatus0202.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0202.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0201
@@ -4931,7 +4931,7 @@
             this.lbFloorInfoTop0201.Name = "lbFloorInfoTop0201";
             this.lbFloorInfoTop0201.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0201.TabIndex = 13;
-            this.lbFloorInfoTop0201.Text = "0.0℃";
+            this.lbFloorInfoTop0201.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0201.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0201
@@ -4952,14 +4952,14 @@
             this.lbFloorStatus0201.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0201.SetColumnSpan(this.lbFloorStatus0201, 3);
             this.lbFloorStatus0201.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0201.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0201.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0201.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0201.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0201.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0201.Name = "lbFloorStatus0201";
             this.lbFloorStatus0201.Size = new System.Drawing.Size(120, 12);
             this.lbFloorStatus0201.TabIndex = 17;
-            this.lbFloorStatus0201.Text = "空腔";
+            this.lbFloorStatus0201.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0201.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpFloor0203
@@ -4998,7 +4998,7 @@
             this.lbFloorInfoTop0203.Name = "lbFloorInfoTop0203";
             this.lbFloorInfoTop0203.Size = new System.Drawing.Size(120, 12);
             this.lbFloorInfoTop0203.TabIndex = 13;
-            this.lbFloorInfoTop0203.Text = "0.0℃";
+            this.lbFloorInfoTop0203.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbFloorInfoTop0203.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime0203
@@ -5019,14 +5019,14 @@
             this.lbFloorStatus0203.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor0203.SetColumnSpan(this.lbFloorStatus0203, 3);
             this.lbFloorStatus0203.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus0203.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFloorStatus0203.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFloorStatus0203.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFloorStatus0203.Location = new System.Drawing.Point(0, 44);
             this.lbFloorStatus0203.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.lbFloorStatus0203.Name = "lbFloorStatus0203";
             this.lbFloorStatus0203.Size = new System.Drawing.Size(120, 13);
             this.lbFloorStatus0203.TabIndex = 17;
-            this.lbFloorStatus0203.Text = "空腔";
+            this.lbFloorStatus0203.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0203.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pRobot
@@ -7393,6 +7393,7 @@
             // 
             // tbWaterContent
             // 
+            this.tbWaterContent.BackColor = System.Drawing.SystemColors.Control;
             this.tbWaterContent.Location = new System.Drawing.Point(88, 80);
             this.tbWaterContent.Name = "tbWaterContent";
             this.tbWaterContent.Size = new System.Drawing.Size(68, 21);

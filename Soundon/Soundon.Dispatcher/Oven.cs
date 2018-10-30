@@ -752,11 +752,11 @@ namespace Soundon.Dispatcher
             this.Plc.IsAlive = true;
 
             this.getInfoNum++;
-            if (getInfoNum >= 4)
+            if (getInfoNum >= 2)
             {
                 this.AlreadyGetAllInfo = true;
             }
-            this.getInfoNum %= 4;
+            this.getInfoNum %= 2;
             return true;
         }
 
