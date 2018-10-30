@@ -43,6 +43,25 @@ namespace Soundon.Dispatcher
         [DisplayName("PLC Id")]
         public int PlcId { get; set; } = -1;
 
+        #region 该设备上的PLC
+
+        private PLC plc = new PLC();
+
+        [Browsable(false)]
+        [ReadOnly(true)]
+        public PLC Plc
+        {
+            get
+            {
+                if (plc.Id < 1)
+                {
+                    plc = PLC.PlcList.First(p => p.Id == this.PlcId);
+                }
+                return plc;
+            }
+        }
+        #endregion
+
 
         #endregion
 

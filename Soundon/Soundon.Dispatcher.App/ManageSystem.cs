@@ -275,7 +275,7 @@ namespace Soundon.Dispatcher.App
 
             TreeNode tnCache = new TreeNode("缓存架");
 
-            TreeNode tnRotater = new TreeNode("旋转台");
+            TreeNode tnRotater = new TreeNode("转移台");
 
             List<TreeNode> tnStations = new List<TreeNode>();
 
@@ -955,7 +955,7 @@ namespace Soundon.Dispatcher.App
 
             #region 缓存架
 
-           // Current.Cache.IsAlive = Current.Cache.IsEnable;
+            Current.Cache.IsAlive = Current.Cache.IsEnable && Current.Cache.Plc.IsAlive;
 
             Current.Cache.Stations.ForEach(s => s.IsAlive = s.IsEnable && Current.Cache.IsAlive);
 
@@ -1001,9 +1001,9 @@ namespace Soundon.Dispatcher.App
 
             #endregion
 
-            #region 旋转台
+            #region 转移台
 
-           // Current.Transfer.IsAlive = Current.Transfer.IsEnable;
+            Current.Transfer.IsAlive = Current.Transfer.IsEnable && Current.Transfer.Plc.IsAlive;
 
             Current.Transfer.Station.IsAlive = Current.Transfer.IsAlive && Current.Transfer.Station.IsEnable;
 
@@ -1106,7 +1106,7 @@ namespace Soundon.Dispatcher.App
 
             Current.Robot.IsAlive = Current.Robot.IsEnable && Current.Robot.Plc.IsAlive;
 
-            if (Current.Robot.Plc.IsAlive)
+            if (Current.Robot.IsAlive)
             {
 
                 switch (Current.Robot.ClampStatus)
@@ -1126,7 +1126,7 @@ namespace Soundon.Dispatcher.App
             }
             else
             {
-                this.panelRobot.BackColor = SystemColors.Control;
+                this.panelRobot.BackColor = Color.LightGray;
                 this.tbRobotStatus.Text = "未连接";
                 this.pbRobotLamp.Image = Properties.Resources.Gray_Round;
             }
@@ -3458,7 +3458,7 @@ namespace Soundon.Dispatcher.App
                     {
                         this.propertyGridSettings.SelectedObject = Current.Cache;
                     }
-                    else if (e.Node.Level == 0 && e.Node.Text == "旋转台")
+                    else if (e.Node.Level == 0 && e.Node.Text == "转移台")
                     {
                         this.propertyGridSettings.SelectedObject = Current.Transfer;
                     }
@@ -3585,19 +3585,19 @@ namespace Soundon.Dispatcher.App
             }
             else if (type == typeof(Robot))
             {
-                settingsStr = string.Format("将MES的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Robot.Name);
             }
             else if (type == typeof(Transfer))
             {
-                settingsStr = string.Format("将MES的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Transfer.Name);
             }
             else if (type == typeof(Cache))
             {
-                settingsStr = string.Format("将MES的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Cache.Name);
             }
             else if (type == typeof(MES))
             {
-                settingsStr = string.Format("将MES的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.mes.Name);
             }
             else if (type == typeof(Option))
             {

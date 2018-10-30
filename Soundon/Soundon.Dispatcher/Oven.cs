@@ -229,7 +229,7 @@ namespace Soundon.Dispatcher
             {
                 if (plc.Id < 1)
                 {
-                    plc = new PLC(PlcId);
+                    plc = PLC.PlcList.First(p => p.Id == this.PlcId);
                 }
                 return plc;
             }
@@ -384,7 +384,7 @@ namespace Soundon.Dispatcher
 
                     this.Floors[j].RunMinutes = bOutputs[0];
                     this.Floors[j].Vacuum = bOutputs[2] + bOutputs[3] * 65535;
-                    this.Floors[j].IsVacuum = this.Floors[j].Vacuum < 95000;
+                    this.Floors[j].IsVacuum = this.Floors[j].Vacuum < 90000;
 
                     if (j == 0)
                     {

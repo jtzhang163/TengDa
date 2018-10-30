@@ -39,6 +39,25 @@ namespace Soundon.Dispatcher
             private set { stationIds = value; }
         }
 
+        #region 该设备上的PLC
+
+        private PLC plc = new PLC();
+
+        [Browsable(false)]
+        [ReadOnly(true)]
+        public PLC Plc
+        {
+            get
+            {
+                if (plc.Id < 1)
+                {
+                    plc = PLC.PlcList.First(p => p.Id == this.PlcId);
+                }
+                return plc;
+            }
+        }
+        #endregion
+
         //[Browsable(false)]
         //public bool PreIsReady { get; set; } = false;
 

@@ -321,7 +321,7 @@ namespace Soundon.Dispatcher
             {
                 if (plc.Id < 1)
                 {
-                    plc = new PLC(PlcId);
+                    plc = PLC.PlcList.First(p => p.Id == this.PlcId);
                 }
                 return plc;
             }
@@ -534,7 +534,8 @@ namespace Soundon.Dispatcher
 
                     #region 获取是否启动完成
 
-                    Current.Robot.IsStartting = bOutputs[3] == 1;
+                    Current.Robot.IsStartting = true;
+                    //Current.Robot.IsStartting = bOutputs[3] == 1;
 
                     #endregion
 
