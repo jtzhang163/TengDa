@@ -3972,10 +3972,10 @@ namespace Soundon.Dispatcher.App
                     if (Array.IndexOf(Current.option.CurveIndexs.Split(','), k.ToString()) > -1)
                     {
                         if (station.sampledDatas[k].Count <= 1) return; // 一个数据就不绘制了
-                        float A = station.sampledDatas[k][0] - 20;
+                        float A = station.sampledDatas[k][0];//station.sampledDatas[k][0] - 20
                         for (int kk = 1; kk < station.sampledDatas[k].Count; kk++)
                         {
-                            float B = station.sampledDatas[k][kk] - 20;
+                            float B = station.sampledDatas[k][kk];//station.sampledDatas[k][kk] - 20
                             e.Graphics.DrawLine(new Pen(Current.option.CurveColors[k]),
                                 new Point(pCurve.ClientSize.Width - station.sampledDatas[k].Count + kk - 1, pCurve.ClientSize.Height -
                                     (int)(((double)A / 100) * pCurve.ClientSize.Height)),

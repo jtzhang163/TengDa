@@ -63,6 +63,16 @@ namespace Soundon.Dispatcher.App.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap ColorIntroduction {
+            get {
+                object obj = ResourceManager.GetObject("ColorIntroduction", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Continue_Green {
             get {
                 object obj = ResourceManager.GetObject("Continue_Green", resourceCulture);
