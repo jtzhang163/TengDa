@@ -189,6 +189,7 @@ namespace TengDa.WF.Terminals
                     HslCommunice533.OperateResult result = omron_net.ConnectServer();
                     if (!result.IsSuccess)
                     {
+                        msg = result.Message;
                         IsAlive = false;
                         return false;
                     }

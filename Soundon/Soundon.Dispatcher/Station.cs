@@ -130,6 +130,12 @@ namespace Soundon.Dispatcher
                         this.SampleStatus = SampleStatus.待测试;
                     }
 
+                    //解决取放料时夹具状态反复变化问题
+                    if (value != ClampStatus.无夹具 && (this.Id == Current.Task.FromStationId || this.Id == Current.Task.ToStationId))
+                    {
+                        value = Current.Task.FromClampStatus;
+                    }
+
                     AddLog(string.Format("{0}——>{1}", clampStatus, value));
 
                 }

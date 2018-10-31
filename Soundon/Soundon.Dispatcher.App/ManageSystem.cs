@@ -4130,7 +4130,7 @@ namespace Soundon.Dispatcher.App
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].IsAlive
                 && Current.ovens[i].Floors[j].DoorStatus != DoorStatus.关闭;
-            this.tsmOpenNetControl.Enabled = Current.ovens[i].Floors[j].IsAlive && !Current.ovens[i].Floors[j].IsNetControlOpen;
+          //  this.tsmOpenNetControl.Enabled = Current.ovens[i].Floors[j].IsAlive && !Current.ovens[i].Floors[j].IsNetControlOpen;
             this.tsmLoadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].IsAlive
@@ -4676,11 +4676,11 @@ namespace Soundon.Dispatcher.App
                         return;
                     }
 
-                    if (Current.Robot.ClampStatus == ClampStatus.满夹具 && station.GetPutType == GetPutType.上料机)
-                    {
-                        Tip.Alert("上料机不允许放满夹具！");
-                        return;
-                    }
+                    //if (Current.Robot.ClampStatus == ClampStatus.满夹具 && station.GetPutType == GetPutType.上料机)
+                    //{
+                    //    Tip.Alert("上料机不允许放满夹具！");
+                    //    return;
+                    //}
 
                     if (Current.Task.StartTime == TengDa.Common.DefaultTime)
                     {
