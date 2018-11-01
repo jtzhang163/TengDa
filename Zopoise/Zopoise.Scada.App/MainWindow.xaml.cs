@@ -1,14 +1,8 @@
-﻿using InteractiveDataDisplay.WPF;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Threading;
 using TengDa.Wpf;
 
 namespace Zopoise.Scada.App
@@ -21,9 +15,8 @@ namespace Zopoise.Scada.App
 
         public MainWindow()
         {
-
             #region 检查程序是否重复启动
-            if (Current.AppIsRun)
+            if (AppCurrent.AppIsRun)
             {
                 if (Xceed.Wpf.Toolkit.MessageBox.Show("当前程序已经在运行，请勿重复启动！", "提示", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK)
                 {
@@ -39,55 +32,67 @@ namespace Zopoise.Scada.App
         protected override void OnClosing(CancelEventArgs e)
         {
 
+            if (Current.App.RunStatus == TengDa.RunStatus.运行)
+            {
+                OperationHelper.ShowTips("系统正在运行，请先停止、复位后关闭！", true);
+                e.Cancel = true;
+                return;
+            }
+            //OperationHelper.ShowTips("关闭软件");
             base.OnClosing(e);
-        }
-
-        public void OnClose(object sender, ExecutedRoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        public void OnShowLoginView(object sender, ExecutedRoutedEventArgs e)
-        {
-
         }
 
         private void Init()
         {
 
-            new AppDbInitializer().Initialize();
+            this.DataContext = Current.App;
 
-            this.DataContext = AppCurrent.AppViewModel;
+            this.wpScaner.DataContext = Current.Scaner;
 
+            AppCurrent.IsTerminalInitFinished = true;
 
-            TimerInit();
-            //当前时间显示
-            AppCurrent.AppViewModel.ShowTips("打开软件");
+            AppCurrent.YieldNow.FeedingOKContent = "测试数";
+            AppCurrent.YieldNow.BlankingOKContent = "上传数";
+            if (AppCurrent.YieldNow.StartTime == TengDa.Common.DefaultTime)
+            {
+                AppCurrent.YieldNow.StartTime = DateTime.Now;
+            }
 
-            StartDateTimePicker.Value = DateTime.Now.AddHours(-1);
-            StopDateTimePicker.Value = DateTime.Now;
+            OperationHelper.ShowTips("打开软件");
 
-            Current.IsTerminalInitFinished = true;
+            InitTimer();
+
+            this.MainTabControl.SelectedIndex = this.MainTabControl.Items.Add(new TabItem { Header = "主界面", Content = new MainTabItemUC() });
+
+            Current.MainWindow = this;
         }
 
-
-        private void TimerInit()
+        private void InitTimer()
         {
-            //界面画图定时器
-            InitDrawingGraph();
-
             //更新
-            AppCurrent.TimerUpdateTime.Elapsed += delegate { AppCurrent.AppViewModel.TimeNow = DateTime.Now; };
-            AppCurrent.TimerUpdateTime.Start();
+            Current.TimerUpdateTime.Elapsed += delegate { Current.App.TimeNow = DateTime.Now; };
+            Current.TimerUpdateTime.Start();
 
-            AppCurrent.TimerCommunicateWithPlc.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().PlcCommunicate);
-            AppCurrent.TimerCommunicateWithPlc.Start();
+            Current.TimerCheckTesterInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckTesterInfo);
+            Current.TimerCheckTesterInfo.Start();
 
-            AppCurrent.TimerCommunicateWithCommunicator.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CommunicatorCommunicate);
-            AppCurrent.TimerCommunicateWithCommunicator.Start();
+            Current.TimerCheckCollectorInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckCollectorInfo);
+            Current.TimerCheckCollectorInfo.Start();
+
+            Current.TimerCheckCoolerInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckCoolerInfo);
+            Current.TimerCheckCoolerInfo.Start();
+
+            Current.TimerCheckScanerInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckScanerInfo);
+            Current.TimerCheckScanerInfo.Start();
+
+            Current.TimerCheckDataInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckDataInfo);
+            Current.TimerCheckDataInfo.Start();
+
+            Current.TimerCheckMesInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckMesInfo);
+            Current.TimerCheckMesInfo.Start();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void BtnTest_Click(object sender, RoutedEventArgs e)
         {
 
 
@@ -95,10 +100,6 @@ namespace Zopoise.Scada.App
 
         private void OnQueryOperationLog(object sender, ExecutedRoutedEventArgs e)
         {
-            var uc = new QueryOperationLogUC()
-            {
-
-            };
             var isContain = false;
             foreach (TabItem tabItem in this.MainTabControl.Items)
             {
@@ -107,7 +108,7 @@ namespace Zopoise.Scada.App
 
             if (!isContain)
             {
-                this.MainTabControl.SelectedIndex = this.MainTabControl.Items.Add(new TabItem { Header = "系统日志", Content = uc });
+                this.MainTabControl.SelectedIndex = this.MainTabControl.Items.Add(new TabItem { Header = "系统日志", Content = new QueryOperationLogUC() });
             }
             else
             {
@@ -122,27 +123,23 @@ namespace Zopoise.Scada.App
             }
         }
 
-        private void OnQueryCVLog(object sender, ExecutedRoutedEventArgs e)
+        private void OnQueryIDLog(object sender, ExecutedRoutedEventArgs e)
         {
-            var uc = new QueryCVLogUC()
-            {
-
-            };
             var isContain = false;
             foreach (TabItem tabItem in this.MainTabControl.Items)
             {
-                if (tabItem.Header.ToString() == "电流电压查询") { isContain = true; }
+                if (tabItem.Header.ToString() == "测试数据查询") { isContain = true; }
             }
 
             if (!isContain)
             {
-                this.MainTabControl.SelectedIndex = this.MainTabControl.Items.Add(new TabItem { Header = "电流电压查询", Content = uc });
+                this.MainTabControl.SelectedIndex = this.MainTabControl.Items.Add(new TabItem { Header = "测试数据查询", Content = new QueryIDLogUC() });
             }
             else
             {
                 for (var i = 0; i < this.MainTabControl.Items.Count; i++)
                 {
-                    if ((this.MainTabControl.Items[i] as TabItem).Header.ToString() == "电流电压查询")
+                    if ((this.MainTabControl.Items[i] as TabItem).Header.ToString() == "测试数据查询")
                     {
                         this.MainTabControl.SelectedIndex = i;
                         return;
@@ -159,160 +156,86 @@ namespace Zopoise.Scada.App
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            if (Current.IsRunning)
+
+            if (AppCurrent.IsRunning)
             {
-                AppCurrent.AppViewModel.ShowTips("系统已经在运行，请勿重复启动！");
+                OperationHelper.ShowTips("系统已经在运行，请勿重复启动！");
+                return;
+            }
+
+            if (Current.App.RunStatus == TengDa.RunStatus.异常)
+            {
+                OperationHelper.ShowTips("请先复位！");
                 return;
             }
 
             if (CommunicateControl.CommunicateStart())
             {
-                Current.IsRunning = true;
-                AppCurrent.AppViewModel.RunStatus = TengDa.RunStatus.运行;
-                AppCurrent.AppViewModel.ShowTips("成功启动运行！");
+                AppCurrent.IsRunning = true;
+                Current.App.RunStatus = TengDa.RunStatus.运行;
+                OperationHelper.ShowTips("成功启动运行！");
+            }
+            else
+            {
+                Current.App.RunStatus = TengDa.RunStatus.异常;
             }
 
         }
 
         private void BtnStop_Click(object sender, RoutedEventArgs e)
         {
-            if (!Current.IsRunning)
+            if (!AppCurrent.IsRunning)
             {
-                AppCurrent.AppViewModel.ShowTips("系统已暂停运行，请勿重复点击！");
+                OperationHelper.ShowTips("系统已暂停运行，请勿重复点击！");
                 return;
             }
 
-            Current.IsRunning = false;
-            AppCurrent.AppViewModel.ShowTips("成功停止运行！");
-            AppCurrent.AppViewModel.RunStatus = TengDa.RunStatus.暂停;
+            AppCurrent.IsRunning = false;
+            OperationHelper.ShowTips("成功停止运行！");
+            Current.App.RunStatus = TengDa.RunStatus.暂停;
         }
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
         {
-            if (Current.IsRunning)
+
+            if (Current.App.RunStatus == TengDa.RunStatus.运行)
             {
-                AppCurrent.AppViewModel.ShowTips("请先停止运行！");
+                Tip.Alert("系统正在运行，复位无效，请停止运行后再执行复位操作！");
+                return;
+            }
+
+            if (Current.App.RunStatus == TengDa.RunStatus.闲置)
+            {
+                Tip.Alert("系统尚未启动，复位操作无效！");
                 return;
             }
 
             if (CommunicateControl.CommunicateStop())
             {
-                AppCurrent.AppViewModel.ShowTips("成功复位！");
-                AppCurrent.AppViewModel.RunStatus = TengDa.RunStatus.闲置;
+                OperationHelper.ShowTips("成功复位！");
+                Current.App.RunStatus = TengDa.RunStatus.闲置;
             }
         }
 
-        private DispatcherTimer timer = new DispatcherTimer();
-
-        private void AnimatedPlot(object sender, EventArgs e)
+        private void BtnCloseTabItem_Click(object sender, RoutedEventArgs e)
         {
-
-            if (Current.IsRunning && AppCurrent.AppViewModel.GraphShowMode == GraphShowMode.实时数据)
+            Button btn = sender as Button;
+            string header = btn.Tag.ToString();
+            foreach (TabItem item in MainTabControl.Items)
             {
-                for (int i = 0; i < Tester.CurrentCount; i++)
+                string _header = item.Header.ToString();
+                if (_header == header && _header != "主界面")
                 {
-                    var lgCurrents = (LineGraph)linesCurrents.Children[i];
-                    lgCurrents.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowCurrentsData[i]);
+                    MainTabControl.Items.Remove(item);
+                    break;
                 }
-
-                var lgCurrent = (LineGraph)linesVoltage.Children[0];
-                lgCurrent.Plot(AppCurrent.ShowDataOrder, AppCurrent.ShowVoltageData);
             }
-
         }
 
-        private Color[] chartColors = new Color[] { Colors.Blue, Colors.Lime, Colors.Green, Colors.Cyan, Colors.Red, Colors.Purple };
-
-        private void InitDrawingGraph()
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
-            for (int i = 0; i < Tester.CurrentCount; i++)
-            {
-                var lgCurrents = new LineGraph();
-                linesCurrents.Children.Add(lgCurrents);
-                lgCurrents.Stroke = new SolidColorBrush(chartColors[i]);
-                lgCurrents.Description = String.Format("{0}-第{0}路电流", i + 1);
-                lgCurrents.StrokeThickness = 2;
-            }
-
-
-            var lgVoltage = new LineGraph();
-            linesVoltage.Children.Add(lgVoltage);
-            lgVoltage.Stroke = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
-            lgVoltage.Description = String.Format("电压");
-            lgVoltage.StrokeThickness = 2;
-
-
-            timer.Interval = TimeSpan.FromMilliseconds(AppCurrent.Option.CommunicatorCommunicateInterval);
-            timer.Tick += new EventHandler(AnimatedPlot);
-            timer.IsEnabled = true;
-        }
-
-        #region 显示历史数据
-
-        private static List<double> ShowDataOrder = new List<double>();
-
-        private List<double> ShowVoltageData = new List<double>();
-
-        private static List<double>[] ShowCurrentsData = new List<double>[Tester.CurrentCount];
-
-        private void BtnShowHistoryData_Click(object sender, RoutedEventArgs e)
-        {
-            using (var data = new CurrentVoltageDataContext())
-            {
-                var CurrentVoltageDatas = data.CurrentVoltageDatas.Where(d => d.RecordTime > StartDateTimePicker.Value && d.RecordTime < StopDateTimePicker.Value).ToList();
-                if (CurrentVoltageDatas.Count < 1)
-                {
-                    AppCurrent.AppViewModel.ShowTips("该时间范围没数据！");
-                    return;
-                }
-
-
-                ShowDataOrder.Clear();
-                ShowVoltageData.Clear();
-                for (int i = 0; i < Tester.CurrentCount; i++)
-                {
-                    ShowCurrentsData[i] = new List<double>();
-                }
-
-                int order = 1;
-                foreach (var cvData in CurrentVoltageDatas)
-                {
-                    ShowDataOrder.Add(order++);
-                    ShowVoltageData.Add(cvData.Voltage);
-                    for (int i = 0; i < Tester.CurrentCount; i++)
-                    {
-                        ShowCurrentsData[i].Add(cvData.Currents[i]);
-                    }
-                }
-
-            }
-
-            for (int i = 0; i < Tester.CurrentCount; i++)
-            {
-                var lgCurrents = (LineGraph)linesCurrents.Children[i];
-                lgCurrents.Plot(ShowDataOrder, ShowCurrentsData[i]);
-            }
-
-            var lgCurrent = (LineGraph)linesVoltage.Children[0];
-            lgCurrent.Plot(ShowDataOrder, ShowVoltageData);
-        }
-
-        #endregion
-    }
-
-
-
-    public class VisibilityToCheckedConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            return ((Visibility)value) == Visibility.Visible;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            return ((bool)value) ? Visibility.Visible : Visibility.Collapsed;
+            Current.App.MainWindowsBackstageIsOpen = true;
+            Current.MainWindow.UserBackstageTabItem.IsSelected = true;
         }
     }
 }

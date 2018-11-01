@@ -28,6 +28,19 @@
             <StackPanel Margin="30,0,0,0">
 
                 <WrapPanel>
+                    <Label Content="0.9" FontSize="30" FontWeight="Bold"/>
+                    <Label Content="2018/8/9" Margin="20,10,0,0"/>
+                </WrapPanel>
+                <StackPanel>
+                    <Label Content="更新内容："/>
+                    <Label Content=" 1. 权限设置"/>
+                    <Label Content=" 2. 登录方式变化"/>
+                    <Label Content=" 3. 登录窗口优化"/>
+                    <Label Content=" 4. 模拟运行实现"/>
+                </StackPanel>
+                <Separator Margin="-25,0,0,0"/>
+
+                <WrapPanel>
                     <Label Content="0.8" FontSize="30" FontWeight="Bold"/>
                     <Label Content="2018/5/20" Margin="20,10,0,0"/>
                 </WrapPanel>
@@ -35,8 +48,6 @@
                     <Label Content="更新内容："/>
                     <Label Content=" 1. 登录优化"/>
                     <Label Content=" 2. 注销"/>
-                    <Label Content=" 3. 用户编辑"/>
-                    <Label Content=" 4. 用户管理"/>
                 </StackPanel>
                 <Separator Margin="-25,0,0,0"/>
 

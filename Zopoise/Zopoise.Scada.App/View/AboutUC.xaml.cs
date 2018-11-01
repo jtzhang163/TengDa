@@ -10,7 +10,7 @@ namespace Zopoise.Scada.App.View
         public AboutUC()
         {
             InitializeComponent();
-            this.DataContext = AppCurrent.AppViewModel;
+            this.DataContext = Current.App;
         }
     }
 }

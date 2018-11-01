@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C4DE02E5-EAF6-4EFE-A8AD-867C06A580A8}</ProjectGuid>
+    <ProjectGuid>{9BFF83FB-8DCA-48C3-932C-C98C432A2C9E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Zopoise.Scada.App</RootNamespace>
     <AssemblyName>Zopoise.Scada.App</AssemblyName>
@@ -13,23 +13,31 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <HockeyAppResourceId>5d64931f24c849c28c48df97d024f772</HockeyAppResourceId>
+    <PublishUrl>E:\forIIS\ForTestWpfPublish\</PublishUrl>
+    <Install>false</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <MapFileExtensions>false</MapFileExtensions>
+    <InstallUrl>http://localhost:8066/</InstallUrl>
+    <ProductName>东莞塔菲尔Hipot自动采集上传系统</ProductName>
+    <PublisherName>深圳市腾达工业自动设备有限公司</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>0.9.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,6 +60,18 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>TengDa.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>0F4867707ED0848A1C6DC4BAA54CC54FA9AFB679</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Tafel.Hipot.App_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
@@ -116,10 +136,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="TengDa.Wpf, Version=0.8.0.15765, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\TengDa\TengDa.Dll\TengDa.Wpf.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -147,33 +163,45 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\AppContext.cs" />
-    <Compile Include="Data\AppCurrent.cs" />
-    <Compile Include="Data\AppDbInitializer.cs" />
-    <Compile Include="Data\AppOption.cs" />
-    <Compile Include="Data\Enumeration.cs" />
-    <Compile Include="Command\QueryCommand.cs" />
-    <Compile Include="Command\UserCommand.cs" />
-    <Compile Include="View\User\UserSettingWindow.xaml.cs">
-      <DependentUpon>UserSettingWindow.xaml</DependentUpon>
+    <Compile Include="Data\ScanerContext.cs" />
+    <Compile Include="Data\CoolerContext.cs" />
+    <Compile Include="Data\CollectorContext.cs" />
+    <Compile Include="Data\Context.cs" />
+    <Compile Include="Common\Current.cs" />
+    <Compile Include="Data\DbInitializer.cs" />
+    <Compile Include="Common\Option.cs" />
+    <Compile Include="Common\Enumeration.cs" />
+    <Compile Include="Command\QueryCommands.cs" />
+    <Compile Include="Data\InsulationContext.cs" />
+    <Compile Include="Data\MesContext.cs" />
+    <Compile Include="Model\Battery.cs" />
+    <Compile Include="Model\Cooler.cs" />
+    <Compile Include="Model\InsulationData.cs" />
+    <Compile Include="Model\PLC.cs" />
+    <Compile Include="Model\Scaner.cs" />
+    <Compile Include="Model\TemperatureCollector.cs" />
+    <Compile Include="Model\MES.cs" />
+    <Compile Include="Utilities\Selector.cs" />
+    <Compile Include="View\Machine\CommunicateStatusUC.xaml.cs">
+      <DependentUpon>CommunicateStatusUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Plc.cs" />
-    <Compile Include="Model\Communicator.cs" />
-    <Compile Include="Model\CurrentVoltageData.cs" />
-    <Compile Include="Model\Tester.cs" />
+    <Compile Include="Model\InsulationTester.cs" />
     <Compile Include="Run\CommunicateControl.cs" />
     <Compile Include="Run\TimerRun.cs" />
     <Compile Include="Utilities\Converter.cs" />
     <Compile Include="ViewModel\AppViewModel.cs" />
-    <Compile Include="ViewModel\UserCVDataViewModel.cs" />
-    <Compile Include="View\Machine\MachineListUC.xaml.cs">
-      <DependentUpon>MachineListUC.xaml</DependentUpon>
+    <Compile Include="ViewModel\UserIDLogViewModel.cs" />
+    <Compile Include="View\Machine\MachineSelectUC.xaml.cs">
+      <DependentUpon>MachineSelectUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Query\QueryCVLogUC.xaml.cs">
-      <DependentUpon>QueryCVLogUC.xaml</DependentUpon>
+    <Compile Include="View\MainTabItemUC.xaml.cs">
+      <DependentUpon>MainTabItemUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Query\QueryIDLogUC.xaml.cs">
+      <DependentUpon>QueryIDLogUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Query\QueryOperationLogUC.xaml.cs">
       <DependentUpon>QueryOperationLogUC.xaml</DependentUpon>
@@ -181,8 +209,14 @@
     <Compile Include="View\StatusBarUC.xaml.cs">
       <DependentUpon>StatusBarUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\User\UserDetailUC.xaml.cs">
-      <DependentUpon>UserDetailUC.xaml</DependentUpon>
+    <Compile Include="View\User\UserListUC.xaml.cs">
+      <DependentUpon>UserListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\CurrentUserUC.xaml.cs">
+      <DependentUpon>CurrentUserUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\AboutUserUC.xaml.cs">
+      <DependentUpon>AboutUserUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\User\UserUC.xaml.cs">
       <DependentUpon>UserUC.xaml</DependentUpon>
@@ -196,7 +230,30 @@
     <Compile Include="View\AboutUC.xaml.cs">
       <DependentUpon>AboutUC.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\User\UserSettingWindow.xaml">
+    <Compile Include="Windows\ChangeProfileWindow.xaml.cs">
+      <DependentUpon>ChangeProfileWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ChangePwdWindow.xaml.cs">
+      <DependentUpon>ChangePwdWindow.xaml</DependentUpon>
+    </Compile>
+    <Resource Include="Images\Profiles\001.jpg" />
+    <Resource Include="Images\Profiles\002.jpg" />
+    <Resource Include="Images\Profiles\003.jpg" />
+    <Resource Include="Images\Profiles\004.jpg" />
+    <Resource Include="Images\Profiles\005.jpg" />
+    <Resource Include="Images\Profiles\006.jpg" />
+    <Resource Include="Images\Profiles\007.jpg" />
+    <Resource Include="Images\Profiles\008.jpg" />
+    <Resource Include="Images\Profiles\009.jpg" />
+    <Resource Include="Images\Profiles\010.jpg" />
+    <Resource Include="Images\Profiles\011.jpg" />
+    <Resource Include="Images\Profiles\012.jpg" />
+    <Content Include="Style\Style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Page Include="View\Machine\CommunicateStatusUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -216,11 +273,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Machine\MachineListUC.xaml">
+    <Page Include="View\Machine\MachineSelectUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Query\QueryCVLogUC.xaml">
+    <Page Include="View\MainTabItemUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Query\QueryIDLogUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -232,7 +293,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\User\UserDetailUC.xaml">
+    <Page Include="View\User\UserListUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\User\CurrentUserUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\User\AboutUserUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -249,6 +318,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AboutUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ChangeProfileWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ChangePwdWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -271,7 +348,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Images\制作.pptx" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -281,12 +357,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\TengDa\TengDa.Wpf\TengDa.Wpf.csproj">
+      <Project>{2bc89f9d-8fc7-4e19-9d16-cc66e56e56ae}</Project>
+      <Name>TengDa.Wpf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\TengDa\TengDa\TengDa.csproj">
       <Project>{313161d4-a305-47fb-8935-d7c0a0cf4b3d}</Project>
       <Name>TengDa</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tafel\Tafel.MES\Tafel.MES.csproj">
+      <Project>{3e119445-c804-46a4-95f7-39de26793ca3}</Project>
+      <Name>Tafel.MES</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -297,7 +383,6 @@
     <Resource Include="Images\Gray_Round.png" />
     <Resource Include="Images\Green_Round.png" />
     <Resource Include="Images\login.png" />
-    <Resource Include="Images\logo.jpg" />
     <Resource Include="Images\logo.PNG" />
     <Resource Include="Images\logout.png" />
     <Resource Include="Images\MES.jpg" />
@@ -307,9 +392,7 @@
     <Resource Include="Images\register.png" />
     <Resource Include="Images\Reset_green.png" />
     <Resource Include="Images\Reset_Lime.png" />
-    <Resource Include="Images\RGV.jpg" />
     <Resource Include="Images\Rgv_Track_Lime.PNG" />
-    <Resource Include="Images\Setting.PNG" />
     <Resource Include="Images\Settings_green.png" />
     <Resource Include="Images\Start_Green.png" />
     <Resource Include="Images\Start_Green_1.png" />
@@ -323,6 +406,7 @@
     <Resource Include="Images\DataLog.png" />
     <Resource Include="Images\Alarm.png" />
     <Resource Include="Images\Report.png" />
+    <Resource Include="Images\Setting.png" />
     <Content Include="Videos\LoginHead.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

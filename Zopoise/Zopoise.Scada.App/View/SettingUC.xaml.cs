@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using TengDa.Wpf;
 
 namespace Zopoise.Scada.App.View
 {
@@ -19,14 +20,17 @@ namespace Zopoise.Scada.App.View
 
             ObjectTreeView.Items.Add(new TreeViewItem() { Header = "基本配置", Name = "AppOption" });
 
-            ObjectTreeView.Items.Add(new TreeViewItem() { Header = AppCurrent.Plc.Name, Name = AppCurrent.Plc.Name });
+            ObjectTreeView.Items.Add(new TreeViewItem() { Header = "电阻测试仪", Name = "InsulationTester" });
 
-            ObjectTreeView.Items.Add(new TreeViewItem() { Header = AppCurrent.Communicator.Name, Name = AppCurrent.Communicator.Name });
+            var treeViewItem = new TreeViewItem() { Header = "冷却机", Name = "Cooler" };
+            treeViewItem.Items.Add(new TreeViewItem() { Header = "PLC", Name = "PLC" });
+            ObjectTreeView.Items.Add(treeViewItem);
 
-            var TreeViewCommunicator = new TreeViewItem() { Header = "工装板", Name = "工装板", IsExpanded = true };
-            AppCurrent.Testers.ForEach(t => TreeViewCommunicator.Items.Add(new TreeViewItem() { Header = t.Name, Name = t.Name }));
-            ObjectTreeView.Items.Add(TreeViewCommunicator);
+            ObjectTreeView.Items.Add(new TreeViewItem() { Header = "温度采集器", Name = "TemperatureCollector" });
 
+            ObjectTreeView.Items.Add(new TreeViewItem() { Header = "扫码枪", Name = "Scaner" });
+
+            ObjectTreeView.Items.Add(new TreeViewItem() { Header = "MES", Name = "Mes" });
         }
 
         private void ObjectTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -37,37 +41,97 @@ namespace Zopoise.Scada.App.View
 
             if (name == "AppViewModel")
             {
-                ObjPropertySetter.SelectedObject = AppCurrent.AppViewModel;
+                ObjPropertySetter.SelectedObject = Current.App;
+                ObjPropertySetter.IsReadOnly = AppCurrent.User.Id < 1 ? true : false; 
             }
             else if (name == "AppOption")
             {
-                ObjPropertySetter.SelectedObject = AppCurrent.Option;
+                ObjPropertySetter.SelectedObject = Current.Option;
+                ObjPropertySetter.IsReadOnly = AppCurrent.User.Role.Level < 2 ? true : false;
             }
-            else if (name == AppCurrent.Plc.Name)
+            else if (name == "InsulationTester")
             {
-                ObjPropertySetter.SelectedObject = AppCurrent.Plc;
+                ObjPropertySetter.SelectedObject = Current.Tester;
+                ObjPropertySetter.IsReadOnly = AppCurrent.User.Role.Level < 3 ? true : false;
             }
-            else if (name == AppCurrent.Communicator.Name)
+            else if (name == "Cooler")
             {
-                ObjPropertySetter.SelectedObject = AppCurrent.Communicator;
+                ObjPropertySetter.SelectedObject = Current.Cooler;
+                ObjPropertySetter.IsReadOnly = AppCurrent.User.Role.Level < 3 ? true : false;
             }
-            else
+            else if (name == "PLC")
             {
-
-                var tester = AppCurrent.Testers.FirstOrDefault(t => t.Name == name);
-                if (tester != null)
-                {
-                    ObjPropertySetter.SelectedObject = AppCurrent.Testers.FirstOrDefault(t => t.Name == name);
-                }
+                ObjPropertySetter.SelectedObject = Current.Cooler.PLC;
+                ObjPropertySetter.IsReadOnly = AppCurrent.User.Role.Level < 3 ? true : false;
+            }
+            else if (name == "TemperatureCollector")
+            {
+                ObjPropertySetter.SelectedObject = Current.Collector;
+                ObjPropertySetter.IsReadOnly = AppCurrent.User.Role.Level < 3 ? true : false;
+            }
+            else if (name == "Scaner")
+            {
+                ObjPropertySetter.SelectedObject = Current.Scaner;
+                ObjPropertySetter.IsReadOnly = AppCurrent.User.Role.Level < 3 ? true : false;
+            }
+            else if(name == "Mes")
+            {
+                ObjPropertySetter.SelectedObject = Current.Mes;
+                ObjPropertySetter.IsReadOnly = AppCurrent.User.Role.Level < 2 ? true : false;
             }
 
         }
 
-        private void ObjPropertySetter_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+
+        private void ObjPropertySetter_SelectedPropertyItemChanged(object sender, RoutedPropertyChangedEventArgs<Xceed.Wpf.Toolkit.PropertyGrid.PropertyItemBase> e)
         {
-            AppContext.PlcContext.SaveChanges();
-            AppContext.CommunicatorContext.SaveChanges();
-            AppContext.TesterContext.SaveChanges();
+            if (e.NewValue == null || e.OldValue == null)
+            {
+                return;
+            }
+
+            object o = this.ObjPropertySetter.SelectedObject;
+            Type type = o.GetType();
+            string settingsStr = string.Empty;
+
+            //if (type == typeof(MES))
+            //{
+            //    //System.Reflection.PropertyInfo propertyInfoId = type.GetProperty("Id"); //获取指定名称的属性
+            //    //int Id = (int)propertyInfoId.GetValue(o, null); //获取属性值
+            //    //Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem p = (Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem)(e.OldValue);
+
+            //    //settingsStr = string.Format("将Id为 {0} 的 {1} 的 {2} 修改为 {3} ", Id, type.Name, p.PropertyName, p.Value);
+            //    //Context.MesContext.SaveChangesAsync();
+
+            //    //OperationHelper.ShowTips(settingsStr, true);
+            //    Context.MesContext.SaveChangesAsync();
+            //}
+
+            if(type == typeof(InsulationTester))
+            {
+                Context.InsulationContext.SaveChangesAsync();
+            }
+            else if (type == typeof(TemperatureCollector))
+            {
+                Context.CollectorContext.SaveChangesAsync();
+            }
+            else if (type == typeof(Cooler))
+            {
+                Context.CoolerContext.SaveChangesAsync();
+            }
+            else if (type == typeof(PLC))
+            {
+                Context.CoolerContext.SaveChangesAsync();
+            }
+            else if (type == typeof(Scaner))
+            {
+                Context.ScanerContext.SaveChangesAsync();
+            }
+            else if (type == typeof(MES))
+            {
+                Context.MesContext.SaveChangesAsync();
+            }
+
         }
     }
 }

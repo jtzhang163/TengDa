@@ -1,0 +1,58 @@
+﻿<Window x:Class="Zopoise.Scada.App.ChangePwdWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zopoise.Scada.App"
+        mc:Ignorable="d"
+        Title="更改密码" Height="400" Width="500">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="Times New Roman,宋体"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Foreground" Value="#2b579a"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+            </Style>
+            <Style TargetType="PasswordBox">
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Width" Value="200"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="账号："/>
+        <Label Content="昵称：" Grid.Row="1"/>
+        <Label Content="当前密码：" Grid.Row="2"/>
+        <Label Content="新密码：" Grid.Row="3"/>
+        <Label Content="确认新密码：" Grid.Row="4"/>
+
+        <Label Content="{Binding UserName}" Grid.Column="1" HorizontalAlignment="Left"/>
+        <Label Content="{Binding UserNickname}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left"/>
+        <PasswordBox x:Name="OriginPwsInput" Grid.Column="1" Grid.Row="2"/>
+        <PasswordBox x:Name="NewPwsInput" Grid.Column="1" Grid.Row="3"/>
+        <PasswordBox x:Name="NewPwsReInput" Grid.Column="1" Grid.Row="4"/>
+
+        <Button Content="修 改" Click="Button_Click" Style="{DynamicResource ChamferButton}" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left"/>
+
+    </Grid>
+</Window>

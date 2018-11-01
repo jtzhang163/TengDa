@@ -8,7 +8,7 @@ using TengDa.Wpf;
 namespace Zopoise.Scada.App
 {
     /// <summary>
-    /// 应用程序视图模型
+    /// 应用程序ViewModel
     /// </summary>
     [DisplayName("应用程序视图模型")]
     public class AppViewModel : BindableObject
@@ -27,9 +27,9 @@ namespace Zopoise.Scada.App
                 if (string.IsNullOrEmpty(appName))
                 {
                     appName = TengDa.Wpf.Option.GetOption("AppName");
-                    if (appName == string.Empty)
+                    if (string.IsNullOrEmpty(appName))
                     {
-                        appName = "众普森灯具老化线数据监控采集系统";
+                        appName = "东莞塔菲尔Hipot自动采集上传系统";
                         TengDa.Wpf.Option.SetOption("AppName", appName, "应用程序名称");
                     }
                 }
@@ -65,75 +65,129 @@ namespace Zopoise.Scada.App
             get => timeNow;
             set => SetProperty(ref timeNow, value);
         }
-
-        private string currentUserNameTip = string.Empty;
+    
         [Browsable(false)]
-        public string CurrentUserNameTip
+        public string LocalIPAddress => MES.LocalIPAddr.ToString();
+
+        [Browsable(false)]
+        public string CurrentProcess
         {
             get
             {
-                if (Current.User.Id < 1)
+                var tmp = Current.Option.CurrentProcess.Split(',');
+
+                if(tmp.Length < 2)
                 {
-                    currentUserNameTip = string.Empty;
+                    return "";
                 }
-                else
-                {
-                    currentUserNameTip = string.Format("当前用户: {0}", UserName);
-                }
-                return currentUserNameTip;
+
+                return string.Format("{0}【{1}】",tmp[0],tmp[1]);
             }
-            set => SetProperty(ref currentUserNameTip, value);
         }
 
-        private string userName = string.Empty;
         [Browsable(false)]
-        public string UserName
+        public string CurrentStation
         {
-            get => userName;
-            set => SetProperty(ref userName, value);
-        }
+            get
+            {
+                var tmp = Current.Option.CurrentStation.Split(',');
 
-        private string userGroupName = string.Empty;
-        [Browsable(false)]
-        public string UserGroupName
-        {
-            get => userGroupName;
-            set => SetProperty(ref userGroupName, value);
+                if (tmp.Length < 2)
+                {
+                    return "";
+                }
+
+                return string.Format("{0}【{1}】", tmp[0], tmp[1]);
+            }
         }
+        [Browsable(false)]
+        public string UserName => AppCurrent.User.Name;
+
+        [Browsable(false)]
+        public string UserGroupName => AppCurrent.User.Role.Name;
 
         private string userProfilePicture = string.Empty;
         [Browsable(false)]
         public string UserProfilePicture
         {
-            get => userProfilePicture;
-            set => SetProperty(ref userProfilePicture, value);
+            get
+            {
+                userProfilePicture = AppCurrent.User.ProfilePicture;
+                return userProfilePicture;
+            }
+            set
+            {
+                AppCurrent.User.ProfilePicture = value;
+                SetProperty(ref userProfilePicture, value);
+            }
+        }
+
+        private string userNickname = string.Empty;
+        [Browsable(false)]
+        public string UserNickname
+        {
+            get
+            {
+                userNickname = AppCurrent.User.Nickname;
+                return userNickname;
+            }
+            set
+            {
+                AppCurrent.User.Nickname = value;
+                SetProperty(ref userNickname, value);
+            }
         }
 
         private string userNumber = string.Empty;
         [Browsable(false)]
         public string UserNumber
         {
-            get => userNumber;
-            set => SetProperty(ref userNumber, value);
+            get
+            {
+                userNumber = AppCurrent.User.Number;
+                return userNumber;
+            }
+            set
+            {
+                AppCurrent.User.Number = value;
+                SetProperty(ref userNumber, value);
+            }
         }
 
         private string userPhoneNumber = string.Empty;
         [Browsable(false)]
         public string UserPhoneNumber
         {
-            get => userPhoneNumber;
-            set => SetProperty(ref userPhoneNumber, value);
+            get
+            {
+                userPhoneNumber = AppCurrent.User.PhoneNumber;
+                return userPhoneNumber;
+            }
+            set
+            {
+                AppCurrent.User.PhoneNumber = value;
+                SetProperty(ref userPhoneNumber, value);
+            }
         }
 
         private string userEmail = string.Empty;
         [Browsable(false)]
         public string UserEmail
         {
-            get => userEmail;
-            set => SetProperty(ref userEmail, value);
+            get
+            {
+                userEmail = AppCurrent.User.Email;
+                return userEmail;
+            }
+            set
+            {
+                AppCurrent.User.Email = value;
+                SetProperty(ref userEmail, value);
+            }
         }
 
-        private bool mainWindowsBackstageIsOpen = true;
+
+        private bool mainWindowsBackstageIsOpen = false;
         [Browsable(false)]
         public bool MainWindowsBackstageIsOpen
         {
@@ -141,19 +195,6 @@ namespace Zopoise.Scada.App
             set => SetProperty(ref mainWindowsBackstageIsOpen, value);
         }
 
-        private bool isLogin = false;
-        [Browsable(false)]
-        public bool IsLogin
-        {
-            get => isLogin;
-            set => SetProperty(ref isLogin, value);
-        }
-
-        public void ShowTips(string tips)
-        {
-            Current.TipViewModel.Tips += string.Format("{0} {1}\r\n", DateTime.Now.ToString("HH:mm:ss"), tips);
-            Current.AddOperation(tips);
-        }
 
         private RunStatus runStatus = RunStatus.闲置;
         [ReadOnly(true), DisplayName("当前系统运行状态")]
@@ -172,31 +213,52 @@ namespace Zopoise.Scada.App
             set => SetProperty(ref graphShowMode, value);
         }
 
-        public List<Tester> GetTesters()
+        [Browsable(false)]
+        public bool IsMesLogin
         {
-            return AppCurrent.Testers;
+            get => Current.Option.IsMesLogin;
+            set => Current.Option.IsMesLogin = value;
         }
 
-        private int selectTesterIndex = -1;
         [Browsable(false)]
-        public int SelectTesterIndex
+        public bool IsRememberMe
         {
-            get
+            get => Current.Option.IsRememberMe;
+            set => Current.Option.IsRememberMe = value;
+        }
+
+        public List<CommunicateObject> GetComms()
+        {
+            return new List<CommunicateObject>()
             {
-                if (selectTesterIndex < 0)
-                {
-                    selectTesterIndex = AppCurrent.Option.SelectTesterIndex;
-                }
-                return selectTesterIndex;
-            }
-            set
-            {
-                if (selectTesterIndex != value)
-                {
-                    AppCurrent.Option.SelectTesterIndex = value;
-                }
-                SetProperty(ref selectTesterIndex, value);
-            }
+                Current.Tester,
+                Current.Collector,
+                Current.Cooler,
+                Current.Scaner,
+                Current.Mes
+            };
+        }
+
+        private bool isLoginWindow = true;
+        /// <summary>
+        /// LoginWindow是登录界面还是注册界面
+        /// </summary>
+        [Browsable(false)]
+        public bool IsLoginWindow
+        {
+            get => isLoginWindow;
+            set => SetProperty(ref isLoginWindow, value);
+        }
+
+        private bool isCurrentUserIsEdit = false;
+        /// <summary>
+        /// 当前用户界面处于编辑状态
+        /// </summary>
+        [Browsable(false)]
+        public bool IsCurrentUserIsEdit
+        {
+            get => isCurrentUserIsEdit;
+            set => SetProperty(ref isCurrentUserIsEdit, value);
         }
     }
 }

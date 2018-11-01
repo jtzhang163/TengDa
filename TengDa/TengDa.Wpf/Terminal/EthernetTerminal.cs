@@ -62,7 +62,7 @@ namespace TengDa.Wpf
                 try
                 {
                     Ping ping = new Ping();
-                    PingReply pingReply = ping.Send(IP, 200);
+                    PingReply pingReply = ping.Send(IP, 1000);
                     if (pingReply.Status == IPStatus.Success)
                     {
                         return true;

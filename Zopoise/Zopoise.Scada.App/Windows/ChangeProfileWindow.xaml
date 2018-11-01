@@ -1,0 +1,54 @@
+﻿<Window x:Class="Zopoise.Scada.App.ChangeProfileWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zopoise.Scada.App"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="更换头像" Height="480" Width="400">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="Times New Roman,宋体"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Foreground" Value="#2b579a"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="20,0,0,0"/>
+            </Style>
+        </ResourceDictionary>
+
+    </Window.Resources>
+
+    <DockPanel Margin="20">
+        <ListBox DockPanel.Dock="Left" x:Name="ProfileListBox" SelectionChanged="ProfileListBox_SelectionChanged" Width="120" HorizontalContentAlignment="Center"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="原头像"/>
+            <Image Grid.Row="1" Source="{Binding UserProfilePicture}" Width="128" Height="128" HorizontalAlignment="Center"  VerticalAlignment="Top">
+                <Image.Clip>
+                    <EllipseGeometry RadiusX="64" RadiusY="64" Center="64,64"/>
+                </Image.Clip>
+            </Image>
+            <Label Grid.Row="2" Content="新头像"/>
+
+            <Image x:Name="NewProfileImage" Grid.Row="3" Width="128" Height="128" HorizontalAlignment="Center"  VerticalAlignment="Top">
+                <Image.Clip>
+                    <EllipseGeometry RadiusX="64" RadiusY="64" Center="64,64"/>
+                </Image.Clip>
+            </Image>
+
+            <Button Grid.Row="4" Content="更 换" Click="Button_Click" Style="{DynamicResource ChamferButton}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        </Grid>
+    </DockPanel>
+</Window>

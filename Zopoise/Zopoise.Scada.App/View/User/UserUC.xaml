@@ -6,29 +6,59 @@
              xmlns:local="clr-namespace:Zopoise.Scada.App.View"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,5,0,0"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+        </Style>
+        <!--集成资源-->
+        <Style x:Key="hyberlinkEffect" TargetType="{x:Type Hyperlink}">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman,宋体"></Setter>
+            <Setter Property="Foreground" Value="#09a3de"></Setter>
+            <Setter Property="Foreground" Value="#09a3de"></Setter>
+            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Green"></Setter>
+                    <!--在鼠标悬停显示下划线-->
+                    <Setter Property="TextBlock.TextDecorations">
+                        <Setter.Value>
+                            <TextDecorationCollection>
+                                <TextDecoration Location="Underline"/>
+                            </TextDecorationCollection>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+       
+    </UserControl.Resources>
     <Grid>
         <DockPanel Margin="30,30,0,0">
             <Label Content="用户" DockPanel.Dock="Top" FontSize="30" FontFamily="微软雅黑" Foreground="#2b579a" Margin="0,0,30,10"/>
+            <StackPanel DockPanel.Dock="Bottom" Height="120" Orientation="Vertical">
+                <TextBlock>
+                    <Hyperlink x:Name="ChangeProfileHyberlink" Style="{StaticResource hyberlinkEffect}" Click="ChangeProfileHyberlink_Click">更换头像</Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink x:Name="ChangePwdHyberlink" Style="{StaticResource hyberlinkEffect}" Click="ChangePwdHyberlink_Click">修改密码</Hyperlink>
+                </TextBlock>
+
+                <TextBlock>
+                    <Hyperlink x:Name="LogoutHyberlink" Style="{StaticResource hyberlinkEffect}" Click="LogoutHyberlink_Click">退出登录</Hyperlink>
+                </TextBlock>
+            </StackPanel>
             <Grid>
-                <StackPanel Orientation="Horizontal" x:Name="UserStackPanel">
-                    <Grid>
-                        <DockPanel Margin="0,30,0,0">
-                            <Label Content="用户详情" DockPanel.Dock="Top" FontFamily="宋体" FontSize="25" FontWeight="Bold" Foreground="#2b579a" Margin="0,0,30,0"/>
-                            <local:UserDetailUC Height="350" Width="400" Margin="7,-110,34,0" />
-                        </DockPanel>
-                    </Grid>
-                    <StackPanel MaxWidth="600">
-                        <Label Content="用户说明：" FontFamily="宋体" FontSize="25" FontWeight="Bold" Foreground="#2b579a" Margin="0,30,30,0"/>
-                        <TextBlock LineHeight="39" FontFamily="宋体" FontSize="20" Foreground="#2b579a" TextWrapping="Wrap" Margin="5,0,0,0">
-                            <LineBreak/>该系统用户分为 3个等级，分别为操作员、维护人员、管理员，不同用户具有不同的操作权限，以下逐一进行说明：
-                            <LineBreak/>1.操作员：具有基本的操作权限；
-                            <LineBreak/>2.维护人员：可以修改部分配置项，可管理操作员用户；
-                            <LineBreak/>3.管理员：可以修改全部配置项，可管理所有用户。
-                            <LineBreak/>用户注册以后，首先需要由等级更高的用户审核，通过以后才可以登录使用该系统。
-                        </TextBlock>
-                    </StackPanel>
-                </StackPanel>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <local:CurrentUserUC/>
+                <local:UserListUC Grid.Column="1"/>
+                <!--<local:AboutUserUC/>-->
             </Grid>
         </DockPanel>
     </Grid>

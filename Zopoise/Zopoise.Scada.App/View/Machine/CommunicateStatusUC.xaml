@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Zopoise.Scada.App.CommunicateStatusUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Zopoise.Scada.App"
+             xmlns:wpf="clr-namespace:TengDa.Wpf;assembly=TengDa.Wpf"
+             xmlns:util="clr-namespace:Zopoise.Scada.App.Utilities"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+
+        <util:RunStatusToChangeCheckMachineConverter x:Key="runStatusToChangeCheckMachineConverter"/>
+        <util:CommunicateColorConverter x:Key="communicateColorConverter"/>
+
+        <DataTemplate x:Key="commTemplate" DataType="{x:Type wpf:CommunicateObject}">
+            <Border Background="{Binding IsAlive,Converter={StaticResource communicateColorConverter}}" Margin="5" Width="140">
+                <StackPanel Margin="5,5,5,5">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsEnabled,Mode=TwoWay}" Margin="0,5,0,5" 
+                                  Checked="IsEnabledCheckBox_CheckedChanged" Unchecked="IsEnabledCheckBox_CheckedChanged"/>
+                        <Label Content="{Binding Name}"/>
+                    </StackPanel>
+                    <TextBlock DockPanel.Dock="Bottom" Text="{Binding RealtimeStatus}" Background="White" Margin="0,0,0,5"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+
+        <local:CommStatusTemplateSelector x:Key="commStatusTemplateSelector"/>
+
+        <ObjectDataProvider x:Key="comms" ObjectType="local:AppViewModel" MethodName="GetComms"/>
+
+    </UserControl.Resources>
+    <Grid IsEnabled="{Binding RunStatus, Converter={StaticResource runStatusToChangeCheckMachineConverter}}">
+        <GroupBox Header="实时通信状态" DataContext="{StaticResource comms}" Margin="10,5,10,5" BorderBrush="LightGray">
+
+            <ListBox BorderThickness="0" Margin="0" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" ItemTemplateSelector="{StaticResource commStatusTemplateSelector}"/>
+
+        </GroupBox>
+    </Grid>
+</UserControl>

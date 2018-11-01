@@ -20,18 +20,13 @@ namespace Zopoise.Scada.App.View
         {
 
             //当前时间显示
-            statusBar.DataContext = AppCurrent.AppViewModel;
+            statusBar.DataContext = Current.App;
             timerUpdateTime = new System.Timers.Timer(1000);
             timerUpdateTime.Elapsed += delegate
             {
-                AppCurrent.AppViewModel.TimeNow = DateTime.Now;
+                Current.App.TimeNow = DateTime.Now;
             };
             timerUpdateTime.Start();
-        }
-
-        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            AppCurrent.AppViewModel.MainWindowsBackstageIsOpen = true;
         }
     }
 }
