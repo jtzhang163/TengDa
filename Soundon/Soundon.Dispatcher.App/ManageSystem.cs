@@ -2444,52 +2444,66 @@ namespace Soundon.Dispatcher.App
 
         public async void UploadInOvenInfo(object obj)
         {
-            Thread.Sleep(200);
-            List<Clamp> clamps = (List<Clamp>)obj;
-            string msg = string.Empty;
-            if (clamps.Count < 1)
+            try
             {
-                clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsInUploaded] = 'false' AND [IsInFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
-                if (!string.IsNullOrEmpty(msg))
+                Thread.Sleep(200);
+                List<Clamp> clamps = (List<Clamp>)obj;
+                string msg = string.Empty;
+                if (clamps.Count < 1)
                 {
-                    Error.Alert(msg);
+                    clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsInUploaded] = 'false' AND [IsInFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
+                    if (!string.IsNullOrEmpty(msg))
+                    {
+                        Error.Alert(msg);
+                        return;
+                    }
+                }
+
+                if (clamps.Count < 1)
+                {
                     return;
                 }
-            }
 
-            if (clamps.Count < 1)
+                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传入烤箱数据..."; }));
+                await MES.UploadInOvenAsync(clamps);
+                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "入烤箱数据上传完成..."; }));
+            }
+            catch (Exception ex)
             {
-                return;
+                Error.Alert(ex.Message);
             }
-
-            this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传入烤箱数据..."; }));
-            await MES.UploadInOvenAsync(clamps);
-            this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "入烤箱数据上传完成..."; }));
         }
 
         public async void UploadOutOvenInfo(object obj)
         {
-            Thread.Sleep(200);
-            List<Clamp> clamps = (List<Clamp>)obj;
-            string msg = string.Empty;
-            if (clamps.Count < 1)
+            try
             {
-                clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsOutUploaded] = 'false' AND [IsOutFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
-                if (!string.IsNullOrEmpty(msg))
+                Thread.Sleep(200);
+                List<Clamp> clamps = (List<Clamp>)obj;
+                string msg = string.Empty;
+                if (clamps.Count < 1)
                 {
-                    Error.Alert(msg);
+                    clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsOutUploaded] = 'false' AND [IsOutFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
+                    if (!string.IsNullOrEmpty(msg))
+                    {
+                        Error.Alert(msg);
+                        return;
+                    }
+                }
+
+                if (clamps.Count < 1)
+                {
                     return;
                 }
-            }
 
-            if (clamps.Count < 1)
+                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传出烤箱数据..."; }));
+                await MES.UploadOutOvenAsync(clamps);
+                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "出烤箱数据上传完成..."; }));
+            }
+            catch (Exception ex)
             {
-                return;
+                Error.Alert(ex.Message);
             }
-
-            this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传出烤箱数据..."; }));
-            await MES.UploadOutOvenAsync(clamps);
-            this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "出烤箱数据上传完成..."; }));
         }
 
         /// <summary>
@@ -2497,60 +2511,69 @@ namespace Soundon.Dispatcher.App
         /// </summary>
         public async void UploadMesTVD()
         {
-            var uploadTVDs = new List<UploadTVD>();
-            for (int i = 0; i < OvenCount; i++)
+            try
             {
-                for (int j = 0; j < OvenFloorCount; j++)
+                var uploadTVDs = new List<UploadTVD>();
+                for (int i = 0; i < OvenCount; i++)
                 {
-                    for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
+                    for (int j = 0; j < OvenFloorCount; j++)
                     {
-                        var station = Current.ovens[i].Floors[j].Stations[k];
-                        if (station.IsAlive && station.FloorStatus == FloorStatus.烘烤 && station.ClampId > 0)
+                        for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
                         {
-                            uploadTVDs.Add(new UploadTVD()
+                            var station = Current.ovens[i].Floors[j].Stations[k];
+                            if (station.IsAlive && station.FloorStatus == FloorStatus.烘烤 && station.ClampId > 0)
                             {
-                                ClampId = station.ClampId,
-                                DeviceStatus = 0,
-                                CollectorTime = DateTime.Now,
-                                IsUploaded = false,
-                                ParameterFlag = 0,
-                                T = Current.ovens[i].Floors[j].Temperatures,
-                                V1 = Current.ovens[i].Floors[j].Vacuum
-                            });
+                                uploadTVDs.Add(new UploadTVD()
+                                {
+                                    ClampId = station.ClampId,
+                                    DeviceStatus = 0,
+                                    CollectorTime = DateTime.Now,
+                                    IsUploaded = false,
+                                    ParameterFlag = 0,
+                                    T = Current.ovens[i].Floors[j].Temperatures,
+                                    V1 = Current.ovens[i].Floors[j].Vacuum
+                                });
+                            }
                         }
                     }
                 }
-            }
 
-            if(uploadTVDs.Count > 0 && Current.mes.IsAlive)
-            {
-                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传实时温度真空数据..."; }));
-                await MES.UploadTvdInfoAsync(uploadTVDs);
-                Thread.Sleep(100);
-                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "实时温度真空数据上传完成"; }));
-            }
-
-            //保存进数据库
-            var msg = string.Empty;
-            if (!UploadTVD.Add(uploadTVDs, out msg))
-            {
-                LogHelper.WriteError(msg);
-            }
-
-            if (Current.mes.IsAlive)
-            {
-                //检测上传失败的
-                uploadTVDs.Clear();
-                uploadTVDs = UploadTVD.GetList("SELECT TOP 100 * FROM [" + UploadTVD.TableName + "] WHERE IsUploaded = 'False' ORDER BY [CollectorTime] DESC", out msg);
-
-                if (uploadTVDs.Count > 0)
+                if (uploadTVDs.Count > 0 && Current.mes.IsAlive)
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传历史温度真空数据..."; }));
+                    this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传实时温度真空数据..."; }));
                     await MES.UploadTvdInfoAsync(uploadTVDs);
                     Thread.Sleep(100);
-                    this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "历史温度真空数据上传完成"; }));
+                    this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "实时温度真空数据上传完成"; }));
                 }
+
+                //保存进数据库
+                var msg = string.Empty;
+                if (!UploadTVD.Add(uploadTVDs, out msg))
+                {
+                    LogHelper.WriteError(msg);
+                }
+
+                if (Current.mes.IsAlive)
+                {
+                    //检测上传失败的
+                    uploadTVDs.Clear();
+                    uploadTVDs = UploadTVD.GetList("SELECT TOP 100 * FROM [" + UploadTVD.TableName + "] WHERE IsUploaded = 'False' ORDER BY [CollectorTime] DESC", out msg);
+
+                    if (uploadTVDs.Count > 0)
+                    {
+                        this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传历史温度真空数据..."; }));
+                        await MES.UploadTvdInfoAsync(uploadTVDs);
+                        Thread.Sleep(100);
+                        this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "历史温度真空数据上传完成"; }));
+                    }
+                }
+
             }
+            catch (Exception ex)
+            {
+                Error.Alert(ex.Message);
+            }
+
         }
 
         #endregion
