@@ -381,7 +381,8 @@ namespace Soundon.Dispatcher.App
 
                 for (int j = 0; j < FeederStationCount; j++)
                 {
-                    lbFeederStationName[i][j].Text = Current.feeders[i].Stations[j].Name.Replace("上料","");
+                    //  lbFeederStationName[i][j].Text = Current.feeders[i].Stations[j].Name.Replace("上料","");
+                    lbFeederStationName[i][j].Text = Current.feeders[i].Stations[j].Name.Substring(3);
                 }
 
                 for (int j = 0; j < Current.feeders[i].Scaners.Count; j++)
@@ -401,7 +402,8 @@ namespace Soundon.Dispatcher.App
 
                 for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
                 {
-                    lbBlankerStationName[i][j].Text = Current.blankers[i].Stations[j].Name.Replace("下料", "");
+                    // lbBlankerStationName[i][j].Text = Current.blankers[i].Stations[j].Name.Replace("下料", "");
+                    lbBlankerStationName[i][j].Text = Current.blankers[i].Stations[j].Name.Substring(3);
                 }
             }
 
@@ -702,20 +704,15 @@ namespace Soundon.Dispatcher.App
                         this.tlpFloor[i][j].BackColor = Color.LightGray;
                     }
 
+                    var index = oven.Floors.IndexOf(floor);
 
-                    lbFloorStatus[i][j].Text = Current.TaskMode == TaskMode.手动任务 ?
+                    lbFloorStatus[i][j].Text =
                         string.Format("{0} {1} {2}/{3} {4}",
-                        oven.ClampOri == ClampOri.B ? "左" : "右",
+                        oven.ClampOri == ClampOri.B ? floor.Stations[0].RobotGetCode : floor.Stations[1].RobotGetCode,
                         floor.DoorStatus,
                         floor.RunMinutes.ToString().PadLeft(3),
                         floor.RunMinutesSet.ToString().PadLeft(3),
-                        oven.ClampOri == ClampOri.B ? "右" : "左"
-                        )
-                        :
-                        string.Format("{0} {1}/{2}",
-                        floor.DoorStatus,
-                        floor.RunMinutes.ToString().PadLeft(3),
-                        floor.RunMinutesSet.ToString().PadLeft(3)
+                        oven.ClampOri == ClampOri.A ? floor.Stations[0].RobotGetCode : floor.Stations[1].RobotGetCode
                         );
 
                     switch (floor.DoorStatus)
