@@ -2432,7 +2432,7 @@ namespace Soundon.Dispatcher.App
         private void Timer_UploadMes(object sender, ElapsedEventArgs e)
         {
             string msg = string.Empty;
-            if (timerlock)
+            if (timerlock && Current.mes.IsEnable)
             {
                 UploadMesTVD();
 
