@@ -731,16 +731,16 @@ namespace Soundon.Dispatcher.App
                             break;
                     }
 
-                    //if (oven.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 || floor.Stations.Count(s => s.Id == Current.Task.ToStationId) > 0)
-                    //{
-                    //    this.tlpFloor[i][j].Invalidate();
-                    //}
+                    if (floor.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId) > 0)
+                    {
+                        this.tlpFloor[i][j].Invalidate();
+                    }
 
-                    //if (floor.PreIsAlive != floor.IsAlive)
-                    //{
-                    //    this.tlpFloor[i][j].Invalidate();
-                    //}
-                    this.tlpFloor[i][j].Invalidate();
+                    if (floor.PreIsAlive != floor.IsAlive)
+                    {
+                        this.tlpFloor[i][j].Invalidate();
+                    }
+
                 }
 
                 oven.PreIsAlive = oven.IsAlive;
