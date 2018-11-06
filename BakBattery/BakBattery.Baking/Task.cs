@@ -762,8 +762,8 @@ namespace BakBattery.Baking
         上料机,
         烤箱,
         下料机,
-        转移台,
-        缓存架
+        取样台,
+        冷却架
     }
 
     public class TaskLog

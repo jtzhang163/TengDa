@@ -39,7 +39,36 @@ namespace BakBattery.Baking
         {
             get
             {
-                if (this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.转移台)
+                if (this.GetPutType == GetPutType.冷却架)
+                {
+                    var _status = StationStatus.不可用;
+                    if (this.ClampStatus == ClampStatus.无夹具)
+                    {
+                        _status = StationStatus.可放;
+                    }
+                    else if (this.ClampStatus == ClampStatus.空夹具)
+                    {
+                        _status = StationStatus.可取;
+                    }
+                    else if (this.ClampStatus == ClampStatus.满夹具)
+                    {
+                        if (this.ClampId > 0 && this.Clamp.OutOvenTime > Common.DefaultTime && Clamp.OutOvenTime.AddMinutes(Current.option.CoolMinutes) > DateTime.Now)
+                        {
+                            _status = StationStatus.工作中;
+                        }
+                        else
+                        {
+                            _status = StationStatus.可取;
+                        }
+                    }
+
+                    if (status != _status)
+                    {
+                        this.GetPutTime = DateTime.Now;
+                        status = _status;
+                    }
+                }
+                else if (this.GetPutType == GetPutType.取样台)
                 {
                     var _status = StationStatus.不可用;
                     if (this.ClampStatus == ClampStatus.无夹具)
@@ -125,7 +154,7 @@ namespace BakBattery.Baking
                     }
 
                     //样品信息复位
-                    if(value == ClampStatus.无夹具 && this.GetPutType == GetPutType.转移台)
+                    if(value == ClampStatus.无夹具 && this.GetPutType == GetPutType.取样台)
                     {
                         this.SampleStatus = SampleStatus.待测试;
                     }
@@ -262,7 +291,7 @@ namespace BakBattery.Baking
         {
             get
             {
-                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.转移台 || this.GetPutType == GetPutType.下料机)
+                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.冷却架 || this.GetPutType == GetPutType.取样台 || this.GetPutType == GetPutType.下料机)
                 {
                     doorStatus = DoorStatus.打开;
                 }
@@ -292,7 +321,7 @@ namespace BakBattery.Baking
         {
             get
             {
-                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.转移台 || this.GetPutType == GetPutType.下料机)
+                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.冷却架 || this.GetPutType == GetPutType.取样台 || this.GetPutType == GetPutType.下料机)
                 {
                     return true;
                 }
@@ -379,7 +408,8 @@ namespace BakBattery.Baking
 
                         this.Clamp.PreheatTimeSet = floor.PreheatTimeSet;
                         this.Clamp.BakingTimeSet = floor.BakingTimeSet;
-                        this.Clamp.BreathingCycleSet = floor.BreathingCycleSet;
+                        this.Clamp.BreathingCycleSet1 = floor.BreathingCycleSet1;
+                        this.Clamp.BreathingCycleSet2 = floor.BreathingCycleSet2;
 
                         this.Clamp.IsInFinished = true;
 

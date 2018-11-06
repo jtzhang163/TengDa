@@ -211,6 +211,11 @@ namespace BakBattery.Baking
             return batteryIds;
         }
 
+        /// <summary>
+        /// 接收到的无夹具信号计数，防止上料机偶尔返回的异常数据导致生成错误任务
+        /// </summary>
+        private int[] EmptyClampCount = new int[] { 0, 0 };
+
         #endregion
 
         #region 构造方法
@@ -452,6 +457,7 @@ namespace BakBattery.Baking
                     if (!this.BatteryScaner.IsReady)
                     {
                         this.BatteryScaner.CanScan = true;
+                        LogHelper.WriteInfo(this.BatteryScaner.Name + "【扫码日志】收到上料机给的请求扫码信号！");
                     }
                     this.BatteryScaner.IsReady = true;
                 }
@@ -467,7 +473,7 @@ namespace BakBattery.Baking
                     switch (iOut[j + 1])
                     {
                         case 1:
-                            this.Stations[j].ClampStatus = ClampStatus.无夹具;
+                            this.EmptyClampCount[j]++;
                             this.Stations[j].Status = StationStatus.可放;
                             break;
                         case 2:
@@ -491,6 +497,21 @@ namespace BakBattery.Baking
                             this.Stations[j].Status = StationStatus.不可用;
                             break;
                     }
+
+                    
+                    if (iOut[j + 1] == 1)
+                    {
+                        if (EmptyClampCount[j] > 2)
+                        {
+                            this.Stations[j].ClampStatus = ClampStatus.无夹具;
+                            EmptyClampCount[j] = 3;
+                        }
+                    }
+                    else
+                    {
+                        EmptyClampCount[j] = 0;
+                    }
+
 
                     this.Stations[j].IsClampScanReady = iOut[j + 4] == 1;
                 }
@@ -591,10 +612,12 @@ namespace BakBattery.Baking
             if (scanResult == ScanResult.OK)
             {
                 input = Current.option.ScanBatteryCodeOK;
+                LogHelper.WriteInfo("电池扫码成功反馈上料机：" + input);
             }
             else if (scanResult == ScanResult.NG)
             {
                 input = Current.option.ScanBatteryCodeNG;
+                LogHelper.WriteInfo("电池扫码失败反馈上料机：" + input);
             }
 
             string output = string.Empty;

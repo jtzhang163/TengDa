@@ -292,17 +292,24 @@ namespace BakBattery.Baking
         public int BakingTimeSet { get; set; } = -1;
 
         /// <summary>
-        /// 设置呼吸周期
+        /// 设置一段呼吸周期
         /// </summary>
-        [Description("设置呼吸周期，单位：min")]
-        [DisplayName("设置呼吸周期")]
-        public int BreathingCycleSet { get; set; } = -1;
+        [Description("设置一段呼吸周期，单位：min")]
+        [DisplayName("设置一段呼吸周期")]
+        public int BreathingCycleSet1 { get; set; } = -1;
+
+        /// <summary>
+        /// 设置二段呼吸周期
+        /// </summary>
+        [Description("设置二段呼吸周期，单位：min")]
+        [DisplayName("设置二段呼吸周期")]
+        public int BreathingCycleSet2 { get; set; } = -1;
 
         /// <summary>
         /// 设置工艺温度
         /// </summary>
         [Description("设置工艺温度，单位：℃")]
-        [DisplayName("设置工艺温度")]
+        [ReadOnly(true), DisplayName("设置工艺温度")]
         public int ProcessTemperSet { get; set; } = -1;
 
         #endregion

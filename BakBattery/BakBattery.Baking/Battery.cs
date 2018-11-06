@@ -58,7 +58,7 @@ namespace BakBattery.Baking
         public Battery(string code, int feederId)
         {
             this.code = code;
-            this.FeederId = FeederId;
+            this.FeederId = feederId;
         }
 
         #region 初始化方法
@@ -146,7 +146,7 @@ namespace BakBattery.Baking
 
         public static int Add(Battery addBattery, out string msg)
         {
-            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [FeederId], [Location], [ScanTime]) VALUES ('{1}', {2}, '{3}', '{4}')", TableName, addBattery.Code, addBattery.ClampId, addBattery.FeederId, addBattery.Location, DateTime.Now), out msg);
+            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [FeederId], [Location], [ScanTime]) VALUES ('{1}', {2}, {3}, '{4}', '{5}')", TableName, addBattery.Code, addBattery.ClampId, addBattery.FeederId, addBattery.Location, DateTime.Now), out msg);
         }
 
         public static bool Update(int clampId, int feederId, out string msg)
@@ -155,30 +155,30 @@ namespace BakBattery.Baking
                  TableName, clampId, Current.option.ClampBatteryCount, feederId), out msg);
         }
 
-        /// <summary>
-        /// 增加多个，数据库一次插入多行
-        /// </summary>
-        /// <param name="addBatteries"></param>
-        /// <param name="msg"></param>
-        /// <returns></returns>
-        public static bool Add(List<Battery> addBatteries, out string msg)
-        {
-            if (addBatteries.Count < 1)
-            {
-                msg = string.Empty;
-                return true;
-            }
+        ///// <summary>
+        ///// 增加多个，数据库一次插入多行
+        ///// </summary>
+        ///// <param name="addBatteries"></param>
+        ///// <param name="msg"></param>
+        ///// <returns></returns>
+        //public static bool Add(List<Battery> addBatteries, out string msg)
+        //{
+        //    if (addBatteries.Count < 1)
+        //    {
+        //        msg = string.Empty;
+        //        return true;
+        //    }
 
-            StringBuilder sb = new StringBuilder();
+        //    StringBuilder sb = new StringBuilder();
 
-            foreach (Battery battery in addBatteries)
-            {
-                sb.Append(string.Format("('{0}', {1}, '{2}', '{3}'),", battery.Code, battery.ClampId, battery.Location, DateTime.Now));
-            }
+        //    foreach (Battery battery in addBatteries)
+        //    {
+        //        sb.Append(string.Format("('{0}', {1}, '{2}', '{3}'),", battery.Code, battery.ClampId, battery.Location, DateTime.Now));
+        //    }
 
-            //Yield.FeedingOK += addBatteries.Count;
-            return Database.NonQuery(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [Location], [ScanTime]) VALUES {1}", TableName, sb.ToString().TrimEnd(',')), out msg);
-        }
+        //    //Yield.FeedingOK += addBatteries.Count;
+        //    return Database.NonQuery(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [Location], [ScanTime]) VALUES {1}", TableName, sb.ToString().TrimEnd(',')), out msg);
+        //}
 
         public static bool Delete(Battery delBattery, out string msg)
         {

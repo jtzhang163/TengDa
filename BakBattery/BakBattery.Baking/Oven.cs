@@ -303,12 +303,12 @@ namespace BakBattery.Baking
                     }
                     #endregion
 
-                    #region 获取烤箱设置参数
+                    #region 获取预热时间、烘烤时间、呼吸周期、真空设定参数
                     for (int j = 0; j < this.Floors.Count; j++)
                     {
 
                         output = string.Empty;
-                        if (!this.Plc.GetInfo(false, Current.option.GetParamSettingStrs.Split(',')[j], out output, out msg))
+                        if (!this.Plc.GetInfo(false, Current.option.GetParamSettingStrs1.Split(',')[j], out output, out msg))
                         {
                             Error.Alert(msg);
                             this.Plc.IsAlive = false;
@@ -316,7 +316,7 @@ namespace BakBattery.Baking
                         }
                         if (output.Substring(3, 1) != "$")
                         {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetParamSettingStrs.Split(',')[j], output));
+                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetParamSettingStrs1.Split(',')[j], output));
                             return false;
                         }
 
@@ -324,8 +324,32 @@ namespace BakBattery.Baking
 
                         this.Floors[j].PreheatTimeSet = int.Parse(output.Substring(4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
                         this.Floors[j].BakingTimeSet = int.Parse(output.Substring(12, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                        this.Floors[j].BreathingCycleSet = int.Parse(output.Substring(20, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
                         this.Floors[j].VacuumSet = int.Parse(output.Substring(84, 4) + output.Substring(80, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                    }
+                    #endregion
+
+                    #region 获取烤箱一段呼吸周期、二段呼吸周期、工艺温度参数
+                    for (int j = 0; j < this.Floors.Count; j++)
+                    {
+
+                        output = string.Empty;
+                        if (!this.Plc.GetInfo(false, Current.option.GetParamSettingStrs2.Split(',')[j], out output, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
+                        if (output.Substring(3, 1) != "$")
+                        {
+                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetParamSettingStrs2.Split(',')[j], output));
+                            return false;
+                        }
+
+                        output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
+
+                        this.Floors[j].BreathingCycleSet1 = int.Parse(output.Substring(0, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                        this.Floors[j].BreathingCycleSet2 = int.Parse(output.Substring(4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                        this.Floors[j].ProcessTemperSet = int.Parse(output.Substring(8, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
                     }
                     #endregion
 

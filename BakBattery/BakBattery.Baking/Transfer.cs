@@ -10,7 +10,7 @@ using TengDa.WF;
 namespace BakBattery.Baking
 {
     /// <summary>
-    /// 转移台
+    /// 取样台
     /// </summary>
     public class Transfer : TengDa.WF.Terminals.Terminal
     {

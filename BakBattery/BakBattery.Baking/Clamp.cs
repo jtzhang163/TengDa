@@ -367,25 +367,47 @@ namespace BakBattery.Baking
             }
         }
 
-        private int breathingCycleSet = -1;
+        private int breathingCycleSet1 = -1;
         /// <summary>
-        /// 呼吸循环时间设置
+        /// 一段呼吸周期设置
         /// </summary>
-        [ReadOnly(true), DisplayName("呼吸循环时间设置")]
+        [ReadOnly(true), DisplayName("一段呼吸周期设置")]
         [Category("基本信息")]
-        public int BreathingCycleSet
+        public int BreathingCycleSet1
         {
             get
             {
-                return breathingCycleSet;
+                return breathingCycleSet1;
             }
             set
             {
-                if (breathingCycleSet != value)
+                if (breathingCycleSet1 != value)
                 {
-                    UpdateDbField("BreathingCycleSet", value);
+                    UpdateDbField("BreathingCycleSet1", value);
                 }
-                breathingCycleSet = value;
+                breathingCycleSet1 = value;
+            }
+        }
+
+        private int breathingCycleSet2 = -1;
+        /// <summary>
+        /// 二段呼吸周期设置
+        /// </summary>
+        [ReadOnly(true), DisplayName("二段呼吸周期设置")]
+        [Category("基本信息")]
+        public int BreathingCycleSet2
+        {
+            get
+            {
+                return breathingCycleSet2;
+            }
+            set
+            {
+                if (breathingCycleSet2 != value)
+                {
+                    UpdateDbField("BreathingCycleSet2", value);
+                }
+                breathingCycleSet2 = value;
             }
         }
 
@@ -468,7 +490,8 @@ namespace BakBattery.Baking
             this.yunFengTSet = TengDa._Convert.StrToFloat(rowInfo["YunFengTSet"].ToString(), -1);
             this.preheatTimeSet = TengDa._Convert.StrToInt(rowInfo["PreheatTimeSet"].ToString(), -1);
             this.bakingTimeSet = TengDa._Convert.StrToInt(rowInfo["BakingTimeSet"].ToString(), -1);
-            this.breathingCycleSet = TengDa._Convert.StrToInt(rowInfo["BreathingCycleSet"].ToString(), -1);
+            this.breathingCycleSet1 = TengDa._Convert.StrToInt(rowInfo["BreathingCycleSet1"].ToString(), -1);
+            this.breathingCycleSet2 = TengDa._Convert.StrToInt(rowInfo["BreathingCycleSet2"].ToString(), -1);
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
         }
         #endregion
@@ -529,11 +552,11 @@ namespace BakBattery.Baking
 
         public static int Add(Clamp addClamp, out string msg)
         {
-            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsInFinished], [IsOutFinished], [IsInUploaded], [IsOutUploaded], [VacuumSet], [T01Set], [T02Set], [T03Set], [T04Set], [T05Set], [T06Set], [T07Set], [T08Set], [T09Set], [T10Set], [YunFengTSet], [PreheatTimeSet], [BakingTimeSet], [BreathingCycleSet], [ProcessTemperSet]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}')", TableName,
+            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsInFinished], [IsOutFinished], [IsInUploaded], [IsOutUploaded], [VacuumSet], [T01Set], [T02Set], [T03Set], [T04Set], [T05Set], [T06Set], [T07Set], [T08Set], [T09Set], [T10Set], [YunFengTSet], [PreheatTimeSet], [BakingTimeSet], [BreathingCycleSet1], [BreathingCycleSet2], [ProcessTemperSet]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}')", TableName,
               addClamp.Code, TengDa.WF.Current.user.Id, addClamp.OvenStationId, addClamp.Location, 
               addClamp.BakingStartTime, addClamp.BakingStopTime, addClamp.ScanTime, addClamp.InOvenTime, addClamp.OutOvenTime,addClamp.IsInFinished,addClamp.IsOutFinished,addClamp.IsInUploaded,addClamp.IsOutUploaded,addClamp.VacuumSet,
               addClamp.TsSet[0], addClamp.TsSet[1], addClamp.TsSet[2], addClamp.TsSet[3], addClamp.TsSet[4], addClamp.TsSet[5], addClamp.TsSet[6], addClamp.TsSet[7], addClamp.TsSet[8], addClamp.TsSet[9], 
-              addClamp.YunFengTSet, addClamp.PreheatTimeSet, addClamp.BakingTimeSet, addClamp.BreathingCycleSet, addClamp.ProcessTemperSet), out msg);
+              addClamp.YunFengTSet, addClamp.PreheatTimeSet, addClamp.BakingTimeSet, addClamp.BreathingCycleSet1, addClamp.BreathingCycleSet2, addClamp.ProcessTemperSet), out msg);
         }
 
         public static bool Delete(Clamp delClamp, out string msg)

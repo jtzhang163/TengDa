@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using TengDa;
 using TengDa.WF;
 
@@ -88,17 +89,24 @@ namespace BakBattery.Baking
             }
         }
 
-        /// <summary>
-        /// 机器人正在运行
-        /// </summary>
-        [ReadOnly(true), DisplayName("已启动")]
-        public bool IsStartting { get; set; } = false;
+        [ReadOnly(true), DisplayName("机器人启动成功")]
+        public bool IsStarting
+        {
+            get { return IsExecuting || IsPausing; }
+        }
+
+        [ReadOnly(true), DisplayName("机器人程序执行中")]
+        public bool IsExecuting { get; set; } = false;
 
         [ReadOnly(true), DisplayName("可发送取盘指令")]
         public bool IsReadyGet { get; set; } = false;
 
         [ReadOnly(true), DisplayName("可发送放盘指令")]
         public bool IsReadyPut { get; set; } = false;
+
+        [ReadOnly(true), DisplayName("防撞报警中")]
+        public bool IsBumpAlarming { get; set; } = false;
+        
         /// <summary>
         /// 机器人货叉正在运动
         /// </summary>
@@ -276,17 +284,17 @@ namespace BakBattery.Baking
 
                 #endregion
 
-                #region 获取是否启动完成
+                #region 获取是否执行中
 
-                bool isStartting = false;
+                bool isExecuting = false;
 
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out isStartting, out msg))
+                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out isExecuting, out msg))
                 {
                     Error.Alert(msg);
                     this.Plc.IsAlive = false;
                     return false;
                 }
-                IsStartting = isStartting;
+                IsExecuting = isExecuting;
 
                 #endregion
 
@@ -302,7 +310,23 @@ namespace BakBattery.Baking
                 }
 
                 this.IsAlarming = isAlarming;
-                this.AlarmStr = isAlarming ? this.Name + "报警中" : "";
+
+                #endregion
+
+                #region 获取防撞报警状态
+
+                bool isBumpAlarming = false;
+
+                if (!this.Plc.GetInfo(false, plcCompany, true, "I10.6", false, out isBumpAlarming, out msg))
+                {
+                    Error.Alert(msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+
+                this.IsBumpAlarming = isBumpAlarming;
+
+                this.AlarmStr = isAlarming ? this.Name + "报警中" : (this.IsBumpAlarming ? "防撞报警中" : "");
 
                 #endregion
 
@@ -356,8 +380,8 @@ namespace BakBattery.Baking
 
                 this.IsGettingOrPutting = stationNum != 0;
 
-                this.IsReadyGet = IsStartting && (stationNum == 0);
-                this.IsReadyPut = IsStartting && (stationNum == 0);
+                this.IsReadyGet = IsExecuting && (stationNum == 0);
+                this.IsReadyPut = IsExecuting && (stationNum == 0);
 
                 #endregion
 
@@ -496,7 +520,7 @@ namespace BakBattery.Baking
                 return false;
             }
 
-            System.Threading.Thread.Sleep(10);
+            System.Threading.Thread.Sleep(200);
 
             bool tmpBool3 = false;
             if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out tmpBool3, out msg))
@@ -508,13 +532,11 @@ namespace BakBattery.Baking
             if (!tmpBool3)
             {
                 msg = "启动成功标识为False";
-                this.Plc.IsAlive = false;
                 return false;
             }
 
             return true;
         }
-
 
         /// <summary>
         /// 机器人暂停运行
@@ -535,8 +557,6 @@ namespace BakBattery.Baking
 
             return true;
         }
-
-
 
         /// <summary>
         /// 机器人继续运行
@@ -595,24 +615,6 @@ namespace BakBattery.Baking
                 return false;
             }
 
-            return true;
-        }
-
-
-        /// <summary>
-        /// 机器人维护保养
-        /// </summary>
-        /// <returns></returns>
-        public bool Maintenance(out string msg)
-        {
-            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
-
-            bool tmp = false;
-            if (!this.Plc.GetInfo(false, plcCompany, false, "000", false, out tmp, out msg))
-            {
-                 this.Plc.IsAlive = false;
-                return false;
-            }
             return true;
         }
 

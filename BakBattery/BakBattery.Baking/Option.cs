@@ -231,36 +231,10 @@ namespace BakBattery.Baking
         }
 
 
-
-        private int sampleFloorId = -1;
-        /// <summary>
-        /// 水分手动输入炉层Id
-        /// </summary>
-        [ReadOnly(true), Description("水分手动输入炉层Id")]
-        [DisplayName("水分手动输入炉层Id")]
-        public int SampleFloorId
-        {
-            get
-            {
-                if (sampleFloorId < 0)
-                {
-                    sampleFloorId = _Convert.StrToInt(TengDa.WF.Option.GetOption("SampleFloorId"), 1);
-                }
-                return sampleFloorId;
-            }
-            set
-            {
-                TengDa.WF.Option.SetOption("SampleFloorId", value.ToString());
-                sampleFloorId = value;
-            }
-        }
-
-
         private int clampBatteryCount = -1;
         /// <summary>
         /// 夹具中可以装载的电池个数
         /// </summary>
-        [ReadOnly(true)]
         [DisplayName("夹具中可以装载的电池个数")]
         public int ClampBatteryCount
         {
@@ -854,28 +828,54 @@ namespace BakBattery.Baking
             }
         }
 
-        private string getParamSettingStrs = string.Empty;
+        private string getParamSettingStrs1 = string.Empty;
         /// <summary>
-        /// 获取烤箱预热时间、烘烤时间、呼吸周期、真空设定参数的指令
+        /// 获取烤箱预热时间、烘烤时间、真空设定参数的指令
         /// </summary>
-        [DisplayName("获取烤箱设置参数的指令")]
+        [DisplayName("获取烤箱预热时间、烘烤时间、真空设定参数的指令")]
         [Category("烤箱")]
-        public string GetParamSettingStrs
+        public string GetParamSettingStrs1
         {
             get
             {
-                if (string.IsNullOrEmpty(getParamSettingStrs))
+                if (string.IsNullOrEmpty(getParamSettingStrs1))
                 {
-                    getParamSettingStrs = TengDa.WF.Option.GetOption("GetParamSettingStrs");
+                    getParamSettingStrs1 = TengDa.WF.Option.GetOption("GetParamSettingStrs1");
                 }
-                return getParamSettingStrs;
+                return getParamSettingStrs1;
             }
             set
             {
-                if (value != getParamSettingStrs)
+                if (value != getParamSettingStrs1)
                 {
-                    TengDa.WF.Option.SetOption("GetParamSettingStrs", value);
-                    getParamSettingStrs = value;
+                    TengDa.WF.Option.SetOption("GetParamSettingStrs1", value);
+                    getParamSettingStrs1 = value;
+                }
+            }
+        }
+
+        private string getParamSettingStrs2 = string.Empty;
+        /// <summary>
+        /// 获取烤箱预热时间、烘烤时间、真空设定参数的指令
+        /// </summary>
+        [DisplayName("获取烤箱预热时间、烘烤时间、真空设定参数的指令")]
+        [Category("烤箱")]
+        public string GetParamSettingStrs2
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(getParamSettingStrs2))
+                {
+                    getParamSettingStrs2 = TengDa.WF.Option.GetOption("GetParamSettingStrs2");
+                }
+                return getParamSettingStrs2;
+            }
+            set
+            {
+                if (value != getParamSettingStrs2)
+                {
+                    TengDa.WF.Option.SetOption("GetParamSettingStrs2", value);
+                    getParamSettingStrs2 = value;
                 }
             }
         }
@@ -932,28 +932,54 @@ namespace BakBattery.Baking
             }
         }
 
-        private string breathingCycleSetAddrs = string.Empty;
+        private string breathingCycle1SetAddrs = string.Empty;
         /// <summary>
-        /// 烤箱呼吸周期地址
+        /// 烤箱一段呼吸周期地址
         /// </summary>
-        [DisplayName("烤箱呼吸周期地址")]
+        [DisplayName("烤箱一段呼吸周期地址")]
         [Category("烤箱")]
-        public string BreathingCycleSetAddrs
+        public string BreathingCycle1SetAddrs
         {
             get
             {
-                if (string.IsNullOrEmpty(breathingCycleSetAddrs))
+                if (string.IsNullOrEmpty(breathingCycle1SetAddrs))
                 {
-                    breathingCycleSetAddrs = TengDa.WF.Option.GetOption("BreathingCycleSetAddrs");
+                    breathingCycle1SetAddrs = TengDa.WF.Option.GetOption("BreathingCycle1SetAddrs");
                 }
-                return breathingCycleSetAddrs;
+                return breathingCycle1SetAddrs;
             }
             set
             {
-                if (value != breathingCycleSetAddrs)
+                if (value != breathingCycle1SetAddrs)
                 {
-                    TengDa.WF.Option.SetOption("BreathingCycleSetAddrs", value);
-                    breathingCycleSetAddrs = value;
+                    TengDa.WF.Option.SetOption("BreathingCycle1SetAddrs", value);
+                    breathingCycle1SetAddrs = value;
+                }
+            }
+        }
+
+        private string breathingCycle2SetAddrs = string.Empty;
+        /// <summary>
+        /// 烤箱二段呼吸周期地址
+        /// </summary>
+        [DisplayName("烤箱二段呼吸周期地址")]
+        [Category("烤箱")]
+        public string BreathingCycle2SetAddrs
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(breathingCycle2SetAddrs))
+                {
+                    breathingCycle2SetAddrs = TengDa.WF.Option.GetOption("BreathingCycle2SetAddrs");
+                }
+                return breathingCycle2SetAddrs;
+            }
+            set
+            {
+                if (value != breathingCycle2SetAddrs)
+                {
+                    TengDa.WF.Option.SetOption("BreathingCycle2SetAddrs", value);
+                    breathingCycle2SetAddrs = value;
                 }
             }
         }
@@ -1040,32 +1066,6 @@ namespace BakBattery.Baking
             }
         }
 
-
-        private string temperatureSet = string.Empty;
-        /// <summary>
-        /// 设定温度（上传MES）
-        /// </summary>
-        [Description("设定温度（上传MES）")]
-        [DisplayName("设定温度（上传MES）")]
-        public string TemperatureSet
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(temperatureSet))
-                {
-                    temperatureSet = TengDa.WF.Option.GetOption("TemperatureSet");
-                }
-                return temperatureSet;
-            }
-            set
-            {
-                if (value != temperatureSet)
-                {
-                    TengDa.WF.Option.SetOption("TemperatureSet", value);
-                    temperatureSet = value;
-                }
-            }
-        }
 
 
         private string sendScanOkStr = string.Empty;
@@ -1906,32 +1906,31 @@ namespace BakBattery.Baking
             }
         }
 
-        //private string xxxXXXXXXXXXXXX = string.Empty;
-        ///// <summary>
-        ///// YYYYYYYYYYYYYYYYY
-        ///// </summary>
-        //[Description("YYYYYYYYYYYYYYYYY")]
-        //[DisplayName("YYYYYYYYYYYYYYYYY")]
-        //[Category("ZZZZZ")]
-        //public string XXXXXXXXXXXXXXX
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(xxxXXXXXXXXXXXX))
-        //        {
-        //            xxxXXXXXXXXXXXX = TengDa.WF.Option.GetOption("XXXXXXXXXXXXXXX");
-        //        }
-        //        return xxxXXXXXXXXXXXX;
-        //    }
-        //    set
-        //    {
-        //        if (value != xxxXXXXXXXXXXXX)
-        //        {
-        //            TengDa.WF.Option.SetOption("XXXXXXXXXXXXXXX", value);
-        //            xxxXXXXXXXXXXXX = value;
-        //        }
-        //    }
-        //}
+        private int coolMinutes = -1;
+        /// <summary>
+        /// 冷却时间
+        /// </summary>
+        [Description("冷却时间，单位：分钟")]
+        [DisplayName("冷却时间")]
+        public int CoolMinutes
+        {
+            get
+            {
+                if (coolMinutes < 0)
+                {
+                    coolMinutes = _Convert.StrToInt(TengDa.WF.Option.GetOption("CoolMinutes"), 15);
+                }
+                return coolMinutes;
+            }
+            set
+            {
+                if (value != coolMinutes)
+                {
+                    TengDa.WF.Option.SetOption("CoolMinutes", value.ToString());
+                    coolMinutes = value;
+                }
+            }
+        }
 
         //private string xxxXXXXXXXXXXXX = string.Empty;
         ///// <summary>

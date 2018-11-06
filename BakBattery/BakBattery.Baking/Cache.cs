@@ -10,7 +10,7 @@ using TengDa.WF;
 namespace BakBattery.Baking
 {
     /// <summary>
-    /// 缓存架
+    /// 冷却架
     /// </summary>
     public class Cache : TengDa.WF.Terminals.Terminal
     {
@@ -141,7 +141,7 @@ namespace BakBattery.Baking
         }
         #endregion
 
-        #region 系统缓存架列表
+        #region 系统冷却架列表
         private static List<Cache> cacheList = new List<Cache>();
         public static List<Cache> CacheList
         {

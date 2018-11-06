@@ -273,9 +273,9 @@ namespace BakBattery.Baking.App
             }
             TreeNode tnScanerList = new TreeNode("扫码枪", tnScaners.ToArray());
 
-            TreeNode tnCache = new TreeNode("缓存架");
+            TreeNode tnCache = new TreeNode("冷却架");
 
-            TreeNode tnRotater = new TreeNode("旋转台");
+            TreeNode tnRotater = new TreeNode("取样台");
 
             List<TreeNode> tnStations = new List<TreeNode>();
 
@@ -459,26 +459,6 @@ namespace BakBattery.Baking.App
             });
             cbCurveSelectedFloor.SelectedIndex = jj;
 
-
-            //水分手动上传选择炉层初始化
-
-            Floor sampleFloor = Floor.FloorList.Where(f => f.Id == Current.option.SampleFloorId).FirstOrDefault();
-            Oven sampleOven = Oven.OvenList.First(o => o.Floors.Contains(sampleFloor));
-
-            int iii = Current.ovens.IndexOf(sampleOven);
-            int jjj = sampleOven.Floors.IndexOf(sampleFloor);
-
-            Current.ovens.ForEach(o =>
-            {
-                cbSampleSelectedOven.Items.Add(o.Name);
-            });
-            cbSampleSelectedOven.SelectedIndex = iii;
-
-            sampleOven.Floors.ForEach(f =>
-            {
-                cbSampleSelectedFloor.Items.Add(f.Name);
-            });
-            cbSampleSelectedFloor.SelectedIndex = jjj;
 
             Current.feeders.ForEach(f => {
                 cbBatteryScaner.Items.Add(f.BatteryScaner.Name);
@@ -955,7 +935,7 @@ namespace BakBattery.Baking.App
 
             #endregion
 
-            #region 缓存架
+            #region 冷却架
 
             Current.Cache.IsAlive = Current.Cache.IsEnable;
 
@@ -965,9 +945,19 @@ namespace BakBattery.Baking.App
 
             for (int j = 0; j < Current.Cache.Stations.Count; j++)
             {
-                lbCacheClampCode[j].Text = Current.Cache.Stations[j].Clamp.Code;
-
                 Station station = Current.Cache.Stations[j];
+
+                if (station.Clamp.OutOvenTime > Common.DefaultTime && station.Clamp.OutOvenTime.AddMinutes(Current.option.CoolMinutes) > DateTime.Now)
+                {
+                    //剩余时间
+                    var remainTimeSpan = station.Clamp.OutOvenTime.AddMinutes(Current.option.CoolMinutes) - DateTime.Now;
+                    lbCacheClampCode[j].Text = string.Format("{0:D2}:{1:D2}", remainTimeSpan.Minutes, remainTimeSpan.Seconds);
+                }
+                else
+                {
+                    lbCacheClampCode[j].Text = station.Clamp.Code;
+                }
+
                 bool canChangeVisible = DateTime.Now.Second % 3 == 1;
 
                 if (Current.Cache.IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
@@ -1003,7 +993,7 @@ namespace BakBattery.Baking.App
 
             #endregion
 
-            #region 旋转台
+            #region 取样台
 
             Current.Transfer.IsAlive = Current.Transfer.IsEnable;
 
@@ -1150,15 +1140,20 @@ namespace BakBattery.Baking.App
                     this.lbRobotInfo.ForeColor = Color.Red;
 
                 }
-                else if (Current.Robot.IsMoving)
+                else if (Current.Robot.IsMoving && TengDa.WF.Current.IsTerminalInitFinished)
                 {
                     this.lbRobotInfo.Text = Current.Robot.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动", Current.Robot.MovingDirSign) : string.Format("移动{0}", Current.Robot.MovingDirSign);
                     this.lbRobotInfo.ForeColor = Color.Blue;
                 }
-                else if (Current.Robot.IsGettingOrPutting)
+                else if (Current.Robot.IsGettingOrPutting && Current.Robot.IsExecuting)
                 {
                     this.lbRobotInfo.Text = Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取 ? "取盘中" : "放盘中";
                     this.lbRobotInfo.ForeColor = Color.Blue;
+                }
+                else if (!Current.Robot.IsStarting)
+                {
+                    this.lbRobotInfo.Text = "未启动";
+                    this.lbRobotInfo.ForeColor = Color.Red;
                 }
                 else
                 {
@@ -1403,7 +1398,7 @@ namespace BakBattery.Baking.App
                     }
                     if (Current.Robot.IsAlive)
                     {
-                        if (!Current.Robot.IsStartting)
+                        if (!Current.Robot.IsExecuting)
                         {
                             Tip.Alert("机器人尚未成功启动，不能切换自动");
                             return;
@@ -1464,7 +1459,7 @@ namespace BakBattery.Baking.App
                     return;
                 }
                 TaskReset();
-                Tip.Alert("任务复位成功！");
+                Tip.Alert("任务复位成功！\r\n请操作示教器将机器人退到安全位置，再操作示教器【终止程序】！");
             }
         }
 
@@ -1634,9 +1629,9 @@ namespace BakBattery.Baking.App
 
             if (Current.Robot.IsEnable)
             {
-                if (Current.Robot.IsStartting && !Current.Robot.IsPausing)
+                if (Current.Robot.IsExecuting)
                 {
-                    Current.Robot.Pause(out msg);
+                    Current.Robot.Stop(out msg);
                 }
 
                 if (!Current.Robot.Plc.TcpDisConnect(out msg))
@@ -1841,7 +1836,7 @@ namespace BakBattery.Baking.App
                 {
                     int index = i;//如果直接用i, 则完成循环后 i一直 = OvenCount
                     timerFeederRuns[i] = new System.Timers.Timer();
-                    timerFeederRuns[i].Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000) / 3 * 2;
+                    timerFeederRuns[i].Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000) / 3;
                     timerFeederRuns[i].Elapsed += delegate
                     {
                         Thread listen = new Thread(new ParameterizedThreadStart(FeederRunInvokeFunc));
@@ -2161,6 +2156,7 @@ namespace BakBattery.Baking.App
 
                             }
                         });
+                        Current.feeders[i].ClampScaner.CanScan = false;
                     }
                     #endregion
 
@@ -2172,11 +2168,9 @@ namespace BakBattery.Baking.App
                         ScanResult result = Current.feeders[i].BatteryScaner.StartBatteryScan(out code, out msg);
                         if (result == ScanResult.OK)
                         {
-                            this.BeginInvoke(new MethodInvoker(() =>
-                            {
-                                this.tbScanerStatus[i][0].Text = "+" + code;
-                            }));
+                            LogHelper.WriteInfo(Current.feeders[i].BatteryScaner.Name + "【扫码日志】第1次扫码成功：" + code);
 
+                            this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][0].Text = "+" + code; }));
                             int id = Battery.Add(new Battery(code, Current.feeders[i].Id), out msg);
                             if (id < 1)
                             {
@@ -2186,17 +2180,17 @@ namespace BakBattery.Baking.App
                             {
                                 Error.Alert(msg);
                             }
-                            //Current.feeders[i].CacheBatteryIn(Battery.GetBattery(id));
-                            //Current.feeders[i].CacheBatteryIn(new Battery { Id = id, Code = code, ScanTime = DateTime.Now });
                         }
                         else if (result == ScanResult.NG || result == ScanResult.Timeout)
                         {
+                            LogHelper.WriteInfo(Current.feeders[i].BatteryScaner.Name + "【扫码日志】第1次扫码失败----");
                             //再扫一次
                             result = Current.feeders[i].BatteryScaner.StartBatteryScan(out code, out msg);
                             if (result == ScanResult.OK)
                             {
-                                this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][0].Text = "+" + code; }));
+                                LogHelper.WriteInfo(Current.feeders[i].BatteryScaner.Name + "【扫码日志】第2次扫码成功：" + code);
 
+                                this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][0].Text = "+" + code; }));
                                 int id = Battery.Add(new Battery(code, Current.feeders[i].Id), out msg);
                                 if (id < 1)
                                 {
@@ -2206,20 +2200,25 @@ namespace BakBattery.Baking.App
                                 {
                                     Error.Alert(msg);
                                 }
-                                //Current.feeders[i].CacheBatteryIn(Battery.GetBattery(id));
-                                //Current.feeders[i].CacheBatteryIn(new Battery { Id = id, Code = code, ScanTime = DateTime.Now });
                             }
                             else if (result == ScanResult.NG || result == ScanResult.Timeout)
                             {
+                                LogHelper.WriteInfo(Current.feeders[i].BatteryScaner.Name + "【扫码日志】第2次扫码失败----");
                                 this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][0].Text = "扫码NG"; }));
                                 if (!Current.feeders[i].SetScanBatteryResult(ScanResult.NG, out msg))
                                 {
                                     Error.Alert(msg);
                                 }
                             }
+                            else
+                            {
+                                LogHelper.WriteInfo(Current.feeders[i].BatteryScaner.Name + "【扫码日志】第2次扫码结果：" + result);
+                                Error.Alert(msg);
+                            }
                         }
                         else
                         {
+                            LogHelper.WriteInfo(Current.feeders[i].BatteryScaner.Name + "【扫码日志】第1次扫码结果：" + result);
                             Error.Alert(msg);
                         }
                         Current.feeders[i].BatteryScaner.CanScan = false;
@@ -3462,11 +3461,11 @@ namespace BakBattery.Baking.App
                     {
                         this.propertyGridSettings.SelectedObject = Current.Robot;
                     }
-                    else if (e.Node.Level == 0 && e.Node.Text == "缓存架")
+                    else if (e.Node.Level == 0 && e.Node.Text == "冷却架")
                     {
                         this.propertyGridSettings.SelectedObject = Current.Cache;
                     }
-                    else if (e.Node.Level == 0 && e.Node.Text == "旋转台")
+                    else if (e.Node.Level == 0 && e.Node.Text == "取样台")
                     {
                         this.propertyGridSettings.SelectedObject = Current.Transfer;
                     }
@@ -3578,9 +3577,13 @@ namespace BakBattery.Baking.App
                     {
                         command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.BakingTimeSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
                     }
-                    else if (propertyName == "BreathingCycleSet")
+                    else if (propertyName == "BreathingCycleSet1")
                     {
-                        command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.BreathingCycleSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
+                        command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.BreathingCycle1SetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
+                    }
+                    else if (propertyName == "BreathingCycleSet2")
+                    {
+                        command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.BreathingCycle2SetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
                     }
 
                     if (!string.IsNullOrEmpty(command))
@@ -3593,19 +3596,19 @@ namespace BakBattery.Baking.App
             }
             else if (type == typeof(Robot))
             {
-                settingsStr = string.Format("将MES的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value,Current.Robot.Name);
             }
             else if (type == typeof(Transfer))
             {
-                settingsStr = string.Format("将MES的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value,Current.Transfer.Name);
             }
             else if (type == typeof(Cache))
             {
-                settingsStr = string.Format("将MES的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value,Current.Cache.Name);
             }
             else if (type == typeof(MES))
             {
-                settingsStr = string.Format("将MES的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value,Current.mes.Name);
             }
             else if (type == typeof(Option))
             {
@@ -4287,85 +4290,17 @@ namespace BakBattery.Baking.App
 
         #endregion
 
-        #region 水含量手动输入
-
-        private void cbSampleSelected_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!TengDa.WF.Current.IsRunning) return;
-            string cbSelectName = (sender as ComboBox).Name;
-            int ii = 0, jj = 0;
-
-            if (cbSelectName.Contains("Oven"))
-            {
-                ii = cbSampleSelectedOven.SelectedIndex;
-
-                cbSampleSelectedFloor.Items.Clear();
-                Current.ovens[ii].Floors.ForEach(f =>
-                {
-                    cbSampleSelectedFloor.Items.Add(f.Name);
-                });
-                jj = 0;
-                cbSampleSelectedFloor.SelectedIndex = jj;
-            }
-            else if (cbSelectName.Contains("Floor"))
-            {
-                ii = cbSampleSelectedOven.SelectedIndex;
-                jj = cbSampleSelectedFloor.SelectedIndex;
-            }
-            Current.option.SampleFloorId = Current.ovens[ii].Floors[jj].Id;
-        }
-
-        private void btnWaterContVerify_Click(object sender, EventArgs e)
-        {
-            int i = cbSampleSelectedOven.SelectedIndex;
-            int j = cbSampleSelectedFloor.SelectedIndex;
-
-            //if (Current.ovens[i].Floors[j].Stations.Count(s => s.FloorStatus == FloorStatus.烘烤) > 0)
-            //{
-            //    Tip.Alert(Current.ovens[i].Floors[j].Name + "正在烘烤，不能输入水含量数据！");
-            //    return;
-            //}
-
-            float waterContent = TengDa._Convert.StrToFloat(tbWaterContent.Text.Trim(), 0);
-            if (waterContent > 0)
-            {
-                //    Current.ovens[i].Floors[j].Stations.ForEach(s => s.Clamp.WaterContent = waterContent);
-                //    Current.blankers.ForEach(b => b.Stations.ForEach(bs =>
-                //    {
-                //        Current.ovens[i].Floors[j].Stations.ForEach(fs =>
-                //{
-                //          if (bs.FromStationId == fs.Id && bs.ClampId > 0)
-                //          {
-                //              bs.Clamp.WaterContent = waterContent;
-                //          }
-                //      });
-                //    }));
-                Clamp.SetWaterCont(Current.ovens[i].Floors[j], waterContent);
-                Tip.Alert("水含量数据输入成功！");
-                if (timerlock && Current.mes.IsAlive)
-                {
-                    //UploadBatteriesInfo(new List<Clamp>());
-                }
-            }
-            else
-            {
-                Error.Alert("输入水含量数据格式错误！");
-            }
-        }
-
-        #endregion
-
         #region 机器人手动操作
 
         private void cmsRobot_Opening(object sender, CancelEventArgs e)
         {
-            this.tsmRobotStart.Enabled = Current.Robot.IsAlive && !Current.Robot.IsStartting;
-            this.tsmRobotPause.Enabled = Current.Robot.IsAlive && !Current.Robot.IsPausing;
-            this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing;
+            this.tsmRobotStart.Enabled = Current.Robot.IsAlive && !Current.Robot.IsStarting && !Current.Robot.IsAlarming;
+            this.tsmRobotPause.Enabled = Current.Robot.IsAlive && !Current.Robot.IsPausing && Current.Robot.IsStarting && !Current.Robot.IsAlarming;
+            this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing && Current.Robot.IsStarting && !Current.Robot.IsAlarming;
             this.tsmRobotAlarmReset.Enabled = Current.Robot.IsAlive && Current.Robot.IsAlarming;
-            this.tsmRobotMaintenance.Enabled = Current.Robot.IsAlive;
-            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && Current.Robot.IsStartting;
-            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus != ClampStatus.无夹具 && Current.Robot.IsStartting;
+          //  this.tsmRobotMaintenance.Enabled = Current.Robot.IsAlive;
+            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && Current.Robot.IsExecuting;
+            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus != ClampStatus.无夹具 && Current.Robot.IsExecuting;
         }
 
         private void tsmRobotStart_Click(object sender, EventArgs e)
@@ -4373,11 +4308,11 @@ namespace BakBattery.Baking.App
             var msg = string.Empty;
             if (Current.Robot.Start(out msg))
             {
-                Tip.Alert(Current.Robot.Name + "启动成功！");
+               // Tip.Alert(Current.Robot.Name + "启动成功！");
             }
             else
             {
-                Error.Alert("启动失败！原因：" + msg);
+                //Error.Alert("启动失败！原因：" + msg);
             }
         }
 
@@ -4430,19 +4365,6 @@ namespace BakBattery.Baking.App
             else
             {
                 Error.Alert(msg);
-            }
-        }
-
-        private void tsmRobotMaintenance_Click(object sender, EventArgs e)
-        {
-            var msg = string.Empty;
-            if (Current.Robot.Maintenance(out msg))
-            {
-                Tip.Alert(Current.Robot.Name + "设置为维护状态成功！");
-            }
-            else
-            {
-                Error.Alert("设置为维护状态失败！" + msg);
             }
         }
 
@@ -4705,6 +4627,9 @@ namespace BakBattery.Baking.App
             Tip.Alert(msg);
         }
 
+
+        #region 水含量测试结果手动输入系统
+
         private void cmsTransfer_Opening(object sender, CancelEventArgs e)
         {
             tsmTestResultOK.Enabled = Current.Transfer.Station.ClampStatus != ClampStatus.无夹具;
@@ -4752,6 +4677,8 @@ namespace BakBattery.Baking.App
                 }
             }
         }
+
+        #endregion
 
     }
 }
