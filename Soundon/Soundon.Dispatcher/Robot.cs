@@ -108,15 +108,33 @@ namespace Soundon.Dispatcher
         public bool IsExecuting { get; set; } = false;
 
         [ReadOnly(true), DisplayName("可发送取盘指令")]
-        public bool IsReadyGet { get; set; } = false;
+        public bool IsReadyGet
+        {
+            get
+            {
+                return Current.Robot.IsExecuting && (Current.Robot.GetPutNumber == 0) && Current.Robot.ClampStatus == ClampStatus.无夹具;
+            }
+        }
 
         [ReadOnly(true), DisplayName("可发送放盘指令")]
-        public bool IsReadyPut { get; set; } = false;
+        public bool IsReadyPut
+        {
+            get
+            {
+                return Current.Robot.IsExecuting && (Current.Robot.GetPutNumber == 0) && Current.Robot.ClampStatus != ClampStatus.无夹具;
+            }
+        }
         /// <summary>
-        /// 机器人货叉正在运动
+        /// 货叉正在运动
         /// </summary>
-        [ReadOnly(true), DisplayName("机器人货叉正在运动")]
-        public bool IsGettingOrPutting { get; set; } = false;
+        [ReadOnly(true), DisplayName("货叉正在运动")]
+        public bool IsGettingOrPutting
+        {
+            get
+            {
+                return Current.Robot.GetPutNumber != 0;
+            }
+        }
 
         [ReadOnly(true), DisplayName("机器人正在移动")]
         public bool IsMoving { get; set; } = false;

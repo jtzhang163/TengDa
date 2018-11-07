@@ -532,7 +532,11 @@ namespace Soundon.Dispatcher
                 if (Current.Robot.IsEnable && Current.Robot.Plc.Id == this.Plc.Id)
                 {
 
+                    #region 获取正在执行取放的位置编号
+
                     Current.Robot.GetPutNumber = bOutputs[0];
+
+                    #endregion
 
                     #region 获取是否启动完成
 
@@ -567,15 +571,6 @@ namespace Soundon.Dispatcher
                         case 3: Current.Robot.ClampStatus = ClampStatus.异常; break;
                         default: Current.Robot.ClampStatus = ClampStatus.未知; break;
                     }
-
-                    #endregion
-
-                    #region 获取正在执行取放的位置编号
-
-                    Current.Robot.IsGettingOrPutting = Current.Robot.GetPutNumber != 0;
-
-                    Current.Robot.IsReadyGet = Current.Robot.IsExecuting && (Current.Robot.GetPutNumber == 0) && Current.Robot.ClampStatus == ClampStatus.无夹具;
-                    Current.Robot.IsReadyPut = Current.Robot.IsExecuting && (Current.Robot.GetPutNumber == 0) && Current.Robot.ClampStatus != ClampStatus.无夹具;
 
                     #endregion
 
