@@ -163,7 +163,7 @@ namespace BakBattery.Baking
 
                 }
 
-                if (clampStatus != value && this.IsAlive)
+                if (clampStatus != value)
                 {
                     UpdateDbField("ClampStatus", value);
                 }

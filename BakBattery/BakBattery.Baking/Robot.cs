@@ -89,13 +89,19 @@ namespace BakBattery.Baking
             }
         }
 
-        [ReadOnly(true), DisplayName("机器人启动成功")]
+        /// <summary>
+        /// 启动成功
+        /// </summary>
+        [ReadOnly(true), DisplayName("启动成功")]
         public bool IsStarting
         {
             get { return IsExecuting || IsPausing; }
         }
 
-        [ReadOnly(true), DisplayName("机器人程序执行中")]
+        /// <summary>
+        /// 程序执行中
+        /// </summary>
+        [ReadOnly(true), DisplayName("程序执行中")]
         public bool IsExecuting { get; set; } = false;
 
         [ReadOnly(true), DisplayName("可发送取盘指令")]
@@ -122,10 +128,13 @@ namespace BakBattery.Baking
         [ReadOnly(true), DisplayName("可确认放夹具到位信号出现次数")]
         public int CanCheckPutClampIsOkCount { get; set; } = 0;
 
+        /// <summary>
+        /// 坐标值
+        /// </summary>
         [DisplayName("轴坐标：I5")]
-        public int I5 { get; set; } = -1;
+        public int CoordinateValue { get; set; } = -1;
 
-        public int PreI5 = -1;
+        public int PreCoordinateValue = -1;
 
         [ReadOnly(true), DisplayName("运动方向")]
         public MovingDirection MovingDirection { get; set; } = MovingDirection.未知;
@@ -396,26 +405,26 @@ namespace BakBattery.Baking
 
                 if(i5 < 0)
                 {
-                    this.I5 = 0;
+                    this.CoordinateValue = 0;
                 }
                 else if (i5 < 170)
                 {
-                    this.I5 = i5;
+                    this.CoordinateValue = i5;
                 }
                 else
                 {
-                    this.I5 = 170;
+                    this.CoordinateValue = 170;
                 }
 
                 // RobotPosition rp = RobotPosition.RobotPositionList.FirstOrDefault(r => r.XMinValue < this.I4 && r.XMaxValue > this.I4);
-                this.Position = (int)(this.I5 * Current.option.RobotPositionAmplify);
+                this.Position = (int)(this.CoordinateValue * Current.option.RobotPositionAmplify);
               //  this.Position = rp == null ? this.position : rp.Position;
 
-                if (this.I5 < this.PreI5) { this.MovingDirection = MovingDirection.前进; this.IsMoving = true; }
-                else if (this.I5 > this.PreI5) { this.MovingDirection = MovingDirection.后退; this.IsMoving = true; }
+                if (this.CoordinateValue < this.PreCoordinateValue) { this.MovingDirection = MovingDirection.前进; this.IsMoving = true; }
+                else if (this.CoordinateValue > this.PreCoordinateValue) { this.MovingDirection = MovingDirection.后退; this.IsMoving = true; }
                 else { this.MovingDirection = MovingDirection.停止; this.IsMoving = false; }
 
-                this.PreI5 = this.I5;
+                this.PreCoordinateValue = this.CoordinateValue;
 
                 #endregion
 
