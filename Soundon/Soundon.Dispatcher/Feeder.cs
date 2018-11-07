@@ -532,10 +532,14 @@ namespace Soundon.Dispatcher
                 if (Current.Robot.IsEnable && Current.Robot.Plc.Id == this.Plc.Id)
                 {
 
+                    Current.Robot.GetPutNumber = bOutputs[0];
+
                     #region 获取是否启动完成
 
-                    Current.Robot.IsStartting = true;
-                    //Current.Robot.IsStartting = bOutputs[3] == 1;
+                    //Current.Robot.IsStartting = true;
+                    Current.Robot.IsStarting = bOutputs[13] == 1;
+
+                    Current.Robot.IsExecuting = Current.Robot.IsStarting && bOutputs[16] == 1;
 
                     #endregion
 
@@ -568,44 +572,22 @@ namespace Soundon.Dispatcher
 
                     #region 获取正在执行取放的位置编号
 
-                    Current.Robot.IsGettingOrPutting = bOutputs[0] != 0;
+                    Current.Robot.IsGettingOrPutting = Current.Robot.GetPutNumber != 0;
 
-                    Current.Robot.IsReadyGet = Current.Robot.IsStartting && (bOutputs[0] == 0) && Current.Robot.ClampStatus == ClampStatus.无夹具;
-                    Current.Robot.IsReadyPut = Current.Robot.IsStartting && (bOutputs[0] == 0) && Current.Robot.ClampStatus != ClampStatus.无夹具;
+                    Current.Robot.IsReadyGet = Current.Robot.IsExecuting && (Current.Robot.GetPutNumber == 0) && Current.Robot.ClampStatus == ClampStatus.无夹具;
+                    Current.Robot.IsReadyPut = Current.Robot.IsExecuting && (Current.Robot.GetPutNumber == 0) && Current.Robot.ClampStatus != ClampStatus.无夹具;
 
                     #endregion
 
                     #region 获取位置
-                    //int i5 = -1;
-                    //if (!this.Plc.GetInfo(false, plcCompany, true, "I5", (byte)0, out i5, out msg))
-                    //{
-                    //    Error.Alert(msg);
-                    //    this.Plc.IsAlive = false;
-                    //    return false;
-                    //}
 
-                    //if (i5 < 0)
-                    //{
-                    //    this.I5 = 0;
-                    //}
-                    //else if (i5 < 170)
-                    //{
-                    //    this.I5 = i5;
-                    //}
-                    //else
-                    //{
-                    //    this.I5 = 170;
-                    //}
+                    Current.Robot.CoordinateValue = bOutputs[15];
 
-                    //RobotPosition rp = RobotPosition.RobotPositionList.FirstOrDefault(r => r.XMinValue < this.I4 && r.XMaxValue > this.I4);
-                    //this.Position = (int)(this.I5 * Current.option.RobotPositionAmplify);
-                    //this.Position = rp == null ? this.position : rp.Position;
+                    if (Current.Robot.CoordinateValue < Current.Robot.PreCoordinateValue) { Current.Robot.MovingDirection = MovingDirection.前进; Current.Robot.IsMoving = true; }
+                    else if (Current.Robot.CoordinateValue > Current.Robot.PreCoordinateValue) { Current.Robot.MovingDirection = MovingDirection.后退; Current.Robot.IsMoving = true; }
+                    else { Current.Robot.MovingDirection = MovingDirection.停止; Current.Robot.IsMoving = false; }
 
-                    //if (this.I5 < this.PreI5) { this.MovingDirection = MovingDirection.前进; this.IsMoving = true; }
-                    //else if (this.I5 > this.PreI5) { this.MovingDirection = MovingDirection.后退; this.IsMoving = true; }
-                    //else { this.MovingDirection = MovingDirection.停止; this.IsMoving = false; }
-
-                    //this.PreI5 = this.I5;
+                    Current.Robot.PreCoordinateValue = Current.Robot.CoordinateValue;
 
                     #endregion
 

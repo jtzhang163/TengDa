@@ -1915,6 +1915,32 @@ namespace Soundon.Dispatcher
             }
         }
 
+        private int robotMinCoordinate = 0;
+        /// <summary>
+        /// 机器人X轴坐标最小值
+        /// </summary>
+        [DisplayName("机器人X轴坐标最小值")]
+        [Category("机器人")]
+        public int RobotMinCoordinate
+        {
+            get
+            {
+                if (robotMinCoordinate == 0)
+                {
+                    robotMinCoordinate = _Convert.StrToInt(TengDa.WF.Option.GetOption("RobotMinCoordinate"), 308);
+                }
+                return robotMinCoordinate;
+            }
+            set
+            {
+                if (value != robotMinCoordinate)
+                {
+                    TengDa.WF.Option.SetOption("RobotMinCoordinate", value.ToString());
+                    robotMinCoordinate = value;
+                }
+            }
+        }
+
         private string ovenIsBakingStatusAddrs = string.Empty;
         /// <summary>
         /// 烤箱烘烤状态地址

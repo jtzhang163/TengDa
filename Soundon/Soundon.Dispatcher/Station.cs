@@ -124,12 +124,6 @@ namespace Soundon.Dispatcher
                         Current.Yields.First(y => y.ClampOri == this.ClampOri).BlankingOK++;
                     }
 
-                    //样品信息复位
-                    if(value == ClampStatus.无夹具 && this.GetPutType == GetPutType.转移台)
-                    {
-                        this.SampleStatus = SampleStatus.待测试;
-                    }
-
                     //解决取放料时夹具状态反复变化问题
                     if (value != ClampStatus.无夹具 && (this.Id == Current.Task.FromStationId || this.Id == Current.Task.ToStationId))
                     {
@@ -140,7 +134,7 @@ namespace Soundon.Dispatcher
 
                 }
 
-                if (clampStatus != value && this.IsAlive)
+                if (clampStatus != value)
                 {
                     UpdateDbField("ClampStatus", value);
                 }

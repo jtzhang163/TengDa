@@ -54,6 +54,7 @@ namespace Soundon.Dispatcher
         {
             get
             {
+                position = (int)((this.CoordinateValue - Current.option.RobotMinCoordinate) * Current.option.RobotPositionAmplify);
                 return position;
             }
             set
@@ -89,10 +90,22 @@ namespace Soundon.Dispatcher
         }
 
         /// <summary>
-        /// 机器人正在运行
+        /// 正在取放位置编号
         /// </summary>
-        [ReadOnly(true), DisplayName("已启动")]
-        public bool IsStartting { get; set; } = false;
+        [ReadOnly(true), DisplayName("正在取放位置编号")]
+        public ushort GetPutNumber { get; set; }
+
+        /// <summary>
+        /// 启动完成
+        /// </summary>
+        [ReadOnly(true), DisplayName("启动完成")]
+        public bool IsStarting { get; set; } = false;
+
+        /// <summary>
+        /// 程序执行中
+        /// </summary>
+        [ReadOnly(true), DisplayName("程序执行中")]
+        public bool IsExecuting { get; set; } = false;
 
         [ReadOnly(true), DisplayName("可发送取盘指令")]
         public bool IsReadyGet { get; set; } = false;
@@ -114,10 +127,28 @@ namespace Soundon.Dispatcher
         [ReadOnly(true), DisplayName("可确认放夹具到位信号出现次数")]
         public int CanCheckPutClampIsOkCount { get; set; } = 0;
 
-        [DisplayName("轴坐标：I5")]
-        public int I5 { get; set; } = -1;
+        private int coordinateValue = -1;
+        /// <summary>
+        /// 坐标值
+        /// </summary>
+        [DisplayName("坐标值")]
+        public int CoordinateValue
+        {
+            get
+            {
+                if (coordinateValue < Current.option.RobotMinCoordinate)
+                {
+                    coordinateValue = Current.option.RobotMinCoordinate;
+                }
+                return coordinateValue;
+            }
+            set
+            {
+                coordinateValue = value;
+            }
+        }
 
-        public int PreI5 = -1;
+        public int PreCoordinateValue = -1;
 
         [ReadOnly(true), DisplayName("运动方向")]
         public MovingDirection MovingDirection { get; set; } = MovingDirection.未知;
@@ -348,50 +379,12 @@ namespace Soundon.Dispatcher
         }
 
         /// <summary>
-        /// 机器人报警复位
-        /// </summary>
-        /// <returns></returns>
-        public bool AlarmReset(out string msg)
-        {
-
-            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
-
-            bool tmp = false;
-            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.3", true, out tmp, out msg))
-            {
-                Error.Alert("机器人报警复位失败！原因：" + msg);
-                this.Plc.IsAlive = false;
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
         /// 机器人急停
         /// </summary>
         /// <returns></returns>
         public bool Stop(out string msg)
         {
             Current.Robot.Pause(out msg);
-            return true;
-        }
-
-
-        /// <summary>
-        /// 机器人维护保养
-        /// </summary>
-        /// <returns></returns>
-        public bool Maintenance(out string msg)
-        {
-            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
-
-            bool tmp = false;
-            if (!this.Plc.GetInfo(false, plcCompany, false, "000", false, out tmp, out msg))
-            {
-                 this.Plc.IsAlive = false;
-                return false;
-            }
             return true;
         }
 

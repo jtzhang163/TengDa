@@ -1145,7 +1145,7 @@ namespace Soundon.Dispatcher.App
                     this.lbRobotInfo.ForeColor = Color.Red;
 
                 }
-                else if (Current.Robot.IsMoving)
+                else if (Current.Robot.IsMoving && TengDa.WF.Current.IsTerminalInitFinished)
                 {
                     this.lbRobotInfo.Text = Current.Robot.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动", Current.Robot.MovingDirSign) : string.Format("移动{0}", Current.Robot.MovingDirSign);
                     this.lbRobotInfo.ForeColor = Color.Blue;
@@ -1397,7 +1397,7 @@ namespace Soundon.Dispatcher.App
                     }
                     if (Current.Robot.IsAlive)
                     {
-                        if (!Current.Robot.IsStartting)
+                        if (!Current.Robot.IsExecuting)
                         {
                             Tip.Alert("机器人尚未成功启动，不能切换自动");
                             return;
@@ -3828,7 +3828,7 @@ namespace Soundon.Dispatcher.App
 
             for (int j = 0; j < FeederStationCount; j++)
             {
-                if (e.Column == FeederStationCount - j - 1)
+                if (e.Column == FeederStationCount - j - 1 && i == 1 || e.Column == j && i == 0)
                 {
                     if (!Current.feeders[i].Stations[j].IsAlive)
                     {
@@ -4390,13 +4390,10 @@ namespace Soundon.Dispatcher.App
 
         private void cmsRobot_Opening(object sender, CancelEventArgs e)
         {
-            this.tsmRobotStart.Enabled = Current.Robot.IsAlive && !Current.Robot.IsStartting;
             this.tsmRobotPause.Enabled = Current.Robot.IsAlive && !Current.Robot.IsPausing;
             this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing;
-            this.tsmRobotAlarmReset.Enabled = Current.Robot.IsAlive && Current.Robot.IsAlarming;
-            this.tsmRobotMaintenance.Enabled = Current.Robot.IsAlive;
-            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive && Current.Robot.IsReadyGet;
-            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive && Current.Robot.IsReadyPut;
+            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && Current.Robot.IsExecuting;
+            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus != ClampStatus.无夹具 && Current.Robot.IsExecuting;
         }
 
         private void tsmRobotStart_Click(object sender, EventArgs e)
@@ -4438,18 +4435,6 @@ namespace Soundon.Dispatcher.App
             }
         }
 
-        private void tsmRobotAlarmReset_Click(object sender, EventArgs e)
-        {
-            var msg = string.Empty;
-            if (Current.Robot.AlarmReset(out msg))
-            {
-                Tip.Alert(Current.Robot.Name + "报警复位成功！");
-            }
-            else
-            {
-                Error.Alert(msg);
-            }
-        }
 
         private void pbEmergencyStop_Click(object sender, EventArgs e)
         {
@@ -4461,19 +4446,6 @@ namespace Soundon.Dispatcher.App
             else
             {
                 Error.Alert(msg);
-            }
-        }
-
-        private void tsmRobotMaintenance_Click(object sender, EventArgs e)
-        {
-            var msg = string.Empty;
-            if (Current.Robot.Maintenance(out msg))
-            {
-                Tip.Alert(Current.Robot.Name + "设置为维护状态成功！");
-            }
-            else
-            {
-                Error.Alert("设置为维护状态失败！" + msg);
             }
         }
 
