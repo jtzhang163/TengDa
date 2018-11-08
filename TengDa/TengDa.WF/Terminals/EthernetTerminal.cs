@@ -178,20 +178,22 @@ namespace TengDa.WF.Terminals
                 }
                 else if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
                 {
-
-                    omron_net = new HslCommunice533.Profinet.Omron.OmronFinsNet(this.IP, this.Port);
-                    omron_net.SA1 = TengDa.Net.GetIpLastValue(Net.GetLocalIpByRegex("192.168.*"));  // PC网络号，PC的IP地址的最后一个数
-                    omron_net.DA1 = TengDa.Net.GetIpLastValue(this.IP);  // PLC网络号，PLC的IP地址的最后一个数0
-                    omron_net.DA2 = 0x00; // PLC单元号，通常为0
-
-                    omron_net.ReceiveTimeOut = 1000;
-                    omron_net.ConnectTimeOut = 1000;
-                    HslCommunice533.OperateResult result = omron_net.ConnectServer();
-                    if (!result.IsSuccess)
+                    if (omron_net == null)
                     {
-                        msg = result.Message;
-                        IsAlive = false;
-                        return false;
+                        omron_net = new HslCommunice533.Profinet.Omron.OmronFinsNet(this.IP, this.Port);
+                        omron_net.SA1 = TengDa.Net.GetIpLastValue(Net.GetLocalIpByRegex("192.168.*"));  // PC网络号，PC的IP地址的最后一个数
+                        omron_net.DA1 = TengDa.Net.GetIpLastValue(this.IP);  // PLC网络号，PLC的IP地址的最后一个数0
+                        omron_net.DA2 = 0x00; // PLC单元号，通常为0
+
+                        omron_net.ReceiveTimeOut = 1000;
+                        omron_net.ConnectTimeOut = 1000;
+                        HslCommunice533.OperateResult result = omron_net.ConnectServer();
+                        if (!result.IsSuccess)
+                        {
+                            msg = result.Message;
+                            IsAlive = false;
+                            return false;
+                        }                  
                     }
                     IsAlive = true;
                 }
@@ -477,17 +479,35 @@ namespace TengDa.WF.Terminals
 
         public bool GetInfo(string address, ushort length, out ushort[] output, out string msg)
         {
+            return GetInfo(false, address, length, out output, out msg);
+        }
+
+        public bool GetInfo(bool checkPingSuccess, string address, ushort length, out ushort[] output, out string msg)
+        {
             output = new ushort[] { };
             msg = string.Empty;
+
+            if (checkPingSuccess)
+            {
+                if (!IsPingSuccess)
+                {
+                    IsAlive = false;
+                    msg = string.Format("无法连接到【{0}】，IP：{1}", this.Name, this.IP);
+                    return false;
+                }
+            }
+
             if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
             {
+                TcpConnect(out msg);
                 HslCommunice533.OperateResult<ushort[]> result = omron_net.ReadUInt16(address, length);
+                TcpDisConnect(out msg);
                 if (result.IsSuccess)
                 {
                     output = result.Content;
                     return true;
                 }
-                msg = result.Message;
+                msg = this.Name + "获取数据出现异常 " + result.Message;
             }
             else if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "NX1P2")
             {
@@ -529,7 +549,9 @@ namespace TengDa.WF.Terminals
             msg = string.Empty;
             if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
             {
+                TcpConnect(out msg);
                 HslCommunice533.OperateResult result = omron_net.Write(address, val);
+                TcpDisConnect(out msg);
                 if (result.IsSuccess)
                 {
                     return true;

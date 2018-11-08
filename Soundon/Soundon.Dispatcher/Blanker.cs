@@ -224,59 +224,59 @@ namespace Soundon.Dispatcher
 
             try
             {
-                if (!this.Plc.GetInfo(false, Current.option.GetBlankerInfoStr, out output, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                if (output.Substring(3, 1) != "$")
-                {
-                    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetBlankerInfoStr, output));
-                    return false;
-                }
+                //if (!this.Plc.GetInfo(false, Current.option.GetBlankerInfoStr, out output, out msg))
+                //{
+                //    Error.Alert(msg);
+                //    this.Plc.IsAlive = false;
+                //    return false;
+                //}
+                //if (output.Substring(3, 1) != "$")
+                //{
+                //    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetBlankerInfoStr, output));
+                //    return false;
+                //}
 
-                int[] iOut = new int[3];
-                output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-                for (int j = 0; j < iOut.Length; j++)
-                {
-                    iOut[j] = int.Parse(output.Substring(j * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                }
+                //int[] iOut = new int[3];
+                //output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
+                //for (int j = 0; j < iOut.Length; j++)
+                //{
+                //    iOut[j] = int.Parse(output.Substring(j * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                //}
 
-                for (int j = 0; j < this.Stations.Count; j++)
-                {
-                    switch (iOut[j])
-                    {
-                        case 1:
-                            this.Stations[j].ClampStatus = ClampStatus.无夹具;
-                            this.Stations[j].Status = StationStatus.可放;
-                            break;
-                        case 2:
-                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[j].Status = StationStatus.工作中;
-                            break;
-                        case 3:
-                            this.Stations[j].ClampStatus = ClampStatus.空夹具;
-                            this.Stations[j].Status = StationStatus.可取;
-                            break;
-                        case 4:
-                            this.Stations[j].ClampStatus = ClampStatus.异常;
-                            this.Stations[j].Status = StationStatus.不可用;
-                            break;
-                        default:
-                            this.Stations[j].ClampStatus = ClampStatus.未知;
-                            this.Stations[j].Status = StationStatus.不可用;
-                            break;
-                    }
-                }
+                //for (int j = 0; j < this.Stations.Count; j++)
+                //{
+                //    switch (iOut[j])
+                //    {
+                //        case 1:
+                //            this.Stations[j].ClampStatus = ClampStatus.无夹具;
+                //            this.Stations[j].Status = StationStatus.可放;
+                //            break;
+                //        case 2:
+                //            this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                //            this.Stations[j].Status = StationStatus.工作中;
+                //            break;
+                //        case 3:
+                //            this.Stations[j].ClampStatus = ClampStatus.空夹具;
+                //            this.Stations[j].Status = StationStatus.可取;
+                //            break;
+                //        case 4:
+                //            this.Stations[j].ClampStatus = ClampStatus.异常;
+                //            this.Stations[j].Status = StationStatus.不可用;
+                //            break;
+                //        default:
+                //            this.Stations[j].ClampStatus = ClampStatus.未知;
+                //            this.Stations[j].Status = StationStatus.不可用;
+                //            break;
+                //    }
+                //}
 
-                switch (iOut[2])
-                {
-                    case 1: this.TriLamp = TriLamp.Green; break;
-                    case 2: this.TriLamp = TriLamp.Yellow; break;
-                    case 3: this.TriLamp = TriLamp.Red; break;
-                    default: this.TriLamp = TriLamp.Unknown; break;
-                }
+                //switch (iOut[2])
+                //{
+                //    case 1: this.TriLamp = TriLamp.Green; break;
+                //    case 2: this.TriLamp = TriLamp.Yellow; break;
+                //    case 3: this.TriLamp = TriLamp.Red; break;
+                //    default: this.TriLamp = TriLamp.Unknown; break;
+                //}
 
                 Thread.Sleep(100);
             }

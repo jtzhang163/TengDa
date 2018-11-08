@@ -505,7 +505,7 @@ namespace Soundon.Dispatcher
                 //获取转移台信息
                 if (Current.Transfer.IsEnable && Current.Transfer.PlcId == this.Plc.Id)
                 {
-                    switch (bOutputs[23])
+                    switch (bOutputs[17])
                     {
                         case 1:
                             Current.Transfer.Station.ClampStatus = ClampStatus.无夹具;

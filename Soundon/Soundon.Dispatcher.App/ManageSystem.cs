@@ -1155,6 +1155,11 @@ namespace Soundon.Dispatcher.App
                     this.lbRobotInfo.Text = Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取 ? "取盘中" : "放盘中";
                     this.lbRobotInfo.ForeColor = Color.Blue;
                 }
+                else if (!Current.Robot.IsExecuting)
+                {
+                    this.lbRobotInfo.Text = "未就绪";
+                    this.lbRobotInfo.ForeColor = Color.Red;
+                }
                 else
                 {
                     this.lbRobotInfo.Text = "闲置";
@@ -1838,7 +1843,7 @@ namespace Soundon.Dispatcher.App
                 {
                     int index = i;//如果直接用i, 则完成循环后 i一直 = OvenCount
                     timerFeederRuns[i] = new System.Timers.Timer();
-                    timerFeederRuns[i].Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000) / 3 * 2;
+                    timerFeederRuns[i].Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000) / 3;
                     timerFeederRuns[i].Elapsed += delegate
                     {
                         Thread listen = new Thread(new ParameterizedThreadStart(FeederRunInvokeFunc));
@@ -4598,11 +4603,11 @@ namespace Soundon.Dispatcher.App
             var result = true;
             if (manuFlag == "Get")
             {
-                result = s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.ClampStatus != ClampStatus.无夹具;
+                result = s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.Status == StationStatus.可取;
             }
             else if (manuFlag == "Put")
             {
-                result = s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.ClampStatus == ClampStatus.无夹具;
+                result = s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.Status == StationStatus.可放;
             }
             return result;
         }
