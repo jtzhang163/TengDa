@@ -365,12 +365,12 @@
             this.pbBlankerTriLamp01 = new System.Windows.Forms.PictureBox();
             this.lbBlankerName01 = new System.Windows.Forms.Label();
             this.tlpBlanker1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpBlankerStationClamp0102 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbBlankerClampCode0102 = new System.Windows.Forms.Label();
             this.tlpBlankerStationClamp0101 = new System.Windows.Forms.TableLayoutPanel();
             this.lbBlankerClampCode0101 = new System.Windows.Forms.Label();
-            this.lbBlankerStationName0101 = new System.Windows.Forms.Label();
+            this.tlpBlankerStationClamp0102 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbBlankerClampCode0102 = new System.Windows.Forms.Label();
             this.lbBlankerStationName0102 = new System.Windows.Forms.Label();
+            this.lbBlankerStationName0101 = new System.Windows.Forms.Label();
             this.tableLayoutPanel47 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel48 = new System.Windows.Forms.TableLayoutPanel();
             this.pbBlankerTriLamp02 = new System.Windows.Forms.PictureBox();
@@ -549,10 +549,6 @@
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
             this.label37 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.cmsTransfer = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmTestResult = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmTestResultOK = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmTestResultNG = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxTerminal = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.tbBlankerStatus01 = new System.Windows.Forms.TextBox();
@@ -776,8 +772,8 @@
             this.tableLayoutPanel36.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp01)).BeginInit();
             this.tlpBlanker1.SuspendLayout();
-            this.tlpBlankerStationClamp0102.SuspendLayout();
             this.tlpBlankerStationClamp0101.SuspendLayout();
+            this.tlpBlankerStationClamp0102.SuspendLayout();
             this.tableLayoutPanel47.SuspendLayout();
             this.tableLayoutPanel48.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp02)).BeginInit();
@@ -833,7 +829,6 @@
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             this.tableLayoutPanel24.SuspendLayout();
-            this.cmsTransfer.SuspendLayout();
             this.groupBoxTerminal.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0202)).BeginInit();
@@ -5783,10 +5778,10 @@
             this.tlpBlanker1.ColumnCount = 2;
             this.tlpBlanker1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpBlanker1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlanker1.Controls.Add(this.tlpBlankerStationClamp0102, 1, 0);
-            this.tlpBlanker1.Controls.Add(this.tlpBlankerStationClamp0101, 0, 0);
-            this.tlpBlanker1.Controls.Add(this.lbBlankerStationName0101, 0, 1);
-            this.tlpBlanker1.Controls.Add(this.lbBlankerStationName0102, 1, 1);
+            this.tlpBlanker1.Controls.Add(this.tlpBlankerStationClamp0101, 1, 0);
+            this.tlpBlanker1.Controls.Add(this.tlpBlankerStationClamp0102, 0, 0);
+            this.tlpBlanker1.Controls.Add(this.lbBlankerStationName0102, 0, 1);
+            this.tlpBlanker1.Controls.Add(this.lbBlankerStationName0101, 1, 1);
             this.tlpBlanker1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tlpBlanker1.Location = new System.Drawing.Point(3, 28);
             this.tlpBlanker1.Name = "tlpBlanker1";
@@ -5798,64 +5793,6 @@
             this.tlpBlanker1.TabIndex = 15;
             this.tlpBlanker1.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpBlanker_CellPaint);
             // 
-            // tlpBlankerStationClamp0102
-            // 
-            this.tlpBlankerStationClamp0102.BackColor = System.Drawing.SystemColors.Window;
-            this.tlpBlankerStationClamp0102.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tlpBlankerStationClamp0102.ColumnCount = 2;
-            this.tlpBlankerStationClamp0102.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlankerStationClamp0102.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlankerStationClamp0102.Controls.Add(this.lbBlankerClampCode0102, 0, 0);
-            this.tlpBlankerStationClamp0102.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpBlankerStationClamp0102.Location = new System.Drawing.Point(57, 4);
-            this.tlpBlankerStationClamp0102.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.tlpBlankerStationClamp0102.Name = "tlpBlankerStationClamp0102";
-            this.tlpBlankerStationClamp0102.RowCount = 26;
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.002874F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.002874F));
-            this.tlpBlankerStationClamp0102.Size = new System.Drawing.Size(41, 99);
-            this.tlpBlankerStationClamp0102.TabIndex = 4;
-            // 
-            // lbBlankerClampCode0102
-            // 
-            this.lbBlankerClampCode0102.AutoSize = true;
-            this.lbBlankerClampCode0102.BackColor = System.Drawing.SystemColors.Window;
-            this.tlpBlankerStationClamp0102.SetColumnSpan(this.lbBlankerClampCode0102, 2);
-            this.lbBlankerClampCode0102.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerClampCode0102.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerClampCode0102.ForeColor = System.Drawing.Color.Green;
-            this.lbBlankerClampCode0102.Location = new System.Drawing.Point(1, 1);
-            this.lbBlankerClampCode0102.Margin = new System.Windows.Forms.Padding(0);
-            this.lbBlankerClampCode0102.Name = "lbBlankerClampCode0102";
-            this.lbBlankerClampCode0102.Size = new System.Drawing.Size(39, 20);
-            this.lbBlankerClampCode0102.TabIndex = 0;
-            this.lbBlankerClampCode0102.Text = "XXXX";
-            this.lbBlankerClampCode0102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // tlpBlankerStationClamp0101
             // 
             this.tlpBlankerStationClamp0101.BackColor = System.Drawing.SystemColors.Window;
@@ -5865,38 +5802,38 @@
             this.tlpBlankerStationClamp0101.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpBlankerStationClamp0101.Controls.Add(this.lbBlankerClampCode0101, 0, 0);
             this.tlpBlankerStationClamp0101.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpBlankerStationClamp0101.Location = new System.Drawing.Point(6, 4);
+            this.tlpBlankerStationClamp0101.Location = new System.Drawing.Point(57, 4);
             this.tlpBlankerStationClamp0101.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.tlpBlankerStationClamp0101.Name = "tlpBlankerStationClamp0101";
             this.tlpBlankerStationClamp0101.RowCount = 26;
             this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.001789F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.003071F));
-            this.tlpBlankerStationClamp0101.Size = new System.Drawing.Size(40, 99);
-            this.tlpBlankerStationClamp0101.TabIndex = 1;
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.002874F));
+            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.002874F));
+            this.tlpBlankerStationClamp0101.Size = new System.Drawing.Size(41, 99);
+            this.tlpBlankerStationClamp0101.TabIndex = 4;
             // 
             // lbBlankerClampCode0101
             // 
@@ -5909,23 +5846,68 @@
             this.lbBlankerClampCode0101.Location = new System.Drawing.Point(1, 1);
             this.lbBlankerClampCode0101.Margin = new System.Windows.Forms.Padding(0);
             this.lbBlankerClampCode0101.Name = "lbBlankerClampCode0101";
-            this.lbBlankerClampCode0101.Size = new System.Drawing.Size(38, 20);
+            this.lbBlankerClampCode0101.Size = new System.Drawing.Size(39, 20);
             this.lbBlankerClampCode0101.TabIndex = 0;
             this.lbBlankerClampCode0101.Text = "XXXX";
             this.lbBlankerClampCode0101.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lbBlankerStationName0101
+            // tlpBlankerStationClamp0102
             // 
-            this.lbBlankerStationName0101.AutoSize = true;
-            this.lbBlankerStationName0101.BackColor = System.Drawing.Color.Transparent;
-            this.lbBlankerStationName0101.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerStationName0101.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerStationName0101.Location = new System.Drawing.Point(4, 107);
-            this.lbBlankerStationName0101.Name = "lbBlankerStationName0101";
-            this.lbBlankerStationName0101.Size = new System.Drawing.Size(44, 20);
-            this.lbBlankerStationName0101.TabIndex = 0;
-            this.lbBlankerStationName0101.Text = "XXXX";
-            this.lbBlankerStationName0101.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tlpBlankerStationClamp0102.BackColor = System.Drawing.SystemColors.Window;
+            this.tlpBlankerStationClamp0102.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tlpBlankerStationClamp0102.ColumnCount = 2;
+            this.tlpBlankerStationClamp0102.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpBlankerStationClamp0102.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpBlankerStationClamp0102.Controls.Add(this.lbBlankerClampCode0102, 0, 0);
+            this.tlpBlankerStationClamp0102.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpBlankerStationClamp0102.Location = new System.Drawing.Point(6, 4);
+            this.tlpBlankerStationClamp0102.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.tlpBlankerStationClamp0102.Name = "tlpBlankerStationClamp0102";
+            this.tlpBlankerStationClamp0102.RowCount = 26;
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.001789F));
+            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.003071F));
+            this.tlpBlankerStationClamp0102.Size = new System.Drawing.Size(40, 99);
+            this.tlpBlankerStationClamp0102.TabIndex = 1;
+            // 
+            // lbBlankerClampCode0102
+            // 
+            this.lbBlankerClampCode0102.AutoSize = true;
+            this.lbBlankerClampCode0102.BackColor = System.Drawing.SystemColors.Window;
+            this.tlpBlankerStationClamp0102.SetColumnSpan(this.lbBlankerClampCode0102, 2);
+            this.lbBlankerClampCode0102.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbBlankerClampCode0102.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbBlankerClampCode0102.ForeColor = System.Drawing.Color.Green;
+            this.lbBlankerClampCode0102.Location = new System.Drawing.Point(1, 1);
+            this.lbBlankerClampCode0102.Margin = new System.Windows.Forms.Padding(0);
+            this.lbBlankerClampCode0102.Name = "lbBlankerClampCode0102";
+            this.lbBlankerClampCode0102.Size = new System.Drawing.Size(38, 20);
+            this.lbBlankerClampCode0102.TabIndex = 0;
+            this.lbBlankerClampCode0102.Text = "XXXX";
+            this.lbBlankerClampCode0102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbBlankerStationName0102
             // 
@@ -5933,12 +5915,25 @@
             this.lbBlankerStationName0102.BackColor = System.Drawing.Color.Transparent;
             this.lbBlankerStationName0102.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbBlankerStationName0102.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerStationName0102.Location = new System.Drawing.Point(55, 107);
+            this.lbBlankerStationName0102.Location = new System.Drawing.Point(4, 107);
             this.lbBlankerStationName0102.Name = "lbBlankerStationName0102";
-            this.lbBlankerStationName0102.Size = new System.Drawing.Size(45, 20);
-            this.lbBlankerStationName0102.TabIndex = 3;
+            this.lbBlankerStationName0102.Size = new System.Drawing.Size(44, 20);
+            this.lbBlankerStationName0102.TabIndex = 0;
             this.lbBlankerStationName0102.Text = "XXXX";
             this.lbBlankerStationName0102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbBlankerStationName0101
+            // 
+            this.lbBlankerStationName0101.AutoSize = true;
+            this.lbBlankerStationName0101.BackColor = System.Drawing.Color.Transparent;
+            this.lbBlankerStationName0101.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbBlankerStationName0101.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbBlankerStationName0101.Location = new System.Drawing.Point(55, 107);
+            this.lbBlankerStationName0101.Name = "lbBlankerStationName0101";
+            this.lbBlankerStationName0101.Size = new System.Drawing.Size(45, 20);
+            this.lbBlankerStationName0101.TabIndex = 3;
+            this.lbBlankerStationName0101.Text = "XXXX";
+            this.lbBlankerStationName0101.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel47
             // 
@@ -8448,37 +8443,6 @@
             this.panel8.Size = new System.Drawing.Size(1, 578);
             this.panel8.TabIndex = 0;
             // 
-            // cmsTransfer
-            // 
-            this.cmsTransfer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmTestResult});
-            this.cmsTransfer.Name = "cmsInOutOven";
-            this.cmsTransfer.Size = new System.Drawing.Size(149, 26);
-            this.cmsTransfer.Opening += new System.ComponentModel.CancelEventHandler(this.cmsTransfer_Opening);
-            // 
-            // tsmTestResult
-            // 
-            this.tsmTestResult.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmTestResultOK,
-            this.tsmTestResultNG});
-            this.tsmTestResult.Name = "tsmTestResult";
-            this.tsmTestResult.Size = new System.Drawing.Size(148, 22);
-            this.tsmTestResult.Text = "水分测试结果";
-            // 
-            // tsmTestResultOK
-            // 
-            this.tsmTestResultOK.Name = "tsmTestResultOK";
-            this.tsmTestResultOK.Size = new System.Drawing.Size(119, 22);
-            this.tsmTestResultOK.Text = "结果OK";
-            this.tsmTestResultOK.Click += new System.EventHandler(this.tsmTestResultOK_Click);
-            // 
-            // tsmTestResultNG
-            // 
-            this.tsmTestResultNG.Name = "tsmTestResultNG";
-            this.tsmTestResultNG.Size = new System.Drawing.Size(119, 22);
-            this.tsmTestResultNG.Text = "结果NG";
-            this.tsmTestResultNG.Click += new System.EventHandler(this.tsmTestResultNG_Click);
-            // 
             // groupBoxTerminal
             // 
             this.groupBoxTerminal.BackColor = System.Drawing.SystemColors.Control;
@@ -9539,6 +9503,7 @@
             this.cbBlankerIsEnable02.Size = new System.Drawing.Size(15, 12);
             this.cbBlankerIsEnable02.TabIndex = 87;
             this.cbBlankerIsEnable02.UseVisualStyleBackColor = true;
+            this.cbBlankerIsEnable02.CheckedChanged += new System.EventHandler(this.cbBlankerIsEnable_CheckedChanged);
             // 
             // lbBlankerNameN02
             // 
@@ -9981,10 +9946,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp01)).EndInit();
             this.tlpBlanker1.ResumeLayout(false);
             this.tlpBlanker1.PerformLayout();
-            this.tlpBlankerStationClamp0102.ResumeLayout(false);
-            this.tlpBlankerStationClamp0102.PerformLayout();
             this.tlpBlankerStationClamp0101.ResumeLayout(false);
             this.tlpBlankerStationClamp0101.PerformLayout();
+            this.tlpBlankerStationClamp0102.ResumeLayout(false);
+            this.tlpBlankerStationClamp0102.PerformLayout();
             this.tableLayoutPanel47.ResumeLayout(false);
             this.tableLayoutPanel48.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp02)).EndInit();
@@ -10061,7 +10026,6 @@
             this.splitContainer4.ResumeLayout(false);
             this.tableLayoutPanel24.ResumeLayout(false);
             this.tableLayoutPanel24.PerformLayout();
-            this.cmsTransfer.ResumeLayout(false);
             this.groupBoxTerminal.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel14.PerformLayout();
@@ -10465,20 +10429,20 @@
         private System.Windows.Forms.TableLayoutPanel tlpBlanker1;
         private System.Windows.Forms.TableLayoutPanel tlpCache;
         private System.Windows.Forms.TableLayoutPanel tlpTransfer;
-        private System.Windows.Forms.Label lbBlankerStationName0101;
+        private System.Windows.Forms.Label lbBlankerStationName0102;
         private System.Windows.Forms.Label lbFeederStationName0203;
         private System.Windows.Forms.Label lbFeederStationName0102;
         private System.Windows.Forms.Label lbTransferName;
         private System.Windows.Forms.Label lbCacheName;
-        private System.Windows.Forms.TableLayoutPanel tlpBlankerStationClamp0101;
-        private System.Windows.Forms.Label lbBlankerClampCode0101;
         private System.Windows.Forms.TableLayoutPanel tlpBlankerStationClamp0102;
         private System.Windows.Forms.Label lbBlankerClampCode0102;
+        private System.Windows.Forms.TableLayoutPanel tlpBlankerStationClamp0101;
+        private System.Windows.Forms.Label lbBlankerClampCode0101;
         private System.Windows.Forms.TableLayoutPanel tlpFeederStationClamp0201;
         private System.Windows.Forms.Label lbFeederClampCode0201;
         private System.Windows.Forms.TableLayoutPanel tlpFeederStationClamp0203;
         private System.Windows.Forms.Label lbFeederClampCode0203;
-        private System.Windows.Forms.Label lbBlankerStationName0102;
+        private System.Windows.Forms.Label lbBlankerStationName0101;
         private System.Windows.Forms.Label lbFeederStationName0202;
         private System.Windows.Forms.Label lbFeederStationName0103;
         private System.Windows.Forms.TextBox tbFeederStatus02;
@@ -10610,10 +10574,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbCount;
         private System.Windows.Forms.Button btnDebug;
-        private System.Windows.Forms.ContextMenuStrip cmsTransfer;
-        private System.Windows.Forms.ToolStripMenuItem tsmTestResult;
-        private System.Windows.Forms.ToolStripMenuItem tsmTestResultOK;
-        private System.Windows.Forms.ToolStripMenuItem tsmTestResultNG;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel47;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel48;
         private System.Windows.Forms.PictureBox pbBlankerTriLamp02;

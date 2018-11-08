@@ -601,7 +601,7 @@ namespace Soundon.Dispatcher.App
             {
                 Oven oven = Current.ovens[i];
                 oven.IsAlive = oven.IsEnable && oven.Plc.IsAlive;
-                oven.Floors.ForEach(f => f.IsAlive = f.IsEnable && oven.IsAlive);
+                oven.Floors.ForEach(f => f.IsAlive = f.IsEnable && (oven.IsAlive || oven.PreIsAlive));
                 oven.Floors.ForEach(f => f.Stations.ForEach(s => s.IsAlive = s.IsEnable && f.IsAlive));
                 if (oven.Plc.IsAlive) { if (tbOvenStatus[i].Text.Trim() == "未连接") { tbOvenStatus[i].Text = "连接成功"; } }
                 else { this.tbOvenStatus[i].Text = "未连接"; }
@@ -699,7 +699,7 @@ namespace Soundon.Dispatcher.App
 
                         }
                     }
-                    else
+                    else if(!oven.Plc.PreIsAlive)
                     {
                         this.tlpFloor[i][j].BackColor = Color.LightGray;
                     }
@@ -4705,12 +4705,6 @@ namespace Soundon.Dispatcher.App
 
 
         #endregion
-
-        private void cmsTransfer_Opening(object sender, CancelEventArgs e)
-        {
-            tsmTestResultOK.Enabled = Current.Transfer.Station.ClampStatus != ClampStatus.无夹具;
-            tsmTestResultNG.Enabled = Current.Transfer.Station.ClampStatus != ClampStatus.无夹具;
-        }
 
         private void tsmTestResultOK_Click(object sender, EventArgs e)
         {

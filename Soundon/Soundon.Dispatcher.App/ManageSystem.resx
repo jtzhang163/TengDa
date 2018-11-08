@@ -2686,9 +2686,6 @@
         kxO4J7ENc9K3B9t3uLGdC6DRaBlqtgmdLGg0Go1Go9FotJTZJz7xf472BvkGZ5L8AAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="cmsTransfer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>238, 20</value>
-  </metadata>
   <data name="pbScanerLamp0202.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARIAAAEVCAYAAAAsMmqbAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -6804,7 +6801,7 @@
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>124</value>
+    <value>67</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -224,6 +224,56 @@ namespace Soundon.Dispatcher
 
             try
             {
+
+                #region 获取信息
+
+                var bOutputs = new ushort[] { };
+                if (!this.Plc.GetInfo("D2000", (ushort)30, out bOutputs, out msg))
+                {
+                    Error.Alert(msg);
+                    this.Plc.IsAlive = false;
+                    return false;
+                }
+
+                for (int j = 0; j < this.Stations.Count; j++)
+                {
+                    if (bOutputs[10 + j] == 2)
+                    {
+                        this.Stations[j].ClampStatus = ClampStatus.无夹具;
+                        this.Stations[j].Status = (int)bOutputs[j] == this.Stations[j].RobotPutCode ? StationStatus.可放 : StationStatus.工作中;
+                    }
+                    else if(bOutputs[10 + j] == 1)
+                    {
+                        if ((int)bOutputs[j] == this.Stations[j].RobotGetCode)
+                        {
+                            this.Stations[j].ClampStatus = ClampStatus.空夹具;
+                            this.Stations[j].Status = StationStatus.可取;
+                        }
+                        else
+                        {
+                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                            this.Stations[j].Status = StationStatus.工作中;
+                        }
+                    }
+                    else
+                    {
+                        this.Stations[j].ClampStatus = ClampStatus.未知;
+                        this.Stations[j].Status = StationStatus.不可用;
+                    }
+                }
+
+                switch (bOutputs[18])
+                {
+                    case 1: this.TriLamp = TriLamp.Red; break;
+                    case 2: this.TriLamp = TriLamp.Yellow; break;
+                    case 3: this.TriLamp = TriLamp.Green; break;
+                    default: this.TriLamp = TriLamp.Unknown; break;
+                }
+
+
+                #endregion
+
+
                 //if (!this.Plc.GetInfo(false, Current.option.GetBlankerInfoStr, out output, out msg))
                 //{
                 //    Error.Alert(msg);
