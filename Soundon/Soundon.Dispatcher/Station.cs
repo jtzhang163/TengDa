@@ -256,13 +256,16 @@ namespace Soundon.Dispatcher
         public DoorStatus PreDoorStatus;
 
         public DoorStatus doorStatus = DoorStatus.未知;
+        /// <summary>
+        /// 门状态（下料机为干涉状态）
+        /// </summary>
         [ReadOnly(true)]
         [DisplayName("门状态")]
         public DoorStatus DoorStatus
         {
             get
             {
-                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.转移台 || this.GetPutType == GetPutType.下料机)
+                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.转移台)
                 {
                     doorStatus = DoorStatus.打开;
                 }
@@ -825,6 +828,11 @@ namespace Soundon.Dispatcher
                     Oven oven = Oven.OvenList.First(o => o.Id == floor.OvenId);
                     oven.OpenDoor(oven.Floors.IndexOf(floor));
                 }
+                else if (this.GetPutType == GetPutType.下料机)
+                {
+                    Blanker blanker = Blanker.BlankerList.First(b => b.StationIds.Contains(this.Id.ToString()));
+                    blanker.OpenDoor();
+                }
             }
         }
 
@@ -841,6 +849,11 @@ namespace Soundon.Dispatcher
                     Floor floor = Floor.FloorList.First(f => f.StationIds.Contains(this.Id.ToString()));
                     Oven oven = Oven.OvenList.First(o => o.Id == floor.OvenId);
                  //   oven.CloseDoor(oven.Floors.IndexOf(floor));
+                }
+                else if (this.GetPutType == GetPutType.下料机)
+                {
+                    Blanker blanker = Blanker.BlankerList.First(b => b.StationIds.Contains(this.Id.ToString()));
+                    blanker.CloseDoor();
                 }
             }
         }

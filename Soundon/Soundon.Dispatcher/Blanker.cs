@@ -74,6 +74,10 @@ namespace Soundon.Dispatcher
             }
         }
 
+        public bool toOpenDoor = false;
+
+        public bool toCloseDoor = false;
+
         #endregion
 
         #region 构造方法
@@ -270,8 +274,43 @@ namespace Soundon.Dispatcher
                     default: this.TriLamp = TriLamp.Unknown; break;
                 }
 
+                this.Stations[0].DoorStatus = DoorStatus.打开;
+
+                switch (bOutputs[20])
+                {
+                    case 1: this.Stations[1].DoorStatus = DoorStatus.打开; break;
+                    case 0: this.Stations[1].DoorStatus = DoorStatus.关闭; break;
+                    default: this.Stations[1].DoorStatus = DoorStatus.未知; break;
+                }
+
 
                 #endregion
+
+                if (this.toOpenDoor)
+                {
+                    if (!this.Plc.SetInfo("D2019", (ushort)1, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    LogHelper.WriteInfo(string.Format("成功发送取放料干涉指令到{0}:{1}", this.Name, "D2019:1"));
+                    this.toOpenDoor = false;
+                }
+
+                if (this.toCloseDoor)
+                {
+                    if (!this.Plc.SetInfo("D2019", (ushort)0, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    LogHelper.WriteInfo(string.Format("成功发送取放料干涉取消指令到{0}:{1}", this.Name, "D2019:0"));
+                    this.toCloseDoor = false;
+                }
 
 
                 //if (!this.Plc.GetInfo(false, Current.option.GetBlankerInfoStr, out output, out msg))
@@ -340,6 +379,30 @@ namespace Soundon.Dispatcher
             this.AlreadyGetAllInfo = true;
 
             return true;
+        }
+
+        public void OpenDoor()
+        {
+            if (!this.Plc.IsPingSuccess)
+            {
+                this.Plc.IsAlive = false;
+                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
+                return;
+            }
+
+            this.toOpenDoor = true;
+        }
+
+        public void CloseDoor()
+        {
+            if (!this.Plc.IsPingSuccess)
+            {
+                this.Plc.IsAlive = false;
+                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
+                return;
+            }
+
+            this.toCloseDoor = true;
         }
 
         public bool SetScanResult(ScanResult scanResult)

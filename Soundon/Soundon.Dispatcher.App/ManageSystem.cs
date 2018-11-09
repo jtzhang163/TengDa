@@ -912,6 +912,10 @@ namespace Soundon.Dispatcher.App
                 for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
                 {
                     Station station = Current.blankers[i].Stations[j];
+
+                    lbBlankerStationName[i][j].BackColor = station.DoorStatus == DoorStatus.关闭 ? Color.Black : Color.Transparent;
+                    lbBlankerStationName[i][j].ForeColor = station.DoorStatus == DoorStatus.关闭 ? Color.White : Color.Black;
+
                     lbBlankerClampCode[i][j].Text = station.Clamp.Code;
                     bool canChangeVisible = DateTime.Now.Second % 3 == 1;
 
@@ -2398,6 +2402,28 @@ namespace Soundon.Dispatcher.App
                     //    oOven.OpenDoor(jj);
                     //}
                 }
+
+                //下料台取消干涉
+                for (int i = 0; i < BlankerCount; i++)
+                {
+                    for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
+                    {
+                        Station station = Current.blankers[i].Stations[j];
+
+                        //无任务默认关门
+                        if (station.DoorStatus == DoorStatus.打开 && station.Id != Current.Task.FromStationId && station.Id != Current.Task.ToStationId && station.IsAlive)
+                        {
+                            station.CloseDoor();
+                        }
+
+                        //从某一炉子取完盘后，立即关门，无需等到整个任务结束
+                        if (station.DoorStatus == DoorStatus.打开 && station.Id == Current.Task.FromStationId && station.IsAlive
+                            && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
+                        {
+                            station.CloseDoor();
+                        }
+                    }
+                }
             }
         }
 
@@ -3314,7 +3340,6 @@ namespace Soundon.Dispatcher.App
             tbNumAlarm.Text = dt.Rows.Count.ToString();
         }
 
-
         private void btnAlarmExport_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)this.dgvAlarm.DataSource;
@@ -3949,6 +3974,40 @@ namespace Soundon.Dispatcher.App
             Current.ovens[i].AlarmReset(j);
         }
 
+        private string srcBlankerName = string.Empty;
+        private void cmsBlanker_Opening(object sender, CancelEventArgs e)
+        {
+            //tlpBlanker1
+            srcBlankerName = (sender as ContextMenuStrip).SourceControl.Name;
+            int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
+            this.tsmBlankerOpenDoor.Enabled = Current.blankers[i].IsAlive && Current.blankers[i].Stations[1].DoorStatus == DoorStatus.关闭;
+            this.tsmBlankerCloseDoor.Enabled = Current.blankers[i].IsAlive && Current.blankers[i].Stations[1].DoorStatus == DoorStatus.打开;
+        }
+
+        private void tsmBlankerOpenDoor_Click(object sender, EventArgs e)
+        {
+            if (Current.runStstus != RunStatus.运行)
+            {
+                Tip.Alert("请先启动！");
+                return;
+            }
+
+            int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
+            Current.blankers[i].OpenDoor();
+        }
+
+        private void tsmBlankerCloseDoor_Click(object sender, EventArgs e)
+        {
+            if (Current.runStstus != RunStatus.运行)
+            {
+                Tip.Alert("请先启动！");
+                return;
+            }
+
+            int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
+            Current.blankers[i].CloseDoor();
+        }
+
         #endregion
 
         #region 绘制温度曲线
@@ -4440,7 +4499,6 @@ namespace Soundon.Dispatcher.App
             }
         }
 
-
         private void pbEmergencyStop_Click(object sender, EventArgs e)
         {
             var msg = string.Empty;
@@ -4571,8 +4629,8 @@ namespace Soundon.Dispatcher.App
             tsiStations.Add(tsmiCacheStation);
 
             ToolStripMenuItem tsmiRotaterStation = new ToolStripMenuItem();
-            tsmiRotaterStation.Text = Current.Transfer.Name;
-            tsmiRotaterStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, Current.Transfer.Name);
+            tsmiRotaterStation.Text = Current.Transfer.Station.Name;
+            tsmiRotaterStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, Current.Transfer.Station.Name);
             tsmiRotaterStation.Click += new System.EventHandler(this.tsmManuStation_Click);
 
             tsmiRotaterStation.Enabled = GetTsiEnabled(ManuFlag, Current.Transfer.Station);
@@ -4765,5 +4823,6 @@ namespace Soundon.Dispatcher.App
                 Thread.Sleep(10);
             }
         }
+
     }
 }

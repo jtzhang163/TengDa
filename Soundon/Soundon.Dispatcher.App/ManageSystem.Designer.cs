@@ -365,6 +365,10 @@
             this.pbBlankerTriLamp01 = new System.Windows.Forms.PictureBox();
             this.lbBlankerName01 = new System.Windows.Forms.Label();
             this.tlpBlanker1 = new System.Windows.Forms.TableLayoutPanel();
+            this.cmsBlanker = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmBlankerOpenDoor = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmBlankerCloseDoor = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpBlankerStationClamp0101 = new System.Windows.Forms.TableLayoutPanel();
             this.lbBlankerClampCode0101 = new System.Windows.Forms.Label();
             this.tlpBlankerStationClamp0102 = new System.Windows.Forms.TableLayoutPanel();
@@ -772,6 +776,7 @@
             this.tableLayoutPanel36.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp01)).BeginInit();
             this.tlpBlanker1.SuspendLayout();
+            this.cmsBlanker.SuspendLayout();
             this.tlpBlankerStationClamp0101.SuspendLayout();
             this.tlpBlankerStationClamp0102.SuspendLayout();
             this.tableLayoutPanel47.SuspendLayout();
@@ -5778,6 +5783,7 @@
             this.tlpBlanker1.ColumnCount = 2;
             this.tlpBlanker1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpBlanker1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpBlanker1.ContextMenuStrip = this.cmsBlanker;
             this.tlpBlanker1.Controls.Add(this.tlpBlankerStationClamp0101, 1, 0);
             this.tlpBlanker1.Controls.Add(this.tlpBlankerStationClamp0102, 0, 0);
             this.tlpBlanker1.Controls.Add(this.lbBlankerStationName0102, 0, 1);
@@ -5792,6 +5798,39 @@
             this.tlpBlanker1.Size = new System.Drawing.Size(104, 128);
             this.tlpBlanker1.TabIndex = 15;
             this.tlpBlanker1.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpBlanker_CellPaint);
+            // 
+            // cmsBlanker
+            // 
+            this.cmsBlanker.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.cmsBlanker.Name = "cmsInOutOven";
+            this.cmsBlanker.Size = new System.Drawing.Size(125, 26);
+            this.cmsBlanker.Opening += new System.ComponentModel.CancelEventHandler(this.cmsBlanker_Opening);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmBlankerOpenDoor,
+            this.tsmBlankerCloseDoor});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
+            this.toolStripMenuItem1.Text = "远程控制";
+            // 
+            // tsmBlankerOpenDoor
+            // 
+            this.tsmBlankerOpenDoor.Image = global::Soundon.Dispatcher.App.Properties.Resources.Start_Green;
+            this.tsmBlankerOpenDoor.Name = "tsmBlankerOpenDoor";
+            this.tsmBlankerOpenDoor.Size = new System.Drawing.Size(124, 22);
+            this.tsmBlankerOpenDoor.Text = "请求干涉";
+            this.tsmBlankerOpenDoor.Click += new System.EventHandler(this.tsmBlankerOpenDoor_Click);
+            // 
+            // tsmBlankerCloseDoor
+            // 
+            this.tsmBlankerCloseDoor.Image = global::Soundon.Dispatcher.App.Properties.Resources.Exit_Red;
+            this.tsmBlankerCloseDoor.Name = "tsmBlankerCloseDoor";
+            this.tsmBlankerCloseDoor.Size = new System.Drawing.Size(124, 22);
+            this.tsmBlankerCloseDoor.Text = "取消干涉";
+            this.tsmBlankerCloseDoor.Click += new System.EventHandler(this.tsmBlankerCloseDoor_Click);
             // 
             // tlpBlankerStationClamp0101
             // 
@@ -6000,6 +6039,7 @@
             this.tlpBlanker2.ColumnCount = 2;
             this.tlpBlanker2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpBlanker2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpBlanker2.ContextMenuStrip = this.cmsBlanker;
             this.tlpBlanker2.Controls.Add(this.tlpBlankerStationClamp0202, 0, 1);
             this.tlpBlanker2.Controls.Add(this.lbBlankerStationName0201, 1, 0);
             this.tlpBlanker2.Controls.Add(this.tlpBlankerStationClamp0201, 1, 1);
@@ -9946,6 +9986,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp01)).EndInit();
             this.tlpBlanker1.ResumeLayout(false);
             this.tlpBlanker1.PerformLayout();
+            this.cmsBlanker.ResumeLayout(false);
             this.tlpBlankerStationClamp0101.ResumeLayout(false);
             this.tlpBlankerStationClamp0101.PerformLayout();
             this.tlpBlankerStationClamp0102.ResumeLayout(false);
@@ -10673,5 +10714,9 @@
         private System.Windows.Forms.Label label70;
         private System.Windows.Forms.Label label69;
         private System.Windows.Forms.Label label73;
+        private System.Windows.Forms.ContextMenuStrip cmsBlanker;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmBlankerOpenDoor;
+        private System.Windows.Forms.ToolStripMenuItem tsmBlankerCloseDoor;
     }
 }
