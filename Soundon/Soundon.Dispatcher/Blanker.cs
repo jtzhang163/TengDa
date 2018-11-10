@@ -276,12 +276,13 @@ namespace Soundon.Dispatcher
 
                 this.Stations[0].DoorStatus = DoorStatus.打开;
 
-                switch (bOutputs[20])
-                {
-                    case 1: this.Stations[1].DoorStatus = DoorStatus.打开; break;
-                    case 0: this.Stations[1].DoorStatus = DoorStatus.关闭; break;
-                    default: this.Stations[1].DoorStatus = DoorStatus.未知; break;
-                }
+                this.Stations[1].DoorStatus = DoorStatus.打开;
+                //switch (bOutputs[20])
+                //{
+                //    case 1: this.Stations[1].DoorStatus = DoorStatus.打开; break;
+                //    case 0: this.Stations[1].DoorStatus = DoorStatus.关闭; break;
+                //    default: this.Stations[1].DoorStatus = DoorStatus.未知; break;
+                //}
 
 
                 #endregion

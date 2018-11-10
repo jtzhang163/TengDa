@@ -4456,8 +4456,8 @@ namespace Soundon.Dispatcher.App
         {
             this.tsmRobotPause.Enabled = Current.Robot.IsAlive && !Current.Robot.IsPausing;
             this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing;
-            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && Current.Robot.IsExecuting;
-            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus != ClampStatus.无夹具 && Current.Robot.IsExecuting;
+            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && Current.Robot.IsStarting;
+            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive && (Current.Robot.ClampStatus != ClampStatus.无夹具 || Current.Task.Status == TaskStatus.正取) && Current.Robot.IsStarting;
         }
 
         private void tsmRobotStart_Click(object sender, EventArgs e)
@@ -4546,6 +4546,7 @@ namespace Soundon.Dispatcher.App
                     tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
 
                     tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+                    tsiStation.ForeColor = GetForeColor(ManuFlag, s);
 
                     if (tsiStation.Enabled) isEnabled = true;
 
@@ -4572,6 +4573,7 @@ namespace Soundon.Dispatcher.App
                     tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
 
                     tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+                    tsiStation.ForeColor = GetForeColor(ManuFlag, s);
 
                     if (tsiStation.Enabled) isEnabled = true;
 
@@ -4597,6 +4599,7 @@ namespace Soundon.Dispatcher.App
                     tsiStation.Text = s.Name;
                     tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
                     tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+                    tsiStation.ForeColor = GetForeColor(ManuFlag, s);
 
                     if (tsiStation.Enabled) isEnabled = true;
 
@@ -4621,6 +4624,8 @@ namespace Soundon.Dispatcher.App
                 tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
 
                 tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+                tsiStation.ForeColor = GetForeColor(ManuFlag, s);
+
                 if (tsiStation.Enabled) isCacheEnabled = true;
                 tsmiCacheStation.DropDownItems.Add(tsiStation);
             });
@@ -4634,6 +4639,7 @@ namespace Soundon.Dispatcher.App
             tsmiRotaterStation.Click += new System.EventHandler(this.tsmManuStation_Click);
 
             tsmiRotaterStation.Enabled = GetTsiEnabled(ManuFlag, Current.Transfer.Station);
+            tsmiRotaterStation.ForeColor = GetForeColor(ManuFlag, Current.Transfer.Station);
 
             tsiStations.Add(tsmiRotaterStation);
 
@@ -4661,11 +4667,25 @@ namespace Soundon.Dispatcher.App
             var result = true;
             if (manuFlag == "Get")
             {
-                result = s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.Status == StationStatus.可取;
+                result = s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.ClampStatus != ClampStatus.无夹具;
             }
             else if (manuFlag == "Put")
             {
-                result = s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.Status == StationStatus.可放;
+                result = s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.ClampStatus == ClampStatus.无夹具;
+            }
+            return result;
+        }
+
+        private Color GetForeColor(string manuFlag, Station s)
+        {
+            var result = Color.Red;
+            if (manuFlag == "Get" && s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.Status == StationStatus.可取)
+            {
+                result = Color.Black;
+            }
+            else if (manuFlag == "Put" && s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.Status == StationStatus.可放)
+            {
+                result = Color.Black;
             }
             return result;
         }
@@ -4714,28 +4734,23 @@ namespace Soundon.Dispatcher.App
                 else if (isPut)
                 {
 
-                    if (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取)
-                    {
-                        Tip.Alert("取盘任务尚未完成！");
-                        return;
-                    }
+                    //if (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取)
+                    //{
+                    //    Tip.Alert("取盘任务尚未完成！");
+                    //    return;
+                    //}
 
                     if (station.ClampStatus != ClampStatus.无夹具)
                     {
                         Tip.Alert("该位置有夹具，不能放盘！");
                         return;
                     }
+
                     if (Current.Task.FromStationId > 0 && station.ClampOri != Current.Task.FromStation.ClampOri)
                     {
                         Tip.Alert("夹具方向相反，不能放盘！");
                         return;
                     }
-
-                    //if (Current.Robot.ClampStatus == ClampStatus.满夹具 && station.GetPutType == GetPutType.上料机)
-                    //{
-                    //    Tip.Alert("上料机不允许放满夹具！");
-                    //    return;
-                    //}
 
                     if (Current.Task.StartTime == TengDa.Common.DefaultTime)
                     {
@@ -4744,7 +4759,11 @@ namespace Soundon.Dispatcher.App
 
                     Current.Task.TaskId = -1;
                     Current.Task.NextToStationId = station.Id;
-                    Current.Task.Status = TaskStatus.取完;
+
+                    if (Current.Task.Status != TaskStatus.正取 && Current.Task.Status != TaskStatus.取完)
+                    {
+                        Current.Task.Status = TaskStatus.取完;
+                    }
 
                     if (Current.Task.FromClampStatus != ClampStatus.空夹具 && Current.Task.FromClampStatus != ClampStatus.满夹具)
                     {
