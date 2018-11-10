@@ -2338,6 +2338,32 @@ namespace Soundon.Dispatcher
             }
         }
 
+        private float vacuumStandard = -1;
+        /// <summary>
+        /// 烤箱真空度阈值
+        /// </summary>
+        [DisplayName("烤箱真空度阈值")]
+        [Description("烤箱真空度阈值: 大于该值时判断为破真空完成，可开门")]
+        [Category("烤箱")]
+        public float VacuumStandard
+        {
+            get
+            {
+                if (vacuumStandard < 0)
+                {
+                    vacuumStandard = _Convert.StrToFloat(TengDa.WF.Option.GetOption("VacuumStandard"), 95000);
+                }
+                return vacuumStandard;
+            }
+            set
+            {
+                if (value != vacuumStandard)
+                {
+                    TengDa.WF.Option.SetOption("VacuumStandard", value.ToString());
+                    vacuumStandard = value;
+                }
+            }
+        }
 
         //private string xxxXXXXXXXXXXXX = string.Empty;
         ///// <summary>

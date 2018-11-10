@@ -644,7 +644,7 @@ namespace Soundon.Dispatcher.App
                 {
                     Floor floor = oven.Floors[j];
                     this.pbRunTime[i][j].Maximum = floor.RunMinutesSet;
-                    this.pbRunTime[i][j].Value = floor.IsBaking && floor.IsAlive ? (floor.RunMinutesSet > floor.RunMinutes ? floor.RunMinutes : floor.RunMinutesSet) : 0;
+                    this.pbRunTime[i][j].Value = floor.IsAlive ? (floor.RunMinutesSet > floor.RunMinutes ? floor.RunMinutes : floor.RunMinutesSet) : 0;
 
                     floor.Stations.ForEach(s =>
                     {
@@ -4456,8 +4456,8 @@ namespace Soundon.Dispatcher.App
         {
             this.tsmRobotPause.Enabled = Current.Robot.IsAlive && !Current.Robot.IsPausing;
             this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing;
-            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && Current.Robot.IsStarting;
-            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive && (Current.Robot.ClampStatus != ClampStatus.无夹具 || Current.Task.Status == TaskStatus.正取) && Current.Robot.IsStarting;
+            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && (Current.Task.Status == TaskStatus.正放 || Current.Robot.IsStarting);
+            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus != ClampStatus.无夹具 && (Current.Task.Status == TaskStatus.正取 || Current.Robot.IsStarting);
         }
 
         private void tsmRobotStart_Click(object sender, EventArgs e)

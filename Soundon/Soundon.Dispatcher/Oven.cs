@@ -309,7 +309,7 @@ namespace Soundon.Dispatcher
 
                     this.Floors[j].RunMinutes = bOutputs0[687 - 44 * j];
                     this.Floors[j].Vacuum = bOutputs0[689 - 44 * j] + bOutputs0[690 - 44 * j] * 65535;
-                    this.Floors[j].IsVacuum = this.Floors[j].Vacuum < 99000;
+                    this.Floors[j].IsVacuum = this.Floors[j].Vacuum < Current.option.VacuumStandard;
 
                     if (j == 0)
                     {
