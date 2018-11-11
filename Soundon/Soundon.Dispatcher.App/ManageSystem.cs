@@ -1245,7 +1245,7 @@ namespace Soundon.Dispatcher.App
         private Label[][] lbFeederClampCode = new Label[FeederCount][];
         private TableLayoutPanel[][] tlpFeederStationClamp = new TableLayoutPanel[FeederCount][];
 
-        private const int FeederScanerCount = 2;
+        private const int FeederScanerCount = 3;
 
         private Label[][] lbScanerNameN = new Label[FeederCount][];
         private CheckBox[][] cbScanerIsEnable = new CheckBox[FeederCount][];
@@ -2015,7 +2015,7 @@ namespace Soundon.Dispatcher.App
             {
                 cbBlankerIsEnable[i].Enabled = IsEnable;
             }
-            cbScanerIsEnable0102.Enabled = IsEnable;
+            cbScanerIsEnable0103.Enabled = IsEnable;
             cbMesIsEnable.Enabled = IsEnable;
             cbRobotIsEnable.Enabled = IsEnable;
         }
