@@ -177,6 +177,7 @@ namespace BakBattery.Baking
             }
 
             msg = "扫码枪返回字符串无法识别！";
+            LogHelper.WriteError(string.Format("获得电池条码：{0}，不满足正则表达式：{1}", output, Current.option.BatteryCodeRegularExpression));
             return ScanResult.Unknown;
         }
 
@@ -214,6 +215,7 @@ namespace BakBattery.Baking
             }
 
             msg = "扫码枪返回字符串无法识别！";
+            LogHelper.WriteError(string.Format("获得夹具条码：{0}，不满足正则表达式：{1}", output, Current.option.ClampCodeRegularExpression));
             return ScanResult.Unknown;
         }
 
