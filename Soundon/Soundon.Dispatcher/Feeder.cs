@@ -382,15 +382,15 @@ namespace Soundon.Dispatcher
         }
 
         [Browsable(false)]
-        public Scaner BatteryScaner
+        public List<Scaner> BatteryScaners
         {
             get
             {
                 if (this.Scaners.Count > 0)
                 {
-                    return this.Scaners[0];
+                    return this.Scaners.Take(2).ToList();
                 }
-                return new Scaner();
+                return new List<Scaner> { };
             }
         }
 
@@ -401,7 +401,7 @@ namespace Soundon.Dispatcher
             {
                 if (this.Scaners.Count > 0)
                 {
-                    return this.Scaners[1];
+                    return this.Scaners[2];
                 }
                 return new Scaner();
             }
@@ -590,6 +590,65 @@ namespace Soundon.Dispatcher
                     Current.Robot.AlreadyGetAllInfo = true;
                 }
 
+
+                //获取夹具扫码信号
+                if (this.ClampScaner.IsEnable)
+                {
+                    if ((new List<ushort>() { 1, 2, 3 }).Contains(bOutputs[1]))
+                    {
+                        if (!this.ClampScaner.IsReady)
+                        {
+                            this.ClampScaner.CanScan = true;
+                        }
+                        this.ClampScaner.IsReady = true;
+                        this.Stations[bOutputs[1] - 1].IsClampScanReady = true;
+                        this.CurrentPutStationId = this.Stations[0].Id;
+                    }
+                    else
+                    {
+                        this.Stations.ForEach(s => s.IsClampScanReady = false); this.ClampScaner.IsReady = false;
+                        this.ClampScaner.IsReady = false;
+                        this.ClampScaner.CanScan = false;
+                    }
+                }
+
+                //获取电池扫码信号
+                this.BatteryScaners.ForEach(s =>
+                {
+                    if (s.IsEnable)
+                    {
+                        if (bOutputs[1] == 4)
+                        {
+                            if (!s.IsReady)
+                            {
+                                s.CanScan = true;
+                            }
+                            s.IsReady = true;
+                        }
+                        else
+                        {
+                            s.IsReady = false;
+                            s.CanScan = false;
+                        }
+                    }
+                });
+
+
+                //if (iOut[0] == 1)
+                //{
+                //    if (!this.BatteryScaner.IsReady)
+                //    {
+                //        this.BatteryScaner.CanScan = true;
+                //    }
+                //    this.BatteryScaner.IsReady = true;
+                //}
+                //else
+                //{
+                //    this.BatteryScaner.IsReady = false;
+                //    this.BatteryScaner.CanScan = false;
+                //}
+
+
                 #endregion
 
 
@@ -610,20 +669,6 @@ namespace Soundon.Dispatcher
                 //for (int j = 0; j < iOut.Length; j++)
                 //{
                 //    iOut[j] = int.Parse(output.Substring(j * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                //}
-
-                //if (iOut[0] == 1)
-                //{
-                //    if (!this.BatteryScaner.IsReady)
-                //    {
-                //        this.BatteryScaner.CanScan = true;
-                //    }
-                //    this.BatteryScaner.IsReady = true;
-                //}
-                //else
-                //{
-                //    this.BatteryScaner.IsReady = false;
-                //    this.BatteryScaner.CanScan = false;
                 //}
 
 
@@ -656,8 +701,6 @@ namespace Soundon.Dispatcher
                 //            this.Stations[j].Status = StationStatus.不可用;
                 //            break;
                 //    }
-
-                //    this.Stations[j].IsClampScanReady = iOut[j + 4] == 1;
                 //}
 
                 //switch (iOut[3])
@@ -668,28 +711,6 @@ namespace Soundon.Dispatcher
                 //    default: this.TriLamp = TriLamp.Unknown; break;
                 //}
 
-
-                //if (iOut[4] == 1 || iOut[5] == 1)
-                //{
-                //    if (!this.ClampScaner.IsReady)
-                //    {
-                //        this.ClampScaner.CanScan = true;
-                //    }
-                //    this.ClampScaner.IsReady = true;
-                //}
-                //else
-                //{
-                //    this.ClampScaner.IsReady = false;
-                //    this.ClampScaner.CanScan = false;
-                //}
-
-
-                //switch (iOut[5])
-                //{
-                //    case 0: this.Stations.ForEach(s => s.IsClampScanReady = false); Current.ClampScaner.IsReady = false; break;
-                //    case 1: this.Stations[0].IsClampScanReady = true; Current.ClampScaner.IsReady = true; this.CurrentPutStationId = this.Stations[0].Id; break;
-                //    case 2: this.Stations[1].IsClampScanReady = true; Current.ClampScaner.IsReady = true; this.CurrentPutStationId = this.Stations[1].Id; break;
-                //}
 
 
                 //switch (iOut[7])
@@ -750,58 +771,59 @@ namespace Soundon.Dispatcher
             return true;
         }
 
-        public bool SetScanBatteryResult(ScanResult scanResult, out string msg)
+        public bool SetScanBatteryResult(ScanResult[] scanResults, out string msg)
         {
-            string input = string.Empty;
-            if (scanResult == ScanResult.OK)
+
+            var val = (ushort)0;
+            if (scanResults[0] == ScanResult.OK && scanResults[1] == ScanResult.OK)
             {
-                input = Current.option.ScanBatteryCodeOK;
+                val = (ushort)2;
             }
-            else if (scanResult == ScanResult.NG)
+            else if (scanResults[0] == ScanResult.NG && scanResults[1] == ScanResult.OK)
             {
-                input = Current.option.ScanBatteryCodeNG;
+                val = (ushort)8;
+            }
+            else if (scanResults[0] == ScanResult.OK && scanResults[1] == ScanResult.NG)
+            {
+                val = (ushort)16;
+            }
+            else
+            {
+                val = (ushort)4;
             }
 
-            string output = string.Empty;
-            if (this.Plc.GetInfo(input, out output, out msg))
+            if (!this.Plc.SetInfo("D1002", val, out msg))
             {
-                if (output.Substring(3, 1) == "$")
-                {
-                    return true;
-                }
-                else
-                {
-                    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", input, output));
-                }
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+                return false;
             }
-            return false;
+
+            LogHelper.WriteInfo(string.Format("成功发送电池扫码结果到{0} D1002:{1}", this.Plc.Name, val));
+            return true;
         }
 
         public bool SetScanClampResult(ScanResult scanResult, out string msg)
         {
-            string input = string.Empty;
+            var val = (ushort)0;
             if (scanResult == ScanResult.OK)
             {
-                input = Current.option.ScanClampCodeOK;
+                val = (ushort)1;
             }
-            else if (scanResult == ScanResult.NG)
+            else
             {
-                input = Current.option.ScanClampCodeNG;
+                val = (ushort)0;
             }
 
-            string output = string.Empty;
-            if (this.Plc.GetInfo(input, out output, out msg))
+            if (!this.Plc.SetInfo("D1002", val, out msg))
             {
-                if (output.Substring(3, 1) == "$")
-                {
-                    return true;
-                }
-                else
-                {
-                    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", input, output));
-                }
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+                return false;
             }
-            return false;
+
+            LogHelper.WriteInfo(string.Format("成功发送夹具扫码结果到{0} D1002:{1}", this.Plc.Name, val));
+            return true;
         }
 
         #endregion

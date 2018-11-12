@@ -490,8 +490,9 @@ namespace Soundon.Dispatcher.App
             });
             cbSampleSelectedFloor.SelectedIndex = jjj;
 
-            Current.feeders.ForEach(f => {
-                cbBatteryScaner.Items.Add(f.BatteryScaner.Name);
+            Current.feeders.ForEach(f =>
+            {
+                f.BatteryScaners.ForEach(s => cbBatteryScaner.Items.Add(s.Name));
                 cbClampScaner.Items.Add(f.ClampScaner.Name);
             });
             cbBatteryScaner.SelectedIndex = 0;
@@ -673,12 +674,20 @@ namespace Soundon.Dispatcher.App
                     }
                     else
                     {
-                        this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {1}Pa {2}℃",
-                             floor.Stations[0].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4),
-                             floor.Vacuum.ToString("#0").PadLeft(6),
-                             floor.Stations[1].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4)
-                            );
-
+                        if (floor.IsBaking)
+                        {
+                            this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {1}Pa {2}℃",
+                                 floor.Stations[0].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4),
+                                 floor.Vacuum.ToString("#0").PadLeft(6),
+                                 floor.Stations[1].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4));
+                        }
+                        else
+                        {
+                            this.lbFloorInfoTop[i][j].Text = string.Format("{0} {1}Pa {2}",
+                                 oven.ClampOri == ClampOri.B ? floor.Stations[0].FloorStatus : floor.Stations[1].FloorStatus,
+                                 floor.Vacuum.ToString("#0").PadLeft(6),
+                                 oven.ClampOri == ClampOri.B ? floor.Stations[1].FloorStatus : floor.Stations[0].FloorStatus);
+                        }
 
                         this.lbFloorInfoTop[i][j].ForeColor = Color.Red;
                         this.lbFloorInfoTop[i][j].BackColor = Color.Transparent;
@@ -2143,7 +2152,7 @@ namespace Soundon.Dispatcher.App
                                 ScanResult result = Current.feeders[i].ClampScaner.StartClampScan(out code, out msg);
                                 if (result == ScanResult.OK)
                                 {
-                                    this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][1].Text = "+" + code; }));                           
+                                    this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][2].Text = "+" + code; }));                           
                                     s.Clamp.Code = code;
                                     s.Clamp.ScanTime = DateTime.Now;
 
@@ -2154,7 +2163,7 @@ namespace Soundon.Dispatcher.App
                                 }
                                 else if (result == ScanResult.NG || result == ScanResult.Timeout)
                                 {
-                                    this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][1].Text = "扫码NG"; }));
+                                    this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][2].Text = "扫码NG"; }));
                                     if (!Current.feeders[i].SetScanClampResult(ScanResult.NG, out msg))
                                     {
                                         Error.Alert(msg);
@@ -2171,65 +2180,68 @@ namespace Soundon.Dispatcher.App
                     #endregion
 
                     #region 电池扫码逻辑
-                    if (Current.feeders[i].BatteryScaner.IsEnable && Current.feeders[i].BatteryScaner.CanScan)
+
+                    var batteryScanResults = new ScanResult[2];
+
+                    for (int j = 0;j < Current.feeders[i].BatteryScaners.Count; j++)
                     {
-
-                        string code = string.Empty;
-                        ScanResult result = Current.feeders[i].BatteryScaner.StartBatteryScan(out code, out msg);
-                        if (result == ScanResult.OK)
+                        if (Current.feeders[i].BatteryScaners[j].IsEnable && Current.feeders[i].BatteryScaners[j].CanScan)
                         {
-                            this.BeginInvoke(new MethodInvoker(() =>
-                            {
-                                this.tbScanerStatus[i][0].Text = "+" + code;
-                            }));
 
-                            int id = Battery.Add(new Battery(code, Current.feeders[i].Id), out msg);
-                            if (id < 1)
-                            {
-                                Error.Alert(msg);
-                            }
-                            if (!Current.feeders[i].SetScanBatteryResult(ScanResult.OK, out msg))
-                            {
-                                Error.Alert(msg);
-                            }
-                            //Current.feeders[i].CacheBatteryIn(Battery.GetBattery(id));
-                            //Current.feeders[i].CacheBatteryIn(new Battery { Id = id, Code = code, ScanTime = DateTime.Now });
-                        }
-                        else if (result == ScanResult.NG || result == ScanResult.Timeout)
-                        {
-                            //再扫一次
-                            result = Current.feeders[i].BatteryScaner.StartBatteryScan(out code, out msg);
+                            string code = string.Empty;
+                            ScanResult result = Current.feeders[i].BatteryScaners[j].StartBatteryScan(out code, out msg);
                             if (result == ScanResult.OK)
                             {
-                                this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][0].Text = "+" + code; }));
+                                this.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    this.tbScanerStatus[i][j].Text = "+" + code;
+                                }));
 
                                 int id = Battery.Add(new Battery(code, Current.feeders[i].Id), out msg);
                                 if (id < 1)
                                 {
                                     Error.Alert(msg);
                                 }
-                                if (!Current.feeders[i].SetScanBatteryResult(ScanResult.OK, out msg))
-                                {
-                                    Error.Alert(msg);
-                                }
-                                //Current.feeders[i].CacheBatteryIn(Battery.GetBattery(id));
-                                //Current.feeders[i].CacheBatteryIn(new Battery { Id = id, Code = code, ScanTime = DateTime.Now });
+
+                                batteryScanResults[j] = ScanResult.OK;
                             }
                             else if (result == ScanResult.NG || result == ScanResult.Timeout)
                             {
-                                this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][0].Text = "扫码NG"; }));
-                                if (!Current.feeders[i].SetScanBatteryResult(ScanResult.NG, out msg))
+                                //再扫一次
+                                result = Current.feeders[i].BatteryScaners[j].StartBatteryScan(out code, out msg);
+                                if (result == ScanResult.OK)
                                 {
-                                    Error.Alert(msg);
+                                    this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][j].Text = "+" + code; }));
+
+                                    int id = Battery.Add(new Battery(code, Current.feeders[i].Id), out msg);
+                                    if (id < 1)
+                                    {
+                                        Error.Alert(msg);
+                                    }
+
+                                    batteryScanResults[j] = ScanResult.OK;
+                                }
+                                else if (result == ScanResult.NG || result == ScanResult.Timeout)
+                                {
+                                    this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][j].Text = "扫码NG"; }));
+
+                                    batteryScanResults[j] = ScanResult.NG;
                                 }
                             }
+                            else
+                            {
+                                Error.Alert(msg);
+                            }
+
+                            Current.feeders[i].BatteryScaners[j].CanScan = false;
                         }
-                        else
-                        {
-                            Error.Alert(msg);
-                        }
-                        Current.feeders[i].BatteryScaner.CanScan = false;
                     }
+
+                    if (!Current.feeders[i].SetScanBatteryResult(batteryScanResults, out msg))
+                    {
+                        Error.Alert(msg);
+                    }
+
                     #endregion
 
                     #region 绘制夹具中电池个数图示
@@ -4337,9 +4349,12 @@ namespace Soundon.Dispatcher.App
 
         private void btnBatteryScanStart_Click(object sender, EventArgs e)
         {
+            int i = cbBatteryScaner.SelectedIndex / 2;
+            int j = cbBatteryScaner.SelectedIndex % 2;
+
             string code = string.Empty;
             string msg = string.Empty;
-            ScanResult scanResult = Current.feeders[cbBatteryScaner.SelectedIndex].BatteryScaner.StartBatteryScan(out code, out msg);
+            ScanResult scanResult = Current.feeders[i].BatteryScaners[j].StartBatteryScan(out code, out msg);
             if (scanResult == ScanResult.OK)
             {
                 Tip.Alert(code);
@@ -4356,8 +4371,9 @@ namespace Soundon.Dispatcher.App
 
         private void btnBatteryScanOkBackToFeeder_Click(object sender, EventArgs e)
         {
+            int i = cbBatteryScaner.SelectedIndex / 2;
             string msg = string.Empty;
-            if (!Current.feeders[cbBatteryScaner.SelectedIndex].SetScanBatteryResult(ScanResult.OK, out msg))
+            if (!Current.feeders[i].SetScanBatteryResult(new ScanResult[2] { ScanResult.OK, ScanResult.OK }, out msg))
             {
                 Error.Alert(msg);
             }
@@ -4369,8 +4385,9 @@ namespace Soundon.Dispatcher.App
 
         private void btnBatteryScanNgBackToFeeder_Click(object sender, EventArgs e)
         {
+            int i = cbBatteryScaner.SelectedIndex / 2;
             string msg = string.Empty;
-            if (!Current.feeders[cbBatteryScaner.SelectedIndex].SetScanBatteryResult(ScanResult.NG, out msg))
+            if (!Current.feeders[i].SetScanBatteryResult(new ScanResult[2] { ScanResult.NG, ScanResult.NG }, out msg))
             {
                 Error.Alert(msg);
             }
