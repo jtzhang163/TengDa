@@ -961,17 +961,17 @@ namespace Soundon.Dispatcher
         /// <summary>
         /// 改变该烤箱测试炉层
         /// </summary>
-        public void ChangeWaterContentTestFloor()
-        {
-            Floor floor = this.Floors.FirstOrDefault(f => f.IsTestWaterContent);
-            if (floor == null)
-            {
-                this.Floors[0].IsTestWaterContent = true;
-                return;
-            }
-            int j = this.Floors.IndexOf(floor);
-            j = (++j) % this.Floors.Count;
-            this.Floors[j].IsTestWaterContent = true;
-        }
+        //public void ChangeWaterContentTestFloor()
+        //{
+        //    Floor floor = this.Floors.FirstOrDefault(f => f.IsTestWaterContent);
+        //    if (floor == null)
+        //    {
+        //        this.Floors[0].IsTestWaterContent = true;
+        //        return;
+        //    }
+        //    int j = this.Floors.IndexOf(floor);
+        //    j = (++j) % this.Floors.Count;
+        //    this.Floors[j].IsTestWaterContent = true;
+        //}
     }
 }

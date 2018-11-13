@@ -741,6 +741,20 @@ namespace Soundon.Dispatcher
                         {
                             Current.Task.FromStation.ClampId = -1;
                         }
+
+                        //样品信息传递
+                        if (Current.Task.FromStation != null && Current.Task.ToStation != null)
+                        {
+                            if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱)
+                            {
+                                Current.Task.ToStation.SampleStatus = Current.Task.FromStation.SampleStatus;
+                            }
+                            else if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机)
+                            {
+                                Current.Task.ToStation.SampleStatus = Current.Task.FromStation.SampleStatus;
+                            }
+                        }
+
                     }
 
                     if (!Current.Robot.IsGettingOrPutting)

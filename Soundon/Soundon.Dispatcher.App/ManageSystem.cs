@@ -683,10 +683,16 @@ namespace Soundon.Dispatcher.App
                         }
                         else
                         {
-                            this.lbFloorInfoTop[i][j].Text = string.Format("{0} {1}Pa {2}",
-                                 oven.ClampOri == ClampOri.B ? floor.Stations[0].FloorStatus : floor.Stations[1].FloorStatus,
+                            Station s1, s2;
+                            s1 = oven.ClampOri == ClampOri.B ? floor.Stations[0] : floor.Stations[1];
+                            s2 = oven.ClampOri == ClampOri.B ? floor.Stations[1] : floor.Stations[0];
+
+                            this.lbFloorInfoTop[i][j].Text = string.Format("{0} {3}{1}Pa {4}{2}",
+                                 s1.FloorStatus,
                                  floor.Vacuum.ToString("#0").PadLeft(6),
-                                 oven.ClampOri == ClampOri.B ? floor.Stations[1].FloorStatus : floor.Stations[0].FloorStatus);
+                                 s2.FloorStatus,
+                                 s1.SampleStatus == SampleStatus.待测试 ? "★ " : "",
+                                 s2.SampleStatus == SampleStatus.待测试 ? "★ " : "");
                         }
 
                         this.lbFloorInfoTop[i][j].ForeColor = Color.Red;
@@ -834,8 +840,8 @@ namespace Soundon.Dispatcher.App
                 for (int j = 0; j < FeederStationCount; j++)
                 {
                     Station station = Current.feeders[i].Stations[j];
-                    lbFeederClampCode[i][j].Text = station.Clamp.Code;
-
+                    //   lbFeederClampCode[i][j].Text = station.Clamp.Code;
+                    lbFeederClampCode[i][j].Text = station.SampleStatus == SampleStatus.待测试 ? "★" : "";
                     bool canChangeVisible = DateTime.Now.Second % 3 == 1;
 
                     if (Current.feeders[i].IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
@@ -925,7 +931,9 @@ namespace Soundon.Dispatcher.App
                     lbBlankerStationName[i][j].BackColor = station.DoorStatus == DoorStatus.关闭 ? Color.Black : Color.Transparent;
                     lbBlankerStationName[i][j].ForeColor = station.DoorStatus == DoorStatus.关闭 ? Color.White : Color.Black;
 
-                    lbBlankerClampCode[i][j].Text = station.Clamp.Code;
+                    //  lbBlankerClampCode[i][j].Text = station.Clamp.Code;
+                    lbBlankerClampCode[i][j].Text = station.SampleStatus == SampleStatus.待测试 ? "★" : "";
+
                     bool canChangeVisible = DateTime.Now.Second % 3 == 1;
 
                     if (Current.blankers[i].IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
@@ -4814,7 +4822,7 @@ namespace Soundon.Dispatcher.App
                         ovenSamFromStation.GetFloor().Stations.ForEach(s => s.SampleStatus = SampleStatus.未知);
 
                         //该炉腔水分测试OK，下次换该烤箱另一个炉腔测试水分
-                        ovenSamFromStation.GetFloor().GetOven().ChangeWaterContentTestFloor();
+                        //ovenSamFromStation.GetFloor().GetOven().ChangeWaterContentTestFloor();
 
                         //测试ng次数复位为0
                         ovenSamFromStation.GetFloor().NgTimes = 0;

@@ -368,8 +368,7 @@ namespace Soundon.Dispatcher
                         this.Clamp.OvenStationId = this.Id;
                         this.Clamp.InOvenTime = DateTime.Now;
                     }
-
-                    if (value == FloorStatus.烘烤)
+                    else if (value == FloorStatus.烘烤)
                     {
                         var floor = this.GetFloor();
 
@@ -386,21 +385,29 @@ namespace Soundon.Dispatcher
 
                         this.Clamp.IsInFinished = true;
 
-                        //样品状态复位
-                        this.GetFloor().Stations.ForEach(s => s.SampleStatus = SampleStatus.未知);
+                        //改变另一夹具样品状态
+                        if (this.SampleStatus == SampleStatus.待测试)
+                        {
+                            this.GetFloor().Stations.ForEach(s =>
+                            {
+                                if (s.Id != this.Id)
+                                {
+                                    this.SampleStatus = SampleStatus.待结果;
+                                }
+                            });
+                        }
                     }
-
-                    if (value == FloorStatus.待出)
+                    else if (value == FloorStatus.待出)
                     {
                         this.Clamp.BakingStopTime = DateTime.Now;
 
                         //要测试水分的炉子设置状态
-                        var floor = this.GetFloor();
-                        if (floor.IsTestWaterContent)
-                        {
-                            var index = floor.Stations.IndexOf(this);
-                            this.SampleStatus = index == 0 ? SampleStatus.待测试 : SampleStatus.待结果;
-                        }
+                        //var floor = this.GetFloor();
+                        //if (floor.IsTestWaterContent)
+                        //{
+                        //    var index = floor.Stations.IndexOf(this);
+                        //    this.SampleStatus = index == 0 ? SampleStatus.待测试 : SampleStatus.待结果;
+                        //}
                     }
 
                     if (value == FloorStatus.无盘 && floorStatus == FloorStatus.待出)

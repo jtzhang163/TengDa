@@ -163,16 +163,16 @@ namespace Soundon.Dispatcher
                 if (isTestWaterContent != value)
                 {
                     UpdateDbField("IsTestWaterContent", value);
-                    if (value)
-                    {
-                        foreach (Floor f in this.GetOven().Floors)
-                        {
-                            if (this != f)
-                            {
-                                f.IsTestWaterContent = false;
-                            }
-                        }
-                    }
+                    //if (value)
+                    //{
+                    //    foreach (Floor f in this.GetOven().Floors)
+                    //    {
+                    //        if (this != f)
+                    //        {
+                    //            f.IsTestWaterContent = false;
+                    //        }
+                    //    }
+                    //}
                 }
                 isTestWaterContent = value;
             }
