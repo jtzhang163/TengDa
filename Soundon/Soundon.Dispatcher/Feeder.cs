@@ -450,6 +450,7 @@ namespace Soundon.Dispatcher
                         case 2:
                             this.Stations[j].ClampStatus = ClampStatus.空夹具;
                             this.Stations[j].Status = StationStatus.工作中;
+                            this.Stations[j].SampleStatus = SampleStatus.未知;
                             break;
                         case 3:
                             this.Stations[j].ClampStatus = ClampStatus.异常;

@@ -392,7 +392,7 @@ namespace Soundon.Dispatcher
                             {
                                 if (s.Id != this.Id)
                                 {
-                                    this.SampleStatus = SampleStatus.待结果;
+                                    s.SampleStatus = SampleStatus.待结果;
                                 }
                             });
                         }
