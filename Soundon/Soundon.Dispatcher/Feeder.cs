@@ -130,6 +130,10 @@ namespace Soundon.Dispatcher
             }
         }
 
+        //两台上料机信号传递（上料机器人和搬运机器人干涉防呆）
+        public ushort D1020;
+        public ushort D1021; 
+
         /// <summary>
         /// 夹爪移动类型
         /// </summary>
@@ -634,6 +638,34 @@ namespace Soundon.Dispatcher
                     }
                 });
 
+                if (Current.Robot.Plc.Id == this.Plc.Id)
+                {
+                    this.D1020 = bOutputs[20];
+                }
+                else
+                {
+                    this.D1021 = bOutputs[21];
+                }
+
+                //两台上料机信号传递（上料机器人和搬运机器人干涉防呆）
+                if (Current.Robot.Plc.Id == this.Plc.Id)
+                {
+                    if (!this.Plc.SetInfo("D1021", (ushort)(Current.feeders.First(f => f.Id != this.Id).D1021), out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (!this.Plc.SetInfo("D1020", (ushort)(Current.feeders.First(f => f.Id != this.Id).D1020), out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+                }
 
                 //if (iOut[0] == 1)
                 //{
