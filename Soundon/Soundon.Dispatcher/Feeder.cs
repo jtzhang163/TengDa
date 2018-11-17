@@ -454,7 +454,7 @@ namespace Soundon.Dispatcher
                         case 2:
                             this.Stations[j].ClampStatus = ClampStatus.空夹具;
                             this.Stations[j].Status = StationStatus.工作中;
-                            this.Stations[j].SampleStatus = SampleStatus.未知;
+                            this.Stations[j].Clamp.SampleInfo = SampleInfo.未知;
                             break;
                         case 3:
                             this.Stations[j].ClampStatus = ClampStatus.异常;
@@ -463,12 +463,12 @@ namespace Soundon.Dispatcher
                         case 4:
                             this.Stations[j].ClampStatus = ClampStatus.满夹具;
                             this.Stations[j].Status = bOutputs[j + 8] == 1 ? StationStatus.可取 : StationStatus.工作中;
-                            this.Stations[j].SampleStatus = SampleStatus.未知;
+                            this.Stations[j].Clamp.SampleInfo = SampleInfo.无样品;
                             break;
                         case 5:
                             this.Stations[j].ClampStatus = ClampStatus.满夹具;
                             this.Stations[j].Status = bOutputs[j + 8] == 1 ? StationStatus.可取 : StationStatus.工作中;
-                            this.Stations[j].SampleStatus = SampleStatus.待测试;
+                            this.Stations[j].Clamp.SampleInfo = SampleInfo.有样品;
                             break;
                         default:
                             this.Stations[j].ClampStatus = ClampStatus.未知;

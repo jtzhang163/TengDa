@@ -640,6 +640,19 @@ namespace Soundon.Dispatcher
         [DisplayName("是否可夹具扫码")]
         public bool IsClampScanReady { get; set; }
 
+        /// <summary>
+        /// 是否为样品信息标记
+        /// </summary>
+        [ReadOnly(true)]
+        [DisplayName("是否为样品信息标记")]
+        public bool HasSampleFlag
+        {
+            get
+            {
+                return this.ClampId > 0 && (this.Clamp.SampleInfo != SampleInfo.未知 && this.Clamp.SampleInfo != SampleInfo.无样品);
+            }
+        }
+
 
         [ReadOnly(true)]
         [DisplayName("温度数组")]

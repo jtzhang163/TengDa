@@ -394,6 +394,25 @@ namespace Soundon.Dispatcher
         private DateTime inOvenTime = TengDa.Common.DefaultTime;
         private DateTime outOvenTime = TengDa.Common.DefaultTime;
 
+
+        private SampleInfo sampleInfo = SampleInfo.未知;
+        /// <summary>
+        /// 样品状态信息
+        /// </summary>
+        [DisplayName("样品状态信息")]
+        public SampleInfo SampleInfo
+        {
+            get { return sampleInfo; }
+            set
+            {
+                if (sampleInfo != value)
+                {
+                    UpdateDbField("SampleInfo", value);
+                }
+                sampleInfo = value;
+            }
+        }
+
         #endregion
 
         #region 构造方法
@@ -469,6 +488,7 @@ namespace Soundon.Dispatcher
             this.preheatTimeSet = TengDa._Convert.StrToInt(rowInfo["PreheatTimeSet"].ToString(), -1);
             this.bakingTimeSet = TengDa._Convert.StrToInt(rowInfo["BakingTimeSet"].ToString(), -1);
             this.breathingCycleSet = TengDa._Convert.StrToInt(rowInfo["BreathingCycleSet"].ToString(), -1);
+            this.sampleInfo = (SampleInfo)Enum.Parse(typeof(SampleInfo), rowInfo["SampleInfo"].ToString());
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
         }
         #endregion
@@ -529,11 +549,11 @@ namespace Soundon.Dispatcher
 
         public static int Add(Clamp addClamp, out string msg)
         {
-            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsInFinished], [IsOutFinished], [IsInUploaded], [IsOutUploaded], [VacuumSet], [T01Set], [T02Set], [T03Set], [T04Set], [T05Set], [T06Set], [T07Set], [T08Set], [T09Set], [T10Set], [YunFengTSet], [PreheatTimeSet], [BakingTimeSet], [BreathingCycleSet], [ProcessTemperSet]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}')", TableName,
+            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsInFinished], [IsOutFinished], [IsInUploaded], [IsOutUploaded], [VacuumSet], [T01Set], [T02Set], [T03Set], [T04Set], [T05Set], [T06Set], [T07Set], [T08Set], [T09Set], [T10Set], [YunFengTSet], [PreheatTimeSet], [BakingTimeSet], [BreathingCycleSet], [ProcessTemperSet], [SampleInfo]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}')", TableName,
               addClamp.Code, TengDa.WF.Current.user.Id, addClamp.OvenStationId, addClamp.Location, 
               addClamp.BakingStartTime, addClamp.BakingStopTime, addClamp.ScanTime, addClamp.InOvenTime, addClamp.OutOvenTime,addClamp.IsInFinished,addClamp.IsOutFinished,addClamp.IsInUploaded,addClamp.IsOutUploaded,addClamp.VacuumSet,
               addClamp.TsSet[0], addClamp.TsSet[1], addClamp.TsSet[2], addClamp.TsSet[3], addClamp.TsSet[4], addClamp.TsSet[5], addClamp.TsSet[6], addClamp.TsSet[7], addClamp.TsSet[8], addClamp.TsSet[9], 
-              addClamp.YunFengTSet, addClamp.PreheatTimeSet, addClamp.BakingTimeSet, addClamp.BreathingCycleSet, addClamp.ProcessTemperSet), out msg);
+              addClamp.YunFengTSet, addClamp.PreheatTimeSet, addClamp.BakingTimeSet, addClamp.BreathingCycleSet, addClamp.ProcessTemperSet, addClamp.SampleInfo), out msg);
         }
 
         public static bool Delete(Clamp delClamp, out string msg)
@@ -564,6 +584,18 @@ namespace Soundon.Dispatcher
             return true;
         }
         #endregion
+    }
+
+    /// <summary>
+    /// 样品状态信息
+    /// </summary>
+    public enum SampleInfo
+    {
+        未知,
+        无样品,
+        有样品,
+        结果OK,
+        结果NG
     }
 
     public enum ClampStatus

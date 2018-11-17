@@ -691,8 +691,8 @@ namespace Soundon.Dispatcher.App
                                  s1.FloorStatus,
                                  floor.Vacuum.ToString("#0").PadLeft(6),
                                  s2.FloorStatus,
-                                 s1.SampleStatus == SampleStatus.待测试 ? "★ " : "",
-                                 s2.SampleStatus == SampleStatus.待测试 ? "★ " : "");
+                                 s1.HasSampleFlag ? "★ " : "",
+                                 s2.HasSampleFlag ? "★ " : "");
                         }
 
                         this.lbFloorInfoTop[i][j].ForeColor = Color.Red;
@@ -840,8 +840,12 @@ namespace Soundon.Dispatcher.App
                 for (int j = 0; j < FeederStationCount; j++)
                 {
                     Station station = Current.feeders[i].Stations[j];
-                    //   lbFeederClampCode[i][j].Text = station.Clamp.Code;
-                    lbFeederClampCode[i][j].Text = station.SampleStatus == SampleStatus.待测试 ? "★" : "";
+
+                    lbFeederClampCode[i][j].Text = station.Clamp.Code;
+
+                    lbFeederClampCode[i][j].BackColor = station.HasSampleFlag ? Color.Blue : Color.White;
+                    lbFeederClampCode[i][j].ForeColor = station.HasSampleFlag ? Color.White : Color.Blue;
+
                     bool canChangeVisible = DateTime.Now.Second % 3 == 1;
 
                     if (Current.feeders[i].IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
@@ -931,8 +935,10 @@ namespace Soundon.Dispatcher.App
                     lbBlankerStationName[i][j].BackColor = station.DoorStatus == DoorStatus.关闭 ? Color.Black : Color.Transparent;
                     lbBlankerStationName[i][j].ForeColor = station.DoorStatus == DoorStatus.关闭 ? Color.White : Color.Black;
 
-                    //  lbBlankerClampCode[i][j].Text = station.Clamp.Code;
-                    lbBlankerClampCode[i][j].Text = station.SampleStatus == SampleStatus.待测试 ? "★" : "";
+                    lbBlankerClampCode[i][j].Text = station.Clamp.Code;
+
+                    lbBlankerClampCode[i][j].BackColor = station.HasSampleFlag ? Color.Blue : Color.White;
+                    lbBlankerClampCode[i][j].ForeColor = station.HasSampleFlag ? Color.White : Color.Blue;
 
                     bool canChangeVisible = DateTime.Now.Second % 3 == 1;
 
