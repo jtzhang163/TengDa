@@ -323,7 +323,8 @@ namespace Soundon.Dispatcher
                     }
 
                     var output = OmronPLC.GetBitStr(bOutputs0[250 - 104 * j], 8);
-                    this.Floors[j].IsBaking = output.Substring(2, 1) == "1" && output.Substring(3, 1) == "1";
+                    this.Floors[j].IsBaking = bOutputs0[688 - 44 * j] == 1;
+                    //this.Floors[j].IsBaking = output.Substring(2, 1) == "1" && output.Substring(3, 1) == "1";
                 }
 
 

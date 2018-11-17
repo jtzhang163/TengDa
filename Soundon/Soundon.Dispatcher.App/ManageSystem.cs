@@ -4777,6 +4777,12 @@ namespace Soundon.Dispatcher.App
                         return;
                     }
 
+                    if (Current.Task.FromClampStatus == ClampStatus.满夹具 && station.GetPutType == GetPutType.上料机)
+                    {
+                        Tip.Alert(station.Name + "不允许放满夹具！");
+                        return;
+                    }
+
                     if (Current.Task.StartTime == TengDa.Common.DefaultTime)
                     {
                         Current.Task.StartTime = DateTime.Now;

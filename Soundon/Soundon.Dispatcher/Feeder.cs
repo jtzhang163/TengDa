@@ -130,9 +130,9 @@ namespace Soundon.Dispatcher
             }
         }
 
-        //两台上料机信号传递（上料机器人和搬运机器人干涉防呆）
-        public ushort D1020;
-        public ushort D1021; 
+        //帮助两台上料机信号传递（上料机器人和搬运机器人干涉防呆）
+        public ushort D1025;
+        public ushort D1026; 
 
         /// <summary>
         /// 夹爪移动类型
@@ -640,30 +640,33 @@ namespace Soundon.Dispatcher
 
                 if (Current.Robot.Plc.Id == this.Plc.Id)
                 {
-                    this.D1020 = bOutputs[20];
+                    this.D1025 = bOutputs[25];
                 }
                 else
                 {
-                    this.D1021 = bOutputs[21];
+                    this.D1026 = bOutputs[26];
                 }
 
                 //两台上料机信号传递（上料机器人和搬运机器人干涉防呆）
-                if (Current.Robot.Plc.Id == this.Plc.Id)
+                if (Current.feeders.Count(f => f.IsAlive) == Current.feeders.Count)
                 {
-                    if (!this.Plc.SetInfo("D1021", (ushort)(Current.feeders.First(f => f.Id != this.Id).D1021), out msg))
+                    if (Current.Robot.Plc.Id == this.Plc.Id)
                     {
-                        Error.Alert(msg);
-                        this.Plc.IsAlive = false;
-                        return false;
+                        if (!this.Plc.SetInfo("D1026", (ushort)(Current.feeders.First(f => f.Id != this.Id).D1026), out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
                     }
-                }
-                else
-                {
-                    if (!this.Plc.SetInfo("D1020", (ushort)(Current.feeders.First(f => f.Id != this.Id).D1020), out msg))
+                    else
                     {
-                        Error.Alert(msg);
-                        this.Plc.IsAlive = false;
-                        return false;
+                        if (!this.Plc.SetInfo("D1025", (ushort)(Current.feeders.First(f => f.Id != this.Id).D1025), out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
                     }
                 }
 
