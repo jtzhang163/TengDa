@@ -721,14 +721,26 @@ namespace Soundon.Dispatcher.App
 
                     var index = oven.Floors.IndexOf(floor);
 
-                    lbFloorStatus[i][j].Text =
-                        string.Format("{0} {1} {2}/{3} {4}",
-                        oven.ClampOri == ClampOri.B ? floor.Stations[0].RobotGetCode : floor.Stations[1].RobotGetCode,
-                        floor.DoorStatus,
-                        floor.RunMinutes.ToString().PadLeft(3),
-                        floor.RunMinutesSet.ToString().PadLeft(3),
-                        oven.ClampOri == ClampOri.A ? floor.Stations[0].RobotGetCode : floor.Stations[1].RobotGetCode
-                        );
+                    if (!IsDisplayOvenCode)
+                    {
+                        lbFloorStatus[i][j].Text =
+                            string.Format("{0} {1} {2}/{3} {4}",
+                            oven.ClampOri == ClampOri.B ? floor.Stations[0].RobotGetCode : floor.Stations[1].RobotGetCode,
+                            floor.DoorStatus,
+                            floor.RunMinutes.ToString().PadLeft(3),
+                            floor.RunMinutesSet.ToString().PadLeft(3),
+                            oven.ClampOri == ClampOri.A ? floor.Stations[0].RobotGetCode : floor.Stations[1].RobotGetCode
+                            );
+                    }
+                    else
+                    {
+                        lbFloorStatus[i][j].Text =
+                            string.Format("{0} {1}",
+                            (oven.ClampOri == ClampOri.B ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadLeft(6),
+                            (oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadLeft(6)
+                            );
+                    }
+
 
                     switch (floor.DoorStatus)
                     {
@@ -4880,5 +4892,14 @@ namespace Soundon.Dispatcher.App
             }
         }
 
+        private bool IsDisplayOvenCode = false;
+
+        private void cbDisplayOvenCode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (TengDa.WF.Current.IsRunning)
+            {
+                IsDisplayOvenCode = cbDisplayOvenCode.Checked;
+            }
+        }
     }
 }

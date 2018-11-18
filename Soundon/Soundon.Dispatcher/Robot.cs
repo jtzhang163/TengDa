@@ -43,7 +43,14 @@ namespace Soundon.Dispatcher
         public int ClampId
         {
             get { return clampId; }
-            set { clampId = value; }
+            set
+            {
+                if (clampId != value)
+                {
+                    UpdateDbField("ClampId", value);
+                }
+                clampId = value;
+            }
         }
 
         private int position = 1;
