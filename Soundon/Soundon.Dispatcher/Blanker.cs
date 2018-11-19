@@ -30,6 +30,24 @@ namespace Soundon.Dispatcher
             }
         }
 
+        private bool canTestWatContent = false;
+        /// <summary>
+        /// 可以放置测水分夹具
+        /// </summary>
+        [DisplayName("可以放置测水分夹具")]
+        public bool CanTestWatContent
+        {
+            get { return canTestWatContent; }
+            set
+            {
+                if (canTestWatContent != value)
+                {
+                    UpdateDbField("CanTestWatContent", value);
+                }
+                canTestWatContent = value;
+            }
+        }
+
         private int plcId = -1;
         [ReadOnly(true), Description("PLC ID")]
         [DisplayName("PLC ID")]
@@ -134,6 +152,7 @@ namespace Soundon.Dispatcher
             this.number = rowInfo["Number"].ToString();
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
             this.StationIds = rowInfo["StationIds"].ToString();
+            this.canTestWatContent = TengDa._Convert.StrToBool(rowInfo["CanTestWatContent"].ToString(), false);
         }
         #endregion
 
@@ -245,6 +264,7 @@ namespace Soundon.Dispatcher
                     {
                         this.Stations[j].ClampStatus = ClampStatus.无夹具;
                         this.Stations[j].Status = (int)bOutputs[j] == this.Stations[j].RobotPutCode ? StationStatus.可放 : StationStatus.工作中;
+                        this.Stations[j].SampleStatus = SampleStatus.未知;
                     }
                     else if(bOutputs[10 + j] == 1)
                     {
@@ -252,6 +272,8 @@ namespace Soundon.Dispatcher
                         {
                             this.Stations[j].ClampStatus = ClampStatus.空夹具;
                             this.Stations[j].Status = StationStatus.可取;
+                            this.Stations[j].SampleInfo = SampleInfo.未知;
+                            this.Stations[j].SampleStatus = SampleStatus.未知;
                         }
                         else
                         {
@@ -312,6 +334,56 @@ namespace Soundon.Dispatcher
                     LogHelper.WriteInfo(string.Format("成功发送取放料干涉取消指令到{0}:{1}", this.Name, "D2019:0"));
                     this.toCloseDoor = false;
                 }
+
+
+
+                if (this.toCloseDoor)
+                {
+                    if (!this.Plc.SetInfo("D2019", (ushort)0, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    LogHelper.WriteInfo(string.Format("成功发送取放料干涉取消指令到{0}:{1}", this.Name, "D2019:0"));
+                    this.toCloseDoor = false;
+                }
+
+                for (int j = 0; j < this.Stations.Count; j++)
+                {
+                    if (this.Stations[j].SampleInfo == SampleInfo.无样品 && this.Stations[j].SampleStatus == SampleStatus.未知)
+                    {
+                        if(bOutputs[21 + j] != 1)
+                        {
+                            if (!this.Plc.SetInfo("D" + (2021 + j).ToString("D4"), (ushort)1, out msg))
+                            {
+                                Error.Alert(msg);
+                                this.Plc.IsAlive = false;
+                                return false;
+                            }
+
+                            LogHelper.WriteInfo(string.Format("成功发送无水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + j).ToString("D4") +  "1"));
+                        }
+                    }
+
+                    if (this.Stations[j].SampleInfo == SampleInfo.有样品 && this.Stations[j].SampleStatus == SampleStatus.待测试)
+                    {
+                        if (bOutputs[21 + j] != 2)
+                        {
+                            if (!this.Plc.SetInfo("D" + (2021 + j).ToString("D4"), (ushort)2, out msg))
+                            {
+                                Error.Alert(msg);
+                                this.Plc.IsAlive = false;
+                                return false;
+                            }
+
+                            LogHelper.WriteInfo(string.Format("成功发送有水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + j).ToString("D4") + "2"));
+                        }
+                    }
+                }
+
+
 
 
                 //if (!this.Plc.GetInfo(false, Current.option.GetBlankerInfoStr, out output, out msg))

@@ -674,8 +674,11 @@ namespace Soundon.Dispatcher
         #endregion
 
         protected SampleStatus sampleStatus = SampleStatus.未知;
-        [Description("样品工位信息")]
-        [DisplayName("样品工位信息")]
+
+        /// <summary>
+        /// 工位样品状态
+        /// </summary>
+        [DisplayName("工位样品状态")]
         public SampleStatus SampleStatus
         {
             get
@@ -689,6 +692,22 @@ namespace Soundon.Dispatcher
                     UpdateDbField("SampleStatus", value);
                 }
                 sampleStatus = value;
+            }
+        }
+
+        /// <summary>
+        /// 夹具样品信息
+        /// </summary>
+        [DisplayName("夹具样品信息")]
+        public SampleInfo SampleInfo
+        {
+            get
+            {
+                return this.Clamp.SampleInfo;
+            }
+            set
+            {
+                this.Clamp.SampleInfo = value;
             }
         }
 
@@ -814,6 +833,15 @@ namespace Soundon.Dispatcher
         {
             return StationList.First(s => s.Id == id);
         }
+
+        /// <summary>
+        /// 烤箱 获取相邻工位
+        /// </summary>
+        /// <returns></returns>
+        public Station GetLabStation()
+        {
+            return this.GetFloor().Stations.First(s => s.Id != this.Id);
+        }
         /// <summary>
         /// 该工位所在炉层
         /// </summary>
@@ -829,6 +857,15 @@ namespace Soundon.Dispatcher
         public Oven GetOven()
         {
             return Oven.OvenList.First(o => o.Floors.Contains(GetFloor()));
+        }
+
+        /// <summary>
+        /// 该工位所在下料机
+        /// </summary>
+        /// <returns></returns>
+        public Blanker GetBlanker()
+        {
+            return Blanker.BlankerList.First(b => b.Stations.Contains(this));
         }
 
         #endregion

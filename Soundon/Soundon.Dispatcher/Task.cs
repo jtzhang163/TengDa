@@ -157,6 +157,24 @@ namespace Soundon.Dispatcher
             }
         }
 
+        private SampleInfo fromSampleInfo = SampleInfo.未知;
+        /// <summary>
+        /// 取盘夹具样品信息
+        /// </summary>
+        [DisplayName("取盘夹具样品信息")]
+        public SampleInfo FromSampleInfo
+        {
+            get { return fromSampleInfo; }
+            set
+            {
+                if (fromSampleInfo != value)
+                {
+                    UpdateDbField("FromSampleInfo", value);
+                }
+                fromSampleInfo = value;
+            }
+        }
+
         private int priority = 1;
         /// <summary>
         /// 优先级
@@ -286,6 +304,7 @@ namespace Soundon.Dispatcher
             this.fromType = (GetPutType)Enum.Parse(typeof(GetPutType), rowInfo["FromType"].ToString());
             this.fromClampStatus = (ClampStatus)Enum.Parse(typeof(ClampStatus), rowInfo["FromClampStatus"].ToString());
             this.fromSampleStatus = (SampleStatus)Enum.Parse(typeof(SampleStatus), rowInfo["FromSampleStatus"].ToString());
+            this.fromSampleInfo = (SampleInfo)Enum.Parse(typeof(SampleInfo), rowInfo["FromSampleInfo"].ToString());
             this.toType = (GetPutType)Enum.Parse(typeof(GetPutType), rowInfo["ToType"].ToString());
             this.toClampStatus = (ClampStatus)Enum.Parse(typeof(ClampStatus), rowInfo["ToClampStatus"].ToString());
             this.toSampleStatus = (SampleStatus)Enum.Parse(typeof(SampleStatus), rowInfo["ToSampleStatus"].ToString());
@@ -395,7 +414,8 @@ namespace Soundon.Dispatcher
                             .Where(s => s.ClampOri == task.ClampOri
                             && s.GetPutType == task.FromType && s.ClampStatus == task.FromClampStatus
                             && s.Status == StationStatus.可取
-                            && s.SampleStatus == task.FromSampleStatus)
+                            && s.SampleStatus == task.FromSampleStatus
+                            && s.SampleInfo == task.FromSampleInfo)
                             .OrderBy(s => s.Priority)
                             .OrderBy(s => s.GetPutTime)
                             .ToList();
@@ -407,6 +427,58 @@ namespace Soundon.Dispatcher
                             .OrderBy(s => s.Priority)
                             .OrderBy(s => s.GetPutTime)
                             .ToList();
+
+                        //入炉前逻辑
+                        //根据水分状态判断是否可入烤箱
+                        if (task.FromType == GetPutType.上料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
+                        {
+                            if (task.FromSampleInfo == SampleInfo.有样品)
+                            {
+                                toStations = toStations.Where(s => s.GetLabStation().SampleInfo != SampleInfo.有样品).ToList();
+                            }
+                            else if (task.FromSampleInfo == SampleInfo.无样品)
+                            {
+                                toStations = toStations.Where(s => s.GetLabStation().SampleInfo != SampleInfo.无样品).ToList();
+                            }
+                        }
+
+                        //测试水分出烤箱前逻辑
+                        if (task.FromType == GetPutType.烤箱 && task.ToType == GetPutType.下料机 && task.FromClampStatus == ClampStatus.满夹具)
+                        {
+                            if (task.FromSampleInfo == SampleInfo.有样品 && task.FromSampleStatus == SampleStatus.待测试)
+                            {
+                                toStations = toStations.Where(s => s.GetBlanker().CanTestWatContent).ToList();
+                            }
+                        }
+
+                        //测试水分NG进烤箱前逻辑
+                        if (task.FromType == GetPutType.下料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
+                        {
+                            if (task.FromSampleInfo == SampleInfo.有样品 && task.FromSampleStatus == SampleStatus.测试NG && task.ToSampleStatus == SampleStatus.测试NG)
+                            {
+                                var fromStationsTmp = new List<Station>();
+                                var toStationsTmp = new List<Station>();
+
+                                var isAdded = false;
+                                foreach(var fromStation in fromStations)
+                                {
+                                    foreach (var toStation in toStations)
+                                    {
+                                        if(fromStation.FromStationId == toStation.Id)
+                                        {
+                                            if (!isAdded)
+                                            {
+                                                fromStationsTmp.Add(fromStation);
+                                                toStationsTmp.Add(toStation);
+                                                isAdded = true;
+                                            }
+                                        }
+                                    }
+                                }
+                                fromStations = fromStationsTmp;
+                                toStations = toStationsTmp;
+                            }
+                        }
 
                         if (fromStations.Count > 0 && toStations.Count > 0)
                         {
@@ -582,6 +654,39 @@ namespace Soundon.Dispatcher
                                 Current.Task.FromStation.ClampId = -1;
                             }
                         }
+
+
+                        //入炉后逻辑
+                        //修改工位状态
+                        if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具)
+                        {
+                            if (Current.Task.ToStation.FloorStatus == FloorStatus.待烤)
+                            {
+                                if (Current.Task.ToStation.HasSampleFlag)
+                                {
+                                    Current.Task.ToStation.SampleStatus = SampleStatus.待测试;
+                                }
+                                else
+                                {
+                                    Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
+                                }
+                            }
+                        }
+
+                        //测试水分出烤箱后逻辑
+                        if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
+                        {
+                            if (Current.Task.FromStation.SampleInfo == SampleInfo.有样品 && Current.Task.FromStation.SampleStatus == SampleStatus.待测试)
+                            {
+                                Current.Task.ToStation.SampleStatus = SampleStatus.待测试;
+                            }
+                            //烤箱SampleStatus信号复位
+                            if (Current.Task.FromStation.SampleStatus != SampleStatus.待测试)
+                            {
+                                Current.Task.FromStation.SampleStatus = SampleStatus.未知;
+                            }
+                        }
+
 
                         if (!Current.Robot.IsGettingOrPutting)
                         {
