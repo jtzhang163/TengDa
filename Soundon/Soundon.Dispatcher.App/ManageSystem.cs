@@ -2409,7 +2409,7 @@ namespace Soundon.Dispatcher.App
                         {
                             if (floor.Stations[0].IsAlive && floor.Stations[1].IsAlive && floor.DoorStatus == DoorStatus.关闭)
                             {
-                                Current.ovens[i].ClearRunTime(j);
+                               // Current.ovens[i].ClearRunTime(j);
                                 Current.ovens[i].StartBaking(j);
                             }
                         }
@@ -2432,12 +2432,31 @@ namespace Soundon.Dispatcher.App
                             }
                         }
 
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤 && s.SampleInfo == SampleInfo.无样品) == 2 || floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleInfo == SampleInfo.无样品) == 2)
+                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤 && s.SampleInfo == SampleInfo.无样品) == 2 || floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleInfo == SampleInfo.无样品) == 2 || floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleInfo == SampleInfo.有样品) == 2)
                         {
                             floor.Stations[0].SampleInfo = SampleInfo.有样品;
+                            floor.Stations[1].SampleInfo = SampleInfo.无样品;
                             floor.Stations[0].SampleStatus = SampleStatus.待测试;
                             floor.Stations[1].SampleStatus = SampleStatus.待结果;
                         }
+
+                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出) == 2 && floor.Stations.Count(s => s.SampleInfo == SampleInfo.有样品) == 1 && floor.Stations.Count(s => s.SampleInfo == SampleInfo.无样品) == 1)
+                        {
+                            floor.Stations.ForEach(s => {
+                                s.SampleStatus = s.SampleInfo == SampleInfo.有样品 ? SampleStatus.待测试 : SampleStatus.待结果;
+                            });
+                        }
+
+                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.无盘) == 2 || floor.Stations.Count(s => s.FloorStatus == FloorStatus.空盘) == 1 && floor.Stations.Count(s => s.FloorStatus == FloorStatus.无盘) == 1)
+                        {
+                            floor.Stations.ForEach(s => s.SampleStatus = SampleStatus.未知);
+                        }
+                        floor.Stations.ForEach(s=> {
+                            if (s.FloorStatus == FloorStatus.空盘)
+                            {
+                                s.SampleStatus = SampleStatus.未知;
+                            }
+                        });
                     }
                 }
 
@@ -4536,8 +4555,8 @@ namespace Soundon.Dispatcher.App
         {
             this.tsmRobotPause.Enabled = Current.Robot.IsAlive && !Current.Robot.IsPausing;
             this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing;
-            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && (Current.Task.Status == TaskStatus.正放 || Current.Robot.IsStarting);
-            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus != ClampStatus.无夹具 && (Current.Task.Status == TaskStatus.正取 || Current.Robot.IsStarting);
+            this.tsmManuGetStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && (Current.Task.Status == TaskStatus.正放 || Current.Robot.IsStarting) && Current.Task.Status != TaskStatus.可取 && Current.Task.Status != TaskStatus.正取;
+            this.tsmManuPutStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.Robot.IsAlive && Current.Robot.ClampStatus != ClampStatus.无夹具 && (Current.Task.Status == TaskStatus.正取 || Current.Robot.IsStarting) && Current.Task.Status != TaskStatus.可放 && Current.Task.Status != TaskStatus.正放;
         }
 
         private void tsmRobotStart_Click(object sender, EventArgs e)

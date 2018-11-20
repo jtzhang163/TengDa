@@ -517,8 +517,16 @@ namespace Soundon.Dispatcher
                             Current.Transfer.Station.Status = StationStatus.可放;
                             break;
                         case 2:
-                            Current.Transfer.Station.ClampStatus = Current.Transfer.Station.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
+                            if (Current.TaskMode == TaskMode.手动任务)
+                            {
+                                Current.Transfer.Station.ClampStatus = ClampStatus.满夹具;
+                            }
+                            else
+                            {
+                                Current.Transfer.Station.ClampStatus = Current.Transfer.Station.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
+                            }
                             Current.Transfer.Station.Status = StationStatus.可取;
+                            Current.Transfer.Station.SampleInfo = Current.Transfer.Station.ClampStatus == ClampStatus.满夹具 ? SampleInfo.有样品 : SampleInfo.无样品;
                             break;
                         case 3:
                             Current.Transfer.Station.ClampStatus = ClampStatus.异常;
