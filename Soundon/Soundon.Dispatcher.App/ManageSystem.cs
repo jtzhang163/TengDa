@@ -200,6 +200,7 @@ namespace Soundon.Dispatcher.App
                 pbBlankerTriLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbBlankerTriLamp{0}", ii.ToString("D2")), true)[0]);
 
                 lbBlankerStationName[i] = new Label[BlankerStationCount];
+                lbBlankerFromStationName[i] = new Label[BlankerStationCount];
                 lbBlankerClampCode[i] = new Label[BlankerStationCount];
                 tlpBlankerStationClamp[i] = new TableLayoutPanel[BlankerStationCount];
 
@@ -207,6 +208,7 @@ namespace Soundon.Dispatcher.App
                 {
                     int jj = j + 1;
                     lbBlankerStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerStationName{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
+                    lbBlankerFromStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerFromStationName{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
                     lbBlankerClampCode[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerClampCode{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
                     tlpBlankerStationClamp[i][j] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpBlankerStationClamp{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
                 }
@@ -674,11 +676,13 @@ namespace Soundon.Dispatcher.App
                     }
                     else
                     {
+                        var centerStr = floor.IsEnable ? floor.Vacuum.ToString("#0").PadLeft(6) + "Pa" : "炉层禁用";
+
                         if (floor.IsBaking)
                         {
-                            this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {1}Pa {2}℃",
+                            this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {1} {2}℃",
                                  floor.Stations[0].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4),
-                                 floor.Vacuum.ToString("#0").PadLeft(6),
+                                 centerStr,
                                  floor.Stations[1].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4));
                         }
                         else
@@ -687,9 +691,9 @@ namespace Soundon.Dispatcher.App
                             s1 = oven.ClampOri == ClampOri.B ? floor.Stations[0] : floor.Stations[1];
                             s2 = oven.ClampOri == ClampOri.B ? floor.Stations[1] : floor.Stations[0];
 
-                            this.lbFloorInfoTop[i][j].Text = string.Format("{0} {3}{1}Pa {4}{2}",
+                            this.lbFloorInfoTop[i][j].Text = string.Format("{0} {3}{1} {4}{2}",
                                  s1.FloorStatus,
-                                 floor.Vacuum.ToString("#0").PadLeft(6),
+                                 centerStr,
                                  s2.FloorStatus,
                                  s1.HasSampleFlag ? "★ " : "",
                                  s2.HasSampleFlag ? "★ " : "");
@@ -983,6 +987,20 @@ namespace Soundon.Dispatcher.App
                             }
                         }
                     }
+
+                    if (Current.blankers[i].Stations[j].ClampStatus != ClampStatus.无夹具 && Current.blankers[i].Stations[j].FromStationId > 0)
+                    {
+                        var sta = Station.StationList.FirstOrDefault(s => s.Id == Current.blankers[i].Stations[j].FromStationId);
+                        if (sta.GetPutType == GetPutType.烤箱)
+                        {
+                            lbBlankerFromStationName[i][j].Text = sta.Name.Substring(0, 7);
+                        }
+                    }
+                    else
+                    {
+                        lbBlankerFromStationName[i][j].Text = string.Empty;
+                    }
+
                 }
                 tlpBlankers[i].Invalidate();
             }
@@ -1299,6 +1317,7 @@ namespace Soundon.Dispatcher.App
         private PictureBox[] pbBlankerTriLamp = new PictureBox[BlankerCount];
 
         private Label[][] lbBlankerStationName = new Label[BlankerCount][];
+        private Label[][] lbBlankerFromStationName = new Label[BlankerCount][];
         private Label[][] lbBlankerClampCode = new Label[BlankerCount][];
         private TableLayoutPanel[][] tlpBlankerStationClamp = new TableLayoutPanel[BlankerCount][];
 
@@ -2413,7 +2432,7 @@ namespace Soundon.Dispatcher.App
                             }
                         }
 
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤 && s.SampleInfo == SampleInfo.无样品) == 2)
+                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤 && s.SampleInfo == SampleInfo.无样品) == 2 || floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleInfo == SampleInfo.无样品) == 2)
                         {
                             floor.Stations[0].SampleInfo = SampleInfo.有样品;
                             floor.Stations[0].SampleStatus = SampleStatus.待测试;
@@ -3608,6 +3627,10 @@ namespace Soundon.Dispatcher.App
                     else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人" && e.Node.Text == "PLC")
                     {
                         this.propertyGridSettings.SelectedObject = Current.Robot.Plc;
+                    }
+                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人" && e.Node.Text.IndexOf("夹具") > -1)
+                    {
+                        this.propertyGridSettings.SelectedObject = Current.Robot.Clamp;
                     }
                     else if (e.Node.Level == 2 && e.Node.Text.IndexOf("夹具") > -1)
                     {
