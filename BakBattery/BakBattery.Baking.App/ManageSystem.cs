@@ -4298,8 +4298,8 @@ namespace BakBattery.Baking.App
             this.tsmRobotPause.Enabled = Current.Robot.IsAlive && !Current.Robot.IsPausing && Current.Robot.IsStarting && !Current.Robot.IsAlarming;
             this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing && Current.Robot.IsStarting && !Current.Robot.IsAlarming;
             this.tsmRobotAlarmReset.Enabled = Current.Robot.IsAlive && Current.Robot.IsAlarming;
-            this.tsmManuGetStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && Current.Robot.IsExecuting;
-            this.tsmManuPutStation.Enabled = Current.Robot.IsAlive && Current.Robot.ClampStatus != ClampStatus.无夹具 && Current.Robot.IsExecuting;
+            this.tsmManuGetStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && Current.Robot.IsExecuting;
+            this.tsmManuPutStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.Robot.IsAlive && Current.Robot.ClampStatus != ClampStatus.无夹具 && Current.Robot.IsExecuting;
         }
 
         private void tsmRobotStart_Click(object sender, EventArgs e)
