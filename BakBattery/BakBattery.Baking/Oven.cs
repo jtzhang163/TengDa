@@ -482,6 +482,29 @@ namespace BakBattery.Baking
                                     }
                                 }
                             }
+                            else if (c == '0')
+                            {
+                                Alarm alarm = (from a in Alarm.Alarms where a.Id == x + 1 select a).ToList()[0];
+                                if (alarm.FloorNum == 0)
+                                {
+                                    this.AlarmStr += alarm.AlarmStr + ",";
+                                    if (cPre == '1')
+                                    {
+                                        AlarmLog alarmLog = new AlarmLog();
+                                        alarmLog.AlarmId = x + 1;
+                                        alarmLog.AlarmType = AlarmType.Oven;
+                                        alarmLog.TypeId = this.Id;
+                                        alarmLogs.Add(alarmLog);
+                                    }
+                                }
+                                else if (alarm.FloorNum > 0 && alarm.FloorNum <= this.Floors.Count)
+                                {
+                                    if (cPre == '1')
+                                    {
+                                        AlarmLog.Stop(AlarmType.Floor, x + 1, this.Floors[alarm.FloorNum - 1].Id, out msg);
+                                    }
+                                }
+                            }
                         }
 
                         if (!AlarmLog.Add(alarmLogs, out msg))
