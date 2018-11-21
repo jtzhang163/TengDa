@@ -566,17 +566,18 @@ namespace BakBattery.Baking
                                     LogHelper.WriteError(msg);
                                 }
                             }
-
-                            if (Current.Task.FromStation != null && Current.Task.FromStation.ClampId > 0)
+                            else
                             {
-                                Current.Task.ToStation.ClampId = Current.Task.FromStation.ClampId;
-                            }
-                            else if (Current.Robot.ClampId > 0)
-                            {
-                                Current.Task.ToStation.ClampId = Current.Robot.ClampId;
+                                if (Current.Task.FromStation != null && Current.Task.FromStation.ClampId > 0)
+                                {
+                                    Current.Task.ToStation.ClampId = Current.Task.FromStation.ClampId;
+                                }
+                                else if (Current.Robot.ClampId > 0)
+                                {
+                                    Current.Task.ToStation.ClampId = Current.Robot.ClampId;
+                                }
                             }
                             Current.Robot.ClampId = -1;
-
                             if (Current.Task.FromStation != null)
                             {
                                 Current.Task.FromStation.ClampId = -1;
@@ -726,18 +727,19 @@ namespace BakBattery.Baking
                                 LogHelper.WriteError(msg);
                             }
                         }
-
-                        if (Current.Task.FromStation != null && Current.Task.FromStation.ClampId > 0)
+                        else
                         {
-                            Current.Task.ToStation.ClampId = Current.Task.FromStation.ClampId;
-                        }
-                        else if (Current.Robot.ClampId > 0)
-                        {
-                            Current.Task.ToStation.ClampId = Current.Robot.ClampId;
+                            if (Current.Task.FromStation != null && Current.Task.FromStation.ClampId > 0)
+                            {
+                                Current.Task.ToStation.ClampId = Current.Task.FromStation.ClampId;
+                            }
+                            else if (Current.Robot.ClampId > 0)
+                            {
+                                Current.Task.ToStation.ClampId = Current.Robot.ClampId;
+                            }
                         }
                         Current.Robot.ClampId = -1;
-
-                        if(Current.Task.FromStation != null)
+                        if (Current.Task.FromStation != null)
                         {
                             Current.Task.FromStation.ClampId = -1;
                         }
