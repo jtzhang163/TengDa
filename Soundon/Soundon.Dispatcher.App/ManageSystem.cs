@@ -3420,12 +3420,14 @@ namespace Soundon.Dispatcher.App
             //设置显示列宽度
             dgvAlarm.Columns[0].Width = 100;
             dgvAlarm.Columns[0].HeaderText = "烤箱/腔体";
-            dgvAlarm.Columns[1].Width = 150;
-            dgvAlarm.Columns[2].Width = 150;
+            dgvAlarm.Columns[1].Width = 100;
+            dgvAlarm.Columns[2].Width = 100;
             dgvAlarm.Columns[3].Width = 150;
             dgvAlarm.Columns[4].Width = 150;
-            dgvAlarm.Columns[4].HeaderText = "持续时间(s)";
             dgvAlarm.Columns[5].Width = 150;
+            dgvAlarm.Columns[6].Width = 150;
+            dgvAlarm.Columns[6].HeaderText = "持续时间(s)";
+            dgvAlarm.Columns[7].Width = 150;
             tbNumAlarm.Text = dt.Rows.Count.ToString();
         }
 

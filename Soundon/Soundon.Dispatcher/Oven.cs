@@ -412,7 +412,32 @@ namespace Soundon.Dispatcher
                                     alarmLog.AlarmId = x + 1;
                                     alarmLog.AlarmType = AlarmType.Floor;
                                     alarmLog.TypeId = this.Floors[alarm.FloorNum - 1].Id;
+                                    alarmLog.Clamp1Id = this.Floors[alarm.FloorNum - 1].Stations[0].ClampId > 0 ? this.Floors[alarm.FloorNum - 1].Stations[0].ClampId : 60;
+                                    alarmLog.Clamp2Id = this.Floors[alarm.FloorNum - 1].Stations[1].ClampId > 0 ? this.Floors[alarm.FloorNum - 1].Stations[1].ClampId : 60;
                                     alarmLogs.Add(alarmLog);
+                                }
+                            }
+                        }
+                        else if (c == '0')
+                        {
+                            Alarm alarm = (from a in Alarm.Alarms where a.Id == x + 1 select a).ToList()[0];
+                            if (alarm.FloorNum == 0)
+                            {
+                                this.AlarmStr += alarm.AlarmStr + ",";
+                                if (cPre == '1')
+                                {
+                                    AlarmLog alarmLog = new AlarmLog();
+                                    alarmLog.AlarmId = x + 1;
+                                    alarmLog.AlarmType = AlarmType.Oven;
+                                    alarmLog.TypeId = this.Id;
+                                    alarmLogs.Add(alarmLog);
+                                }
+                            }
+                            else if (alarm.FloorNum > 0 && alarm.FloorNum <= this.Floors.Count)
+                            {
+                                if (cPre == '1')
+                                {
+                                    AlarmLog.Stop(AlarmType.Floor, x + 1, this.Floors[alarm.FloorNum - 1].Id, out msg);
                                 }
                             }
                         }

@@ -177,6 +177,10 @@ namespace Soundon.Dispatcher
         public DateTime StopTime { get; set; }
         #endregion
 
+        public int Clamp1Id { get; set; }
+
+        public int Clamp2Id { get; set; }
+
         #region 添加报警/结束报警
         /// <summary>
         /// 增加多个，数据库一次插入多行
@@ -196,10 +200,10 @@ namespace Soundon.Dispatcher
 
             foreach (AlarmLog alarmLog in addAlarmLogs)
             {
-                sb.Append(string.Format("({0}, '{1}', {2}, {3}, GETDATE(), '2000-01-01 00:00:00'),", alarmLog.AlarmId, alarmLog.AlarmType, alarmLog.TypeId, TengDa.WF.Current.user.Id));
+                sb.Append(string.Format("({0}, '{1}', {2}, {3}, GETDATE(), '2000-01-01 00:00:00', {4}, {5}),", alarmLog.AlarmId, alarmLog.AlarmType, alarmLog.TypeId, TengDa.WF.Current.user.Id, alarmLog.Clamp1Id, alarmLog.Clamp2Id));
             }
 
-            return Database.NonQuery(string.Format("INSERT INTO [dbo].[{0}] ([AlarmId], [AlarmType], [TypeId], [UserId], [StartTime], [StopTime]) VALUES {1}", TableName, sb.ToString().TrimEnd(',')), out msg);
+            return Database.NonQuery(string.Format("INSERT INTO [dbo].[{0}] ([AlarmId], [AlarmType], [TypeId], [UserId], [StartTime], [StopTime], [Clamp1Id], [Clamp2Id]) VALUES {1}", TableName, sb.ToString().TrimEnd(',')), out msg);
         }
 
         public static void StopAll()

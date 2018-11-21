@@ -372,6 +372,8 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBlankerOpenDoor = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBlankerCloseDoor = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbBlankerFromStationName0101 = new System.Windows.Forms.Label();
+            this.lbBlankerFromStationName0102 = new System.Windows.Forms.Label();
             this.tlpBlankerStationClamp0101 = new System.Windows.Forms.TableLayoutPanel();
             this.lbBlankerClampCode0101 = new System.Windows.Forms.Label();
             this.tlpBlankerStationClamp0102 = new System.Windows.Forms.TableLayoutPanel();
@@ -383,12 +385,14 @@
             this.pbBlankerTriLamp02 = new System.Windows.Forms.PictureBox();
             this.lbBlankerName02 = new System.Windows.Forms.Label();
             this.tlpBlanker2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbBlankerFromStationName0202 = new System.Windows.Forms.Label();
             this.tlpBlankerStationClamp0202 = new System.Windows.Forms.TableLayoutPanel();
             this.lbBlankerClampCode0202 = new System.Windows.Forms.Label();
             this.lbBlankerStationName0201 = new System.Windows.Forms.Label();
             this.tlpBlankerStationClamp0201 = new System.Windows.Forms.TableLayoutPanel();
             this.lbBlankerClampCode0201 = new System.Windows.Forms.Label();
             this.lbBlankerStationName0202 = new System.Windows.Forms.Label();
+            this.lbBlankerFromStationName0201 = new System.Windows.Forms.Label();
             this.tableLayoutPanel39 = new System.Windows.Forms.TableLayoutPanel();
             this.label70 = new System.Windows.Forms.Label();
             this.label69 = new System.Windows.Forms.Label();
@@ -661,10 +665,6 @@
             this.lbTime = new System.Windows.Forms.Label();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
             this.yieldDisplay = new Soundon.Dispatcher.Controls.YieldDisplay();
-            this.lbBlankerFromStationName0201 = new System.Windows.Forms.Label();
-            this.lbBlankerFromStationName0202 = new System.Windows.Forms.Label();
-            this.lbBlankerFromStationName0102 = new System.Windows.Forms.Label();
-            this.lbBlankerFromStationName0101 = new System.Windows.Forms.Label();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -5794,7 +5794,7 @@
             this.tableLayoutPanel36.Name = "tableLayoutPanel36";
             this.tableLayoutPanel36.RowCount = 1;
             this.tableLayoutPanel36.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel36.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel36.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel36.Size = new System.Drawing.Size(105, 30);
             this.tableLayoutPanel36.TabIndex = 34;
             // 
@@ -5879,6 +5879,32 @@
             this.tsmBlankerCloseDoor.Size = new System.Drawing.Size(124, 22);
             this.tsmBlankerCloseDoor.Text = "取消干涉";
             this.tsmBlankerCloseDoor.Click += new System.EventHandler(this.tsmBlankerCloseDoor_Click);
+            // 
+            // lbBlankerFromStationName0101
+            // 
+            this.lbBlankerFromStationName0101.AutoSize = true;
+            this.lbBlankerFromStationName0101.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbBlankerFromStationName0101.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbBlankerFromStationName0101.ForeColor = System.Drawing.Color.Violet;
+            this.lbBlankerFromStationName0101.Location = new System.Drawing.Point(55, 1);
+            this.lbBlankerFromStationName0101.Name = "lbBlankerFromStationName0101";
+            this.lbBlankerFromStationName0101.Size = new System.Drawing.Size(45, 20);
+            this.lbBlankerFromStationName0101.TabIndex = 26;
+            this.lbBlankerFromStationName0101.Text = "XXX";
+            this.lbBlankerFromStationName0101.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbBlankerFromStationName0102
+            // 
+            this.lbBlankerFromStationName0102.AutoSize = true;
+            this.lbBlankerFromStationName0102.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbBlankerFromStationName0102.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbBlankerFromStationName0102.ForeColor = System.Drawing.Color.Violet;
+            this.lbBlankerFromStationName0102.Location = new System.Drawing.Point(4, 1);
+            this.lbBlankerFromStationName0102.Name = "lbBlankerFromStationName0102";
+            this.lbBlankerFromStationName0102.Size = new System.Drawing.Size(44, 20);
+            this.lbBlankerFromStationName0102.TabIndex = 25;
+            this.lbBlankerFromStationName0102.Text = "XXX";
+            this.lbBlankerFromStationName0102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpBlankerStationClamp0101
             // 
@@ -6104,6 +6130,19 @@
             this.tlpBlanker2.TabIndex = 15;
             this.tlpBlanker2.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpBlanker_CellPaint);
             // 
+            // lbBlankerFromStationName0202
+            // 
+            this.lbBlankerFromStationName0202.AutoSize = true;
+            this.lbBlankerFromStationName0202.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbBlankerFromStationName0202.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbBlankerFromStationName0202.ForeColor = System.Drawing.Color.Violet;
+            this.lbBlankerFromStationName0202.Location = new System.Drawing.Point(4, 125);
+            this.lbBlankerFromStationName0202.Name = "lbBlankerFromStationName0202";
+            this.lbBlankerFromStationName0202.Size = new System.Drawing.Size(44, 20);
+            this.lbBlankerFromStationName0202.TabIndex = 7;
+            this.lbBlankerFromStationName0202.Text = "XXX";
+            this.lbBlankerFromStationName0202.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tlpBlankerStationClamp0202
             // 
             this.tlpBlankerStationClamp0202.BackColor = System.Drawing.SystemColors.Window;
@@ -6245,6 +6284,19 @@
             this.lbBlankerStationName0202.TabIndex = 0;
             this.lbBlankerStationName0202.Text = "XXXX";
             this.lbBlankerStationName0202.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbBlankerFromStationName0201
+            // 
+            this.lbBlankerFromStationName0201.AutoSize = true;
+            this.lbBlankerFromStationName0201.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbBlankerFromStationName0201.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbBlankerFromStationName0201.ForeColor = System.Drawing.Color.Violet;
+            this.lbBlankerFromStationName0201.Location = new System.Drawing.Point(55, 125);
+            this.lbBlankerFromStationName0201.Name = "lbBlankerFromStationName0201";
+            this.lbBlankerFromStationName0201.Size = new System.Drawing.Size(45, 20);
+            this.lbBlankerFromStationName0201.TabIndex = 6;
+            this.lbBlankerFromStationName0201.Text = "XXX";
+            this.lbBlankerFromStationName0201.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel39
             // 
@@ -9951,58 +10003,6 @@
             this.yieldDisplay.Size = new System.Drawing.Size(270, 86);
             this.yieldDisplay.TabIndex = 14;
             this.yieldDisplay.btnYieldClearClick += new Soundon.Dispatcher.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
-            // 
-            // lbBlankerFromStationName0201
-            // 
-            this.lbBlankerFromStationName0201.AutoSize = true;
-            this.lbBlankerFromStationName0201.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerFromStationName0201.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerFromStationName0201.ForeColor = System.Drawing.Color.Violet;
-            this.lbBlankerFromStationName0201.Location = new System.Drawing.Point(55, 125);
-            this.lbBlankerFromStationName0201.Name = "lbBlankerFromStationName0201";
-            this.lbBlankerFromStationName0201.Size = new System.Drawing.Size(45, 20);
-            this.lbBlankerFromStationName0201.TabIndex = 6;
-            this.lbBlankerFromStationName0201.Text = "XXX";
-            this.lbBlankerFromStationName0201.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbBlankerFromStationName0202
-            // 
-            this.lbBlankerFromStationName0202.AutoSize = true;
-            this.lbBlankerFromStationName0202.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerFromStationName0202.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerFromStationName0202.ForeColor = System.Drawing.Color.Violet;
-            this.lbBlankerFromStationName0202.Location = new System.Drawing.Point(4, 125);
-            this.lbBlankerFromStationName0202.Name = "lbBlankerFromStationName0202";
-            this.lbBlankerFromStationName0202.Size = new System.Drawing.Size(44, 20);
-            this.lbBlankerFromStationName0202.TabIndex = 7;
-            this.lbBlankerFromStationName0202.Text = "XXX";
-            this.lbBlankerFromStationName0202.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbBlankerFromStationName0102
-            // 
-            this.lbBlankerFromStationName0102.AutoSize = true;
-            this.lbBlankerFromStationName0102.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerFromStationName0102.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerFromStationName0102.ForeColor = System.Drawing.Color.Violet;
-            this.lbBlankerFromStationName0102.Location = new System.Drawing.Point(4, 1);
-            this.lbBlankerFromStationName0102.Name = "lbBlankerFromStationName0102";
-            this.lbBlankerFromStationName0102.Size = new System.Drawing.Size(44, 20);
-            this.lbBlankerFromStationName0102.TabIndex = 25;
-            this.lbBlankerFromStationName0102.Text = "XXX";
-            this.lbBlankerFromStationName0102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbBlankerFromStationName0101
-            // 
-            this.lbBlankerFromStationName0101.AutoSize = true;
-            this.lbBlankerFromStationName0101.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerFromStationName0101.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerFromStationName0101.ForeColor = System.Drawing.Color.Violet;
-            this.lbBlankerFromStationName0101.Location = new System.Drawing.Point(55, 1);
-            this.lbBlankerFromStationName0101.Name = "lbBlankerFromStationName0101";
-            this.lbBlankerFromStationName0101.Size = new System.Drawing.Size(45, 20);
-            this.lbBlankerFromStationName0101.TabIndex = 26;
-            this.lbBlankerFromStationName0101.Text = "XXX";
-            this.lbBlankerFromStationName0101.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ManageSystem
             // 
