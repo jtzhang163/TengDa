@@ -504,6 +504,7 @@ namespace Soundon.Dispatcher
                             Current.Task.StartTime = DateTime.Now;
                             Current.Task.TaskId = task.Id;
                             Current.Task.FromStationId = fromStation.Id;
+                            Current.Task.ClampId = fromStation.ClampId;
                             Current.Task.ToStationId = toStation.Id;
                             Current.Task.FromClampStatus = fromStation.ClampStatus;
                             Current.Task.PreCycleOrder = task.CycleOrder;
@@ -516,6 +517,7 @@ namespace Soundon.Dispatcher
                             Current.Task.TaskId = -1;
                             Current.Task.FromStationId = -1;
                             Current.Task.ToStationId = -1;
+                            Current.Task.ClampId = -1;
                             Current.Task.FromClampStatus = ClampStatus.未知;
                             Current.Task.Status = TaskStatus.完成;
                         }
@@ -568,10 +570,7 @@ namespace Soundon.Dispatcher
                         {
                             Current.Robot.ClampStatus = Current.Task.FromClampStatus;
                             Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
-                            if (Current.Task.FromStation.ClampId > 0)
-                            {
-                                Current.Robot.ClampId = Current.Task.FromStation.ClampId;                         
-                            }
+                            Current.Robot.ClampId = Current.Task.ClampId;
                         }
 
                         if (!Current.Robot.IsGettingOrPutting)
@@ -616,40 +615,28 @@ namespace Soundon.Dispatcher
                             Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                             Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
 
-                            if (Current.Task.ToStation.ClampId < 1 && Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
+                            if (Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
                             {
-                                int oldClampId = -1;
-                                if (Current.Task.FromStation != null)
-                                {
-                                    oldClampId = Current.Task.FromStation.ClampId;
-                                }
-                                if (oldClampId < 1)
-                                {
-                                    oldClampId = Current.Robot.ClampId;
-                                }
 
-                                int clampId = Clamp.Add(new Clamp(oldClampId).Code, out msg);
+                                int clampId = Clamp.Add(new Clamp(Current.Task.ClampId).Code, out msg);
                                 if (clampId > 0)
                                 {
                                     Current.Task.ToStation.ClampId = clampId;
                                 }
                                 else
                                 {
-                                    LogHelper.WriteError(msg);
+                                    Error.Alert(msg);
+                                    Current.Task.ToStation.ClampId = Current.Task.ClampId;
                                 }
                             }
+                            else
+                            {
+                                Current.Task.ToStation.ClampId = Current.Task.ClampId;
+                            }
 
-                            if (Current.Task.FromStation != null && Current.Task.FromStation.ClampId > 0)
-                            {
-                                Current.Task.ToStation.ClampId = Current.Task.FromStation.ClampId;
-                            }
-                            else if (Current.Robot.ClampId > 0)
-                            {
-                                Current.Task.ToStation.ClampId = Current.Robot.ClampId;
-                            }
                             Current.Robot.ClampId = -1;
 
-                            if (Current.Task.FromStation != null)
+                            if (Current.Task.FromStation != null && Current.Task.FromStation != Current.Task.ToStation)
                             {
                                 Current.Task.FromStation.ClampId = -1;
                             }
@@ -696,6 +683,7 @@ namespace Soundon.Dispatcher
                                 Error.Alert("保存搬运记录失败：" + msg);
                             }
                             Current.Task.Status = TaskStatus.完成;
+                            Current.Task.ClampId = -1;
                         }
                     }
                 }
@@ -707,6 +695,7 @@ namespace Soundon.Dispatcher
                     Current.Task.StartTime = TengDa.Common.DefaultTime;
                     Current.Task.TaskId = -1;
                     Current.Task.FromStationId = -1;
+                    Current.Task.ClampId = -1;
                     Current.Task.ToStationId = -1;
                     Current.Task.FromClampStatus = ClampStatus.未知;
                     Current.Task.Status = TaskStatus.完成;
@@ -714,6 +703,7 @@ namespace Soundon.Dispatcher
                     if (Current.Task.NextFromStationId > 0)
                     {
                         Current.Task.FromStationId = Current.Task.NextFromStationId;
+                        Current.Task.ClampId = Current.Task.FromStation.ClampId;
                         Current.Task.NextFromStationId = -1;
                         Current.Task.FromClampStatus = Current.Task.FromStation.ClampStatus;
                         Current.Task.Status = TaskStatus.就绪;
@@ -751,14 +741,11 @@ namespace Soundon.Dispatcher
                 else if (Current.Task.Status == TaskStatus.正取 && Current.Task.FromStation != null)
                 {
 
-                    if(Current.Robot.ClampStatus != ClampStatus.无夹具)
+                    if (Current.Robot.ClampStatus != ClampStatus.无夹具)
                     {
                         Current.Robot.ClampStatus = Current.Task.FromClampStatus;
                         Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
-                        if (Current.Task.FromStation.ClampId > 0)
-                        {
-                            Current.Robot.ClampId = Current.Task.FromStation.ClampId;
-                        }
+                        Current.Robot.ClampId = Current.Task.ClampId;
                     }
 
                     if (!Current.Robot.IsGettingOrPutting)
@@ -810,40 +797,28 @@ namespace Soundon.Dispatcher
                         Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                         Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
 
-                        if (Current.Task.ToStation.ClampId < 1 && Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
+                        if (Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
                         {
-                            int oldClampId = -1;
-                            if (Current.Task.FromStation != null)
-                            {
-                                oldClampId = Current.Task.FromStation.ClampId;
-                            }
-                            if (oldClampId < 1)
-                            {
-                                oldClampId = Current.Robot.ClampId;
-                            }
 
-                            int clampId = Clamp.Add(new Clamp(oldClampId).Code, out msg);
+                            int clampId = Clamp.Add(new Clamp(Current.Task.ClampId).Code, out msg);
                             if (clampId > 0)
                             {
                                 Current.Task.ToStation.ClampId = clampId;
                             }
                             else
                             {
-                                LogHelper.WriteError(msg);
+                                Error.Alert(msg);
+                                Current.Task.ToStation.ClampId = Current.Task.ClampId;
                             }
                         }
-
-                        if (Current.Task.FromStation != null && Current.Task.FromStation.ClampId > 0)
+                        else
                         {
-                            Current.Task.ToStation.ClampId = Current.Task.FromStation.ClampId;
+                            Current.Task.ToStation.ClampId = Current.Task.ClampId;
                         }
-                        else if (Current.Robot.ClampId > 0)
-                        {
-                            Current.Task.ToStation.ClampId = Current.Robot.ClampId;
-                        }
+                        
                         Current.Robot.ClampId = -1;
 
-                        if(Current.Task.FromStation != null)
+                        if (Current.Task.FromStation != null && Current.Task.FromStation != Current.Task.ToStation)
                         {
                             Current.Task.FromStation.ClampId = -1;
                         }
@@ -902,6 +877,7 @@ namespace Soundon.Dispatcher
                             Error.Alert("保存搬运记录失败：" + msg);
                         }
                         Current.Task.Status = TaskStatus.完成;
+                        Current.Task.ClampId = -1;
                     }
                 }
             }
@@ -1242,6 +1218,24 @@ namespace Soundon.Dispatcher
             }
         }
 
+        private int clampId = -1;
+        /// <summary>
+        /// 夹具ID
+        /// </summary>
+        [ReadOnly(true), DisplayName("夹具ID")]
+        public int ClampId
+        {
+            get { return clampId; }
+            set
+            {
+                if (clampId != value)
+                {
+                    UpdateDbField("ClampId", value);
+                }
+                clampId = value;
+            }
+        }
+
         public static bool ToSwitchManuTaskMode = false;
 
         #endregion
@@ -1292,7 +1286,6 @@ namespace Soundon.Dispatcher
 
         protected void InitFields(DataRow rowInfo)
         {
-            this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
             this.taskId = TengDa._Convert.StrToInt(rowInfo["TaskId"].ToString(), -1);
             this.fromStationId = TengDa._Convert.StrToInt(rowInfo["FromStationId"].ToString(), -1);
             this.toStationId = TengDa._Convert.StrToInt(rowInfo["ToStationId"].ToString(), -1);
@@ -1300,6 +1293,8 @@ namespace Soundon.Dispatcher
             this.status = (TaskStatus)Enum.Parse(typeof(TaskStatus), rowInfo["Status"].ToString());
             this.fromClampStatus = (ClampStatus)Enum.Parse(typeof(ClampStatus), rowInfo["FromClampStatus"].ToString());
             this.startTime = DateTime.Parse(rowInfo["StartTime"].ToString());
+            this.clampId = TengDa._Convert.StrToInt(rowInfo["ClampId"].ToString(), -1);
+            this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
         }
         #endregion
     }

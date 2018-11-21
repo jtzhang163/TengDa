@@ -544,7 +544,7 @@ namespace Soundon.Dispatcher
         {
             if (string.IsNullOrEmpty(code))
             {
-                code = "00000";
+                code = "88888";
             }
             var clamp = new Clamp(code);
             clamp.scanTime = DateTime.Now;
