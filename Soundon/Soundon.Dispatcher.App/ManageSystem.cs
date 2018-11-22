@@ -740,8 +740,8 @@ namespace Soundon.Dispatcher.App
                     {
                         lbFloorStatus[i][j].Text =
                             string.Format("{0} {1}",
-                            (oven.ClampOri == ClampOri.B ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadLeft(6),
-                            (oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadLeft(6)
+                            (oven.ClampOri == ClampOri.B ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadRight(8),
+                            (oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadLeft(8)
                             );
                     }
 
@@ -3400,11 +3400,11 @@ namespace Soundon.Dispatcher.App
             DataTable dt = null;
             if (cbAlarmFloors.Text.Trim() == "All")
             {
-                dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Alarm] WHERE [开始时间] BETWEEN '{1}' AND '{2}' ", Config.DbTableNamePre, dtpAlarmStart.Value, dtpAlarmStop.Value), out msg);
+                dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Alarm] WHERE [开始时间] BETWEEN '{1}' AND '{2}' ORDER BY [开始时间]", Config.DbTableNamePre, dtpAlarmStart.Value, dtpAlarmStop.Value), out msg);
             }
             else
             {
-                dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Alarm] WHERE [名称] = '{1}' AND [开始时间] BETWEEN '{2}' AND '{3}' ", Config.DbTableNamePre, cbAlarmFloors.Text.Trim(), dtpAlarmStart.Value, dtpAlarmStop.Value), out msg);
+                dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Alarm] WHERE [名称] = '{1}' AND [开始时间] BETWEEN '{2}' AND '{3}' ORDER BY [开始时间]", Config.DbTableNamePre, cbAlarmFloors.Text.Trim(), dtpAlarmStart.Value, dtpAlarmStop.Value), out msg);
             }
 
             if (dt == null)
