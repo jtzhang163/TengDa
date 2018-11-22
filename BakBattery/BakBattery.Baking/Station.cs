@@ -636,7 +636,11 @@ namespace BakBattery.Baking
                 {
                     return 2;
                 }
-                return 3;
+                if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出) == 1)
+                {
+                    return 3;
+                }
+                return 4;
             }
         }
 
