@@ -607,7 +607,7 @@ namespace Soundon.Dispatcher
                 {
                     return 0;
                 }
-                Floor floor = Floor.FloorList.First(f => f.Stations.Contains(this));
+                var floor = this.GetFloor();
                 if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤) > 0)
                 {
                     return 1;
@@ -616,7 +616,11 @@ namespace Soundon.Dispatcher
                 {
                     return 2;
                 }
-                return 3;
+                if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出) == 1)
+                {
+                    return 3;
+                }
+                return 4;
             }
         }
 
@@ -708,6 +712,27 @@ namespace Soundon.Dispatcher
             set
             {
                 this.Clamp.SampleInfo = value;
+            }
+        }
+
+        private bool sampleIsGet = false;
+        /// <summary>
+        /// 水分已被取走（下料机）
+        /// </summary>
+        [DisplayName("水分已被取走（下料机）")]
+        public bool SampleIsGet
+        {
+            get
+            {
+                return sampleIsGet;
+            }
+            set
+            {
+                if (value)
+                {
+                    this.SampleStatus = SampleStatus.待测试;
+                }
+                sampleIsGet = value;
             }
         }
 

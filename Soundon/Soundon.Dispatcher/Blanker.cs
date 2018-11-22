@@ -278,13 +278,22 @@ namespace Soundon.Dispatcher
                         else
                         {
                             this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[j].Status = StationStatus.工作中;
+                          //  this.Stations[j].Status = StationStatus.工作中;
                         }
                     }
                     else
                     {
                         this.Stations[j].ClampStatus = ClampStatus.未知;
                         this.Stations[j].Status = StationStatus.不可用;
+                    }
+
+                    if (this.Stations[j].ClampStatus == ClampStatus.满夹具)
+                    {
+                        this.Stations[j].Status = this.Stations[j].SampleIsGet ? StationStatus.可取 : StationStatus.工作中;
+                    }
+                    else
+                    {
+                        this.Stations[j].SampleIsGet = false;
                     }
                 }
 

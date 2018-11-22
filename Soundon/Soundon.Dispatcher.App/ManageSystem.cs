@@ -688,13 +688,19 @@ namespace Soundon.Dispatcher.App
                         else
                         {
                             Station s1, s2;
+
                             s1 = oven.ClampOri == ClampOri.B ? floor.Stations[0] : floor.Stations[1];
                             s2 = oven.ClampOri == ClampOri.B ? floor.Stations[1] : floor.Stations[0];
 
+                            string str1, str2;
+
+                            str1 = s1.FloorStatus == FloorStatus.待出 && s1.SampleStatus == SampleStatus.测试OK || s1.FloorStatus == FloorStatus.待烤 && s1.SampleStatus == SampleStatus.测试NG ? s1.SampleStatus.ToString() : s1.FloorStatus.ToString();
+                            str2 = s2.FloorStatus == FloorStatus.待出 && s2.SampleStatus == SampleStatus.测试OK || s2.FloorStatus == FloorStatus.待烤 && s2.SampleStatus == SampleStatus.测试NG ? s2.SampleStatus.ToString() : s2.FloorStatus.ToString();
+
                             this.lbFloorInfoTop[i][j].Text = string.Format("{0} {3}{1} {4}{2}",
-                                 s1.FloorStatus,
+                                 str1,
                                  centerStr,
-                                 s2.FloorStatus,
+                                 str2,
                                  s1.HasSampleFlag ? "★ " : "",
                                  s2.HasSampleFlag ? "★ " : "");
                         }
@@ -2374,65 +2380,130 @@ namespace Soundon.Dispatcher.App
         /// </summary>
         private void RunInvokeFunc()
         {
-
-            if (timerlock && Current.TaskMode == TaskMode.自动任务 && Math.Abs((DateTime.Now - Current.ChangeModeTime).Seconds) > 3)
+            if (!TengDa.WF.Current.IsTerminalInitFinished)
             {
+                return;
+            }
 
-                if (!TengDa.WF.Current.IsTerminalInitFinished)
+            if (timerlock && Math.Abs((DateTime.Now - Current.ChangeModeTime).Seconds) > 3)
+            {
+                if (Current.TaskMode == TaskMode.自动任务)
                 {
-                    return;
+                    //待烤层关门启动
+                    for (int i = 0; i < OvenCount; i++)
+                    {
+                        for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
+                        {
+                            Floor floor = Current.ovens[i].Floors[j];
+
+                            //无任务默认关门
+                            if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) < 1
+                                && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) < 1
+                                && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
+                            {
+                                Current.ovens[i].CloseDoor(j);
+                            }
+
+                            //从某一炉子取完盘后，立即关门，无需等到整个任务结束
+                            if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
+                                && Current.Robot.IsAlive && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
+                            {
+                                Current.ovens[i].CloseDoor(j);
+                            }
+
+                            //开始烘烤
+                            if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤) == floor.Stations.Count)
+                            {
+                                if (floor.Stations[0].IsAlive && floor.Stations[1].IsAlive && floor.DoorStatus == DoorStatus.关闭)
+                                {
+                                    // Current.ovens[i].ClearRunTime(j);
+                                    Current.ovens[i].StartBaking(j);
+                                }
+                            }
+
+                            ////水分NG回炉的重新开始烘烤
+                            //if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤 && s.SampleStatus == SampleStatus.测试NG) == 1 && floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleStatus == SampleStatus.测试NG) == 1)
+                            //{
+                            //    if (floor.Stations[0].IsAlive && floor.Stations[1].IsAlive && floor.DoorStatus == DoorStatus.关闭)
+                            //    {
+                            //        //if (floor.NgTimes < 2)
+                            //        //{
+                            //        //Current.ovens[i].ClearRunTime(j);
+                            //        Current.ovens[i].StartBaking(j);
+                            //        //}
+                            //        //else
+                            //        //{
+                            //        //    //水分测试两次NG，禁用炉腔
+                            //        //    floor.IsEnable = false;
+                            //        //}
+                            //    }
+                            //}
+                        }
+                    }
+
+                    //待出炉层卸真空开门
+                    List<ClampOri> ClampOris = new List<ClampOri> { ClampOri.A, ClampOri.B };
+                    foreach (ClampOri clampOri in ClampOris)
+                    {
+                        List<Station> baseStations = Station.StationList.Where(s =>
+                                s.ClampOri == clampOri
+                                && s.IsAlive
+                                && s.GetPutType == GetPutType.烤箱
+                                && s.FloorStatus == FloorStatus.待出).ToList();
+
+                        if (baseStations.Count < 1 || baseStations.Where(s => s.DoorStatus == DoorStatus.打开).ToList().Count > 0)
+                        {
+                            continue;
+                        }
+
+                        Station oStation = baseStations.Where(s => !s.IsOpenDoorIntervene).OrderBy(s => s.Priority).OrderBy(s => s.GetPutTime).OrderBy(s => s.OutPriority).FirstOrDefault();
+                        if (oStation == null) continue;
+
+                        Floor oFloor = oStation.GetFloor();
+                        Oven oOven = oStation.GetOven();
+                        int jj = oOven.Floors.IndexOf(oFloor);
+                        if (oFloor.IsVacuum)
+                        {
+                            oOven.UploadVacuum(jj);
+                        }
+
+                        //if (oFloor.DoorStatus == DoorStatus.关闭 && !oFloor.IsVacuum)
+                        //{
+                        //    oOven.OpenDoor(jj);
+                        //}
+                    }
+
+                    //下料台取消干涉
+                    for (int i = 0; i < BlankerCount; i++)
+                    {
+                        for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
+                        {
+                            Station station = Current.blankers[i].Stations[j];
+
+                            //无任务默认关门
+                            if (station.DoorStatus == DoorStatus.打开 && station.Id != Current.Task.FromStationId && station.Id != Current.Task.ToStationId && station.IsAlive)
+                            {
+                                station.CloseDoor();
+                            }
+
+                            //从某一炉子取完盘后，立即关门，无需等到整个任务结束
+                            if (station.DoorStatus == DoorStatus.打开 && station.Id == Current.Task.FromStationId && station.IsAlive
+                                && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
+                            {
+                                station.CloseDoor();
+                            }
+                        }
+                    }
                 }
-                //待烤层关门启动
+
+                //无论手动还是自动任务模式都会执行
                 for (int i = 0; i < OvenCount; i++)
                 {
                     for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
                     {
                         Floor floor = Current.ovens[i].Floors[j];
 
-                        //无任务默认关门
-                        if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) < 1
-                            && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) < 1
-                            && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
-                        {
-                            Current.ovens[i].CloseDoor(j);
-                        }
-
-                        //从某一炉子取完盘后，立即关门，无需等到整个任务结束
-                        if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
-                            && Current.Robot.IsAlive && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
-                        {
-                            Current.ovens[i].CloseDoor(j);
-                        }
- 
-                        //开始烘烤
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤) == floor.Stations.Count)
-                        {
-                            if (floor.Stations[0].IsAlive && floor.Stations[1].IsAlive && floor.DoorStatus == DoorStatus.关闭)
-                            {
-                               // Current.ovens[i].ClearRunTime(j);
-                                Current.ovens[i].StartBaking(j);
-                            }
-                        }
-
-                        //水分NG回炉的重新开始烘烤
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤 && s.SampleStatus == SampleStatus.测试NG) == 1 && floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleStatus == SampleStatus.测试NG) == 1)
-                        {
-                            if (floor.Stations[0].IsAlive && floor.Stations[1].IsAlive && floor.DoorStatus == DoorStatus.关闭)
-                            {
-                                //if (floor.NgTimes < 2)
-                                //{
-                                //Current.ovens[i].ClearRunTime(j);
-                                Current.ovens[i].StartBaking(j);
-                                //}
-                                //else
-                                //{
-                                //    //水分测试两次NG，禁用炉腔
-                                //    floor.IsEnable = false;
-                                //}
-                            }
-                        }
-
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤 && s.SampleInfo == SampleInfo.无样品) == 2 || floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleInfo == SampleInfo.无样品) == 2 || floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleInfo == SampleInfo.有样品) == 2)
+                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤 && s.SampleInfo == SampleInfo.有样品) == 2 || floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤 && s.SampleInfo == SampleInfo.无样品) == 2)
                         {
                             floor.Stations[0].SampleInfo = SampleInfo.有样品;
                             floor.Stations[1].SampleInfo = SampleInfo.无样品;
@@ -2440,9 +2511,10 @@ namespace Soundon.Dispatcher.App
                             floor.Stations[1].SampleStatus = SampleStatus.待结果;
                         }
 
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出) == 2 && floor.Stations.Count(s => s.SampleInfo == SampleInfo.有样品) == 1 && floor.Stations.Count(s => s.SampleInfo == SampleInfo.无样品) == 1)
+                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤) == 2 && floor.Stations.Count(s => s.SampleInfo == SampleInfo.有样品) == 1 && floor.Stations.Count(s => s.SampleInfo == SampleInfo.无样品) == 1)
                         {
-                            floor.Stations.ForEach(s => {
+                            floor.Stations.ForEach(s =>
+                            {
                                 s.SampleStatus = s.SampleInfo == SampleInfo.有样品 ? SampleStatus.待测试 : SampleStatus.待结果;
                             });
                         }
@@ -2451,66 +2523,8 @@ namespace Soundon.Dispatcher.App
                         {
                             floor.Stations.ForEach(s => s.SampleStatus = SampleStatus.未知);
                         }
-                        floor.Stations.ForEach(s=> {
-                            if (s.FloorStatus == FloorStatus.空盘)
-                            {
-                                s.SampleStatus = SampleStatus.未知;
-                            }
-                        });
-                    }
-                }
 
-                //待出炉层卸真空开门
-                List<ClampOri> ClampOris = new List<ClampOri> { ClampOri.A, ClampOri.B };
-                foreach (ClampOri clampOri in ClampOris)
-                {
-                    List<Station> baseStations = Station.StationList.Where(s =>
-                            s.ClampOri == clampOri
-                            && s.IsAlive
-                            && s.GetPutType == GetPutType.烤箱
-                            && s.FloorStatus == FloorStatus.待出).ToList();
-
-                    if (baseStations.Count < 1 || baseStations.Where(s => s.DoorStatus == DoorStatus.打开).ToList().Count > 0)
-                    {
-                        continue;
-                    }
-
-                    Station oStation = baseStations.Where(s => !s.IsOpenDoorIntervene).OrderBy(s => s.Priority).OrderBy(s => s.GetPutTime).OrderBy(s => s.OutPriority).FirstOrDefault();
-                    if (oStation == null) continue;
-
-                    Floor oFloor = oStation.GetFloor();
-                    Oven oOven = oStation.GetOven();
-                    int jj = oOven.Floors.IndexOf(oFloor);
-                    if (oFloor.IsVacuum)
-                    {
-                        oOven.UploadVacuum(jj);
-                    }
-
-                    //if (oFloor.DoorStatus == DoorStatus.关闭 && !oFloor.IsVacuum)
-                    //{
-                    //    oOven.OpenDoor(jj);
-                    //}
-                }
-
-                //下料台取消干涉
-                for (int i = 0; i < BlankerCount; i++)
-                {
-                    for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
-                    {
-                        Station station = Current.blankers[i].Stations[j];
-
-                        //无任务默认关门
-                        if (station.DoorStatus == DoorStatus.打开 && station.Id != Current.Task.FromStationId && station.Id != Current.Task.ToStationId && station.IsAlive)
-                        {
-                            station.CloseDoor();
-                        }
-
-                        //从某一炉子取完盘后，立即关门，无需等到整个任务结束
-                        if (station.DoorStatus == DoorStatus.打开 && station.Id == Current.Task.FromStationId && station.IsAlive
-                            && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
-                        {
-                            station.CloseDoor();
-                        }
+                        floor.Stations.ForEach(s => { if (s.FloorStatus == FloorStatus.空盘) { s.SampleStatus = SampleStatus.未知; } });
                     }
                 }
             }
@@ -4343,8 +4357,7 @@ namespace Soundon.Dispatcher.App
                 && Current.ovens[i].IsAlive
                 && Current.ovens[i].Floors[j].IsBaking;
             this.tsmAlarmReset.Enabled = Current.ovens[i].IsAlive;
-            this.tsmWatContentResult.Enabled = Current.ovens[i].Floors[j].Stations.Count(s => s.ClampStatus == ClampStatus.无夹具 && s.SampleStatus == SampleStatus.待测试) == 1
-                && Current.ovens[i].Floors[j].Stations.Count(s => s.ClampStatus == ClampStatus.满夹具 && s.SampleStatus == SampleStatus.待结果) == 1;
+            this.tsmWatContentResult.Enabled = Current.ovens[i].Floors[j].Stations.Count(s => s.FloorStatus == FloorStatus.待出) > 0;
         }
 
         #endregion
@@ -4906,18 +4919,42 @@ namespace Soundon.Dispatcher.App
             DialogResult dr = MessageBox.Show("确定"+ floorName + "水分测试结果OK？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             if (dr == DialogResult.OK)
             {
-                var testStation = Current.ovens[i].Floors[j].Stations.FirstOrDefault(s => s.ClampStatus == ClampStatus.无夹具 && s.SampleStatus == SampleStatus.待测试);
-                if (testStation != null)
+                Current.ovens[i].Floors[j].Stations.ForEach(s =>
                 {
-                    testStation.SampleStatus = SampleStatus.未知;
-                    testStation.GetLabStation().SampleStatus = SampleStatus.测试OK;
-
-                    var blankerStation = Station.StationList.FirstOrDefault(s => s.GetPutType == GetPutType.下料机 && s.SampleStatus == SampleStatus.待测试 && s.FromStationId == testStation.Id);
-                    if (blankerStation != null)
+                    if (s.ClampStatus == ClampStatus.满夹具)
                     {
-                        blankerStation.SampleStatus = SampleStatus.测试OK;
+                        s.SampleInfo = SampleInfo.无样品;
+                        s.SampleStatus = SampleStatus.测试OK;
+                        s.FloorStatus = FloorStatus.待出;
                     }
-                }
+                    else
+                    {
+                        s.SampleStatus = SampleStatus.未知;
+                    }
+                });
+                //var testStation = Current.ovens[i].Floors[j].Stations.FirstOrDefault(s => s.ClampStatus == ClampStatus.无夹具 && s.SampleStatus == SampleStatus.待测试);
+                //if (testStation != null)
+                //{
+                //    testStation.GetFloor().Stations.ForEach(s => {
+                //        if (s.ClampStatus == ClampStatus.满夹具)
+                //        {
+                //            s.SampleStatus = SampleStatus.测试OK;
+                //            s.FloorStatus = FloorStatus.待出;
+                //        }
+                //        else
+                //        {
+                //            s.SampleStatus = SampleStatus.未知;
+                //        }
+                //    });
+                //    //  testStation.SampleStatus = SampleStatus.未知;
+                //    //  testStation.GetLabStation().SampleStatus = SampleStatus.测试OK;
+
+                //    //var blankerStation = Station.StationList.FirstOrDefault(s => s.GetPutType == GetPutType.下料机 && s.SampleStatus == SampleStatus.待测试 && s.FromStationId == testStation.Id);
+                //    //if (blankerStation != null)
+                //    //{
+                //    //    blankerStation.SampleStatus = SampleStatus.测试OK;
+                //    //}
+                //}
             }
         }
 
@@ -4937,18 +4974,31 @@ namespace Soundon.Dispatcher.App
             DialogResult dr = MessageBox.Show("确定" + floorName + "水分测试结果NG？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             if (dr == DialogResult.OK)
             {
-                var testStation = Current.ovens[i].Floors[j].Stations.FirstOrDefault(s => s.ClampStatus == ClampStatus.无夹具 && s.SampleStatus == SampleStatus.待测试);
-                if (testStation != null)
+                Current.ovens[i].Floors[j].Stations.ForEach(s =>
                 {
-                    testStation.SampleStatus = SampleStatus.测试NG;
-                    testStation.GetLabStation().SampleStatus = SampleStatus.测试NG;
-
-                    var blankerStation = Station.StationList.FirstOrDefault(s => s.GetPutType == GetPutType.下料机 && s.SampleStatus == SampleStatus.待测试 && s.FromStationId == testStation.Id);
-                    if (blankerStation != null)
+                    if (s.ClampStatus == ClampStatus.满夹具)
                     {
-                        blankerStation.SampleStatus = SampleStatus.测试NG;
+                        s.SampleStatus = SampleStatus.测试NG;
+                        s.FloorStatus = FloorStatus.待烤;
                     }
-                }
+                });
+                //var testStation = Current.ovens[i].Floors[j].Stations.FirstOrDefault(s => s.ClampStatus == ClampStatus.无夹具 && s.SampleStatus == SampleStatus.待测试);
+                //if (testStation != null)
+                //{
+                //    testStation.GetFloor().Stations.ForEach(s => {
+                //            if (s.ClampStatus == ClampStatus.满夹具)
+                //            {
+                //                s.SampleStatus = SampleStatus.测试NG;
+                //                s.FloorStatus = FloorStatus.待烤;
+                //            }
+                //        });
+
+                //    //var blankerStation = Station.StationList.FirstOrDefault(s => s.GetPutType == GetPutType.下料机 && s.SampleStatus == SampleStatus.待测试 && s.FromStationId == testStation.Id);
+                //    //if (blankerStation != null)
+                //    //{
+                //    //    blankerStation.SampleStatus = SampleStatus.测试NG;
+                //    //}
+                //}
             }
         }
 

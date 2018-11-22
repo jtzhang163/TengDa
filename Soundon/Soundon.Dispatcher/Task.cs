@@ -451,10 +451,11 @@ namespace Soundon.Dispatcher
                             }
                         }
 
-                        //测试水分NG进烤箱前逻辑
+
+                        //下料取完水分返回烤箱逻辑
                         if (task.FromType == GetPutType.下料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
                         {
-                            if (task.FromSampleInfo == SampleInfo.有样品 && task.FromSampleStatus == SampleStatus.测试NG && task.ToSampleStatus == SampleStatus.测试NG)
+                            if (task.FromSampleInfo == SampleInfo.有样品 && task.FromSampleStatus == SampleStatus.待测试 && task.ToSampleStatus == SampleStatus.待测试)
                             {
                                 var fromStationsTmp = new List<Station>();
                                 var toStationsTmp = new List<Station>();
@@ -496,7 +497,7 @@ namespace Soundon.Dispatcher
                             }
                             if (task.FromClampStatus == ClampStatus.空夹具 && task.ToType == GetPutType.烤箱)
                             {
-                                toStations = toStations.Where(s => s.CanPutEmptyClamp).OrderBy(s => s.PutEmptyClampPriority).ToList();
+                                toStations = toStations.OrderBy(s => s.PutEmptyClampPriority).ToList();
                             }
 
                             Station fromStation = fromStations.First();

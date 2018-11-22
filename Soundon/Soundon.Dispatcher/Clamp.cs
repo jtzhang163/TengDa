@@ -597,9 +597,7 @@ namespace Soundon.Dispatcher
     {
         未知,
         无样品,
-        有样品,
-        结果OK,
-        结果NG
+        有样品
     }
 
     public enum ClampStatus
