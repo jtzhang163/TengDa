@@ -290,6 +290,7 @@ namespace Soundon.Dispatcher
 
                     for (int k = 0; k < this.Floors[j].Stations.Count; k++)
                     {
+
                         if (bOutputs0[210 - j * 104 + k] == 1)
                         {
                             this.Floors[j].Stations[k].ClampStatus = this.Floors[j].Stations[k].ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
@@ -298,6 +299,7 @@ namespace Soundon.Dispatcher
                         {
                             this.Floors[j].Stations[k].ClampStatus = ClampStatus.无夹具;
                         }
+
                     }
 
                     this.Floors[j].IsNetControlOpen = bOutputs0[692 - 44 * j] == 0;

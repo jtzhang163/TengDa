@@ -260,7 +260,7 @@ namespace Soundon.Dispatcher
         /// 门状态（下料机为干涉状态）
         /// </summary>
         [ReadOnly(true)]
-        [DisplayName("门状态")]
+        [DisplayName("门状态（烤箱）")]
         public DoorStatus DoorStatus
         {
             get
@@ -351,7 +351,7 @@ namespace Soundon.Dispatcher
         public FloorStatus PreFloorStatus;
 
         protected FloorStatus floorStatus = FloorStatus.未知;
-        [DisplayName("当前腔体状态")]
+        [DisplayName("当前腔体状态（烤箱）")]
         public FloorStatus FloorStatus
         {
             get
