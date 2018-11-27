@@ -3837,6 +3837,19 @@ namespace Soundon.Dispatcher.App
 
             int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
+
+            if (Current.ovens[i].Floors[j].Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
+            {
+                Tip.Alert(Current.Task.FromStationName + "正在取盘，无法关门！");
+                return;
+            }
+
+            if (Current.ovens[i].Floors[j].Stations.Count(s => s.Id == Current.Task.ToStationId) > 0 && (Current.Task.Status == TaskStatus.可放 || Current.Task.Status == TaskStatus.正放))
+            {
+                Tip.Alert(Current.Task.FromStationName + "正在放盘，无法关门！");
+                return;
+            }
+
             Current.ovens[i].Floors[j].AddLog("手动关门");
             Current.ovens[i].CloseDoor(j);
         }
@@ -4897,6 +4910,19 @@ namespace Soundon.Dispatcher.App
                         Tip.Alert("该位置无夹具，不能取盘！");
                         return;
                     }
+
+                    if (Current.Robot.ClampStatus != ClampStatus.无夹具)
+                    {
+                        Tip.Alert(Current.Robot.Name + "上有夹具，不能取盘！");
+                        return;
+                    }
+
+                    if (station.DoorStatus != DoorStatus.打开)
+                    {
+                        Tip.Alert(station.Name + "门未打开，不能取盘！");
+                        return;
+                    }
+
                     Current.Task.StartTime = DateTime.Now;
                     Current.Task.TaskId = -1;
                     Current.Task.NextFromStationId = station.Id;
@@ -4925,6 +4951,18 @@ namespace Soundon.Dispatcher.App
                     if (Current.Task.FromClampStatus == ClampStatus.满夹具 && station.GetPutType == GetPutType.上料机)
                     {
                         Tip.Alert(station.Name + "不允许放满夹具！");
+                        return;
+                    }
+
+                    if (Current.Robot.ClampStatus == ClampStatus.无夹具)
+                    {
+                        Tip.Alert(Current.Robot.Name + "上无夹具，不能放盘！");
+                        return;
+                    }
+
+                    if (station.DoorStatus != DoorStatus.打开)
+                    {
+                        Tip.Alert(station.Name + "门未打开，不能放盘！");
                         return;
                     }
 
