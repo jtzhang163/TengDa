@@ -2254,6 +2254,8 @@ namespace Soundon.Dispatcher.App
 
                     var batteryScanResults = new ScanResult[2];
 
+                    var isScanFlag = false;//是否执行了扫码
+
                     for (int j = 0;j < Current.feeders[i].BatteryScaners.Count; j++)
                     {
                         if (Current.feeders[i].BatteryScaners[j].IsEnable && Current.feeders[i].BatteryScaners[j].CanScan)
@@ -2261,6 +2263,9 @@ namespace Soundon.Dispatcher.App
 
                             string code = string.Empty;
                             ScanResult result = Current.feeders[i].BatteryScaners[j].StartBatteryScan(out code, out msg);
+
+                            isScanFlag = true;
+
                             if (result == ScanResult.OK)
                             {
                                 this.BeginInvoke(new MethodInvoker(() =>
@@ -2308,9 +2313,12 @@ namespace Soundon.Dispatcher.App
                         }
                     }
 
-                    if (!Current.feeders[i].SetScanBatteryResult(batteryScanResults, out msg))
+                    if (isScanFlag)
                     {
-                        Error.Alert(msg);
+                        if (!Current.feeders[i].SetScanBatteryResult(batteryScanResults, out msg))
+                        {
+                            Error.Alert(msg);
+                        }
                     }
 
                     #endregion

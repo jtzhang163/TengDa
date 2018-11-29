@@ -2393,7 +2393,7 @@
             this.tsmRemoteControl,
             this.tsmWatContentResult});
             this.cmsFloor.Name = "cmsInOutOven";
-            this.cmsFloor.Size = new System.Drawing.Size(149, 48);
+            this.cmsFloor.Size = new System.Drawing.Size(181, 70);
             this.cmsFloor.Opening += new System.ComponentModel.CancelEventHandler(this.cmsFloor_Opening);
             // 
             // tsmRemoteControl
@@ -2410,7 +2410,7 @@
             this.tsmStopBaking,
             this.tsmClearRunTime});
             this.tsmRemoteControl.Name = "tsmRemoteControl";
-            this.tsmRemoteControl.Size = new System.Drawing.Size(148, 22);
+            this.tsmRemoteControl.Size = new System.Drawing.Size(180, 22);
             this.tsmRemoteControl.Text = "远程控制";
             // 
             // tsmAlarmReset
@@ -2453,8 +2453,9 @@
             // tsmCancelLoadVacuum
             // 
             this.tsmCancelLoadVacuum.Name = "tsmCancelLoadVacuum";
-            this.tsmCancelLoadVacuum.Size = new System.Drawing.Size(148, 22);
+            this.tsmCancelLoadVacuum.Size = new System.Drawing.Size(180, 22);
             this.tsmCancelLoadVacuum.Text = "取消抽真空";
+            this.tsmCancelLoadVacuum.Visible = false;
             this.tsmCancelLoadVacuum.Click += new System.EventHandler(this.tsmCancelLoadVacuum_Click);
             // 
             // tsmUploadVacuum
@@ -2467,8 +2468,9 @@
             // tsmCancelUploadVacuum
             // 
             this.tsmCancelUploadVacuum.Name = "tsmCancelUploadVacuum";
-            this.tsmCancelUploadVacuum.Size = new System.Drawing.Size(148, 22);
+            this.tsmCancelUploadVacuum.Size = new System.Drawing.Size(180, 22);
             this.tsmCancelUploadVacuum.Text = "取消破真空";
+            this.tsmCancelUploadVacuum.Visible = false;
             this.tsmCancelUploadVacuum.Click += new System.EventHandler(this.tsmCancelUploadVacuum_Click);
             // 
             // tsmStopBaking
@@ -2482,8 +2484,9 @@
             // tsmClearRunTime
             // 
             this.tsmClearRunTime.Name = "tsmClearRunTime";
-            this.tsmClearRunTime.Size = new System.Drawing.Size(148, 22);
+            this.tsmClearRunTime.Size = new System.Drawing.Size(180, 22);
             this.tsmClearRunTime.Text = "运行时间清零";
+            this.tsmClearRunTime.Visible = false;
             this.tsmClearRunTime.Click += new System.EventHandler(this.tsmClearRunTime_Click);
             // 
             // tsmWatContentResult
