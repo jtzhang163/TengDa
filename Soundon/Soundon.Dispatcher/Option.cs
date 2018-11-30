@@ -140,6 +140,8 @@ namespace Soundon.Dispatcher
 
         public const int TemperaturePointCount = 32;
 
+        public const int VacuumPointCount = 1;
+
         public const int TemperatureSetPointCount = 10;
 
         private static int layoutType = -1;

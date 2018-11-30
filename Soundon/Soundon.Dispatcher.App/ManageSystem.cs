@@ -228,6 +228,12 @@ namespace Soundon.Dispatcher.App
                 cbTemperIndex[i] = (CheckBox)(this.Controls.Find(string.Format("cbTemperIndex{0}", (i + 1).ToString("D2")), true)[0]);
                 cbTemperIndex[i].ForeColor = Current.option.CurveColors[i];
             }
+
+            for (int i = 0; i < Option.VacuumPointCount; i++)
+            {
+                cbVacuumIndex[i] = (CheckBox)(this.Controls.Find(string.Format("cbVacuumIndex{0}", (i + 1).ToString("D2")), true)[0]);
+                cbVacuumIndex[i].ForeColor = Color.Violet;
+            }
         }
 
         private void InitSettingsTreeView()
@@ -443,6 +449,11 @@ namespace Soundon.Dispatcher.App
             }
             cbTemperAll.Checked = isAll;
 
+            for (int k = 0; k < Option.VacuumPointCount; k++)
+            {
+                cbVacuumIndex[k].Checked = true;
+            }
+
             //温度曲线显示工位初始化
 
             Station curveStation = Station.StationList.Where(s => s.Id == Current.option.CurveStationId).FirstOrDefault();
@@ -656,6 +667,10 @@ namespace Soundon.Dispatcher.App
                             for (int k = 0; k < Option.TemperaturePointCount; k++)
                             {
                                 cbTemperIndex[k].Text = string.Format("{0}:{1}℃", Current.option.TemperNames[k], s.Temperatures[k].ToString("#0.0").PadLeft(5));
+                            }
+                            for (int k = 0; k < Option.VacuumPointCount; k++)
+                            {
+                                cbVacuumIndex[k].Text = string.Format("{0}:{1}Pa", "真空度", s.GetFloor().Vacuum.ToString());
                             }
                         }
                     });
@@ -1346,6 +1361,7 @@ namespace Soundon.Dispatcher.App
         private TableLayoutPanel[] tlpCacheClamp = new TableLayoutPanel[CacheStationCount];
 
         private CheckBox[] cbTemperIndex = new CheckBox[Option.TemperaturePointCount];
+        private CheckBox[] cbVacuumIndex = new CheckBox[Option.VacuumPointCount];
 
         #endregion
 
@@ -4235,7 +4251,7 @@ namespace Soundon.Dispatcher.App
             Oven oven = Oven.OvenList.First(o => o.Floors.Contains(floor));
             int jj = oven.Floors.IndexOf(floor);
 
-            if (oven.Plc.IsAlive)
+            if (oven.IsAlive)
             {
                 for (int k = 0; k < Option.TemperaturePointCount; k++)
                 {
@@ -4250,6 +4266,25 @@ namespace Soundon.Dispatcher.App
                                 new Point(pCurve.ClientSize.Width - station.sampledDatas[k].Count + kk - 1, pCurve.ClientSize.Height -
                                     (int)(((double)A / 100) * pCurve.ClientSize.Height)),
                                 new Point(pCurve.ClientSize.Width - station.sampledDatas[k].Count + kk, pCurve.ClientSize.Height -
+                                    (int)(((double)B / 100) * pCurve.ClientSize.Height)));
+                            A = B;
+                        }
+                    }
+                }
+
+                for (int k = 0; k < Option.VacuumPointCount; k++)
+                {
+                    if (cbVacuumIndex[k].Checked)
+                    {
+                        if (station.sampledDatas[k + Option.TemperaturePointCount].Count <= 1) return; // 一个数据就不绘制了
+                        float A = station.sampledDatas[k + Option.TemperaturePointCount][0];//station.sampledDatas[k][0] - 20
+                        for (int kk = 1; kk < station.sampledDatas[k + Option.TemperaturePointCount].Count; kk++)
+                        {
+                            float B = station.sampledDatas[k + Option.TemperaturePointCount][kk];//station.sampledDatas[k][kk] - 20
+                            e.Graphics.DrawLine(new Pen(Color.Violet),
+                                new Point(pCurve.ClientSize.Width - station.sampledDatas[k + Option.TemperaturePointCount].Count + kk - 1, pCurve.ClientSize.Height -
+                                    (int)(((double)A / 100) * pCurve.ClientSize.Height)),
+                                new Point(pCurve.ClientSize.Width - station.sampledDatas[k + Option.TemperaturePointCount].Count + kk, pCurve.ClientSize.Height -
                                     (int)(((double)B / 100) * pCurve.ClientSize.Height)));
                             A = B;
                         }
@@ -4274,11 +4309,18 @@ namespace Soundon.Dispatcher.App
                         {
                             for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
                             {
-                                for (int m = 0; m < Option.TemperaturePointCount; m++)
+                                for (int m = 0; m < Option.TemperaturePointCount + 1; m++)
                                 {
-                                    while (Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].Count > 1000)
+                                    while (Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].Count > 1500)
                                         Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].RemoveAt(0);
-                                    Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].Add(Current.ovens[i].Floors[j].Stations[k].Temperatures[m]);
+                                    if (m == Option.TemperaturePointCount)
+                                    {
+                                        Current.ovens[i].Floors[j].Stations[k].sampledDatas[Option.TemperaturePointCount].Add((float)(Math.Log10(Current.ovens[i].Floors[j].Stations[k].GetFloor().Vacuum) * 10 + 20));
+                                    }
+                                    else
+                                    {
+                                        Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].Add(Current.ovens[i].Floors[j].Stations[k].Temperatures[m]);
+                                    }
                                 }
                             }
                         }
