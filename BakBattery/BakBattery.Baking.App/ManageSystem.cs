@@ -4027,7 +4027,7 @@ namespace BakBattery.Baking.App
 
                             for (int m = 0; m < Option.TemperaturePointCount; m++)
                             {
-                                while (Current.ovens[i].Floors[j].sampledDatas[m].Count > 1000)
+                                while (Current.ovens[i].Floors[j].sampledDatas[m].Count > 1500)
                                     Current.ovens[i].Floors[j].sampledDatas[m].RemoveAt(0);
                                 Current.ovens[i].Floors[j].sampledDatas[m].Add(Current.ovens[i].Floors[j].Temperatures[m]);
                             }
