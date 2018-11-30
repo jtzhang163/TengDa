@@ -419,399 +419,401 @@ namespace Soundon.Dispatcher
 
         public bool GetInfo()
         {
-
-            if (!this.Plc.IsPingSuccess)
+            lock (this)
             {
-                this.Plc.IsAlive = false;
-                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
-                return false;
-            }
-
-            string msg = string.Empty;
-            string output = string.Empty;
-
-            try
-            {
-
-                #region 获取信息
-
-                var bOutputs = new ushort[] { };
-                if (!this.Plc.GetInfo("D1000", (ushort)30, out bOutputs, out msg))
+                if (!this.Plc.IsPingSuccess)
                 {
-                    Error.Alert(msg);
                     this.Plc.IsAlive = false;
+                    LogHelper.WriteError("无法连接到 " + this.Plc.IP);
                     return false;
                 }
 
-                for (int j = 0; j < this.Stations.Count; j++)
+                string msg = string.Empty;
+                string output = string.Empty;
+
+                try
                 {
-                    switch (bOutputs[j + 4])
+
+                    #region 获取信息
+
+                    var bOutputs = new ushort[] { };
+                    if (!this.Plc.GetInfo("D1000", (ushort)30, out bOutputs, out msg))
                     {
-                        case 1:
-                            this.Stations[j].ClampStatus = ClampStatus.无夹具;
-                            this.Stations[j].Status = bOutputs[j + 8] == 1 ? StationStatus.可放 : StationStatus.工作中;
-                            break;
-                        case 2:
-                            this.Stations[j].ClampStatus = ClampStatus.空夹具;
-                            this.Stations[j].Status = StationStatus.工作中;
-                            this.Stations[j].Clamp.SampleInfo = SampleInfo.未知;
-                            break;
-                        case 3:
-                            this.Stations[j].ClampStatus = ClampStatus.异常;
-                            this.Stations[j].Status = StationStatus.不可用;
-                            break;
-                        case 4:
-                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[j].Status = bOutputs[j + 8] == 1 ? StationStatus.可取 : StationStatus.工作中;
-                            this.Stations[j].Clamp.SampleInfo = SampleInfo.无样品;
-                            break;
-                        case 5:
-                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[j].Status = bOutputs[j + 8] == 1 ? StationStatus.可取 : StationStatus.工作中;
-                            this.Stations[j].Clamp.SampleInfo = SampleInfo.有样品;
-                            break;
-                        default:
-                            this.Stations[j].ClampStatus = ClampStatus.未知;
-                            this.Stations[j].Status = StationStatus.不可用;
-                            break;
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
                     }
-                }
 
-
-                //获取缓存架信息
-                if (Current.Cache.IsEnable && Current.Cache.PlcId == this.Plc.Id)
-                {
-                    for (int j = 0; j < Current.Cache.Stations.Count; j++)
+                    for (int j = 0; j < this.Stations.Count; j++)
                     {
-                        switch (bOutputs[22 - j])
+                        switch (bOutputs[j + 4])
                         {
                             case 1:
-                                Current.Cache.Stations[j].ClampStatus = ClampStatus.无夹具;
-                                Current.Cache.Stations[j].Status = StationStatus.可放;
+                                this.Stations[j].ClampStatus = ClampStatus.无夹具;
+                                this.Stations[j].Status = bOutputs[j + 8] == 1 ? StationStatus.可放 : StationStatus.工作中;
                                 break;
                             case 2:
-                                Current.Cache.Stations[j].ClampStatus = Current.Cache.Stations[j].ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
-                                Current.Cache.Stations[j].Status = StationStatus.可取;
+                                this.Stations[j].ClampStatus = ClampStatus.空夹具;
+                                this.Stations[j].Status = StationStatus.工作中;
+                                this.Stations[j].Clamp.SampleInfo = SampleInfo.未知;
                                 break;
                             case 3:
-                                Current.Cache.Stations[j].ClampStatus = ClampStatus.异常;
-                                Current.Cache.Stations[j].Status = StationStatus.不可用;
+                                this.Stations[j].ClampStatus = ClampStatus.异常;
+                                this.Stations[j].Status = StationStatus.不可用;
+                                break;
+                            case 4:
+                                this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                                this.Stations[j].Status = bOutputs[j + 8] == 1 ? StationStatus.可取 : StationStatus.工作中;
+                                this.Stations[j].Clamp.SampleInfo = SampleInfo.无样品;
+                                break;
+                            case 5:
+                                this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                                this.Stations[j].Status = bOutputs[j + 8] == 1 ? StationStatus.可取 : StationStatus.工作中;
+                                this.Stations[j].Clamp.SampleInfo = SampleInfo.有样品;
                                 break;
                             default:
-                                Current.Cache.Stations[j].ClampStatus = ClampStatus.未知;
-                                Current.Cache.Stations[j].Status = StationStatus.不可用;
+                                this.Stations[j].ClampStatus = ClampStatus.未知;
+                                this.Stations[j].Status = StationStatus.不可用;
                                 break;
                         }
                     }
-                    Current.Cache.IsAlive = true;
-                }
 
 
-                //获取转移台信息
-                if (Current.Transfer.IsEnable && Current.Transfer.PlcId == this.Plc.Id)
-                {
-                    switch (bOutputs[17])
+                    //获取缓存架信息
+                    if (Current.Cache.IsEnable && Current.Cache.PlcId == this.Plc.Id)
                     {
-                        case 1:
-                            Current.Transfer.Station.ClampStatus = ClampStatus.无夹具;
-                            Current.Transfer.Station.Status = StationStatus.可放;
-                            break;
-                        case 2:
-                            if (Current.TaskMode == TaskMode.手动任务)
-                            {
-                                Current.Transfer.Station.ClampStatus = ClampStatus.满夹具;
-                            }
-                            else
-                            {
-                                Current.Transfer.Station.ClampStatus = Current.Transfer.Station.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
-                            }
-                            Current.Transfer.Station.Status = StationStatus.可取;
-                            Current.Transfer.Station.SampleInfo = Current.Transfer.Station.ClampStatus == ClampStatus.满夹具 ? SampleInfo.有样品 : SampleInfo.无样品;
-                            break;
-                        case 3:
-                            Current.Transfer.Station.ClampStatus = ClampStatus.异常;
-                            Current.Transfer.Station.Status = StationStatus.不可用;
-                            break;
-                        default:
-                            Current.Transfer.Station.ClampStatus = ClampStatus.未知;
-                            Current.Transfer.Station.Status = StationStatus.不可用;
-                            break;
-                    }
-                    Current.Transfer.IsAlive = true;
-                }
-
-
-                //获取搬运机器人信息
-                if (Current.Robot.IsEnable && Current.Robot.Plc.Id == this.Plc.Id)
-                {
-
-                    #region 获取正在执行取放的位置编号
-
-                    Current.Robot.GetPutNumber = bOutputs[0];
-
-                    #endregion
-
-                    #region 获取是否启动完成
-
-                    //Current.Robot.IsStartting = true;
-                    Current.Robot.IsStarting = bOutputs[13] == 1;
-
-                    Current.Robot.IsExecuting = Current.Robot.IsStarting && bOutputs[16] == 1;
-
-                    #endregion
-
-                    #region 获取报警状态
-
-
-                    Current.Robot.IsAlarming = false;
-                    Current.Robot.AlarmStr = Current.Robot.IsAlarming ? this.Name + "报警中" : "";
-
-                    #endregion
-
-                    #region 获取暂停状态
-
-
-                    Current.Robot.IsPausing = bOutputs[12] == 1;
-
-                    #endregion
-
-                    #region 获取夹具状态
-
-                    switch (bOutputs[14])
-                    {
-                        case 2: Current.Robot.ClampStatus = Current.Robot.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具; break;
-                        case 1: Current.Robot.ClampStatus = ClampStatus.无夹具; break;
-                        case 3: Current.Robot.ClampStatus = ClampStatus.异常; break;
-                        default: Current.Robot.ClampStatus = ClampStatus.未知; break;
-                    }
-
-                    #endregion
-
-                    #region 获取位置
-
-                    Current.Robot.CoordinateValue = bOutputs[15];
-
-                    if (Current.Robot.CoordinateValue < Current.Robot.PreCoordinateValue) { Current.Robot.MovingDirection = MovingDirection.前进; Current.Robot.IsMoving = true; }
-                    else if (Current.Robot.CoordinateValue > Current.Robot.PreCoordinateValue) { Current.Robot.MovingDirection = MovingDirection.后退; Current.Robot.IsMoving = true; }
-                    else { Current.Robot.MovingDirection = MovingDirection.停止; Current.Robot.IsMoving = false; }
-
-                    Current.Robot.PreCoordinateValue = Current.Robot.CoordinateValue;
-
-                    #endregion
-
-                    Current.Robot.Plc.IsAlive = true;
-                    Current.Robot.AlreadyGetAllInfo = true;
-                }
-
-
-                //获取夹具扫码信号
-                if (this.ClampScaner.IsEnable)
-                {
-                    if ((new List<ushort>() { 1, 2, 3 }).Contains(bOutputs[1]))
-                    {
-                        if (!this.ClampScaner.IsReady)
+                        for (int j = 0; j < Current.Cache.Stations.Count; j++)
                         {
-                            this.ClampScaner.CanScan = true;
+                            switch (bOutputs[22 - j])
+                            {
+                                case 1:
+                                    Current.Cache.Stations[j].ClampStatus = ClampStatus.无夹具;
+                                    Current.Cache.Stations[j].Status = StationStatus.可放;
+                                    break;
+                                case 2:
+                                    Current.Cache.Stations[j].ClampStatus = Current.Cache.Stations[j].ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
+                                    Current.Cache.Stations[j].Status = StationStatus.可取;
+                                    break;
+                                case 3:
+                                    Current.Cache.Stations[j].ClampStatus = ClampStatus.异常;
+                                    Current.Cache.Stations[j].Status = StationStatus.不可用;
+                                    break;
+                                default:
+                                    Current.Cache.Stations[j].ClampStatus = ClampStatus.未知;
+                                    Current.Cache.Stations[j].Status = StationStatus.不可用;
+                                    break;
+                            }
                         }
-                        this.ClampScaner.IsReady = true;
-                        this.Stations[bOutputs[1] - 1].IsClampScanReady = true;
-                        this.CurrentPutStationId = this.Stations[0].Id;
+                        Current.Cache.IsAlive = true;
                     }
-                    else
-                    {
-                        this.Stations.ForEach(s => s.IsClampScanReady = false); this.ClampScaner.IsReady = false;
-                        this.ClampScaner.IsReady = false;
-                        this.ClampScaner.CanScan = false;
-                    }
-                }
 
-                //获取电池扫码信号
-                this.BatteryScaners.ForEach(s =>
-                {
-                    if (s.IsEnable)
+
+                    //获取转移台信息
+                    if (Current.Transfer.IsEnable && Current.Transfer.PlcId == this.Plc.Id)
                     {
-                        if (bOutputs[1] == 4)
+                        switch (bOutputs[17])
                         {
-                            if (!s.IsReady)
+                            case 1:
+                                Current.Transfer.Station.ClampStatus = ClampStatus.无夹具;
+                                Current.Transfer.Station.Status = StationStatus.可放;
+                                break;
+                            case 2:
+                                if (Current.TaskMode == TaskMode.手动任务)
+                                {
+                                    Current.Transfer.Station.ClampStatus = ClampStatus.满夹具;
+                                }
+                                else
+                                {
+                                    Current.Transfer.Station.ClampStatus = Current.Transfer.Station.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
+                                }
+                                Current.Transfer.Station.Status = StationStatus.可取;
+                                Current.Transfer.Station.SampleInfo = Current.Transfer.Station.ClampStatus == ClampStatus.满夹具 ? SampleInfo.有样品 : SampleInfo.无样品;
+                                break;
+                            case 3:
+                                Current.Transfer.Station.ClampStatus = ClampStatus.异常;
+                                Current.Transfer.Station.Status = StationStatus.不可用;
+                                break;
+                            default:
+                                Current.Transfer.Station.ClampStatus = ClampStatus.未知;
+                                Current.Transfer.Station.Status = StationStatus.不可用;
+                                break;
+                        }
+                        Current.Transfer.IsAlive = true;
+                    }
+
+
+                    //获取搬运机器人信息
+                    if (Current.Robot.IsEnable && Current.Robot.Plc.Id == this.Plc.Id)
+                    {
+
+                        #region 获取正在执行取放的位置编号
+
+                        Current.Robot.GetPutNumber = bOutputs[0];
+
+                        #endregion
+
+                        #region 获取是否启动完成
+
+                        //Current.Robot.IsStartting = true;
+                        Current.Robot.IsStarting = bOutputs[13] == 1;
+
+                        Current.Robot.IsExecuting = Current.Robot.IsStarting && bOutputs[16] == 1;
+
+                        #endregion
+
+                        #region 获取报警状态
+
+
+                        Current.Robot.IsAlarming = false;
+                        Current.Robot.AlarmStr = Current.Robot.IsAlarming ? this.Name + "报警中" : "";
+
+                        #endregion
+
+                        #region 获取暂停状态
+
+
+                        Current.Robot.IsPausing = bOutputs[12] == 1;
+
+                        #endregion
+
+                        #region 获取夹具状态
+
+                        switch (bOutputs[14])
+                        {
+                            case 2: Current.Robot.ClampStatus = Current.Robot.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具; break;
+                            case 1: Current.Robot.ClampStatus = ClampStatus.无夹具; break;
+                            case 3: Current.Robot.ClampStatus = ClampStatus.异常; break;
+                            default: Current.Robot.ClampStatus = ClampStatus.未知; break;
+                        }
+
+                        #endregion
+
+                        #region 获取位置
+
+                        Current.Robot.CoordinateValue = bOutputs[15];
+
+                        if (Current.Robot.CoordinateValue < Current.Robot.PreCoordinateValue) { Current.Robot.MovingDirection = MovingDirection.前进; Current.Robot.IsMoving = true; }
+                        else if (Current.Robot.CoordinateValue > Current.Robot.PreCoordinateValue) { Current.Robot.MovingDirection = MovingDirection.后退; Current.Robot.IsMoving = true; }
+                        else { Current.Robot.MovingDirection = MovingDirection.停止; Current.Robot.IsMoving = false; }
+
+                        Current.Robot.PreCoordinateValue = Current.Robot.CoordinateValue;
+
+                        #endregion
+
+                        Current.Robot.Plc.IsAlive = true;
+                        Current.Robot.AlreadyGetAllInfo = true;
+                    }
+
+
+                    //获取夹具扫码信号
+                    if (this.ClampScaner.IsEnable)
+                    {
+                        if ((new List<ushort>() { 1, 2, 3 }).Contains(bOutputs[1]))
+                        {
+                            if (!this.ClampScaner.IsReady)
                             {
-                                s.CanScan = true;
+                                this.ClampScaner.CanScan = true;
                             }
-                            s.IsReady = true;
+                            this.ClampScaner.IsReady = true;
+                            this.Stations[bOutputs[1] - 1].IsClampScanReady = true;
+                            this.CurrentPutStationId = this.Stations[0].Id;
                         }
                         else
                         {
-                            s.IsReady = false;
-                            s.CanScan = false;
+                            this.Stations.ForEach(s => s.IsClampScanReady = false); this.ClampScaner.IsReady = false;
+                            this.ClampScaner.IsReady = false;
+                            this.ClampScaner.CanScan = false;
                         }
                     }
-                });
 
-                if (Current.Robot.Plc.Id == this.Plc.Id)
-                {
-                    this.D1025 = bOutputs[25];
-                }
-                else
-                {
-                    this.D1026 = bOutputs[26];
-                }
+                    //获取电池扫码信号
+                    this.BatteryScaners.ForEach(s =>
+                    {
+                        if (s.IsEnable)
+                        {
+                            if (bOutputs[1] == 4)
+                            {
+                                if (!s.IsReady)
+                                {
+                                    s.CanScan = true;
+                                }
+                                s.IsReady = true;
+                            }
+                            else
+                            {
+                                s.IsReady = false;
+                                s.CanScan = false;
+                            }
+                        }
+                    });
 
-                //两台上料机信号传递（上料机器人和搬运机器人干涉防呆）
-                if (Current.feeders.Count(f => f.IsAlive) == Current.feeders.Count)
-                {
                     if (Current.Robot.Plc.Id == this.Plc.Id)
                     {
-                        if (!this.Plc.SetInfo("D1026", (ushort)(Current.feeders.First(f => f.Id != this.Id).D1026), out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
+                        this.D1025 = bOutputs[25];
                     }
                     else
                     {
-                        if (!this.Plc.SetInfo("D1025", (ushort)(Current.feeders.First(f => f.Id != this.Id).D1025), out msg))
+                        this.D1026 = bOutputs[26];
+                    }
+
+                    //两台上料机信号传递（上料机器人和搬运机器人干涉防呆）
+                    if (Current.feeders.Count(f => f.IsAlive) == Current.feeders.Count)
+                    {
+                        if (Current.Robot.Plc.Id == this.Plc.Id)
                         {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
+                            if (!this.Plc.SetInfo("D1026", (ushort)(Current.feeders.First(f => f.Id != this.Id).D1026), out msg))
+                            {
+                                Error.Alert(msg);
+                                this.Plc.IsAlive = false;
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            if (!this.Plc.SetInfo("D1025", (ushort)(Current.feeders.First(f => f.Id != this.Id).D1025), out msg))
+                            {
+                                Error.Alert(msg);
+                                this.Plc.IsAlive = false;
+                                return false;
+                            }
                         }
                     }
+
+                    //if (iOut[0] == 1)
+                    //{
+                    //    if (!this.BatteryScaner.IsReady)
+                    //    {
+                    //        this.BatteryScaner.CanScan = true;
+                    //    }
+                    //    this.BatteryScaner.IsReady = true;
+                    //}
+                    //else
+                    //{
+                    //    this.BatteryScaner.IsReady = false;
+                    //    this.BatteryScaner.CanScan = false;
+                    //}
+
+
+                    #endregion
+
+
+                    //if (!this.Plc.GetInfo(false, Current.option.GetFeederInfoStr, out output, out msg))
+                    //{
+                    //    Error.Alert(msg);
+                    //    this.Plc.IsAlive = false;
+                    //    return false;
+                    //}
+                    //if (output.Substring(3, 1) != "$")
+                    //{
+                    //    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetFeederInfoStr, output));
+                    //    return false;
+                    //}
+
+                    //int[] iOut = new int[6];
+                    //output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
+                    //for (int j = 0; j < iOut.Length; j++)
+                    //{
+                    //    iOut[j] = int.Parse(output.Substring(j * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                    //}
+
+
+                    //for (int j = 0; j < this.Stations.Count; j++)
+                    //{
+                    //    switch (iOut[j + 1])
+                    //    {
+                    //        case 1:
+                    //            this.Stations[j].ClampStatus = ClampStatus.无夹具;
+                    //            this.Stations[j].Status = StationStatus.可放;
+                    //            break;
+                    //        case 2:
+                    //            this.Stations[j].ClampStatus = ClampStatus.空夹具;
+                    //            this.Stations[j].Status = StationStatus.工作中;
+                    //            break;
+                    //        case 3:
+                    //            this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                    //            this.Stations[j].Status = StationStatus.可取;
+                    //            break;
+                    //        case 31:
+                    //            this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                    //            this.Stations[j].Status = StationStatus.可取;
+                    //            break;
+                    //        case 4:
+                    //            this.Stations[j].ClampStatus = ClampStatus.异常;
+                    //            this.Stations[j].Status = StationStatus.不可用;
+                    //            break;
+                    //        default:
+                    //            this.Stations[j].ClampStatus = ClampStatus.未知;
+                    //            this.Stations[j].Status = StationStatus.不可用;
+                    //            break;
+                    //    }
+                    //}
+
+                    //switch (iOut[3])
+                    //{
+                    //    case 1: this.TriLamp = TriLamp.Green; break;
+                    //    case 2: this.TriLamp = TriLamp.Yellow; break;
+                    //    case 3: this.TriLamp = TriLamp.Red; break;
+                    //    default: this.TriLamp = TriLamp.Unknown; break;
+                    //}
+
+
+
+                    //switch (iOut[7])
+                    //{
+                    //    case 0:
+                    //        if (this.JawMoveType == JawMoveType.PulltabToRotary)
+                    //        {
+                    //            //if(this.CurrentPutClampBatteryCount < Clamp.BatteryCount)
+                    //            //{
+                    //            if (!Battery.UpdateClampId(this.CacheBatteryOut(), Station.GetStation(CurrentPutStationId).ClampId, out msg))
+                    //            {
+                    //                LogHelper.WriteError(msg);
+                    //            }
+                    //            //}
+                    //        }
+                    //        else if (this.JawMoveType == JawMoveType.PulltabToBatteryCache)
+                    //        {
+                    //            this.BatteryCache.Push(this.CacheBatteryOut());
+                    //        }
+                    //        else if (this.JawMoveType == JawMoveType.BatteryCacheToRotary)
+                    //        {
+                    //            if (this.CurrentBatteryCount < Clamp.BatteryCount)
+                    //            {
+                    //                if (!Battery.UpdateClampId(this.BatteryCache.Pop().ToString(), Station.GetStation(CurrentPutStationId).ClampId, out msg))
+                    //                {
+                    //                    LogHelper.WriteError(msg);
+                    //                }
+                    //            }
+                    //        }
+                    //        else if (this.JawMoveType == JawMoveType.SampleToRotary)
+                    //        {
+                    //            ///
+
+                    //        }
+                    //        this.JawMoveType = JawMoveType.Motionless;
+                    //        break;
+                    //    case 1: this.JawMoveType = JawMoveType.PulltabToRotary; break;
+                    //    case 2: this.JawMoveType = JawMoveType.PulltabToBatteryCache; break;
+                    //    case 3: this.JawMoveType = JawMoveType.BatteryCacheToRotary; break;
+                    //    case 4: this.JawMoveType = JawMoveType.SampleToRotary; break;
+                    //}
+
+                    //this.CurrentBatteryCount = iOut[8];
+
+                    //this.BatteryCache.SetCount(iOut[9]);
+
+                    Thread.Sleep(20);
+                }
+                catch (Exception ex)
+                {
+                    Error.Alert(ex);
                 }
 
-                //if (iOut[0] == 1)
-                //{
-                //    if (!this.BatteryScaner.IsReady)
-                //    {
-                //        this.BatteryScaner.CanScan = true;
-                //    }
-                //    this.BatteryScaner.IsReady = true;
-                //}
-                //else
-                //{
-                //    this.BatteryScaner.IsReady = false;
-                //    this.BatteryScaner.CanScan = false;
-                //}
+                this.Plc.IsAlive = true;
 
+                this.AlreadyGetAllInfo = true;
 
-                #endregion
-
-
-                //if (!this.Plc.GetInfo(false, Current.option.GetFeederInfoStr, out output, out msg))
-                //{
-                //    Error.Alert(msg);
-                //    this.Plc.IsAlive = false;
-                //    return false;
-                //}
-                //if (output.Substring(3, 1) != "$")
-                //{
-                //    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetFeederInfoStr, output));
-                //    return false;
-                //}
-
-                //int[] iOut = new int[6];
-                //output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-                //for (int j = 0; j < iOut.Length; j++)
-                //{
-                //    iOut[j] = int.Parse(output.Substring(j * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                //}
-
-
-                //for (int j = 0; j < this.Stations.Count; j++)
-                //{
-                //    switch (iOut[j + 1])
-                //    {
-                //        case 1:
-                //            this.Stations[j].ClampStatus = ClampStatus.无夹具;
-                //            this.Stations[j].Status = StationStatus.可放;
-                //            break;
-                //        case 2:
-                //            this.Stations[j].ClampStatus = ClampStatus.空夹具;
-                //            this.Stations[j].Status = StationStatus.工作中;
-                //            break;
-                //        case 3:
-                //            this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                //            this.Stations[j].Status = StationStatus.可取;
-                //            break;
-                //        case 31:
-                //            this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                //            this.Stations[j].Status = StationStatus.可取;
-                //            break;
-                //        case 4:
-                //            this.Stations[j].ClampStatus = ClampStatus.异常;
-                //            this.Stations[j].Status = StationStatus.不可用;
-                //            break;
-                //        default:
-                //            this.Stations[j].ClampStatus = ClampStatus.未知;
-                //            this.Stations[j].Status = StationStatus.不可用;
-                //            break;
-                //    }
-                //}
-
-                //switch (iOut[3])
-                //{
-                //    case 1: this.TriLamp = TriLamp.Green; break;
-                //    case 2: this.TriLamp = TriLamp.Yellow; break;
-                //    case 3: this.TriLamp = TriLamp.Red; break;
-                //    default: this.TriLamp = TriLamp.Unknown; break;
-                //}
-
-
-
-                //switch (iOut[7])
-                //{
-                //    case 0:
-                //        if (this.JawMoveType == JawMoveType.PulltabToRotary)
-                //        {
-                //            //if(this.CurrentPutClampBatteryCount < Clamp.BatteryCount)
-                //            //{
-                //            if (!Battery.UpdateClampId(this.CacheBatteryOut(), Station.GetStation(CurrentPutStationId).ClampId, out msg))
-                //            {
-                //                LogHelper.WriteError(msg);
-                //            }
-                //            //}
-                //        }
-                //        else if (this.JawMoveType == JawMoveType.PulltabToBatteryCache)
-                //        {
-                //            this.BatteryCache.Push(this.CacheBatteryOut());
-                //        }
-                //        else if (this.JawMoveType == JawMoveType.BatteryCacheToRotary)
-                //        {
-                //            if (this.CurrentBatteryCount < Clamp.BatteryCount)
-                //            {
-                //                if (!Battery.UpdateClampId(this.BatteryCache.Pop().ToString(), Station.GetStation(CurrentPutStationId).ClampId, out msg))
-                //                {
-                //                    LogHelper.WriteError(msg);
-                //                }
-                //            }
-                //        }
-                //        else if (this.JawMoveType == JawMoveType.SampleToRotary)
-                //        {
-                //            ///
-
-                //        }
-                //        this.JawMoveType = JawMoveType.Motionless;
-                //        break;
-                //    case 1: this.JawMoveType = JawMoveType.PulltabToRotary; break;
-                //    case 2: this.JawMoveType = JawMoveType.PulltabToBatteryCache; break;
-                //    case 3: this.JawMoveType = JawMoveType.BatteryCacheToRotary; break;
-                //    case 4: this.JawMoveType = JawMoveType.SampleToRotary; break;
-                //}
-
-                //this.CurrentBatteryCount = iOut[8];
-
-                //this.BatteryCache.SetCount(iOut[9]);
-
-                Thread.Sleep(20);
             }
-            catch (Exception ex)
-            {
-                Error.Alert(ex);
-            }
-
-            this.Plc.IsAlive = true;
-
-            this.AlreadyGetAllInfo = true;
-
             return true;
         }
 

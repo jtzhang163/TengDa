@@ -756,138 +756,138 @@ namespace Soundon.Dispatcher
         }
 
 
-        private string getRunStatusStr = string.Empty;
-        /// <summary>
-        /// 获取烤箱运行状态的字符串
-        /// </summary>
-        [Description("获取烤箱运行状态的字符串")]
-        [DisplayName("获取烤箱运行状态的字符串")]
-        [Category("烤箱")]
-        public string GetRunStatusStr
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getRunStatusStr))
-                {
-                    getRunStatusStr = TengDa.WF.Option.GetOption("GetRunStatusStr");
-                }
-                return getRunStatusStr;
-            }
-            set
-            {
-                if (value != getRunStatusStr)
-                {
-                    TengDa.WF.Option.SetOption("GetRunStatusStr", value);
-                    getRunStatusStr = value;
-                }
-            }
-        }
+        //private string getRunStatusStr = string.Empty;
+        ///// <summary>
+        ///// 获取烤箱运行状态的字符串
+        ///// </summary>
+        //[Description("获取烤箱运行状态的字符串")]
+        //[DisplayName("获取烤箱运行状态的字符串")]
+        //[Category("烤箱")]
+        //public string GetRunStatusStr
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getRunStatusStr))
+        //        {
+        //            getRunStatusStr = TengDa.WF.Option.GetOption("GetRunStatusStr");
+        //        }
+        //        return getRunStatusStr;
+        //    }
+        //    set
+        //    {
+        //        if (value != getRunStatusStr)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetRunStatusStr", value);
+        //            getRunStatusStr = value;
+        //        }
+        //    }
+        //}
 
 
 
-        private string getMultiInfoStrs = string.Empty;
-        /// <summary>
-        /// 获取烤箱门状态、真空和三色灯的指令
-        /// </summary>
-        [DisplayName("获取烤箱门状态、真空和三色灯的指令")]
-        [Category("烤箱")]
-        public string GetMultiInfoStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getMultiInfoStrs))
-                {
-                    getMultiInfoStrs = TengDa.WF.Option.GetOption("GetMultiInfoStrs");
-                }
-                return getMultiInfoStrs;
-            }
-            set
-            {
-                if (value != getMultiInfoStrs)
-                {
-                    TengDa.WF.Option.SetOption("GetMultiInfoStrs", value);
-                    getMultiInfoStrs = value;
-                }
-            }
-        }
+        //private string getMultiInfoStrs = string.Empty;
+        ///// <summary>
+        ///// 获取烤箱门状态、真空和三色灯的指令
+        ///// </summary>
+        //[DisplayName("获取烤箱门状态、真空和三色灯的指令")]
+        //[Category("烤箱")]
+        //public string GetMultiInfoStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getMultiInfoStrs))
+        //        {
+        //            getMultiInfoStrs = TengDa.WF.Option.GetOption("GetMultiInfoStrs");
+        //        }
+        //        return getMultiInfoStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != getMultiInfoStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetMultiInfoStrs", value);
+        //            getMultiInfoStrs = value;
+        //        }
+        //    }
+        //}
 
-        private string getTemStrs = string.Empty;
-        /// <summary>
-        /// 获取烤箱温度的指令
-        /// </summary>
-        [DisplayName("获取烤箱温度的指令")]
-        [Category("烤箱")]
-        public string GetTemStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getTemStrs))
-                {
-                    getTemStrs = TengDa.WF.Option.GetOption("GetTemStrs");
-                }
-                return getTemStrs;
-            }
-            set
-            {
-                if (value != getTemStrs)
-                {
-                    TengDa.WF.Option.SetOption("GetTemStrs", value);
-                    getTemStrs = value;
-                }
-            }
-        }
+        //private string getTemStrs = string.Empty;
+        ///// <summary>
+        ///// 获取烤箱温度的指令
+        ///// </summary>
+        //[DisplayName("获取烤箱温度的指令")]
+        //[Category("烤箱")]
+        //public string GetTemStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getTemStrs))
+        //        {
+        //            getTemStrs = TengDa.WF.Option.GetOption("GetTemStrs");
+        //        }
+        //        return getTemStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != getTemStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetTemStrs", value);
+        //            getTemStrs = value;
+        //        }
+        //    }
+        //}
 
-        private string getTemSetStrs = string.Empty;
-        /// <summary>
-        /// 获取烤箱设定温度的指令
-        /// </summary>
-        [DisplayName("获取烤箱设定温度的指令")]
-        [Category("烤箱")]
-        public string GetTemSetStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getTemSetStrs))
-                {
-                    getTemSetStrs = TengDa.WF.Option.GetOption("GetTemSetStrs");
-                }
-                return getTemSetStrs;
-            }
-            set
-            {
-                if (value != getTemSetStrs)
-                {
-                    TengDa.WF.Option.SetOption("GetTemSetStrs", value);
-                    getTemSetStrs = value;
-                }
-            }
-        }
+        //private string getTemSetStrs = string.Empty;
+        ///// <summary>
+        ///// 获取烤箱设定温度的指令
+        ///// </summary>
+        //[DisplayName("获取烤箱设定温度的指令")]
+        //[Category("烤箱")]
+        //public string GetTemSetStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getTemSetStrs))
+        //        {
+        //            getTemSetStrs = TengDa.WF.Option.GetOption("GetTemSetStrs");
+        //        }
+        //        return getTemSetStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != getTemSetStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetTemSetStrs", value);
+        //            getTemSetStrs = value;
+        //        }
+        //    }
+        //}
 
-        private string getParamSettingStrs = string.Empty;
-        /// <summary>
-        /// 获取烤箱预热时间、烘烤时间、呼吸周期、真空设定参数的指令
-        /// </summary>
-        [DisplayName("获取烤箱设置参数的指令")]
-        [Category("烤箱")]
-        public string GetParamSettingStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getParamSettingStrs))
-                {
-                    getParamSettingStrs = TengDa.WF.Option.GetOption("GetParamSettingStrs");
-                }
-                return getParamSettingStrs;
-            }
-            set
-            {
-                if (value != getParamSettingStrs)
-                {
-                    TengDa.WF.Option.SetOption("GetParamSettingStrs", value);
-                    getParamSettingStrs = value;
-                }
-            }
-        }
+        //private string getParamSettingStrs = string.Empty;
+        ///// <summary>
+        ///// 获取烤箱预热时间、烘烤时间、呼吸周期、真空设定参数的指令
+        ///// </summary>
+        //[DisplayName("获取烤箱设置参数的指令")]
+        //[Category("烤箱")]
+        //public string GetParamSettingStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getParamSettingStrs))
+        //        {
+        //            getParamSettingStrs = TengDa.WF.Option.GetOption("GetParamSettingStrs");
+        //        }
+        //        return getParamSettingStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != getParamSettingStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetParamSettingStrs", value);
+        //            getParamSettingStrs = value;
+        //        }
+        //    }
+        //}
 
         private string preheatTimeSetAddrs = string.Empty;
         /// <summary>
@@ -968,113 +968,113 @@ namespace Soundon.Dispatcher
         }
 
 
-        private string getRuntimeStrs = string.Empty;
-        /// <summary>
-        /// 获取烤箱运行时间的字符串
-        /// </summary>
-        [Description("获取烤箱运行时间的字符串")]
-        [DisplayName("获取烤箱运行时间的字符串")]
-        [Category("烤箱")]
-        public string GetRuntimeStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getRuntimeStrs))
-                {
-                    getRuntimeStrs = TengDa.WF.Option.GetOption("GetRuntimeStrs");
-                }
-                return getRuntimeStrs;
-            }
-            set
-            {
-                if (value != getRuntimeStrs)
-                {
-                    TengDa.WF.Option.SetOption("GetRuntimeStrs", value);
-                    getRuntimeStrs = value;
-                }
-            }
-        }
+        //private string getRuntimeStrs = string.Empty;
+        ///// <summary>
+        ///// 获取烤箱运行时间的字符串
+        ///// </summary>
+        //[Description("获取烤箱运行时间的字符串")]
+        //[DisplayName("获取烤箱运行时间的字符串")]
+        //[Category("烤箱")]
+        //public string GetRuntimeStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getRuntimeStrs))
+        //        {
+        //            getRuntimeStrs = TengDa.WF.Option.GetOption("GetRuntimeStrs");
+        //        }
+        //        return getRuntimeStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != getRuntimeStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetRuntimeStrs", value);
+        //            getRuntimeStrs = value;
+        //        }
+        //    }
+        //}
 
-        private string getTrichromaticLampStr = string.Empty;
-        /// <summary>
-        /// 获取烤箱三色灯的字符串
-        /// </summary>
-        [Description("获取烤箱三色灯的字符串")]
-        [DisplayName("获取烤箱三色灯的字符串")]
-        [Category("烤箱")]
-        public string GetTrichromaticLampStr
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getTrichromaticLampStr))
-                {
-                    getTrichromaticLampStr = TengDa.WF.Option.GetOption("GetTrichromaticLampStr");
-                }
-                return getTrichromaticLampStr;
-            }
-            set
-            {
-                if (value != getTrichromaticLampStr)
-                {
-                    TengDa.WF.Option.SetOption("GetTrichromaticLampStr", value);
-                    getTrichromaticLampStr = value;
-                }
-            }
-        }
+        //private string getTrichromaticLampStr = string.Empty;
+        ///// <summary>
+        ///// 获取烤箱三色灯的字符串
+        ///// </summary>
+        //[Description("获取烤箱三色灯的字符串")]
+        //[DisplayName("获取烤箱三色灯的字符串")]
+        //[Category("烤箱")]
+        //public string GetTrichromaticLampStr
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getTrichromaticLampStr))
+        //        {
+        //            getTrichromaticLampStr = TengDa.WF.Option.GetOption("GetTrichromaticLampStr");
+        //        }
+        //        return getTrichromaticLampStr;
+        //    }
+        //    set
+        //    {
+        //        if (value != getTrichromaticLampStr)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetTrichromaticLampStr", value);
+        //            getTrichromaticLampStr = value;
+        //        }
+        //    }
+        //}
 
-        private string getAlarmStr = string.Empty;
-        /// <summary>
-        /// 获取烤箱报警的字符串
-        /// </summary>
-        [Description("获取烤箱报警的字符串")]
-        [DisplayName("获取烤箱报警的字符串")]
-        [Category("烤箱")]
-        public string GetAlarmStr
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getAlarmStr))
-                {
-                    getAlarmStr = TengDa.WF.Option.GetOption("GetAlarmStr");
-                }
-                return getAlarmStr;
-            }
-            set
-            {
-                if (value != getAlarmStr)
-                {
-                    TengDa.WF.Option.SetOption("GetAlarmStr", value);
-                    getAlarmStr = value;
-                }
-            }
-        }
+        //private string getAlarmStr = string.Empty;
+        ///// <summary>
+        ///// 获取烤箱报警的字符串
+        ///// </summary>
+        //[Description("获取烤箱报警的字符串")]
+        //[DisplayName("获取烤箱报警的字符串")]
+        //[Category("烤箱")]
+        //public string GetAlarmStr
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getAlarmStr))
+        //        {
+        //            getAlarmStr = TengDa.WF.Option.GetOption("GetAlarmStr");
+        //        }
+        //        return getAlarmStr;
+        //    }
+        //    set
+        //    {
+        //        if (value != getAlarmStr)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetAlarmStr", value);
+        //            getAlarmStr = value;
+        //        }
+        //    }
+        //}
 
 
-        private string temperatureSet = string.Empty;
-        /// <summary>
-        /// 设定温度（上传MES）
-        /// </summary>
-        [Description("设定温度（上传MES）")]
-        [DisplayName("设定温度（上传MES）")]
-        public string TemperatureSet
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(temperatureSet))
-                {
-                    temperatureSet = TengDa.WF.Option.GetOption("TemperatureSet");
-                }
-                return temperatureSet;
-            }
-            set
-            {
-                if (value != temperatureSet)
-                {
-                    TengDa.WF.Option.SetOption("TemperatureSet", value);
-                    temperatureSet = value;
-                }
-            }
-        }
+        //private string temperatureSet = string.Empty;
+        ///// <summary>
+        ///// 设定温度（上传MES）
+        ///// </summary>
+        //[Description("设定温度（上传MES）")]
+        //[DisplayName("设定温度（上传MES）")]
+        //public string TemperatureSet
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(temperatureSet))
+        //        {
+        //            temperatureSet = TengDa.WF.Option.GetOption("TemperatureSet");
+        //        }
+        //        return temperatureSet;
+        //    }
+        //    set
+        //    {
+        //        if (value != temperatureSet)
+        //        {
+        //            TengDa.WF.Option.SetOption("TemperatureSet", value);
+        //            temperatureSet = value;
+        //        }
+        //    }
+        //}
 
 
         private string sendScanOkStr = string.Empty;
@@ -1135,546 +1135,546 @@ namespace Soundon.Dispatcher
 
 
 
-        private string getFeederInfoStr = string.Empty;
-        /// <summary>
-        /// 获取上料机信息的指令
-        /// </summary>
-        [Description("获取上料机信息的指令")]
-        [DisplayName("获取上料机信息的指令")]
-        [Category("上料机")]
-        public string GetFeederInfoStr
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getFeederInfoStr))
-                {
-                    getFeederInfoStr = TengDa.WF.Option.GetOption("GetFeederInfoStr");
-                }
-                return getFeederInfoStr;
-            }
-            set
-            {
-                if (value != getFeederInfoStr)
-                {
-                    TengDa.WF.Option.SetOption("GetFeederInfoStr", value);
-                    getFeederInfoStr = value;
-                }
-            }
-        }
+        //private string getFeederInfoStr = string.Empty;
+        ///// <summary>
+        ///// 获取上料机信息的指令
+        ///// </summary>
+        //[Description("获取上料机信息的指令")]
+        //[DisplayName("获取上料机信息的指令")]
+        //[Category("上料机")]
+        //public string GetFeederInfoStr
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getFeederInfoStr))
+        //        {
+        //            getFeederInfoStr = TengDa.WF.Option.GetOption("GetFeederInfoStr");
+        //        }
+        //        return getFeederInfoStr;
+        //    }
+        //    set
+        //    {
+        //        if (value != getFeederInfoStr)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetFeederInfoStr", value);
+        //            getFeederInfoStr = value;
+        //        }
+        //    }
+        //}
 
-        private string getBlankerInfoStr = string.Empty;
-        /// <summary>
-        /// 获取下料机信息的指令
-        /// </summary>
-        [Description("获取下料机信息的指令")]
-        [DisplayName("获取下料机信息的指令")]
-        [Category("下料机")]
-        public string GetBlankerInfoStr
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getBlankerInfoStr))
-                {
-                    getBlankerInfoStr = TengDa.WF.Option.GetOption("GetBlankerInfoStr");
-                }
-                return getBlankerInfoStr;
-            }
-            set
-            {
-                if (value != getBlankerInfoStr)
-                {
-                    TengDa.WF.Option.SetOption("GetBlankerInfoStr", value);
-                    getBlankerInfoStr = value;
-                }
-            }
-        }
+        //private string getBlankerInfoStr = string.Empty;
+        ///// <summary>
+        ///// 获取下料机信息的指令
+        ///// </summary>
+        //[Description("获取下料机信息的指令")]
+        //[DisplayName("获取下料机信息的指令")]
+        //[Category("下料机")]
+        //public string GetBlankerInfoStr
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getBlankerInfoStr))
+        //        {
+        //            getBlankerInfoStr = TengDa.WF.Option.GetOption("GetBlankerInfoStr");
+        //        }
+        //        return getBlankerInfoStr;
+        //    }
+        //    set
+        //    {
+        //        if (value != getBlankerInfoStr)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetBlankerInfoStr", value);
+        //            getBlankerInfoStr = value;
+        //        }
+        //    }
+        //}
 
-        private string getDoorStatusStr = string.Empty;
-        /// <summary>
-        /// 获取烤箱门状态指令
-        /// </summary>
-        [Description("获取烤箱门状态指令")]
-        [DisplayName("获取烤箱门状态指令")]
-        [Category("烤箱")]
-        public string GetDoorStatusStr
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getDoorStatusStr))
-                {
-                    getDoorStatusStr = TengDa.WF.Option.GetOption("GetDoorStatusStr");
-                }
-                return getDoorStatusStr;
-            }
-            set
-            {
-                if (value != getDoorStatusStr)
-                {
-                    TengDa.WF.Option.SetOption("GetDoorStatusStr", value);
-                    getDoorStatusStr = value;
-                }
-            }
-        }
+        //private string getDoorStatusStr = string.Empty;
+        ///// <summary>
+        ///// 获取烤箱门状态指令
+        ///// </summary>
+        //[Description("获取烤箱门状态指令")]
+        //[DisplayName("获取烤箱门状态指令")]
+        //[Category("烤箱")]
+        //public string GetDoorStatusStr
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getDoorStatusStr))
+        //        {
+        //            getDoorStatusStr = TengDa.WF.Option.GetOption("GetDoorStatusStr");
+        //        }
+        //        return getDoorStatusStr;
+        //    }
+        //    set
+        //    {
+        //        if (value != getDoorStatusStr)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetDoorStatusStr", value);
+        //            getDoorStatusStr = value;
+        //        }
+        //    }
+        //}
 
-        private string openOvenDoorStrs = string.Empty;
-        /// <summary>
-        /// 烤箱开门指令
-        /// </summary>
-        [Description("烤箱开门指令")]
-        [DisplayName("烤箱开门指令")]
-        [Category("烤箱")]
-        public string OpenOvenDoorStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(openOvenDoorStrs))
-                {
-                    openOvenDoorStrs = TengDa.WF.Option.GetOption("OpenOvenDoorStrs");
-                }
-                return openOvenDoorStrs;
-            }
-            set
-            {
-                if (value != openOvenDoorStrs)
-                {
-                    TengDa.WF.Option.SetOption("OpenOvenDoorStrs", value);
-                    openOvenDoorStrs = value;
-                }
-            }
-        }
+        //private string openOvenDoorStrs = string.Empty;
+        ///// <summary>
+        ///// 烤箱开门指令
+        ///// </summary>
+        //[Description("烤箱开门指令")]
+        //[DisplayName("烤箱开门指令")]
+        //[Category("烤箱")]
+        //public string OpenOvenDoorStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(openOvenDoorStrs))
+        //        {
+        //            openOvenDoorStrs = TengDa.WF.Option.GetOption("OpenOvenDoorStrs");
+        //        }
+        //        return openOvenDoorStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != openOvenDoorStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("OpenOvenDoorStrs", value);
+        //            openOvenDoorStrs = value;
+        //        }
+        //    }
+        //}
 
-        private string closeOvenDoorStrs = string.Empty;
-        /// <summary>
-        /// 烤箱关门指令
-        /// </summary>
-        [Description("烤箱关门指令")]
-        [DisplayName("烤箱关门指令")]
-        [Category("烤箱")]
-        public string CloseOvenDoorStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(closeOvenDoorStrs))
-                {
-                    closeOvenDoorStrs = TengDa.WF.Option.GetOption("CloseOvenDoorStrs");
-                }
-                return closeOvenDoorStrs;
-            }
-            set
-            {
-                if (value != closeOvenDoorStrs)
-                {
-                    TengDa.WF.Option.SetOption("CloseOvenDoorStrs", value);
-                    closeOvenDoorStrs = value;
-                }
-            }
-        }
+        //private string closeOvenDoorStrs = string.Empty;
+        ///// <summary>
+        ///// 烤箱关门指令
+        ///// </summary>
+        //[Description("烤箱关门指令")]
+        //[DisplayName("烤箱关门指令")]
+        //[Category("烤箱")]
+        //public string CloseOvenDoorStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(closeOvenDoorStrs))
+        //        {
+        //            closeOvenDoorStrs = TengDa.WF.Option.GetOption("CloseOvenDoorStrs");
+        //        }
+        //        return closeOvenDoorStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != closeOvenDoorStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("CloseOvenDoorStrs", value);
+        //            closeOvenDoorStrs = value;
+        //        }
+        //    }
+        //}
 
-        private string getOvenClampStatusStrs = string.Empty;
-        /// <summary>
-        /// 获取烤箱夹具状态指令（左，右）
-        /// </summary>
-        [Description("获取烤箱夹具状态指令（左，右）")]
-        [DisplayName("获取烤箱夹具状态指令")]
-        [Category("烤箱")]
-        public string GetOvenClampStatusStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getOvenClampStatusStrs))
-                {
-                    getOvenClampStatusStrs = TengDa.WF.Option.GetOption("GetOvenClampStatusStrs");
-                }
-                return getOvenClampStatusStrs;
-            }
-            set
-            {
-                if (value != getOvenClampStatusStrs)
-                {
-                    TengDa.WF.Option.SetOption("GetOvenClampStatusStrs", value);
-                    getOvenClampStatusStrs = value;
-                }
-            }
-        }
+        //private string getOvenClampStatusStrs = string.Empty;
+        ///// <summary>
+        ///// 获取烤箱夹具状态指令（左，右）
+        ///// </summary>
+        //[Description("获取烤箱夹具状态指令（左，右）")]
+        //[DisplayName("获取烤箱夹具状态指令")]
+        //[Category("烤箱")]
+        //public string GetOvenClampStatusStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getOvenClampStatusStrs))
+        //        {
+        //            getOvenClampStatusStrs = TengDa.WF.Option.GetOption("GetOvenClampStatusStrs");
+        //        }
+        //        return getOvenClampStatusStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != getOvenClampStatusStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetOvenClampStatusStrs", value);
+        //            getOvenClampStatusStrs = value;
+        //        }
+        //    }
+        //}
 
-        private string startBakingStrs = string.Empty;
-        /// <summary>
-        /// 开始Baking指令
-        /// </summary>
-        [Description("开始Baking指令")]
-        [DisplayName("开始Baking指令")]
-        [Category("烤箱")]
-        public string StartBakingStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(startBakingStrs))
-                {
-                    startBakingStrs = TengDa.WF.Option.GetOption("StartBakingStrs");
-                }
-                return startBakingStrs;
-            }
-            set
-            {
-                if (value != startBakingStrs)
-                {
-                    TengDa.WF.Option.SetOption("StartBakingStrs", value);
-                    startBakingStrs = value;
-                }
-            }
-        }
+        //private string startBakingStrs = string.Empty;
+        ///// <summary>
+        ///// 开始Baking指令
+        ///// </summary>
+        //[Description("开始Baking指令")]
+        //[DisplayName("开始Baking指令")]
+        //[Category("烤箱")]
+        //public string StartBakingStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(startBakingStrs))
+        //        {
+        //            startBakingStrs = TengDa.WF.Option.GetOption("StartBakingStrs");
+        //        }
+        //        return startBakingStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != startBakingStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("StartBakingStrs", value);
+        //            startBakingStrs = value;
+        //        }
+        //    }
+        //}
 
-        private string stopBakingStrs = string.Empty;
-        /// <summary>
-        /// 结束Baking指令
-        /// </summary>
-        [Description("结束Baking指令")]
-        [DisplayName("结束Baking指令")]
-        [Category("烤箱")]
-        public string StopBakingStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(stopBakingStrs))
-                {
-                    stopBakingStrs = TengDa.WF.Option.GetOption("StopBakingStrs");
-                }
-                return stopBakingStrs;
-            }
-            set
-            {
-                if (value != stopBakingStrs)
-                {
-                    TengDa.WF.Option.SetOption("StopBakingStrs", value);
-                    stopBakingStrs = value;
-                }
-            }
-        }
-
-
-        private string getBakingIsFinishedStr = string.Empty;
-        /// <summary>
-        /// 获取烤箱Baking是否结束指令
-        /// </summary>
-        [DisplayName("获取烤箱Baking是否结束指令")]
-        [Category("烤箱")]
-        public string GetBakingIsFinishedStr
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getBakingIsFinishedStr))
-                {
-                    getBakingIsFinishedStr = TengDa.WF.Option.GetOption("GetBakingIsFinishedStr");
-                }
-                return getBakingIsFinishedStr;
-            }
-            set
-            {
-                if (value != getBakingIsFinishedStr)
-                {
-                    TengDa.WF.Option.SetOption("GetBakingIsFinishedStr", value);
-                    getBakingIsFinishedStr = value;
-                }
-            }
-        }
+        //private string stopBakingStrs = string.Empty;
+        ///// <summary>
+        ///// 结束Baking指令
+        ///// </summary>
+        //[Description("结束Baking指令")]
+        //[DisplayName("结束Baking指令")]
+        //[Category("烤箱")]
+        //public string StopBakingStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(stopBakingStrs))
+        //        {
+        //            stopBakingStrs = TengDa.WF.Option.GetOption("StopBakingStrs");
+        //        }
+        //        return stopBakingStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != stopBakingStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("StopBakingStrs", value);
+        //            stopBakingStrs = value;
+        //        }
+        //    }
+        //}
 
 
-        private string closeNetControlStrs = string.Empty;
-        /// <summary>
-        /// 关闭网控指令
-        /// </summary>
-        [Description("关闭网控指令")]
-        [DisplayName("关闭网控指令")]
-        [Category("烤箱")]
-        public string CloseNetControlStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(closeNetControlStrs))
-                {
-                    closeNetControlStrs = TengDa.WF.Option.GetOption("CloseNetControlStrs");
-                }
-                return closeNetControlStrs;
-            }
-            set
-            {
-                if (value != closeNetControlStrs)
-                {
-                    TengDa.WF.Option.SetOption("CloseNetControlStrs", value);
-                    closeNetControlStrs = value;
-                }
-            }
-        }
+        //private string getBakingIsFinishedStr = string.Empty;
+        ///// <summary>
+        ///// 获取烤箱Baking是否结束指令
+        ///// </summary>
+        //[DisplayName("获取烤箱Baking是否结束指令")]
+        //[Category("烤箱")]
+        //public string GetBakingIsFinishedStr
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getBakingIsFinishedStr))
+        //        {
+        //            getBakingIsFinishedStr = TengDa.WF.Option.GetOption("GetBakingIsFinishedStr");
+        //        }
+        //        return getBakingIsFinishedStr;
+        //    }
+        //    set
+        //    {
+        //        if (value != getBakingIsFinishedStr)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetBakingIsFinishedStr", value);
+        //            getBakingIsFinishedStr = value;
+        //        }
+        //    }
+        //}
 
 
-        private string openNetControlStrs = string.Empty;
-        /// <summary>
-        /// 打开网控指令
-        /// </summary>
-        [Description("打开网控指令")]
-        [DisplayName("打开网控指令")]
-        [Category("烤箱")]
-        public string OpenNetControlStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(openNetControlStrs))
-                {
-                    openNetControlStrs = TengDa.WF.Option.GetOption("OpenNetControlStrs");
-                }
-                return openNetControlStrs;
-            }
-            set
-            {
-                if (value != openNetControlStrs)
-                {
-                    TengDa.WF.Option.SetOption("OpenNetControlStrs", value);
-                    openNetControlStrs = value;
-                }
-            }
-        }
+        //private string closeNetControlStrs = string.Empty;
+        ///// <summary>
+        ///// 关闭网控指令
+        ///// </summary>
+        //[Description("关闭网控指令")]
+        //[DisplayName("关闭网控指令")]
+        //[Category("烤箱")]
+        //public string CloseNetControlStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(closeNetControlStrs))
+        //        {
+        //            closeNetControlStrs = TengDa.WF.Option.GetOption("CloseNetControlStrs");
+        //        }
+        //        return closeNetControlStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != closeNetControlStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("CloseNetControlStrs", value);
+        //            closeNetControlStrs = value;
+        //        }
+        //    }
+        //}
 
 
-        private string getNetControlStatusStr = string.Empty;
-        /// <summary>
-        /// 获取炉腔网控状态指令
-        /// </summary>
-        [Description("获取炉腔网控状态指令")]
-        [DisplayName("获取炉腔网控状态指令")]
-        [Category("烤箱")]
-        public string GetNetControlStatusStr
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getNetControlStatusStr))
-                {
-                    getNetControlStatusStr = TengDa.WF.Option.GetOption("GetNetControlStatusStr");
-                }
-                return getNetControlStatusStr;
-            }
-            set
-            {
-                if (value != getNetControlStatusStr)
-                {
-                    TengDa.WF.Option.SetOption("GetNetControlStatusStr", value);
-                    getNetControlStatusStr = value;
-                }
-            }
-        }
-
-        private string unloadVacuumStrs = string.Empty;
-        /// <summary>
-        /// 卸真空指令
-        /// </summary>
-        [Description("卸真空指令")]
-        [DisplayName("卸真空指令")]
-        [Category("烤箱")]
-        public string UnloadVacuumStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(unloadVacuumStrs))
-                {
-                    unloadVacuumStrs = TengDa.WF.Option.GetOption("UnloadVacuumStrs");
-                }
-                return unloadVacuumStrs;
-            }
-            set
-            {
-                if (value != unloadVacuumStrs)
-                {
-                    TengDa.WF.Option.SetOption("UnloadVacuumStrs", value);
-                    unloadVacuumStrs = value;
-                }
-            }
-        }
-
-        private string loadVacuumStrs = string.Empty;
-        /// <summary>
-        /// 抽真空指令
-        /// </summary>
-        [DisplayName("抽真空指令")]
-        [Category("烤箱")]
-        public string LoadVacuumStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(loadVacuumStrs))
-                {
-                    loadVacuumStrs = TengDa.WF.Option.GetOption("LoadVacuumStrs");
-                }
-                return loadVacuumStrs;
-            }
-            set
-            {
-                if (value != loadVacuumStrs)
-                {
-                    TengDa.WF.Option.SetOption("LoadVacuumStrs", value);
-                    loadVacuumStrs = value;
-                }
-            }
-        }
+        //private string openNetControlStrs = string.Empty;
+        ///// <summary>
+        ///// 打开网控指令
+        ///// </summary>
+        //[Description("打开网控指令")]
+        //[DisplayName("打开网控指令")]
+        //[Category("烤箱")]
+        //public string OpenNetControlStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(openNetControlStrs))
+        //        {
+        //            openNetControlStrs = TengDa.WF.Option.GetOption("OpenNetControlStrs");
+        //        }
+        //        return openNetControlStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != openNetControlStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("OpenNetControlStrs", value);
+        //            openNetControlStrs = value;
+        //        }
+        //    }
+        //}
 
 
-        private string clearRunTimeStrs = string.Empty;
-        /// <summary>
-        /// 运行时间清零指令
-        /// </summary>
-        [DisplayName("运行时间清零指令")]
-        [Category("烤箱")]
-        public string ClearRunTimeStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(clearRunTimeStrs))
-                {
-                    clearRunTimeStrs = TengDa.WF.Option.GetOption("ClearRunTimeStrs");
-                }
-                return clearRunTimeStrs;
-            }
-            set
-            {
-                if (value != clearRunTimeStrs)
-                {
-                    TengDa.WF.Option.SetOption("ClearRunTimeStrs", value);
-                    clearRunTimeStrs = value;
-                }
-            }
-        }
+        //private string getNetControlStatusStr = string.Empty;
+        ///// <summary>
+        ///// 获取炉腔网控状态指令
+        ///// </summary>
+        //[Description("获取炉腔网控状态指令")]
+        //[DisplayName("获取炉腔网控状态指令")]
+        //[Category("烤箱")]
+        //public string GetNetControlStatusStr
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getNetControlStatusStr))
+        //        {
+        //            getNetControlStatusStr = TengDa.WF.Option.GetOption("GetNetControlStatusStr");
+        //        }
+        //        return getNetControlStatusStr;
+        //    }
+        //    set
+        //    {
+        //        if (value != getNetControlStatusStr)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetNetControlStatusStr", value);
+        //            getNetControlStatusStr = value;
+        //        }
+        //    }
+        //}
 
-        private string getVacuumStatusStr = string.Empty;
-        /// <summary>
-        /// 获取炉腔真空状态指令
-        /// </summary>
-        [Description("获取炉腔真空状态指令")]
-        [DisplayName("获取炉腔真空状态指令")]
-        [Category("烤箱")]
-        public string GetVacuumStatusStr
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getVacuumStatusStr))
-                {
-                    getVacuumStatusStr = TengDa.WF.Option.GetOption("GetVacuumStatusStr");
-                }
-                return getVacuumStatusStr;
-            }
-            set
-            {
-                if (value != getVacuumStatusStr)
-                {
-                    TengDa.WF.Option.SetOption("GetVacuumStatusStr", value);
-                    getVacuumStatusStr = value;
-                }
-            }
-        }
+        //private string unloadVacuumStrs = string.Empty;
+        ///// <summary>
+        ///// 卸真空指令
+        ///// </summary>
+        //[Description("卸真空指令")]
+        //[DisplayName("卸真空指令")]
+        //[Category("烤箱")]
+        //public string UnloadVacuumStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(unloadVacuumStrs))
+        //        {
+        //            unloadVacuumStrs = TengDa.WF.Option.GetOption("UnloadVacuumStrs");
+        //        }
+        //        return unloadVacuumStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != unloadVacuumStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("UnloadVacuumStrs", value);
+        //            unloadVacuumStrs = value;
+        //        }
+        //    }
+        //}
 
-        private string ovenAlarmResetStrs = string.Empty;
-        /// <summary>
-        /// 烤箱报警复位指令
-        /// </summary>
-        [Description("烤箱报警复位指令")]
-        [DisplayName("烤箱报警复位指令")]
-        [Category("烤箱")]
-        public string OvenAlarmResetStrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(ovenAlarmResetStrs))
-                {
-                    ovenAlarmResetStrs = TengDa.WF.Option.GetOption("OvenAlarmResetStrs");
-                }
-                return ovenAlarmResetStrs;
-            }
-            set
-            {
-                if (value != ovenAlarmResetStrs)
-                {
-                    TengDa.WF.Option.SetOption("OvenAlarmResetStrs", value);
-                    ovenAlarmResetStrs = value;
-                }
-            }
-        }
-
-        private string getOvenClampStatusStr = string.Empty;
-        /// <summary>
-        /// 获取烤箱夹具状态指令
-        /// </summary>
-        [Description("获取烤箱夹具状态指令")]
-        [DisplayName("获取烤箱夹具状态指令")]
-        [Category("烤箱")]
-        public string GetOvenClampStatusStr
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getOvenClampStatusStr))
-                {
-                    getOvenClampStatusStr = TengDa.WF.Option.GetOption("GetOvenClampStatusStr");
-                }
-                return getOvenClampStatusStr;
-            }
-            set
-            {
-                if (value != getOvenClampStatusStr)
-                {
-                    TengDa.WF.Option.SetOption("GetOvenClampStatusStr", value);
-                    getOvenClampStatusStr = value;
-                }
-            }
-        }
+        //private string loadVacuumStrs = string.Empty;
+        ///// <summary>
+        ///// 抽真空指令
+        ///// </summary>
+        //[DisplayName("抽真空指令")]
+        //[Category("烤箱")]
+        //public string LoadVacuumStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(loadVacuumStrs))
+        //        {
+        //            loadVacuumStrs = TengDa.WF.Option.GetOption("LoadVacuumStrs");
+        //        }
+        //        return loadVacuumStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != loadVacuumStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("LoadVacuumStrs", value);
+        //            loadVacuumStrs = value;
+        //        }
+        //    }
+        //}
 
 
-        private string getVacuumCommandStr = string.Empty;
-        /// <summary>
-        /// 获取真空指令状态
-        /// </summary>
-        [DisplayName("获取真空指令状态")]
-        [Category("烤箱")]
-        public string GetVacuumCommandStr
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getVacuumCommandStr))
-                {
-                    getVacuumCommandStr = TengDa.WF.Option.GetOption("GetVacuumCommandStr");
-                }
-                return getVacuumCommandStr;
-            }
-            set
-            {
-                if (value != getVacuumCommandStr)
-                {
-                    TengDa.WF.Option.SetOption("GetVacuumCommandStr", value);
-                    getVacuumCommandStr = value;
-                }
-            }
-        }
+        //private string clearRunTimeStrs = string.Empty;
+        ///// <summary>
+        ///// 运行时间清零指令
+        ///// </summary>
+        //[DisplayName("运行时间清零指令")]
+        //[Category("烤箱")]
+        //public string ClearRunTimeStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(clearRunTimeStrs))
+        //        {
+        //            clearRunTimeStrs = TengDa.WF.Option.GetOption("ClearRunTimeStrs");
+        //        }
+        //        return clearRunTimeStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != clearRunTimeStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("ClearRunTimeStrs", value);
+        //            clearRunTimeStrs = value;
+        //        }
+        //    }
+        //}
 
-        private string getDoorCommandStr = string.Empty;
-        /// <summary>
-        /// 获取门指令状态指令
-        /// </summary>
-        [DisplayName("获取门指令状态指令")]
-        [Category("烤箱")]
-        public string GetDoorCommandStr
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(getDoorCommandStr))
-                {
-                    getDoorCommandStr = TengDa.WF.Option.GetOption("GetDoorCommandStr");
-                }
-                return getDoorCommandStr;
-            }
-            set
-            {
-                if (value != getDoorCommandStr)
-                {
-                    TengDa.WF.Option.SetOption("GetDoorCommandStr", value);
-                    getDoorCommandStr = value;
-                }
-            }
-        }
+        //private string getVacuumStatusStr = string.Empty;
+        ///// <summary>
+        ///// 获取炉腔真空状态指令
+        ///// </summary>
+        //[Description("获取炉腔真空状态指令")]
+        //[DisplayName("获取炉腔真空状态指令")]
+        //[Category("烤箱")]
+        //public string GetVacuumStatusStr
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getVacuumStatusStr))
+        //        {
+        //            getVacuumStatusStr = TengDa.WF.Option.GetOption("GetVacuumStatusStr");
+        //        }
+        //        return getVacuumStatusStr;
+        //    }
+        //    set
+        //    {
+        //        if (value != getVacuumStatusStr)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetVacuumStatusStr", value);
+        //            getVacuumStatusStr = value;
+        //        }
+        //    }
+        //}
+
+        //private string ovenAlarmResetStrs = string.Empty;
+        ///// <summary>
+        ///// 烤箱报警复位指令
+        ///// </summary>
+        //[Description("烤箱报警复位指令")]
+        //[DisplayName("烤箱报警复位指令")]
+        //[Category("烤箱")]
+        //public string OvenAlarmResetStrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(ovenAlarmResetStrs))
+        //        {
+        //            ovenAlarmResetStrs = TengDa.WF.Option.GetOption("OvenAlarmResetStrs");
+        //        }
+        //        return ovenAlarmResetStrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != ovenAlarmResetStrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("OvenAlarmResetStrs", value);
+        //            ovenAlarmResetStrs = value;
+        //        }
+        //    }
+        //}
+
+        //private string getOvenClampStatusStr = string.Empty;
+        ///// <summary>
+        ///// 获取烤箱夹具状态指令
+        ///// </summary>
+        //[Description("获取烤箱夹具状态指令")]
+        //[DisplayName("获取烤箱夹具状态指令")]
+        //[Category("烤箱")]
+        //public string GetOvenClampStatusStr
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getOvenClampStatusStr))
+        //        {
+        //            getOvenClampStatusStr = TengDa.WF.Option.GetOption("GetOvenClampStatusStr");
+        //        }
+        //        return getOvenClampStatusStr;
+        //    }
+        //    set
+        //    {
+        //        if (value != getOvenClampStatusStr)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetOvenClampStatusStr", value);
+        //            getOvenClampStatusStr = value;
+        //        }
+        //    }
+        //}
+
+
+        //private string getVacuumCommandStr = string.Empty;
+        ///// <summary>
+        ///// 获取真空指令状态
+        ///// </summary>
+        //[DisplayName("获取真空指令状态")]
+        //[Category("烤箱")]
+        //public string GetVacuumCommandStr
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getVacuumCommandStr))
+        //        {
+        //            getVacuumCommandStr = TengDa.WF.Option.GetOption("GetVacuumCommandStr");
+        //        }
+        //        return getVacuumCommandStr;
+        //    }
+        //    set
+        //    {
+        //        if (value != getVacuumCommandStr)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetVacuumCommandStr", value);
+        //            getVacuumCommandStr = value;
+        //        }
+        //    }
+        //}
+
+        //private string getDoorCommandStr = string.Empty;
+        ///// <summary>
+        ///// 获取门指令状态指令
+        ///// </summary>
+        //[DisplayName("获取门指令状态指令")]
+        //[Category("烤箱")]
+        //public string GetDoorCommandStr
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(getDoorCommandStr))
+        //        {
+        //            getDoorCommandStr = TengDa.WF.Option.GetOption("GetDoorCommandStr");
+        //        }
+        //        return getDoorCommandStr;
+        //    }
+        //    set
+        //    {
+        //        if (value != getDoorCommandStr)
+        //        {
+        //            TengDa.WF.Option.SetOption("GetDoorCommandStr", value);
+        //            getDoorCommandStr = value;
+        //        }
+        //    }
+        //}
 
 
 
@@ -1941,189 +1941,189 @@ namespace Soundon.Dispatcher
             }
         }
 
-        private string ovenIsBakingStatusAddrs = string.Empty;
-        /// <summary>
-        /// 烤箱烘烤状态地址
-        /// </summary>
-        [DisplayName("烤箱烘烤状态地址")]
-        [Category("烤箱")]
-        public string OvenIsBakingStatusAddrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(ovenIsBakingStatusAddrs))
-                {
-                    ovenIsBakingStatusAddrs = TengDa.WF.Option.GetOption("OvenIsBakingStatusAddrs");
-                }
-                return ovenIsBakingStatusAddrs;
-            }
-            set
-            {
-                if (value != ovenIsBakingStatusAddrs)
-                {
-                    TengDa.WF.Option.SetOption("OvenIsBakingStatusAddrs", value);
-                    ovenIsBakingStatusAddrs = value;
-                }
-            }
-        }
+        //private string ovenIsBakingStatusAddrs = string.Empty;
+        ///// <summary>
+        ///// 烤箱烘烤状态地址
+        ///// </summary>
+        //[DisplayName("烤箱烘烤状态地址")]
+        //[Category("烤箱")]
+        //public string OvenIsBakingStatusAddrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(ovenIsBakingStatusAddrs))
+        //        {
+        //            ovenIsBakingStatusAddrs = TengDa.WF.Option.GetOption("OvenIsBakingStatusAddrs");
+        //        }
+        //        return ovenIsBakingStatusAddrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != ovenIsBakingStatusAddrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("OvenIsBakingStatusAddrs", value);
+        //            ovenIsBakingStatusAddrs = value;
+        //        }
+        //    }
+        //}
 
-        private string ovenDoorClampStatusAddrs = string.Empty;
-        /// <summary>
-        /// 烤箱门和夹具状态地址
-        /// </summary>
-        [DisplayName("烤箱门和夹具状态地址")]
-        [Category("烤箱")]
-        public string OvenDoorClampStatusAddrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(ovenDoorClampStatusAddrs))
-                {
-                    ovenDoorClampStatusAddrs = TengDa.WF.Option.GetOption("OvenDoorClampStatusAddrs");
-                }
-                return ovenDoorClampStatusAddrs;
-            }
-            set
-            {
-                if (value != ovenDoorClampStatusAddrs)
-                {
-                    TengDa.WF.Option.SetOption("OvenDoorClampStatusAddrs", value);
-                    ovenDoorClampStatusAddrs = value;
-                }
-            }
-        }
+        //private string ovenDoorClampStatusAddrs = string.Empty;
+        ///// <summary>
+        ///// 烤箱门和夹具状态地址
+        ///// </summary>
+        //[DisplayName("烤箱门和夹具状态地址")]
+        //[Category("烤箱")]
+        //public string OvenDoorClampStatusAddrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(ovenDoorClampStatusAddrs))
+        //        {
+        //            ovenDoorClampStatusAddrs = TengDa.WF.Option.GetOption("OvenDoorClampStatusAddrs");
+        //        }
+        //        return ovenDoorClampStatusAddrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != ovenDoorClampStatusAddrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("OvenDoorClampStatusAddrs", value);
+        //            ovenDoorClampStatusAddrs = value;
+        //        }
+        //    }
+        //}
 
-        private string ovenInfo1StartAddrs = string.Empty;
-        /// <summary>
-        /// 烤箱信息1起始地址
-        /// </summary>
-        [DisplayName("烤箱信息1起始地址")]
-        [Category("烤箱")]
-        public string OvenInfo1StartAddrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(ovenInfo1StartAddrs))
-                {
-                    ovenInfo1StartAddrs = TengDa.WF.Option.GetOption("OvenInfo1StartAddrs");
-                }
-                return ovenInfo1StartAddrs;
-            }
-            set
-            {
-                if (value != ovenInfo1StartAddrs)
-                {
-                    TengDa.WF.Option.SetOption("OvenInfo1StartAddrs", value);
-                    ovenInfo1StartAddrs = value;
-                }
-            }
-        }
+        //private string ovenInfo1StartAddrs = string.Empty;
+        ///// <summary>
+        ///// 烤箱信息1起始地址
+        ///// </summary>
+        //[DisplayName("烤箱信息1起始地址")]
+        //[Category("烤箱")]
+        //public string OvenInfo1StartAddrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(ovenInfo1StartAddrs))
+        //        {
+        //            ovenInfo1StartAddrs = TengDa.WF.Option.GetOption("OvenInfo1StartAddrs");
+        //        }
+        //        return ovenInfo1StartAddrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != ovenInfo1StartAddrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("OvenInfo1StartAddrs", value);
+        //            ovenInfo1StartAddrs = value;
+        //        }
+        //    }
+        //}
 
-        private string ovenInfo2StartAddrs = string.Empty;
-        /// <summary>
-        /// 烤箱信息2起始地址
-        /// </summary>
-        [DisplayName("烤箱信息2起始地址")]
-        [Category("ZZZZZ")]
-        public string OvenInfo2StartAddrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(ovenInfo2StartAddrs))
-                {
-                    ovenInfo2StartAddrs = TengDa.WF.Option.GetOption("OvenInfo2StartAddrs");
-                }
-                return ovenInfo2StartAddrs;
-            }
-            set
-            {
-                if (value != ovenInfo2StartAddrs)
-                {
-                    TengDa.WF.Option.SetOption("OvenInfo2StartAddrs", value);
-                    ovenInfo2StartAddrs = value;
-                }
-            }
-        }
+        //private string ovenInfo2StartAddrs = string.Empty;
+        ///// <summary>
+        ///// 烤箱信息2起始地址
+        ///// </summary>
+        //[DisplayName("烤箱信息2起始地址")]
+        //[Category("ZZZZZ")]
+        //public string OvenInfo2StartAddrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(ovenInfo2StartAddrs))
+        //        {
+        //            ovenInfo2StartAddrs = TengDa.WF.Option.GetOption("OvenInfo2StartAddrs");
+        //        }
+        //        return ovenInfo2StartAddrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != ovenInfo2StartAddrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("OvenInfo2StartAddrs", value);
+        //            ovenInfo2StartAddrs = value;
+        //        }
+        //    }
+        //}
 
-        private string iPAddressRegex = string.Empty;
-        /// <summary>
-        /// 局域网IP地址正则表达式
-        /// </summary>
-        [DisplayName("局域网IP地址正则表达式")]
-        public string IPAddressRegex
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(iPAddressRegex))
-                {
-                    iPAddressRegex = TengDa.WF.Option.GetOption("IPAddressRegex");
-                }
-                return iPAddressRegex;
-            }
-            set
-            {
-                if (value != iPAddressRegex)
-                {
-                    TengDa.WF.Option.SetOption("IPAddressRegex", value);
-                    iPAddressRegex = value;
-                }
-            }
-        }
-
-
-
-        private string ovenLeftTempStartAddrs = string.Empty;
-        /// <summary>
-        /// 烤箱左夹具温度起始地址
-        /// </summary>
-        [DisplayName("烤箱左夹具温度起始地址")]
-        [Category("烤箱")]
-        public string OvenLeftTempStartAddrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(ovenLeftTempStartAddrs))
-                {
-                    ovenLeftTempStartAddrs = TengDa.WF.Option.GetOption("OvenLeftTempStartAddrs");
-                }
-                return ovenLeftTempStartAddrs;
-            }
-            set
-            {
-                if (value != ovenLeftTempStartAddrs)
-                {
-                    TengDa.WF.Option.SetOption("OvenLeftTempStartAddrs", value);
-                    ovenLeftTempStartAddrs = value;
-                }
-            }
-        }
+        //private string iPAddressRegex = string.Empty;
+        ///// <summary>
+        ///// 局域网IP地址正则表达式
+        ///// </summary>
+        //[DisplayName("局域网IP地址正则表达式")]
+        //public string IPAddressRegex
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(iPAddressRegex))
+        //        {
+        //            iPAddressRegex = TengDa.WF.Option.GetOption("IPAddressRegex");
+        //        }
+        //        return iPAddressRegex;
+        //    }
+        //    set
+        //    {
+        //        if (value != iPAddressRegex)
+        //        {
+        //            TengDa.WF.Option.SetOption("IPAddressRegex", value);
+        //            iPAddressRegex = value;
+        //        }
+        //    }
+        //}
 
 
-        private string ovenRightTempStartAddrs = string.Empty;
-        /// <summary>
-        /// 烤箱右夹具温度起始地址
-        /// </summary>
-        [DisplayName("烤箱右夹具温度起始地址")]
-        [Category("烤箱")]
-        public string OvenRightTempStartAddrs
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(ovenRightTempStartAddrs))
-                {
-                    ovenRightTempStartAddrs = TengDa.WF.Option.GetOption("OvenRightTempStartAddrs");
-                }
-                return ovenRightTempStartAddrs;
-            }
-            set
-            {
-                if (value != ovenRightTempStartAddrs)
-                {
-                    TengDa.WF.Option.SetOption("OvenRightTempStartAddrs", value);
-                    ovenRightTempStartAddrs = value;
-                }
-            }
-        }
+
+        //private string ovenLeftTempStartAddrs = string.Empty;
+        ///// <summary>
+        ///// 烤箱左夹具温度起始地址
+        ///// </summary>
+        //[DisplayName("烤箱左夹具温度起始地址")]
+        //[Category("烤箱")]
+        //public string OvenLeftTempStartAddrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(ovenLeftTempStartAddrs))
+        //        {
+        //            ovenLeftTempStartAddrs = TengDa.WF.Option.GetOption("OvenLeftTempStartAddrs");
+        //        }
+        //        return ovenLeftTempStartAddrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != ovenLeftTempStartAddrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("OvenLeftTempStartAddrs", value);
+        //            ovenLeftTempStartAddrs = value;
+        //        }
+        //    }
+        //}
+
+
+        //private string ovenRightTempStartAddrs = string.Empty;
+        ///// <summary>
+        ///// 烤箱右夹具温度起始地址
+        ///// </summary>
+        //[DisplayName("烤箱右夹具温度起始地址")]
+        //[Category("烤箱")]
+        //public string OvenRightTempStartAddrs
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(ovenRightTempStartAddrs))
+        //        {
+        //            ovenRightTempStartAddrs = TengDa.WF.Option.GetOption("OvenRightTempStartAddrs");
+        //        }
+        //        return ovenRightTempStartAddrs;
+        //    }
+        //    set
+        //    {
+        //        if (value != ovenRightTempStartAddrs)
+        //        {
+        //            TengDa.WF.Option.SetOption("OvenRightTempStartAddrs", value);
+        //            ovenRightTempStartAddrs = value;
+        //        }
+        //    }
+        //}
 
         private string ovenOpenDoorAddrVals = string.Empty;
         /// <summary>
