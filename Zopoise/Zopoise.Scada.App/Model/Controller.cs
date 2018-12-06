@@ -11,10 +11,10 @@ using TengDa.Wpf;
 namespace Zopoise.Scada.App
 {
     /// <summary>
-    /// 冷却机
+    /// 控制器（PLC）
     /// </summary>
-    [DisplayName("冷却机")]
-    public class Cooler : Terminal
+    [DisplayName("控制器（PLC）")]
+    public class Controller : Terminal
     {
         [DisplayName("PLC ID")]
         public int PlcId { get; set; }

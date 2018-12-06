@@ -54,40 +54,22 @@ namespace Zopoise.Scada.App
                 OperationHelper.ShowTips("连接温度采集器成功：" + Current.Collector.PortName);
             }
 
-            if (Current.Cooler.IsEnabled)
+            if (Current.Controller.IsEnabled)
             {
-                if (!Current.Cooler.PLC.IsPingSuccess)
+                if (!Current.Controller.PLC.IsPingSuccess)
                 {
-                    OperationHelper.ShowTips(string.Format("无法连接到{0}，IP：{1}", Current.Cooler.Name, Current.Cooler.PLC.IP), true);
+                    OperationHelper.ShowTips(string.Format("无法连接到{0}，IP：{1}", Current.Controller.Name, Current.Controller.PLC.IP), true);
                     return false;
                 }
                 string msg = string.Empty;
-                if (!Current.Cooler.PLC.Connect(out msg))
+                if (!Current.Controller.PLC.Connect(out msg))
                 {
                     OperationHelper.ShowTips(msg, true);
-                    Current.Cooler.RealtimeStatus = "连接出现异常";
+                    Current.Controller.RealtimeStatus = "连接出现异常";
                     return false;
                 }
-                Current.Cooler.RealtimeStatus = "连接成功";
-                OperationHelper.ShowTips("连接冷却机成功：" + Current.Cooler.PLC.IP);
-            }
-
-            if (Current.Scaner.IsEnabled)
-            {
-                if (!Current.Scaner.IsPingSuccess)
-                {
-                    OperationHelper.ShowTips(string.Format("无法连接到{0}，IP：{1}", Current.Scaner.Name, Current.Scaner.IP), true);
-                    return false;
-                }
-                string msg = string.Empty;
-                if (!Current.Scaner.Connect(out msg))
-                {
-                    OperationHelper.ShowTips(msg, true);
-                    Current.Scaner.RealtimeStatus = "连接出现异常";
-                    return false;
-                }
-                Current.Scaner.RealtimeStatus = "连接成功";
-                OperationHelper.ShowTips("连接扫码枪成功：" + Current.Scaner.IP);
+                Current.Controller.RealtimeStatus = "连接成功";
+                OperationHelper.ShowTips("连接冷却机成功：" + Current.Controller.PLC.IP);
             }
 
             if (Current.Mes.IsEnabled)
@@ -144,33 +126,20 @@ namespace Zopoise.Scada.App
                 OperationHelper.ShowTips("关闭串口连接成功：" + Current.Collector.PortName);
             }
 
-            if (Current.Cooler.IsEnabled)
+            if (Current.Controller.IsEnabled)
             {
                 string msg = string.Empty;
-                if (!Current.Cooler.PLC.DisConnect(out msg))
+                if (!Current.Controller.PLC.DisConnect(out msg))
                 {
                     OperationHelper.ShowTips(msg);
-                    Current.Cooler.RealtimeStatus = "断开连接出现异常";
+                    Current.Controller.RealtimeStatus = "断开连接出现异常";
                     return false;
                 }
-                Current.Cooler.IsAlive = false;
-                Current.Cooler.RealtimeStatus = "断开连接";
-                OperationHelper.ShowTips("关闭PLC连接成功：" + Current.Cooler.PLC.IP);
+                Current.Controller.IsAlive = false;
+                Current.Controller.RealtimeStatus = "断开连接";
+                OperationHelper.ShowTips("关闭PLC连接成功：" + Current.Controller.PLC.IP);
             }
 
-            if (Current.Scaner.IsEnabled)
-            {
-                string msg = string.Empty;
-                if (!Current.Scaner.DisConnect(out msg))
-                {
-                    OperationHelper.ShowTips(msg);
-                    Current.Scaner.RealtimeStatus = "断开连接出现异常";
-                    return false;
-                }
-
-                Current.Scaner.RealtimeStatus = "断开连接";
-                OperationHelper.ShowTips("关闭扫码枪连接成功：" + Current.Scaner.IP);
-            }
 
             if (Current.Mes.IsEnabled)
             {

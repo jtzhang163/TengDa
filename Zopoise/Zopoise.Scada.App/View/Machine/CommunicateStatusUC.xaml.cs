@@ -22,10 +22,9 @@ namespace Zopoise.Scada.App
         private void IsEnabledCheckBox_CheckedChanged(object sender, RoutedEventArgs e)
         {
             Context.CollectorContext.SaveChanges();
-            Context.CoolerContext.SaveChanges();
+            Context.ControllerContext.SaveChanges();
             Context.InsulationContext.SaveChanges();
             Context.MesContext.SaveChanges();
-            Context.ScanerContext.SaveChanges();
         }
     }
 

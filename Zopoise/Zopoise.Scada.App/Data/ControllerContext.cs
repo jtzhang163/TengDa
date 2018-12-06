@@ -3,27 +3,27 @@ using TengDa.Wpf;
 
 namespace Zopoise.Scada.App
 {
-    public class CoolerContext : DbContext
+    public class ControllerContext : DbContext
     {
-        public CoolerContext() : base(AppCurrent.ConnectionString)
+        public ControllerContext() : base(AppCurrent.ConnectionString)
         {
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Cooler>().ToTable("t_cooler");
+            modelBuilder.Entity<Controller>().ToTable("t_controller");
             modelBuilder.Entity<PLC>().ToTable("t_plc");
         }
 
-        public DbSet<Cooler> Coolers { get; set; }
+        public DbSet<Controller> Controllers { get; set; }
         public DbSet<PLC> PLCs { get; set; }
     }
 
-    public class CoolerInitializer : DropCreateDatabaseIfModelChanges<CoolerContext>
+    public class ControllerInitializer : DropCreateDatabaseIfModelChanges<ControllerContext>
     {
-        protected override void Seed(CoolerContext context)
+        protected override void Seed(ControllerContext context)
         {
-            var cooler = new Cooler
+            var controller = new Controller
             {
                 Name = "冷却机",
                 Company = "TengDa",
@@ -41,7 +41,7 @@ namespace Zopoise.Scada.App
                     IsEnabled = true,
                 }
             };
-            context.Coolers.Add(cooler);
+            context.Controllers.Add(controller);
         }
     }
 }

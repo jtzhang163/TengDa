@@ -32,63 +32,22 @@ namespace Zopoise.Scada.App
             }
         }
 
-        private static TemperatureCollector collector = new TemperatureCollector();
-        public static TemperatureCollector Collector
+
+        private static Controller controller = new Controller();
+        public static Controller Controller
         {
             get
             {
-                if (collector.Id < 1)
+                if (controller.Id < 1)
                 {
-                    collector = Context.CollectorContext.Collectors.FirstOrDefault() ?? new TemperatureCollector();
+                    controller = Context.ControllerContext.Controllers.FirstOrDefault() ?? new Controller();
                 }
-                return collector;
-            }
-        }
-
-
-        private static Cooler cooler = new Cooler();
-        public static Cooler Cooler
-        {
-            get
-            {
-                if (cooler.Id < 1)
-                {
-                    cooler = Context.CoolerContext.Coolers.FirstOrDefault() ?? new Cooler();
-                }
-                return cooler;
-            }
-        }
-
-        private static Scaner scaner = new Scaner();
-        public static Scaner Scaner
-        {
-            get
-            {
-                if (scaner.Id < 1)
-                {
-                    scaner = Context.ScanerContext.Scaners.FirstOrDefault() ?? new Scaner();
-                }
-                return scaner;
-            }
-        }
-
-
-        private static MES mes = new MES();
-        public static MES Mes
-        {
-            get
-            {
-                if (mes.Id < 1)
-                {
-                    mes = Context.MesContext.MESs.FirstOrDefault() ?? new MES();
-                }
-                return mes;
+                return controller;
             }
         }
 
         #endregion
 
-        public static Battery Battery = new Battery();
 
         #region 定时器
 
@@ -98,7 +57,7 @@ namespace Zopoise.Scada.App
 
         public static System.Timers.Timer TimerCheckCollectorInfo = new System.Timers.Timer() { Interval = Option.CheckCollectorInfoInterval, AutoReset = true };
 
-        public static System.Timers.Timer TimerCheckCoolerInfo = new System.Timers.Timer() { Interval = Option.CheckCoolerInfoInterval, AutoReset = true };
+        public static System.Timers.Timer TimerCheckControllerInfo = new System.Timers.Timer() { Interval = Option.CheckControllerInfoInterval, AutoReset = true };
 
         public static System.Timers.Timer TimerCheckScanerInfo = new System.Timers.Timer() { Interval = Option.CheckScanerInfoInterval, AutoReset = true };
 

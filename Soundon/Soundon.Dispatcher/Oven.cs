@@ -456,7 +456,7 @@ namespace Soundon.Dispatcher
 
                     #endregion
 
-                    #region 写指令 控制开关门、启动运行、抽卸真空
+                    #region 写指令 控制开关门、启动运行、抽破真空
                     for (int j = 0; j < this.Floors.Count; j++)
                     {
 
@@ -624,7 +624,7 @@ namespace Soundon.Dispatcher
                                 this.Plc.IsAlive = false;
                                 return false;
                             }
-                            LogHelper.WriteInfo(string.Format("成功发送泄真空指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenUploadVacuumAddrVals.Split(',')[j]));
+                            LogHelper.WriteInfo(string.Format("成功发送破真空指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenUploadVacuumAddrVals.Split(',')[j]));
                             this.Floors[j].toUploadVacuum = false;
                         }
                         #endregion
@@ -641,7 +641,7 @@ namespace Soundon.Dispatcher
                                 this.Plc.IsAlive = false;
                                 return false;
                             }
-                            LogHelper.WriteInfo(string.Format("成功发送取消泄真空指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenStopUploadVacuumAddrVals.Split(',')[j]));
+                            LogHelper.WriteInfo(string.Format("成功发送取消破真空指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenStopUploadVacuumAddrVals.Split(',')[j]));
                             this.Floors[j].toCancelUploadVacuum = false;
                         }
                         #endregion
@@ -833,7 +833,7 @@ namespace Soundon.Dispatcher
         }
 
         /// <summary>
-        /// 泄真空
+        /// 破真空
         /// </summary>
         /// <param name="j">炉腔序号</param>
         /// <returns></returns>
@@ -848,13 +848,13 @@ namespace Soundon.Dispatcher
 
             if (!this.Floors[j].IsNetControlOpen)
             {
-                Tip.Alert(this.Floors[j].Name + "网控未开启，无法远程卸真空 ");
+                Tip.Alert(this.Floors[j].Name + "网控未开启，无法远程破真空 ");
                 return;
             }
 
             if (this.Floors[j].IsBaking)
             {
-                Tip.Alert(this.Floors[j].Name + "运行未完成，无法远程卸真空 ");
+                Tip.Alert(this.Floors[j].Name + "运行未完成，无法远程破真空 ");
                 return;
             }
 
@@ -886,7 +886,7 @@ namespace Soundon.Dispatcher
         }
 
         /// <summary>
-        /// 取消泄真空
+        /// 取消破真空
         /// </summary>
         /// <param name="j">炉腔序号</param>
         /// <returns></returns>
@@ -901,13 +901,13 @@ namespace Soundon.Dispatcher
 
             if (!this.Floors[j].IsNetControlOpen)
             {
-                Tip.Alert(this.Floors[j].Name + "网控未开启，无法远程取消卸真空 ");
+                Tip.Alert(this.Floors[j].Name + "网控未开启，无法远程取消破真空 ");
                 return;
             }
 
             if (this.Floors[j].IsBaking)
             {
-                Tip.Alert(this.Floors[j].Name + "运行未完成，无法远程取消卸真空 ");
+                Tip.Alert(this.Floors[j].Name + "运行未完成，无法远程取消破真空 ");
                 return;
             }
 

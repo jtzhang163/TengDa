@@ -518,7 +518,8 @@ namespace Soundon.Dispatcher
                             Current.Task.TaskId = -1;
                             Current.Task.FromStationId = -1;
                             Current.Task.ToStationId = -1;
-                            Current.Task.ClampId = -1;
+                            //Current.Task.ClampId = -1;
+                            //防止任务复位导致ClampId丢失
                             Current.Task.FromClampStatus = ClampStatus.未知;
                             Current.Task.Status = TaskStatus.完成;
                         }
@@ -696,7 +697,8 @@ namespace Soundon.Dispatcher
                     Current.Task.StartTime = TengDa.Common.DefaultTime;
                     Current.Task.TaskId = -1;
                     Current.Task.FromStationId = -1;
-                    Current.Task.ClampId = -1;
+                    //Current.Task.ClampId = -1;
+                    //防止任务复位导致ClampId丢失
                     Current.Task.ToStationId = -1;
                     Current.Task.FromClampStatus = ClampStatus.未知;
                     Current.Task.Status = TaskStatus.完成;

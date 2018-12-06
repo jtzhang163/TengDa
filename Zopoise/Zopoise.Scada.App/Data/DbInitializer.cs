@@ -10,8 +10,7 @@ namespace Zopoise.Scada.App
             Database.SetInitializer(new MesInitializer());
             Database.SetInitializer(new CollectorInitializer());
             Database.SetInitializer(new TesterInitializer());
-            Database.SetInitializer(new ScanerInitializer());
-            Database.SetInitializer(new CoolerInitializer());
+            Database.SetInitializer(new ControllerInitializer());
             base.Initialize();
         }
     }

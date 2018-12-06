@@ -29,7 +29,7 @@ namespace Zopoise.Scada.App
                     appName = TengDa.Wpf.Option.GetOption("AppName");
                     if (string.IsNullOrEmpty(appName))
                     {
-                        appName = "东莞塔菲尔Hipot自动采集上传系统";
+                        appName = "众普森灯具老化线数据监控采集系统";
                         TengDa.Wpf.Option.SetOption("AppName", appName, "应用程序名称");
                     }
                 }
@@ -67,7 +67,7 @@ namespace Zopoise.Scada.App
         }
     
         [Browsable(false)]
-        public string LocalIPAddress => MES.LocalIPAddr.ToString();
+        public string LocalIPAddress => "127.0.0.1";
 
         [Browsable(false)]
         public string CurrentProcess
@@ -233,8 +233,7 @@ namespace Zopoise.Scada.App
             {
                 Current.Tester,
                 Current.Collector,
-                Current.Cooler,
-                Current.Scaner,
+                Current.Controller,
                 Current.Mes
             };
         }

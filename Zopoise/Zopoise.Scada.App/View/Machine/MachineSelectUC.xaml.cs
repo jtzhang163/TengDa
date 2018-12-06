@@ -20,9 +20,7 @@ namespace Zopoise.Scada.App
             {
                 new MachineTree() { Id = 1, Name = Current.Tester.Name, ParentId = 0 ,IsChecked = Current.Tester.IsEnabled},
                 new MachineTree() { Id = 2, Name = Current.Collector.Name, ParentId = 0 ,IsChecked = Current.Collector.IsEnabled},
-                new MachineTree() { Id = 3, Name = Current.Cooler.Name, ParentId = 0 ,IsChecked = Current.Cooler.IsEnabled},
-                new MachineTree() { Id = 4, Name = Current.Scaner.Name, ParentId = 0 ,IsChecked = Current.Scaner.IsEnabled},
-                //new MachineTree() { Id = 5, Name = Current.Cooler.PLC.Name, ParentId = 4 ,IsChecked = Current.Cooler.PLC.IsEnabled},
+                new MachineTree() { Id = 3, Name = Current.Controller.Name, ParentId = 0 ,IsChecked = Current.Controller.IsEnabled},
                 new MachineTree() { Id = 6, Name = Current.Mes.Name, ParentId = 0 ,IsChecked = Current.Mes.IsEnabled},
             };
 
@@ -151,15 +149,10 @@ namespace Zopoise.Scada.App
                         Current.Collector.IsEnabled = value;
                         Context.CollectorContext.SaveChangesAsync();
                     }
-                    else if (Caption == Current.Cooler.Name)
+                    else if (Caption == Current.Controller.Name)
                     {
-                        Current.Cooler.IsEnabled = value;
-                        Context.CoolerContext.SaveChangesAsync();
-                    }
-                    else if (Caption == Current.Scaner.Name)
-                    {
-                        Current.Scaner.IsEnabled = value;
-                        Context.ScanerContext.SaveChangesAsync();
+                        Current.Controller.IsEnabled = value;
+                        Context.ControllerContext.SaveChangesAsync();
                     }
                     else if (Caption == Current.Mes.Name)
                     {

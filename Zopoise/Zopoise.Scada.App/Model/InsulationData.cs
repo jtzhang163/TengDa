@@ -82,8 +82,6 @@ namespace Zopoise.Scada.App
 
         public int BatteryId { get; set; }
 
-        public Battery Battery { get; set; }
-
         public float Resistance { get; set; }
 
         public float Voltage { get; set; }

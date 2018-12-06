@@ -32,22 +32,12 @@ namespace Zopoise.Scada.App
             }
         }
 
-        public void CheckCoolerInfo(object sender, ElapsedEventArgs e)
+        public void CheckControllerInfo(object sender, ElapsedEventArgs e)
         {
-            if (AppCurrent.IsRunning && Current.Cooler.IsEnabled)
+            if (AppCurrent.IsRunning && Current.Controller.IsEnabled)
             {
 
-                Current.Cooler.GetInfo();
-
-            }
-        }
-
-        public void CheckScanerInfo(object sender, ElapsedEventArgs e)
-        {
-            if (AppCurrent.IsRunning && Current.Scaner.IsEnabled && Current.Cooler.IsReadyScan) 
-            {
-
-                Current.Scaner.GetInfo();
+                Current.Controller.GetInfo();
 
             }
         }
@@ -59,15 +49,6 @@ namespace Zopoise.Scada.App
 
                 InsulationData.Insert();
 
-            }
-        }
-
-        public void CheckMesInfo(object sender, ElapsedEventArgs e)
-        {
-            if (AppCurrent.IsRunning && Current.Mes.IsEnabled && !Current.Mes.IsOffline)
-            {
-                MES.UploadMachineInfo("S");
-                MES.Upload();
             }
         }
     }

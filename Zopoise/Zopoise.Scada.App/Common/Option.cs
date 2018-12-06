@@ -75,34 +75,34 @@ namespace Zopoise.Scada.App
             }
         }
 
-        private int checkCoolerInfoInterval = -1;
+        private int checkControllerInfoInterval = -1;
         /// <summary>
         /// 检测冷却机PLC信息的时间间隔
         /// </summary>
         [DisplayName("检测冷却机PLC信息的时间间隔")]
         [Description("检测冷却机PLC信息的时间间隔, 单位（ms）")]
         [Category("通信")]
-        public int CheckCoolerInfoInterval
+        public int CheckControllerInfoInterval
         {
             get
             {
-                if (checkCoolerInfoInterval < 0)
+                if (checkControllerInfoInterval < 0)
                 {
-                    checkCoolerInfoInterval = _Convert.StrToInt(TengDa.Wpf.Option.GetOption("CheckCoolerInfoInterval"), -1);
-                    if (checkCoolerInfoInterval < 0)
+                    checkControllerInfoInterval = _Convert.StrToInt(TengDa.Wpf.Option.GetOption("CheckControllerInfoInterval"), -1);
+                    if (checkControllerInfoInterval < 0)
                     {
-                        checkCoolerInfoInterval = 1000;
-                        TengDa.Wpf.Option.SetOption("CheckCoolerInfoInterval", checkCoolerInfoInterval.ToString(), "检测冷却机PLC信息的时间间隔");
+                        checkControllerInfoInterval = 1000;
+                        TengDa.Wpf.Option.SetOption("CheckControllerInfoInterval", checkControllerInfoInterval.ToString(), "检测冷却机PLC信息的时间间隔");
                     }
                 }
-                return checkCoolerInfoInterval;
+                return checkControllerInfoInterval;
             }
             set
             {
-                if (checkCoolerInfoInterval != value)
+                if (checkControllerInfoInterval != value)
                 {
-                    TengDa.Wpf.Option.SetOption("CheckCoolerInfoInterval", value.ToString());
-                    SetProperty(ref checkCoolerInfoInterval, value);
+                    TengDa.Wpf.Option.SetOption("CheckControllerInfoInterval", value.ToString());
+                    SetProperty(ref checkControllerInfoInterval, value);
                 }
             }
         }

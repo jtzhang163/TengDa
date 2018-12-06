@@ -28,11 +28,6 @@ namespace Zopoise.Scada.App
         {
             InitializeComponent();
             this.DataContext = Current.App;
-
-            this.dpTester.DataContext = Current.Tester;
-
-            this.dpCollector.DataContext = Current.Collector;
-
             this.StartDateTimePicker.Value = DateTime.Now.AddHours(-1);
             this.StopDateTimePicker.Value = DateTime.Now;
 

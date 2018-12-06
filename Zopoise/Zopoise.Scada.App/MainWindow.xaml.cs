@@ -47,8 +47,6 @@ namespace Zopoise.Scada.App
 
             this.DataContext = Current.App;
 
-            this.wpScaner.DataContext = Current.Scaner;
-
             AppCurrent.IsTerminalInitFinished = true;
 
             AppCurrent.YieldNow.FeedingOKContent = "测试数";
@@ -79,17 +77,12 @@ namespace Zopoise.Scada.App
             Current.TimerCheckCollectorInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckCollectorInfo);
             Current.TimerCheckCollectorInfo.Start();
 
-            Current.TimerCheckCoolerInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckCoolerInfo);
-            Current.TimerCheckCoolerInfo.Start();
-
-            Current.TimerCheckScanerInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckScanerInfo);
-            Current.TimerCheckScanerInfo.Start();
+            Current.TimerCheckControllerInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckControllerInfo);
+            Current.TimerCheckControllerInfo.Start();
 
             Current.TimerCheckDataInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckDataInfo);
             Current.TimerCheckDataInfo.Start();
 
-            Current.TimerCheckMesInfo.Elapsed += new System.Timers.ElapsedEventHandler(new TimerRun().CheckMesInfo);
-            Current.TimerCheckMesInfo.Start();
         }
 
         private void BtnTest_Click(object sender, RoutedEventArgs e)

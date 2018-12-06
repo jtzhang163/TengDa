@@ -83,7 +83,7 @@ namespace Soundon.Dispatcher
                         }
                         else
                         {
-                            AddLog("卸真空完成");
+                            AddLog("破真空完成");
                         }
                     }
                 }
@@ -261,7 +261,7 @@ namespace Soundon.Dispatcher
         public bool VacuumIsLoading = false;
 
         /// <summary>
-        /// 正在泄真空
+        /// 正在破真空
         /// </summary>
         public bool VacuumIsUploading = false;
 

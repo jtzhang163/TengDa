@@ -1466,10 +1466,10 @@ namespace Soundon.Dispatcher
 
         //private string unloadVacuumStrs = string.Empty;
         ///// <summary>
-        ///// 卸真空指令
+        ///// 破真空指令
         ///// </summary>
-        //[Description("卸真空指令")]
-        //[DisplayName("卸真空指令")]
+        //[Description("破真空指令")]
+        //[DisplayName("破真空指令")]
         //[Category("烤箱")]
         //public string UnloadVacuumStrs
         //{
