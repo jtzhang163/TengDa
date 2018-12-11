@@ -1943,6 +1943,35 @@ namespace Soundon.Dispatcher
             }
         }
 
+
+        private int robotStopPosition4RasterInductive = 0;
+        /// <summary>
+        /// 下料人员安全光栅感应时机器人急停最大位置
+        /// 若人员进入安全光栅感应区，且搬运机器人位置小于该值，则远程发送急停指令到搬运机器人
+        /// </summary>
+        [DisplayName("下料人员安全光栅感应时机器人急停最大位置")]
+        [Description("若人员进入安全光栅感应区，且搬运机器人位置小于该值，则远程发送急停指令到搬运机器人")]
+        [Category("机器人")]
+        public int RobotStopPosition4RasterInductive
+        {
+            get
+            {
+                if (robotStopPosition4RasterInductive == 0)
+                {
+                    robotStopPosition4RasterInductive = _Convert.StrToInt(TengDa.WF.Option.GetOption("RobotStopPosition4RasterInductive"), 4000);
+                }
+                return robotStopPosition4RasterInductive;
+            }
+            set
+            {
+                if (value != robotStopPosition4RasterInductive)
+                {
+                    TengDa.WF.Option.SetOption("RobotStopPosition4RasterInductive", value.ToString());
+                    robotStopPosition4RasterInductive = value;
+                }
+            }
+        }
+
         //private string ovenIsBakingStatusAddrs = string.Empty;
         ///// <summary>
         ///// 烤箱烘烤状态地址

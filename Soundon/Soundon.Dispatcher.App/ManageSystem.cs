@@ -2390,9 +2390,37 @@ namespace Soundon.Dispatcher.App
                     this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "获取" + Current.blankers[i].Name + "信息失败"; }));
                 }
 
-                if (Current.blankers[i].AlreadyGetAllInfo)
+                if (Current.blankers[i].AlreadyGetAllInfo && Current.blankers[i].IsAlive && Current.Robot.IsAlive)
                 {
+                    //人员进入安全光栅感应区
+                    if (Current.blankers[i].IsRasterInductive && !Current.Robot.IsPausing && Current.Robot.Position <= Current.option.RobotStopPosition4RasterInductive)
+                    {
+                        if (Current.Robot.Stop(out msg))
+                        {
+                            Error.Alert(string.Format("人员进入 {0} 安全光栅感应区域，已远程发送急停信号给 {1}", Current.blankers[i].Name, Current.Robot.Name));
+                        }
+                        else
+                        {
+                            Error.Alert(string.Format("人员进入 {0} 安全光栅感应区域，远程发送急停信号给 {1} 失败！", Current.blankers[i].Name, Current.Robot.Name));
+                        }
+                    }
 
+                    //另一台下料机
+                    int ii = BlankerCount - i - 1;
+                    bool otherBlankerIsRasterInductive = Current.blankers[ii].IsRasterInductive && Current.blankers[ii].IsAlive;
+
+                    //人员离开安全光栅感应区
+                    if (!Current.blankers[i].IsRasterInductive && !otherBlankerIsRasterInductive && Current.Robot.IsPausing && Current.Robot.Position <= Current.option.RobotStopPosition4RasterInductive)
+                    {
+                        if (Current.Robot.Restart(out msg))
+                        {
+                            Tip.Alert(string.Format("人员离开 {0} 安全光栅感应区域，已远程发送继续运动信号给 {1}", Current.blankers[i].Name, Current.Robot.Name));
+                        }
+                        else
+                        {
+                            Error.Alert(string.Format("人员离开 {0} 安全光栅感应区域，远程发送继续运动信号给 {1} 失败！", Current.blankers[i].Name, Current.Robot.Name));
+                        }
+                    }
 
                 }
             }

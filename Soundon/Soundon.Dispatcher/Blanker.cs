@@ -92,6 +92,13 @@ namespace Soundon.Dispatcher
             }
         }
 
+        /// <summary>
+        /// 人员处于安全光栅感应区
+        /// 感应到此信号时，若搬运机器人运行至下料附近，则发送急停信号给搬运机器人
+        /// </summary>
+        [ReadOnly(true), DisplayName("人员处于安全光栅感应区")]
+        public bool IsRasterInductive { get; set; }
+
         public bool toOpenDoor = false;
 
         public bool toCloseDoor = false;
@@ -317,6 +324,24 @@ namespace Soundon.Dispatcher
                     //    default: this.Stations[1].DoorStatus = DoorStatus.未知; break;
                     //}
 
+                    if (bOutputs[25] == 1)
+                    {
+                        if (!this.IsRasterInductive)
+                        {
+                            LogHelper.WriteInfo(string.Format("{0} --> 人员进入安全光栅感应区", this.Name));
+                        }
+                        this.IsRasterInductive = true;
+                        this.AlarmStr = "安全光栅报警！";
+                    }
+                    else
+                    {
+                        if (this.IsRasterInductive)
+                        {
+                            LogHelper.WriteInfo(string.Format("{0} --> 人员离开安全光栅感应区", this.Name));
+                        }
+                        this.IsRasterInductive = false;
+                        this.AlarmStr = "";
+                    }
 
                     #endregion
 
