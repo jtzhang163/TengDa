@@ -2165,16 +2165,14 @@ namespace Soundon.Dispatcher.App
                             {
                                 string tip = string.Format("{0}:{1}-->{2}", station.Name, station.PreFloorStatus, station.FloorStatus);
                                 AddTips(tip);
-                            
-                                //烘烤完成直接破真空                         
-                                if(station.FloorStatus == FloorStatus.待出 && station.PreFloorStatus == FloorStatus.烘烤 && floor.Stations.IndexOf(station) == 0)
-                                {
-                                    if (floor.IsVacuum && floor.RunRemainMinutes <= 1)
-                                    {
-                                        Current.ovens[i].UploadVacuum(j);
-                                    }
-                                }
+                                StationLog.Add(new List<StationLog>() { new StationLog() { StationId = station.Id, Message = tip } }, out msg);
 
+                                //烘烤完成直接破真空                         
+                                if (station.FloorStatus == FloorStatus.待出 && floor.IsVacuum && floor.RunRemainMinutes <= 1)
+                                {
+                                    Current.ovens[i].UploadVacuum(j);
+
+                                }
                                 this.tlpFloor[i][j].Invalidate();
                             }
                             else if (station.ClampStatus == ClampStatus.异常)
