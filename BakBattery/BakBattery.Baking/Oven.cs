@@ -465,7 +465,11 @@ namespace BakBattery.Baking
                                 {
                                     if (cPre == '0')
                                     {
-                                        AlarmLog.Stop(AlarmType.Oven, x + 1, this.Id, out msg);
+                                        AlarmLog alarmLog = new AlarmLog();
+                                        alarmLog.AlarmId = x + 1;
+                                        alarmLog.AlarmType = AlarmType.Oven;
+                                        alarmLog.TypeId = this.Id;
+                                        alarmLogs.Add(alarmLog);
                                     }
                                 }
                                 else if (alarm.FloorNum > 0 && alarm.FloorNum <= this.Floors.Count)
@@ -490,11 +494,7 @@ namespace BakBattery.Baking
                                     this.AlarmStr += alarm.AlarmStr + ",";
                                     if (cPre == '1')
                                     {
-                                        AlarmLog alarmLog = new AlarmLog();
-                                        alarmLog.AlarmId = x + 1;
-                                        alarmLog.AlarmType = AlarmType.Oven;
-                                        alarmLog.TypeId = this.Id;
-                                        alarmLogs.Add(alarmLog);
+                                        AlarmLog.Stop(AlarmType.Oven, x + 1, this.Id, out msg);
                                     }
                                 }
                                 else if (alarm.FloorNum > 0 && alarm.FloorNum <= this.Floors.Count)
