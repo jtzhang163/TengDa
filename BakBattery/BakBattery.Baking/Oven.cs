@@ -463,6 +463,8 @@ namespace BakBattery.Baking
                                 Alarm alarm = (from a in Alarm.Alarms where a.Id == x + 1 select a).ToList()[0];
                                 if (alarm.FloorNum == 0)
                                 {
+                                    this.AlarmStr += alarm.AlarmStr + ",";
+
                                     if (cPre == '0')
                                     {
                                         AlarmLog alarmLog = new AlarmLog();
@@ -491,7 +493,6 @@ namespace BakBattery.Baking
                                 Alarm alarm = (from a in Alarm.Alarms where a.Id == x + 1 select a).ToList()[0];
                                 if (alarm.FloorNum == 0)
                                 {
-                                    this.AlarmStr += alarm.AlarmStr + ",";
                                     if (cPre == '1')
                                     {
                                         AlarmLog.Stop(AlarmType.Oven, x + 1, this.Id, out msg);
