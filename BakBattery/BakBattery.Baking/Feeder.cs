@@ -420,189 +420,190 @@ namespace BakBattery.Baking
 
         public bool GetInfo()
         {
-
-            if (!this.Plc.IsPingSuccess)
+            lock (this)
             {
-                this.Plc.IsAlive = false;
-                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
-                return false;
-            }
-
-            string msg = string.Empty;
-            string output = string.Empty;
-
-            try
-            {
-                if (!this.Plc.GetInfo(false, Current.option.GetFeederInfoStr, out output, out msg))
+                if (!this.Plc.IsPingSuccess)
                 {
-                    Error.Alert(msg);
                     this.Plc.IsAlive = false;
-                    return false;
-                }
-                if (output.Substring(3, 1) != "$")
-                {
-                    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetFeederInfoStr, output));
+                    LogHelper.WriteError("无法连接到 " + this.Plc.IP);
                     return false;
                 }
 
-                int[] iOut = new int[6];
-                output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-                for (int j = 0; j < iOut.Length; j++)
-                {
-                    iOut[j] = int.Parse(output.Substring(j * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                }
+                string msg = string.Empty;
+                string output = string.Empty;
 
-                if (iOut[0] == 1)
+                try
                 {
-                    if (!this.BatteryScaner.IsReady)
+                    if (!this.Plc.GetInfo(false, Current.option.GetFeederInfoStr, out output, out msg))
                     {
-                        this.BatteryScaner.CanScan = true;
-                        LogHelper.WriteInfo(this.BatteryScaner.Name + "【扫码日志】收到上料机给的请求扫码信号！");
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
                     }
-                    this.BatteryScaner.IsReady = true;
-                }
-                else
-                {
-                    this.BatteryScaner.IsReady = false;
-                    this.BatteryScaner.CanScan = false;
-                }
-
-
-                for (int j = 0; j < this.Stations.Count; j++)
-                {
-                    switch (iOut[j + 1])
+                    if (output.Substring(3, 1) != "$")
                     {
-                        case 1:
-                            this.EmptyClampCount[j]++;
-                            this.Stations[j].Status = StationStatus.可放;
-                            break;
-                        case 2:
-                            this.Stations[j].ClampStatus = ClampStatus.空夹具;
-                            this.Stations[j].Status = StationStatus.工作中;
-                            break;
-                        case 3:
-                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[j].Status = StationStatus.可取;
-                            break;
-                        case 31:
-                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[j].Status = StationStatus.可取;
-                            break;
-                        case 4:
-                            this.Stations[j].ClampStatus = ClampStatus.异常;
-                            this.Stations[j].Status = StationStatus.不可用;
-                            break;
-                        default:
-                            this.Stations[j].ClampStatus = ClampStatus.未知;
-                            this.Stations[j].Status = StationStatus.不可用;
-                            break;
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetFeederInfoStr, output));
+                        return false;
                     }
 
-                    
-                    if (iOut[j + 1] == 1)
+                    int[] iOut = new int[6];
+                    output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
+                    for (int j = 0; j < iOut.Length; j++)
                     {
-                        if (EmptyClampCount[j] > 2)
+                        iOut[j] = int.Parse(output.Substring(j * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                    }
+
+                    if (iOut[0] == 1)
+                    {
+                        if (!this.BatteryScaner.IsReady)
                         {
-                            this.Stations[j].ClampStatus = ClampStatus.无夹具;
-                            EmptyClampCount[j] = 3;
+                            this.BatteryScaner.CanScan = true;
+                            LogHelper.WriteInfo(this.BatteryScaner.Name + "【扫码日志】收到上料机给的请求扫码信号！");
                         }
+                        this.BatteryScaner.IsReady = true;
                     }
                     else
                     {
-                        EmptyClampCount[j] = 0;
+                        this.BatteryScaner.IsReady = false;
+                        this.BatteryScaner.CanScan = false;
                     }
 
 
-                    this.Stations[j].IsClampScanReady = iOut[j + 4] == 1;
-                }
-
-                switch (iOut[3])
-                {
-                    case 1: this.TriLamp = TriLamp.Green; break;
-                    case 2: this.TriLamp = TriLamp.Yellow; break;
-                    case 3: this.TriLamp = TriLamp.Red; break;
-                    default: this.TriLamp = TriLamp.Unknown; break;
-                }
-
-
-                if (iOut[4] == 1 || iOut[5] == 1)
-                {
-                    if (!this.ClampScaner.IsReady)
+                    for (int j = 0; j < this.Stations.Count; j++)
                     {
-                        this.ClampScaner.CanScan = true;
+                        switch (iOut[j + 1])
+                        {
+                            case 1:
+                                this.EmptyClampCount[j]++;
+                                this.Stations[j].Status = StationStatus.可放;
+                                break;
+                            case 2:
+                                this.Stations[j].ClampStatus = ClampStatus.空夹具;
+                                this.Stations[j].Status = StationStatus.工作中;
+                                break;
+                            case 3:
+                                this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                                this.Stations[j].Status = StationStatus.可取;
+                                break;
+                            case 31:
+                                this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                                this.Stations[j].Status = StationStatus.可取;
+                                break;
+                            case 4:
+                                this.Stations[j].ClampStatus = ClampStatus.异常;
+                                this.Stations[j].Status = StationStatus.不可用;
+                                break;
+                            default:
+                                this.Stations[j].ClampStatus = ClampStatus.未知;
+                                this.Stations[j].Status = StationStatus.不可用;
+                                break;
+                        }
+
+
+                        if (iOut[j + 1] == 1)
+                        {
+                            if (EmptyClampCount[j] > 2)
+                            {
+                                this.Stations[j].ClampStatus = ClampStatus.无夹具;
+                                EmptyClampCount[j] = 3;
+                            }
+                        }
+                        else
+                        {
+                            EmptyClampCount[j] = 0;
+                        }
+
+
+                        this.Stations[j].IsClampScanReady = iOut[j + 4] == 1;
                     }
-                    this.ClampScaner.IsReady = true;
+
+                    switch (iOut[3])
+                    {
+                        case 1: this.TriLamp = TriLamp.Green; break;
+                        case 2: this.TriLamp = TriLamp.Yellow; break;
+                        case 3: this.TriLamp = TriLamp.Red; break;
+                        default: this.TriLamp = TriLamp.Unknown; break;
+                    }
+
+
+                    if (iOut[4] == 1 || iOut[5] == 1)
+                    {
+                        if (!this.ClampScaner.IsReady)
+                        {
+                            this.ClampScaner.CanScan = true;
+                        }
+                        this.ClampScaner.IsReady = true;
+                    }
+                    else
+                    {
+                        this.ClampScaner.IsReady = false;
+                        this.ClampScaner.CanScan = false;
+                    }
+
+
+                    //switch (iOut[5])
+                    //{
+                    //    case 0: this.Stations.ForEach(s => s.IsClampScanReady = false); Current.ClampScaner.IsReady = false; break;
+                    //    case 1: this.Stations[0].IsClampScanReady = true; Current.ClampScaner.IsReady = true; this.CurrentPutStationId = this.Stations[0].Id; break;
+                    //    case 2: this.Stations[1].IsClampScanReady = true; Current.ClampScaner.IsReady = true; this.CurrentPutStationId = this.Stations[1].Id; break;
+                    //}
+
+
+                    //switch (iOut[7])
+                    //{
+                    //    case 0:
+                    //        if (this.JawMoveType == JawMoveType.PulltabToRotary)
+                    //        {
+                    //            //if(this.CurrentPutClampBatteryCount < Clamp.BatteryCount)
+                    //            //{
+                    //            if (!Battery.UpdateClampId(this.CacheBatteryOut(), Station.GetStation(CurrentPutStationId).ClampId, out msg))
+                    //            {
+                    //                LogHelper.WriteError(msg);
+                    //            }
+                    //            //}
+                    //        }
+                    //        else if (this.JawMoveType == JawMoveType.PulltabToBatteryCache)
+                    //        {
+                    //            this.BatteryCache.Push(this.CacheBatteryOut());
+                    //        }
+                    //        else if (this.JawMoveType == JawMoveType.BatteryCacheToRotary)
+                    //        {
+                    //            if (this.CurrentBatteryCount < Clamp.BatteryCount)
+                    //            {
+                    //                if (!Battery.UpdateClampId(this.BatteryCache.Pop().ToString(), Station.GetStation(CurrentPutStationId).ClampId, out msg))
+                    //                {
+                    //                    LogHelper.WriteError(msg);
+                    //                }
+                    //            }
+                    //        }
+                    //        else if (this.JawMoveType == JawMoveType.SampleToRotary)
+                    //        {
+                    //            ///
+
+                    //        }
+                    //        this.JawMoveType = JawMoveType.Motionless;
+                    //        break;
+                    //    case 1: this.JawMoveType = JawMoveType.PulltabToRotary; break;
+                    //    case 2: this.JawMoveType = JawMoveType.PulltabToBatteryCache; break;
+                    //    case 3: this.JawMoveType = JawMoveType.BatteryCacheToRotary; break;
+                    //    case 4: this.JawMoveType = JawMoveType.SampleToRotary; break;
+                    //}
+
+                    //this.CurrentBatteryCount = iOut[8];
+
+                    //this.BatteryCache.SetCount(iOut[9]);
+
+                    Thread.Sleep(10);
                 }
-                else
+                catch (Exception ex)
                 {
-                    this.ClampScaner.IsReady = false;
-                    this.ClampScaner.CanScan = false;
+                    Error.Alert(ex);
                 }
 
+                this.Plc.IsAlive = true;
 
-                //switch (iOut[5])
-                //{
-                //    case 0: this.Stations.ForEach(s => s.IsClampScanReady = false); Current.ClampScaner.IsReady = false; break;
-                //    case 1: this.Stations[0].IsClampScanReady = true; Current.ClampScaner.IsReady = true; this.CurrentPutStationId = this.Stations[0].Id; break;
-                //    case 2: this.Stations[1].IsClampScanReady = true; Current.ClampScaner.IsReady = true; this.CurrentPutStationId = this.Stations[1].Id; break;
-                //}
-
-
-                //switch (iOut[7])
-                //{
-                //    case 0:
-                //        if (this.JawMoveType == JawMoveType.PulltabToRotary)
-                //        {
-                //            //if(this.CurrentPutClampBatteryCount < Clamp.BatteryCount)
-                //            //{
-                //            if (!Battery.UpdateClampId(this.CacheBatteryOut(), Station.GetStation(CurrentPutStationId).ClampId, out msg))
-                //            {
-                //                LogHelper.WriteError(msg);
-                //            }
-                //            //}
-                //        }
-                //        else if (this.JawMoveType == JawMoveType.PulltabToBatteryCache)
-                //        {
-                //            this.BatteryCache.Push(this.CacheBatteryOut());
-                //        }
-                //        else if (this.JawMoveType == JawMoveType.BatteryCacheToRotary)
-                //        {
-                //            if (this.CurrentBatteryCount < Clamp.BatteryCount)
-                //            {
-                //                if (!Battery.UpdateClampId(this.BatteryCache.Pop().ToString(), Station.GetStation(CurrentPutStationId).ClampId, out msg))
-                //                {
-                //                    LogHelper.WriteError(msg);
-                //                }
-                //            }
-                //        }
-                //        else if (this.JawMoveType == JawMoveType.SampleToRotary)
-                //        {
-                //            ///
-
-                //        }
-                //        this.JawMoveType = JawMoveType.Motionless;
-                //        break;
-                //    case 1: this.JawMoveType = JawMoveType.PulltabToRotary; break;
-                //    case 2: this.JawMoveType = JawMoveType.PulltabToBatteryCache; break;
-                //    case 3: this.JawMoveType = JawMoveType.BatteryCacheToRotary; break;
-                //    case 4: this.JawMoveType = JawMoveType.SampleToRotary; break;
-                //}
-
-                //this.CurrentBatteryCount = iOut[8];
-
-                //this.BatteryCache.SetCount(iOut[9]);
-
-                Thread.Sleep(10);
+                this.AlreadyGetAllInfo = true;
             }
-            catch (Exception ex)
-            {
-                Error.Alert(ex);
-            }
-
-            this.Plc.IsAlive = true;
-
-            this.AlreadyGetAllInfo = true;
-
             return true;
         }
 

@@ -271,180 +271,186 @@ namespace BakBattery.Baking
 
         public bool GetInfo()
         {
-            if (!this.Plc.IsPingSuccess)
+            lock (this)
             {
-                this.Plc.IsAlive = false;
-                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
-                return false;
+                if (!this.Plc.IsPingSuccess)
+                {
+                    this.Plc.IsAlive = false;
+                    LogHelper.WriteError("无法连接到 " + this.Plc.IP);
+                    return false;
+                }
+
+                string msg = string.Empty;
+                string output = string.Empty;
+
+                try
+                {
+
+                    var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
+
+                    #region 获取是否启动完成
+
+                    bool isRequestStart = false;
+
+                    if (!this.Plc.GetInfo(false, plcCompany, true, "I10.1", false, out isRequestStart, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+                    this.IsRequestStart = isRequestStart;
+
+                    #endregion
+                    #region 获取是否执行中
+
+                    #endregion
+
+                    #region 获取是否执行中
+
+
+                    if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out bool isExecuting, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+                    IsExecuting = isExecuting;
+
+                    #endregion
+
+                    #region 获取报警状态
+
+                    bool isAlarming = false;
+
+                    if (!this.Plc.GetInfo(false, plcCompany, true, "I1.5", false, out isAlarming, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    this.IsAlarming = isAlarming;
+
+                    #endregion
+
+                    #region 获取防撞报警状态
+
+                    bool isBumpAlarming = false;
+
+                    if (!this.Plc.GetInfo(false, plcCompany, true, "I10.6", false, out isBumpAlarming, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    this.IsBumpAlarming = isBumpAlarming;
+
+                    this.AlarmStr = isAlarming ? this.Name + "报警中" : (this.IsBumpAlarming ? "防撞报警中" : "");
+
+                    #endregion
+
+                    #region 获取暂停状态
+
+                    bool isPausing = false;
+
+                    if (!this.Plc.GetInfo(false, plcCompany, true, "I1.3", false, out isPausing, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    this.IsPausing = isPausing;
+
+                    #endregion
+
+                    #region 获取夹具状态
+
+                    int clampStatus = -1;
+
+                    if (!this.Plc.GetInfo(false, plcCompany, true, "Q15", (byte)0, out clampStatus, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    switch (clampStatus)
+                    {
+                        case 1: this.ClampStatus = this.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具; break;
+                        case 2: this.ClampStatus = ClampStatus.无夹具; break;
+                        case 4: this.ClampStatus = ClampStatus.异常; break;
+                        default: this.ClampStatus = ClampStatus.未知; break;
+                    }
+
+                    this.IsPausing = isPausing;
+
+                    #endregion
+
+                    #region 获取正在执行取放的位置编号
+
+                    int stationNum = -1;
+                    if (!this.Plc.GetInfo(false, plcCompany, true, "Q4", 0, out stationNum, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    this.IsGettingOrPutting = stationNum != 0;
+
+                    this.IsReadyGet = IsExecuting && (stationNum == 0);
+                    this.IsReadyPut = IsExecuting && (stationNum == 0);
+
+                    #endregion
+
+                    #region 获取位置
+                    int i5 = -1;
+                    if (!this.Plc.GetInfo(false, plcCompany, true, "I5", (byte)0, out i5, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    if (i5 < 0)
+                    {
+                        this.CoordinateValue = 0;
+                    }
+                    else if (i5 < 170)
+                    {
+                        this.CoordinateValue = i5;
+                    }
+                    else
+                    {
+                        this.CoordinateValue = 170;
+                    }
+
+                    // RobotPosition rp = RobotPosition.RobotPositionList.FirstOrDefault(r => r.XMinValue < this.I4 && r.XMaxValue > this.I4);
+                    this.Position = (int)(this.CoordinateValue * Current.option.RobotPositionAmplify);
+                    //  this.Position = rp == null ? this.position : rp.Position;
+
+                    if (this.CoordinateValue < this.PreCoordinateValue) { this.MovingDirection = MovingDirection.前进; this.IsMoving = true; }
+                    else if (this.CoordinateValue > this.PreCoordinateValue) { this.MovingDirection = MovingDirection.后退; this.IsMoving = true; }
+                    else { this.MovingDirection = MovingDirection.停止; this.IsMoving = false; }
+
+                    this.PreCoordinateValue = this.CoordinateValue;
+
+                    #endregion
+
+                    System.Threading.Thread.Sleep(50);
+
+                }
+                catch (Exception ex)
+                {
+                    Error.Alert(ex);
+                }
+
+                this.Plc.IsAlive = true;
+                this.AlreadyGetAllInfo = true;
+
             }
-
-            string msg = string.Empty;
-            string output = string.Empty;
-
-            try
-            {
-
-                var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
-
-                #region 获取是否启动完成
-
-                bool isRequestStart = false;
-
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I10.1", false, out isRequestStart, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                this.IsRequestStart = isRequestStart;
-
-                #endregion
-
-                #region 获取是否执行中
-
-                bool isExecuting = false;
-
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out isExecuting, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-                IsExecuting = isExecuting;
-
-                #endregion
-
-                #region 获取报警状态
-
-                bool isAlarming = false;
-
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.5", false, out isAlarming, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                this.IsAlarming = isAlarming;
-
-                #endregion
-
-                #region 获取防撞报警状态
-
-                bool isBumpAlarming = false;
-
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I10.6", false, out isBumpAlarming, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                this.IsBumpAlarming = isBumpAlarming;
-
-                this.AlarmStr = isAlarming ? this.Name + "报警中" : (this.IsBumpAlarming ? "防撞报警中" : "");
-
-                #endregion
-
-                #region 获取暂停状态
-
-                bool isPausing = false;
-
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I1.3", false, out isPausing, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                this.IsPausing = isPausing;
-
-                #endregion
-
-                #region 获取夹具状态
-
-                int clampStatus = -1;
-
-                if (!this.Plc.GetInfo(false, plcCompany, true, "Q15", (byte)0, out clampStatus, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                switch (clampStatus)
-                {
-                    case 1: this.ClampStatus = this.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具; break;
-                    case 2: this.ClampStatus = ClampStatus.无夹具; break;
-                    case 4: this.ClampStatus = ClampStatus.异常; break;
-                    default: this.ClampStatus = ClampStatus.未知; break;
-                }
-
-                this.IsPausing = isPausing;
-
-                #endregion
-
-                #region 获取正在执行取放的位置编号
-
-                int stationNum = -1;
-                if (!this.Plc.GetInfo(false, plcCompany, true, "Q4", 0, out stationNum, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                this.IsGettingOrPutting = stationNum != 0;
-
-                this.IsReadyGet = IsExecuting && (stationNum == 0);
-                this.IsReadyPut = IsExecuting && (stationNum == 0);
-
-                #endregion
-
-                #region 获取位置
-                int i5 = -1;
-                if (!this.Plc.GetInfo(false, plcCompany, true, "I5", (byte)0, out i5, out msg))
-                {
-                    Error.Alert(msg);
-                    this.Plc.IsAlive = false;
-                    return false;
-                }
-
-                if(i5 < 0)
-                {
-                    this.CoordinateValue = 0;
-                }
-                else if (i5 < 170)
-                {
-                    this.CoordinateValue = i5;
-                }
-                else
-                {
-                    this.CoordinateValue = 170;
-                }
-
-                // RobotPosition rp = RobotPosition.RobotPositionList.FirstOrDefault(r => r.XMinValue < this.I4 && r.XMaxValue > this.I4);
-                this.Position = (int)(this.CoordinateValue * Current.option.RobotPositionAmplify);
-              //  this.Position = rp == null ? this.position : rp.Position;
-
-                if (this.CoordinateValue < this.PreCoordinateValue) { this.MovingDirection = MovingDirection.前进; this.IsMoving = true; }
-                else if (this.CoordinateValue > this.PreCoordinateValue) { this.MovingDirection = MovingDirection.后退; this.IsMoving = true; }
-                else { this.MovingDirection = MovingDirection.停止; this.IsMoving = false; }
-
-                this.PreCoordinateValue = this.CoordinateValue;
-
-                #endregion
-
-                System.Threading.Thread.Sleep(50);
-
-            }
-            catch (Exception ex)
-            {
-                Error.Alert(ex);
-            }
-
-            this.Plc.IsAlive = true;
-            this.AlreadyGetAllInfo = true;
             return true;
         }
 
@@ -512,8 +518,7 @@ namespace BakBattery.Baking
             msg = string.Empty;
             var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
-            bool tmpBool1 = false;
-            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.0", false, out tmpBool1, out msg))
+            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.0", false, out bool tmpBool1, out msg))
             {
                 this.Plc.IsAlive = false;
                 return false;
@@ -529,8 +534,7 @@ namespace BakBattery.Baking
             System.Threading.Thread.Sleep(10);
 
             //将I10.0置为ture
-            bool tmpBool2 = false;
-            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.0", true, out tmpBool2, out msg))
+            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.0", true, out bool tmpBool2, out msg))
             {
                 this.Plc.IsAlive = false;
                 return false;
@@ -538,8 +542,7 @@ namespace BakBattery.Baking
 
             System.Threading.Thread.Sleep(200);
 
-            bool tmpBool3 = false;
-            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out tmpBool3, out msg))
+            if (!this.Plc.GetInfo(false, plcCompany, true, "I1.2", false, out bool tmpBool3, out msg))
             {
                 this.Plc.IsAlive = false;
                 return false;
@@ -623,8 +626,7 @@ namespace BakBattery.Baking
 
             var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
-            bool tmp = false;
-            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.1", true, out tmp, out msg))
+            if (!this.Plc.GetInfo(false, plcCompany, false, "I10.1", true, out bool tmp, out msg))
             {
                 Error.Alert("机器人急停失败！原因：" + msg);
                 this.Plc.IsAlive = false;

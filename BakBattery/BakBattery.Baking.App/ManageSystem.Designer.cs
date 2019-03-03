@@ -338,6 +338,7 @@
             this.lbFeederStationName0102 = new System.Windows.Forms.Label();
             this.lbFeederStationName0101 = new System.Windows.Forms.Label();
             this.tableLayoutPanel33 = new System.Windows.Forms.TableLayoutPanel();
+            this.taskInfo1 = new BakBattery.Baking.Controls.TaskInfo();
             this.tabContentTemperCurve = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
             this.pCurve = new TengDa.WF.Controls.DoubleBufferPanel();
@@ -549,7 +550,6 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
             this.yieldDisplay = new BakBattery.Baking.Controls.YieldDisplay();
-            this.taskInfo1 = new BakBattery.Baking.Controls.TaskInfo();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -4718,14 +4718,14 @@
             this.tsmManuGetStation,
             this.tsmManuPutStation});
             this.cmsRobot.Name = "cmsRobot";
-            this.cmsRobot.Size = new System.Drawing.Size(181, 158);
+            this.cmsRobot.Size = new System.Drawing.Size(149, 136);
             this.cmsRobot.Opening += new System.ComponentModel.CancelEventHandler(this.cmsRobot_Opening);
             // 
             // tsmRobotStart
             // 
             this.tsmRobotStart.Image = global::BakBattery.Baking.App.Properties.Resources.Start_Green;
             this.tsmRobotStart.Name = "tsmRobotStart";
-            this.tsmRobotStart.Size = new System.Drawing.Size(180, 22);
+            this.tsmRobotStart.Size = new System.Drawing.Size(148, 22);
             this.tsmRobotStart.Text = "启动";
             this.tsmRobotStart.Click += new System.EventHandler(this.tsmRobotStart_Click);
             // 
@@ -4733,7 +4733,7 @@
             // 
             this.tsmRobotPause.Image = global::BakBattery.Baking.App.Properties.Resources.Stop_Red;
             this.tsmRobotPause.Name = "tsmRobotPause";
-            this.tsmRobotPause.Size = new System.Drawing.Size(180, 22);
+            this.tsmRobotPause.Size = new System.Drawing.Size(148, 22);
             this.tsmRobotPause.Text = "暂停运行";
             this.tsmRobotPause.Click += new System.EventHandler(this.tsmRobotPause_Click);
             // 
@@ -4741,7 +4741,7 @@
             // 
             this.tsmRobotRestart.Image = global::BakBattery.Baking.App.Properties.Resources.Continue_Green;
             this.tsmRobotRestart.Name = "tsmRobotRestart";
-            this.tsmRobotRestart.Size = new System.Drawing.Size(180, 22);
+            this.tsmRobotRestart.Size = new System.Drawing.Size(148, 22);
             this.tsmRobotRestart.Text = "继续运行";
             this.tsmRobotRestart.Click += new System.EventHandler(this.tsmRobotRestart_Click);
             // 
@@ -4749,21 +4749,21 @@
             // 
             this.tsmRobotAlarmReset.Image = global::BakBattery.Baking.App.Properties.Resources.Reset_green;
             this.tsmRobotAlarmReset.Name = "tsmRobotAlarmReset";
-            this.tsmRobotAlarmReset.Size = new System.Drawing.Size(180, 22);
+            this.tsmRobotAlarmReset.Size = new System.Drawing.Size(148, 22);
             this.tsmRobotAlarmReset.Text = "报警复位";
             this.tsmRobotAlarmReset.Click += new System.EventHandler(this.tsmRobotAlarmReset_Click);
             // 
             // tsmManuGetStation
             // 
             this.tsmManuGetStation.Name = "tsmManuGetStation";
-            this.tsmManuGetStation.Size = new System.Drawing.Size(180, 22);
+            this.tsmManuGetStation.Size = new System.Drawing.Size(148, 22);
             this.tsmManuGetStation.Text = "手动【取盘】";
             this.tsmManuGetStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
             // 
             // tsmManuPutStation
             // 
             this.tsmManuPutStation.Name = "tsmManuPutStation";
-            this.tsmManuPutStation.Size = new System.Drawing.Size(180, 22);
+            this.tsmManuPutStation.Size = new System.Drawing.Size(148, 22);
             this.tsmManuPutStation.Text = "手动【放盘】";
             this.tsmManuPutStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
             // 
@@ -5179,6 +5179,16 @@
             this.tableLayoutPanel33.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel33.Size = new System.Drawing.Size(1026, 36);
             this.tableLayoutPanel33.TabIndex = 20;
+            // 
+            // taskInfo1
+            // 
+            this.taskInfo1.BackColor = System.Drawing.SystemColors.Control;
+            this.taskInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.taskInfo1.Location = new System.Drawing.Point(2, 8);
+            this.taskInfo1.Margin = new System.Windows.Forms.Padding(2, 8, 2, 3);
+            this.taskInfo1.Name = "taskInfo1";
+            this.taskInfo1.Size = new System.Drawing.Size(1022, 25);
+            this.taskInfo1.TabIndex = 0;
             // 
             // tabContentTemperCurve
             // 
@@ -8084,16 +8094,6 @@
             this.yieldDisplay.Size = new System.Drawing.Size(270, 100);
             this.yieldDisplay.TabIndex = 14;
             this.yieldDisplay.btnYieldClearClick += new BakBattery.Baking.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
-            // 
-            // taskInfo1
-            // 
-            this.taskInfo1.BackColor = System.Drawing.SystemColors.Control;
-            this.taskInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.taskInfo1.Location = new System.Drawing.Point(2, 8);
-            this.taskInfo1.Margin = new System.Windows.Forms.Padding(2, 8, 2, 3);
-            this.taskInfo1.Name = "taskInfo1";
-            this.taskInfo1.Size = new System.Drawing.Size(1022, 25);
-            this.taskInfo1.TabIndex = 0;
             // 
             // ManageSystem
             // 
