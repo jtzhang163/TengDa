@@ -43,6 +43,8 @@ namespace Tafel.Hipot.App
                     return false;
                 }
 
+                Current.Collector.StopBits = StopBits.None;
+
                 string msg = string.Empty;
                 if (!Current.Collector.Connect(out msg))
                 {

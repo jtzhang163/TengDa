@@ -518,6 +518,11 @@ namespace BakBattery.Baking
             msg = string.Empty;
             var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
+            if (this.IsPausing)
+            {
+                this.Restart(out msg);
+            }
+
             if (!this.Plc.GetInfo(false, plcCompany, true, "I1.0", false, out bool tmpBool1, out msg))
             {
                 this.Plc.IsAlive = false;

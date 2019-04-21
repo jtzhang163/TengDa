@@ -60,7 +60,7 @@ namespace TengDa.Wpf
             {
                 if (serialPort == null)
                 {
-                    serialPort = new SerialPort(PortName, BaudRate, Parity, DataBits, StopBits);
+                    serialPort = new SerialPort(PortName, BaudRate, Parity, DataBits, StopBits.None);
                 }
                 return serialPort;
             }

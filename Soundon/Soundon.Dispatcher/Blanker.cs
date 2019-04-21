@@ -372,20 +372,6 @@ namespace Soundon.Dispatcher
                     }
 
 
-
-                    if (this.toCloseDoor)
-                    {
-                        if (!this.Plc.SetInfo("D2019", (ushort)0, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
-
-                        LogHelper.WriteInfo(string.Format("成功发送取放料干涉取消指令到{0}:{1}", this.Name, "D2019:0"));
-                        this.toCloseDoor = false;
-                    }
-
                     for (int j = 0; j < this.Stations.Count; j++)
                     {
                         if (this.Stations[j].SampleInfo == SampleInfo.无样品 && this.Stations[j].SampleStatus == SampleStatus.未知)

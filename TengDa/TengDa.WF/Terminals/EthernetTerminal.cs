@@ -710,6 +710,7 @@ namespace TengDa.WF.Terminals
                         if (result.IsSuccess)
                         {
                             IsAlive = true;
+                            LogHelper.WriteInfo(string.Format("往 {0} 写数据成功，{1} ：{2} ", this.Name, address, value));
                             return true;
                         }
                         else
@@ -744,6 +745,7 @@ namespace TengDa.WF.Terminals
                         if (result.IsSuccess)
                         {
                             IsAlive = true;
+                            LogHelper.WriteInfo(string.Format("往 {0} 写数据成功，{1} ：{2} ", this.Name, address, value));
                             return true;
                         }
                         else
