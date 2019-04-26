@@ -1820,11 +1820,12 @@ namespace Soundon.Dispatcher.App
             string msg = string.Empty;
             for (int i = 0; i < Current.feeders.Count; i++)
             {
-                for (int j = 0; j < Current.feeders[i].Scaners.Count; j++)
+                for (int j = 0; j < Current.feeders[i].BatteryScaners.Count; j++)
                 {
-                    if (Current.feeders[i].Scaners[j].IsEnable)
+                    if (Current.feeders[i].BatteryScaners[j].IsEnable)
                     {
-                        if (!Current.feeders[i].Scaners[j].TcpDisConnect(out msg))
+                        Current.feeders[i].BatteryScaners[j].StopBatteryScan();
+                        if (!Current.feeders[i].BatteryScaners[j].TcpDisConnect(out msg))
                         {
                             Error.Alert(msg);
                             return false;
@@ -1833,6 +1834,20 @@ namespace Soundon.Dispatcher.App
                         this.pbScanerLamp[i][j].Image = Properties.Resources.Gray_Round;
                     }
                 }
+
+
+                if (Current.feeders[i].ClampScaner.IsEnable)
+                {
+                    Current.feeders[i].ClampScaner.StopClampScan();
+                    if (!Current.feeders[i].ClampScaner.TcpDisConnect(out msg))
+                    {
+                        Error.Alert(msg);
+                        return false;
+                    }
+                    tbScanerStatus[i][2].Text = "未连接";
+                    this.pbScanerLamp[i][2].Image = Properties.Resources.Gray_Round;
+                }
+
             }
             return true;
         }

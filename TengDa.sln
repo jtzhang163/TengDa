@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TengDa", "TengDa", "{574B94A2-ECAB-4CE8-A86F-1C2FE2B1DCC6}"
 EndProject
@@ -76,6 +76,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zopoise.Scada.Bak", "Zopoise\Zopoise.Scada.Bak\Zopoise.Scada.Bak.csproj", "{C4DE02E5-EAF6-4EFE-A8AD-867C06A580A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zopoise.Scada.App", "Zopoise\Zopoise.Scada.App\Zopoise.Scada.App.csproj", "{9BFF83FB-8DCA-48C3-932C-C98C432A2C9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soundon.Mes.Test", "Soundon\Soundon.Mes.Test\Soundon.Mes.Test.csproj", "{0F6BB4BD-40C1-4381-A402-48DE3C11FBE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -421,6 +423,18 @@ Global
 		{9BFF83FB-8DCA-48C3-932C-C98C432A2C9E}.Release|x64.Build.0 = Release|Any CPU
 		{9BFF83FB-8DCA-48C3-932C-C98C432A2C9E}.Release|x86.ActiveCfg = Release|Any CPU
 		{9BFF83FB-8DCA-48C3-932C-C98C432A2C9E}.Release|x86.Build.0 = Release|Any CPU
+		{0F6BB4BD-40C1-4381-A402-48DE3C11FBE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F6BB4BD-40C1-4381-A402-48DE3C11FBE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F6BB4BD-40C1-4381-A402-48DE3C11FBE9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0F6BB4BD-40C1-4381-A402-48DE3C11FBE9}.Debug|x64.Build.0 = Debug|Any CPU
+		{0F6BB4BD-40C1-4381-A402-48DE3C11FBE9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0F6BB4BD-40C1-4381-A402-48DE3C11FBE9}.Debug|x86.Build.0 = Debug|Any CPU
+		{0F6BB4BD-40C1-4381-A402-48DE3C11FBE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F6BB4BD-40C1-4381-A402-48DE3C11FBE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F6BB4BD-40C1-4381-A402-48DE3C11FBE9}.Release|x64.ActiveCfg = Release|Any CPU
+		{0F6BB4BD-40C1-4381-A402-48DE3C11FBE9}.Release|x64.Build.0 = Release|Any CPU
+		{0F6BB4BD-40C1-4381-A402-48DE3C11FBE9}.Release|x86.ActiveCfg = Release|Any CPU
+		{0F6BB4BD-40C1-4381-A402-48DE3C11FBE9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -454,6 +468,7 @@ Global
 		{7D696B55-C534-4557-8F76-DEE1A124B193} = {CB6B3450-EF7E-4612-961C-57977AC25DB7}
 		{C4DE02E5-EAF6-4EFE-A8AD-867C06A580A8} = {C663D9E5-CC42-477E-87DD-BCB1D1C7C71F}
 		{9BFF83FB-8DCA-48C3-932C-C98C432A2C9E} = {C663D9E5-CC42-477E-87DD-BCB1D1C7C71F}
+		{0F6BB4BD-40C1-4381-A402-48DE3C11FBE9} = {CB6B3450-EF7E-4612-961C-57977AC25DB7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D76A61D6-AF5A-4717-9128-A3189C7723F4}

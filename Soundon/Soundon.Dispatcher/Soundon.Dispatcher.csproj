@@ -38,6 +38,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,6 +51,11 @@
     <Compile Include="Alarm.cs" />
     <Compile Include="Battery.cs" />
     <Compile Include="BatteryCache.cs" />
+    <Compile Include="Connected Services\MesWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="UploadData.cs" />
     <Compile Include="UploadTVD.cs" />
     <Compile Include="Robot.cs" />
@@ -84,6 +91,34 @@
       <Project>{313161d4-a305-47fb-8935-d7c0a0cf4b3d}</Project>
       <Name>TengDa</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Connected Services\MesWebService\MachineAccessTestServiceService.wsdl" />
+    <None Include="Connected Services\MesWebService\Soundon.Dispatcher.MesWebService.getResourceDescriptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\MesWebService\Soundon.Dispatcher.MesWebService.getResourceDescriptionResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\MesWebService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MesWebService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MesWebService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MesWebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

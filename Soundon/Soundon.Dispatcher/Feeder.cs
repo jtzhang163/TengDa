@@ -838,6 +838,8 @@ namespace Soundon.Dispatcher
                 val = (ushort)4;
             }
 
+            val = 2;//________________________________
+
             if (!this.Plc.SetInfo("D1002", val, out msg))
             {
                 Error.Alert(msg);

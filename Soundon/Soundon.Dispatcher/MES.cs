@@ -15,6 +15,7 @@ using System.Web.Services.Description;
 using TengDa;
 using TengDa.Web;
 using TengDa.WF;
+using Soundon.Dispatcher.MesWebService;
 
 namespace Soundon.Dispatcher
 {
@@ -185,6 +186,10 @@ namespace Soundon.Dispatcher
 
             try
             {
+
+                MachineAccessTestServiceClient client = new MachineAccessTestServiceClient();
+
+
                 var values = new List<KeyValuePair<string, string>>();
                 string val = JsonHelper.SerializeObjectList<UploadData>(uploadDatas);
                 values.Add(new KeyValuePair<string, string>("data", val));

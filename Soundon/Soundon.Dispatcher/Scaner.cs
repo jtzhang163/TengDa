@@ -148,7 +148,7 @@ namespace Soundon.Dispatcher
             code = string.Empty;
             string output = string.Empty;
 
-            if (!GetInfo(Current.option.BatteryScanerTriggerStr, 200, out output, out msg))
+            if (!GetInfo(Current.option.BatteryScanerTriggerStr, 800, out output, out msg))
             {
                 if (msg.Contains("超时"))
                 {

@@ -269,26 +269,34 @@ namespace Soundon.Dispatcher
 
                     for (int j = 0; j < this.Stations.Count; j++)
                     {
-                        if (bOutputs[10 + j] == 2)
+                        if (bOutputs[10 + j] == 1)
                         {
-                            this.Stations[j].ClampStatus = ClampStatus.无夹具;
-                            this.Stations[j].Status = (int)bOutputs[j] == this.Stations[j].RobotPutCode ? StationStatus.可放 : StationStatus.工作中;
+                            this.Stations[j].ClampStatus = ClampStatus.空夹具;
+                            this.Stations[j].Status = StationStatus.可取;
+                            this.Stations[j].SampleInfo = SampleInfo.未知;
                             this.Stations[j].SampleStatus = SampleStatus.未知;
                         }
-                        else if (bOutputs[10 + j] == 1)
+                        else if (bOutputs[10 + j] == 2)
                         {
-                            if ((int)bOutputs[j] == this.Stations[j].RobotGetCode)
-                            {
-                                this.Stations[j].ClampStatus = ClampStatus.空夹具;
-                                this.Stations[j].Status = StationStatus.可取;
-                                this.Stations[j].SampleInfo = SampleInfo.未知;
-                                this.Stations[j].SampleStatus = SampleStatus.未知;
-                            }
-                            else
-                            {
-                                this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                                //  this.Stations[j].Status = StationStatus.工作中;
-                            }
+                            this.Stations[j].ClampStatus = ClampStatus.无夹具;
+                            this.Stations[j].Status = StationStatus.可放;
+                            this.Stations[j].SampleStatus = SampleStatus.未知;
+                        }
+                        else if (bOutputs[10 + j] == 3)
+                        {
+                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                            this.Stations[j].Status = StationStatus.工作中;
+                        }
+                        else if (bOutputs[10 + j] == 4)
+                        {
+                            this.Stations[j].ClampStatus = ClampStatus.异常;
+                            this.Stations[j].Status = StationStatus.不可用;
+                        }
+                        else if (bOutputs[10 + j] == 5) //NG回炉
+                        {
+                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                            this.Stations[j].Status = StationStatus.可取;
+                            this.Stations[j].SampleStatus = SampleStatus.测试NG;
                         }
                         else
                         {
@@ -372,38 +380,38 @@ namespace Soundon.Dispatcher
                     }
 
 
-                    for (int j = 0; j < this.Stations.Count; j++)
-                    {
-                        if (this.Stations[j].SampleInfo == SampleInfo.无样品 && this.Stations[j].SampleStatus == SampleStatus.未知)
-                        {
-                            if (bOutputs[21 + j] != 1)
-                            {
-                                if (!this.Plc.SetInfo("D" + (2021 + j).ToString("D4"), (ushort)1, out msg))
-                                {
-                                    Error.Alert(msg);
-                                    this.Plc.IsAlive = false;
-                                    return false;
-                                }
+                    //for (int j = 0; j < this.Stations.Count; j++)
+                    //{
+                    //    if (this.Stations[j].SampleInfo == SampleInfo.无样品 && this.Stations[j].SampleStatus == SampleStatus.未知)
+                    //    {
+                    //        if (bOutputs[21 + j] != 1)
+                    //        {
+                    //            if (!this.Plc.SetInfo("D" + (2021 + j).ToString("D4"), (ushort)1, out msg))
+                    //            {
+                    //                Error.Alert(msg);
+                    //                this.Plc.IsAlive = false;
+                    //                return false;
+                    //            }
 
-                                LogHelper.WriteInfo(string.Format("成功发送无水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + j).ToString("D4") + "1"));
-                            }
-                        }
+                    //            LogHelper.WriteInfo(string.Format("成功发送无水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + j).ToString("D4") + "1"));
+                    //        }
+                    //    }
 
-                        if (this.Stations[j].SampleInfo == SampleInfo.有样品 && this.Stations[j].SampleStatus == SampleStatus.待测试)
-                        {
-                            if (bOutputs[21 + j] != 2)
-                            {
-                                if (!this.Plc.SetInfo("D" + (2021 + j).ToString("D4"), (ushort)2, out msg))
-                                {
-                                    Error.Alert(msg);
-                                    this.Plc.IsAlive = false;
-                                    return false;
-                                }
+                    //    if (this.Stations[j].SampleInfo == SampleInfo.有样品 && this.Stations[j].SampleStatus == SampleStatus.待测试)
+                    //    {
+                    //        if (bOutputs[21 + j] != 2)
+                    //        {
+                    //            if (!this.Plc.SetInfo("D" + (2021 + j).ToString("D4"), (ushort)2, out msg))
+                    //            {
+                    //                Error.Alert(msg);
+                    //                this.Plc.IsAlive = false;
+                    //                return false;
+                    //            }
 
-                                LogHelper.WriteInfo(string.Format("成功发送有水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + j).ToString("D4") + "2"));
-                            }
-                        }
-                    }
+                    //            LogHelper.WriteInfo(string.Format("成功发送有水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + j).ToString("D4") + "2"));
+                    //        }
+                    //    }
+                    //}
 
 
 
