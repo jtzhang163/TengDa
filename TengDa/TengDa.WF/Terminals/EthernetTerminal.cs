@@ -477,6 +477,20 @@ namespace TengDa.WF.Terminals
             }
         }
 
+
+        public void GetInfoNoWrite(out string output)
+        {
+            var getStr = "";
+            Byte[] Data = new Byte[1024];
+            try
+            {
+                Socket.Receive(Data);
+                getStr = Encoding.ASCII.GetString(Data).Trim('\0').Trim('\r');
+            }
+            catch { }
+            output = getStr;
+        }
+
         public bool GetInfo(string address, ushort length, out ushort[] output, out string msg)
         {
             return GetInfo(false, address, length, out output, out msg);

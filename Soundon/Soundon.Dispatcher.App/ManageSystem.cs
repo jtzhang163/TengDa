@@ -1824,7 +1824,10 @@ namespace Soundon.Dispatcher.App
                 {
                     if (Current.feeders[i].BatteryScaners[j].IsEnable)
                     {
-                        Current.feeders[i].BatteryScaners[j].StopBatteryScan();
+                        if (Current.feeders[i].BatteryScaners[j].IsAlive)
+                        {
+                            Current.feeders[i].BatteryScaners[j].StopBatteryScan();
+                        }                   
                         if (!Current.feeders[i].BatteryScaners[j].TcpDisConnect(out msg))
                         {
                             Error.Alert(msg);
@@ -1838,7 +1841,11 @@ namespace Soundon.Dispatcher.App
 
                 if (Current.feeders[i].ClampScaner.IsEnable)
                 {
-                    Current.feeders[i].ClampScaner.StopClampScan();
+                    if (Current.feeders[i].ClampScaner.IsAlive)
+                    {
+                        Current.feeders[i].ClampScaner.StopClampScan();
+                    }
+                    
                     if (!Current.feeders[i].ClampScaner.TcpDisConnect(out msg))
                     {
                         Error.Alert(msg);
@@ -2297,11 +2304,13 @@ namespace Soundon.Dispatcher.App
 
                     for (int j = 0;j < Current.feeders[i].BatteryScaners.Count; j++)
                     {
-                        if (Current.feeders[i].BatteryScaners[j].IsEnable && Current.feeders[i].BatteryScaners[j].CanScan)
+                        int ii = i;
+                        int jj = j;
+                        if (Current.feeders[ii].BatteryScaners[jj].IsEnable && Current.feeders[ii].BatteryScaners[jj].CanScan)
                         {
 
                             string code = string.Empty;
-                            ScanResult result = Current.feeders[i].BatteryScaners[j].StartBatteryScan(out code, out msg);
+                            ScanResult result = Current.feeders[ii].BatteryScaners[j].StartBatteryScan(out code, out msg);
 
                             isScanFlag = true;
 
@@ -2309,38 +2318,66 @@ namespace Soundon.Dispatcher.App
                             {
                                 this.BeginInvoke(new MethodInvoker(() =>
                                 {
-                                    this.tbScanerStatus[i][j].Text = "+" + code;
+                                    this.tbScanerStatus[ii][jj].Text = "+" + code;
+                                    this.tbScanerStatus[ii][jj].ForeColor = SystemColors.Control;
+                                    this.tbScanerStatus[ii][jj].BackColor = Color.Green;
                                 }));
 
-                                int id = Battery.Add(new Battery(code, Current.feeders[i].Id), out msg);
+                                Thread t = new Thread(() => {
+                                    Thread.Sleep(1000);
+                                    this.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        this.tbScanerStatus[ii][jj].ForeColor = Color.Green;
+                                        this.tbScanerStatus[ii][jj].BackColor = SystemColors.Control;
+                                    }));
+                                });
+                                t.Start();
+
+                                int id = Battery.Add(new Battery(code, Current.feeders[ii].Id, Current.feeders[ii].CurrentPutClampId), out msg);
                                 if (id < 1)
                                 {
                                     Error.Alert(msg);
                                 }
 
                                 batteryScanResults[j] = ScanResult.OK;
+
                             }
                             else if (result == ScanResult.NG || result == ScanResult.Timeout)
                             {
                                 //再扫一次
-                                result = Current.feeders[i].BatteryScaners[j].StartBatteryScan(out code, out msg);
+                                result = Current.feeders[ii].BatteryScaners[jj].StartBatteryScan(out code, out msg);
                                 if (result == ScanResult.OK)
                                 {
-                                    this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][j].Text = "+" + code; }));
+                                    this.BeginInvoke(new MethodInvoker(() => 
+                                    {
+                                        this.tbScanerStatus[ii][jj].Text = "+" + code;
+                                        this.tbScanerStatus[ii][jj].ForeColor = SystemColors.Control;
+                                        this.tbScanerStatus[ii][jj].BackColor = Color.Green;
+                                    }));
 
-                                    int id = Battery.Add(new Battery(code, Current.feeders[i].Id), out msg);
+                                    Thread t = new Thread(() => {
+                                        Thread.Sleep(1000);
+                                        this.BeginInvoke(new MethodInvoker(() =>
+                                        {
+                                            this.tbScanerStatus[ii][jj].ForeColor = Color.Green;
+                                            this.tbScanerStatus[ii][jj].BackColor = SystemColors.Control;
+                                        }));
+                                    });
+                                    t.Start();
+
+                                    int id = Battery.Add(new Battery(code, Current.feeders[ii].Id, Current.feeders[ii].CurrentPutClampId), out msg);
                                     if (id < 1)
                                     {
                                         Error.Alert(msg);
                                     }
 
-                                    batteryScanResults[j] = ScanResult.OK;
+                                    batteryScanResults[jj] = ScanResult.OK;
                                 }
                                 else if (result == ScanResult.NG || result == ScanResult.Timeout)
                                 {
-                                    this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][j].Text = "扫码NG"; }));
+                                    this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[ii][jj].Text = "扫码NG"; }));
 
-                                    batteryScanResults[j] = ScanResult.NG;
+                                    batteryScanResults[jj] = ScanResult.NG;
                                 }
                             }
                             else
@@ -2348,7 +2385,7 @@ namespace Soundon.Dispatcher.App
                                 Error.Alert(msg);
                             }
 
-                            Current.feeders[i].BatteryScaners[j].CanScan = false;
+                            Current.feeders[ii].BatteryScaners[j].CanScan = false;
                         }
                     }
 
@@ -4233,11 +4270,10 @@ namespace Soundon.Dispatcher.App
             //tlpBlanker1
             srcBlankerName = (sender as ContextMenuStrip).SourceControl.Name;
             int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
-            this.tsmBlankerOpenDoor.Enabled = Current.blankers[i].IsAlive && Current.blankers[i].Stations[1].DoorStatus == DoorStatus.关闭;
-            this.tsmBlankerCloseDoor.Enabled = Current.blankers[i].IsAlive && Current.blankers[i].Stations[1].DoorStatus == DoorStatus.打开;
+            this.tsmCancelRasterInductive.Enabled = Current.blankers[i].IsAlive;
         }
 
-        private void tsmBlankerOpenDoor_Click(object sender, EventArgs e)
+        private void TsmCancelRasterInductive_Click(object sender, EventArgs e)
         {
             if (Current.runStstus != RunStatus.运行)
             {
@@ -4246,21 +4282,8 @@ namespace Soundon.Dispatcher.App
             }
 
             int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
-            Current.blankers[i].OpenDoor();
+            Current.blankers[i].CancelRasterInductive();
         }
-
-        private void tsmBlankerCloseDoor_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-
-            int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
-            Current.blankers[i].CloseDoor();
-        }
-
         #endregion
 
         #region 绘制温度曲线
@@ -5224,5 +5247,6 @@ namespace Soundon.Dispatcher.App
                 IsDisplayOvenCode = cbDisplayOvenCode.Checked;
             }
         }
+
     }
 }

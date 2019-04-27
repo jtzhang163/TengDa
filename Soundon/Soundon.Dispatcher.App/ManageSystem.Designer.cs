@@ -370,8 +370,7 @@
             this.tlpBlanker1 = new System.Windows.Forms.TableLayoutPanel();
             this.cmsBlanker = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmBlankerOpenDoor = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmBlankerCloseDoor = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCancelRasterInductive = new System.Windows.Forms.ToolStripMenuItem();
             this.lbBlankerFromStationName0101 = new System.Windows.Forms.Label();
             this.lbBlankerFromStationName0102 = new System.Windows.Forms.Label();
             this.tlpBlankerStationClamp0101 = new System.Windows.Forms.TableLayoutPanel();
@@ -5868,27 +5867,18 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmBlankerOpenDoor,
-            this.tsmBlankerCloseDoor});
+            this.tsmCancelRasterInductive});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
             this.toolStripMenuItem1.Text = "远程控制";
             // 
-            // tsmBlankerOpenDoor
+            // tsmCancelRasterInductive
             // 
-            this.tsmBlankerOpenDoor.Image = global::Soundon.Dispatcher.App.Properties.Resources.Start_Green;
-            this.tsmBlankerOpenDoor.Name = "tsmBlankerOpenDoor";
-            this.tsmBlankerOpenDoor.Size = new System.Drawing.Size(124, 22);
-            this.tsmBlankerOpenDoor.Text = "请求干涉";
-            this.tsmBlankerOpenDoor.Click += new System.EventHandler(this.tsmBlankerOpenDoor_Click);
-            // 
-            // tsmBlankerCloseDoor
-            // 
-            this.tsmBlankerCloseDoor.Image = global::Soundon.Dispatcher.App.Properties.Resources.Exit_Red;
-            this.tsmBlankerCloseDoor.Name = "tsmBlankerCloseDoor";
-            this.tsmBlankerCloseDoor.Size = new System.Drawing.Size(124, 22);
-            this.tsmBlankerCloseDoor.Text = "取消干涉";
-            this.tsmBlankerCloseDoor.Click += new System.EventHandler(this.tsmBlankerCloseDoor_Click);
+            this.tsmCancelRasterInductive.Image = global::Soundon.Dispatcher.App.Properties.Resources.Exit_Red;
+            this.tsmCancelRasterInductive.Name = "tsmCancelRasterInductive";
+            this.tsmCancelRasterInductive.Size = new System.Drawing.Size(180, 22);
+            this.tsmCancelRasterInductive.Text = "光栅报警复位";
+            this.tsmCancelRasterInductive.Click += new System.EventHandler(this.TsmCancelRasterInductive_Click);
             // 
             // lbBlankerFromStationName0101
             // 
@@ -8869,14 +8859,15 @@
             // 
             // tbScanerStatus0201
             // 
+            this.tbScanerStatus0201.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbScanerStatus0201.BackColor = System.Drawing.SystemColors.Control;
             this.tbScanerStatus0201.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbScanerStatus0201.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbScanerStatus0201.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbScanerStatus0201.ForeColor = System.Drawing.Color.Green;
             this.tbScanerStatus0201.Location = new System.Drawing.Point(144, 88);
             this.tbScanerStatus0201.Name = "tbScanerStatus0201";
             this.tbScanerStatus0201.ReadOnly = true;
-            this.tbScanerStatus0201.Size = new System.Drawing.Size(117, 16);
+            this.tbScanerStatus0201.Size = new System.Drawing.Size(117, 14);
             this.tbScanerStatus0201.TabIndex = 41;
             this.tbScanerStatus0201.Text = "未连接";
             // 
@@ -8919,12 +8910,12 @@
             this.tbScanerStatus0103.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbScanerStatus0103.BackColor = System.Drawing.SystemColors.Control;
             this.tbScanerStatus0103.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbScanerStatus0103.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbScanerStatus0103.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbScanerStatus0103.ForeColor = System.Drawing.Color.Green;
             this.tbScanerStatus0103.Location = new System.Drawing.Point(144, 71);
             this.tbScanerStatus0103.Name = "tbScanerStatus0103";
             this.tbScanerStatus0103.ReadOnly = true;
-            this.tbScanerStatus0103.Size = new System.Drawing.Size(117, 16);
+            this.tbScanerStatus0103.Size = new System.Drawing.Size(117, 14);
             this.tbScanerStatus0103.TabIndex = 40;
             this.tbScanerStatus0103.Text = "未连接";
             // 
@@ -9564,12 +9555,12 @@
             this.tbScanerStatus0101.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbScanerStatus0101.BackColor = System.Drawing.SystemColors.Control;
             this.tbScanerStatus0101.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbScanerStatus0101.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbScanerStatus0101.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbScanerStatus0101.ForeColor = System.Drawing.Color.Green;
             this.tbScanerStatus0101.Location = new System.Drawing.Point(144, 37);
             this.tbScanerStatus0101.Name = "tbScanerStatus0101";
             this.tbScanerStatus0101.ReadOnly = true;
-            this.tbScanerStatus0101.Size = new System.Drawing.Size(117, 16);
+            this.tbScanerStatus0101.Size = new System.Drawing.Size(117, 14);
             this.tbScanerStatus0101.TabIndex = 72;
             this.tbScanerStatus0101.Text = "未连接";
             // 
@@ -9624,12 +9615,12 @@
             this.tbScanerStatus0102.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbScanerStatus0102.BackColor = System.Drawing.SystemColors.Control;
             this.tbScanerStatus0102.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbScanerStatus0102.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbScanerStatus0102.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbScanerStatus0102.ForeColor = System.Drawing.Color.Green;
             this.tbScanerStatus0102.Location = new System.Drawing.Point(144, 54);
             this.tbScanerStatus0102.Name = "tbScanerStatus0102";
             this.tbScanerStatus0102.ReadOnly = true;
-            this.tbScanerStatus0102.Size = new System.Drawing.Size(117, 16);
+            this.tbScanerStatus0102.Size = new System.Drawing.Size(117, 14);
             this.tbScanerStatus0102.TabIndex = 46;
             this.tbScanerStatus0102.Text = "未连接";
             // 
@@ -9859,14 +9850,15 @@
             // 
             // tbScanerStatus0202
             // 
+            this.tbScanerStatus0202.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbScanerStatus0202.BackColor = System.Drawing.SystemColors.Control;
             this.tbScanerStatus0202.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbScanerStatus0202.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbScanerStatus0202.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbScanerStatus0202.ForeColor = System.Drawing.Color.Green;
             this.tbScanerStatus0202.Location = new System.Drawing.Point(144, 105);
             this.tbScanerStatus0202.Name = "tbScanerStatus0202";
             this.tbScanerStatus0202.ReadOnly = true;
-            this.tbScanerStatus0202.Size = new System.Drawing.Size(117, 16);
+            this.tbScanerStatus0202.Size = new System.Drawing.Size(117, 14);
             this.tbScanerStatus0202.TabIndex = 94;
             this.tbScanerStatus0202.Text = "未连接";
             // 
@@ -9906,14 +9898,15 @@
             // 
             // tbScanerStatus0203
             // 
+            this.tbScanerStatus0203.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbScanerStatus0203.BackColor = System.Drawing.SystemColors.Control;
             this.tbScanerStatus0203.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbScanerStatus0203.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbScanerStatus0203.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbScanerStatus0203.ForeColor = System.Drawing.Color.Green;
             this.tbScanerStatus0203.Location = new System.Drawing.Point(144, 122);
             this.tbScanerStatus0203.Name = "tbScanerStatus0203";
             this.tbScanerStatus0203.ReadOnly = true;
-            this.tbScanerStatus0203.Size = new System.Drawing.Size(117, 16);
+            this.tbScanerStatus0203.Size = new System.Drawing.Size(117, 14);
             this.tbScanerStatus0203.TabIndex = 98;
             this.tbScanerStatus0203.Text = "未连接";
             // 
@@ -11051,8 +11044,7 @@
         private System.Windows.Forms.Label label73;
         private System.Windows.Forms.ContextMenuStrip cmsBlanker;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem tsmBlankerOpenDoor;
-        private System.Windows.Forms.ToolStripMenuItem tsmBlankerCloseDoor;
+        private System.Windows.Forms.ToolStripMenuItem tsmCancelRasterInductive;
         private System.Windows.Forms.CheckBox cbScanerIsEnable0202;
         private System.Windows.Forms.Label lbScanerNameN0202;
         private System.Windows.Forms.PictureBox pbScanerLamp0202;

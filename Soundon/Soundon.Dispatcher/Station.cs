@@ -910,11 +910,6 @@ namespace Soundon.Dispatcher
                     Oven oven = Oven.OvenList.First(o => o.Id == floor.OvenId);
                     oven.OpenDoor(oven.Floors.IndexOf(floor));
                 }
-                else if (this.GetPutType == GetPutType.下料机)
-                {
-                    Blanker blanker = Blanker.BlankerList.First(b => b.StationIds.Contains(this.Id.ToString()));
-                    blanker.OpenDoor();
-                }
             }
         }
 
@@ -930,12 +925,6 @@ namespace Soundon.Dispatcher
                 {
                     Floor floor = Floor.FloorList.First(f => f.StationIds.Contains(this.Id.ToString()));
                     Oven oven = Oven.OvenList.First(o => o.Id == floor.OvenId);
-                 //   oven.CloseDoor(oven.Floors.IndexOf(floor));
-                }
-                else if (this.GetPutType == GetPutType.下料机)
-                {
-                    Blanker blanker = Blanker.BlankerList.First(b => b.StationIds.Contains(this.Id.ToString()));
-                    blanker.CloseDoor();
                 }
             }
         }

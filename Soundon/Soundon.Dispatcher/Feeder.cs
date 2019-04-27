@@ -113,10 +113,10 @@ namespace Soundon.Dispatcher
 
         private int currentPutStationId = -1;
         /// <summary>
-        /// 当前入料夹具Id
+        /// 当前入料工位Id
         /// </summary>
         [ReadOnly(true)]
-        [DisplayName("当前入料夹具Id")]
+        [DisplayName("当前入料工位Id")]
         public int CurrentPutStationId
         {
             get { return currentPutStationId; }
@@ -127,6 +127,24 @@ namespace Soundon.Dispatcher
                     UpdateDbField("CurrentPutStationId", value);
                 }
                 currentPutStationId = value;
+            }
+        }
+
+        /// <summary>
+        /// 当前入料夹具Id
+        /// </summary>
+        [ReadOnly(true)]
+        [DisplayName("当前入料夹具Id")]
+        public int CurrentPutClampId
+        {
+            get
+            {
+                var station = this.Stations.FirstOrDefault(s => s.Id == this.CurrentPutStationId);
+                if (station == null)
+                {
+                    return -1;
+                }
+                return station.ClampId;
             }
         }
 
@@ -616,7 +634,7 @@ namespace Soundon.Dispatcher
                             }
                             this.ClampScaner.IsReady = true;
                             this.Stations[bOutputs[1] - 1].IsClampScanReady = true;
-                            this.CurrentPutStationId = this.Stations[0].Id;
+                            this.CurrentPutStationId = this.Stations[bOutputs[1] - 1].Id;
                         }
                         else
                         {
@@ -862,6 +880,8 @@ namespace Soundon.Dispatcher
             {
                 val = (ushort)0;
             }
+
+            val = (ushort)2;
 
             if (!this.Plc.SetInfo("D1002", val, out msg))
             {

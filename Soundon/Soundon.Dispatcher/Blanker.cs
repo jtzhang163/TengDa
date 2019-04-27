@@ -99,9 +99,10 @@ namespace Soundon.Dispatcher
         [ReadOnly(true), DisplayName("人员处于安全光栅感应区")]
         public bool IsRasterInductive { get; set; }
 
-        public bool toOpenDoor = false;
-
-        public bool toCloseDoor = false;
+        /// <summary>
+        /// 复位光栅报警
+        /// </summary>
+        public bool toCancelRasterInductive = false;
 
         #endregion
 
@@ -353,7 +354,8 @@ namespace Soundon.Dispatcher
 
                     #endregion
 
-                    if (this.toOpenDoor)
+
+                    if (this.toCancelRasterInductive)
                     {
                         if (!this.Plc.SetInfo("D2019", (ushort)1, out msg))
                         {
@@ -362,113 +364,43 @@ namespace Soundon.Dispatcher
                             return false;
                         }
 
-                        LogHelper.WriteInfo(string.Format("成功发送取放料干涉指令到{0}:{1}", this.Name, "D2019:1"));
-                        this.toOpenDoor = false;
+                        LogHelper.WriteInfo(string.Format("成功发送光栅感应报警复位指令到{0}:{1}", this.Name, "D2019:1"));
+                        this.toCancelRasterInductive = false;
                     }
 
-                    if (this.toCloseDoor)
+
+                    for (int j = 0; j < this.Stations.Count; j++)
                     {
-                        if (!this.Plc.SetInfo("D2019", (ushort)0, out msg))
+                        if (this.Stations[j].SampleInfo == SampleInfo.无样品 && this.Stations[j].SampleStatus == SampleStatus.未知)
                         {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
+                            if (bOutputs[21 + j] == 0)
+                            {
+                                if (!this.Plc.SetInfo("D" + (2021 + j).ToString("D4"), (ushort)1, out msg))
+                                {
+                                    Error.Alert(msg);
+                                    this.Plc.IsAlive = false;
+                                    return false;
+                                }
+
+                                LogHelper.WriteInfo(string.Format("成功发送无水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + j).ToString("D4") + "1"));
+                            }
                         }
 
-                        LogHelper.WriteInfo(string.Format("成功发送取放料干涉取消指令到{0}:{1}", this.Name, "D2019:0"));
-                        this.toCloseDoor = false;
+                        if (this.Stations[j].SampleInfo == SampleInfo.有样品 && this.Stations[j].SampleStatus == SampleStatus.待测试)
+                        {
+                            if (bOutputs[21 + j] == 0)
+                            {
+                                if (!this.Plc.SetInfo("D" + (2021 + j).ToString("D4"), (ushort)2, out msg))
+                                {
+                                    Error.Alert(msg);
+                                    this.Plc.IsAlive = false;
+                                    return false;
+                                }
+
+                                LogHelper.WriteInfo(string.Format("成功发送有水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + j).ToString("D4") + "2"));
+                            }
+                        }
                     }
-
-
-                    //for (int j = 0; j < this.Stations.Count; j++)
-                    //{
-                    //    if (this.Stations[j].SampleInfo == SampleInfo.无样品 && this.Stations[j].SampleStatus == SampleStatus.未知)
-                    //    {
-                    //        if (bOutputs[21 + j] != 1)
-                    //        {
-                    //            if (!this.Plc.SetInfo("D" + (2021 + j).ToString("D4"), (ushort)1, out msg))
-                    //            {
-                    //                Error.Alert(msg);
-                    //                this.Plc.IsAlive = false;
-                    //                return false;
-                    //            }
-
-                    //            LogHelper.WriteInfo(string.Format("成功发送无水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + j).ToString("D4") + "1"));
-                    //        }
-                    //    }
-
-                    //    if (this.Stations[j].SampleInfo == SampleInfo.有样品 && this.Stations[j].SampleStatus == SampleStatus.待测试)
-                    //    {
-                    //        if (bOutputs[21 + j] != 2)
-                    //        {
-                    //            if (!this.Plc.SetInfo("D" + (2021 + j).ToString("D4"), (ushort)2, out msg))
-                    //            {
-                    //                Error.Alert(msg);
-                    //                this.Plc.IsAlive = false;
-                    //                return false;
-                    //            }
-
-                    //            LogHelper.WriteInfo(string.Format("成功发送有水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + j).ToString("D4") + "2"));
-                    //        }
-                    //    }
-                    //}
-
-
-
-
-                    //if (!this.Plc.GetInfo(false, Current.option.GetBlankerInfoStr, out output, out msg))
-                    //{
-                    //    Error.Alert(msg);
-                    //    this.Plc.IsAlive = false;
-                    //    return false;
-                    //}
-                    //if (output.Substring(3, 1) != "$")
-                    //{
-                    //    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetBlankerInfoStr, output));
-                    //    return false;
-                    //}
-
-                    //int[] iOut = new int[3];
-                    //output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-                    //for (int j = 0; j < iOut.Length; j++)
-                    //{
-                    //    iOut[j] = int.Parse(output.Substring(j * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                    //}
-
-                    //for (int j = 0; j < this.Stations.Count; j++)
-                    //{
-                    //    switch (iOut[j])
-                    //    {
-                    //        case 1:
-                    //            this.Stations[j].ClampStatus = ClampStatus.无夹具;
-                    //            this.Stations[j].Status = StationStatus.可放;
-                    //            break;
-                    //        case 2:
-                    //            this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                    //            this.Stations[j].Status = StationStatus.工作中;
-                    //            break;
-                    //        case 3:
-                    //            this.Stations[j].ClampStatus = ClampStatus.空夹具;
-                    //            this.Stations[j].Status = StationStatus.可取;
-                    //            break;
-                    //        case 4:
-                    //            this.Stations[j].ClampStatus = ClampStatus.异常;
-                    //            this.Stations[j].Status = StationStatus.不可用;
-                    //            break;
-                    //        default:
-                    //            this.Stations[j].ClampStatus = ClampStatus.未知;
-                    //            this.Stations[j].Status = StationStatus.不可用;
-                    //            break;
-                    //    }
-                    //}
-
-                    //switch (iOut[2])
-                    //{
-                    //    case 1: this.TriLamp = TriLamp.Green; break;
-                    //    case 2: this.TriLamp = TriLamp.Yellow; break;
-                    //    case 3: this.TriLamp = TriLamp.Red; break;
-                    //    default: this.TriLamp = TriLamp.Unknown; break;
-                    //}
 
                     Thread.Sleep(100);
                 }
@@ -485,7 +417,7 @@ namespace Soundon.Dispatcher
             return true;
         }
 
-        public void OpenDoor()
+        public void CancelRasterInductive()
         {
             if (!this.Plc.IsPingSuccess)
             {
@@ -494,19 +426,7 @@ namespace Soundon.Dispatcher
                 return;
             }
 
-            this.toOpenDoor = true;
-        }
-
-        public void CloseDoor()
-        {
-            if (!this.Plc.IsPingSuccess)
-            {
-                this.Plc.IsAlive = false;
-                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
-                return;
-            }
-
-            this.toCloseDoor = true;
+            this.toCancelRasterInductive = true;
         }
 
         public bool SetScanResult(ScanResult scanResult)

@@ -50,15 +50,16 @@ namespace Soundon.Dispatcher
             this.Id = id;
         }
 
-        public Battery(string code) : this(code, -1)
+        public Battery(string code) : this(code, -1, -1)
         {
 
         }
 
-        public Battery(string code, int feederId)
+        public Battery(string code, int feederId, int clampId)
         {
             this.code = code;
-            this.FeederId = FeederId;
+            this.FeederId = feederId;
+            this.ClampId = clampId;
         }
 
         #region 初始化方法
@@ -146,7 +147,7 @@ namespace Soundon.Dispatcher
 
         public static int Add(Battery addBattery, out string msg)
         {
-            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [FeederId], [Location], [ScanTime]) VALUES ('{1}', {2}, '{3}', '{4}')", TableName, addBattery.Code, addBattery.ClampId, addBattery.FeederId, addBattery.Location, DateTime.Now), out msg);
+            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [FeederId], [Location], [ScanTime]) VALUES ('{1}', {2}, {3}, '{4}', '{5}')", TableName, addBattery.Code, addBattery.ClampId, addBattery.FeederId, addBattery.Location, DateTime.Now), out msg);
         }
 
         public static bool Update(int clampId, int feederId, out string msg)

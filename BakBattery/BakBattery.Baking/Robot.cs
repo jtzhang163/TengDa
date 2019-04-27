@@ -301,9 +301,6 @@ namespace BakBattery.Baking
                     this.IsRequestStart = isRequestStart;
 
                     #endregion
-                    #region 获取是否执行中
-
-                    #endregion
 
                     #region 获取是否执行中
 
