@@ -473,7 +473,6 @@ namespace Soundon.Dispatcher
                             case 2:
                                 this.Stations[j].ClampStatus = ClampStatus.空夹具;
                                 this.Stations[j].Status = StationStatus.工作中;
-                                this.Stations[j].Clamp.SampleInfo = SampleInfo.未知;
                                 break;
                             case 3:
                                 this.Stations[j].ClampStatus = ClampStatus.异常;
@@ -492,6 +491,7 @@ namespace Soundon.Dispatcher
                             default:
                                 this.Stations[j].ClampStatus = ClampStatus.未知;
                                 this.Stations[j].Status = StationStatus.不可用;
+                                this.Stations[j].SampleInfo = SampleInfo.无样品;
                                 break;
                         }
                     }
@@ -545,7 +545,7 @@ namespace Soundon.Dispatcher
                                     Current.Transfer.Station.ClampStatus = Current.Transfer.Station.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
                                 }
                                 Current.Transfer.Station.Status = StationStatus.可取;
-                                Current.Transfer.Station.SampleInfo = Current.Transfer.Station.ClampStatus == ClampStatus.满夹具 ? SampleInfo.有样品 : SampleInfo.无样品;
+                                Current.Transfer.Station.SampleInfo = SampleInfo.无样品;
                                 break;
                             case 3:
                                 Current.Transfer.Station.ClampStatus = ClampStatus.异常;
@@ -665,7 +665,7 @@ namespace Soundon.Dispatcher
                         }
                     });
 
-                    if (Current.Robot.Plc.Id == this.Plc.Id)
+                    if (Current.Robot.PlcId == this.PlcId)
                     {
                         this.D1025 = bOutputs[25];
                     }
@@ -679,20 +679,46 @@ namespace Soundon.Dispatcher
                     {
                         if (Current.Robot.Plc.Id == this.Plc.Id)
                         {
-                            if (!this.Plc.SetInfo("D1026", (ushort)(Current.feeders.First(f => f.Id != this.Id).D1026), out msg))
+                            var val = Current.feeders.First(f => f.Id != this.Id).D1026;
+                            if (this.D1026 != val)
                             {
-                                Error.Alert(msg);
-                                this.Plc.IsAlive = false;
-                                return false;
+                                if (!this.Plc.SetInfo("D1026", val, out msg))
+                                {
+                                    Error.Alert(msg);
+                                    this.Plc.IsAlive = false;
+                                    return false;
+                                }
+                            }
+
+                            for (var i = 0; i < Current.blankers.Count; i++)
+                            {
+                                var blanker = Current.blankers[i];
+                                if (blanker.IsAlive)
+                                {
+                                    if (bOutputs[27 + i] != blanker.D2027)
+                                    {
+                                        var addr = string.Format("D{0:D4}", 1027 + i);
+                                        if (!this.Plc.SetInfo(addr, blanker.D2027, out msg))
+                                        {
+                                            Error.Alert(msg);
+                                            this.Plc.IsAlive = false;
+                                            return false;
+                                        }
+                                    }
+                                }
                             }
                         }
                         else
                         {
-                            if (!this.Plc.SetInfo("D1025", (ushort)(Current.feeders.First(f => f.Id != this.Id).D1025), out msg))
+                            var val = Current.feeders.First(f => f.Id != this.Id).D1025;
+                            if (this.D1025 != val)
                             {
-                                Error.Alert(msg);
-                                this.Plc.IsAlive = false;
-                                return false;
+                                if (!this.Plc.SetInfo("D1025", val, out msg))
+                                {
+                                    Error.Alert(msg);
+                                    this.Plc.IsAlive = false;
+                                    return false;
+                                }
                             }
                         }
                     }

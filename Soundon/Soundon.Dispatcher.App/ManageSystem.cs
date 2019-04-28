@@ -1029,6 +1029,10 @@ namespace Soundon.Dispatcher.App
                         {
                             lbBlankerFromStationName[i][j].Text = sta.Name.Substring(0, 7);
                         }
+                        else
+                        {
+                            lbBlankerFromStationName[i][j].Text = string.Empty;
+                        }
                     }
                     else
                     {

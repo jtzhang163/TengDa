@@ -92,6 +92,8 @@ namespace Soundon.Dispatcher
             }
         }
 
+        public ushort D2027;
+
         /// <summary>
         /// 人员处于安全光栅感应区
         /// 感应到此信号时，若搬运机器人运行至下料附近，则发送急停信号给搬运机器人
@@ -346,6 +348,8 @@ namespace Soundon.Dispatcher
                         this.AlarmStr = "";
                     }
 
+                    this.D2027 = bOutputs[27];
+
                     #endregion
 
 
@@ -365,7 +369,7 @@ namespace Soundon.Dispatcher
 
                     for (int j = 0; j < this.Stations.Count; j++)
                     {
-                        if (this.Stations[j].SampleInfo == SampleInfo.无样品 && this.Stations[j].SampleStatus == SampleStatus.未知)
+                        if (this.Stations[j].SampleInfo == SampleInfo.无样品)
                         {
                             if (bOutputs[21 + j] == 0)
                             {
@@ -393,6 +397,19 @@ namespace Soundon.Dispatcher
 
                                 LogHelper.WriteInfo(string.Format("成功发送有水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + j).ToString("D4") + "2"));
                             }
+                        }
+                    }
+
+
+                    //避让功能
+                    var feeder = Current.feeders.First(f => f.PlcId == Current.Robot.PlcId);
+                    if (feeder.IsAlive && bOutputs[26] != feeder.D1025)
+                    {
+                        if (!this.Plc.SetInfo("D1025", feeder.D1025, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
                         }
                     }
 

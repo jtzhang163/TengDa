@@ -826,19 +826,6 @@ namespace Soundon.Dispatcher
                             // Current.Task.FromStation.ClampId = -1;
                         }
 
-                        ////样品信息传递
-                        //if (Current.Task.FromStation != null && Current.Task.ToStation != null)
-                        //{
-                        //    if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱)
-                        //    {
-                        //        Current.Task.ToStation.SampleStatus = Current.Task.FromStation.SampleStatus;
-                        //    }
-                        //    else if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机)
-                        //    {
-                        //        Current.Task.ToStation.SampleStatus = Current.Task.FromStation.SampleStatus;
-                        //    }
-                        //}
-
                         //入炉后逻辑
                         //修改工位状态
                         if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具)
@@ -862,6 +849,10 @@ namespace Soundon.Dispatcher
                             if (Current.Task.FromStation.SampleInfo == SampleInfo.有样品 && Current.Task.FromStation.SampleStatus == SampleStatus.待测试)
                             {
                                 Current.Task.ToStation.SampleStatus = SampleStatus.待测试;
+                            }
+                            else
+                            {
+                                Current.Task.FromStation.SampleInfo = SampleInfo.无样品;
                             }
                             //烤箱SampleStatus信号复位
                             if (Current.Task.FromStation.SampleStatus != SampleStatus.待测试)
