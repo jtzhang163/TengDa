@@ -2461,16 +2461,16 @@ namespace Soundon.Dispatcher.App
                     int ii = BlankerCount - i - 1;
                     bool otherBlankerIsRasterInductive = Current.blankers[ii].IsRasterInductive && Current.blankers[ii].IsAlive;
 
-                    //人员离开安全光栅感应区
+                    //安全光栅感应报警结束
                     if (!Current.blankers[i].IsRasterInductive && !otherBlankerIsRasterInductive && Current.Robot.IsPausing && Current.Robot.Position <= Current.option.RobotStopPosition4RasterInductive)
                     {
                         if (Current.Robot.Restart(out msg))
                         {
-                            Tip.Alert(string.Format("人员离开 {0} 安全光栅感应区域，已远程发送继续运动信号给 {1}", Current.blankers[i].Name, Current.Robot.Name));
+                            Tip.Alert(string.Format("{0} 安全光栅感应报警结束，已远程发送继续运动信号给 {1}", Current.blankers[i].Name, Current.Robot.Name));
                         }
                         else
                         {
-                            Error.Alert(string.Format("人员离开 {0} 安全光栅感应区域，远程发送继续运动信号给 {1} 失败！", Current.blankers[i].Name, Current.Robot.Name));
+                            Error.Alert(string.Format("{0} 安全光栅感应报警结束，远程发送继续运动信号给 {1} 失败！", Current.blankers[i].Name, Current.Robot.Name));
                         }
                     }
 
@@ -3325,20 +3325,22 @@ namespace Soundon.Dispatcher.App
 
             DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Battery] WHERE [扫码时间] BETWEEN '{1}' AND '{2}'", Config.DbTableNamePre, dtPickerStart.Value, dtPickerStop.Value), out msg);
             dgViewBattery.DataSource = dt;
-            //dgViewBattery.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-            //dgViewBattery.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-            //dgViewBattery.Columns[6].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-            //dgViewBattery.Columns[7].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+
+            dgViewBattery.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+            dgViewBattery.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+            dgViewBattery.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+            dgViewBattery.Columns[6].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+            dgViewBattery.Columns[7].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
 
             ////设置显示列宽度
-            //dgViewBattery.Columns[1].Width = 80;
-            //dgViewBattery.Columns[2].Width = 100;
-            //dgViewBattery.Columns[3].Width = 90;
+            dgViewBattery.Columns[0].Width = 160;
+            dgViewBattery.Columns[1].Width = 130;
+            dgViewBattery.Columns[2].Width = 80;
 
-            //dgViewBattery.Columns[4].Width = 130;
-            //dgViewBattery.Columns[5].Width = 130;
-            //dgViewBattery.Columns[6].Width = 130;
-            //dgViewBattery.Columns[7].Width = 130;
+            dgViewBattery.Columns[4].Width = 130;
+            dgViewBattery.Columns[5].Width = 130;
+            dgViewBattery.Columns[6].Width = 130;
+            dgViewBattery.Columns[7].Width = 130;
             //dgViewBattery.Columns[8].Width = 100;
 
             tbBatteryCount.Text = dt.Rows.Count.ToString();

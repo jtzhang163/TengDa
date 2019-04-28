@@ -636,11 +636,11 @@ namespace Soundon.Dispatcher
                                 Current.Task.ToStation.ClampId = Current.Task.ClampId;
                             }
 
-                            Current.Robot.ClampId = -1;
+                            // Current.Robot.ClampId = -1;
 
                             if (Current.Task.FromStation != null && Current.Task.FromStation != Current.Task.ToStation)
                             {
-                                Current.Task.FromStation.ClampId = -1;
+                               // Current.Task.FromStation.ClampId = -1;
                             }
 
 
@@ -819,11 +819,11 @@ namespace Soundon.Dispatcher
                             Current.Task.ToStation.ClampId = Current.Task.ClampId;
                         }
                         
-                        Current.Robot.ClampId = -1;
+                        // Current.Robot.ClampId = -1;
 
                         if (Current.Task.FromStation != null && Current.Task.FromStation != Current.Task.ToStation)
                         {
-                            Current.Task.FromStation.ClampId = -1;
+                            // Current.Task.FromStation.ClampId = -1;
                         }
 
                         ////样品信息传递

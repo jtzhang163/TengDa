@@ -326,12 +326,6 @@ namespace Soundon.Dispatcher
                     this.Stations[0].DoorStatus = DoorStatus.打开;
 
                     this.Stations[1].DoorStatus = DoorStatus.打开;
-                    //switch (bOutputs[20])
-                    //{
-                    //    case 1: this.Stations[1].DoorStatus = DoorStatus.打开; break;
-                    //    case 0: this.Stations[1].DoorStatus = DoorStatus.关闭; break;
-                    //    default: this.Stations[1].DoorStatus = DoorStatus.未知; break;
-                    //}
 
                     if (bOutputs[25] == 1)
                     {
@@ -346,7 +340,7 @@ namespace Soundon.Dispatcher
                     {
                         if (this.IsRasterInductive)
                         {
-                            LogHelper.WriteInfo(string.Format("{0} --> 人员离开安全光栅感应区", this.Name));
+                            LogHelper.WriteInfo(string.Format("{0} --> 安全光栅感应报警结束", this.Name));
                         }
                         this.IsRasterInductive = false;
                         this.AlarmStr = "";
