@@ -680,7 +680,7 @@ namespace Soundon.Dispatcher
                         if (Current.Robot.Plc.Id == this.Plc.Id)
                         {
                             var val = Current.feeders.First(f => f.Id != this.Id).D1026;
-                            if (this.D1026 != val)
+                            if (bOutputs[26] != val)
                             {
                                 if (!this.Plc.SetInfo("D1026", val, out msg))
                                 {
@@ -711,7 +711,7 @@ namespace Soundon.Dispatcher
                         else
                         {
                             var val = Current.feeders.First(f => f.Id != this.Id).D1025;
-                            if (this.D1025 != val)
+                            if (bOutputs[25] != val)
                             {
                                 if (!this.Plc.SetInfo("D1025", val, out msg))
                                 {
