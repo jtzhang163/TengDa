@@ -299,7 +299,7 @@ namespace Soundon.Dispatcher
                         {
                             this.Stations[j].ClampStatus = ClampStatus.满夹具;
                             this.Stations[j].Status = StationStatus.可取;
-                            this.Stations[j].SampleStatus = SampleStatus.测试NG;
+                            this.Stations[j].SampleStatus = SampleStatus.水分NG;
                         }
                         else
                         {
@@ -307,14 +307,6 @@ namespace Soundon.Dispatcher
                             this.Stations[j].Status = StationStatus.不可用;
                         }
 
-                        if (this.Stations[j].ClampStatus == ClampStatus.满夹具)
-                        {
-                            this.Stations[j].Status = this.Stations[j].SampleIsGet ? StationStatus.可取 : StationStatus.工作中;
-                        }
-                        else
-                        {
-                            this.Stations[j].SampleIsGet = false;
-                        }
                     }
 
                     switch (bOutputs[18])
@@ -384,7 +376,7 @@ namespace Soundon.Dispatcher
                             }
                         }
 
-                        if (this.Stations[j].SampleInfo == SampleInfo.有样品 && this.Stations[j].SampleStatus == SampleStatus.待测试)
+                        if (this.Stations[j].SampleInfo == SampleInfo.有样品 && this.Stations[j].SampleStatus == SampleStatus.待结果)
                         {
                             if (bOutputs[21 + j] == 0)
                             {

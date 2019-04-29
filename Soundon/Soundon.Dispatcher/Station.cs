@@ -385,29 +385,10 @@ namespace Soundon.Dispatcher
 
                         this.Clamp.IsInFinished = true;
 
-                        //改变另一夹具样品状态
-                        if (this.SampleStatus == SampleStatus.待测试)
-                        {
-                            this.GetFloor().Stations.ForEach(s =>
-                            {
-                                if (s.Id != this.Id)
-                                {
-                                    s.SampleStatus = SampleStatus.待结果;
-                                }
-                            });
-                        }
                     }
                     else if (value == FloorStatus.待出)
                     {
                         this.Clamp.BakingStopTime = DateTime.Now;
-
-                        //要测试水分的炉子设置状态
-                        //var floor = this.GetFloor();
-                        //if (floor.IsTestWaterContent)
-                        //{
-                        //    var index = floor.Stations.IndexOf(this);
-                        //    this.SampleStatus = index == 0 ? SampleStatus.待测试 : SampleStatus.待结果;
-                        //}
                     }
 
                     if (value == FloorStatus.无盘 && floorStatus == FloorStatus.待出)
@@ -653,7 +634,7 @@ namespace Soundon.Dispatcher
         {
             get
             {
-                return this.ClampId > 0 && (this.Clamp.SampleInfo != SampleInfo.未知 && this.Clamp.SampleInfo != SampleInfo.无样品);
+                return this.ClampStatus != ClampStatus.无夹具 && this.SampleInfo == SampleInfo.有样品;
             }
         }
 
@@ -712,27 +693,6 @@ namespace Soundon.Dispatcher
             set
             {
                 this.Clamp.SampleInfo = value;
-            }
-        }
-
-        private bool sampleIsGet = false;
-        /// <summary>
-        /// 水分已被取走（下料机）
-        /// </summary>
-        [DisplayName("水分已被取走（下料机）")]
-        public bool SampleIsGet
-        {
-            get
-            {
-                return sampleIsGet;
-            }
-            set
-            {
-                if (value)
-                {
-                    this.SampleStatus = SampleStatus.待测试;
-                }
-                sampleIsGet = value;
             }
         }
 
@@ -1048,10 +1008,9 @@ namespace Soundon.Dispatcher
 
     public enum SampleStatus
     {
-        待测试,
-        测试OK,
-        测试NG,
         待结果,
+        水分OK,
+        水分NG,
         未知
     }
 

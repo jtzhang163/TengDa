@@ -702,35 +702,28 @@ namespace Soundon.Dispatcher.App
                         }
                         else
                         {
-                            Station s1, s2;
 
-                            s1 = oven.ClampOri == ClampOri.B ? floor.Stations[0] : floor.Stations[1];
-                            s2 = oven.ClampOri == ClampOri.B ? floor.Stations[1] : floor.Stations[0];
+                            var ss = new List<Station>() { oven.ClampOri == ClampOri.B ? floor.Stations[0] : floor.Stations[1], oven.ClampOri == ClampOri.B ? floor.Stations[1] : floor.Stations[0] };
+                            var strs = new List<string>() { "", "" };
 
-                            string str1 = "", str2 = "";
-
-                            if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleStatus == SampleStatus.待结果) == 1 && floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤 && s.SampleStatus == SampleStatus.待测试) == 1)
+                            for(var x = 0; x < ss.Count; x++)
                             {
-                                str1 = "正测";
-                                str2 = "正测";
-                            }
-                            else if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleStatus == SampleStatus.待结果) == 1 && floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleStatus == SampleStatus.待测试) == 1)
-                            {
-                                str1 = "待测";
-                                str2 = "待测";
-                            }
-                            else
-                            {
-                                str1 = s1.FloorStatus == FloorStatus.待出 && s1.SampleStatus == SampleStatus.测试OK || s1.FloorStatus == FloorStatus.待烤 && s1.SampleStatus == SampleStatus.测试NG ? s1.SampleStatus.ToString() : s1.FloorStatus.ToString();
-                                str2 = s2.FloorStatus == FloorStatus.待出 && s2.SampleStatus == SampleStatus.测试OK || s2.FloorStatus == FloorStatus.待烤 && s2.SampleStatus == SampleStatus.测试NG ? s2.SampleStatus.ToString() : s2.FloorStatus.ToString();
+                                if (ss[x].FloorStatus == FloorStatus.待出)
+                                {
+                                    strs[x] = ss[x].SampleStatus == SampleStatus.待结果 ? "待测" : ss[x].SampleStatus == SampleStatus.水分OK ? "水分OK" : ss[x].SampleStatus == SampleStatus.水分NG ? "水分NG" : "未知";
+                                }
+                                else
+                                {
+                                    strs[x] = ss[x].FloorStatus.ToString();
+                                }
                             }
 
                             this.lbFloorInfoTop[i][j].Text = string.Format("{0} {3}{1} {4}{2}",
-                                 str1,
+                                 strs[0],
                                  centerStr,
-                                 str2,
-                                 s1.HasSampleFlag ? "★ " : "",
-                                 s2.HasSampleFlag ? "★ " : "");
+                                 strs[1],
+                                 ss[0].HasSampleFlag ? "★ " : "",
+                                 ss[1].HasSampleFlag ? "★ " : "");
                         }
 
                         this.lbFloorInfoTop[i][j].ForeColor = Color.Red;
@@ -2584,7 +2577,7 @@ namespace Soundon.Dispatcher.App
                     }
 
                     //测试OK出炉前破真空
-                    var floors2 = Floor.FloorList.Where(f => f.IsAlive && f.IsVacuum && !f.Stations[0].IsOpenDoorIntervene && f.Stations.Count(s => s.FloorStatus == FloorStatus.待出) > 0 && f.Stations.Count(s => s.SampleStatus == SampleStatus.测试OK) > 0).OrderBy(f => f.Stations[0].GetPutTime);
+                    var floors2 = Floor.FloorList.Where(f => f.IsAlive && f.IsVacuum && !f.Stations[0].IsOpenDoorIntervene && f.Stations.Count(s => s.FloorStatus == FloorStatus.待出) > 0 && f.Stations.Count(s => s.SampleStatus == SampleStatus.水分OK) > 0).OrderBy(f => f.Stations[0].GetPutTime);
                     if (floors2.Count() > 0)
                     {
                         var floor = floors2.First();
@@ -2662,7 +2655,7 @@ namespace Soundon.Dispatcher.App
                         {
                             floor.Stations[0].SampleInfo = SampleInfo.有样品;
                             floor.Stations[1].SampleInfo = SampleInfo.无样品;
-                            floor.Stations[0].SampleStatus = SampleStatus.待测试;
+                            floor.Stations[0].SampleStatus = SampleStatus.待结果;
                             floor.Stations[1].SampleStatus = SampleStatus.待结果;
                         }
 
@@ -2670,11 +2663,11 @@ namespace Soundon.Dispatcher.App
                         {
                             floor.Stations.ForEach(s =>
                             {
-                                s.SampleStatus = s.SampleInfo == SampleInfo.有样品 ? SampleStatus.待测试 : SampleStatus.待结果;
+                                s.SampleStatus = SampleStatus.待结果;
                             });
                         }
 
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.无盘) == 2 || floor.Stations.Count(s => s.FloorStatus == FloorStatus.空盘) == 1 && floor.Stations.Count(s => s.FloorStatus == FloorStatus.无盘) == 1)
+                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.无盘 || s.FloorStatus == FloorStatus.空盘) == 2)
                         {
                             floor.Stations.ForEach(s => s.SampleStatus = SampleStatus.未知);
                         }
@@ -4086,17 +4079,7 @@ namespace Soundon.Dispatcher.App
                         }
                         else
                         {
-                            var floor = station.GetFloor();
-                            if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleStatus == SampleStatus.待结果) == 1 && floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤 && s.SampleStatus == SampleStatus.待测试) == 1)
-                            {
-                                //正测
-                                brush = Brushes.DeepSkyBlue;
-                            }
-                            else if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleStatus == SampleStatus.待结果) == 1 && floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleStatus == SampleStatus.待测试) == 1)
-                            {
-                                brush = station.SampleStatus == SampleStatus.待测试 ? Brushes.LimeGreen : Brushes.DeepSkyBlue;
-                            }
-                            else if (station.FloorStatus == FloorStatus.待出 && station.SampleStatus == SampleStatus.待结果 && station.GetLabStation().FloorStatus == FloorStatus.无盘)
+                            if (station.SampleStatus == SampleStatus.待结果 && station.FloorStatus == FloorStatus.待出)
                             {
                                 brush = Brushes.DeepSkyBlue;
                             }
@@ -4107,7 +4090,6 @@ namespace Soundon.Dispatcher.App
                                     case FloorStatus.无盘: brush = Brushes.White; break;
                                     case FloorStatus.空盘: brush = Brushes.Cyan; break;
                                     case FloorStatus.待烤: brush = Brushes.Yellow; break;
-                                    //case FloorStatus.烘烤: brush = Brushes.Lime; break;
                                     case FloorStatus.烘烤: brush = Brushes.Pink; break;
                                     case FloorStatus.待出: brush = Brushes.LimeGreen; break;
                                     default: brush = Brushes.WhiteSmoke; break;
@@ -4115,7 +4097,6 @@ namespace Soundon.Dispatcher.App
                             }
                         }
                     }
-
                 }
             }
             g.FillRectangle(brush, r);
@@ -5148,7 +5129,7 @@ namespace Soundon.Dispatcher.App
                     if (s.ClampStatus == ClampStatus.满夹具)
                     {
                         s.SampleInfo = SampleInfo.无样品;
-                        s.SampleStatus = SampleStatus.测试OK;
+                        s.SampleStatus = SampleStatus.水分OK;
                         s.FloorStatus = FloorStatus.待出;
                     }
                     else
@@ -5156,29 +5137,6 @@ namespace Soundon.Dispatcher.App
                         s.SampleStatus = SampleStatus.未知;
                     }
                 });
-                //var testStation = Current.ovens[i].Floors[j].Stations.FirstOrDefault(s => s.ClampStatus == ClampStatus.无夹具 && s.SampleStatus == SampleStatus.待测试);
-                //if (testStation != null)
-                //{
-                //    testStation.GetFloor().Stations.ForEach(s => {
-                //        if (s.ClampStatus == ClampStatus.满夹具)
-                //        {
-                //            s.SampleStatus = SampleStatus.测试OK;
-                //            s.FloorStatus = FloorStatus.待出;
-                //        }
-                //        else
-                //        {
-                //            s.SampleStatus = SampleStatus.未知;
-                //        }
-                //    });
-                //    //  testStation.SampleStatus = SampleStatus.未知;
-                //    //  testStation.GetLabStation().SampleStatus = SampleStatus.测试OK;
-
-                //    //var blankerStation = Station.StationList.FirstOrDefault(s => s.GetPutType == GetPutType.下料机 && s.SampleStatus == SampleStatus.待测试 && s.FromStationId == testStation.Id);
-                //    //if (blankerStation != null)
-                //    //{
-                //    //    blankerStation.SampleStatus = SampleStatus.测试OK;
-                //    //}
-                //}
             }
         }
 
@@ -5202,27 +5160,10 @@ namespace Soundon.Dispatcher.App
                 {
                     if (s.ClampStatus == ClampStatus.满夹具)
                     {
-                        s.SampleStatus = SampleStatus.测试NG;
+                        s.SampleStatus = SampleStatus.水分NG;
                         s.FloorStatus = FloorStatus.待烤;
                     }
                 });
-                //var testStation = Current.ovens[i].Floors[j].Stations.FirstOrDefault(s => s.ClampStatus == ClampStatus.无夹具 && s.SampleStatus == SampleStatus.待测试);
-                //if (testStation != null)
-                //{
-                //    testStation.GetFloor().Stations.ForEach(s => {
-                //            if (s.ClampStatus == ClampStatus.满夹具)
-                //            {
-                //                s.SampleStatus = SampleStatus.测试NG;
-                //                s.FloorStatus = FloorStatus.待烤;
-                //            }
-                //        });
-
-                //    //var blankerStation = Station.StationList.FirstOrDefault(s => s.GetPutType == GetPutType.下料机 && s.SampleStatus == SampleStatus.待测试 && s.FromStationId == testStation.Id);
-                //    //if (blankerStation != null)
-                //    //{
-                //    //    blankerStation.SampleStatus = SampleStatus.测试NG;
-                //    //}
-                //}
             }
         }
 

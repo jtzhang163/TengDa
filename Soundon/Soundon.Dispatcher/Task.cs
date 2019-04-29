@@ -436,50 +436,17 @@ namespace Soundon.Dispatcher
                             {
                                 toStations = toStations.Where(s => s.GetLabStation().SampleInfo != SampleInfo.有样品).ToList();
                             }
-                            //else if (task.FromSampleInfo == SampleInfo.无样品)
-                            //{
-                            //    toStations = toStations.Where(s => s.GetLabStation().SampleInfo != SampleInfo.无样品).ToList();
-                            //}
                         }
 
                         //测试水分出烤箱前逻辑
                         if (task.FromType == GetPutType.烤箱 && task.ToType == GetPutType.下料机 && task.FromClampStatus == ClampStatus.满夹具)
                         {
-                            if (task.FromSampleInfo == SampleInfo.有样品 && task.FromSampleStatus == SampleStatus.待测试)
+                            if (task.FromSampleInfo == SampleInfo.有样品 && task.FromSampleStatus == SampleStatus.待结果)
                             {
                                 toStations = toStations.Where(s => s.GetBlanker().CanTestWatContent).ToList();
                             }
                         }
 
-
-                        //下料取完水分返回烤箱逻辑
-                        if (task.FromType == GetPutType.下料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
-                        {
-                            if (task.FromSampleInfo == SampleInfo.有样品 && task.FromSampleStatus == SampleStatus.待测试 && task.ToSampleStatus == SampleStatus.待测试)
-                            {
-                                var fromStationsTmp = new List<Station>();
-                                var toStationsTmp = new List<Station>();
-
-                                var isAdded = false;
-                                foreach(var fromStation in fromStations)
-                                {
-                                    foreach (var toStation in toStations)
-                                    {
-                                        if(fromStation.FromStationId == toStation.Id)
-                                        {
-                                            if (!isAdded)
-                                            {
-                                                fromStationsTmp.Add(fromStation);
-                                                toStationsTmp.Add(toStation);
-                                                isAdded = true;
-                                            }
-                                        }
-                                    }
-                                }
-                                fromStations = fromStationsTmp;
-                                toStations = toStationsTmp;
-                            }
-                        }
 
                         if (fromStations.Count > 0 && toStations.Count > 0)
                         {
@@ -650,28 +617,16 @@ namespace Soundon.Dispatcher
                             {
                                 if (Current.Task.ToStation.FloorStatus == FloorStatus.待烤)
                                 {
-                                    if (Current.Task.ToStation.HasSampleFlag)
-                                    {
-                                        Current.Task.ToStation.SampleStatus = SampleStatus.待测试;
-                                    }
-                                    else
-                                    {
-                                        Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
-                                    }
+                                    Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
                                 }
                             }
 
                             //测试水分出烤箱后逻辑
                             if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
                             {
-                                if (Current.Task.FromStation.SampleInfo == SampleInfo.有样品 && Current.Task.FromStation.SampleStatus == SampleStatus.待测试)
+                                if (Current.Task.FromStation.SampleInfo == SampleInfo.有样品 && Current.Task.FromStation.SampleStatus == SampleStatus.待结果)
                                 {
-                                    Current.Task.ToStation.SampleStatus = SampleStatus.待测试;
-                                }
-                                //烤箱SampleStatus信号复位
-                                if (Current.Task.FromStation.SampleStatus != SampleStatus.待测试)
-                                {
-                                    Current.Task.FromStation.SampleStatus = SampleStatus.未知;
+                                    Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
                                 }
                             }
 
@@ -832,32 +787,16 @@ namespace Soundon.Dispatcher
                         {
                             if (Current.Task.ToStation.FloorStatus == FloorStatus.待烤)
                             {
-                                if (Current.Task.ToStation.HasSampleFlag)
-                                {
-                                    Current.Task.ToStation.SampleStatus = SampleStatus.待测试;
-                                }
-                                else
-                                {
-                                    Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
-                                }
+                                Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
                             }
                         }
 
                         //测试水分出烤箱后逻辑
                         if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
                         {
-                            if (Current.Task.FromStation.SampleInfo == SampleInfo.有样品 && Current.Task.FromStation.SampleStatus == SampleStatus.待测试)
+                            if (Current.Task.FromStation.SampleInfo == SampleInfo.有样品 && Current.Task.FromStation.SampleStatus == SampleStatus.待结果)
                             {
-                                Current.Task.ToStation.SampleStatus = SampleStatus.待测试;
-                            }
-                            else
-                            {
-                                Current.Task.FromStation.SampleInfo = SampleInfo.无样品;
-                            }
-                            //烤箱SampleStatus信号复位
-                            if (Current.Task.FromStation.SampleStatus != SampleStatus.待测试)
-                            {
-                                Current.Task.FromStation.SampleStatus = SampleStatus.未知;
+                                Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
                             }
                         }
 

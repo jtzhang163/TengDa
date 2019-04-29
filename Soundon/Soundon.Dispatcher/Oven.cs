@@ -291,10 +291,16 @@ namespace Soundon.Dispatcher
 
                         for (int k = 0; k < this.Floors[j].Stations.Count; k++)
                         {
-
                             if (bOutputs0[210 - j * 104 + k] == 1)
                             {
-                                this.Floors[j].Stations[k].ClampStatus = this.Floors[j].Stations[k].ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
+                                if (this.Floors[j].Stations[k].Id == Current.Task.FromStationId && Current.Task.Status == TaskStatus.正取)
+                                {
+
+                                }
+                                else
+                                {
+                                    this.Floors[j].Stations[k].ClampStatus = this.Floors[j].Stations[k].ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
+                                }
                             }
                             else
                             {
