@@ -277,13 +277,11 @@ namespace Soundon.Dispatcher
                             this.Stations[j].ClampStatus = ClampStatus.空夹具;
                             this.Stations[j].Status = StationStatus.可取;
                             this.Stations[j].SampleInfo = SampleInfo.未知;
-                            this.Stations[j].SampleStatus = SampleStatus.未知;
                         }
                         else if (bOutputs[10 + j] == 2)
                         {
                             this.Stations[j].ClampStatus = ClampStatus.无夹具;
                             this.Stations[j].Status = StationStatus.可放;
-                            this.Stations[j].SampleStatus = SampleStatus.未知;
                         }
                         else if (bOutputs[10 + j] == 3)
                         {
@@ -307,6 +305,29 @@ namespace Soundon.Dispatcher
                             this.Stations[j].Status = StationStatus.不可用;
                         }
 
+                        var samResultVal = bOutputs[21 + j];
+                        if (samResultVal == 3 || samResultVal == 4)
+                        {
+
+                            var sampleStatus = samResultVal == 3 ? SampleStatus.水分OK : SampleStatus.水分NG;
+
+                            if (this.Stations[j].ClampStatus != ClampStatus.无夹具)
+                            {
+                                this.Stations[j].SampleStatus = sampleStatus;
+                            }
+
+                            var floorStation = Station.GetStation(this.Stations[j].FromStationId);
+                            if (floorStation != null && floorStation.GetPutType == GetPutType.烤箱)
+                            {
+                                floorStation.GetFloor().Stations.ForEach(s =>
+                                {
+                                    if(s.ClampStatus == ClampStatus.满夹具)
+                                    {
+                                        s.SampleStatus = sampleStatus;
+                                    }
+                                });
+                            }
+                        }
                     }
 
                     switch (bOutputs[18])
@@ -326,6 +347,19 @@ namespace Soundon.Dispatcher
                         if (!this.IsRasterInductive)
                         {
                             LogHelper.WriteInfo(string.Format("{0} --> 人员进入安全光栅感应区", this.Name));
+
+                            if (!Current.Robot.IsPausing && Current.Robot.Position <= Current.option.RobotStopPosition4RasterInductive)
+                            {
+                                if (Current.Robot.Stop(out msg))
+                                {
+                                    Error.Alert(string.Format("人员进入 {0} 安全光栅感应区域，已远程发送急停信号给 {1}", this.Name, Current.Robot.Name));
+                                }
+                                else
+                                {
+                                    Error.Alert(string.Format("人员进入 {0} 安全光栅感应区域，远程发送急停信号给 {1} 失败！", this.Name, Current.Robot.Name));
+                                }
+                            }
+
                         }
                         this.IsRasterInductive = true;
                         this.AlarmStr = "安全光栅报警！";
@@ -335,6 +369,20 @@ namespace Soundon.Dispatcher
                         if (this.IsRasterInductive)
                         {
                             LogHelper.WriteInfo(string.Format("{0} --> 安全光栅感应报警结束", this.Name));
+
+                            var otherBlanker = Current.blankers.FirstOrDefault(b => b.Id != this.Id);
+
+                            if (!otherBlanker.IsRasterInductive && Current.Robot.IsPausing)
+                            {
+                                if (Current.Robot.Restart(out msg))
+                                {
+                                    Tip.Alert(string.Format("{0} 安全光栅感应报警结束，已远程发送继续运动信号给 {1}", this.Name, Current.Robot.Name));
+                                }
+                                else
+                                {
+                                    Error.Alert(string.Format("{0} 安全光栅感应报警结束，远程发送继续运动信号给 {1} 失败！", this.Name, Current.Robot.Name));
+                                }
+                            }
                         }
                         this.IsRasterInductive = false;
                         this.AlarmStr = "";
@@ -376,7 +424,7 @@ namespace Soundon.Dispatcher
                             }
                         }
 
-                        if (this.Stations[j].SampleInfo == SampleInfo.有样品 && this.Stations[j].SampleStatus == SampleStatus.待结果)
+                        if (this.Stations[j].SampleInfo == SampleInfo.有样品)
                         {
                             if (bOutputs[21 + j] == 0)
                             {

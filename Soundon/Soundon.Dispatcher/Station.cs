@@ -130,6 +130,11 @@ namespace Soundon.Dispatcher
                         value = Current.Task.FromClampStatus;
                     }
 
+                    if(value == ClampStatus.无夹具 || value == ClampStatus.空夹具)
+                    {
+                        this.SampleStatus = SampleStatus.未知;
+                    }
+
                     AddLog(string.Format("{0}——>{1}", clampStatus, value));
 
                 }
@@ -816,7 +821,7 @@ namespace Soundon.Dispatcher
 
         public static Station GetStation(int id)
         {
-            return StationList.First(s => s.Id == id);
+            return StationList.FirstOrDefault(s => s.Id == id);
         }
 
         /// <summary>

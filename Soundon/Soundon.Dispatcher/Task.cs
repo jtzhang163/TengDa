@@ -339,6 +339,7 @@ namespace Soundon.Dispatcher
                             Task task = new Task();
                             task.InitFields(dt.Rows[i]);
                             taskList.Add(task);
+                            taskList = taskList.OrderBy(t => t.Id).ToList();
                         }
                     }
                 }
@@ -438,6 +439,12 @@ namespace Soundon.Dispatcher
                             }
                         }
 
+                        //水分NG烤箱空位要回炉，无法上料
+                        if (task.FromType == GetPutType.上料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
+                        {
+                            toStations = toStations.Where(s => s.GetLabStation().SampleStatus != SampleStatus.水分NG).ToList();
+                        }
+
                         //测试水分出烤箱前逻辑
                         if (task.FromType == GetPutType.烤箱 && task.ToType == GetPutType.下料机 && task.FromClampStatus == ClampStatus.满夹具)
                         {
@@ -445,6 +452,32 @@ namespace Soundon.Dispatcher
                             {
                                 toStations = toStations.Where(s => s.GetBlanker().CanTestWatContent).ToList();
                             }
+                        }
+
+                        //下料取完水分返回烤箱逻辑
+                        if (task.FromType == GetPutType.下料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
+                        {
+                            var fromStationsTmp = new List<Station>();
+                            var toStationsTmp = new List<Station>();
+
+                            var isAdded = false;
+                            foreach (var fromStation in fromStations)
+                            {
+                                foreach (var toStation in toStations)
+                                {
+                                    if (fromStation.FromStationId == toStation.Id && fromStation.SampleInfo == task.FromSampleInfo)
+                                    {
+                                        if (!isAdded)
+                                        {
+                                            fromStationsTmp.Add(fromStation);
+                                            toStationsTmp.Add(toStation);
+                                            isAdded = true;
+                                        }
+                                    }
+                                }
+                            }
+                            fromStations = fromStationsTmp;
+                            toStations = toStationsTmp;
                         }
 
 

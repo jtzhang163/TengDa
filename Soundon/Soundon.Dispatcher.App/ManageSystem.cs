@@ -712,6 +712,10 @@ namespace Soundon.Dispatcher.App
                                 {
                                     strs[x] = ss[x].SampleStatus == SampleStatus.待结果 ? "待测" : ss[x].SampleStatus == SampleStatus.水分OK ? "水分OK" : ss[x].SampleStatus == SampleStatus.水分NG ? "水分NG" : "未知";
                                 }
+                                else if (ss[x].FloorStatus == FloorStatus.待烤 && ss[x].SampleStatus == SampleStatus.水分NG)
+                                {
+                                    strs[x] = "水分NG";
+                                }
                                 else
                                 {
                                     strs[x] = ss[x].FloorStatus.ToString();
@@ -2439,39 +2443,6 @@ namespace Soundon.Dispatcher.App
                     this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "获取" + Current.blankers[i].Name + "信息失败"; }));
                 }
 
-                if (Current.blankers[i].AlreadyGetAllInfo && Current.blankers[i].IsAlive && Current.Robot.IsAlive)
-                {
-                    //人员进入安全光栅感应区
-                    if (Current.blankers[i].IsRasterInductive && !Current.Robot.IsPausing && Current.Robot.Position <= Current.option.RobotStopPosition4RasterInductive)
-                    {
-                        if (Current.Robot.Stop(out msg))
-                        {
-                            Error.Alert(string.Format("人员进入 {0} 安全光栅感应区域，已远程发送急停信号给 {1}", Current.blankers[i].Name, Current.Robot.Name));
-                        }
-                        else
-                        {
-                            Error.Alert(string.Format("人员进入 {0} 安全光栅感应区域，远程发送急停信号给 {1} 失败！", Current.blankers[i].Name, Current.Robot.Name));
-                        }
-                    }
-
-                    //另一台下料机
-                    int ii = BlankerCount - i - 1;
-                    bool otherBlankerIsRasterInductive = Current.blankers[ii].IsRasterInductive && Current.blankers[ii].IsAlive;
-
-                    //安全光栅感应报警结束
-                    if (!Current.blankers[i].IsRasterInductive && !otherBlankerIsRasterInductive && Current.Robot.IsPausing && Current.Robot.Position <= Current.option.RobotStopPosition4RasterInductive)
-                    {
-                        if (Current.Robot.Restart(out msg))
-                        {
-                            Tip.Alert(string.Format("{0} 安全光栅感应报警结束，已远程发送继续运动信号给 {1}", Current.blankers[i].Name, Current.Robot.Name));
-                        }
-                        else
-                        {
-                            Error.Alert(string.Format("{0} 安全光栅感应报警结束，远程发送继续运动信号给 {1} 失败！", Current.blankers[i].Name, Current.Robot.Name));
-                        }
-                    }
-
-                }
             }
         }
 
@@ -2651,15 +2622,7 @@ namespace Soundon.Dispatcher.App
                     {
                         Floor floor = Current.ovens[i].Floors[j];
 
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤 && s.SampleInfo == SampleInfo.有样品) == 2 || floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤 && s.SampleInfo == SampleInfo.无样品) == 2)
-                        {
-                            floor.Stations[0].SampleInfo = SampleInfo.有样品;
-                            floor.Stations[1].SampleInfo = SampleInfo.无样品;
-                            floor.Stations[0].SampleStatus = SampleStatus.待结果;
-                            floor.Stations[1].SampleStatus = SampleStatus.待结果;
-                        }
-
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤) == 2 && floor.Stations.Count(s => s.SampleInfo == SampleInfo.有样品) == 1 && floor.Stations.Count(s => s.SampleInfo == SampleInfo.无样品) == 1)
+                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤) == 2)
                         {
                             floor.Stations.ForEach(s =>
                             {
@@ -2667,12 +2630,13 @@ namespace Soundon.Dispatcher.App
                             });
                         }
 
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.无盘 || s.FloorStatus == FloorStatus.空盘) == 2)
+                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleInfo == SampleInfo.无样品) == 2)
                         {
-                            floor.Stations.ForEach(s => s.SampleStatus = SampleStatus.未知);
+                            floor.Stations.ForEach(s =>
+                            {
+                                s.SampleStatus = SampleStatus.水分OK;
+                            });
                         }
-
-                        floor.Stations.ForEach(s => { if (s.FloorStatus == FloorStatus.空盘) { s.SampleStatus = SampleStatus.未知; } });
                     }
                 }
             }
@@ -4503,7 +4467,7 @@ namespace Soundon.Dispatcher.App
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].IsAlive
                 && Current.ovens[i].Floors[j].DoorStatus != DoorStatus.关闭;
-          //  this.tsmOpenNetControl.Enabled = Current.ovens[i].Floors[j].IsAlive && !Current.ovens[i].Floors[j].IsNetControlOpen;
+            //  this.tsmOpenNetControl.Enabled = Current.ovens[i].Floors[j].IsAlive && !Current.ovens[i].Floors[j].IsNetControlOpen;
             this.tsmLoadVacuum.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].IsAlive
@@ -4525,8 +4489,8 @@ namespace Soundon.Dispatcher.App
                 && Current.ovens[i].IsAlive
                 && Current.ovens[i].Floors[j].VacuumIsUploading;
             this.tsmClearRunTime.Enabled = false;
-                //Current.ovens[i].Floors[j].IsNetControlOpen
-                //&& Current.ovens[i].IsAlive;
+            //Current.ovens[i].Floors[j].IsNetControlOpen
+            //&& Current.ovens[i].IsAlive;
             this.tsmStartBaking.Enabled =
                 Current.ovens[i].Floors[j].IsNetControlOpen
                 && Current.ovens[i].IsAlive
@@ -4537,7 +4501,7 @@ namespace Soundon.Dispatcher.App
                 && Current.ovens[i].IsAlive
                 && Current.ovens[i].Floors[j].IsBaking;
             this.tsmAlarmReset.Enabled = Current.ovens[i].IsAlive;
-            this.tsmWatContentResult.Enabled = Current.ovens[i].Floors[j].Stations.Count(s => s.FloorStatus == FloorStatus.待出) > 0;
+            this.tsmWatContentResult.Enabled = Current.ovens[i].Floors[j].Stations.Count(s => s.FloorStatus == FloorStatus.待出 || (s.FloorStatus == FloorStatus.待烤 && s.SampleStatus == SampleStatus.水分NG)) > 0;
         }
 
         #endregion
@@ -5121,21 +5085,44 @@ namespace Soundon.Dispatcher.App
 
             var floorName = Current.ovens[i].Floors[j].Name;
 
+            var floorStationIds = new List<int>();
+
             DialogResult dr = MessageBox.Show("确定"+ floorName + "水分测试结果OK？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             if (dr == DialogResult.OK)
             {
                 Current.ovens[i].Floors[j].Stations.ForEach(s =>
                 {
+                    floorStationIds.Add(s.Id);
                     if (s.ClampStatus == ClampStatus.满夹具)
                     {
-                        s.SampleInfo = SampleInfo.无样品;
                         s.SampleStatus = SampleStatus.水分OK;
                         s.FloorStatus = FloorStatus.待出;
+                        s.SampleInfo = SampleInfo.无样品;
                     }
                     else
                     {
                         s.SampleStatus = SampleStatus.未知;
                     }
+                });
+
+                Current.blankers.ForEach(b =>
+                {
+                    b.Stations.ForEach(s =>
+                    {
+                        if (floorStationIds.Contains(s.FromStationId) && s.ClampStatus == ClampStatus.满夹具)
+                        {
+                            s.SampleStatus = SampleStatus.水分OK;
+                            var addr = string.Format("D{0:D4}", 2021 + b.Stations.IndexOf(s));
+                            if (!b.Plc.SetInfo(addr, (ushort)3, out string msg))
+                            {
+                                Error.Alert(msg);
+                            }
+                            else
+                            {
+                                LogHelper.WriteInfo(string.Format("成功发送水分OK指令到{0} {1}:{2}", s.Name, addr, 3));
+                            }
+                        }
+                    });
                 });
             }
         }
@@ -5152,17 +5139,39 @@ namespace Soundon.Dispatcher.App
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
 
             var floorName = Current.ovens[i].Floors[j].Name;
+            var floorStationIds = new List<int>();
 
             DialogResult dr = MessageBox.Show("确定" + floorName + "水分测试结果NG？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             if (dr == DialogResult.OK)
             {
                 Current.ovens[i].Floors[j].Stations.ForEach(s =>
                 {
+                    floorStationIds.Add(s.Id);
                     if (s.ClampStatus == ClampStatus.满夹具)
                     {
                         s.SampleStatus = SampleStatus.水分NG;
                         s.FloorStatus = FloorStatus.待烤;
                     }
+                });
+
+                Current.blankers.ForEach(b =>
+                {
+                    b.Stations.ForEach(s =>
+                    {
+                        if (floorStationIds.Contains(s.FromStationId) && s.ClampStatus == ClampStatus.满夹具)
+                        {
+                            s.SampleStatus = SampleStatus.水分NG;
+                            var addr = string.Format("D{0:D4}", 2021 + b.Stations.IndexOf(s));
+                            if (!b.Plc.SetInfo(addr, (ushort)4, out string msg))
+                            {
+                                Error.Alert(msg);
+                            }
+                            else
+                            {
+                                LogHelper.WriteInfo(string.Format("成功发送水分NG指令到{0} {1}:{2}", s.Name, addr, 4));
+                            }
+                        }
+                    });
                 });
             }
         }
