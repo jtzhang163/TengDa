@@ -272,37 +272,40 @@ namespace Soundon.Dispatcher
 
                     for (int j = 0; j < this.Stations.Count; j++)
                     {
+                        //jj 0：3/5#线 1： 4/6#线
+                        int jj = Current.blankers.IndexOf(this) == 0 ? 1 - j : j;
+
                         if (bOutputs[10 + j] == 1)
                         {
-                            this.Stations[j].ClampStatus = ClampStatus.空夹具;
-                            this.Stations[j].Status = StationStatus.可取;
-                            this.Stations[j].SampleInfo = SampleInfo.未知;
+                            this.Stations[jj].ClampStatus = ClampStatus.空夹具;
+                            this.Stations[jj].Status = StationStatus.可取;
+                            this.Stations[jj].SampleInfo = SampleInfo.未知;
                         }
                         else if (bOutputs[10 + j] == 2)
                         {
-                            this.Stations[j].ClampStatus = ClampStatus.无夹具;
-                            this.Stations[j].Status = StationStatus.可放;
+                            this.Stations[jj].ClampStatus = ClampStatus.无夹具;
+                            this.Stations[jj].Status = StationStatus.可放;
                         }
                         else if (bOutputs[10 + j] == 3)
                         {
-                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[j].Status = StationStatus.工作中;
+                            this.Stations[jj].ClampStatus = ClampStatus.满夹具;
+                            this.Stations[jj].Status = StationStatus.工作中;
                         }
                         else if (bOutputs[10 + j] == 4)
                         {
-                            this.Stations[j].ClampStatus = ClampStatus.异常;
-                            this.Stations[j].Status = StationStatus.不可用;
+                            this.Stations[jj].ClampStatus = ClampStatus.异常;
+                            this.Stations[jj].Status = StationStatus.不可用;
                         }
                         else if (bOutputs[10 + j] == 5) //NG回炉
                         {
-                            this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[j].Status = StationStatus.可取;
-                            this.Stations[j].SampleStatus = SampleStatus.水分NG;
+                            this.Stations[jj].ClampStatus = ClampStatus.满夹具;
+                            this.Stations[jj].Status = StationStatus.可取;
+                            this.Stations[jj].SampleStatus = SampleStatus.水分NG;
                         }
                         else
                         {
-                            this.Stations[j].ClampStatus = ClampStatus.未知;
-                            this.Stations[j].Status = StationStatus.不可用;
+                            this.Stations[jj].ClampStatus = ClampStatus.未知;
+                            this.Stations[jj].Status = StationStatus.不可用;
                         }
 
                         var samResultVal = bOutputs[21 + j];
@@ -311,12 +314,12 @@ namespace Soundon.Dispatcher
 
                             var sampleStatus = samResultVal == 3 ? SampleStatus.水分OK : SampleStatus.水分NG;
 
-                            if (this.Stations[j].ClampStatus != ClampStatus.无夹具)
+                            if (this.Stations[jj].ClampStatus != ClampStatus.无夹具)
                             {
-                                this.Stations[j].SampleStatus = sampleStatus;
+                                this.Stations[jj].SampleStatus = sampleStatus;
                             }
 
-                            var floorStation = Station.GetStation(this.Stations[j].FromStationId);
+                            var floorStation = Station.GetStation(this.Stations[jj].FromStationId);
                             if (floorStation != null && floorStation.GetPutType == GetPutType.烤箱)
                             {
                                 floorStation.GetFloor().Stations.ForEach(s =>
@@ -409,33 +412,35 @@ namespace Soundon.Dispatcher
 
                     for (int j = 0; j < this.Stations.Count; j++)
                     {
+                        int jj = Current.blankers.IndexOf(this) == 0 ? 1 - j : j;
+
                         if (this.Stations[j].SampleInfo == SampleInfo.无样品)
                         {
-                            if (bOutputs[21 + j] == 0)
+                            if (bOutputs[21 + jj] == 0)
                             {
-                                if (!this.Plc.SetInfo("D" + (2021 + j).ToString("D4"), (ushort)1, out msg))
+                                if (!this.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), (ushort)1, out msg))
                                 {
                                     Error.Alert(msg);
                                     this.Plc.IsAlive = false;
                                     return false;
                                 }
 
-                                LogHelper.WriteInfo(string.Format("成功发送无水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + j).ToString("D4") + "1"));
+                                LogHelper.WriteInfo(string.Format("成功发送无水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + jj).ToString("D4") + "1"));
                             }
                         }
 
                         if (this.Stations[j].SampleInfo == SampleInfo.有样品)
                         {
-                            if (bOutputs[21 + j] == 0)
+                            if (bOutputs[21 + jj] == 0)
                             {
-                                if (!this.Plc.SetInfo("D" + (2021 + j).ToString("D4"), (ushort)2, out msg))
+                                if (!this.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), (ushort)2, out msg))
                                 {
                                     Error.Alert(msg);
                                     this.Plc.IsAlive = false;
                                     return false;
                                 }
 
-                                LogHelper.WriteInfo(string.Format("成功发送有水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + j).ToString("D4") + "2"));
+                                LogHelper.WriteInfo(string.Format("成功发送有水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + jj).ToString("D4") + "2"));
                             }
                         }
                     }

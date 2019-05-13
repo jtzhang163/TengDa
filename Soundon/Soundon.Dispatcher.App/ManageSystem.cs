@@ -5112,7 +5112,11 @@ namespace Soundon.Dispatcher.App
                         if (floorStationIds.Contains(s.FromStationId) && s.ClampStatus == ClampStatus.满夹具)
                         {
                             s.SampleStatus = SampleStatus.水分OK;
-                            var addr = string.Format("D{0:D4}", 2021 + b.Stations.IndexOf(s));
+
+                            var offset = (b.Stations.IndexOf(s) == 0) ^ (Current.blankers.IndexOf(b) == 0) ? 0 : 1;
+
+                            var addr = string.Format("D{0:D4}", 2021 + offset);
+
                             if (!b.Plc.SetInfo(addr, (ushort)3, out string msg))
                             {
                                 Error.Alert(msg);
@@ -5161,7 +5165,11 @@ namespace Soundon.Dispatcher.App
                         if (floorStationIds.Contains(s.FromStationId) && s.ClampStatus == ClampStatus.满夹具)
                         {
                             s.SampleStatus = SampleStatus.水分NG;
-                            var addr = string.Format("D{0:D4}", 2021 + b.Stations.IndexOf(s));
+
+                            var offset = (b.Stations.IndexOf(s) == 0) ^ (Current.blankers.IndexOf(b) == 0) ? 0 : 1;
+
+                            var addr = string.Format("D{0:D4}", 2021 + offset);
+
                             if (!b.Plc.SetInfo(addr, (ushort)4, out string msg))
                             {
                                 Error.Alert(msg);
