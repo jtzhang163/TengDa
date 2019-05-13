@@ -5212,5 +5212,23 @@ namespace Soundon.Dispatcher.App
             }
         }
 
+        /// <summary>
+        /// 键盘按下空格键急停机器人
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ManageSystem_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.ToString() == " ")
+            {
+                if (Current.Robot.IsAlive)
+                {
+                    if (Current.Robot.Stop(out string msg))
+                    {
+                        Tip.Alert("按下空格键急停大机器人成功！");
+                    }
+                }
+            }
+        }
     }
 }
