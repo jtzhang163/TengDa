@@ -73,7 +73,19 @@ namespace Soundon.Mes.Test.Windows
                 this.status.Text = "ERROR";
                 this.message.Text = ex.ToString();
             }
-
+            finally
+            {
+                if (this.status.Text.Trim().ToLower() == "true")
+                {
+                    this.status.Foreground = Brushes.Green;
+                    this.message.Foreground = Brushes.Green;
+                }
+                else
+                {
+                    this.status.Foreground = Brushes.Red;
+                    this.message.Foreground = Brushes.Red;
+                }
+            }
             ShowLog();
         }
 
@@ -106,6 +118,7 @@ namespace Soundon.Mes.Test.Windows
             Common.WriteLog("--- 结果 ----");
             Common.WriteLog(string.Format("状态 ： {0}", this.status.Text));
             Common.WriteLog(string.Format("消息 ： {0}", this.message.Text));
+            Common.WriteLog("");
         }
     }
 }
