@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +25,11 @@ namespace Soundon.Mes.Test
         public MainWindow()
         {
             InitializeComponent();
+
+            this.username.Text = Common.Username;
+            this.password.Text = "**********";
+
+            Common.MainWindow = this;
         }
 
         private void clearLog_Click(object sender, RoutedEventArgs e)
@@ -33,28 +39,27 @@ namespace Soundon.Mes.Test
 
         private void MachineAccessTest_Click(object sender, RoutedEventArgs e)
         {
-            MachineAccessTestWindow window = new MachineAccessTestWindow();
-            window.ShowDialog();
+            new MachineAccessTestWindow().Show();
         }
 
         private void InSite_Click(object sender, RoutedEventArgs e)
         {
-
+            new BakingEnterSiteWindow().Show();
         }
 
         private void OutSite_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void MachineStatus_Click(object sender, RoutedEventArgs e)
-        {
-
+            new BakingOutSiteWindow().Show();
         }
 
         private void BakingNg_Click(object sender, RoutedEventArgs e)
         {
+            new BakingNgWindow().Show();
+        }
 
+        private void MachineStatus_Click(object sender, RoutedEventArgs e)
+        {
+            new MachineStatusWindow().Show();
         }
     }
 }

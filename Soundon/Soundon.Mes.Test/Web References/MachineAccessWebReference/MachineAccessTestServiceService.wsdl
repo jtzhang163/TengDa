@@ -57,7 +57,7 @@
   </wsdl:binding>
   <wsdl:service name="MachineAccessTestServiceService">
     <wsdl:port name="MachineAccessTestServicePort" binding="tns:MachineAccessTestServiceBinding">
-      <address location="http://SAPMEAP:50000/sapdevwebservice/MachineAccessTestServiceService" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <address location="http://MEAPVIP.soundnewenergy.net:50000/sapdevwebservice/MachineAccessTestServiceService" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

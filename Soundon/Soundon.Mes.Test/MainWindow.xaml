@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Soundon.Mes.Test"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="桑顿烘烤工序MES手动测试工具" Height="450" Width="800">
+        Title="桑顿烘烤工序MES手动上传工具" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="20"/>
@@ -31,6 +31,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
@@ -40,12 +41,19 @@
         <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Click="MachineAccessTest_Click">上位机访问</Button>
         <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Click="InSite_Click">烘烤进站</Button>
         <Button Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Click="OutSite_Click">烘烤出站</Button>
-        <Button Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Click="MachineStatus_Click">设备状态</Button>
-        <Button Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Click="BakingNg_Click">烘烤NG</Button>
+        <Button Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Click="BakingNg_Click">烘烤NG</Button>
+        <Button Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Click="MachineStatus_Click">设备状态</Button>
 
         <TextBlock Grid.Row="0" Grid.Column="1" Text="上传日志：" Margin="20,0" FontWeight="Bold"/>
-        <TextBox x:Name="log" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Margin="20,0"/>
-        <Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" Margin="20,0,0,0">清空日志</Button>
+        <TextBox x:Name="log" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Margin="20,0" Foreground="Blue" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+        <Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" Margin="20,0,0,0" Click="clearLog_Click">清空日志</Button>
 
+        <WrapPanel Grid.Row="7" Grid.ColumnSpan="2" Background="LightGray">
+            <TextBlock Text="用户名:" Margin="170,0,0,0"/>
+            <TextBlock x:Name="username"/>
+            <TextBlock Text="密码:" Margin="20,0,0,0"/>
+            <TextBlock x:Name="password" Text="*********"/>
+            <TextBlock Text="用户和密码在配置文件修改.." Margin="20,0,0,0" FontSize="12" VerticalAlignment="Bottom" Foreground="White"/>
+        </WrapPanel>
     </Grid>
 </Window>
