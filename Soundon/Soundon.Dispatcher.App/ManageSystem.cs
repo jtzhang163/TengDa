@@ -3274,37 +3274,53 @@ namespace Soundon.Dispatcher.App
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
+            var startTime = dtPickerStart.Value;
+            var stopTime = dtPickerStop.Value;
 
-            TimeSpan ts = dtPickerStart.Value - dtPickerStop.Value;
-            int queryBatteryTimeSpan = TengDa._Convert.StrToInt(Current.option.QueryBatteryTimeSpan, -1);
-            if (Math.Abs(ts.Days) > TengDa._Convert.StrToInt(Current.option.QueryBatteryTimeSpan, -1))
+            TimeSpan ts = startTime - stopTime;
+            int timeSpan = TengDa._Convert.StrToInt(Current.option.QueryBatteryTimeSpan, -1);
+            if (Math.Abs(ts.TotalDays) > timeSpan)
             {
-                Tip.Alert("查询时间范围太大，请将时间范围设置在 " + queryBatteryTimeSpan + " 天 之内！");
+                Tip.Alert("查询时间范围太大，请将时间范围设置在 " + timeSpan + " 天 之内！");
                 return;
             }
 
-            DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Battery] WHERE [扫码时间] BETWEEN '{1}' AND '{2}'", Config.DbTableNamePre, dtPickerStart.Value, dtPickerStop.Value), out msg);
-            dgViewBattery.DataSource = dt;
+            Thread t = new Thread(() =>
+            {
+                string msg = string.Empty;
+                DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Battery] WHERE [扫码时间] BETWEEN '{1}' AND '{2}'", Config.DbTableNamePre, startTime, stopTime), out msg);
+                if (dt == null)
+                {
+                    Error.Alert(msg);
+                    return;
+                }
 
-            dgViewBattery.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-            dgViewBattery.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-            dgViewBattery.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-            dgViewBattery.Columns[6].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-            dgViewBattery.Columns[7].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                this.BeginInvoke(new MethodInvoker(() =>
+                {
+                    dgViewBattery.DataSource = dt;
 
-            ////设置显示列宽度
-            dgViewBattery.Columns[0].Width = 160;
-            dgViewBattery.Columns[1].Width = 130;
-            dgViewBattery.Columns[2].Width = 80;
+                    dgViewBattery.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    dgViewBattery.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    dgViewBattery.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    dgViewBattery.Columns[6].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    dgViewBattery.Columns[7].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
 
-            dgViewBattery.Columns[4].Width = 130;
-            dgViewBattery.Columns[5].Width = 130;
-            dgViewBattery.Columns[6].Width = 130;
-            dgViewBattery.Columns[7].Width = 130;
-            //dgViewBattery.Columns[8].Width = 100;
+                    ////设置显示列宽度
+                    dgViewBattery.Columns[0].Width = 160;
+                    dgViewBattery.Columns[1].Width = 130;
+                    dgViewBattery.Columns[2].Width = 80;
 
-            tbBatteryCount.Text = dt.Rows.Count.ToString();
+                    dgViewBattery.Columns[4].Width = 130;
+                    dgViewBattery.Columns[5].Width = 130;
+                    dgViewBattery.Columns[6].Width = 130;
+                    dgViewBattery.Columns[7].Width = 130;
+                    //dgViewBattery.Columns[8].Width = 100;
+
+                    tbBatteryCount.Text = dt.Rows.Count.ToString();
+                }));
+            });
+            t.Start();
+
         }
 
         private void btnExport_Click(object sender, EventArgs e)
@@ -3361,16 +3377,38 @@ namespace Soundon.Dispatcher.App
 
         private void btnOperQuery_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
+            var startTime = dtPickerOperStart.Value;
+            var stopTime = dtPickerOperStop.Value;
 
-            DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Operation] WHERE [操作时间] BETWEEN '{1}' AND '{2}'", Config.DbTableNamePre, dtPickerOperStart.Value, dtPickerOperStop.Value), out msg);
-            dgViewOper.DataSource = dt;
+            TimeSpan ts = startTime - stopTime;
+            int timeSpan = TengDa._Convert.StrToInt(Current.option.QueryTVTimeSpan, -1);
+            if (Math.Abs(ts.TotalDays) > timeSpan)
+            {
+                Tip.Alert("查询时间范围太大，请将时间范围设置在 " + timeSpan + " 天 之内！");
+                return;
+            }
 
-            dgViewOper.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+            Thread t = new Thread(() =>
+            {
+                string msg = string.Empty;
+                DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Operation] WHERE [操作时间] BETWEEN '{1}' AND '{2}'", Config.DbTableNamePre, startTime, stopTime), out msg);
+                if (dt == null)
+                {
+                    Error.Alert(msg);
+                    return;
+                }
+                this.BeginInvoke(new MethodInvoker(() =>
+                {
+                    dgViewOper.DataSource = dt;
 
-            //设置显示列宽度
-            dgViewOper.Columns[3].Width = 400;
-            dgViewOper.Columns[4].Width = 130;
+                    dgViewOper.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+
+                    //设置显示列宽度
+                    dgViewOper.Columns[3].Width = 400;
+                    dgViewOper.Columns[4].Width = 130;
+                }));
+            });
+            t.Start();
         }
 
         private void cbScanerIsEnable_CheckedChanged(object sender, EventArgs e)
@@ -3442,38 +3480,47 @@ namespace Soundon.Dispatcher.App
 
         private void btnQueryTV_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
+            var startTime = dtpStart.Value;
+            var stopTime = dtpStop.Value;
+            var count = cbCount.Text.Trim();
+            var selectStation = cbStations.Text.Trim();
 
-            DataTable dt = null;
-            if (cbStations.Text.Trim() == "All")
+            Thread t = new Thread(() =>
             {
-                dt = Database.Query(string.Format("SELECT TOP {3} * FROM [dbo].[{0}.V_TV] WHERE [记录时间] BETWEEN '{1}' AND '{2}' ", Config.DbTableNamePre, dtpStart.Value, dtpStop.Value, cbCount.Text), out msg);
-            }
-            else
-            {
-                dt = Database.Query(string.Format("SELECT TOP {4} * FROM [dbo].[{0}.V_TV] WHERE [烤箱工位] = '{1}' AND [记录时间] BETWEEN '{2}' AND '{3}' ", Config.DbTableNamePre, cbStations.Text.Trim(), dtpStart.Value, dtpStop.Value, cbCount.Text), out msg);
-            }
+                string msg = string.Empty;
+                DataTable dt = null;
+                if (selectStation == "All")
+                {
+                    dt = Database.Query(string.Format("SELECT TOP {3} * FROM [dbo].[{0}.V_TV] WHERE [记录时间] BETWEEN '{1}' AND '{2}' ", Config.DbTableNamePre, startTime, stopTime, count), out msg);
+                }
+                else
+                {
+                    dt = Database.Query(string.Format("SELECT TOP {4} * FROM [dbo].[{0}.V_TV] WHERE [烤箱工位] = '{1}' AND [记录时间] BETWEEN '{2}' AND '{3}' ", Config.DbTableNamePre, selectStation, startTime, stopTime, count), out msg);
+                }
 
-            if (dt == null)
-            {
-                Error.Alert(msg);
-                return;
-            }
-
-            dgvTV.DataSource = dt;
-            //设置显示列宽度
-            dgvTV.Columns[0].Width = 110;
-            for (int i = 1; i <= Option.TemperaturePointCount; i++)
-            {
-                dgvTV.Columns[i].Width = 65;
-            }
-            dgvTV.Columns[Option.TemperaturePointCount + 1].Width = 70;
-            dgvTV.Columns[Option.TemperaturePointCount + 2].Width = 100;
-            dgvTV.Columns[Option.TemperaturePointCount + 3].Width = 100;
-            dgvTV.Columns[Option.TemperaturePointCount + 4].Width = 140;
-            dgvTV.Columns[Option.TemperaturePointCount + 4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-            tbNumTV.Text = dt.Rows.Count.ToString();
-
+                if (dt == null)
+                {
+                    Error.Alert(msg);
+                    return;
+                }
+                this.BeginInvoke(new MethodInvoker(() =>
+                {
+                    dgvTV.DataSource = dt;
+                    //设置显示列宽度
+                    dgvTV.Columns[0].Width = 110;
+                    for (int i = 1; i <= Option.TemperaturePointCount; i++)
+                    {
+                        dgvTV.Columns[i].Width = 65;
+                    }
+                    dgvTV.Columns[Option.TemperaturePointCount + 1].Width = 70;
+                    dgvTV.Columns[Option.TemperaturePointCount + 2].Width = 100;
+                    dgvTV.Columns[Option.TemperaturePointCount + 3].Width = 100;
+                    dgvTV.Columns[Option.TemperaturePointCount + 4].Width = 140;
+                    dgvTV.Columns[Option.TemperaturePointCount + 4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    tbNumTV.Text = dt.Rows.Count.ToString();
+                }));
+            });
+            t.Start();
         }
 
         private void btnExportTV_Click(object sender, EventArgs e)
@@ -3515,48 +3562,58 @@ namespace Soundon.Dispatcher.App
 
         private void btnAlarmQuery_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
+            var startTime = dtpAlarmStart.Value;
+            var stopTime = dtpAlarmStop.Value;
+            var selectFloor = cbAlarmFloors.Text.Trim();
 
-            TimeSpan ts = dtpAlarmStart.Value - dtpAlarmStop.Value;
+            TimeSpan ts = stopTime - startTime;
             int timeSpan = TengDa._Convert.StrToInt(Current.option.QueryAlarmTimeSpan, -1);
-            if (Math.Abs(ts.Days) > timeSpan)
+            if (Math.Abs(ts.TotalDays) > timeSpan)
             {
                 Tip.Alert("查询时间范围太大，请将时间范围设置在 " + timeSpan + " 天 之内！");
                 return;
             }
 
-            DataTable dt = null;
-            if (cbAlarmFloors.Text.Trim() == "All")
+            Thread t = new Thread(() =>
             {
-                dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Alarm] WHERE [开始时间] BETWEEN '{1}' AND '{2}' ORDER BY [开始时间]", Config.DbTableNamePre, dtpAlarmStart.Value, dtpAlarmStop.Value), out msg);
-            }
-            else
-            {
-                dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Alarm] WHERE [名称] = '{1}' AND [开始时间] BETWEEN '{2}' AND '{3}' ORDER BY [开始时间]", Config.DbTableNamePre, cbAlarmFloors.Text.Trim(), dtpAlarmStart.Value, dtpAlarmStop.Value), out msg);
-            }
+                string msg = string.Empty;
+                DataTable dt = null;
+                if (selectFloor == "All")
+                {
+                    dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Alarm] WHERE [开始时间] BETWEEN '{1}' AND '{2}' ORDER BY [开始时间]", Config.DbTableNamePre, startTime, stopTime), out msg);
+                }
+                else
+                {
+                    dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Alarm] WHERE [名称] = '{1}' AND [开始时间] BETWEEN '{2}' AND '{3}' ORDER BY [开始时间]", Config.DbTableNamePre, selectFloor, startTime, stopTime), out msg);
+                }
 
-            if (dt == null)
-            {
-                Error.Alert(msg);
-                return;
-            }
+                if (dt == null)
+                {
+                    Error.Alert(msg);
+                    return;
+                }
 
-            dgvAlarm.DataSource = dt;
-            dgvAlarm.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-            dgvAlarm.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                this.BeginInvoke(new MethodInvoker(() =>
+                {
+                    dgvAlarm.DataSource = dt;
+                    dgvAlarm.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    dgvAlarm.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
 
-            //设置显示列宽度
-            dgvAlarm.Columns[0].Width = 100;
-            dgvAlarm.Columns[0].HeaderText = "烤箱/腔体";
-            dgvAlarm.Columns[1].Width = 100;
-            dgvAlarm.Columns[2].Width = 100;
-            dgvAlarm.Columns[3].Width = 150;
-            dgvAlarm.Columns[4].Width = 150;
-            dgvAlarm.Columns[5].Width = 150;
-            dgvAlarm.Columns[6].Width = 150;
-            dgvAlarm.Columns[6].HeaderText = "持续时间(s)";
-            dgvAlarm.Columns[7].Width = 150;
-            tbNumAlarm.Text = dt.Rows.Count.ToString();
+                    //设置显示列宽度
+                    dgvAlarm.Columns[0].Width = 100;
+                    dgvAlarm.Columns[0].HeaderText = "烤箱/腔体";
+                    dgvAlarm.Columns[1].Width = 100;
+                    dgvAlarm.Columns[2].Width = 100;
+                    dgvAlarm.Columns[3].Width = 150;
+                    dgvAlarm.Columns[4].Width = 150;
+                    dgvAlarm.Columns[5].Width = 150;
+                    dgvAlarm.Columns[6].Width = 150;
+                    dgvAlarm.Columns[6].HeaderText = "持续时间(s)";
+                    dgvAlarm.Columns[7].Width = 150;
+                    tbNumAlarm.Text = dt.Rows.Count.ToString();
+                }));
+            });
+            t.Start();
         }
 
         private void btnAlarmExport_Click(object sender, EventArgs e)
@@ -3598,32 +3655,43 @@ namespace Soundon.Dispatcher.App
 
         private void btnQueryTaskLog_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
+            var startTime = dtpTaskStart.Value;
+            var stopTime = dtpTaskStop.Value;
 
-            TimeSpan ts = dtpStart.Value - dtpStop.Value;
-            int timeSpan = TengDa._Convert.StrToInt(Current.option.QueryTVTimeSpan, -1) * 10;
-            if (Math.Abs(ts.Days) > timeSpan)
+            TimeSpan ts = startTime - stopTime;
+            int timeSpan = TengDa._Convert.StrToInt(Current.option.QueryTVTimeSpan, -1);
+            if (Math.Abs(ts.TotalDays) > timeSpan)
             {
                 Tip.Alert("查询时间范围太大，请将时间范围设置在 " + timeSpan + " 天 之内！");
                 return;
             }
 
-            DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_TaskLog] WHERE [任务生成时间] BETWEEN '{1}' AND '{2}' ", Config.DbTableNamePre, dtpTaskStart.Value, dtpTaskStop.Value), out msg);
-
-            if (dt == null)
+            Thread t = new Thread(() =>
             {
-                Error.Alert(msg);
-                return;
-            }
 
-            dgvTaskLog.DataSource = dt;
-            //设置显示列宽度
+                string msg = string.Empty;
 
-            dgvTaskLog.Columns[1].Width = 130;
-            dgvTaskLog.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-            dgvTaskLog.Columns[4].Width = 130;
-            dgvTaskLog.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-            tbTaskCount.Text = dt.Rows.Count.ToString();
+                DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_TaskLog] WHERE [任务生成时间] BETWEEN '{1}' AND '{2}' ", Config.DbTableNamePre, startTime, stopTime), out msg);
+
+                if (dt == null)
+                {
+                    Error.Alert(msg);
+                    return;
+                }
+
+                this.BeginInvoke(new MethodInvoker(() =>
+                {
+                    dgvTaskLog.DataSource = dt;
+                    //设置显示列宽度
+
+                    dgvTaskLog.Columns[1].Width = 130;
+                    dgvTaskLog.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    dgvTaskLog.Columns[4].Width = 130;
+                    dgvTaskLog.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    tbTaskCount.Text = dt.Rows.Count.ToString();
+                }));
+            });
+            t.Start();
         }
 
         private void btnExportTaskLog_Click(object sender, EventArgs e)
