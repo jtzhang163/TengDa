@@ -1,5 +1,6 @@
 ﻿using Microsoft.CSharp;
 using System;
+using System.Configuration;
 using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ using TengDa;
 using TengDa.Web;
 using TengDa.WF;
 using Soundon.Dispatcher.MesWebService;
+using Soundon.Dispatcher.ExecutingWebReference;
 
 namespace Soundon.Dispatcher
 {
@@ -42,6 +44,46 @@ namespace Soundon.Dispatcher
                     UpdateDbField("WebServiceUrl", value);
                 }
                 webServiceUrl = value;
+            }
+        }
+
+        private string username = string.Empty;
+        public string Username
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(username))
+                {
+                    username = ConfigurationManager.AppSettings["mes_username"].ToString();
+                }
+                return username;
+            }
+        }
+
+        private string password = string.Empty;
+        public string Password
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(password))
+                {
+                    password = ConfigurationManager.AppSettings["mes_password"].ToString();
+                }
+                return password;
+            }
+        }
+
+
+        private string site = string.Empty;
+        public string Site
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(site))
+                {
+                    site = ConfigurationManager.AppSettings["mes_site"].ToString();
+                }
+                return site;
             }
         }
 
@@ -173,121 +215,31 @@ namespace Soundon.Dispatcher
         #region MES方法
 
         /// <summary>
-        /// MES上传公用方法
-        /// </summary>
-        /// <param name="uploadDatas"></param>
-        /// <returns></returns>
-        public static async Task<bool> UploadAsync(List<UploadData> uploadDatas)
-        {
-            if (uploadDatas.Count < 1)
-            {
-                return true;
-            }
-
-            try
-            {
-
-                MachineAccessTestServiceClient client = new MachineAccessTestServiceClient();
-
-
-                var values = new List<KeyValuePair<string, string>>();
-                string val = JsonHelper.SerializeObjectList<UploadData>(uploadDatas);
-                values.Add(new KeyValuePair<string, string>("data", val));
-                string s = await HttpHelper.HttpPostAsync(Current.mes.WebServiceUrl, values);
-                MesResponse ret = JsonHelper.DeserializeJsonToObject<MesResponse>(s);
-                if (ret.status == 0)
-                {
-                    LogHelper.WriteInfo("上传MES成功，data：" + val);
-                    return true;
-                }
-                LogHelper.WriteError("上传MES失败，msg：" + ret.msg);
-                LogHelper.WriteError("data：" + val);
-                return false;
-            }
-            catch (Exception ex)
-            {
-                LogHelper.WriteError("上传MES出现错误，msg：" + ex.Message);
-            }
-            return false;
-        }
-
-        /// <summary>
         /// 上传真空温度数据
         /// </summary>
         /// <param name="uploadTVDs"></param>
         /// <returns></returns>
-        public static async System.Threading.Tasks.Task UploadTvdInfoAsync(List<UploadTVD> uploadTVDs)
+        public static void UploadTvdInfo(List<UploadTVD> uploadTVDs)
         {
-            for (int i = 0; i < uploadTVDs.Count; i++)
+
+        }
+
+        private static ExecutingServiceService _wsProxy = null;
+        private static ExecutingServiceService wsProxy
+        {
+            get
             {
-                var uploadTVD = uploadTVDs[i];
-                var clamp = new Clamp(uploadTVD.ClampId);
-                var station = Station.StationList.FirstOrDefault(s => s.Id == clamp.OvenStationId);
-                var floor = station.GetFloor();
-                var oven = floor.GetOven();
-
-                var uploadDatas = new List<UploadData>();
-
-                foreach (var battery in clamp.Batteries)
+                if (_wsProxy == null)
                 {
-                    var uploadData = new UploadData();
-
-                    uploadData.batch_number = battery.Code.Split('-')[0];
-                    uploadData.parameter_flag = uploadTVD.ParameterFlag.ToString();
-                    uploadData.device_status = uploadTVD.DeviceStatus.ToString();
-                    uploadData.collector_time = uploadTVD.CollectorTime.ToString("yyyy-MM-dd HH:mm:ss");
-
-                    uploadData.materialCodeInfo = new List<MaterialCodeInfo>();
-                    uploadData.materialCodeInfo.Add(new MaterialCodeInfo()
+                    _wsProxy = new ExecutingServiceService
                     {
-                        materialCodeName = "电芯编号",
-                        materialCode = battery.Code
-                    });
-
-                    uploadData.deviceCodeInfo = new List<DeviceCodeInfo>();
-                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
-                    {
-                        deviceCodeName = "机台号",
-                        deviceCode = oven.Number
-                    });
-                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
-                    {
-                        deviceCodeName = "烤箱编号",
-                        deviceCode = station.Number
-                    });
-                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
-                    {
-                        deviceCodeName = "料框编号",
-                        deviceCode = clamp.Code
-                    });
-
-                    uploadData.deviceParamData = new List<DeviceParamData>();
-                    for (int k = 0; k < Option.TemperaturePointCount; k++)
-                    {
-                        uploadData.deviceParamData.Add(new DeviceParamData
-                        {
-                            parameter_flag = uploadTVD.ParameterFlag.ToString(),
-                            parameter_name = Current.option.TemperNames[k] + "实际值",
-                            parameter_unit = "℃",
-                            parameter_value = uploadTVD.T[k].ToString()
-                        });
-                    }
-
-                    uploadData.deviceParamData.Add(new DeviceParamData
-                    {
-                        parameter_flag = uploadTVD.ParameterFlag.ToString(),
-                        parameter_name = "真空度实际值",
-                        parameter_unit = "Pa",
-                        parameter_value = uploadTVD.V1.ToString()
-                    });
-
-                    uploadDatas.Add(uploadData);
+                        Credentials = new NetworkCredential(Current.mes.Username, Current.mes.Password, null),
+                        PreAuthenticate = true,
+                        Timeout = 2000,
+                        Url = Current.mes.WebServiceUrl
+                    };
                 }
-
-                if (await UploadAsync(uploadDatas))
-                {
-                    uploadTVD.IsUploaded = true;
-                }
+                return _wsProxy;
             }
         }
 
@@ -296,8 +248,9 @@ namespace Soundon.Dispatcher
         /// </summary>
         /// <param name="clamps"></param>
         /// <returns></returns>
-        public static async System.Threading.Tasks.Task UploadInOvenAsync(List<Clamp> clamps)
+        public static void UploadInOven(List<Clamp> clamps)
         {
+
             for (int i = 0; i < clamps.Count; i++)
             {
                 var clamp = clamps[i];
@@ -305,113 +258,39 @@ namespace Soundon.Dispatcher
                 var floor = station.GetFloor();
                 var oven = floor.GetOven();
 
-                var uploadDatas = new List<UploadData>();
-
+                var sfcDatas = new List<SfcData>();
                 foreach (var battery in clamp.Batteries)
                 {
-                    var uploadData = new UploadData();
-
-                    uploadData.batch_number = battery.Code.Split('-')[0];
-                    uploadData.parameter_flag = "0";
-                    uploadData.device_status = "0";
-                    uploadData.collector_time = clamp.InOvenTime.ToString("yyyy-MM-dd HH:mm:ss");
-
-                    uploadData.materialCodeInfo = new List<MaterialCodeInfo>();
-                    uploadData.materialCodeInfo.Add(new MaterialCodeInfo()
-                    {
-                        materialCodeName = "电芯编号",
-                        materialCode = battery.Code
-                    });
-
-                    uploadData.deviceCodeInfo = new List<DeviceCodeInfo>();
-                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
-                    {
-                        deviceCodeName = "机台号",
-                        deviceCode = oven.Number
-                    });
-                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
-                    {
-                        deviceCodeName = "烤箱编号",
-                        deviceCode = station.Number
-                    });
-                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
-                    {
-                        deviceCodeName = "料框编号",
-                        deviceCode = clamp.Code
-                    });
-
-                    uploadData.deviceParamData = new List<DeviceParamData>();
-
-                    uploadData.deviceParamData.Add(new DeviceParamData
-                    {
-                        parameter_flag = "0",
-                        parameter_name = "工艺温度",
-                        parameter_unit = "℃",
-                        parameter_value = clamp.ProcessTemperSet.ToString()
-                    });
-
-                    for (int k = 0; k < Option.TemperatureSetPointCount; k++)
-                    {
-                        uploadData.deviceParamData.Add(new DeviceParamData
-                        {
-                            parameter_flag = "0",
-                            parameter_name = Current.option.TemperSetNames[k],
-                            parameter_unit = "℃",
-                            parameter_value = clamp.TsSet[k].ToString()
-                        });
-                    }
-
-                    uploadData.deviceParamData.Add(new DeviceParamData
-                    {
-                        parameter_flag = "0",
-                        parameter_name = "真空度设定值",
-                        parameter_unit = "Pa",
-                        parameter_value = clamp.VacuumSet.ToString()
-                    });
-
-                    uploadData.deviceParamData.Add(new DeviceParamData
-                    {
-                        parameter_flag = "0",
-                        parameter_name = "热风循环温度",
-                        parameter_unit = "℃",
-                        parameter_value = clamp.YunFengTSet.ToString()
-                    });
-
-                    uploadData.deviceParamData.Add(new DeviceParamData
-                    {
-                        parameter_flag = "0",
-                        parameter_name = "进烤箱时间",
-                        parameter_unit = "",
-                        parameter_value = clamp.InOvenTime.ToString("yyyy-MM-dd HH:mm:ss")
-                    });
-
-                    uploadData.deviceParamData.Add(new DeviceParamData
-                    {
-                        parameter_flag = "0",
-                        parameter_name = "预热时间设置",
-                        parameter_unit = "min",
-                        parameter_value = clamp.PreheatTimeSet.ToString()
-                    });
-
-                    uploadData.deviceParamData.Add(new DeviceParamData
-                    {
-                        parameter_flag = "0",
-                        parameter_name = "烘烤时间设置",
-                        parameter_unit = "min",
-                        parameter_value = clamp.BakingTimeSet.ToString()
-                    });
-
-                    uploadData.deviceParamData.Add(new DeviceParamData
-                    {
-                        parameter_flag = "0",
-                        parameter_name = "呼吸周期设置",
-                        parameter_unit = "min",
-                        parameter_value = clamp.BreathingCycleSet.ToString()
-                    });
-                    uploadDatas.Add(uploadData);
+                    sfcDatas.Add(new SfcData() { SFC = battery.Code });
                 }
 
-                if (await UploadAsync(uploadDatas))
+                var response = new executeResponse();
+                try
+                {
+                    var request = new executingServiceRequest()
+                    {
+                        site = Current.mes.Site,
+                        serviceCode = "GetSfcListAndContainerIdOfBakeService",
+                        data = JsonHelper.SerializeObject(new ExecuteData()
+                        {
+                            RESOURCE = oven.Number,
+                            ACTION = "S",
+                            CONTAINER_ID = clamp.Code,
+                            IS_PROCESS_LOT = "N",
+                            SFC_LIST = sfcDatas.ToArray(),
+                            SFC = ""
+                        })
+                    };
+                    response = wsProxy.execute(new execute() { pRequest = request });
+                }
+                catch (System.Exception ex)
+                {
+                    response.@return.status = "error";
+                    response.@return.message = ex.Message;
+                    LogHelper.WriteError(ex);
+                }
+
+                if (response.@return.status.ToLower().Contains("true"))
                 {
                     clamp.IsInUploaded = true;
                 }
@@ -423,8 +302,9 @@ namespace Soundon.Dispatcher
         /// </summary>
         /// <param name="clamps"></param>
         /// <returns></returns>
-        public static async System.Threading.Tasks.Task UploadOutOvenAsync(List<Clamp> clamps)
+        public static void UploadOutOven(List<Clamp> clamps)
         {
+
             for (int i = 0; i < clamps.Count; i++)
             {
                 var clamp = clamps[i];
@@ -432,58 +312,133 @@ namespace Soundon.Dispatcher
                 var floor = station.GetFloor();
                 var oven = floor.GetOven();
 
-                var uploadDatas = new List<UploadData>();
-
+                var sfcDatas = new List<SfcData>();
                 foreach (var battery in clamp.Batteries)
                 {
-                    var uploadData = new UploadData();
-
-                    uploadData.batch_number = battery.Code.Split('-')[0];
-                    uploadData.parameter_flag = "0";
-                    uploadData.device_status = "0";
-                    uploadData.collector_time = clamp.OutOvenTime.ToString("yyyy-MM-dd HH:mm:ss");
-
-                    uploadData.materialCodeInfo = new List<MaterialCodeInfo>();
-                    uploadData.materialCodeInfo.Add(new MaterialCodeInfo()
-                    {
-                        materialCodeName = "电芯编号",
-                        materialCode = battery.Code
-                    });
-
-                    uploadData.deviceCodeInfo = new List<DeviceCodeInfo>();
-                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
-                    {
-                        deviceCodeName = "机台号",
-                        deviceCode = oven.Number
-                    });
-                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
-                    {
-                        deviceCodeName = "烤箱编号",
-                        deviceCode = station.Number
-                    });
-                    uploadData.deviceCodeInfo.Add(new DeviceCodeInfo()
-                    {
-                        deviceCodeName = "料框编号",
-                        deviceCode = clamp.Code
-                    });
-
-                    uploadData.deviceParamData = new List<DeviceParamData>();
-                    uploadData.deviceParamData.Add(new DeviceParamData
-                    {
-                        parameter_flag = "0",
-                        parameter_name = "出烤箱时间",
-                        parameter_unit = "",
-                        parameter_value = clamp.OutOvenTime.ToString("yyyy-MM-dd HH:mm:ss")
-                    });
-
-                    uploadDatas.Add(uploadData);
+                    sfcDatas.Add(new SfcData() { SFC = battery.Code });
                 }
 
-                if (await UploadAsync(uploadDatas))
+                var response = new executeResponse();
+
+                try
+                {
+                    var request = new executingServiceRequest()
+                    {
+                        site = Current.mes.Site,
+                        serviceCode = "UntieContainerIdOfBakeService",
+                        data = JsonHelper.SerializeObject(new ExecuteData()
+                        {
+                            RESOURCE = oven.Number,
+                            CONTAINER_ID = clamp.Code,
+                            NC_SFC_LIST = sfcDatas.ToArray()
+                        })
+                    };
+                    response = wsProxy.execute(new execute() { pRequest = request });
+                }
+                catch (System.Exception ex)
+                {
+                    response.@return.status = "error";
+                    response.@return.message = ex.Message;
+                    LogHelper.WriteError(ex);
+                }
+
+                if (response.@return.status.ToLower().Contains("true"))
                 {
                     clamp.IsOutUploaded = true;
                 }
             }
+        }
+
+
+
+        /// <summary>
+        /// 烘烤NG数据上传
+        /// </summary>
+        /// <param name="clamps"></param>
+        /// <returns></returns>
+        public static void UploadNgData(List<Clamp> clamps)
+        {
+
+            for (int i = 0; i < clamps.Count; i++)
+            {
+                var clamp = clamps[i];
+                var station = Station.StationList.FirstOrDefault(s => s.Id == clamp.OvenStationId);
+                var floor = station.GetFloor();
+                var oven = floor.GetOven();
+
+                var sfcDatas = new List<SfcData>();
+                foreach (var battery in clamp.Batteries)
+                {
+                    sfcDatas.Add(new SfcData() { SFC = battery.Code });
+                }
+
+                var response = new executeResponse();
+
+                try
+                {
+                    var request = new executingServiceRequest()
+                    {
+                        site = Current.mes.Site,
+                        serviceCode = "BakeReworkUnbundlingService",
+                        data = JsonHelper.SerializeObject(new ExecuteData()
+                        {
+                            RESOURCE = oven.Number,
+                            CONTAINER_ID = clamp.Code,
+                            NC_SFC_LIST = sfcDatas.ToArray()
+                        })
+                    };
+                    response = wsProxy.execute(new execute() { pRequest = request });
+                }
+                catch (System.Exception ex)
+                {
+                    response.@return.status = "error";
+                    response.@return.message = ex.Message;
+                    LogHelper.WriteError(ex);
+                }
+
+                //if (response.@return.status.ToLower().Contains("true"))
+                //{
+                //    clamp.IsOutUploaded = true;
+                //}
+            }
+        }
+
+
+        /// <summary>
+        /// 设备状态上传
+        /// </summary>
+        /// <param name="clamps"></param>
+        /// <returns></returns>
+        public static void UploadMachineStatus()
+        {
+            var machStatuss = new List<MachStatus>();
+            for (int i = 0; i < Current.ovens.Count; i++)
+            {
+                var oven = Current.ovens[i];
+                machStatuss.Add(new MachStatus() { RESOURCE = oven.Number, STATUS = "1" });
+            }
+
+            var response = new executeResponse();
+            try
+            {
+                var request = new executingServiceRequest()
+                {
+                    site = Current.mes.Site,
+                    serviceCode = "ResourceStatusChangeService",
+                    data = JsonHelper.SerializeObject(new ExecuteData()
+                    {
+                        RESOURCE_LIST = machStatuss.ToArray()
+                    })
+                };
+                response = wsProxy.execute(new execute() { pRequest = request });
+            }
+            catch (System.Exception ex)
+            {
+                response.@return.status = "error";
+                response.@return.message = ex.Message;
+                LogHelper.WriteError(ex);
+            }
+
         }
 
         #endregion
@@ -503,5 +458,28 @@ namespace Soundon.Dispatcher
         public string errorMsg { get; set; }
         public string map { get; set; }
         public string data { get; set; }
+    }
+
+    public class ExecuteData
+    {
+        public string RESOURCE { get; set; }
+        public string ACTION { get; set; }
+        public string CONTAINER_ID { get; set; }
+        public string IS_PROCESS_LOT { get; set; }
+        public SfcData[] SFC_LIST { get; set; }
+        public SfcData[] NC_SFC_LIST { get; set; }
+        public string SFC { get; set; }
+        public MachStatus[] RESOURCE_LIST { get; set; }
+    }
+
+    public class SfcData
+    {
+        public string SFC { get; set; }
+    }
+
+    public class MachStatus
+    {
+        public string RESOURCE { get; set; }
+        public string STATUS { get; set; }
     }
 }

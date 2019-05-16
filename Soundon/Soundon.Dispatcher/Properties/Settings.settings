@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Soundon.Dispatcher.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Soundon_Dispatcher_MachineAccessWebReference_MachineAccessTestServiceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://MEAPVIP.soundnewenergy.net:50000/sapdevwebservice/MachineAccessTestServiceService</Value>
+    </Setting>
+    <Setting Name="Soundon_Dispatcher_ExecutingWebReference_ExecutingServiceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://MEAPVIP.soundnewenergy.net:50000/sapdevwebservice/ExecutingServiceService</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

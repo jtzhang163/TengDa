@@ -2688,7 +2688,7 @@ namespace Soundon.Dispatcher.App
             }
         }
 
-        public async void UploadInOvenInfo(object obj)
+        public void UploadInOvenInfo(object obj)
         {
             try
             {
@@ -2711,7 +2711,7 @@ namespace Soundon.Dispatcher.App
                 }
 
                 this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传入烤箱数据..."; }));
-                await MES.UploadInOvenAsync(clamps);
+                MES.UploadInOven(clamps);
                 this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "入烤箱数据上传完成..."; }));
             }
             catch (Exception ex)
@@ -2743,7 +2743,7 @@ namespace Soundon.Dispatcher.App
                 }
 
                 this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传出烤箱数据..."; }));
-                await MES.UploadOutOvenAsync(clamps);
+                MES.UploadOutOven(clamps);
                 this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "出烤箱数据上传完成..."; }));
             }
             catch (Exception ex)
@@ -2787,7 +2787,7 @@ namespace Soundon.Dispatcher.App
                 if (uploadTVDs.Count > 0 && Current.mes.IsAlive)
                 {
                     this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传实时温度真空数据..."; }));
-                    await MES.UploadTvdInfoAsync(uploadTVDs);
+                    //await MES.UploadTvdInfoAsync(uploadTVDs);
                     Thread.Sleep(100);
                     this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "实时温度真空数据上传完成"; }));
                 }
@@ -2808,7 +2808,7 @@ namespace Soundon.Dispatcher.App
                     if (uploadTVDs.Count > 0)
                     {
                         this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传历史温度真空数据..."; }));
-                        await MES.UploadTvdInfoAsync(uploadTVDs);
+                        //await MES.UploadTvdInfoAsync(uploadTVDs);
                         Thread.Sleep(100);
                         this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "历史温度真空数据上传完成"; }));
                     }
