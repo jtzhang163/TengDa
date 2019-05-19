@@ -42,6 +42,11 @@ namespace Soundon.Mes.Test
             new MachineAccessTestWindow().Show();
         }
 
+        private void JudgeSfcRepeatCode_Click(object sender, RoutedEventArgs e)
+        {
+            new JudgeSfcRepeatCodeWindow().Show();
+        }
+
         private void InSite_Click(object sender, RoutedEventArgs e)
         {
             new BakingEnterSiteWindow().Show();
@@ -61,5 +66,6 @@ namespace Soundon.Mes.Test
         {
             new MachineStatusWindow().Show();
         }
+
     }
 }

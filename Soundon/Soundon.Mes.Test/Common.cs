@@ -37,11 +37,11 @@ namespace Soundon.Mes.Test
             }
         }
 
-        public const string MachineAccess_URL_TEST = "http://10.10.156.11:50000/sapdevwebservice/MachineAccessTestServiceService";
-        public const string MachineAccess_URL_NORMAL = "http://10.10.180.13:50000/sapdevwebservice/MachineAccessTestServiceService";
+        public static string MachineAccess_URL_TEST = ConfigurationManager.AppSettings["MachineAccess_URL_TEST"].ToString();
+        public static string MachineAccess_URL_NORMAL = ConfigurationManager.AppSettings["MachineAccess_URL_NORMAL"].ToString();
 
-        public const string Executing_URL_TEST = "http://10.10.156.11:50000/sapdevwebservice/ExecutingServiceService";
-        public const string Executing_URL_NORMAL = "http://10.10.180.13:50000/sapdevwebservice/ExecutingServiceService";
+        public static string Executing_URL_TEST = ConfigurationManager.AppSettings["Executing_URL_TEST"].ToString();
+        public static string Executing_URL_NORMAL = ConfigurationManager.AppSettings["Executing_URL_NORMAL"].ToString();
 
         public static MainWindow MainWindow;
 

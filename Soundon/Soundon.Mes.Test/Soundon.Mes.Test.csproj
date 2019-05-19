@@ -74,6 +74,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Windows\JudgeSfcRepeatCodeWindow.xaml.cs">
+      <DependentUpon>JudgeSfcRepeatCodeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MachineStatusWindow.xaml.cs">
       <DependentUpon>MachineStatusWindow.xaml</DependentUpon>
     </Compile>
@@ -101,6 +104,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\JudgeSfcRepeatCodeWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\MachineStatusWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
