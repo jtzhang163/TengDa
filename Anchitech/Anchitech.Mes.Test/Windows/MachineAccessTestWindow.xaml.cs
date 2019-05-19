@@ -1,4 +1,4 @@
-﻿using Soundon.Mes.Test.MachineAccessWebReference;
+﻿using Anchitech.Mes.Test.MachineAccessWebReference;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Soundon.Mes.Test.Windows
+namespace Anchitech.Mes.Test.Windows
 {
     /// <summary>
     /// MachineAccessTestWindow.xaml 的交互逻辑

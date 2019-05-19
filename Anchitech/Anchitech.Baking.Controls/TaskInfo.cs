@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Soundon.Dispatcher.Controls
+namespace Anchitech.Baking.Controls
 {
     public partial class TaskInfo : UserControl
     {

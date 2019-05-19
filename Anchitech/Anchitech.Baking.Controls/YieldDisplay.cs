@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TengDa.WF;
 
-namespace Soundon.Dispatcher.Controls
+namespace Anchitech.Baking.Controls
 {
     public partial class YieldDisplay: UserControl
     {

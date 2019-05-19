@@ -13,9 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Soundon.Mes.Test.Windows;
+using Anchitech.Mes.Test.Windows;
 
-namespace Soundon.Mes.Test
+namespace Anchitech.Mes.Test
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑

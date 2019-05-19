@@ -126,13 +126,13 @@
       <Project>{313161d4-a305-47fb-8935-d7c0a0cf4b3d}</Project>
       <Name>TengDa</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Soundon\Soundon.Dispatcher.Controls\Soundon.Dispatcher.Controls.csproj">
-      <Project>{7d696b55-c534-4557-8f76-dee1a124b193}</Project>
-      <Name>Soundon.Dispatcher.Controls</Name>
+    <ProjectReference Include="..\Anchitech.Baking.Controls\Anchitech.Baking.Controls.csproj">
+      <Project>{aae9a422-c514-44fb-8a78-cf6b2de5ce04}</Project>
+      <Name>Anchitech.Baking.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Soundon\Soundon.Dispatcher\Soundon.Dispatcher.csproj">
-      <Project>{bad9a0f6-0be4-448b-b8f8-6aa6ddf7bb83}</Project>
-      <Name>Soundon.Dispatcher</Name>
+    <ProjectReference Include="..\Anchitech.Baking\Anchitech.Baking.csproj">
+      <Project>{f3d4ab0e-21bf-43a3-a989-068975322d65}</Project>
+      <Name>Anchitech.Baking</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

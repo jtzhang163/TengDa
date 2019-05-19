@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Soundon.Mes.Test
+namespace Anchitech.Mes.Test
 {
     /// <summary>
     /// Json帮助类

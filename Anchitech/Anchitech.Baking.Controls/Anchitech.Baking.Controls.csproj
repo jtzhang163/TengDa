@@ -70,9 +70,9 @@
       <Project>{dfd6cb8d-d1fd-4712-8c4e-c611bbe12d08}</Project>
       <Name>TengDa.WF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Soundon\Soundon.Dispatcher\Soundon.Dispatcher.csproj">
-      <Project>{bad9a0f6-0be4-448b-b8f8-6aa6ddf7bb83}</Project>
-      <Name>Soundon.Dispatcher</Name>
+    <ProjectReference Include="..\Anchitech.Baking\Anchitech.Baking.csproj">
+      <Project>{f3d4ab0e-21bf-43a3-a989-068975322d65}</Project>
+      <Name>Anchitech.Baking</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

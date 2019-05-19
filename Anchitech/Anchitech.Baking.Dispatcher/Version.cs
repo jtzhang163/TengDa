@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Soundon.Dispatcher.App
+namespace Anchitech.Baking.Dispatcher
 {
     /// <summary>
     /// 程序版本

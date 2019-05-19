@@ -1,11 +1,11 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Soundon.Mes.Test.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Anchitech.Mes.Test.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Soundon_Mes_Test_MachineAccessWebReference_MachineAccessTestServiceService" Type="(Web Service URL)" Scope="Application">
+    <Setting Name="Anchitech_Mes_Test_MachineAccessWebReference_MachineAccessTestServiceService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://MEAPVIP.soundnewenergy.net:50000/sapdevwebservice/MachineAccessTestServiceService</Value>
     </Setting>
-    <Setting Name="Soundon_Mes_Test_ExecutingWebReference_ExecutingServiceService" Type="(Web Service URL)" Scope="Application">
+    <Setting Name="Anchitech_Mes_Test_ExecutingWebReference_ExecutingServiceService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://MEAPVIP.soundnewenergy.net:50000/sapdevwebservice/ExecutingServiceService</Value>
     </Setting>
   </Settings>

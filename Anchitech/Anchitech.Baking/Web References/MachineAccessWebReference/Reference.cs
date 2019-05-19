@@ -35,7 +35,7 @@ namespace Anchitech.Baking.MachineAccessWebReference {
         
         /// <remarks/>
         public MachineAccessTestServiceService() {
-            this.Url = global::Anchitech.Baking.Properties.Settings.Default.Soundon_Dispatcher_MachineAccessWebReference_MachineAccessTestServiceService;
+            this.Url = global::Anchitech.Baking.Properties.Settings.Default.Anchitech_Dispatcher_MachineAccessWebReference_MachineAccessTestServiceService;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

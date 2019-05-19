@@ -19,7 +19,7 @@ using TengDa.WF;
 using System.Net;
 using System.Net.Sockets;
 
-namespace Soundon.Dispatcher.App
+namespace Anchitech.Baking.Dispatcher
 {
     /// <summary>
     /// 管理界面
@@ -5258,7 +5258,7 @@ namespace Soundon.Dispatcher.App
             for (int i = 4600; i < 5000; i++)
             {
                 StringBuilder sb = new StringBuilder();
-                sb.Append("INSERT INTO [dbo].[Soundon.Dispatcher.Alarm] ([WordAdd], [BitAdd1], [BitAdd2], [AlarmStr], [FloorNum]) VALUES ");
+                sb.Append("INSERT INTO [dbo].[Anchitech.Baking.Alarm] ([WordAdd], [BitAdd1], [BitAdd2], [AlarmStr], [FloorNum]) VALUES ");
 
                 for (int j = 0; j < 16; j++)
                 {

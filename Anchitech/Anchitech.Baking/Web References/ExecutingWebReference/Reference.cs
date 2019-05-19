@@ -35,7 +35,7 @@ namespace Anchitech.Baking.ExecutingWebReference {
         
         /// <remarks/>
         public ExecutingServiceService() {
-            this.Url = global::Anchitech.Baking.Properties.Settings.Default.Soundon_Dispatcher_ExecutingWebReference_ExecutingServiceService;
+            this.Url = global::Anchitech.Baking.Properties.Settings.Default.Anchitech_Dispatcher_ExecutingWebReference_ExecutingServiceService;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

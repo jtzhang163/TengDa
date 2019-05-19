@@ -1,4 +1,4 @@
-﻿using Soundon.Mes.Test.ExecutingWebReference;
+﻿using Anchitech.Mes.Test.ExecutingWebReference;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Soundon.Mes.Test.Windows
+namespace Anchitech.Mes.Test.Windows
 {
     /// <summary>
     /// BakingOutSiteWindow.xaml 的交互逻辑

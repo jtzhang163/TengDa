@@ -35,7 +35,7 @@ namespace Anchitech.Mes.Test.ExecutingWebReference {
         
         /// <remarks/>
         public ExecutingServiceService() {
-            this.Url = global::Anchitech.Mes.Test.Properties.Settings.Default.Soundon_Mes_Test_ExecutingWebReference_ExecutingServiceService;
+            this.Url = global::Anchitech.Mes.Test.Properties.Settings.Default.Anchitech_Mes_Test_ExecutingWebReference_ExecutingServiceService;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

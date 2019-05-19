@@ -1,4 +1,4 @@
-﻿namespace Soundon.Dispatcher.App
+﻿namespace Anchitech.Baking.Dispatcher
 {
     partial class ManageSystem
     {
@@ -350,7 +350,7 @@
             this.tlpFeederStationClamp0103 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFeederClampCode0103 = new System.Windows.Forms.Label();
             this.tableLayoutPanel33 = new System.Windows.Forms.TableLayoutPanel();
-            this.taskInfo1 = new Soundon.Dispatcher.Controls.TaskInfo();
+            this.taskInfo1 = new Anchitech.Baking.Controls.TaskInfo();
             this.tlpCache = new System.Windows.Forms.TableLayoutPanel();
             this.tlpCacheClamp01 = new System.Windows.Forms.TableLayoutPanel();
             this.lbCacheClampCode01 = new System.Windows.Forms.Label();
@@ -670,7 +670,7 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.lbTime = new System.Windows.Forms.Label();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
-            this.yieldDisplay = new Soundon.Dispatcher.Controls.YieldDisplay();
+            this.yieldDisplay = new Anchitech.Baking.Controls.YieldDisplay();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -949,7 +949,7 @@
             // 
             this.pbUserMana.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pbUserMana.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbUserMana.Image = global::Soundon.Dispatcher.App.Properties.Resources.Settings_green;
+            this.pbUserMana.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Settings_green;
             this.pbUserMana.Location = new System.Drawing.Point(18, 6);
             this.pbUserMana.Name = "pbUserMana";
             this.pbUserMana.Size = new System.Drawing.Size(51, 50);
@@ -992,7 +992,7 @@
             // 
             this.pbUserReg.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pbUserReg.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbUserReg.Image = global::Soundon.Dispatcher.App.Properties.Resources.register;
+            this.pbUserReg.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.register;
             this.pbUserReg.Location = new System.Drawing.Point(16, 6);
             this.pbUserReg.Name = "pbUserReg";
             this.pbUserReg.Size = new System.Drawing.Size(51, 50);
@@ -1034,7 +1034,7 @@
             // 
             this.pbUserLogout.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pbUserLogout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbUserLogout.Image = global::Soundon.Dispatcher.App.Properties.Resources.logout;
+            this.pbUserLogout.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.logout;
             this.pbUserLogout.Location = new System.Drawing.Point(16, 6);
             this.pbUserLogout.Name = "pbUserLogout";
             this.pbUserLogout.Size = new System.Drawing.Size(51, 50);
@@ -1076,7 +1076,7 @@
             // 
             this.pbUserLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pbUserLogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbUserLogin.Image = global::Soundon.Dispatcher.App.Properties.Resources.login;
+            this.pbUserLogin.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.login;
             this.pbUserLogin.Location = new System.Drawing.Point(16, 6);
             this.pbUserLogin.Name = "pbUserLogin";
             this.pbUserLogin.Size = new System.Drawing.Size(51, 50);
@@ -1130,7 +1130,7 @@
             // 
             this.pictureBoxTaskFuWei.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBoxTaskFuWei.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxTaskFuWei.Image = global::Soundon.Dispatcher.App.Properties.Resources.Reset_green;
+            this.pictureBoxTaskFuWei.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Reset_green;
             this.pictureBoxTaskFuWei.Location = new System.Drawing.Point(22, 6);
             this.pictureBoxTaskFuWei.Name = "pictureBoxTaskFuWei";
             this.pictureBoxTaskFuWei.Size = new System.Drawing.Size(51, 50);
@@ -1166,7 +1166,7 @@
             // 
             this.pictureBoxAuto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBoxAuto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxAuto.Image = global::Soundon.Dispatcher.App.Properties.Resources.Switch_green;
+            this.pictureBoxAuto.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Switch_green;
             this.pictureBoxAuto.Location = new System.Drawing.Point(20, 6);
             this.pictureBoxAuto.Name = "pictureBoxAuto";
             this.pictureBoxAuto.Size = new System.Drawing.Size(51, 50);
@@ -1210,7 +1210,7 @@
             // 
             this.pictureBoxReset.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBoxReset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxReset.Image = global::Soundon.Dispatcher.App.Properties.Resources.Reset_Lime;
+            this.pictureBoxReset.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Reset_Lime;
             this.pictureBoxReset.Location = new System.Drawing.Point(16, 6);
             this.pictureBoxReset.Name = "pictureBoxReset";
             this.pictureBoxReset.Size = new System.Drawing.Size(51, 50);
@@ -1254,7 +1254,7 @@
             // 
             this.pictureBoxStop.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBoxStop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxStop.Image = global::Soundon.Dispatcher.App.Properties.Resources.Stop_Red;
+            this.pictureBoxStop.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Stop_Red;
             this.pictureBoxStop.InitialImage = null;
             this.pictureBoxStop.Location = new System.Drawing.Point(16, 6);
             this.pictureBoxStop.Name = "pictureBoxStop";
@@ -1287,7 +1287,7 @@
             // 
             this.pictureBoxStart.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBoxStart.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxStart.Image = global::Soundon.Dispatcher.App.Properties.Resources.Start_Green;
+            this.pictureBoxStart.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Start_Green;
             this.pictureBoxStart.Location = new System.Drawing.Point(16, 6);
             this.pictureBoxStart.Name = "pictureBoxStart";
             this.pictureBoxStart.Size = new System.Drawing.Size(51, 50);
@@ -2421,7 +2421,7 @@
             // 
             // tsmAlarmReset
             // 
-            this.tsmAlarmReset.Image = global::Soundon.Dispatcher.App.Properties.Resources.Reset_green;
+            this.tsmAlarmReset.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Reset_green;
             this.tsmAlarmReset.Name = "tsmAlarmReset";
             this.tsmAlarmReset.Size = new System.Drawing.Size(148, 22);
             this.tsmAlarmReset.Text = "报警复位";
@@ -2443,7 +2443,7 @@
             // 
             // tsmStartBaking
             // 
-            this.tsmStartBaking.Image = global::Soundon.Dispatcher.App.Properties.Resources.Start_Green;
+            this.tsmStartBaking.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Start_Green;
             this.tsmStartBaking.Name = "tsmStartBaking";
             this.tsmStartBaking.Size = new System.Drawing.Size(148, 22);
             this.tsmStartBaking.Text = "启动";
@@ -2481,7 +2481,7 @@
             // 
             // tsmStopBaking
             // 
-            this.tsmStopBaking.Image = global::Soundon.Dispatcher.App.Properties.Resources.Stop_Red;
+            this.tsmStopBaking.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Stop_Red;
             this.tsmStopBaking.Name = "tsmStopBaking";
             this.tsmStopBaking.Size = new System.Drawing.Size(148, 22);
             this.tsmStopBaking.Text = "停止";
@@ -5150,7 +5150,7 @@
             // 
             // tlpTrack
             // 
-            this.tlpTrack.BackgroundImage = global::Soundon.Dispatcher.App.Properties.Resources.Robot_Track_Lime;
+            this.tlpTrack.BackgroundImage = global::Anchitech.Baking.Dispatcher.Properties.Resources.Robot_Track_Lime;
             this.tlpTrack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tlpTrack.ColumnCount = 1;
             this.tlpTrack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.97987F));
@@ -5188,7 +5188,7 @@
             // 
             // tsmRobotPause
             // 
-            this.tsmRobotPause.Image = global::Soundon.Dispatcher.App.Properties.Resources.Stop_Red;
+            this.tsmRobotPause.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Stop_Red;
             this.tsmRobotPause.Name = "tsmRobotPause";
             this.tsmRobotPause.Size = new System.Drawing.Size(148, 22);
             this.tsmRobotPause.Text = "暂停";
@@ -5196,7 +5196,7 @@
             // 
             // tsmRobotRestart
             // 
-            this.tsmRobotRestart.Image = global::Soundon.Dispatcher.App.Properties.Resources.Continue_Green;
+            this.tsmRobotRestart.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Continue_Green;
             this.tsmRobotRestart.Name = "tsmRobotRestart";
             this.tsmRobotRestart.Size = new System.Drawing.Size(148, 22);
             this.tsmRobotRestart.Text = "继续";
@@ -5874,7 +5874,7 @@
             // 
             // tsmCancelRasterInductive
             // 
-            this.tsmCancelRasterInductive.Image = global::Soundon.Dispatcher.App.Properties.Resources.Reset_green;
+            this.tsmCancelRasterInductive.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Reset_green;
             this.tsmCancelRasterInductive.Name = "tsmCancelRasterInductive";
             this.tsmCancelRasterInductive.Size = new System.Drawing.Size(148, 22);
             this.tsmCancelRasterInductive.Text = "光栅报警复位";
@@ -7585,7 +7585,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::Soundon.Dispatcher.App.Properties.Resources.ColorIntroduction;
+            this.pictureBox1.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.ColorIntroduction;
             this.pictureBox1.Location = new System.Drawing.Point(524, 50);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 50, 50, 3);
             this.pictureBox1.Name = "pictureBox1";
@@ -10107,7 +10107,7 @@
             this.yieldDisplay.Name = "yieldDisplay";
             this.yieldDisplay.Size = new System.Drawing.Size(270, 86);
             this.yieldDisplay.TabIndex = 14;
-            this.yieldDisplay.btnYieldClearClick += new Soundon.Dispatcher.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
+            this.yieldDisplay.btnYieldClearClick += new Anchitech.Baking.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
             // 
             // ManageSystem
             // 

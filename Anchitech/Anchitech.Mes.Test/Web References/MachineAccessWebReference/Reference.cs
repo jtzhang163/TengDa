@@ -35,7 +35,7 @@ namespace Anchitech.Mes.Test.MachineAccessWebReference {
         
         /// <remarks/>
         public MachineAccessTestServiceService() {
-            this.Url = global::Anchitech.Mes.Test.Properties.Settings.Default.Soundon_Mes_Test_MachineAccessWebReference_MachineAccessTestServiceService;
+            this.Url = global::Anchitech.Mes.Test.Properties.Settings.Default.Anchitech_Mes_Test_MachineAccessWebReference_MachineAccessTestServiceService;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

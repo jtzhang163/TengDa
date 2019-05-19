@@ -1,9 +1,9 @@
-﻿<Window x:Class="Soundon.Mes.Test.Windows.BakingNgWindow"
+﻿<Window x:Class="Anchitech.Mes.Test.Windows.BakingNgWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Soundon.Mes.Test.Windows"
+        xmlns:local="clr-namespace:Anchitech.Mes.Test.Windows"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="烘烤NG接口测试" Height="600" Width="1000">
     <Window.Resources>

@@ -1,4 +1,4 @@
-﻿namespace Soundon.Dispatcher.Controls
+﻿namespace Anchitech.Baking.Controls
 {
     partial class YieldDisplay
     {

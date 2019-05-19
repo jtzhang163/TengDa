@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.IO;
 
-namespace Soundon.Mes.Test
+namespace Anchitech.Mes.Test
 {
     public class Common
     {

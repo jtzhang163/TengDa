@@ -28,9 +28,9 @@ namespace Anchitech.Baking.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://MEAPVIP.soundnewenergy.net:50000/sapdevwebservice/MachineAccessTestService" +
             "Service")]
-        public string Soundon_Dispatcher_MachineAccessWebReference_MachineAccessTestServiceService {
+        public string Anchitech_Dispatcher_MachineAccessWebReference_MachineAccessTestServiceService {
             get {
-                return ((string)(this["Soundon_Dispatcher_MachineAccessWebReference_MachineAccessTestServiceService"]));
+                return ((string)(this["Anchitech_Dispatcher_MachineAccessWebReference_MachineAccessTestServiceService"]));
             }
         }
         
@@ -38,9 +38,9 @@ namespace Anchitech.Baking.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://MEAPVIP.soundnewenergy.net:50000/sapdevwebservice/ExecutingServiceService")]
-        public string Soundon_Dispatcher_ExecutingWebReference_ExecutingServiceService {
+        public string Anchitech_Dispatcher_ExecutingWebReference_ExecutingServiceService {
             get {
-                return ((string)(this["Soundon_Dispatcher_ExecutingWebReference_ExecutingServiceService"]));
+                return ((string)(this["Anchitech_Dispatcher_ExecutingWebReference_ExecutingServiceService"]));
             }
         }
     }
