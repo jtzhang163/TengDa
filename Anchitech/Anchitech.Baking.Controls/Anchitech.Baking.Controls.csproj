@@ -42,6 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FloorUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FloorUC.Designer.cs">
+      <DependentUpon>FloorUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OvenUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OvenUC.Designer.cs">
+      <DependentUpon>OvenUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="TaskInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -58,6 +70,12 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FloorUC.resx">
+      <DependentUpon>FloorUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OvenUC.resx">
+      <DependentUpon>OvenUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TaskInfo.resx">
       <DependentUpon>TaskInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -74,6 +92,9 @@
       <Project>{f3d4ab0e-21bf-43a3-a989-068975322d65}</Project>
       <Name>Anchitech.Baking</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="help.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
