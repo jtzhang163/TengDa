@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Anchitech.Baking.Controls
 {
-    public partial class FeedClamp : UserControl
+    public partial class FeedClampUC : UserControl
     {
-        public FeedClamp()
+        public FeedClampUC()
         {
             InitializeComponent();
         }

@@ -42,6 +42,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlankerUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BlankerUC.Designer.cs">
+      <DependentUpon>BlankerUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TransferUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TransferUC.Designer.cs">
+      <DependentUpon>TransferUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CacherUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CacherUC.Designer.cs">
+      <DependentUpon>CacherUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FeedClampUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FeedClampUC.Designer.cs">
+      <DependentUpon>FeedClampUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FeederUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FeederUC.Designer.cs">
+      <DependentUpon>FeederUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="FloorUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -53,6 +83,12 @@
     </Compile>
     <Compile Include="OvenUC.Designer.cs">
       <DependentUpon>OvenUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleClampUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SimpleClampUC.Designer.cs">
+      <DependentUpon>SimpleClampUC.cs</DependentUpon>
     </Compile>
     <Compile Include="TaskInfo.cs">
       <SubType>UserControl</SubType>
@@ -70,11 +106,29 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BlankerUC.resx">
+      <DependentUpon>BlankerUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransferUC.resx">
+      <DependentUpon>TransferUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CacherUC.resx">
+      <DependentUpon>CacherUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FeedClampUC.resx">
+      <DependentUpon>FeedClampUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FeederUC.resx">
+      <DependentUpon>FeederUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FloorUC.resx">
       <DependentUpon>FloorUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OvenUC.resx">
       <DependentUpon>OvenUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimpleClampUC.resx">
+      <DependentUpon>SimpleClampUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TaskInfo.resx">
       <DependentUpon>TaskInfo.cs</DependentUpon>
@@ -92,9 +146,6 @@
       <Project>{f3d4ab0e-21bf-43a3-a989-068975322d65}</Project>
       <Name>Anchitech.Baking</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="help.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

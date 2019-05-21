@@ -34,3 +34,6 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
+//C#中的自定义控件中的属性、事件及一些相关特性的总结（转）
+//https://www.cnblogs.com/lhyqzx/p/7003240.html

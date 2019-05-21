@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Anchitech.Baking.Controls
 {
-    public partial class TransferUC : UserControl
+    public partial class CacherUC : UserControl
     {
-        public TransferUC()
+        public CacherUC()
         {
             InitializeComponent();
         }

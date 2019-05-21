@@ -120,12 +120,12 @@
             // 
             // pbOvenTriLamp
             // 
-            this.pbOvenTriLamp.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbOvenTriLamp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbOvenTriLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp.Image")));
-            this.pbOvenTriLamp.Location = new System.Drawing.Point(130, 3);
-            this.pbOvenTriLamp.Margin = new System.Windows.Forms.Padding(0);
+            this.pbOvenTriLamp.Location = new System.Drawing.Point(127, 2);
+            this.pbOvenTriLamp.Margin = new System.Windows.Forms.Padding(2);
             this.pbOvenTriLamp.Name = "pbOvenTriLamp";
-            this.pbOvenTriLamp.Size = new System.Drawing.Size(20, 19);
+            this.pbOvenTriLamp.Size = new System.Drawing.Size(21, 21);
             this.pbOvenTriLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbOvenTriLamp.TabIndex = 30;
             this.pbOvenTriLamp.TabStop = false;

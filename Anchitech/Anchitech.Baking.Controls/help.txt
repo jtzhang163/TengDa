@@ -1,2 +1,0 @@
-﻿C#中的自定义控件中的属性、事件及一些相关特性的总结（转）
-https://www.cnblogs.com/lhyqzx/p/7003240.html
