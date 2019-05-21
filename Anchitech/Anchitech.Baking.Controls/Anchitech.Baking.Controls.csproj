@@ -48,6 +48,17 @@
     <Compile Include="BlankerUC.Designer.cs">
       <DependentUpon>BlankerUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RobotUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RobotUC.Designer.cs">
+      <DependentUpon>RobotUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="TransferUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -109,6 +120,13 @@
     <EmbeddedResource Include="BlankerUC.resx">
       <DependentUpon>BlankerUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RobotUC.resx">
+      <DependentUpon>RobotUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TransferUC.resx">
       <DependentUpon>TransferUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -142,10 +160,26 @@
       <Project>{dfd6cb8d-d1fd-4712-8c4e-c611bbe12d08}</Project>
       <Name>TengDa.WF</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\TengDa\TengDa\TengDa.csproj">
+      <Project>{313161D4-A305-47FB-8935-D7C0A0CF4B3D}</Project>
+      <Name>TengDa</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Anchitech.Baking\Anchitech.Baking.csproj">
       <Project>{f3d4ab0e-21bf-43a3-a989-068975322d65}</Project>
       <Name>Anchitech.Baking</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gray_Round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Green_Round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Red_Round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yellow_Round.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

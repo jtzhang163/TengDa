@@ -111,7 +111,7 @@ namespace Anchitech.Baking
                         if (this.Clamp.Batteries.Count == 0)
                         {
                             var msg = string.Empty;
-                            if (!Battery.Update(this.Clamp.Id, Current.feeders.First(f => f.Stations.Contains(this)).Id, out msg))
+                            if (!Battery.Update(this.Clamp.Id, Current.Feeder.Id, out msg))
                             {
                                 Error.Alert(msg);
                             }

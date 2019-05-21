@@ -1,4 +1,6 @@
-﻿namespace Anchitech.Baking.Controls
+﻿using System.Windows.Forms;
+
+namespace Anchitech.Baking.Controls
 {
     partial class TransferUC
     {
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbOvenName = new System.Windows.Forms.Label();
+            this.lbName = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.simpleClampUC1 = new Anchitech.Baking.Controls.SimpleClampUC();
             this.tableLayoutPanel1.SuspendLayout();
@@ -41,7 +43,7 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.lbOvenName, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lbName, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -52,19 +54,20 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(123, 100);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // lbOvenName
+            // lbName
             // 
-            this.lbOvenName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbOvenName.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbOvenName.Location = new System.Drawing.Point(3, 0);
-            this.lbOvenName.Name = "lbOvenName";
-            this.lbOvenName.Size = new System.Drawing.Size(117, 25);
-            this.lbOvenName.TabIndex = 9;
-            this.lbOvenName.Text = "转移台";
-            this.lbOvenName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbName.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbName.Location = new System.Drawing.Point(3, 0);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(117, 25);
+            this.lbName.TabIndex = 9;
+            this.lbName.Text = "转移台";
+            this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.BackColor = System.Drawing.SystemColors.Control;
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Outset;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -74,7 +77,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(117, 170);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(117, 69);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // simpleClampUC1
@@ -84,13 +87,14 @@
             this.simpleClampUC1.Location = new System.Drawing.Point(7, 7);
             this.simpleClampUC1.Margin = new System.Windows.Forms.Padding(5);
             this.simpleClampUC1.Name = "simpleClampUC1";
-            this.simpleClampUC1.Size = new System.Drawing.Size(103, 156);
+            this.simpleClampUC1.Size = new System.Drawing.Size(103, 55);
             this.simpleClampUC1.TabIndex = 0;
             // 
             // TransferUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "TransferUC";
             this.Size = new System.Drawing.Size(123, 100);
@@ -104,7 +108,7 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label lbOvenName;
+        private System.Windows.Forms.Label lbName;
         private SimpleClampUC simpleClampUC1;
     }
 }

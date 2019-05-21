@@ -118,45 +118,6 @@ namespace Anchitech.Baking.Dispatcher
                 llToMesUserLogin.Visible = false;
             }
 
-            #region 上料机相关控件数组
-            for (int i = 0; i < FeederCount; i++)
-            {
-                int ii = i + 1;
-
-                tlpFeeders[i] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpFeeder{0}", ii.ToString()), true)[0]);
-                lbFeederName[i] = (Label)(this.Controls.Find(string.Format("lbFeederName{0}", ii.ToString("D2")), true)[0]);
-                lbFeederNameN[i] = (Label)(this.Controls.Find(string.Format("lbFeederNameN{0}", ii.ToString("D2")), true)[0]);
-                cbFeederIsEnable[i] = (CheckBox)(this.Controls.Find(string.Format("cbFeederIsEnable{0}", ii.ToString("D2")), true)[0]);
-                pbFeederLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbFeederLamp{0}", ii.ToString("D2")), true)[0]);
-                tbFeederStatus[i] = (TextBox)(this.Controls.Find(string.Format("tbFeederStatus{0}", ii.ToString("D2")), true)[0]);
-                pbFeederTriLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbFeederTriLamp{0}", ii.ToString("D2")), true)[0]);
-
-                lbFeederStationName[i] = new Label[FeederStationCount];
-                lbFeederClampCode[i] = new Label[FeederStationCount];
-                tlpFeederStationClamp[i] = new TableLayoutPanel[FeederStationCount];
-
-                for (int j = 0; j < FeederStationCount; j++)
-                {
-                    int jj = j + 1;
-                    lbFeederStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbFeederStationName{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    lbFeederClampCode[i][j] = (Label)(this.Controls.Find(string.Format("lbFeederClampCode{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    tlpFeederStationClamp[i][j] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpFeederStationClamp{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                }
-
-                lbScanerNameN[i] = new Label[FeederScanerCount];
-                cbScanerIsEnable[i] = new CheckBox[FeederScanerCount];
-                pbScanerLamp[i] = new PictureBox[FeederScanerCount];
-                tbScanerStatus[i] = new TextBox[FeederScanerCount];
-
-                for (int j = 0; j < FeederScanerCount; j++)
-                {
-                    lbScanerNameN[i][j] = (Label)(this.Controls.Find(string.Format("lbScanerNameN{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    cbScanerIsEnable[i][j] = (CheckBox)(this.Controls.Find(string.Format("cbScanerIsEnable{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    pbScanerLamp[i][j] = (PictureBox)(this.Controls.Find(string.Format("pbScanerLamp{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    tbScanerStatus[i][j] = (TextBox)(this.Controls.Find(string.Format("tbScanerStatus{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                }
-            }
-            #endregion
 
             #region 烤箱相关控件数组
 
@@ -212,14 +173,6 @@ namespace Anchitech.Baking.Dispatcher
                     lbBlankerClampCode[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerClampCode{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
                     tlpBlankerStationClamp[i][j] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpBlankerStationClamp{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
                 }
-            }
-            #endregion
-
-            #region 缓存位相关控件数组
-            for (int i = 0; i < CacheStationCount; i++)
-            {
-                lbCacheClampCode[i] = (Label)(this.Controls.Find(string.Format("lbCacheClampCode{0}", (i + 1).ToString("D2")), true)[0]);
-                tlpCacheClamp[i] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpCacheClamp{0}", (i + 1).ToString("D2")), true)[0]);
             }
             #endregion
 
@@ -288,10 +241,10 @@ namespace Anchitech.Baking.Dispatcher
             List<TreeNode> tnStations = new List<TreeNode>();
 
             var stationList = new List<Station>();
-            Current.feeders.ForEach(f => f.Stations.ForEach(s => stationList.Add(s)));
+            Current.Feeder.Stations.ForEach(s => stationList.Add(s));
             Current.ovens.ForEach(o => o.Floors.ForEach(f => f.Stations.ForEach(s => stationList.Add(s))));
             Current.blankers.ForEach(b => b.Stations.ForEach(s => stationList.Add(s)));
-            Current.Cache.Stations.ForEach(s => stationList.Add(s));
+            Current.Cacher.Stations.ForEach(s => stationList.Add(s));
             stationList.Add(Current.Transfer.Station);
 
             foreach (Station station in stationList)
@@ -356,7 +309,6 @@ namespace Anchitech.Baking.Dispatcher
         private void InitTerminal()
         {
             Current.ovens = Oven.OvenList;
-            Current.feeders = Feeder.FeederList;
             Current.blankers = Blanker.BlankerList;
             Current.Yields = Yield.YieldList;
             cbStations.Items.Add("All");
@@ -380,26 +332,20 @@ namespace Anchitech.Baking.Dispatcher
                 cbAlarmFloors.SelectedIndex = 0;
             }
 
-            for (int i = 0; i < Current.feeders.Count; i++)
-            {
-                lbFeederName[i].Text = Current.feeders[i].Name;
-                lbFeederNameN[i].Text = Current.feeders[i].Name;
-                pbFeederLamp[i].Image = Properties.Resources.Gray_Round;
-                cbFeederIsEnable[i].Checked = Current.feeders[i].IsEnable;
+            this.feederUC1.Init(Current.Feeder);
 
-                for (int j = 0; j < FeederStationCount; j++)
-                {
-                    //  lbFeederStationName[i][j].Text = Current.feeders[i].Stations[j].Name.Replace("上料","");
-                    lbFeederStationName[i][j].Text = Current.feeders[i].Stations[j].Name.Substring(3);
-                }
+            //for (int i = 0; i < 1; i++)
+            //{
+            //    lbFeederNameN[i].Text = Current.Feeder.Name;
+            //    cbFeederIsEnable[i].Checked = Current.Feeder.IsEnable;
 
-                for (int j = 0; j < Current.feeders[i].Scaners.Count; j++)
-                {
-                    lbScanerNameN[i][j].Text = Current.feeders[i].Scaners[j].Name;
-                    pbScanerLamp[i][j].Image = Properties.Resources.Gray_Round;
-                    cbScanerIsEnable[i][j].Checked = Current.feeders[i].Scaners[j].IsEnable;
-                }
-            }
+            //    for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
+            //    {
+            //        lbScanerNameN[i][j].Text = Current.Feeder.Scaners[j].Name;
+            //        pbScanerLamp[i][j].Image = Properties.Resources.Gray_Round;
+            //        cbScanerIsEnable[i][j].Checked = Current.Feeder.Scaners[j].IsEnable;
+            //    }
+            //}
 
             for (int i = 0; i < BlankerCount; i++)
             {
@@ -416,23 +362,15 @@ namespace Anchitech.Baking.Dispatcher
             }
 
 
-            lbRobotName.Text = Current.Robot.Name;
+
             lbRobotNameN.Text = Current.Robot.Name;
-
-            lbRobotClampCode.Text = Current.Robot.Clamp.Code;
-
-            lbRobotClampCode.BackColor = Current.Robot.ClampStatus == ClampStatus.异常 ? Color.Red : Color.Transparent;
-
             cbRobotIsEnable.Checked = Current.Robot.IsEnable;
 
-            lbTransferName.Text = Current.Transfer.Name;
-            lbTransferClampCode.Text = Current.Transfer.Station.Clamp.Code;
+            this.robotUC1.Init(Current.Robot);
 
-            lbCacheName.Text = Current.Cache.Name;
-            for (int i = 0; i < Current.Cache.Stations.Count; i++)
-            {
-                lbCacheClampCode[i].Text = Current.Cache.Stations[i].Clamp.Code;
-            }
+            this.transferUC1.Init(Current.Transfer);
+
+            this.cacherUC1.Init(Current.Cacher);
 
             bool isAll = true;
             for (int k = 0; k < Option.TemperaturePointCount; k++)
@@ -503,11 +441,9 @@ namespace Anchitech.Baking.Dispatcher
             });
             cbSampleSelectedFloor.SelectedIndex = jjj;
 
-            Current.feeders.ForEach(f =>
-            {
-                f.BatteryScaners.ForEach(s => cbBatteryScaner.Items.Add(s.Name));
-                cbClampScaner.Items.Add(f.ClampScaner.Name);
-            });
+            Current.Feeder.BatteryScaners.ForEach(s => cbBatteryScaner.Items.Add(s.Name));
+            cbClampScaner.Items.Add(Current.Feeder.ClampScaner.Name);
+
             cbBatteryScaner.SelectedIndex = 0;
             cbClampScaner.SelectedIndex = 0;
         }
@@ -815,117 +751,36 @@ namespace Anchitech.Baking.Dispatcher
 
             #region 上料机
 
+            this.feederUC1.Update(Current.Feeder);
 
-            for (int i = 0; i < Current.feeders.Count; i++)
-            {
-                Feeder feeder = Current.feeders[i];
-                feeder.IsAlive = feeder.IsEnable && feeder.Plc.IsAlive;
-                feeder.Stations.ForEach(s => s.IsAlive = s.IsEnable && feeder.IsAlive);
+            //    if (Current.Feeder.Plc.IsAlive) { if (tbFeederStatus[i].Text.Trim() == "未连接") { tbFeederStatus[i].Text = "连接成功"; } }
+            //    else { this.tbFeederStatus[i].Text = "未连接"; }
 
-                if (feeder.Plc.IsAlive) { if (tbFeederStatus[i].Text.Trim() == "未连接") { tbFeederStatus[i].Text = "连接成功"; } }
-                else { this.tbFeederStatus[i].Text = "未连接"; }
+            //    for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
+            //    {
+            //        Scaner scaner = Current.Feeder.Scaners[j];
+            //        if (!scaner.IsEnable)
+            //            scaner.IsAlive = false;
+            //        if (scaner.IsAlive)
+            //        {
+            //            if (tbScanerStatus[i][j].Text.Trim() == "未连接")
+            //            {
+            //                tbScanerStatus[i][j].Text = "连接成功";
+            //            }
 
-                //两次离线再变灰（避免一直闪烁）
-                this.tlpFeeders[i].BackColor = feeder.Plc.IsAlive || feeder.Plc.PreIsAlive ? Color.White : Color.LightGray;
-
-                feeder.Plc.PreIsAlive = feeder.Plc.IsAlive;
-                this.pbFeederLamp[i].Image = feeder.Plc.IsAlive ? Properties.Resources.Green_Round : Properties.Resources.Gray_Round;
-
-                switch (feeder.TriLamp)
-                {
-                    case TriLamp.Green: this.pbFeederTriLamp[i].Image = Properties.Resources.Green_Round; break;
-                    case TriLamp.Yellow: this.pbFeederTriLamp[i].Image = Properties.Resources.Yellow_Round; break;
-                    case TriLamp.Red: this.pbFeederTriLamp[i].Image = Properties.Resources.Red_Round; break;
-                    case TriLamp.Unknown: this.pbFeederTriLamp[i].Image = Properties.Resources.Gray_Round; break;
-                }
-
-                if (!string.IsNullOrEmpty(feeder.AlarmStr) && feeder.Plc.IsAlive)
-                {
-                    if (feeder.PreAlarmStr != feeder.AlarmStr)
-                    {
-                        this.lbFeederName[i].Text = feeder.AlarmStr.TrimEnd(',') + "...";
-                    }
-                    else
-                    {
-                        string alarmStr = this.lbFeederName[i].Text;
-                        this.lbFeederName[i].Text = alarmStr.Substring(1, alarmStr.Length - 1) + alarmStr.Substring(0, 1);
-                    }
-
-                    this.lbFeederName[i].ForeColor = Color.White;
-                    this.lbFeederName[i].BackColor = Color.Red;
-                }
-                else
-                {
-                    this.lbFeederName[i].Text = feeder.Name;
-                    this.lbFeederName[i].ForeColor = SystemColors.WindowText;
-                    this.lbFeederName[i].BackColor = Color.Transparent;
-                }
-                feeder.PreAlarmStr = feeder.AlarmStr;
-
-                for (int j = 0; j < Current.feeders[i].Scaners.Count; j++)
-                {
-                    Scaner scaner = Current.feeders[i].Scaners[j];
-                    if (!scaner.IsEnable)
-                        scaner.IsAlive = false;
-                    if (scaner.IsAlive)
-                    {
-                        if (tbScanerStatus[i][j].Text.Trim() == "未连接")
-                        {
-                            tbScanerStatus[i][j].Text = "连接成功";
-                        }
-
-                        this.pbScanerLamp[i][j].Image = Properties.Resources.Green_Round;
-                    }
-                    else
-                    {
-                        this.tbScanerStatus[i][j].Text = "未连接";
-                        this.pbScanerLamp[i][j].Image = Properties.Resources.Gray_Round;
-                    }
-                }
+            //            this.pbScanerLamp[i][j].Image = Properties.Resources.Green_Round;
+            //        }
+            //        else
+            //        {
+            //            this.tbScanerStatus[i][j].Text = "未连接";
+            //            this.pbScanerLamp[i][j].Image = Properties.Resources.Gray_Round;
+            //        }
+            //    }
 
 
-                for (int j = 0; j < FeederStationCount; j++)
-                {
-                    Station station = Current.feeders[i].Stations[j];
 
-                    lbFeederClampCode[i][j].Text = station.Clamp.Code;
+            //    tlpFeeders[i].Invalidate();
 
-                    lbFeederClampCode[i][j].BackColor = station.HasSampleFlag ? Color.Blue : Color.White;
-                    lbFeederClampCode[i][j].ForeColor = station.HasSampleFlag ? Color.White : Color.Blue;
-
-                    bool canChangeVisible = DateTime.Now.Second % 3 == 1;
-
-                    if (Current.feeders[i].IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
-                    {
-                        tlpFeederStationClamp[i][j].Visible = false;
-                    }
-                    else if (Current.feeders[i].IsAlive && canChangeVisible && station.Id == Current.Task.ToStationId)
-                    {
-                        tlpFeederStationClamp[i][j].Visible = true;
-                        tlpFeederStationClamp[i][j].BackColor = Current.Task.FromClampStatus == ClampStatus.空夹具 ? Color.Cyan : Color.LimeGreen;
-                    }
-                    else
-                    {
-                        tlpFeederStationClamp[i][j].Visible = station.ClampStatus != ClampStatus.无夹具;
-
-                        if (!station.IsAlive)
-                        {
-                            tlpFeederStationClamp[i][j].BackColor = SystemColors.Control;
-                        }
-                        else
-                        {
-                            switch (station.ClampStatus)
-                            {
-                                case ClampStatus.满夹具: tlpFeederStationClamp[i][j].BackColor = Color.LimeGreen; break;
-                                case ClampStatus.空夹具: tlpFeederStationClamp[i][j].BackColor = Color.Cyan; break;
-                                case ClampStatus.异常: tlpFeederStationClamp[i][j].BackColor = Color.Red; break;
-                                default: tlpFeederStationClamp[i][j].BackColor = SystemColors.Control; break;
-                            }
-                        }
-                    }
-                }
-                tlpFeeders[i].Invalidate();
-            }
 
             #endregion
 
@@ -1044,94 +899,13 @@ namespace Anchitech.Baking.Dispatcher
 
             #region 缓存架
 
-            Current.Cache.IsAlive = Current.Cache.IsEnable && Current.Cache.Plc.IsAlive;
-
-            Current.Cache.Stations.ForEach(s => s.IsAlive = s.IsEnable && Current.Cache.IsAlive);
-
-            this.tlpCache.BackColor = Current.Cache.IsAlive ? Color.White : Color.LightGray;
-
-            for (int j = 0; j < Current.Cache.Stations.Count; j++)
-            {
-                lbCacheClampCode[j].Text = Current.Cache.Stations[j].Clamp.Code;
-
-                Station station = Current.Cache.Stations[j];
-                bool canChangeVisible = DateTime.Now.Second % 3 == 1;
-
-                if (Current.Cache.IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
-                {
-                    lbCacheClampCode[j].Visible = false;
-                }
-                else if (Current.Cache.IsAlive && canChangeVisible && station.Id == Current.Task.ToStationId)
-                {
-                    lbCacheClampCode[j].Visible = true;
-                    lbCacheClampCode[j].BackColor = Current.Task.FromClampStatus == ClampStatus.空夹具 ? Color.Cyan : Color.LimeGreen;
-                }
-                else
-                {
-                    if (!station.IsAlive)
-                    {
-                        lbCacheClampCode[j].Visible = true;
-                        lbCacheClampCode[j].BackColor = Color.LightGray;
-                    }
-                    else
-                    {
-                        lbCacheClampCode[j].Visible = station.ClampStatus != ClampStatus.无夹具;
-                        switch (station.ClampStatus)
-                        {
-                            case ClampStatus.满夹具: lbCacheClampCode[j].BackColor = Color.LimeGreen; break;
-                            case ClampStatus.空夹具: lbCacheClampCode[j].BackColor = Color.Cyan; break;
-                            case ClampStatus.异常: lbCacheClampCode[j].BackColor = Color.Red; break;
-                            default: lbCacheClampCode[j].BackColor = SystemColors.Control; break;
-                        }
-                    }
-                }
-
-            }
+            this.cacherUC1.Update(Current.Cacher);
 
             #endregion
 
             #region 转移台
 
-            Current.Transfer.IsAlive = Current.Transfer.IsEnable && Current.Transfer.Plc.IsAlive;
-
-            Current.Transfer.Station.IsAlive = Current.Transfer.IsAlive && Current.Transfer.Station.IsEnable;
-
-            this.tlpTransfer.BackColor = Current.Transfer.IsAlive ? Color.White : Color.LightGray;
-
-          //  var sampleStatusFlag = Current.Transfer.Station.SampleStatus == SampleStatus.待测试 ? "" : Current.Transfer.Station.SampleStatus == SampleStatus.测试OK ? "✔ " : "✘ ";
-            lbTransferClampCode.Text = Current.Transfer.Station.Clamp.Code;
-
-            bool canChangeVisibleRotater = DateTime.Now.Second % 3 == 1;
-
-            if (Current.Transfer.IsAlive && canChangeVisibleRotater && Current.Transfer.Station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
-            {
-                lbTransferClampCode.Visible = false;
-            }
-            else if (Current.Transfer.IsAlive && canChangeVisibleRotater && Current.Transfer.Station.Id == Current.Task.ToStationId)
-            {
-                lbTransferClampCode.Visible = true;
-                lbTransferClampCode.BackColor = Current.Task.FromClampStatus == ClampStatus.空夹具 ? Color.Cyan : Color.LimeGreen;
-            }
-            else
-            {
-
-                if (!Current.Transfer.Station.IsAlive)
-                {
-                    lbTransferClampCode.Visible = true;
-                    lbTransferClampCode.BackColor = Color.LightGray;
-                }
-                else
-                {
-                    lbTransferClampCode.Visible = Current.Transfer.Station.ClampStatus != ClampStatus.无夹具;
-                    switch (Current.Transfer.Station.ClampStatus)
-                    {
-                        case ClampStatus.满夹具: lbTransferClampCode.BackColor = Color.LimeGreen; break;
-                        case ClampStatus.空夹具: lbTransferClampCode.BackColor = Color.Cyan; break;
-                        case ClampStatus.异常: lbTransferClampCode.BackColor = Color.Red; break;
-                        default: lbTransferClampCode.BackColor = SystemColors.Control; break;
-                    }
-                }
-            }
+            this.transferUC1.Update(Current.Transfer);
 
             #endregion
 
@@ -1193,102 +967,23 @@ namespace Anchitech.Baking.Dispatcher
 
             #region 机器人
 
-            Current.Robot.IsAlive = Current.Robot.IsEnable && Current.Robot.Plc.IsAlive;
+            this.robotUC1.Update(Current.Robot);
 
-            if (Current.Robot.IsAlive)
-            {
+            //if (Current.Robot.IsAlive)
+            //{ 
+            //    if (tbRobotStatus.Text.Trim() == "未连接")
+            //    {
+            //        tbRobotStatus.Text = "连接成功";
+            //    }
 
-                switch (Current.Robot.ClampStatus)
-                {
-                    case ClampStatus.满夹具: this.panelRobot.BackColor = Color.LimeGreen; break;
-                    case ClampStatus.空夹具: this.panelRobot.BackColor = Color.Cyan; break;
-                    case ClampStatus.无夹具: this.panelRobot.BackColor = Color.White; break;
-                    default: this.panelRobot.BackColor = SystemColors.Control; break;
-                }
+            //    this.pbRobotLamp.Image = Properties.Resources.Green_Round;
+            //}
+            //else
+            //{
+            //    this.tbRobotStatus.Text = "未连接";
+            //    this.pbRobotLamp.Image = Properties.Resources.Gray_Round;
+            //}
 
-                if (tbRobotStatus.Text.Trim() == "未连接")
-                {
-                    tbRobotStatus.Text = "连接成功";
-                }
-
-                this.pbRobotLamp.Image = Properties.Resources.Green_Round;
-            }
-            else
-            {
-                this.panelRobot.BackColor = Color.LightGray;
-                this.tbRobotStatus.Text = "未连接";
-                this.pbRobotLamp.Image = Properties.Resources.Gray_Round;
-            }
-
-            if (Current.Robot.PrePosition != Current.Robot.Position && Current.Robot.Position > 0)
-            {
-                this.tlpTrack.Controls.Remove(this.panelRobot);
-                int col = Current.Robot.Position - 1;
-                this.tlpTrack.Controls.Add(this.panelRobot, col, 0);
-            }
-
-            Current.Robot.PrePosition = Current.Robot.Position;
-
-            if (Current.Robot.IsAlive)
-            {
-                if (Current.Robot.IsPausing)
-                {
-                    this.lbRobotInfo.Text = "暂停中";
-                    this.lbRobotInfo.ForeColor = Color.Red;
-
-                }
-                else if (Current.Robot.IsMoving && TengDa.WF.Current.IsTerminalInitFinished)
-                {
-                    this.lbRobotInfo.Text = Current.Robot.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动", Current.Robot.MovingDirSign) : string.Format("移动{0}", Current.Robot.MovingDirSign);
-                    this.lbRobotInfo.ForeColor = Color.Blue;
-                }
-                else if (Current.Robot.IsGettingOrPutting)
-                {
-                    this.lbRobotInfo.Text = Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取 ? "取盘中" : "放盘中";
-                    this.lbRobotInfo.ForeColor = Color.Blue;
-                }
-                else if (!Current.Robot.IsExecuting)
-                {
-                    this.lbRobotInfo.Text = "未就绪";
-                    this.lbRobotInfo.ForeColor = Color.Red;
-                }
-                else
-                {
-                    this.lbRobotInfo.Text = "闲置";
-                    this.lbRobotInfo.ForeColor = SystemColors.WindowText;
-                }
-            }
-            else
-            {
-                this.lbRobotInfo.Text = "未知";
-                this.lbRobotInfo.ForeColor = SystemColors.WindowText;
-            }
-
-            lbRobotClampCode.Text = Current.Robot.Clamp.Code;
-
-
-            if (!string.IsNullOrEmpty(Current.Robot.AlarmStr) && Current.Robot.IsAlive)
-            {
-                if (Current.Robot.PreAlarmStr != Current.Robot.AlarmStr)
-                {
-                    this.lbRobotName.Text = Current.Robot.AlarmStr.TrimEnd(',') + "...";
-                }
-                else
-                {
-                    string alarmStr = this.lbRobotName.Text;
-                    this.lbRobotName.Text = alarmStr.Substring(1, alarmStr.Length - 1) + alarmStr.Substring(0, 1);
-                }
-
-                this.lbRobotName.ForeColor = Color.White;
-                this.lbRobotName.BackColor = Color.Red;
-            }
-            else
-            {
-                this.lbRobotName.Text = Current.Robot.Name;
-                this.lbRobotName.ForeColor = SystemColors.WindowText;
-                this.lbRobotName.BackColor = Color.Transparent;
-            }
-            Current.Robot.PreAlarmStr = Current.Robot.AlarmStr;
 
             //机器人急停按钮显示逻辑
             tlpEmergencyStop.Visible = Current.Robot.IsAlive && TengDa.WF.Current.IsRunning && TengDa.WF.Current.user.Id > 0;
@@ -1318,27 +1013,10 @@ namespace Anchitech.Baking.Dispatcher
         private Label[][] lbFloorInfoTop = new Label[OvenCount][];
         private Label[][] lbFloorStatus = new Label[OvenCount][];
 
-        private const int FeederCount = 2;
-        private const int FeederStationCount = 3;
-
-        private TableLayoutPanel[] tlpFeeders = new TableLayoutPanel[FeederCount];
-        private Label[] lbFeederName = new Label[FeederCount];
-        private Label[] lbFeederNameN = new Label[FeederCount];
-        private CheckBox[] cbFeederIsEnable = new CheckBox[FeederCount];
-        private PictureBox[] pbFeederLamp = new PictureBox[FeederCount];
-        private TextBox[] tbFeederStatus = new TextBox[FeederCount];
-        private PictureBox[] pbFeederTriLamp = new PictureBox[FeederCount];
-
-        private Label[][] lbFeederStationName = new Label[FeederCount][];
-        private Label[][] lbFeederClampCode = new Label[FeederCount][];
-        private TableLayoutPanel[][] tlpFeederStationClamp = new TableLayoutPanel[FeederCount][];
-
-        private const int FeederScanerCount = 3;
-
-        private Label[][] lbScanerNameN = new Label[FeederCount][];
-        private CheckBox[][] cbScanerIsEnable = new CheckBox[FeederCount][];
-        private PictureBox[][] pbScanerLamp = new PictureBox[FeederCount][];
-        private TextBox[][] tbScanerStatus = new TextBox[FeederCount][];
+        private Label[][] lbScanerNameN = new Label[2][];
+        private CheckBox[][] cbScanerIsEnable = new CheckBox[2][];
+        private PictureBox[][] pbScanerLamp = new PictureBox[2][];
+        private TextBox[][] tbScanerStatus = new TextBox[2][];
 
         private const int BlankerCount = 2;
         private const int BlankerStationCount = 2;
@@ -1355,11 +1033,6 @@ namespace Anchitech.Baking.Dispatcher
         private Label[][] lbBlankerFromStationName = new Label[BlankerCount][];
         private Label[][] lbBlankerClampCode = new Label[BlankerCount][];
         private TableLayoutPanel[][] tlpBlankerStationClamp = new TableLayoutPanel[BlankerCount][];
-
-        private const int CacheStationCount = 3;
-
-        private Label[] lbCacheClampCode = new Label[CacheStationCount];
-        private TableLayoutPanel[] tlpCacheClamp = new TableLayoutPanel[CacheStationCount];
 
         private CheckBox[] cbTemperIndex = new CheckBox[Option.TemperaturePointCount];
         private CheckBox[] cbVacuumIndex = new CheckBox[Option.VacuumPointCount];
@@ -1580,25 +1253,23 @@ namespace Anchitech.Baking.Dispatcher
         {
             string msg = string.Empty;
 
-            for (int i = 0; i < Current.feeders.Count; i++)
+            if (Current.Feeder.IsEnable)
             {
-                if (Current.feeders[i].IsEnable)
+                if (!Current.Feeder.Plc.IsPingSuccess)
                 {
-                    if (!Current.feeders[i].Plc.IsPingSuccess)
-                    {
-                        Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.feeders[i].Plc.Name, Current.feeders[i].Plc.IP));
-                        return false;
-                    }
-
-                    if (!Current.feeders[i].Plc.TcpConnect(out msg))
-                    {
-                        Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.feeders[i].Name, msg));
-                        return false;
-                    }
-                    int ii = i;
-                    this.BeginInvoke(new MethodInvoker(() => { tbFeederStatus[ii].Text = "连接成功"; }));
+                    Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.Feeder.Plc.Name, Current.Feeder.Plc.IP));
+                    return false;
                 }
+
+                if (!Current.Feeder.Plc.TcpConnect(out msg))
+                {
+                    Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.Feeder.Name, msg));
+                    return false;
+                }
+
+               // this.BeginInvoke(new MethodInvoker(() => { tbFeederStatus[ii].Text = "连接成功"; }));
             }
+            
 
             for (int i = 0; i < OvenCount; i++)
             {
@@ -1667,21 +1338,19 @@ namespace Anchitech.Baking.Dispatcher
         {
             string msg = string.Empty;
 
-            for (int i = 0; i < Current.feeders.Count; i++)
+            if (Current.Feeder.IsEnable)
             {
-                if (Current.feeders[i].IsEnable)
+                if (!Current.Feeder.Plc.TcpDisConnect(out msg))
                 {
-                    if (!Current.feeders[i].Plc.TcpDisConnect(out msg))
-                    {
-                        Error.Alert(msg);
-                        return false;
-                    }
-                    tbFeederStatus[i].Text = "未连接";
-                    this.pbFeederLamp[i].Image = Properties.Resources.Gray_Round;
+                    Error.Alert(msg);
+                    return false;
                 }
-
-                Current.feeders[i].PreAlarmStr = string.Empty;
+               // tbFeederStatus[i].Text = "未连接";
+               // this.pbFeederLamp[i].Image = Properties.Resources.Gray_Round;
             }
+
+            Current.Feeder.PreAlarmStr = string.Empty;
+            
 
             for (int i = 0; i < OvenCount; i++)
             {
@@ -1742,7 +1411,7 @@ namespace Anchitech.Baking.Dispatcher
             }
 
             Current.Transfer.IsAlive = false;
-            Current.Cache.IsAlive = false;
+            Current.Cacher.IsAlive = false;
 
             return true;
         }
@@ -1786,32 +1455,29 @@ namespace Anchitech.Baking.Dispatcher
         {
             string msg = string.Empty;
 
-            for (int i = 0; i < Current.feeders.Count; i++)
+            for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
             {
 
-                for (int j = 0; j < Current.feeders[i].Scaners.Count; j++)
+                if (Current.Feeder.Scaners[j].IsEnable)
                 {
-
-                    if (Current.feeders[i].Scaners[j].IsEnable)
+                    if (!Current.Feeder.Scaners[j].IsPingSuccess)
                     {
-                        if (!Current.feeders[i].Scaners[j].IsPingSuccess)
-                        {
 
-                            Error.Alert(string.Format("无法连接到{0}：{1}", Current.feeders[i].Scaners[j].Name, Current.feeders[i].Scaners[j].IP));
-                            return false;
-                        }
-
-                        if (!Current.feeders[i].Scaners[j].TcpConnect(out msg))
-                        {
-                            Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.feeders[i].Scaners[j].Name, msg));
-                            return false;
-                        }
-                        int ii = i;
-                        int jj = j;
-                        this.BeginInvoke(new MethodInvoker(() => { tbScanerStatus[ii][jj].Text = "连接成功"; }));
+                        Error.Alert(string.Format("无法连接到{0}：{1}", Current.Feeder.Scaners[j].Name, Current.Feeder.Scaners[j].IP));
+                        return false;
                     }
+
+                    if (!Current.Feeder.Scaners[j].TcpConnect(out msg))
+                    {
+                        Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.Feeder.Scaners[j].Name, msg));
+                        return false;
+                    }
+                    int ii = 0;
+                    int jj = j;
+                    this.BeginInvoke(new MethodInvoker(() => { tbScanerStatus[ii][jj].Text = "连接成功"; }));
                 }
             }
+            
 
             return true;
         }
@@ -1819,44 +1485,43 @@ namespace Anchitech.Baking.Dispatcher
         private bool ScanerDisConnect()
         {
             string msg = string.Empty;
-            for (int i = 0; i < Current.feeders.Count; i++)
+
+            for (int j = 0; j < Current.Feeder.BatteryScaners.Count; j++)
             {
-                for (int j = 0; j < Current.feeders[i].BatteryScaners.Count; j++)
+                if (Current.Feeder.BatteryScaners[j].IsEnable)
                 {
-                    if (Current.feeders[i].BatteryScaners[j].IsEnable)
+                    if (Current.Feeder.BatteryScaners[j].IsAlive)
                     {
-                        if (Current.feeders[i].BatteryScaners[j].IsAlive)
-                        {
-                            Current.feeders[i].BatteryScaners[j].StopBatteryScan();
-                        }                   
-                        if (!Current.feeders[i].BatteryScaners[j].TcpDisConnect(out msg))
-                        {
-                            Error.Alert(msg);
-                            return false;
-                        }
-                        tbScanerStatus[i][j].Text = "未连接";
-                        this.pbScanerLamp[i][j].Image = Properties.Resources.Gray_Round;
-                    }
-                }
-
-
-                if (Current.feeders[i].ClampScaner.IsEnable)
-                {
-                    if (Current.feeders[i].ClampScaner.IsAlive)
-                    {
-                        Current.feeders[i].ClampScaner.StopClampScan();
-                    }
-                    
-                    if (!Current.feeders[i].ClampScaner.TcpDisConnect(out msg))
+                        Current.Feeder.BatteryScaners[j].StopBatteryScan();
+                    }                   
+                    if (!Current.Feeder.BatteryScaners[j].TcpDisConnect(out msg))
                     {
                         Error.Alert(msg);
                         return false;
                     }
-                    tbScanerStatus[i][2].Text = "未连接";
-                    this.pbScanerLamp[i][2].Image = Properties.Resources.Gray_Round;
+                    tbScanerStatus[0][j].Text = "未连接";
+                    this.pbScanerLamp[0][j].Image = Properties.Resources.Gray_Round;
                 }
-
             }
+
+
+            if (Current.Feeder.ClampScaner.IsEnable)
+            {
+                if (Current.Feeder.ClampScaner.IsAlive)
+                {
+                    Current.Feeder.ClampScaner.StopClampScan();
+                }
+                    
+                if (!Current.Feeder.ClampScaner.TcpDisConnect(out msg))
+                {
+                    Error.Alert(msg);
+                    return false;
+                }
+                tbScanerStatus[0][2].Text = "未连接";
+                this.pbScanerLamp[0][2].Image = Properties.Resources.Gray_Round;
+            }
+
+            
             return true;
         }
 
@@ -1868,7 +1533,7 @@ namespace Anchitech.Baking.Dispatcher
 
         System.Timers.Timer[] timerOvenRuns = new System.Timers.Timer[OvenCount] { null, null, null, null, null, null, null, null, null, null };
 
-        System.Timers.Timer[] timerFeederRuns = new System.Timers.Timer[FeederCount] { null, null };
+        System.Timers.Timer[] timerFeederRuns = new System.Timers.Timer[2] { null, null };
 
         System.Timers.Timer[] timerBlankerRuns = new System.Timers.Timer[BlankerCount] { null, null };
 
@@ -1893,23 +1558,22 @@ namespace Anchitech.Baking.Dispatcher
                 }
             }
 
-            for (int i = 0; i < Current.feeders.Count; i++)
+
+            if (cbFeederIsEnable01.Checked && !Current.Feeder.Plc.IsAlive)
             {
-                if (cbFeederIsEnable[i].Checked && !Current.feeders[i].Plc.IsAlive)
+                msg = Current.Feeder.Name + " 启动异常！";
+                return false;
+            }
+
+            for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
+            {
+                if (cbScanerIsEnable[0][j].Checked && !Current.Feeder.Scaners[j].IsAlive)
                 {
-                    msg = Current.feeders[i].Name + " 启动异常！";
+                    msg = Current.Feeder.Scaners[j].Name + " 启动异常！";
                     return false;
                 }
-
-                for (int j = 0; j < Current.feeders[i].Scaners.Count; j++)
-                {
-                    if (cbScanerIsEnable[i][j].Checked && !Current.feeders[i].Scaners[j].IsAlive)
-                    {
-                        msg = Current.feeders[i].Scaners[j].Name + " 启动异常！";
-                        return false;
-                    }
-                }
             }
+            
 
             for (int i = 0; i < Current.blankers.Count; i++)
             {
@@ -1955,7 +1619,7 @@ namespace Anchitech.Baking.Dispatcher
                     timerOvenRuns[i].Start();
                 }
 
-                for (int i = 0; i < FeederCount; i++)
+                for (int i = 0; i < 1; i++)
                 {
                     int index = i;//如果直接用i, 则完成循环后 i一直 = OvenCount
                     timerFeederRuns[i] = new System.Timers.Timer();
@@ -2053,7 +1717,7 @@ namespace Anchitech.Baking.Dispatcher
                 }
             }
 
-            for (int i = 0; i < FeederCount; i++)
+            for (int i = 0; i < 1; i++)
             {
                 if (timerFeederRuns[i] != null)
                 {
@@ -2111,14 +1775,13 @@ namespace Anchitech.Baking.Dispatcher
 
         private void SetCheckBoxEnable(bool IsEnable)
         {
-            for (int i = 0; i < Current.feeders.Count; i++)
+
+            cbFeederIsEnable01.Enabled = IsEnable;
+            for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
             {
-                cbFeederIsEnable[i].Enabled = IsEnable;
-                for (int j = 0; j < Current.feeders[i].Scaners.Count; j++)
-                {
-                    cbScanerIsEnable[i][j].Enabled = IsEnable;
-                }
+                cbScanerIsEnable[0][j].Enabled = IsEnable;
             }
+          
             for (int i = 0; i < OvenCount; i++)
             {
                 cbOvenIsEnable[i].Enabled = IsEnable;
@@ -2245,36 +1908,36 @@ namespace Anchitech.Baking.Dispatcher
 
             int i = System.Convert.ToInt32(obj);
 
-            if (Current.feeders[i].IsEnable)
+            if (Current.Feeder.IsEnable)
             {
-                this.BeginInvoke(new MethodInvoker(() => { tbFeederStatus[i].Text = "发送指令—>" + Current.feeders[i].Name + "PLC"; }));
-                if (Current.feeders[i].GetInfo())
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { tbFeederStatus[i].Text = "成功获得" + Current.feeders[i].Name + "信息"; }));
-                }
-                else
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { tbFeederStatus[i].Text = "获取" + Current.feeders[i].Name + "信息失败"; }));
-                }
+                //this.BeginInvoke(new MethodInvoker(() => { tbFeederStatus[i].Text = "发送指令—>" + Current.Feeder.Name + "PLC"; }));
+                //if (Current.Feeder.GetInfo())
+                //{
+                //    this.BeginInvoke(new MethodInvoker(() => { tbFeederStatus[i].Text = "成功获得" + Current.Feeder.Name + "信息"; }));
+                //}
+                //else
+                //{
+                //    this.BeginInvoke(new MethodInvoker(() => { tbFeederStatus[i].Text = "获取" + Current.Feeder.Name + "信息失败"; }));
+                //}
 
-                if (Current.feeders[i].AlreadyGetAllInfo)
+                if (Current.Feeder.AlreadyGetAllInfo)
                 {
                     #region 夹具扫码逻辑
-                    if (Current.feeders[i].ClampScaner.IsEnable && Current.feeders[i].ClampScaner.CanScan)
+                    if (Current.Feeder.ClampScaner.IsEnable && Current.Feeder.ClampScaner.CanScan)
                     {
-                        Current.feeders[i].Stations.ForEach(s =>
+                        Current.Feeder.Stations.ForEach(s =>
                         {
                             if (s.IsClampScanReady)
                             {
                                 string code = string.Empty;
-                                ScanResult result = Current.feeders[i].ClampScaner.StartClampScan(out code, out msg);
+                                ScanResult result = Current.Feeder.ClampScaner.StartClampScan(out code, out msg);
                                 if (result == ScanResult.OK)
                                 {
                                     this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][2].Text = "+" + code; }));                           
                                     s.Clamp.Code = code;
                                     s.Clamp.ScanTime = DateTime.Now;
 
-                                    if (!Current.feeders[i].SetScanClampResult(ScanResult.OK, out msg))
+                                    if (!Current.Feeder.SetScanClampResult(ScanResult.OK, out msg))
                                     {
                                         Error.Alert(msg);
                                     }
@@ -2282,7 +1945,7 @@ namespace Anchitech.Baking.Dispatcher
                                 else if (result == ScanResult.NG || result == ScanResult.Timeout)
                                 {
                                     this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][2].Text = "扫码NG"; }));
-                                    if (!Current.feeders[i].SetScanClampResult(ScanResult.NG, out msg))
+                                    if (!Current.Feeder.SetScanClampResult(ScanResult.NG, out msg))
                                     {
                                         Error.Alert(msg);
                                     }
@@ -2303,15 +1966,15 @@ namespace Anchitech.Baking.Dispatcher
 
                     var isScanFlag = false;//是否执行了扫码
 
-                    for (int j = 0;j < Current.feeders[i].BatteryScaners.Count; j++)
+                    for (int j = 0;j < Current.Feeder.BatteryScaners.Count; j++)
                     {
                         int ii = i;
                         int jj = j;
-                        if (Current.feeders[ii].BatteryScaners[jj].IsEnable && Current.feeders[ii].BatteryScaners[jj].CanScan)
+                        if (Current.Feeder.BatteryScaners[jj].IsEnable && Current.Feeder.BatteryScaners[jj].CanScan)
                         {
 
                             string code = string.Empty;
-                            ScanResult result = Current.feeders[ii].BatteryScaners[j].StartBatteryScan(out code, out msg);
+                            ScanResult result = Current.Feeder.BatteryScaners[j].StartBatteryScan(out code, out msg);
 
                             isScanFlag = true;
 
@@ -2334,7 +1997,7 @@ namespace Anchitech.Baking.Dispatcher
                                 });
                                 t.Start();
 
-                                int id = Battery.Add(new Battery(code, Current.feeders[ii].Id, Current.feeders[ii].CurrentPutClampId), out msg);
+                                int id = Battery.Add(new Battery(code, Current.Feeder.Id, Current.Feeder.CurrentPutClampId), out msg);
                                 if (id < 1)
                                 {
                                     Error.Alert(msg);
@@ -2346,7 +2009,7 @@ namespace Anchitech.Baking.Dispatcher
                             else if (result == ScanResult.NG || result == ScanResult.Timeout)
                             {
                                 //再扫一次
-                                result = Current.feeders[ii].BatteryScaners[jj].StartBatteryScan(out code, out msg);
+                                result = Current.Feeder.BatteryScaners[jj].StartBatteryScan(out code, out msg);
                                 if (result == ScanResult.OK)
                                 {
                                     this.BeginInvoke(new MethodInvoker(() => 
@@ -2366,7 +2029,7 @@ namespace Anchitech.Baking.Dispatcher
                                     });
                                     t.Start();
 
-                                    int id = Battery.Add(new Battery(code, Current.feeders[ii].Id, Current.feeders[ii].CurrentPutClampId), out msg);
+                                    int id = Battery.Add(new Battery(code, Current.Feeder.Id, Current.Feeder.CurrentPutClampId), out msg);
                                     if (id < 1)
                                     {
                                         Error.Alert(msg);
@@ -2386,13 +2049,13 @@ namespace Anchitech.Baking.Dispatcher
                                 Error.Alert(msg);
                             }
 
-                            Current.feeders[ii].BatteryScaners[j].CanScan = false;
+                            Current.Feeder.BatteryScaners[j].CanScan = false;
                         }
                     }
 
                     if (isScanFlag)
                     {
-                        if (!Current.feeders[i].SetScanBatteryResult(batteryScanResults, out msg))
+                        if (!Current.Feeder.SetScanBatteryResult(batteryScanResults, out msg))
                         {
                             Error.Alert(msg);
                         }
@@ -2401,23 +2064,23 @@ namespace Anchitech.Baking.Dispatcher
                     #endregion
 
                     #region 绘制夹具中电池个数图示
-                    for (int j = 0; j < FeederStationCount; j++)
+                    for (int j = 0; j < 3; j++)
                     {
-                        if (Current.feeders[i].Stations[j].Id == Current.feeders[i].CurrentPutStationId)
+                        if (Current.Feeder.Stations[j].Id == Current.Feeder.CurrentPutStationId)
                         {
-                            if (Current.feeders[i].PreCurrentBatteryCount != Current.feeders[i].CurrentBatteryCount)
+                            if (Current.Feeder.PreCurrentBatteryCount != Current.Feeder.CurrentBatteryCount)
                             {
-                                this.tlpFeederStationClamp[i][j].Invalidate();
+                              //  this.tlpFeederStationClamp[i][j].Invalidate();
                             }
                         }
 
-                        if (Current.feeders[i].Stations[j].PreIsAlive != Current.feeders[i].Stations[j].IsAlive)
+                        if (Current.Feeder.Stations[j].PreIsAlive != Current.Feeder.Stations[j].IsAlive)
                         {
-                            this.tlpFeederStationClamp[i][j].Invalidate();
+                           // this.tlpFeederStationClamp[i][j].Invalidate();
                         }
-                        Current.feeders[i].Stations[j].PreIsAlive = Current.feeders[i].Stations[j].IsAlive;
+                        Current.Feeder.Stations[j].PreIsAlive = Current.Feeder.Stations[j].IsAlive;
                     }
-                    Current.feeders[i].PreCurrentBatteryCount = Current.feeders[i].CurrentBatteryCount;
+                    Current.Feeder.PreCurrentBatteryCount = Current.Feeder.CurrentBatteryCount;
                     #endregion
                 }
             }
@@ -2720,7 +2383,7 @@ namespace Anchitech.Baking.Dispatcher
             }
         }
 
-        public async void UploadOutOvenInfo(object obj)
+        public void UploadOutOvenInfo(object obj)
         {
             try
             {
@@ -2755,7 +2418,7 @@ namespace Anchitech.Baking.Dispatcher
         /// <summary>
         /// 定时上传真空温度数据
         /// </summary>
-        public async void UploadMesTVD()
+        public void UploadMesTVD()
         {
             try
             {
@@ -3414,15 +3077,13 @@ namespace Anchitech.Baking.Dispatcher
         private void cbScanerIsEnable_CheckedChanged(object sender, EventArgs e)
         {
             if (!TengDa.WF.Current.IsRunning) return;
-            for (int i = 0; i < Current.feeders.Count; i++)
+
+            for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
             {
-                for (int j = 0; j < Current.feeders[i].Scaners.Count; j++)
+                if ((CheckBox)sender == cbScanerIsEnable[0][j])
                 {
-                    if ((CheckBox)sender == cbScanerIsEnable[i][j])
-                    {
-                        Current.feeders[i].Scaners[j].IsEnable = cbScanerIsEnable[i][j].Checked;
-                        return;
-                    }
+                    Current.Feeder.Scaners[j].IsEnable = cbScanerIsEnable[0][j].Checked;
+                    return;
                 }
             }
         }
@@ -3443,13 +3104,11 @@ namespace Anchitech.Baking.Dispatcher
         private void cbFeederIsEnable_CheckedChanged(object sender, EventArgs e)
         {
             if (!TengDa.WF.Current.IsRunning) return;
-            for (int i = 0; i < FeederCount; i++)
+
+            if ((CheckBox)sender == cbFeederIsEnable01)
             {
-                if ((CheckBox)sender == cbFeederIsEnable[i])
-                {
-                    Current.feeders[i].IsEnable = cbFeederIsEnable[i].Checked;
-                    return;
-                }
+                Current.Feeder.IsEnable = cbFeederIsEnable01.Checked;
+                return;
             }
         }
 
@@ -3793,7 +3452,7 @@ namespace Anchitech.Baking.Dispatcher
                     }
                     else if (e.Node.Level == 0 && e.Node.Text == "缓存架")
                     {
-                        this.propertyGridSettings.SelectedObject = Current.Cache;
+                        this.propertyGridSettings.SelectedObject = Current.Cacher;
                     }
                     else if (e.Node.Level == 0 && e.Node.Text == "转移台")
                     {
@@ -3932,9 +3591,9 @@ namespace Anchitech.Baking.Dispatcher
             {
                 settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Transfer.Name);
             }
-            else if (type == typeof(Cache))
+            else if (type == typeof(Cacher))
             {
-                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Cache.Name);
+                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Cacher.Name);
             }
             else if (type == typeof(MES))
             {
@@ -4008,18 +3667,18 @@ namespace Anchitech.Baking.Dispatcher
             Graphics g = e.Graphics;
             Rectangle r = e.CellBounds;
             Brush brush = Brushes.Cyan;
-            if (!(Current.feeders[i].Stations[j].IsAlive || Current.feeders[i].Plc.PreIsAlive))//|| Current.feeders[i].Plc.PreIsAlive防闪烁
+            if (!(Current.Feeder.Stations[j].IsAlive || Current.Feeder.Plc.PreIsAlive))//|| Current.Feeder.Plc.PreIsAlive防闪烁
             {
                 brush = Brushes.WhiteSmoke;
             }
-            else if (Current.feeders[i].Stations[j].ClampStatus == ClampStatus.满夹具)
+            else if (Current.Feeder.Stations[j].ClampStatus == ClampStatus.满夹具)
             {
                 brush = Brushes.LimeGreen;
             }
-            else if (Current.feeders[i].Stations[j].ClampStatus == ClampStatus.空夹具)
+            else if (Current.Feeder.Stations[j].ClampStatus == ClampStatus.空夹具)
             {
                 brush = Brushes.Cyan;
-                if (Current.feeders[i].Stations[j].Id == Current.feeders[i].CurrentPutStationId)
+                if (Current.Feeder.Stations[j].Id == Current.Feeder.CurrentPutStationId)
                 {
                     for (int x = 0; x < 2; x++)
                     {
@@ -4028,7 +3687,7 @@ namespace Anchitech.Baking.Dispatcher
                             if (e.Row == y && e.Column == x)
                             {
 
-                                if ((24 - y) * 2 + x < Current.feeders[i].CurrentBatteryCount)
+                                if ((24 - y) * 2 + x < Current.Feeder.CurrentBatteryCount)
                                 {
                                     brush = Brushes.LimeGreen;
                                 }
@@ -4159,23 +3818,23 @@ namespace Anchitech.Baking.Dispatcher
         private void tlpFeeder_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
         {
             //tlpFeeder1
-            int i = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(9, 1), 0) - 1;
+            //int i = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(9, 1), 0) - 1;
 
-            Graphics g = e.Graphics;
-            Rectangle r = e.CellBounds;
-            Brush brush = Brushes.White;
+            //Graphics g = e.Graphics;
+            //Rectangle r = e.CellBounds;
+            //Brush brush = Brushes.White;
 
-            for (int j = 0; j < FeederStationCount; j++)
-            {
-                if (e.Column == FeederStationCount - j - 1 && i == 1 || e.Column == j && i == 0)
-                {
-                    if (!Current.feeders[i].Stations[j].IsAlive)
-                    {
-                        brush = Brushes.LightGray;
-                    }
-                }
-            }
-            g.FillRectangle(brush, r);
+            //for (int j = 0; j < FeederStationCount; j++)
+            //{
+            //    if (e.Column == FeederStationCount - j - 1 && i == 1 || e.Column == j && i == 0)
+            //    {
+            //        if (!Current.Feeder.Stations[j].IsAlive)
+            //        {
+            //            brush = Brushes.LightGray;
+            //        }
+            //    }
+            //}
+            //g.FillRectangle(brush, r);
         }
 
         private void tsmUploadVacuum_Click(object sender, EventArgs e)
@@ -4611,7 +4270,7 @@ namespace Anchitech.Baking.Dispatcher
         {
             string code = string.Empty;
             string msg = string.Empty;
-            ScanResult scanResult = Current.feeders[cbClampScaner.SelectedIndex].ClampScaner.StartClampScan(out code, out msg);
+            ScanResult scanResult = Current.Feeder.ClampScaner.StartClampScan(out code, out msg);
             if (scanResult == ScanResult.OK)
             {
                 Tip.Alert(code);
@@ -4629,7 +4288,7 @@ namespace Anchitech.Baking.Dispatcher
         private void btnClampScanOkBackToFeeder_Click(object sender, EventArgs e)
         {
             string msg = string.Empty;
-            if (!Current.feeders[cbClampScaner.SelectedIndex].SetScanClampResult(ScanResult.OK, out msg))
+            if (!Current.Feeder.SetScanClampResult(ScanResult.OK, out msg))
             {
                 Error.Alert(msg);
             }
@@ -4642,7 +4301,7 @@ namespace Anchitech.Baking.Dispatcher
         private void btnClampScanNgBackToFeeder_Click(object sender, EventArgs e)
         {
             string msg = string.Empty;
-            if (!Current.feeders[cbClampScaner.SelectedIndex].SetScanClampResult(ScanResult.NG, out msg))
+            if (!Current.Feeder.SetScanClampResult(ScanResult.NG, out msg))
             {
                 Error.Alert(msg);
             }
@@ -4663,7 +4322,7 @@ namespace Anchitech.Baking.Dispatcher
 
             string code = string.Empty;
             string msg = string.Empty;
-            ScanResult scanResult = Current.feeders[i].BatteryScaners[j].StartBatteryScan(out code, out msg);
+            ScanResult scanResult = Current.Feeder.BatteryScaners[j].StartBatteryScan(out code, out msg);
             if (scanResult == ScanResult.OK)
             {
                 Tip.Alert(code);
@@ -4682,7 +4341,7 @@ namespace Anchitech.Baking.Dispatcher
         {
             int i = cbBatteryScaner.SelectedIndex / 2;
             string msg = string.Empty;
-            if (!Current.feeders[i].SetScanBatteryResult(new ScanResult[2] { ScanResult.OK, ScanResult.OK }, out msg))
+            if (!Current.Feeder.SetScanBatteryResult(new ScanResult[2] { ScanResult.OK, ScanResult.OK }, out msg))
             {
                 Error.Alert(msg);
             }
@@ -4696,7 +4355,7 @@ namespace Anchitech.Baking.Dispatcher
         {
             int i = cbBatteryScaner.SelectedIndex / 2;
             string msg = string.Empty;
-            if (!Current.feeders[i].SetScanBatteryResult(new ScanResult[2] { ScanResult.NG, ScanResult.NG }, out msg))
+            if (!Current.Feeder.SetScanBatteryResult(new ScanResult[2] { ScanResult.NG, ScanResult.NG }, out msg))
             {
                 Error.Alert(msg);
             }
@@ -4856,32 +4515,31 @@ namespace Anchitech.Baking.Dispatcher
 
             List<ToolStripItem> tsiStations = new List<ToolStripItem>();
 
-            for (int i = 0; i < Current.feeders.Count; i++)
+
+            ToolStripMenuItem tsmiFeederStation = new ToolStripMenuItem();
+            List<ToolStripItem> tsiFeederStations = new List<ToolStripItem>();
+            tsmiFeederStation.Text = Current.Feeder.Name;
+
+            var isFeederEnabled = false;
+
+            Current.Feeder.Stations.ForEach(s =>
             {
-                ToolStripMenuItem tsmiFeederStation = new ToolStripMenuItem();
-                List<ToolStripItem> tsiFeederStations = new List<ToolStripItem>();
-                tsmiFeederStation.Text = Current.feeders[i].Name;
+                ToolStripMenuItem tsiStation = new ToolStripMenuItem();
+                tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
+                tsiStation.Text = s.Name;
+                tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
 
-                var isEnabled = false;
+                tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+                tsiStation.ForeColor = GetForeColor(ManuFlag, s);
 
-                Current.feeders[i].Stations.ForEach(s =>
-                {
-                    ToolStripMenuItem tsiStation = new ToolStripMenuItem();
-                    tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
-                    tsiStation.Text = s.Name;
-                    tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+                if (tsiStation.Enabled) isFeederEnabled = true;
 
-                    tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
-                    tsiStation.ForeColor = GetForeColor(ManuFlag, s);
+                tsmiFeederStation.DropDownItems.Add(tsiStation);
+            });
 
-                    if (tsiStation.Enabled) isEnabled = true;
-
-                    tsmiFeederStation.DropDownItems.Add(tsiStation);
-                });
-
-                tsmiFeederStation.Enabled = isEnabled;
-                tsiStations.Add(tsmiFeederStation);
-            }
+            tsmiFeederStation.Enabled = isFeederEnabled;
+            tsiStations.Add(tsmiFeederStation);
+            
 
             for (int i = 0; i < OvenCount; i++)
             {
@@ -4938,11 +4596,11 @@ namespace Anchitech.Baking.Dispatcher
 
             ToolStripMenuItem tsmiCacheStation = new ToolStripMenuItem();
             List<ToolStripItem> tsiCacheStations = new List<ToolStripItem>();
-            tsmiCacheStation.Text = Current.Cache.Name;
+            tsmiCacheStation.Text = Current.Cacher.Name;
 
             var isCacheEnabled = false;
 
-            Current.Cache.Stations.ForEach(s =>
+            Current.Cacher.Stations.ForEach(s =>
             {
                 ToolStripMenuItem tsiStation = new ToolStripMenuItem();
                 tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);

@@ -34,13 +34,13 @@ namespace Anchitech.Baking
 
         public static List<Oven> ovens = new List<Oven>();
 
-        public static List<Feeder> feeders = new List<Feeder>();
+        public static Feeder Feeder = new Feeder(1);
 
         public static List<Blanker> blankers = new List<Blanker>();
 
         public static Robot Robot = new Robot(1);
 
-        public static Cache Cache = new Cache(1);
+        public static Cacher Cacher = new Cacher(1);
 
         public static Transfer Transfer = new Transfer(1);
 

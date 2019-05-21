@@ -69,7 +69,7 @@
     <Compile Include="QualityStatus.cs" />
     <Compile Include="Current.cs" />
     <Compile Include="Blanker.cs" />
-    <Compile Include="Cache.cs" />
+    <Compile Include="Cacher.cs" />
     <Compile Include="Feeder.cs" />
     <Compile Include="Floor.cs" />
     <Compile Include="MES.cs" />

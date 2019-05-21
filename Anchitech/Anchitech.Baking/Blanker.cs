@@ -447,16 +447,15 @@ namespace Anchitech.Baking
 
 
                     //避让功能
-                    var feeder = Current.feeders.First(f => f.PlcId == Current.Robot.PlcId);
-                    if (feeder.Plc.IsAlive && bOutputs[26] != feeder.D1025)
-                    {
-                        if (!this.Plc.SetInfo("D2026", feeder.D1025, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
-                    }
+                    //if (Current.Feeder.Plc.IsAlive && bOutputs[26] != Current.Feeder.D1025)
+                    //{
+                    //    if (!this.Plc.SetInfo("D2026", Current.Feeder.D1025, out msg))
+                    //    {
+                    //        Error.Alert(msg);
+                    //        this.Plc.IsAlive = false;
+                    //        return false;
+                    //    }
+                    //}
 
                     Thread.Sleep(100);
                 }

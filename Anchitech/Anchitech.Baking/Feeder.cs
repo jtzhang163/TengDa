@@ -498,31 +498,31 @@ namespace Anchitech.Baking
 
 
                     //获取缓存架信息
-                    if (Current.Cache.IsEnable && Current.Cache.PlcId == this.Plc.Id)
+                    if (Current.Cacher.IsEnable && Current.Cacher.PlcId == this.Plc.Id)
                     {
-                        for (int j = 0; j < Current.Cache.Stations.Count; j++)
+                        for (int j = 0; j < Current.Cacher.Stations.Count; j++)
                         {
                             switch (bOutputs[22 - j])
                             {
                                 case 1:
-                                    Current.Cache.Stations[j].ClampStatus = ClampStatus.无夹具;
-                                    Current.Cache.Stations[j].Status = StationStatus.可放;
+                                    Current.Cacher.Stations[j].ClampStatus = ClampStatus.无夹具;
+                                    Current.Cacher.Stations[j].Status = StationStatus.可放;
                                     break;
                                 case 2:
-                                    Current.Cache.Stations[j].ClampStatus = Current.Cache.Stations[j].ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
-                                    Current.Cache.Stations[j].Status = StationStatus.可取;
+                                    Current.Cacher.Stations[j].ClampStatus = Current.Cacher.Stations[j].ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
+                                    Current.Cacher.Stations[j].Status = StationStatus.可取;
                                     break;
                                 case 3:
-                                    Current.Cache.Stations[j].ClampStatus = ClampStatus.异常;
-                                    Current.Cache.Stations[j].Status = StationStatus.不可用;
+                                    Current.Cacher.Stations[j].ClampStatus = ClampStatus.异常;
+                                    Current.Cacher.Stations[j].Status = StationStatus.不可用;
                                     break;
                                 default:
-                                    Current.Cache.Stations[j].ClampStatus = ClampStatus.未知;
-                                    Current.Cache.Stations[j].Status = StationStatus.不可用;
+                                    Current.Cacher.Stations[j].ClampStatus = ClampStatus.未知;
+                                    Current.Cacher.Stations[j].Status = StationStatus.不可用;
                                     break;
                             }
                         }
-                        Current.Cache.IsAlive = true;
+                        Current.Cacher.IsAlive = true;
                     }
 
 
@@ -668,53 +668,53 @@ namespace Anchitech.Baking
                     }
 
                     //两台上料机信号传递（上料机器人和搬运机器人干涉防呆）
-                    if (Current.feeders.Count(f => f.IsAlive) == Current.feeders.Count)
-                    {
-                        if (Current.Robot.Plc.Id == this.Plc.Id)
-                        {
-                            var val = Current.feeders.First(f => f.Id != this.Id).D1026;
-                            if (bOutputs[26] != val)
-                            {
-                                if (!this.Plc.SetInfo("D1026", val, out msg))
-                                {
-                                    Error.Alert(msg);
-                                    this.Plc.IsAlive = false;
-                                    return false;
-                                }
-                            }
+                    //if (Current.feeders.Count(f => f.IsAlive) == Current.feeders.Count)
+                    //{
+                    //    if (Current.Robot.Plc.Id == this.Plc.Id)
+                    //    {
+                    //        var val = Current.feeders.First(f => f.Id != this.Id).D1026;
+                    //        if (bOutputs[26] != val)
+                    //        {
+                    //            if (!this.Plc.SetInfo("D1026", val, out msg))
+                    //            {
+                    //                Error.Alert(msg);
+                    //                this.Plc.IsAlive = false;
+                    //                return false;
+                    //            }
+                    //        }
 
-                            for (var i = 0; i < Current.blankers.Count; i++)
-                            {
-                                var blanker = Current.blankers[i];
-                                if (blanker.IsAlive)
-                                {
-                                    if (bOutputs[27 + i] != blanker.D2027)
-                                    {
-                                        var addr = string.Format("D{0:D4}", 1027 + i);
-                                        if (!this.Plc.SetInfo(addr, blanker.D2027, out msg))
-                                        {
-                                            Error.Alert(msg);
-                                            this.Plc.IsAlive = false;
-                                            return false;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            var val = Current.feeders.First(f => f.Id != this.Id).D1025;
-                            if (bOutputs[25] != val)
-                            {
-                                if (!this.Plc.SetInfo("D1025", val, out msg))
-                                {
-                                    Error.Alert(msg);
-                                    this.Plc.IsAlive = false;
-                                    return false;
-                                }
-                            }
-                        }
-                    }
+                    //        for (var i = 0; i < Current.blankers.Count; i++)
+                    //        {
+                    //            var blanker = Current.blankers[i];
+                    //            if (blanker.IsAlive)
+                    //            {
+                    //                if (bOutputs[27 + i] != blanker.D2027)
+                    //                {
+                    //                    var addr = string.Format("D{0:D4}", 1027 + i);
+                    //                    if (!this.Plc.SetInfo(addr, blanker.D2027, out msg))
+                    //                    {
+                    //                        Error.Alert(msg);
+                    //                        this.Plc.IsAlive = false;
+                    //                        return false;
+                    //                    }
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        var val = Current.feeders.First(f => f.Id != this.Id).D1025;
+                    //        if (bOutputs[25] != val)
+                    //        {
+                    //            if (!this.Plc.SetInfo("D1025", val, out msg))
+                    //            {
+                    //                Error.Alert(msg);
+                    //                this.Plc.IsAlive = false;
+                    //                return false;
+                    //            }
+                    //        }
+                    //    }
+                    //}
 
                     #endregion
                     Thread.Sleep(20);

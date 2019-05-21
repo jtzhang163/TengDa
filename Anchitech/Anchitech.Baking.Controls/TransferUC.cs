@@ -16,5 +16,19 @@ namespace Anchitech.Baking.Controls
         {
             InitializeComponent();
         }
+
+        public void Init(Transfer transfer)
+        {
+            this.lbName.Text = transfer.Name;
+            this.simpleClampUC1.Init(transfer.Station);
+        }
+
+        public void Update(Transfer transfer)
+        {
+            transfer.IsAlive = transfer.IsEnable && transfer.Plc.IsAlive;
+            transfer.Station.IsAlive = transfer.IsAlive && transfer.Station.IsEnable;
+            this.BackColor = transfer.IsAlive ? Color.White : Color.LightGray;
+            this.simpleClampUC1.Update(transfer.Station);
+        }
     }
 }

@@ -44,6 +44,7 @@
             this.panelRobot.Controls.Add(this.tableLayoutPanel21);
             this.panelRobot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRobot.Location = new System.Drawing.Point(0, 0);
+            this.panelRobot.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.panelRobot.Name = "panelRobot";
             this.panelRobot.Size = new System.Drawing.Size(150, 150);
             this.panelRobot.TabIndex = 2;
