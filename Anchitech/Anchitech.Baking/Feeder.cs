@@ -388,49 +388,6 @@ namespace Anchitech.Baking
         }
         #endregion
 
-        #region 该设备上的扫码枪
-        private List<Scaner> scaners = new List<Scaner>();
-        [Browsable(false)]
-        public List<Scaner> Scaners
-        {
-            get
-            {
-                if (scaners.Count < 1)
-                {
-                    scaners = Scaner.ScanerList.Where(s => Array.IndexOf(this.ScanerIds.Split(','), s.Id.ToString()) > -1).ToList();
-                }
-                return scaners;
-            }
-        }
-
-        [Browsable(false)]
-        public List<Scaner> BatteryScaners
-        {
-            get
-            {
-                if (this.Scaners.Count > 0)
-                {
-                    return this.Scaners.Take(2).ToList();
-                }
-                return new List<Scaner> { };
-            }
-        }
-
-        [Browsable(false)]
-        public Scaner ClampScaner
-        {
-            get
-            {
-                if (this.Scaners.Count > 0)
-                {
-                    return this.Scaners[2];
-                }
-                return new Scaner();
-            }
-        }
-
-        #endregion
-
         #region 通信
 
         public bool AlreadyGetAllInfo = false;
@@ -617,46 +574,45 @@ namespace Anchitech.Baking
 
 
                     //获取夹具扫码信号
-                    if (this.ClampScaner.IsEnable)
+                    if (Current.ClampScaner.IsEnable)
                     {
                         if ((new List<ushort>() { 1, 2, 3 }).Contains(bOutputs[1]))
                         {
-                            if (!this.ClampScaner.IsReady)
+                            if (!Current.ClampScaner.IsReady)
                             {
-                                this.ClampScaner.CanScan = true;
+                                Current.ClampScaner.CanScan = true;
                             }
-                            this.ClampScaner.IsReady = true;
+                            Current.ClampScaner.IsReady = true;
                             this.Stations[bOutputs[1] - 1].IsClampScanReady = true;
                             this.CurrentPutStationId = this.Stations[bOutputs[1] - 1].Id;
                         }
                         else
                         {
-                            this.Stations.ForEach(s => s.IsClampScanReady = false); this.ClampScaner.IsReady = false;
-                            this.ClampScaner.IsReady = false;
-                            this.ClampScaner.CanScan = false;
+                            this.Stations.ForEach(s => s.IsClampScanReady = false); Current.ClampScaner.IsReady = false;
+                            Current.ClampScaner.IsReady = false;
+                            Current.ClampScaner.CanScan = false;
                         }
                     }
 
                     //获取电池扫码信号
-                    this.BatteryScaners.ForEach(s =>
+ 
+                    if (Current.ClampScaner.IsEnable)
                     {
-                        if (s.IsEnable)
+                        if (bOutputs[1] == 4)
                         {
-                            if (bOutputs[1] == 4)
+                            if (!Current.ClampScaner.IsReady)
                             {
-                                if (!s.IsReady)
-                                {
-                                    s.CanScan = true;
-                                }
-                                s.IsReady = true;
+                                Current.ClampScaner.CanScan = true;
                             }
-                            else
-                            {
-                                s.IsReady = false;
-                                s.CanScan = false;
-                            }
+                            Current.ClampScaner.IsReady = true;
                         }
-                    });
+                        else
+                        {
+                            Current.ClampScaner.IsReady = false;
+                            Current.ClampScaner.CanScan = false;
+                        }
+                    }
+                    
 
                     if (Current.Robot.PlcId == this.PlcId)
                     {

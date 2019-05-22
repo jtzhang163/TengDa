@@ -2396,6 +2396,8 @@ namespace Anchitech.Baking
             }
         }
 
+        public bool IsDisplayOvenCode { get; set; }
+
         //private string xxxXXXXXXXXXXXX = string.Empty;
         ///// <summary>
         ///// YYYYYYYYYYYYYYYYY

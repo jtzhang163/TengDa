@@ -36,6 +36,10 @@ namespace Anchitech.Baking
 
         public static Feeder Feeder = new Feeder(1);
 
+        public static Scaner BatteryScaner = new Scaner(1);
+
+        public static Scaner ClampScaner = new Scaner(2);
+
         public static Blanker Blanker = new Blanker(1);
 
         public static Robot Robot = new Robot(1);

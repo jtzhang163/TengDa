@@ -16,6 +16,7 @@ namespace Anchitech.Baking.Controls
         public OvenUC()
         {
             InitializeComponent();
+            this.floorUCs = new FloorUC[3] { floorUC1, floorUC2, floorUC3 };
         }
 
         public void Init(Oven oven)
@@ -66,6 +67,11 @@ namespace Anchitech.Baking.Controls
             oven.PreIsAlive = oven.IsAlive;
             oven.Floors.ForEach(f => f.PreIsAlive = f.IsAlive);
             oven.Floors.ForEach(f => f.Stations.ForEach(s => s.PreIsAlive = s.IsAlive));
+
+            for (int j = 0; j < floorUCs.Length; j++)
+            {
+                this.floorUCs[j].Update(oven, oven.Floors[j]);
+            }
 
         }
     }

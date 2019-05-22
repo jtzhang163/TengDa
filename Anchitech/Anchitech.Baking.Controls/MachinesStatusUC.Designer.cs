@@ -1,4 +1,6 @@
-﻿namespace Anchitech.Baking.Controls
+﻿using System.Collections.Generic;
+
+namespace Anchitech.Baking.Controls
 {
     partial class MachinesStatusUC
     {
@@ -30,8 +32,6 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.machineStatusUC20 = new Anchitech.Baking.Controls.MachineStatusUC();
-            this.machineStatusUC19 = new Anchitech.Baking.Controls.MachineStatusUC();
             this.machineStatusUC18 = new Anchitech.Baking.Controls.MachineStatusUC();
             this.machineStatusUC17 = new Anchitech.Baking.Controls.MachineStatusUC();
             this.machineStatusUC16 = new Anchitech.Baking.Controls.MachineStatusUC();
@@ -69,8 +69,6 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.machineStatusUC20, 0, 19);
-            this.tableLayoutPanel1.Controls.Add(this.machineStatusUC19, 0, 18);
             this.tableLayoutPanel1.Controls.Add(this.machineStatusUC18, 0, 17);
             this.tableLayoutPanel1.Controls.Add(this.machineStatusUC17, 0, 16);
             this.tableLayoutPanel1.Controls.Add(this.machineStatusUC16, 0, 15);
@@ -92,168 +90,172 @@
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 20;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.RowCount = 18;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.555555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(259, 484);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // machineStatusUC20
-            // 
-            this.machineStatusUC20.Location = new System.Drawing.Point(3, 459);
-            this.machineStatusUC20.Name = "machineStatusUC20";
-            this.machineStatusUC20.Size = new System.Drawing.Size(253, 14);
-            this.machineStatusUC20.TabIndex = 19;
-            // 
-            // machineStatusUC19
-            // 
-            this.machineStatusUC19.Location = new System.Drawing.Point(3, 435);
-            this.machineStatusUC19.Name = "machineStatusUC19";
-            this.machineStatusUC19.Size = new System.Drawing.Size(253, 14);
-            this.machineStatusUC19.TabIndex = 18;
-            // 
             // machineStatusUC18
             // 
-            this.machineStatusUC18.Location = new System.Drawing.Point(3, 411);
+            this.machineStatusUC18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC18.Location = new System.Drawing.Point(3, 445);
             this.machineStatusUC18.Name = "machineStatusUC18";
-            this.machineStatusUC18.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC18.Size = new System.Drawing.Size(253, 36);
             this.machineStatusUC18.TabIndex = 17;
             // 
             // machineStatusUC17
             // 
-            this.machineStatusUC17.Location = new System.Drawing.Point(3, 387);
+            this.machineStatusUC17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC17.Location = new System.Drawing.Point(3, 419);
             this.machineStatusUC17.Name = "machineStatusUC17";
-            this.machineStatusUC17.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC17.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC17.TabIndex = 16;
             // 
             // machineStatusUC16
             // 
-            this.machineStatusUC16.Location = new System.Drawing.Point(3, 363);
+            this.machineStatusUC16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC16.Location = new System.Drawing.Point(3, 393);
             this.machineStatusUC16.Name = "machineStatusUC16";
-            this.machineStatusUC16.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC16.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC16.TabIndex = 15;
             // 
             // machineStatusUC15
             // 
-            this.machineStatusUC15.Location = new System.Drawing.Point(3, 339);
+            this.machineStatusUC15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC15.Location = new System.Drawing.Point(3, 367);
             this.machineStatusUC15.Name = "machineStatusUC15";
-            this.machineStatusUC15.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC15.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC15.TabIndex = 14;
             // 
             // machineStatusUC14
             // 
-            this.machineStatusUC14.Location = new System.Drawing.Point(3, 315);
+            this.machineStatusUC14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC14.Location = new System.Drawing.Point(3, 341);
             this.machineStatusUC14.Name = "machineStatusUC14";
-            this.machineStatusUC14.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC14.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC14.TabIndex = 13;
             // 
             // machineStatusUC13
             // 
-            this.machineStatusUC13.Location = new System.Drawing.Point(3, 291);
+            this.machineStatusUC13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC13.Location = new System.Drawing.Point(3, 315);
             this.machineStatusUC13.Name = "machineStatusUC13";
-            this.machineStatusUC13.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC13.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC13.TabIndex = 12;
             // 
             // machineStatusUC12
             // 
-            this.machineStatusUC12.Location = new System.Drawing.Point(3, 267);
+            this.machineStatusUC12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC12.Location = new System.Drawing.Point(3, 289);
             this.machineStatusUC12.Name = "machineStatusUC12";
-            this.machineStatusUC12.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC12.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC12.TabIndex = 11;
             // 
             // machineStatusUC11
             // 
-            this.machineStatusUC11.Location = new System.Drawing.Point(3, 243);
+            this.machineStatusUC11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC11.Location = new System.Drawing.Point(3, 263);
             this.machineStatusUC11.Name = "machineStatusUC11";
-            this.machineStatusUC11.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC11.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC11.TabIndex = 10;
             // 
             // machineStatusUC10
             // 
-            this.machineStatusUC10.Location = new System.Drawing.Point(3, 219);
+            this.machineStatusUC10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC10.Location = new System.Drawing.Point(3, 237);
             this.machineStatusUC10.Name = "machineStatusUC10";
-            this.machineStatusUC10.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC10.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC10.TabIndex = 9;
             // 
             // machineStatusUC9
             // 
-            this.machineStatusUC9.Location = new System.Drawing.Point(3, 195);
+            this.machineStatusUC9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC9.Location = new System.Drawing.Point(3, 211);
             this.machineStatusUC9.Name = "machineStatusUC9";
-            this.machineStatusUC9.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC9.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC9.TabIndex = 8;
             // 
             // machineStatusUC8
             // 
-            this.machineStatusUC8.Location = new System.Drawing.Point(3, 171);
+            this.machineStatusUC8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC8.Location = new System.Drawing.Point(3, 185);
             this.machineStatusUC8.Name = "machineStatusUC8";
-            this.machineStatusUC8.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC8.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC8.TabIndex = 7;
             // 
             // machineStatusUC7
             // 
-            this.machineStatusUC7.Location = new System.Drawing.Point(3, 147);
+            this.machineStatusUC7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC7.Location = new System.Drawing.Point(3, 159);
             this.machineStatusUC7.Name = "machineStatusUC7";
-            this.machineStatusUC7.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC7.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC7.TabIndex = 6;
             // 
             // machineStatusUC6
             // 
-            this.machineStatusUC6.Location = new System.Drawing.Point(3, 123);
+            this.machineStatusUC6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC6.Location = new System.Drawing.Point(3, 133);
             this.machineStatusUC6.Name = "machineStatusUC6";
-            this.machineStatusUC6.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC6.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC6.TabIndex = 5;
             // 
             // machineStatusUC5
             // 
-            this.machineStatusUC5.Location = new System.Drawing.Point(3, 99);
+            this.machineStatusUC5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC5.Location = new System.Drawing.Point(3, 107);
             this.machineStatusUC5.Name = "machineStatusUC5";
-            this.machineStatusUC5.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC5.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC5.TabIndex = 4;
             // 
             // machineStatusUC4
             // 
-            this.machineStatusUC4.Location = new System.Drawing.Point(3, 75);
+            this.machineStatusUC4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC4.Location = new System.Drawing.Point(3, 81);
             this.machineStatusUC4.Name = "machineStatusUC4";
-            this.machineStatusUC4.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC4.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC4.TabIndex = 3;
             // 
             // machineStatusUC3
             // 
-            this.machineStatusUC3.Location = new System.Drawing.Point(3, 51);
+            this.machineStatusUC3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC3.Location = new System.Drawing.Point(3, 55);
             this.machineStatusUC3.Name = "machineStatusUC3";
-            this.machineStatusUC3.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC3.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC3.TabIndex = 2;
             // 
             // machineStatusUC2
             // 
-            this.machineStatusUC2.Location = new System.Drawing.Point(3, 27);
+            this.machineStatusUC2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineStatusUC2.Location = new System.Drawing.Point(3, 29);
             this.machineStatusUC2.Name = "machineStatusUC2";
-            this.machineStatusUC2.Size = new System.Drawing.Size(253, 14);
+            this.machineStatusUC2.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC2.TabIndex = 1;
             // 
             // machineStatusUC1
             // 
+            this.machineStatusUC1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.machineStatusUC1.Location = new System.Drawing.Point(3, 3);
             this.machineStatusUC1.Name = "machineStatusUC1";
-            this.machineStatusUC1.Size = new System.Drawing.Size(253, 15);
+            this.machineStatusUC1.Size = new System.Drawing.Size(253, 20);
             this.machineStatusUC1.TabIndex = 0;
             // 
             // MachinesStatusUC
@@ -271,10 +273,10 @@
 
         #endregion
 
+        private List<MachineIndex> machines = new List<MachineIndex>();
+
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private MachineStatusUC machineStatusUC20;
-        private MachineStatusUC machineStatusUC19;
         private MachineStatusUC machineStatusUC18;
         private MachineStatusUC machineStatusUC17;
         private MachineStatusUC machineStatusUC16;
@@ -293,5 +295,12 @@
         private MachineStatusUC machineStatusUC3;
         private MachineStatusUC machineStatusUC2;
         private MachineStatusUC machineStatusUC1;
+    }
+
+    internal class MachineIndex
+    {
+        public object Machine { get; set; }
+
+        public MachineStatusUC MsUC{ get; set; }
     }
 }

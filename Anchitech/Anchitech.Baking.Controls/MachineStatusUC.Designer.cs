@@ -61,9 +61,10 @@
             // 
             this.cbIsEnable.AutoSize = true;
             this.cbIsEnable.Dock = System.Windows.Forms.DockStyle.Left;
-            this.cbIsEnable.Location = new System.Drawing.Point(3, 3);
+            this.cbIsEnable.Location = new System.Drawing.Point(0, 0);
+            this.cbIsEnable.Margin = new System.Windows.Forms.Padding(0);
             this.cbIsEnable.Name = "cbIsEnable";
-            this.cbIsEnable.Size = new System.Drawing.Size(15, 24);
+            this.cbIsEnable.Size = new System.Drawing.Size(15, 30);
             this.cbIsEnable.TabIndex = 22;
             this.cbIsEnable.UseVisualStyleBackColor = true;
             // 
@@ -86,10 +87,11 @@
             this.tbStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbStatus.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbStatus.ForeColor = System.Drawing.Color.Green;
-            this.tbStatus.Location = new System.Drawing.Point(187, 7);
+            this.tbStatus.Location = new System.Drawing.Point(184, 7);
+            this.tbStatus.Margin = new System.Windows.Forms.Padding(0);
             this.tbStatus.Name = "tbStatus";
             this.tbStatus.ReadOnly = true;
-            this.tbStatus.Size = new System.Drawing.Size(128, 16);
+            this.tbStatus.Size = new System.Drawing.Size(134, 16);
             this.tbStatus.TabIndex = 25;
             this.tbStatus.Text = "未连接";
             // 

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.tlpFloor = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFloorInfoTop = new System.Windows.Forms.Label();
+            this.lbInfoTop = new System.Windows.Forms.Label();
             this.pbRunTime = new System.Windows.Forms.ProgressBar();
-            this.lbFloorStatus = new System.Windows.Forms.Label();
+            this.lbStatus = new System.Windows.Forms.Label();
             this.tlpFloor.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,9 +42,9 @@
             this.tlpFloor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpFloor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1F));
             this.tlpFloor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor.Controls.Add(this.lbFloorInfoTop, 0, 0);
+            this.tlpFloor.Controls.Add(this.lbInfoTop, 0, 0);
             this.tlpFloor.Controls.Add(this.pbRunTime, 0, 1);
-            this.tlpFloor.Controls.Add(this.lbFloorStatus, 0, 2);
+            this.tlpFloor.Controls.Add(this.lbStatus, 0, 2);
             this.tlpFloor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpFloor.Location = new System.Drawing.Point(0, 0);
             this.tlpFloor.Margin = new System.Windows.Forms.Padding(0);
@@ -56,21 +56,21 @@
             this.tlpFloor.Size = new System.Drawing.Size(150, 150);
             this.tlpFloor.TabIndex = 13;
             // 
-            // lbFloorInfoTop
+            // lbInfoTop
             // 
-            this.lbFloorInfoTop.AutoSize = true;
-            this.lbFloorInfoTop.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor.SetColumnSpan(this.lbFloorInfoTop, 3);
-            this.lbFloorInfoTop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorInfoTop.Font = new System.Drawing.Font("黑体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFloorInfoTop.ForeColor = System.Drawing.Color.Red;
-            this.lbFloorInfoTop.Location = new System.Drawing.Point(0, 8);
-            this.lbFloorInfoTop.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
-            this.lbFloorInfoTop.Name = "lbFloorInfoTop";
-            this.lbFloorInfoTop.Size = new System.Drawing.Size(150, 56);
-            this.lbFloorInfoTop.TabIndex = 13;
-            this.lbFloorInfoTop.Text = "0.0℃ 10000Pa 0.0℃";
-            this.lbFloorInfoTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbInfoTop.AutoSize = true;
+            this.lbInfoTop.BackColor = System.Drawing.Color.Transparent;
+            this.tlpFloor.SetColumnSpan(this.lbInfoTop, 3);
+            this.lbInfoTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbInfoTop.Font = new System.Drawing.Font("黑体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbInfoTop.ForeColor = System.Drawing.Color.Red;
+            this.lbInfoTop.Location = new System.Drawing.Point(0, 8);
+            this.lbInfoTop.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
+            this.lbInfoTop.Name = "lbInfoTop";
+            this.lbInfoTop.Size = new System.Drawing.Size(150, 56);
+            this.lbInfoTop.TabIndex = 13;
+            this.lbInfoTop.Text = "0.0℃ 10000Pa 0.0℃";
+            this.lbInfoTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbRunTime
             // 
@@ -85,21 +85,21 @@
             this.pbRunTime.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pbRunTime.TabIndex = 9;
             // 
-            // lbFloorStatus
+            // lbStatus
             // 
-            this.lbFloorStatus.AutoSize = true;
-            this.lbFloorStatus.BackColor = System.Drawing.Color.Transparent;
-            this.tlpFloor.SetColumnSpan(this.lbFloorStatus, 3);
-            this.lbFloorStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFloorStatus.Font = new System.Drawing.Font("Consolas", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFloorStatus.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbFloorStatus.Location = new System.Drawing.Point(0, 85);
-            this.lbFloorStatus.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
-            this.lbFloorStatus.Name = "lbFloorStatus";
-            this.lbFloorStatus.Size = new System.Drawing.Size(150, 57);
-            this.lbFloorStatus.TabIndex = 17;
-            this.lbFloorStatus.Text = "右 关闭 100/200 左";
-            this.lbFloorStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbStatus.AutoSize = true;
+            this.lbStatus.BackColor = System.Drawing.Color.Transparent;
+            this.tlpFloor.SetColumnSpan(this.lbStatus, 3);
+            this.lbStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbStatus.Font = new System.Drawing.Font("Consolas", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStatus.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lbStatus.Location = new System.Drawing.Point(0, 85);
+            this.lbStatus.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Size = new System.Drawing.Size(150, 57);
+            this.lbStatus.TabIndex = 17;
+            this.lbStatus.Text = "右 关闭 100/200 左";
+            this.lbStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FloorUC
             // 
@@ -116,8 +116,8 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tlpFloor;
-        private System.Windows.Forms.Label lbFloorInfoTop;
+        private System.Windows.Forms.Label lbInfoTop;
         private System.Windows.Forms.ProgressBar pbRunTime;
-        private System.Windows.Forms.Label lbFloorStatus;
+        private System.Windows.Forms.Label lbStatus;
     }
 }

@@ -16,5 +16,20 @@ namespace Anchitech.Baking.Controls
         {
             InitializeComponent();
         }
+
+        public void SetCheckBoxEnabled(bool isEnabled)
+        {
+            this.cbIsEnable.Enabled = isEnabled;
+        }
+
+        public void Init(object machine)
+        {
+            this.lbMachineName.Text = (string)GetProperty(machine, "Name");
+        }
+
+        public object GetProperty(object obj, string propertyName)
+        {
+            return obj.GetType().GetProperty(propertyName).GetValue(obj);
+        }
     }
 }

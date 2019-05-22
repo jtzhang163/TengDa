@@ -50,7 +50,6 @@ namespace Anchitech.Baking.Dispatcher
             DisplayUserInfo();
             InitLogin();
             InitTerminal();
-            InitMES();
             InitSettingsTreeView();
             TengDa.WF.Current.IsRunning = true;
             Operation.Add("打开软件");
@@ -124,48 +123,11 @@ namespace Anchitech.Baking.Dispatcher
 
             for (int i = 0; i < OvenCount; i++)
             {
-                int ii = i + 1;
-                ovenUCs[i] = (OvenUC)(this.Controls.Find(string.Format("ovenUC{0}", ii.ToString("D2")), true)[0]);
-                lbOvenNameN[i] = (Label)(this.Controls.Find(string.Format("lbOvenNameN{0}", ii.ToString("D2")), true)[0]);
-                cbOvenIsEnable[i] = (CheckBox)(this.Controls.Find(string.Format("cbOvenIsEnable{0}", ii.ToString("D2")), true)[0]);
-                pbOvenLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbOvenLamp{0}", ii.ToString("D2")), true)[0]);
-                tbOvenStatus[i] = (TextBox)(this.Controls.Find(string.Format("tbOvenStatus{0}", ii.ToString("D2")), true)[0]);
-                pbOvenTriLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbOvenTriLamp{0}", ii.ToString("D2")), true)[0]);
-
-                tlpFloor[i] = new TableLayoutPanel[OvenFloorCount];
-                pbRunTime[i] = new ProgressBar[OvenFloorCount];
-                lbFloorInfoTop[i] = new Label[OvenFloorCount];
-                lbFloorStatus[i] = new Label[OvenFloorCount];
-
-                for (int j = 0; j < OvenFloorCount; j++)
-                {
-                    tlpFloor[i][j] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpFloor{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    pbRunTime[i][j] = (ProgressBar)(this.Controls.Find(string.Format("pbRunTime{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    lbFloorInfoTop[i][j] = (Label)(this.Controls.Find(string.Format("lbFloorInfoTop{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    lbFloorStatus[i][j] = (Label)(this.Controls.Find(string.Format("lbFloorStatus{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                }
+                ovenUCs[i] = (OvenUC)(this.Controls.Find(string.Format("ovenUC{0}", (i + 1).ToString("D2")), true)[0]);
             }
 
             #endregion
 
-            #region 下料机相关控件数组
-            for (int i = 0; i < 1; i++)
-            {
-                int ii = i + 1;
-
-                lbBlankerNameN[i] = (Label)(this.Controls.Find(string.Format("lbBlankerNameN{0}", ii.ToString("D2")), true)[0]);
-                cbBlankerIsEnable[i] = (CheckBox)(this.Controls.Find(string.Format("cbBlankerIsEnable{0}", ii.ToString("D2")), true)[0]);
-                pbBlankerLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbBlankerLamp{0}", ii.ToString("D2")), true)[0]);
-                tbBlankerStatus[i] = (TextBox)(this.Controls.Find(string.Format("tbBlankerStatus{0}", ii.ToString("D2")), true)[0]);
-
-                //lbBlankerStationName[i] = new Label[BlankerStationCount];
-                //lbBlankerFromStationName[i] = new Label[BlankerStationCount];
-                //lbBlankerClampCode[i] = new Label[BlankerStationCount];
-                //tlpBlankerStationClamp[i] = new TableLayoutPanel[BlankerStationCount];
-
-
-            }
-            #endregion
 
             for (int i = 0; i < Option.TemperaturePointCount; i++)
             {
@@ -308,9 +270,6 @@ namespace Anchitech.Baking.Dispatcher
             {
                 this.ovenUCs[i].Init(Current.ovens[i]);
 
-                lbOvenNameN[i].Text = Current.ovens[i].Name;
-                pbOvenLamp[i].Image = Properties.Resources.Gray_Round;
-                cbOvenIsEnable[i].Checked = Current.ovens[i].IsEnable;
                 cbAlarmFloors.Items.Add(Current.ovens[i].Name);
 
                 ///查询温度真空时下拉列表数据            
@@ -339,13 +298,6 @@ namespace Anchitech.Baking.Dispatcher
             //}
 
             this.blankerUC1.Init(Current.Blanker);
-
-            lbBlankerNameN[0].Text = Current.Blanker.Name;
-            pbBlankerLamp[0].Image = Properties.Resources.Gray_Round;
-            cbBlankerIsEnable[0].Checked = Current.Blanker.IsEnable;           
-
-            lbRobotNameN.Text = Current.Robot.Name;
-            cbRobotIsEnable.Checked = Current.Robot.IsEnable;
 
             this.robotUC1.Init(Current.Robot);
 
@@ -422,18 +374,14 @@ namespace Anchitech.Baking.Dispatcher
             });
             cbSampleSelectedFloor.SelectedIndex = jjj;
 
-            Current.Feeder.BatteryScaners.ForEach(s => cbBatteryScaner.Items.Add(s.Name));
-            cbClampScaner.Items.Add(Current.Feeder.ClampScaner.Name);
+            cbBatteryScaner.Items.Add(Current.BatteryScaner.Name);
+            cbClampScaner.Items.Add(Current.ClampScaner.Name);
 
             cbBatteryScaner.SelectedIndex = 0;
             cbClampScaner.SelectedIndex = 0;
-        }
 
-        private void InitMES()
-        {
-            //Current.mes = new MES(1);
-            lbMesNameN.Text = Current.mes.Name;
-            cbMesIsEnable.Checked = Current.mes.IsEnable;
+
+            this.machinesStatusUC1.Init();
         }
 
         private void ManageSystem_FormClosing(object sender, FormClosingEventArgs e)
@@ -534,17 +482,13 @@ namespace Anchitech.Baking.Dispatcher
 
                 this.ovenUCs[i].Update(Current.ovens[i]);
 
-                if (oven.Plc.IsAlive) { if (tbOvenStatus[i].Text.Trim() == "未连接") { tbOvenStatus[i].Text = "连接成功"; } }
-                else { this.tbOvenStatus[i].Text = "未连接"; }
+                //if (oven.Plc.IsAlive) { if (tbOvenStatus[i].Text.Trim() == "未连接") { tbOvenStatus[i].Text = "连接成功"; } }
+                //else { this.tbOvenStatus[i].Text = "未连接"; }
 
 
                 for (int j = 0; j < OvenFloorCount; j++)
                 {
-                    Floor floor = oven.Floors[j];
-                    this.pbRunTime[i][j].Maximum = floor.RunMinutesSet;
-                    this.pbRunTime[i][j].Value = floor.IsAlive ? (floor.RunMinutesSet > floor.RunMinutes ? floor.RunMinutes : floor.RunMinutesSet) : 0;
-
-                    floor.Stations.ForEach(s =>
+                    oven.Floors[j].Stations.ForEach(s =>
                     {
                         if (s.Id == Current.option.CurveStationId)
                         {
@@ -559,137 +503,17 @@ namespace Anchitech.Baking.Dispatcher
                         }
                     });
 
-                    if (!string.IsNullOrEmpty(floor.AlarmStr) && floor.IsAlive)
-                    {
-                        if (floor.PreAlarmStr != floor.AlarmStr)
-                        {
-                            this.lbFloorInfoTop[i][j].Text = floor.AlarmStr.TrimEnd(',') + "...";
-                        }
-                        else
-                        {
-                            string alarmStr = this.lbFloorInfoTop[i][j].Text;
-                            this.lbFloorInfoTop[i][j].Text = alarmStr.Substring(1, alarmStr.Length - 1) + alarmStr.Substring(0, 1);
-                        }
-                        this.lbFloorInfoTop[i][j].ForeColor = Color.White;
-                        this.lbFloorInfoTop[i][j].BackColor = Color.Red;
-                    }
-                    else
-                    {
-                        var centerStr = floor.IsEnable ? floor.Vacuum.ToString("#0").PadLeft(6) + "Pa" : "炉层禁用";
+                    //if (floor.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId) > 0)
+                    //{
+                    //    this.tlpFloor[i][j].Invalidate();
+                    //}
 
-                        if (floor.IsBaking)
-                        {
-                            this.lbFloorInfoTop[i][j].Text = string.Format("{0}℃ {1} {2}℃",
-                                 floor.Stations[0].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4),
-                                 centerStr,
-                                 floor.Stations[1].Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4));
-                        }
-                        else
-                        {
-
-                            var ss = new List<Station>() { oven.ClampOri == ClampOri.B ? floor.Stations[0] : floor.Stations[1], oven.ClampOri == ClampOri.B ? floor.Stations[1] : floor.Stations[0] };
-                            var strs = new List<string>() { "", "" };
-
-                            for(var x = 0; x < ss.Count; x++)
-                            {
-                                if (ss[x].FloorStatus == FloorStatus.待出)
-                                {
-                                    strs[x] = ss[x].SampleStatus == SampleStatus.待结果 ? "待测" : ss[x].SampleStatus == SampleStatus.水分OK ? "水分OK" : ss[x].SampleStatus == SampleStatus.水分NG ? "水分NG" : "未知";
-                                }
-                                else if (ss[x].FloorStatus == FloorStatus.待烤 && ss[x].SampleStatus == SampleStatus.水分NG)
-                                {
-                                    strs[x] = "水分NG";
-                                }
-                                else
-                                {
-                                    strs[x] = ss[x].FloorStatus.ToString();
-                                }
-                            }
-
-                            this.lbFloorInfoTop[i][j].Text = string.Format("{0} {3}{1} {4}{2}",
-                                 strs[0],
-                                 centerStr,
-                                 strs[1],
-                                 ss[0].HasSampleFlag ? "★ " : "",
-                                 ss[1].HasSampleFlag ? "★ " : "");
-                        }
-
-                        this.lbFloorInfoTop[i][j].ForeColor = Color.Red;
-                        this.lbFloorInfoTop[i][j].BackColor = Color.Transparent;
-                    }
-
-
-
-                    floor.PreAlarmStr = floor.AlarmStr;
-
-                    if (oven.Plc.IsAlive)
-                    {
-                        if (!string.IsNullOrEmpty(floor.AlarmStr))
-                        {
-                            this.tlpFloor[i][j].BackColor = System.Drawing.Color.Crimson;
-                        }
-                        else
-                        {
-
-                        }
-                    }
-                    else if(!oven.Plc.PreIsAlive)
-                    {
-                        this.tlpFloor[i][j].BackColor = Color.LightGray;
-                    }
-
-                    var index = oven.Floors.IndexOf(floor);
-
-                    if (!IsDisplayOvenCode)
-                    {
-                        lbFloorStatus[i][j].Text =
-                            string.Format("{0} {1} {2}/{3} {4}",
-                            oven.ClampOri == ClampOri.B ? floor.Stations[0].RobotGetCode : floor.Stations[1].RobotGetCode,
-                            floor.DoorStatus,
-                            floor.RunMinutes.ToString().PadLeft(3),
-                            floor.RunMinutesSet.ToString().PadLeft(3),
-                            oven.ClampOri == ClampOri.A ? floor.Stations[0].RobotGetCode : floor.Stations[1].RobotGetCode
-                            );
-                    }
-                    else
-                    {
-                        lbFloorStatus[i][j].Text =
-                            string.Format("{0} {1}",
-                            (oven.ClampOri == ClampOri.B ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadRight(8),
-                            (oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadLeft(8)
-                            );
-                    }
-
-
-                    switch (floor.DoorStatus)
-                    {
-                        case DoorStatus.打开:
-                            lbFloorStatus[i][j].ForeColor = Color.White;
-                            lbFloorStatus[i][j].BackColor = SystemColors.WindowText;
-                            break;
-                        case DoorStatus.异常:
-                            lbFloorStatus[i][j].ForeColor = Color.White;
-                            lbFloorStatus[i][j].BackColor = Color.Red;
-                            break;
-                        default:
-                            lbFloorStatus[i][j].ForeColor = SystemColors.WindowText;
-                            lbFloorStatus[i][j].BackColor = Color.Transparent;
-                            break;
-                    }
-
-                    if (floor.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId) > 0)
-                    {
-                        this.tlpFloor[i][j].Invalidate();
-                    }
-
-                    if (floor.PreIsAlive != floor.IsAlive)
-                    {
-                        this.tlpFloor[i][j].Invalidate();
-                    }
+                    //if (floor.PreIsAlive != floor.IsAlive)
+                    //{
+                    //    this.tlpFloor[i][j].Invalidate();
+                    //}
 
                 }
-
-
 
             }
 
@@ -733,14 +557,11 @@ namespace Anchitech.Baking.Dispatcher
             #region 下料机
 
             this.blankerUC1.Update(Current.Blanker);
-            Blanker blanker = Current.Blanker;
 
-            if (blanker.Plc.IsAlive) { if (tbBlankerStatus[0].Text.Trim() == "未连接") { tbBlankerStatus[0].Text = "连接成功"; } }
-            else { this.tbBlankerStatus[0].Text = "未连接"; }
+            //if (blanker.Plc.IsAlive) { if (tbBlankerStatus[0].Text.Trim() == "未连接") { tbBlankerStatus[0].Text = "连接成功"; } }
+            //else { this.tbBlankerStatus[0].Text = "未连接"; }
 
-            this.pbBlankerLamp[0].Image = blanker.Plc.IsAlive ? Properties.Resources.Green_Round : Properties.Resources.Gray_Round;
-            
-
+           
             #endregion
 
             #region 缓存架
@@ -796,19 +617,19 @@ namespace Anchitech.Baking.Dispatcher
 
             #region MES
 
-            if (Current.runStstus != RunStatus.闲置 && Current.mes.IsAlive)
-            {
-                if (tbMesStatus.Text.Trim() == "未连接")
-                {
-                    tbMesStatus.Text = "连接成功";
-                }
-                this.pbMesLamp.Image = Properties.Resources.Green_Round;
-            }
-            else
-            {
-                this.tbMesStatus.Text = "未连接";
-                this.pbMesLamp.Image = Properties.Resources.Gray_Round;
-            }
+            //if (Current.runStstus != RunStatus.闲置 && Current.mes.IsAlive)
+            //{
+            //    if (tbMesStatus.Text.Trim() == "未连接")
+            //    {
+            //        tbMesStatus.Text = "连接成功";
+            //    }
+            //    this.pbMesLamp.Image = Properties.Resources.Green_Round;
+            //}
+            //else
+            //{
+            //    this.tbMesStatus.Text = "未连接";
+            //    this.pbMesLamp.Image = Properties.Resources.Gray_Round;
+            //}
             #endregion
 
             #region 机器人
@@ -847,28 +668,6 @@ namespace Anchitech.Baking.Dispatcher
         private const int OvenFloorCount = 3;
 
         private OvenUC[] ovenUCs = new OvenUC[OvenCount];
-
-        private Label[] lbOvenNameN = new Label[OvenCount];
-
-        private CheckBox[] cbOvenIsEnable = new CheckBox[OvenCount];
-        private PictureBox[] pbOvenLamp = new PictureBox[OvenCount];
-        private TextBox[] tbOvenStatus = new TextBox[OvenCount];
-        private PictureBox[] pbOvenTriLamp = new PictureBox[OvenCount];
-
-        private TableLayoutPanel[][] tlpFloor = new TableLayoutPanel[OvenCount][];
-        private ProgressBar[][] pbRunTime = new ProgressBar[OvenCount][];
-        private Label[][] lbFloorInfoTop = new Label[OvenCount][];
-        private Label[][] lbFloorStatus = new Label[OvenCount][];
-
-        private Label[][] lbScanerNameN = new Label[2][];
-        private CheckBox[][] cbScanerIsEnable = new CheckBox[2][];
-        private PictureBox[][] pbScanerLamp = new PictureBox[2][];
-        private TextBox[][] tbScanerStatus = new TextBox[2][];
-
-        private Label[] lbBlankerNameN = new Label[1];
-        private CheckBox[] cbBlankerIsEnable = new CheckBox[1];
-        private PictureBox[] pbBlankerLamp = new PictureBox[1];
-        private TextBox[] tbBlankerStatus = new TextBox[1];
 
         private CheckBox[] cbTemperIndex = new CheckBox[Option.TemperaturePointCount];
         private CheckBox[] cbVacuumIndex = new CheckBox[Option.VacuumPointCount];
@@ -909,7 +708,7 @@ namespace Anchitech.Baking.Dispatcher
                         else if (!CheckStart(out msg))
                         {
                             Current.runStstus = RunStatus.异常;
-                            SetCheckBoxEnable(false);//禁止操作启用复选框
+                            this.machinesStatusUC1.SetCheckBoxEnabled(false);//禁止操作启用复选框
                             Operation.Add("启动出现异常，" + msg);
                             AddTips("启动出现异常");
                         }
@@ -949,7 +748,7 @@ namespace Anchitech.Baking.Dispatcher
                     TimersDispose();
                     if (PlcDisConnect() && ScanerDisConnect() && MesDisConnect())
                     {
-                        SetCheckBoxEnable(true);
+                        this.machinesStatusUC1.SetCheckBoxEnabled(true);
                         isFirstStart = true;
                         Current.TaskMode = TaskMode.手动任务;
                         Current.runStstus = RunStatus.闲置;
@@ -1123,7 +922,7 @@ namespace Anchitech.Baking.Dispatcher
                         return false;
                     }
                     int ii = i;
-                    this.BeginInvoke(new MethodInvoker(() => { tbOvenStatus[ii].Text = "连接成功"; }));
+                    //this.BeginInvoke(new MethodInvoker(() => { tbOvenStatus[ii].Text = "连接成功"; }));
                 }
             }
 
@@ -1141,8 +940,7 @@ namespace Anchitech.Baking.Dispatcher
                     Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.Blanker.Name, msg));
                     return false;
                 }
-                int ii = 0;
-                this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[ii].Text = "连接成功"; }));
+                //this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[ii].Text = "连接成功"; }));
             }
             
 
@@ -1160,7 +958,7 @@ namespace Anchitech.Baking.Dispatcher
                     return false;
                 }
 
-                this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "连接成功"; }));
+                //this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "连接成功"; }));
             }
 
             return true;
@@ -1196,8 +994,8 @@ namespace Anchitech.Baking.Dispatcher
                         Error.Alert(msg);
                         return false;
                     }
-                    tbOvenStatus[i].Text = "未连接";
-                    this.pbOvenLamp[i].Image = Properties.Resources.Gray_Round;
+                    //tbOvenStatus[i].Text = "未连接";
+                    //this.pbOvenLamp[i].Image = Properties.Resources.Gray_Round;
                 }
 
                 //防止长时间未连接导致烤箱信息与实际不符
@@ -1221,8 +1019,8 @@ namespace Anchitech.Baking.Dispatcher
                     Error.Alert(msg);
                     return false;
                 }
-                tbBlankerStatus[0].Text = "未连接";
-                this.pbBlankerLamp[0].Image = Properties.Resources.Gray_Round;
+                //tbBlankerStatus[0].Text = "未连接";
+                //this.pbBlankerLamp[0].Image = Properties.Resources.Gray_Round;
             }
 
             Current.Blanker.PreAlarmStr = string.Empty;
@@ -1240,8 +1038,8 @@ namespace Anchitech.Baking.Dispatcher
                     Error.Alert(msg);
                     return false;
                 }
-                tbRobotStatus.Text = "未连接";
-                this.pbRobotLamp.Image = Properties.Resources.Gray_Round;
+                //tbRobotStatus.Text = "未连接";
+                //this.pbRobotLamp.Image = Properties.Resources.Gray_Round;
             }
 
             Current.Transfer.IsAlive = false;
@@ -1263,7 +1061,7 @@ namespace Anchitech.Baking.Dispatcher
                 }
                 else
                 {
-                    this.BeginInvoke(new UpdateUI1PDelegate(RefreshMesStatus), "连接成功");
+                    //this.BeginInvoke(new UpdateUI1PDelegate(RefreshMesStatus), "连接成功");
                     if (Current.mes.IsOffline)
                     {
                         Current.mes.IsOffline = false;
@@ -1279,7 +1077,7 @@ namespace Anchitech.Baking.Dispatcher
 
             if (Current.mes.IsEnable)
             {
-                this.BeginInvoke(new MethodInvoker(() => { this.tbMesStatus.Text = "未连接"; }));
+                //this.BeginInvoke(new MethodInvoker(() => { this.tbMesStatus.Text = "未连接"; }));
             }
 
             return true;
@@ -1289,29 +1087,39 @@ namespace Anchitech.Baking.Dispatcher
         {
             string msg = string.Empty;
 
-            for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
+            if (Current.BatteryScaner.IsEnable)
             {
-
-                if (Current.Feeder.Scaners[j].IsEnable)
+                if (!Current.BatteryScaner.IsPingSuccess)
                 {
-                    if (!Current.Feeder.Scaners[j].IsPingSuccess)
-                    {
 
-                        Error.Alert(string.Format("无法连接到{0}：{1}", Current.Feeder.Scaners[j].Name, Current.Feeder.Scaners[j].IP));
-                        return false;
-                    }
-
-                    if (!Current.Feeder.Scaners[j].TcpConnect(out msg))
-                    {
-                        Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.Feeder.Scaners[j].Name, msg));
-                        return false;
-                    }
-                    int ii = 0;
-                    int jj = j;
-                    this.BeginInvoke(new MethodInvoker(() => { tbScanerStatus[ii][jj].Text = "连接成功"; }));
+                    Error.Alert(string.Format("无法连接到{0}：{1}", Current.BatteryScaner.Name, Current.BatteryScaner.IP));
+                    return false;
                 }
+
+                if (!Current.BatteryScaner.TcpConnect(out msg))
+                {
+                    Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.BatteryScaner.Name, msg));
+                    return false;
+                }
+                //this.BeginInvoke(new MethodInvoker(() => { tbScanerStatus[ii][jj].Text = "连接成功"; }));
             }
-            
+
+            if (Current.ClampScaner.IsEnable)
+            {
+                if (!Current.ClampScaner.IsPingSuccess)
+                {
+
+                    Error.Alert(string.Format("无法连接到{0}：{1}", Current.ClampScaner.Name, Current.ClampScaner.IP));
+                    return false;
+                }
+
+                if (!Current.ClampScaner.TcpConnect(out msg))
+                {
+                    Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.ClampScaner.Name, msg));
+                    return false;
+                }
+                //this.BeginInvoke(new MethodInvoker(() => { tbScanerStatus[ii][jj].Text = "连接成功"; }));
+            }
 
             return true;
         }
@@ -1320,39 +1128,36 @@ namespace Anchitech.Baking.Dispatcher
         {
             string msg = string.Empty;
 
-            for (int j = 0; j < Current.Feeder.BatteryScaners.Count; j++)
+            if (Current.BatteryScaner.IsEnable)
             {
-                if (Current.Feeder.BatteryScaners[j].IsEnable)
+                if (Current.BatteryScaner.IsAlive)
                 {
-                    if (Current.Feeder.BatteryScaners[j].IsAlive)
-                    {
-                        Current.Feeder.BatteryScaners[j].StopBatteryScan();
-                    }                   
-                    if (!Current.Feeder.BatteryScaners[j].TcpDisConnect(out msg))
-                    {
-                        Error.Alert(msg);
-                        return false;
-                    }
-                    tbScanerStatus[0][j].Text = "未连接";
-                    this.pbScanerLamp[0][j].Image = Properties.Resources.Gray_Round;
+                    Current.BatteryScaner.StopClampScan();
                 }
-            }
 
-
-            if (Current.Feeder.ClampScaner.IsEnable)
-            {
-                if (Current.Feeder.ClampScaner.IsAlive)
-                {
-                    Current.Feeder.ClampScaner.StopClampScan();
-                }
-                    
-                if (!Current.Feeder.ClampScaner.TcpDisConnect(out msg))
+                if (!Current.BatteryScaner.TcpDisConnect(out msg))
                 {
                     Error.Alert(msg);
                     return false;
                 }
-                tbScanerStatus[0][2].Text = "未连接";
-                this.pbScanerLamp[0][2].Image = Properties.Resources.Gray_Round;
+                //tbScanerStatus[0][2].Text = "未连接";
+                //this.pbScanerLamp[0][2].Image = Properties.Resources.Gray_Round;
+            }
+
+            if (Current.ClampScaner.IsEnable)
+            {
+                if (Current.ClampScaner.IsAlive)
+                {
+                    Current.ClampScaner.StopClampScan();
+                }
+                    
+                if (!Current.ClampScaner.TcpDisConnect(out msg))
+                {
+                    Error.Alert(msg);
+                    return false;
+                }
+                //tbScanerStatus[0][2].Text = "未连接";
+                //this.pbScanerLamp[0][2].Image = Properties.Resources.Gray_Round;
             }
 
             
@@ -1385,7 +1190,7 @@ namespace Anchitech.Baking.Dispatcher
         {
             for (int i = 0; i < OvenCount; i++)
             {
-                if (cbOvenIsEnable[i].Checked && !Current.ovens[i].Plc.IsAlive)
+                if (Current.ovens[i].IsEnable && !Current.ovens[i].Plc.IsAlive)
                 {
                     msg = Current.ovens[i].Name + " 启动异常！";
                     return false;
@@ -1393,37 +1198,40 @@ namespace Anchitech.Baking.Dispatcher
             }
 
 
-            if (cbFeederIsEnable01.Checked && !Current.Feeder.Plc.IsAlive)
+            if (Current.Feeder.IsEnable && !Current.Feeder.Plc.IsAlive)
             {
                 msg = Current.Feeder.Name + " 启动异常！";
                 return false;
             }
 
-            for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
+
+            if (Current.ClampScaner.IsEnable && !Current.ClampScaner.IsAlive)
             {
-                if (cbScanerIsEnable[0][j].Checked && !Current.Feeder.Scaners[j].IsAlive)
-                {
-                    msg = Current.Feeder.Scaners[j].Name + " 启动异常！";
-                    return false;
-                }
+                msg = Current.ClampScaner.Name + " 启动异常！";
+                return false;
             }
-            
+
+            if (Current.BatteryScaner.IsEnable && !Current.BatteryScaner.IsAlive)
+            {
+                msg = Current.BatteryScaner.Name + " 启动异常！";
+                return false;
+            }
 
 
-            if (cbBlankerIsEnable[0].Checked && !Current.Blanker.Plc.IsAlive)
+            if (Current.Blanker.IsEnable && !Current.Blanker.Plc.IsAlive)
             {
                 msg = Current.Blanker.Name + " 启动异常！";
                 return false;
             }
             
 
-            if (cbRobotIsEnable.Checked && !Current.Robot.Plc.IsAlive)
+            if (Current.Robot.IsEnable && !Current.Robot.Plc.IsAlive)
             {
                 msg = Current.Robot.Name + " 启动异常！";
                 return false;
             }
 
-            if (cbMesIsEnable.Checked && !Current.mes.IsPingSuccess)
+            if (Current.mes.IsEnable && !Current.mes.IsPingSuccess)
             {
                 msg = Current.mes.Name + " 启动异常！";
                 return false;
@@ -1528,7 +1336,7 @@ namespace Anchitech.Baking.Dispatcher
                 this.timerUploadMes.Start();
             }
 
-            SetCheckBoxEnable(false);//运行后禁止操作启用复选框
+            this.machinesStatusUC1.SetCheckBoxEnabled(false);//运行后禁止操作启用复选框
 
             isFirstStart = false;
             timerlock = true;
@@ -1602,27 +1410,6 @@ namespace Anchitech.Baking.Dispatcher
             }
         }
 
-        private void SetCheckBoxEnable(bool IsEnable)
-        {
-
-            cbFeederIsEnable01.Enabled = IsEnable;
-            for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
-            {
-                cbScanerIsEnable[0][j].Enabled = IsEnable;
-            }
-          
-            for (int i = 0; i < OvenCount; i++)
-            {
-                cbOvenIsEnable[i].Enabled = IsEnable;
-            }
-
-            cbBlankerIsEnable[0].Enabled = IsEnable;
-            
-            cbScanerIsEnable0103.Enabled = IsEnable;
-            cbMesIsEnable.Enabled = IsEnable;
-            cbRobotIsEnable.Enabled = IsEnable;
-        }
-
         private void OvenRunInvokeFunc(object obj)
         {
 
@@ -1632,15 +1419,15 @@ namespace Anchitech.Baking.Dispatcher
 
             if (timerlock && Current.ovens[i].IsEnable)
             {
-                this.BeginInvoke(new MethodInvoker(() => { tbOvenStatus[i].Text = "发送指令—>" + Current.ovens[i].Name + "PLC"; }));
-                if (Current.ovens[i].GetInfo())
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { tbOvenStatus[i].Text = "成功获得" + Current.ovens[i].Name + "信息"; }));
-                }
-                else
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { tbOvenStatus[i].Text = "获取" + Current.ovens[i].Name + "信息失败"; }));
-                }
+                //this.BeginInvoke(new MethodInvoker(() => { tbOvenStatus[i].Text = "发送指令—>" + Current.ovens[i].Name + "PLC"; }));
+                //if (Current.ovens[i].GetInfo())
+                //{
+                //    this.BeginInvoke(new MethodInvoker(() => { tbOvenStatus[i].Text = "成功获得" + Current.ovens[i].Name + "信息"; }));
+                //}
+                //else
+                //{
+                //    this.BeginInvoke(new MethodInvoker(() => { tbOvenStatus[i].Text = "获取" + Current.ovens[i].Name + "信息失败"; }));
+                //}
 
                 if (Current.ovens[i].AlreadyGetAllInfo)
                 {
@@ -1687,11 +1474,11 @@ namespace Anchitech.Baking.Dispatcher
                                     Current.ovens[i].UploadVacuum(j);
 
                                 }
-                                this.tlpFloor[i][j].Invalidate();
+                                //this.tlpFloor[i][j].Invalidate();
                             }
                             else if (station.ClampStatus == ClampStatus.异常)
                             {
-                                this.tlpFloor[i][j].Invalidate();
+                                //this.tlpFloor[i][j].Invalidate();
                             }
 
                             station.PreFloorStatus = station.FloorStatus;
@@ -1751,17 +1538,17 @@ namespace Anchitech.Baking.Dispatcher
                 if (Current.Feeder.AlreadyGetAllInfo)
                 {
                     #region 夹具扫码逻辑
-                    if (Current.Feeder.ClampScaner.IsEnable && Current.Feeder.ClampScaner.CanScan)
+                    if (Current.ClampScaner.IsEnable && Current.ClampScaner.CanScan)
                     {
                         Current.Feeder.Stations.ForEach(s =>
                         {
                             if (s.IsClampScanReady)
                             {
                                 string code = string.Empty;
-                                ScanResult result = Current.Feeder.ClampScaner.StartClampScan(out code, out msg);
+                                ScanResult result = Current.ClampScaner.StartClampScan(out code, out msg);
                                 if (result == ScanResult.OK)
                                 {
-                                    this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][2].Text = "+" + code; }));                           
+                                    //this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][2].Text = "+" + code; }));                           
                                     s.Clamp.Code = code;
                                     s.Clamp.ScanTime = DateTime.Now;
 
@@ -1772,7 +1559,7 @@ namespace Anchitech.Baking.Dispatcher
                                 }
                                 else if (result == ScanResult.NG || result == ScanResult.Timeout)
                                 {
-                                    this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][2].Text = "扫码NG"; }));
+                                    //this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][2].Text = "扫码NG"; }));
                                     if (!Current.Feeder.SetScanClampResult(ScanResult.NG, out msg))
                                     {
                                         Error.Alert(msg);
@@ -1794,33 +1581,61 @@ namespace Anchitech.Baking.Dispatcher
 
                     var isScanFlag = false;//是否执行了扫码
 
-                    for (int j = 0;j < Current.Feeder.BatteryScaners.Count; j++)
+                    if (Current.BatteryScaner.IsEnable && Current.BatteryScaner.CanScan)
                     {
-                        int ii = i;
-                        int jj = j;
-                        if (Current.Feeder.BatteryScaners[jj].IsEnable && Current.Feeder.BatteryScaners[jj].CanScan)
+
+                        string code = string.Empty;
+                        ScanResult result = Current.BatteryScaner.StartBatteryScan(out code, out msg);
+
+                        isScanFlag = true;
+
+                        if (result == ScanResult.OK)
                         {
-
-                            string code = string.Empty;
-                            ScanResult result = Current.Feeder.BatteryScaners[j].StartBatteryScan(out code, out msg);
-
-                            isScanFlag = true;
-
-                            if (result == ScanResult.OK)
+                            this.BeginInvoke(new MethodInvoker(() =>
                             {
+                                //this.tbScanerStatus[ii][jj].Text = "+" + code;
+                                //this.tbScanerStatus[ii][jj].ForeColor = SystemColors.Control;
+                                //this.tbScanerStatus[ii][jj].BackColor = Color.Green;
+                            }));
+
+                            Thread t = new Thread(() => {
+                                Thread.Sleep(1000);
                                 this.BeginInvoke(new MethodInvoker(() =>
                                 {
-                                    this.tbScanerStatus[ii][jj].Text = "+" + code;
-                                    this.tbScanerStatus[ii][jj].ForeColor = SystemColors.Control;
-                                    this.tbScanerStatus[ii][jj].BackColor = Color.Green;
+                                    //this.tbScanerStatus[ii][jj].ForeColor = Color.Green;
+                                    //this.tbScanerStatus[ii][jj].BackColor = SystemColors.Control;
+                                }));
+                            });
+                            t.Start();
+
+                            int id = Battery.Add(new Battery(code, Current.Feeder.Id, Current.Feeder.CurrentPutClampId), out msg);
+                            if (id < 1)
+                            {
+                                Error.Alert(msg);
+                            }
+
+                            batteryScanResults[0] = ScanResult.OK;
+
+                        }
+                        else if (result == ScanResult.NG || result == ScanResult.Timeout)
+                        {
+                            //再扫一次
+                            result = Current.BatteryScaner.StartBatteryScan(out code, out msg);
+                            if (result == ScanResult.OK)
+                            {
+                                this.BeginInvoke(new MethodInvoker(() => 
+                                {
+                                    //this.tbScanerStatus[ii][jj].Text = "+" + code;
+                                    //this.tbScanerStatus[ii][jj].ForeColor = SystemColors.Control;
+                                    //this.tbScanerStatus[ii][jj].BackColor = Color.Green;
                                 }));
 
                                 Thread t = new Thread(() => {
                                     Thread.Sleep(1000);
                                     this.BeginInvoke(new MethodInvoker(() =>
                                     {
-                                        this.tbScanerStatus[ii][jj].ForeColor = Color.Green;
-                                        this.tbScanerStatus[ii][jj].BackColor = SystemColors.Control;
+                                        //this.tbScanerStatus[ii][jj].ForeColor = Color.Green;
+                                        //this.tbScanerStatus[ii][jj].BackColor = SystemColors.Control;
                                     }));
                                 });
                                 t.Start();
@@ -1831,55 +1646,22 @@ namespace Anchitech.Baking.Dispatcher
                                     Error.Alert(msg);
                                 }
 
-                                batteryScanResults[j] = ScanResult.OK;
-
+                                batteryScanResults[0] = ScanResult.OK;
                             }
                             else if (result == ScanResult.NG || result == ScanResult.Timeout)
                             {
-                                //再扫一次
-                                result = Current.Feeder.BatteryScaners[jj].StartBatteryScan(out code, out msg);
-                                if (result == ScanResult.OK)
-                                {
-                                    this.BeginInvoke(new MethodInvoker(() => 
-                                    {
-                                        this.tbScanerStatus[ii][jj].Text = "+" + code;
-                                        this.tbScanerStatus[ii][jj].ForeColor = SystemColors.Control;
-                                        this.tbScanerStatus[ii][jj].BackColor = Color.Green;
-                                    }));
-
-                                    Thread t = new Thread(() => {
-                                        Thread.Sleep(1000);
-                                        this.BeginInvoke(new MethodInvoker(() =>
-                                        {
-                                            this.tbScanerStatus[ii][jj].ForeColor = Color.Green;
-                                            this.tbScanerStatus[ii][jj].BackColor = SystemColors.Control;
-                                        }));
-                                    });
-                                    t.Start();
-
-                                    int id = Battery.Add(new Battery(code, Current.Feeder.Id, Current.Feeder.CurrentPutClampId), out msg);
-                                    if (id < 1)
-                                    {
-                                        Error.Alert(msg);
-                                    }
-
-                                    batteryScanResults[jj] = ScanResult.OK;
-                                }
-                                else if (result == ScanResult.NG || result == ScanResult.Timeout)
-                                {
-                                    this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[ii][jj].Text = "扫码NG"; }));
-
-                                    batteryScanResults[jj] = ScanResult.NG;
-                                }
+                                //this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[ii][jj].Text = "扫码NG"; }));
+                                batteryScanResults[0] = ScanResult.NG;
                             }
-                            else
-                            {
-                                Error.Alert(msg);
-                            }
-
-                            Current.Feeder.BatteryScaners[j].CanScan = false;
                         }
+                        else
+                        {
+                            Error.Alert(msg);
+                        }
+
+                        Current.BatteryScaner.CanScan = false;
                     }
+                    
 
                     if (isScanFlag)
                     {
@@ -1924,15 +1706,15 @@ namespace Anchitech.Baking.Dispatcher
 
             if (timerlock && Current.Blanker.IsEnable)
             {
-                this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "发送指令—>" + Current.Blanker.Name + "PLC"; }));
-                if (Current.Blanker.GetInfo())
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "成功获得" + Current.Blanker.Name + "信息"; }));
-                }
-                else
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "获取" + Current.Blanker.Name + "信息失败"; }));
-                }
+                //this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "发送指令—>" + Current.Blanker.Name + "PLC"; }));
+                //if (Current.Blanker.GetInfo())
+                //{
+                //    this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "成功获得" + Current.Blanker.Name + "信息"; }));
+                //}
+                //else
+                //{
+                //    this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "获取" + Current.Blanker.Name + "信息失败"; }));
+                //}
 
             }
         }
@@ -1942,15 +1724,15 @@ namespace Anchitech.Baking.Dispatcher
             string msg = string.Empty;
             if (timerlock && Current.Robot.IsEnable)
             {
-                this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "发送指令—>" + Current.Robot.Name + "PLC"; }));
-                if (Current.Robot.GetInfo())
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "成功获得" + Current.Robot.Name + "信息"; }));
-                }
-                else
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "获取" + Current.Robot.Name + "信息失败"; }));
-                }
+                //this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "发送指令—>" + Current.Robot.Name + "PLC"; }));
+                //if (Current.Robot.GetInfo())
+                //{
+                //    this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "成功获得" + Current.Robot.Name + "信息"; }));
+                //}
+                //else
+                //{
+                //    this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "获取" + Current.Robot.Name + "信息失败"; }));
+                //}
 
                 if (Current.Robot.AlreadyGetAllInfo)
                 {
@@ -2132,10 +1914,6 @@ namespace Anchitech.Baking.Dispatcher
             }
         }
 
-        public void RefreshMesStatus(string text)
-        {
-            this.tbMesStatus.Text = text;
-        }
 
         #endregion
 
@@ -2200,9 +1978,9 @@ namespace Anchitech.Baking.Dispatcher
                     return;
                 }
 
-                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传入烤箱数据..."; }));
+                //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传入烤箱数据..."; }));
                 MES.UploadInOven(clamps);
-                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "入烤箱数据上传完成..."; }));
+                //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "入烤箱数据上传完成..."; }));
             }
             catch (Exception ex)
             {
@@ -2232,9 +2010,9 @@ namespace Anchitech.Baking.Dispatcher
                     return;
                 }
 
-                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传出烤箱数据..."; }));
+                //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传出烤箱数据..."; }));
                 MES.UploadOutOven(clamps);
-                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "出烤箱数据上传完成..."; }));
+                //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "出烤箱数据上传完成..."; }));
             }
             catch (Exception ex)
             {
@@ -2276,10 +2054,10 @@ namespace Anchitech.Baking.Dispatcher
 
                 if (uploadTVDs.Count > 0 && Current.mes.IsAlive)
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传实时温度真空数据..."; }));
+                    //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传实时温度真空数据..."; }));
                     //await MES.UploadTvdInfoAsync(uploadTVDs);
                     Thread.Sleep(100);
-                    this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "实时温度真空数据上传完成"; }));
+                    //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "实时温度真空数据上传完成"; }));
                 }
 
                 //保存进数据库
@@ -2297,10 +2075,10 @@ namespace Anchitech.Baking.Dispatcher
 
                     if (uploadTVDs.Count > 0)
                     {
-                        this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传历史温度真空数据..."; }));
+                        //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传历史温度真空数据..."; }));
                         //await MES.UploadTvdInfoAsync(uploadTVDs);
                         Thread.Sleep(100);
-                        this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "历史温度真空数据上传完成"; }));
+                        //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "历史温度真空数据上传完成"; }));
                     }
                 }
 
@@ -2899,68 +2677,6 @@ namespace Anchitech.Baking.Dispatcher
                 }));
             });
             t.Start();
-        }
-
-        private void cbScanerIsEnable_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!TengDa.WF.Current.IsRunning) return;
-
-            for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
-            {
-                if ((CheckBox)sender == cbScanerIsEnable[0][j])
-                {
-                    Current.Feeder.Scaners[j].IsEnable = cbScanerIsEnable[0][j].Checked;
-                    return;
-                }
-            }
-        }
-
-        private void cbOvenIsEnable_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!TengDa.WF.Current.IsRunning) return;
-            for (int i = 0; i < OvenCount; i++)
-            {
-                if ((CheckBox)sender == cbOvenIsEnable[i])
-                {
-                    Current.ovens[i].IsEnable = cbOvenIsEnable[i].Checked;
-                    return;
-                }
-            }
-        }
-
-        private void cbFeederIsEnable_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!TengDa.WF.Current.IsRunning) return;
-
-            if ((CheckBox)sender == cbFeederIsEnable01)
-            {
-                Current.Feeder.IsEnable = cbFeederIsEnable01.Checked;
-                return;
-            }
-        }
-
-        private void cbBlankerIsEnable_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!TengDa.WF.Current.IsRunning) return;
- 
-            if ((CheckBox)sender == cbBlankerIsEnable[0])
-            {
-                Current.Blanker.IsEnable = cbBlankerIsEnable[0].Checked;
-                return;
-            }
-            
-        }
-
-        private void cbRobotIsEnable_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!TengDa.WF.Current.IsRunning) return;
-            Current.Robot.IsEnable = cbRobotIsEnable.Checked;
-        }
-
-        private void cbMesIsEnable_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!TengDa.WF.Current.IsRunning) return;
-            Current.mes.IsEnable = cbMesIsEnable.Checked;
         }
 
         private void btnQueryTV_Click(object sender, EventArgs e)
@@ -4096,7 +3812,7 @@ namespace Anchitech.Baking.Dispatcher
         {
             string code = string.Empty;
             string msg = string.Empty;
-            ScanResult scanResult = Current.Feeder.ClampScaner.StartClampScan(out code, out msg);
+            ScanResult scanResult = Current.ClampScaner.StartClampScan(out code, out msg);
             if (scanResult == ScanResult.OK)
             {
                 Tip.Alert(code);
@@ -4143,12 +3859,10 @@ namespace Anchitech.Baking.Dispatcher
 
         private void btnBatteryScanStart_Click(object sender, EventArgs e)
         {
-            int i = cbBatteryScaner.SelectedIndex / 2;
-            int j = cbBatteryScaner.SelectedIndex % 2;
 
             string code = string.Empty;
             string msg = string.Empty;
-            ScanResult scanResult = Current.Feeder.BatteryScaners[j].StartBatteryScan(out code, out msg);
+            ScanResult scanResult = Current.BatteryScaner.StartBatteryScan(out code, out msg);
             if (scanResult == ScanResult.OK)
             {
                 Tip.Alert(code);
@@ -4751,13 +4465,11 @@ namespace Anchitech.Baking.Dispatcher
             }
         }
 
-        private bool IsDisplayOvenCode = false;
-
         private void cbDisplayOvenCode_CheckedChanged(object sender, EventArgs e)
         {
             if (TengDa.WF.Current.IsRunning)
             {
-                IsDisplayOvenCode = cbDisplayOvenCode.Checked;
+                Current.option.IsDisplayOvenCode = cbDisplayOvenCode.Checked;
             }
         }
 
@@ -4779,5 +4491,6 @@ namespace Anchitech.Baking.Dispatcher
                 }
             }
         }
+
     }
 }

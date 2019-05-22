@@ -48,6 +48,18 @@
     <Compile Include="BlankerUC.Designer.cs">
       <DependentUpon>BlankerUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="MachinesStatusUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MachinesStatusUC.Designer.cs">
+      <DependentUpon>MachinesStatusUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MachineStatusUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MachineStatusUC.Designer.cs">
+      <DependentUpon>MachineStatusUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -119,6 +131,12 @@
   <ItemGroup>
     <EmbeddedResource Include="BlankerUC.resx">
       <DependentUpon>BlankerUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachinesStatusUC.resx">
+      <DependentUpon>MachinesStatusUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineStatusUC.resx">
+      <DependentUpon>MachineStatusUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

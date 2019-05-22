@@ -176,6 +176,7 @@
             }
         }
 
+        private FloorUC[] floorUCs = new FloorUC[3];
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
