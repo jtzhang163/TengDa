@@ -35,12 +35,12 @@
             this.floorUC2 = new Anchitech.Baking.Controls.FloorUC();
             this.floorUC1 = new Anchitech.Baking.Controls.FloorUC();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbOvenTriLamp = new System.Windows.Forms.PictureBox();
-            this.lbOvenName = new System.Windows.Forms.Label();
+            this.pbTriLamp = new System.Windows.Forms.PictureBox();
+            this.lbName = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTriLamp)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -108,8 +108,8 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.Controls.Add(this.pbOvenTriLamp, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.lbOvenName, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.pbTriLamp, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.lbName, 0, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -118,28 +118,28 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(150, 25);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
-            // pbOvenTriLamp
+            // pbTriLamp
             // 
-            this.pbOvenTriLamp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbOvenTriLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp.Image")));
-            this.pbOvenTriLamp.Location = new System.Drawing.Point(127, 2);
-            this.pbOvenTriLamp.Margin = new System.Windows.Forms.Padding(2);
-            this.pbOvenTriLamp.Name = "pbOvenTriLamp";
-            this.pbOvenTriLamp.Size = new System.Drawing.Size(21, 21);
-            this.pbOvenTriLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenTriLamp.TabIndex = 30;
-            this.pbOvenTriLamp.TabStop = false;
+            this.pbTriLamp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbTriLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbTriLamp.Image")));
+            this.pbTriLamp.Location = new System.Drawing.Point(127, 2);
+            this.pbTriLamp.Margin = new System.Windows.Forms.Padding(2);
+            this.pbTriLamp.Name = "pbTriLamp";
+            this.pbTriLamp.Size = new System.Drawing.Size(21, 21);
+            this.pbTriLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbTriLamp.TabIndex = 30;
+            this.pbTriLamp.TabStop = false;
             // 
-            // lbOvenName
+            // lbName
             // 
-            this.lbOvenName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbOvenName.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbOvenName.Location = new System.Drawing.Point(3, 0);
-            this.lbOvenName.Name = "lbOvenName";
-            this.lbOvenName.Size = new System.Drawing.Size(119, 25);
-            this.lbOvenName.TabIndex = 7;
-            this.lbOvenName.Text = "烤箱名称";
-            this.lbOvenName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbName.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbName.Location = new System.Drawing.Point(3, 0);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(119, 25);
+            this.lbName.TabIndex = 7;
+            this.lbName.Text = "烤箱名称";
+            this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // OvenUC
             // 
@@ -151,7 +151,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTriLamp)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -171,7 +171,7 @@
             }
             set
             {
-                lbOvenName.Text = string.Format("{0}#烤箱", value);
+                lbName.Text = string.Format("{0}#烤箱", value);
                 ovenIndex = value;
             }
         }
@@ -183,7 +183,7 @@
         private FloorUC floorUC2;
         private FloorUC floorUC1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Label lbOvenName;
-        private System.Windows.Forms.PictureBox pbOvenTriLamp;
+        private System.Windows.Forms.Label lbName;
+        private System.Windows.Forms.PictureBox pbTriLamp;
     }
 }

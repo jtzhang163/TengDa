@@ -18,6 +18,7 @@ using System.Timers;
 using TengDa.WF;
 using System.Net;
 using System.Net.Sockets;
+using Anchitech.Baking.Controls;
 
 namespace Anchitech.Baking.Dispatcher
 {
@@ -124,7 +125,7 @@ namespace Anchitech.Baking.Dispatcher
             for (int i = 0; i < OvenCount; i++)
             {
                 int ii = i + 1;
-                lbOvenName[i] = (Label)(this.Controls.Find(string.Format("lbOvenName{0}", ii.ToString("D2")), true)[0]);
+                ovenUCs[i] = (OvenUC)(this.Controls.Find(string.Format("ovenUC{0}", ii.ToString("D2")), true)[0]);
                 lbOvenNameN[i] = (Label)(this.Controls.Find(string.Format("lbOvenNameN{0}", ii.ToString("D2")), true)[0]);
                 cbOvenIsEnable[i] = (CheckBox)(this.Controls.Find(string.Format("cbOvenIsEnable{0}", ii.ToString("D2")), true)[0]);
                 pbOvenLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbOvenLamp{0}", ii.ToString("D2")), true)[0]);
@@ -148,31 +149,21 @@ namespace Anchitech.Baking.Dispatcher
             #endregion
 
             #region 下料机相关控件数组
-            for (int i = 0; i < BlankerCount; i++)
+            for (int i = 0; i < 1; i++)
             {
                 int ii = i + 1;
 
-                tlpBlankers[i] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpBlanker{0}", ii.ToString()), true)[0]);
-                lbBlankerName[i] = (Label)(this.Controls.Find(string.Format("lbBlankerName{0}", ii.ToString("D2")), true)[0]);
                 lbBlankerNameN[i] = (Label)(this.Controls.Find(string.Format("lbBlankerNameN{0}", ii.ToString("D2")), true)[0]);
                 cbBlankerIsEnable[i] = (CheckBox)(this.Controls.Find(string.Format("cbBlankerIsEnable{0}", ii.ToString("D2")), true)[0]);
                 pbBlankerLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbBlankerLamp{0}", ii.ToString("D2")), true)[0]);
                 tbBlankerStatus[i] = (TextBox)(this.Controls.Find(string.Format("tbBlankerStatus{0}", ii.ToString("D2")), true)[0]);
-                pbBlankerTriLamp[i] = (PictureBox)(this.Controls.Find(string.Format("pbBlankerTriLamp{0}", ii.ToString("D2")), true)[0]);
 
-                lbBlankerStationName[i] = new Label[BlankerStationCount];
-                lbBlankerFromStationName[i] = new Label[BlankerStationCount];
-                lbBlankerClampCode[i] = new Label[BlankerStationCount];
-                tlpBlankerStationClamp[i] = new TableLayoutPanel[BlankerStationCount];
+                //lbBlankerStationName[i] = new Label[BlankerStationCount];
+                //lbBlankerFromStationName[i] = new Label[BlankerStationCount];
+                //lbBlankerClampCode[i] = new Label[BlankerStationCount];
+                //tlpBlankerStationClamp[i] = new TableLayoutPanel[BlankerStationCount];
 
-                for (int j = 0; j < BlankerStationCount; j++)
-                {
-                    int jj = j + 1;
-                    lbBlankerStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerStationName{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
-                    lbBlankerFromStationName[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerFromStationName{0}{1}", ii.ToString("D2"), (j + 1).ToString("D2")), true)[0]);
-                    lbBlankerClampCode[i][j] = (Label)(this.Controls.Find(string.Format("lbBlankerClampCode{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
-                    tlpBlankerStationClamp[i][j] = (TableLayoutPanel)(this.Controls.Find(string.Format("tlpBlankerStationClamp{0}{1}", ii.ToString("D2"), jj.ToString("D2")), true)[0]);
-                }
+
             }
             #endregion
 
@@ -242,8 +233,8 @@ namespace Anchitech.Baking.Dispatcher
 
             var stationList = new List<Station>();
             Current.Feeder.Stations.ForEach(s => stationList.Add(s));
+            Current.Blanker.Stations.ForEach(s => stationList.Add(s));
             Current.ovens.ForEach(o => o.Floors.ForEach(f => f.Stations.ForEach(s => stationList.Add(s))));
-            Current.blankers.ForEach(b => b.Stations.ForEach(s => stationList.Add(s)));
             Current.Cacher.Stations.ForEach(s => stationList.Add(s));
             stationList.Add(Current.Transfer.Station);
 
@@ -309,14 +300,14 @@ namespace Anchitech.Baking.Dispatcher
         private void InitTerminal()
         {
             Current.ovens = Oven.OvenList;
-            Current.blankers = Blanker.BlankerList;
             Current.Yields = Yield.YieldList;
             cbStations.Items.Add("All");
             cbAlarmFloors.Items.Add("All");
 
             for (int i = 0; i < OvenCount; i++)
             {
-                lbOvenName[i].Text = Current.ovens[i].Name;
+                this.ovenUCs[i].Init(Current.ovens[i]);
+
                 lbOvenNameN[i].Text = Current.ovens[i].Name;
                 pbOvenLamp[i].Image = Properties.Resources.Gray_Round;
                 cbOvenIsEnable[i].Checked = Current.ovens[i].IsEnable;
@@ -347,21 +338,11 @@ namespace Anchitech.Baking.Dispatcher
             //    }
             //}
 
-            for (int i = 0; i < BlankerCount; i++)
-            {
-                lbBlankerName[i].Text = Current.blankers[i].Name;
-                lbBlankerNameN[i].Text = Current.blankers[i].Name;
-                pbBlankerLamp[i].Image = Properties.Resources.Gray_Round;
-                cbBlankerIsEnable[i].Checked = Current.blankers[i].IsEnable;
+            this.blankerUC1.Init(Current.Blanker);
 
-                for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
-                {
-                    // lbBlankerStationName[i][j].Text = Current.blankers[i].Stations[j].Name.Replace("下料", "");
-                    lbBlankerStationName[i][j].Text = Current.blankers[i].Stations[j].Name.Substring(3);
-                }
-            }
-
-
+            lbBlankerNameN[0].Text = Current.Blanker.Name;
+            pbBlankerLamp[0].Image = Properties.Resources.Gray_Round;
+            cbBlankerIsEnable[0].Checked = Current.Blanker.IsEnable;           
 
             lbRobotNameN.Text = Current.Robot.Name;
             cbRobotIsEnable.Checked = Current.Robot.IsEnable;
@@ -550,44 +531,11 @@ namespace Anchitech.Baking.Dispatcher
             for (int i = 0; i < OvenCount; i++)
             {
                 Oven oven = Current.ovens[i];
-                oven.IsAlive = oven.IsEnable && oven.Plc.IsAlive;
-                oven.Floors.ForEach(f => f.IsAlive = f.IsEnable && (oven.IsAlive || oven.PreIsAlive));
-                oven.Floors.ForEach(f => f.Stations.ForEach(s => s.IsAlive = s.IsEnable && f.IsAlive));
+
+                this.ovenUCs[i].Update(Current.ovens[i]);
+
                 if (oven.Plc.IsAlive) { if (tbOvenStatus[i].Text.Trim() == "未连接") { tbOvenStatus[i].Text = "连接成功"; } }
                 else { this.tbOvenStatus[i].Text = "未连接"; }
-
-                this.pbOvenLamp[i].Image = oven.Plc.IsAlive ? Properties.Resources.Green_Round : Properties.Resources.Gray_Round;
-
-                switch (oven.TriLamp)
-                {
-                    case TriLamp.Green: this.pbOvenTriLamp[i].Image = Properties.Resources.Green_Round; break;
-                    case TriLamp.Yellow: this.pbOvenTriLamp[i].Image = Properties.Resources.Yellow_Round; break;
-                    case TriLamp.Red: this.pbOvenTriLamp[i].Image = Properties.Resources.Red_Round; break;
-                    case TriLamp.Unknown: this.pbOvenTriLamp[i].Image = Properties.Resources.Gray_Round; break;
-                }
-
-                if (!string.IsNullOrEmpty(oven.AlarmStr) && oven.Plc.IsAlive)
-                {
-                    if (oven.PreAlarmStr != oven.AlarmStr)
-                    {
-                        this.lbOvenName[i].Text = oven.AlarmStr.TrimEnd(',') + "...";
-                    }
-                    else
-                    {
-                        string alarmStr = this.lbOvenName[i].Text;
-                        this.lbOvenName[i].Text = alarmStr.Substring(1, alarmStr.Length - 1) + alarmStr.Substring(0, 1);
-                    }
-
-                    this.lbOvenName[i].ForeColor = Color.White;
-                    this.lbOvenName[i].BackColor = Color.Red;
-                }
-                else
-                {
-                    this.lbOvenName[i].Text = Current.ovens[i].Name;
-                    this.lbOvenName[i].ForeColor = SystemColors.WindowText;
-                    this.lbOvenName[i].BackColor = Color.Transparent;
-                }
-                oven.PreAlarmStr = oven.AlarmStr;
 
 
                 for (int j = 0; j < OvenFloorCount; j++)
@@ -741,9 +689,7 @@ namespace Anchitech.Baking.Dispatcher
 
                 }
 
-                oven.PreIsAlive = oven.IsAlive;
-                oven.Floors.ForEach(f => f.PreIsAlive = f.IsAlive);
-                oven.Floors.ForEach(f => f.Stations.ForEach(s => s.PreIsAlive = s.IsAlive));
+
 
             }
 
@@ -786,114 +732,14 @@ namespace Anchitech.Baking.Dispatcher
 
             #region 下料机
 
-            for (int i = 0; i < BlankerCount; i++)
-            {
-                Blanker blanker = Current.blankers[i];
-                blanker.IsAlive = blanker.IsEnable && blanker.Plc.IsAlive;
-                blanker.Stations.ForEach(s => s.IsAlive = s.IsEnable && blanker.IsAlive);
+            this.blankerUC1.Update(Current.Blanker);
+            Blanker blanker = Current.Blanker;
 
-                if (blanker.Plc.IsAlive) { if (tbBlankerStatus[i].Text.Trim() == "未连接") { tbBlankerStatus[i].Text = "连接成功"; } }
-                else { this.tbBlankerStatus[i].Text = "未连接"; }
+            if (blanker.Plc.IsAlive) { if (tbBlankerStatus[0].Text.Trim() == "未连接") { tbBlankerStatus[0].Text = "连接成功"; } }
+            else { this.tbBlankerStatus[0].Text = "未连接"; }
 
-
-                this.tlpBlankers[i].BackColor = blanker.Plc.IsAlive ? Color.White : Color.LightGray;
-                this.pbBlankerLamp[i].Image = blanker.Plc.IsAlive ? Properties.Resources.Green_Round : Properties.Resources.Gray_Round;
-
-                switch (blanker.TriLamp)
-                {
-                    case TriLamp.Green: this.pbBlankerTriLamp[i].Image = Properties.Resources.Green_Round; break;
-                    case TriLamp.Yellow: this.pbBlankerTriLamp[i].Image = Properties.Resources.Yellow_Round; break;
-                    case TriLamp.Red: this.pbBlankerTriLamp[i].Image = Properties.Resources.Red_Round; break;
-                    case TriLamp.Unknown: this.pbBlankerTriLamp[i].Image = Properties.Resources.Gray_Round; break;
-                }
-
-                if (!string.IsNullOrEmpty(blanker.AlarmStr) && blanker.Plc.IsAlive)
-                {
-                    if (blanker.PreAlarmStr != blanker.AlarmStr)
-                    {
-                        this.lbBlankerName[i].Text = blanker.AlarmStr.TrimEnd(',') + "...";
-                    }
-                    else
-                    {
-                        string alarmStr = this.lbBlankerName[i].Text;
-                        this.lbBlankerName[i].Text = alarmStr.Substring(1, alarmStr.Length - 1) + alarmStr.Substring(0, 1);
-                    }
-
-                    this.lbBlankerName[i].ForeColor = Color.White;
-                    this.lbBlankerName[i].BackColor = Color.Red;
-                }
-                else
-                {
-                    this.lbBlankerName[i].Text = blanker.Name;
-                    this.lbBlankerName[i].ForeColor = SystemColors.WindowText;
-                    this.lbBlankerName[i].BackColor = Color.Transparent;
-                }
-                blanker.PreAlarmStr = blanker.AlarmStr;
-
-                for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
-                {
-                    Station station = Current.blankers[i].Stations[j];
-
-                    lbBlankerStationName[i][j].BackColor = station.DoorStatus == DoorStatus.关闭 ? Color.Black : Color.Transparent;
-                    lbBlankerStationName[i][j].ForeColor = station.DoorStatus == DoorStatus.关闭 ? Color.White : Color.Black;
-
-                    lbBlankerClampCode[i][j].Text = station.Clamp.Code;
-
-                    lbBlankerClampCode[i][j].BackColor = station.HasSampleFlag ? Color.Blue : Color.White;
-                    lbBlankerClampCode[i][j].ForeColor = station.HasSampleFlag ? Color.White : Color.Blue;
-
-                    bool canChangeVisible = DateTime.Now.Second % 3 == 1;
-
-                    if (Current.blankers[i].IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
-                    {
-                        tlpBlankerStationClamp[i][j].Visible = false;
-                    }
-                    else if (Current.blankers[i].IsAlive && canChangeVisible && station.Id == Current.Task.ToStationId)
-                    {
-                        tlpBlankerStationClamp[i][j].Visible = true;
-                        tlpBlankerStationClamp[i][j].BackColor = Current.Task.FromClampStatus == ClampStatus.空夹具 ? Color.Cyan : Color.LimeGreen;
-                    }
-                    else
-                    {
-
-                        tlpBlankerStationClamp[i][j].Visible = Current.blankers[i].Stations[j].ClampStatus != ClampStatus.无夹具;
-
-                        if (!station.IsAlive)
-                        {
-                            tlpBlankerStationClamp[i][j].BackColor = SystemColors.Control;
-                        }
-                        else
-                        {
-                            switch (Current.blankers[i].Stations[j].ClampStatus)
-                            {
-                                case ClampStatus.满夹具: tlpBlankerStationClamp[i][j].BackColor = Color.LimeGreen; break;
-                                case ClampStatus.空夹具: tlpBlankerStationClamp[i][j].BackColor = Color.Cyan; break;
-                                case ClampStatus.异常: tlpBlankerStationClamp[i][j].BackColor = Color.Red; break;
-                                default: tlpBlankerStationClamp[i][j].BackColor = SystemColors.Control; break;
-                            }
-                        }
-                    }
-
-                    if (Current.blankers[i].Stations[j].ClampStatus != ClampStatus.无夹具 && Current.blankers[i].Stations[j].FromStationId > 0)
-                    {
-                        var sta = Station.StationList.FirstOrDefault(s => s.Id == Current.blankers[i].Stations[j].FromStationId);
-                        if (sta.GetPutType == GetPutType.烤箱)
-                        {
-                            lbBlankerFromStationName[i][j].Text = sta.Name.Substring(0, 7);
-                        }
-                        else
-                        {
-                            lbBlankerFromStationName[i][j].Text = string.Empty;
-                        }
-                    }
-                    else
-                    {
-                        lbBlankerFromStationName[i][j].Text = string.Empty;
-                    }
-
-                }
-                tlpBlankers[i].Invalidate();
-            }
+            this.pbBlankerLamp[0].Image = blanker.Plc.IsAlive ? Properties.Resources.Green_Round : Properties.Resources.Gray_Round;
+            
 
             #endregion
 
@@ -1000,7 +846,8 @@ namespace Anchitech.Baking.Dispatcher
         private const int OvenCount = 10;
         private const int OvenFloorCount = 3;
 
-        private Label[] lbOvenName = new Label[OvenCount];
+        private OvenUC[] ovenUCs = new OvenUC[OvenCount];
+
         private Label[] lbOvenNameN = new Label[OvenCount];
 
         private CheckBox[] cbOvenIsEnable = new CheckBox[OvenCount];
@@ -1018,21 +865,10 @@ namespace Anchitech.Baking.Dispatcher
         private PictureBox[][] pbScanerLamp = new PictureBox[2][];
         private TextBox[][] tbScanerStatus = new TextBox[2][];
 
-        private const int BlankerCount = 2;
-        private const int BlankerStationCount = 2;
-
-        private TableLayoutPanel[] tlpBlankers = new TableLayoutPanel[BlankerCount];
-        private Label[] lbBlankerName = new Label[BlankerCount];
-        private Label[] lbBlankerNameN = new Label[BlankerCount];
-        private CheckBox[] cbBlankerIsEnable = new CheckBox[BlankerCount];
-        private PictureBox[] pbBlankerLamp = new PictureBox[BlankerCount];
-        private TextBox[] tbBlankerStatus = new TextBox[BlankerCount];
-        private PictureBox[] pbBlankerTriLamp = new PictureBox[BlankerCount];
-
-        private Label[][] lbBlankerStationName = new Label[BlankerCount][];
-        private Label[][] lbBlankerFromStationName = new Label[BlankerCount][];
-        private Label[][] lbBlankerClampCode = new Label[BlankerCount][];
-        private TableLayoutPanel[][] tlpBlankerStationClamp = new TableLayoutPanel[BlankerCount][];
+        private Label[] lbBlankerNameN = new Label[1];
+        private CheckBox[] cbBlankerIsEnable = new CheckBox[1];
+        private PictureBox[] pbBlankerLamp = new PictureBox[1];
+        private TextBox[] tbBlankerStatus = new TextBox[1];
 
         private CheckBox[] cbTemperIndex = new CheckBox[Option.TemperaturePointCount];
         private CheckBox[] cbVacuumIndex = new CheckBox[Option.VacuumPointCount];
@@ -1291,25 +1127,24 @@ namespace Anchitech.Baking.Dispatcher
                 }
             }
 
-            for (int i = 0; i < Current.blankers.Count; i++)
-            {
-                if (Current.blankers[i].IsEnable)
-                {
-                    if (!Current.blankers[i].Plc.IsPingSuccess)
-                    {
-                        Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.blankers[i].Plc.Name, Current.blankers[i].Plc.IP));
-                        return false;
-                    }
 
-                    if (!Current.blankers[i].Plc.TcpConnect(out msg))
-                    {
-                        Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.blankers[i].Name, msg));
-                        return false;
-                    }
-                    int ii = i;
-                    this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[ii].Text = "连接成功"; }));
+            if (Current.Blanker.IsEnable)
+            {
+                if (!Current.Blanker.Plc.IsPingSuccess)
+                {
+                    Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.Blanker.Plc.Name, Current.Blanker.Plc.IP));
+                    return false;
                 }
+
+                if (!Current.Blanker.Plc.TcpConnect(out msg))
+                {
+                    Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.Blanker.Name, msg));
+                    return false;
+                }
+                int ii = 0;
+                this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[ii].Text = "连接成功"; }));
             }
+            
 
             if (Current.Robot.IsEnable)
             {
@@ -1378,21 +1213,20 @@ namespace Anchitech.Baking.Dispatcher
             }
 
 
-            for (int i = 0; i < BlankerCount; i++)
-            {
-                if (Current.blankers[i].IsEnable)
-                {
-                    if (!Current.blankers[i].Plc.TcpDisConnect(out msg))
-                    {
-                        Error.Alert(msg);
-                        return false;
-                    }
-                    tbBlankerStatus[i].Text = "未连接";
-                    this.pbBlankerLamp[i].Image = Properties.Resources.Gray_Round;
-                }
 
-                Current.blankers[i].PreAlarmStr = string.Empty;
+            if (Current.Blanker.IsEnable)
+            {
+                if (!Current.Blanker.Plc.TcpDisConnect(out msg))
+                {
+                    Error.Alert(msg);
+                    return false;
+                }
+                tbBlankerStatus[0].Text = "未连接";
+                this.pbBlankerLamp[0].Image = Properties.Resources.Gray_Round;
             }
+
+            Current.Blanker.PreAlarmStr = string.Empty;
+            
 
             if (Current.Robot.IsEnable)
             {
@@ -1531,11 +1365,11 @@ namespace Anchitech.Baking.Dispatcher
 
         delegate void UpdateUI1PDelegate(string text);
 
-        System.Timers.Timer[] timerOvenRuns = new System.Timers.Timer[OvenCount] { null, null, null, null, null, null, null, null, null, null };
+        System.Timers.Timer[] timerOvenRuns = new System.Timers.Timer[OvenCount] { null, null, null, null, null, null, null, null, null, null};
 
-        System.Timers.Timer[] timerFeederRuns = new System.Timers.Timer[2] { null, null };
+        System.Timers.Timer[] timerFeederRuns = new System.Timers.Timer[1] { null };
 
-        System.Timers.Timer[] timerBlankerRuns = new System.Timers.Timer[BlankerCount] { null, null };
+        System.Timers.Timer[] timerBlankerRuns = new System.Timers.Timer[1] { null };
 
         System.Timers.Timer timerRobotRun = null;
 
@@ -1575,14 +1409,13 @@ namespace Anchitech.Baking.Dispatcher
             }
             
 
-            for (int i = 0; i < Current.blankers.Count; i++)
+
+            if (cbBlankerIsEnable[0].Checked && !Current.Blanker.Plc.IsAlive)
             {
-                if (cbBlankerIsEnable[i].Checked && !Current.blankers[i].Plc.IsAlive)
-                {
-                    msg = Current.blankers[i].Name + " 启动异常！";
-                    return false;
-                }
+                msg = Current.Blanker.Name + " 启动异常！";
+                return false;
             }
+            
 
             if (cbRobotIsEnable.Checked && !Current.Robot.Plc.IsAlive)
             {
@@ -1634,20 +1467,18 @@ namespace Anchitech.Baking.Dispatcher
                     timerFeederRuns[i].Start();
                 }
 
-                for (int i = 0; i < BlankerCount; i++)
+
+                timerBlankerRuns[0] = new System.Timers.Timer();
+                timerBlankerRuns[0].Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000);
+                timerBlankerRuns[0].Elapsed += delegate
                 {
-                    int index = i;//如果直接用i, 则完成循环后 i一直 = OvenCount
-                    timerBlankerRuns[i] = new System.Timers.Timer();
-                    timerBlankerRuns[i].Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000);
-                    timerBlankerRuns[i].Elapsed += delegate
-                    {
-                        Thread listen = new Thread(new ParameterizedThreadStart(BlankerRunInvokeFunc));
-                        listen.IsBackground = true;
-                        listen.Start(index);
-                    };
-                    Thread.Sleep(200);
-                    timerBlankerRuns[i].Start();
-                }
+                    Thread listen = new Thread(new ParameterizedThreadStart(BlankerRunInvokeFunc));
+                    listen.IsBackground = true;
+                    listen.Start(0);
+                };
+                Thread.Sleep(200);
+                timerBlankerRuns[0].Start();
+                
 
                 timerRobotRun = new System.Timers.Timer();
                 timerRobotRun.Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000);
@@ -1727,15 +1558,13 @@ namespace Anchitech.Baking.Dispatcher
                 }
             }
 
-            for (int i = 0; i < BlankerCount; i++)
+            if (timerBlankerRuns[0] != null)
             {
-                if (timerBlankerRuns[i] != null)
-                {
-                    timerBlankerRuns[i].Stop();
-                    timerBlankerRuns[i].Close();
-                    timerBlankerRuns[i].Dispose();
-                }
+                timerBlankerRuns[0].Stop();
+                timerBlankerRuns[0].Close();
+                timerBlankerRuns[0].Dispose();
             }
+            
 
             if (timerRobotRun != null)
             {
@@ -1786,10 +1615,9 @@ namespace Anchitech.Baking.Dispatcher
             {
                 cbOvenIsEnable[i].Enabled = IsEnable;
             }
-            for (int i = 0; i < Current.blankers.Count; i++)
-            {
-                cbBlankerIsEnable[i].Enabled = IsEnable;
-            }
+
+            cbBlankerIsEnable[0].Enabled = IsEnable;
+            
             cbScanerIsEnable0103.Enabled = IsEnable;
             cbMesIsEnable.Enabled = IsEnable;
             cbRobotIsEnable.Enabled = IsEnable;
@@ -2094,16 +1922,16 @@ namespace Anchitech.Baking.Dispatcher
             int i = System.Convert.ToInt32(obj);
 
 
-            if (timerlock && Current.blankers[i].IsEnable)
+            if (timerlock && Current.Blanker.IsEnable)
             {
-                this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "发送指令—>" + Current.blankers[i].Name + "PLC"; }));
-                if (Current.blankers[i].GetInfo())
+                this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "发送指令—>" + Current.Blanker.Name + "PLC"; }));
+                if (Current.Blanker.GetInfo())
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "成功获得" + Current.blankers[i].Name + "信息"; }));
+                    this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "成功获得" + Current.Blanker.Name + "信息"; }));
                 }
                 else
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "获取" + Current.blankers[i].Name + "信息失败"; }));
+                    this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "获取" + Current.Blanker.Name + "信息失败"; }));
                 }
 
             }
@@ -2256,26 +2084,25 @@ namespace Anchitech.Baking.Dispatcher
                     //}
 
                     //下料台取消干涉
-                    for (int i = 0; i < BlankerCount; i++)
+
+                    for (int j = 0; j < Current.Blanker.Stations.Count; j++)
                     {
-                        for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
+                        Station station = Current.Blanker.Stations[j];
+
+                        //无任务默认关门
+                        if (station.DoorStatus == DoorStatus.打开 && station.Id != Current.Task.FromStationId && station.Id != Current.Task.ToStationId && station.IsAlive)
                         {
-                            Station station = Current.blankers[i].Stations[j];
+                            station.CloseDoor();
+                        }
 
-                            //无任务默认关门
-                            if (station.DoorStatus == DoorStatus.打开 && station.Id != Current.Task.FromStationId && station.Id != Current.Task.ToStationId && station.IsAlive)
-                            {
-                                station.CloseDoor();
-                            }
-
-                            //从某一炉子取完盘后，立即关门，无需等到整个任务结束
-                            if (station.DoorStatus == DoorStatus.打开 && station.Id == Current.Task.FromStationId && station.IsAlive
-                                && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
-                            {
-                                station.CloseDoor();
-                            }
+                        //从某一炉子取完盘后，立即关门，无需等到整个任务结束
+                        if (station.DoorStatus == DoorStatus.打开 && station.Id == Current.Task.FromStationId && station.IsAlive
+                            && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
+                        {
+                            station.CloseDoor();
                         }
                     }
+                    
                 }
 
                 //无论手动还是自动任务模式都会执行
@@ -3115,14 +2942,13 @@ namespace Anchitech.Baking.Dispatcher
         private void cbBlankerIsEnable_CheckedChanged(object sender, EventArgs e)
         {
             if (!TengDa.WF.Current.IsRunning) return;
-            for (int i = 0; i < BlankerCount; i++)
+ 
+            if ((CheckBox)sender == cbBlankerIsEnable[0])
             {
-                if ((CheckBox)sender == cbBlankerIsEnable[i])
-                {
-                    Current.blankers[i].IsEnable = cbBlankerIsEnable[i].Checked;
-                    return;
-                }
+                Current.Blanker.IsEnable = cbBlankerIsEnable[0].Checked;
+                return;
             }
+            
         }
 
         private void cbRobotIsEnable_CheckedChanged(object sender, EventArgs e)
@@ -3802,11 +3628,11 @@ namespace Anchitech.Baking.Dispatcher
             Rectangle r = e.CellBounds;
             Brush brush = Brushes.White;
 
-            for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
+            for (int j = 0; j < Current.Blanker.Stations.Count; j++)
             {
                 if (e.Column == 2 - j - 1)
                 {
-                    if (!Current.blankers[i].Stations[j].IsAlive)
+                    if (!Current.Blanker.Stations[j].IsAlive)
                     {
                         brush = Brushes.LightGray;
                     }
@@ -3948,7 +3774,7 @@ namespace Anchitech.Baking.Dispatcher
             //tlpBlanker1
             srcBlankerName = (sender as ContextMenuStrip).SourceControl.Name;
             int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
-            this.tsmCancelRasterInductive.Enabled = Current.blankers[i].IsAlive;
+            this.tsmCancelRasterInductive.Enabled = Current.Blanker.IsAlive;
         }
 
         private void TsmCancelRasterInductive_Click(object sender, EventArgs e)
@@ -3960,7 +3786,7 @@ namespace Anchitech.Baking.Dispatcher
             }
 
             int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
-            Current.blankers[i].CancelRasterInductive();
+            Current.Blanker.CancelRasterInductive();
         }
         #endregion
 
@@ -4568,31 +4394,30 @@ namespace Anchitech.Baking.Dispatcher
                 tsiStations.Add(tsmiOvenStation);
             }
 
-            for (int i = 0; i < Current.blankers.Count; i++)
+
+            ToolStripMenuItem tsmiBlankerStation = new ToolStripMenuItem();
+            List<ToolStripItem> tsiBlankerStations = new List<ToolStripItem>();
+            tsmiBlankerStation.Text = Current.Blanker.Name;
+
+            var isBlankerEnabled = false;
+
+            Current.Blanker.Stations.ForEach(s =>
             {
-                ToolStripMenuItem tsmiBlankerStation = new ToolStripMenuItem();
-                List<ToolStripItem> tsiBlankerStations = new List<ToolStripItem>();
-                tsmiBlankerStation.Text = Current.blankers[i].Name;
+                ToolStripMenuItem tsiStation = new ToolStripMenuItem();
+                tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
+                tsiStation.Text = s.Name;
+                tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+                tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+                tsiStation.ForeColor = GetForeColor(ManuFlag, s);
 
-                var isEnabled = false;
+                if (tsiStation.Enabled) isBlankerEnabled = true;
 
-                Current.blankers[i].Stations.ForEach(s =>
-                {
-                    ToolStripMenuItem tsiStation = new ToolStripMenuItem();
-                    tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
-                    tsiStation.Text = s.Name;
-                    tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
-                    tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
-                    tsiStation.ForeColor = GetForeColor(ManuFlag, s);
+                tsmiBlankerStation.DropDownItems.Add(tsiStation);
+            });
 
-                    if (tsiStation.Enabled) isEnabled = true;
-
-                    tsmiBlankerStation.DropDownItems.Add(tsiStation);
-                });
-
-                tsmiBlankerStation.Enabled = isEnabled;
-                tsiStations.Add(tsmiBlankerStation);
-            }
+            tsmiBlankerStation.Enabled = isBlankerEnabled;
+            tsiStations.Add(tsmiBlankerStation);
+            
 
             ToolStripMenuItem tsmiCacheStation = new ToolStripMenuItem();
             List<ToolStripItem> tsiCacheStations = new List<ToolStripItem>();
@@ -4831,29 +4656,27 @@ namespace Anchitech.Baking.Dispatcher
                     }
                 });
 
-                Current.blankers.ForEach(b =>
+                Current.Blanker.Stations.ForEach(s =>
                 {
-                    b.Stations.ForEach(s =>
+                    if (floorStationIds.Contains(s.FromStationId) && s.ClampStatus == ClampStatus.满夹具)
                     {
-                        if (floorStationIds.Contains(s.FromStationId) && s.ClampStatus == ClampStatus.满夹具)
+                        s.SampleStatus = SampleStatus.水分OK;
+
+                        var offset = 0;
+
+                        var addr = string.Format("D{0:D4}", 2021 + offset);
+
+                        if (!Current.Blanker.Plc.SetInfo(addr, (ushort)3, out string msg))
                         {
-                            s.SampleStatus = SampleStatus.水分OK;
-
-                            var offset = (b.Stations.IndexOf(s) == 0) ^ (Current.blankers.IndexOf(b) == 0) ? 0 : 1;
-
-                            var addr = string.Format("D{0:D4}", 2021 + offset);
-
-                            if (!b.Plc.SetInfo(addr, (ushort)3, out string msg))
-                            {
-                                Error.Alert(msg);
-                            }
-                            else
-                            {
-                                LogHelper.WriteInfo(string.Format("成功发送水分OK指令到{0} {1}:{2}", s.Name, addr, 3));
-                            }
+                            Error.Alert(msg);
                         }
-                    });
+                        else
+                        {
+                            LogHelper.WriteInfo(string.Format("成功发送水分OK指令到{0} {1}:{2}", s.Name, addr, 3));
+                        }
+                    }
                 });
+             
             }
         }
 
@@ -4884,29 +4707,29 @@ namespace Anchitech.Baking.Dispatcher
                     }
                 });
 
-                Current.blankers.ForEach(b =>
+
+
+                Current.Blanker.Stations.ForEach(s =>
                 {
-                    b.Stations.ForEach(s =>
+                    if (floorStationIds.Contains(s.FromStationId) && s.ClampStatus == ClampStatus.满夹具)
                     {
-                        if (floorStationIds.Contains(s.FromStationId) && s.ClampStatus == ClampStatus.满夹具)
+                        s.SampleStatus = SampleStatus.水分NG;
+
+                        var offset = 0;
+
+                        var addr = string.Format("D{0:D4}", 2021 + offset);
+
+                        if (!Current.Blanker.Plc.SetInfo(addr, (ushort)4, out string msg))
                         {
-                            s.SampleStatus = SampleStatus.水分NG;
-
-                            var offset = (b.Stations.IndexOf(s) == 0) ^ (Current.blankers.IndexOf(b) == 0) ? 0 : 1;
-
-                            var addr = string.Format("D{0:D4}", 2021 + offset);
-
-                            if (!b.Plc.SetInfo(addr, (ushort)4, out string msg))
-                            {
-                                Error.Alert(msg);
-                            }
-                            else
-                            {
-                                LogHelper.WriteInfo(string.Format("成功发送水分NG指令到{0} {1}:{2}", s.Name, addr, 4));
-                            }
+                            Error.Alert(msg);
                         }
-                    });
+                        else
+                        {
+                            LogHelper.WriteInfo(string.Format("成功发送水分NG指令到{0} {1}:{2}", s.Name, addr, 4));
+                        }
+                    }
                 });
+               
             }
         }
 

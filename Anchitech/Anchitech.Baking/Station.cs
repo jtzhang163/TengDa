@@ -185,6 +185,14 @@ namespace Anchitech.Baking
             }
         }
 
+        public Station FromStation
+        {
+            get
+            {
+                return Station.StationList.FirstOrDefault(o => o.Id == this.FromStationId) ?? new Station();
+            }
+        }
+
         private Clamp clamp = new Clamp();
         [Browsable(false)]
         public Clamp Clamp

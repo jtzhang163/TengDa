@@ -36,7 +36,7 @@ namespace Anchitech.Baking
 
         public static Feeder Feeder = new Feeder(1);
 
-        public static List<Blanker> blankers = new List<Blanker>();
+        public static Blanker Blanker = new Blanker(1);
 
         public static Robot Robot = new Robot(1);
 

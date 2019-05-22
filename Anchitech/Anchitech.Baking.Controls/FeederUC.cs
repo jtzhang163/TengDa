@@ -32,7 +32,7 @@ namespace Anchitech.Baking.Controls
 
         public void Update(Feeder feeder)
         {
-            feeder.IsAlive = Current.Feeder.IsEnable && feeder.Plc.IsAlive;
+            feeder.IsAlive = feeder.IsEnable && feeder.Plc.IsAlive;
             feeder.Stations.ForEach(s => s.IsAlive = s.IsEnable && feeder.IsAlive);
             //两次离线再变灰（避免一直闪烁）
             this.BackColor = feeder.IsAlive || feeder.PreIsAlive ? Color.White : Color.LightGray;

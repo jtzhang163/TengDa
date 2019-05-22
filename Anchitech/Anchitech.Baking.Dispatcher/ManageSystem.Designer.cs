@@ -128,12 +128,30 @@
             this.cbMesRem = new System.Windows.Forms.CheckBox();
             this.tabContentPageMain = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel41 = new System.Windows.Forms.TableLayoutPanel();
+            this.taskInfo1 = new Anchitech.Baking.Controls.TaskInfo();
             this.panelRobot = new System.Windows.Forms.Panel();
+            this.robotUC1 = new Anchitech.Baking.Controls.RobotUC();
             this.tableLayoutPanel42 = new System.Windows.Forms.TableLayoutPanel();
+            this.ovenUC05 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC06 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC07 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC08 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC09 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC10 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC11 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC12 = new Anchitech.Baking.Controls.OvenUC();
             this.tableLayoutPanel43 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel44 = new System.Windows.Forms.TableLayoutPanel();
+            this.ovenUC02 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC01 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC04 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC03 = new Anchitech.Baking.Controls.OvenUC();
+            this.cacherUC1 = new Anchitech.Baking.Controls.CacherUC();
+            this.transferUC1 = new Anchitech.Baking.Controls.TransferUC();
             this.tableLayoutPanel45 = new System.Windows.Forms.TableLayoutPanel();
             this.cbDisplayOvenCode = new System.Windows.Forms.CheckBox();
+            this.feederUC1 = new Anchitech.Baking.Controls.FeederUC();
+            this.blankerUC1 = new Anchitech.Baking.Controls.BlankerUC();
             this.tabContentPageMain1 = new System.Windows.Forms.TabPage();
             this.tlpDisplayMain = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel40 = new System.Windows.Forms.TableLayoutPanel();
@@ -317,41 +335,7 @@
             this.lbFloorInfoTop0203 = new System.Windows.Forms.Label();
             this.pbRunTime0203 = new System.Windows.Forms.ProgressBar();
             this.lbFloorStatus0203 = new System.Windows.Forms.Label();
-            this.cmsRobot = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmRobotPause = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRobotRestart = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmManuGetStation = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmManuPutStation = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel33 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel36 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbBlankerTriLamp01 = new System.Windows.Forms.PictureBox();
-            this.lbBlankerName01 = new System.Windows.Forms.Label();
-            this.tlpBlanker1 = new System.Windows.Forms.TableLayoutPanel();
-            this.cmsBlanker = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmCancelRasterInductive = new System.Windows.Forms.ToolStripMenuItem();
-            this.lbBlankerFromStationName0101 = new System.Windows.Forms.Label();
-            this.lbBlankerFromStationName0102 = new System.Windows.Forms.Label();
-            this.tlpBlankerStationClamp0101 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbBlankerClampCode0101 = new System.Windows.Forms.Label();
-            this.tlpBlankerStationClamp0102 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbBlankerClampCode0102 = new System.Windows.Forms.Label();
-            this.lbBlankerStationName0102 = new System.Windows.Forms.Label();
-            this.lbBlankerStationName0101 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel47 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel48 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbBlankerTriLamp02 = new System.Windows.Forms.PictureBox();
-            this.lbBlankerName02 = new System.Windows.Forms.Label();
-            this.tlpBlanker2 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbBlankerFromStationName0202 = new System.Windows.Forms.Label();
-            this.tlpBlankerStationClamp0202 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbBlankerClampCode0202 = new System.Windows.Forms.Label();
-            this.lbBlankerStationName0201 = new System.Windows.Forms.Label();
-            this.tlpBlankerStationClamp0201 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbBlankerClampCode0201 = new System.Windows.Forms.Label();
-            this.lbBlankerStationName0202 = new System.Windows.Forms.Label();
-            this.lbBlankerFromStationName0201 = new System.Windows.Forms.Label();
             this.tableLayoutPanel39 = new System.Windows.Forms.TableLayoutPanel();
             this.label70 = new System.Windows.Forms.Label();
             this.label69 = new System.Windows.Forms.Label();
@@ -526,6 +510,14 @@
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
             this.label37 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.cmsBlanker = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCancelRasterInductive = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsRobot = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmRobotPause = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRobotRestart = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmManuGetStation = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmManuPutStation = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxTerminal = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.tbBlankerStatus01 = new System.Windows.Forms.TextBox();
@@ -630,24 +622,6 @@
             this.lbTime = new System.Windows.Forms.Label();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
             this.yieldDisplay = new Anchitech.Baking.Controls.YieldDisplay();
-            this.taskInfo1 = new Anchitech.Baking.Controls.TaskInfo();
-            this.robotUC1 = new Anchitech.Baking.Controls.RobotUC();
-            this.ovenUC05 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC06 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC07 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC08 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC09 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC10 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC11 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC12 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC02 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC01 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC04 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC03 = new Anchitech.Baking.Controls.OvenUC();
-            this.cacherUC1 = new Anchitech.Baking.Controls.CacherUC();
-            this.transferUC1 = new Anchitech.Baking.Controls.TransferUC();
-            this.feederUC1 = new Anchitech.Baking.Controls.FeederUC();
-            this.blankerUC1 = new Anchitech.Baking.Controls.BlankerUC();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -752,20 +726,6 @@
             this.tlpFloor0202.SuspendLayout();
             this.tlpFloor0201.SuspendLayout();
             this.tlpFloor0203.SuspendLayout();
-            this.cmsRobot.SuspendLayout();
-            this.tableLayoutPanel20.SuspendLayout();
-            this.tableLayoutPanel36.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp01)).BeginInit();
-            this.tlpBlanker1.SuspendLayout();
-            this.cmsBlanker.SuspendLayout();
-            this.tlpBlankerStationClamp0101.SuspendLayout();
-            this.tlpBlankerStationClamp0102.SuspendLayout();
-            this.tableLayoutPanel47.SuspendLayout();
-            this.tableLayoutPanel48.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp02)).BeginInit();
-            this.tlpBlanker2.SuspendLayout();
-            this.tlpBlankerStationClamp0202.SuspendLayout();
-            this.tlpBlankerStationClamp0201.SuspendLayout();
             this.tableLayoutPanel39.SuspendLayout();
             this.tabContentTemperCurve.SuspendLayout();
             this.tableLayoutPanel18.SuspendLayout();
@@ -815,6 +775,8 @@
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             this.tableLayoutPanel24.SuspendLayout();
+            this.cmsBlanker.SuspendLayout();
+            this.cmsRobot.SuspendLayout();
             this.groupBoxTerminal.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbScanerLamp0201)).BeginInit();
@@ -1917,6 +1879,17 @@
             this.tableLayoutPanel41.Size = new System.Drawing.Size(1036, 572);
             this.tableLayoutPanel41.TabIndex = 0;
             // 
+            // taskInfo1
+            // 
+            this.taskInfo1.BackColor = System.Drawing.SystemColors.Control;
+            this.tableLayoutPanel41.SetColumnSpan(this.taskInfo1, 2);
+            this.taskInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.taskInfo1.Location = new System.Drawing.Point(2, 550);
+            this.taskInfo1.Margin = new System.Windows.Forms.Padding(2, 8, 2, 3);
+            this.taskInfo1.Name = "taskInfo1";
+            this.taskInfo1.Size = new System.Drawing.Size(1032, 19);
+            this.taskInfo1.TabIndex = 4;
+            // 
             // panelRobot
             // 
             this.panelRobot.BackgroundImage = global::Anchitech.Baking.Dispatcher.Properties.Resources.Robot_Track_Lime;
@@ -1930,6 +1903,15 @@
             this.panelRobot.Padding = new System.Windows.Forms.Padding(3);
             this.panelRobot.Size = new System.Drawing.Size(891, 54);
             this.panelRobot.TabIndex = 0;
+            // 
+            // robotUC1
+            // 
+            this.robotUC1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.robotUC1.Location = new System.Drawing.Point(3, 3);
+            this.robotUC1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
+            this.robotUC1.Name = "robotUC1";
+            this.robotUC1.Size = new System.Drawing.Size(80, 46);
+            this.robotUC1.TabIndex = 0;
             // 
             // tableLayoutPanel42
             // 
@@ -1957,6 +1939,70 @@
             this.tableLayoutPanel42.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel42.Size = new System.Drawing.Size(905, 235);
             this.tableLayoutPanel42.TabIndex = 1;
+            // 
+            // ovenUC05
+            // 
+            this.ovenUC05.Location = new System.Drawing.Point(794, 3);
+            this.ovenUC05.Name = "ovenUC05";
+            this.ovenUC05.OvenIndex = 5;
+            this.ovenUC05.Size = new System.Drawing.Size(107, 229);
+            this.ovenUC05.TabIndex = 7;
+            // 
+            // ovenUC06
+            // 
+            this.ovenUC06.Location = new System.Drawing.Point(681, 3);
+            this.ovenUC06.Name = "ovenUC06";
+            this.ovenUC06.OvenIndex = 6;
+            this.ovenUC06.Size = new System.Drawing.Size(107, 229);
+            this.ovenUC06.TabIndex = 6;
+            // 
+            // ovenUC07
+            // 
+            this.ovenUC07.Location = new System.Drawing.Point(568, 3);
+            this.ovenUC07.Name = "ovenUC07";
+            this.ovenUC07.OvenIndex = 7;
+            this.ovenUC07.Size = new System.Drawing.Size(107, 229);
+            this.ovenUC07.TabIndex = 5;
+            // 
+            // ovenUC08
+            // 
+            this.ovenUC08.Location = new System.Drawing.Point(455, 3);
+            this.ovenUC08.Name = "ovenUC08";
+            this.ovenUC08.OvenIndex = 8;
+            this.ovenUC08.Size = new System.Drawing.Size(107, 229);
+            this.ovenUC08.TabIndex = 4;
+            // 
+            // ovenUC09
+            // 
+            this.ovenUC09.Location = new System.Drawing.Point(342, 3);
+            this.ovenUC09.Name = "ovenUC09";
+            this.ovenUC09.OvenIndex = 9;
+            this.ovenUC09.Size = new System.Drawing.Size(107, 229);
+            this.ovenUC09.TabIndex = 3;
+            // 
+            // ovenUC10
+            // 
+            this.ovenUC10.Location = new System.Drawing.Point(229, 3);
+            this.ovenUC10.Name = "ovenUC10";
+            this.ovenUC10.OvenIndex = 10;
+            this.ovenUC10.Size = new System.Drawing.Size(107, 229);
+            this.ovenUC10.TabIndex = 2;
+            // 
+            // ovenUC11
+            // 
+            this.ovenUC11.Location = new System.Drawing.Point(116, 3);
+            this.ovenUC11.Name = "ovenUC11";
+            this.ovenUC11.OvenIndex = 11;
+            this.ovenUC11.Size = new System.Drawing.Size(107, 229);
+            this.ovenUC11.TabIndex = 1;
+            // 
+            // ovenUC12
+            // 
+            this.ovenUC12.Location = new System.Drawing.Point(3, 3);
+            this.ovenUC12.Name = "ovenUC12";
+            this.ovenUC12.OvenIndex = 12;
+            this.ovenUC12.Size = new System.Drawing.Size(107, 229);
+            this.ovenUC12.TabIndex = 0;
             // 
             // tableLayoutPanel43
             // 
@@ -1998,6 +2044,55 @@
             this.tableLayoutPanel44.Size = new System.Drawing.Size(452, 235);
             this.tableLayoutPanel44.TabIndex = 0;
             // 
+            // ovenUC02
+            // 
+            this.ovenUC02.Location = new System.Drawing.Point(229, 3);
+            this.ovenUC02.Name = "ovenUC02";
+            this.ovenUC02.OvenIndex = 2;
+            this.ovenUC02.Size = new System.Drawing.Size(107, 229);
+            this.ovenUC02.TabIndex = 11;
+            // 
+            // ovenUC01
+            // 
+            this.ovenUC01.Location = new System.Drawing.Point(342, 3);
+            this.ovenUC01.Name = "ovenUC01";
+            this.ovenUC01.OvenIndex = 1;
+            this.ovenUC01.Size = new System.Drawing.Size(107, 229);
+            this.ovenUC01.TabIndex = 10;
+            // 
+            // ovenUC04
+            // 
+            this.ovenUC04.Location = new System.Drawing.Point(3, 3);
+            this.ovenUC04.Name = "ovenUC04";
+            this.ovenUC04.OvenIndex = 4;
+            this.ovenUC04.Size = new System.Drawing.Size(107, 229);
+            this.ovenUC04.TabIndex = 9;
+            // 
+            // ovenUC03
+            // 
+            this.ovenUC03.Location = new System.Drawing.Point(116, 3);
+            this.ovenUC03.Name = "ovenUC03";
+            this.ovenUC03.OvenIndex = 3;
+            this.ovenUC03.Size = new System.Drawing.Size(107, 229);
+            this.ovenUC03.TabIndex = 8;
+            // 
+            // cacherUC1
+            // 
+            this.cacherUC1.BackColor = System.Drawing.Color.Transparent;
+            this.cacherUC1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cacherUC1.Location = new System.Drawing.Point(744, 3);
+            this.cacherUC1.Name = "cacherUC1";
+            this.cacherUC1.Size = new System.Drawing.Size(57, 168);
+            this.cacherUC1.TabIndex = 2;
+            // 
+            // transferUC1
+            // 
+            this.transferUC1.BackColor = System.Drawing.Color.Transparent;
+            this.transferUC1.Location = new System.Drawing.Point(807, 3);
+            this.transferUC1.Name = "transferUC1";
+            this.transferUC1.Size = new System.Drawing.Size(57, 78);
+            this.transferUC1.TabIndex = 3;
+            // 
             // tableLayoutPanel45
             // 
             this.tableLayoutPanel45.ColumnCount = 2;
@@ -2028,6 +2123,23 @@
             this.cbDisplayOvenCode.Text = "显示烤箱夹具条码";
             this.cbDisplayOvenCode.UseVisualStyleBackColor = true;
             // 
+            // feederUC1
+            // 
+            this.feederUC1.BackColor = System.Drawing.Color.Transparent;
+            this.feederUC1.Location = new System.Drawing.Point(3, 3);
+            this.feederUC1.Name = "feederUC1";
+            this.feederUC1.Size = new System.Drawing.Size(176, 161);
+            this.feederUC1.TabIndex = 1;
+            // 
+            // blankerUC1
+            // 
+            this.blankerUC1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.blankerUC1.Location = new System.Drawing.Point(914, 151);
+            this.blankerUC1.Name = "blankerUC1";
+            this.tableLayoutPanel41.SetRowSpan(this.blankerUC1, 3);
+            this.blankerUC1.Size = new System.Drawing.Size(119, 240);
+            this.blankerUC1.TabIndex = 3;
+            // 
             // tabContentPageMain1
             // 
             this.tabContentPageMain1.Controls.Add(this.tlpDisplayMain);
@@ -2052,8 +2164,6 @@
             this.tlpDisplayMain.Controls.Add(this.tlpOvenLineA, 2, 0);
             this.tlpDisplayMain.Controls.Add(this.tlpOvenLineB, 2, 2);
             this.tlpDisplayMain.Controls.Add(this.tableLayoutPanel33, 0, 4);
-            this.tlpDisplayMain.Controls.Add(this.tableLayoutPanel20, 0, 2);
-            this.tlpDisplayMain.Controls.Add(this.tableLayoutPanel47, 0, 0);
             this.tlpDisplayMain.Controls.Add(this.tableLayoutPanel39, 1, 0);
             this.tlpDisplayMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpDisplayMain.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -4943,47 +5053,6 @@
             this.lbFloorStatus0203.Text = "左 关闭 100/200 右";
             this.lbFloorStatus0203.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cmsRobot
-            // 
-            this.cmsRobot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmRobotPause,
-            this.tsmRobotRestart,
-            this.tsmManuGetStation,
-            this.tsmManuPutStation});
-            this.cmsRobot.Name = "cmsRobot";
-            this.cmsRobot.Size = new System.Drawing.Size(149, 92);
-            this.cmsRobot.Opening += new System.ComponentModel.CancelEventHandler(this.cmsRobot_Opening);
-            // 
-            // tsmRobotPause
-            // 
-            this.tsmRobotPause.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Stop_Red;
-            this.tsmRobotPause.Name = "tsmRobotPause";
-            this.tsmRobotPause.Size = new System.Drawing.Size(148, 22);
-            this.tsmRobotPause.Text = "暂停";
-            this.tsmRobotPause.Click += new System.EventHandler(this.tsmRobotPause_Click);
-            // 
-            // tsmRobotRestart
-            // 
-            this.tsmRobotRestart.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Continue_Green;
-            this.tsmRobotRestart.Name = "tsmRobotRestart";
-            this.tsmRobotRestart.Size = new System.Drawing.Size(148, 22);
-            this.tsmRobotRestart.Text = "继续";
-            this.tsmRobotRestart.Click += new System.EventHandler(this.tsmRobotRestart_Click);
-            // 
-            // tsmManuGetStation
-            // 
-            this.tsmManuGetStation.Name = "tsmManuGetStation";
-            this.tsmManuGetStation.Size = new System.Drawing.Size(148, 22);
-            this.tsmManuGetStation.Text = "手动【取盘】";
-            this.tsmManuGetStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
-            // 
-            // tsmManuPutStation
-            // 
-            this.tsmManuPutStation.Name = "tsmManuPutStation";
-            this.tsmManuPutStation.Size = new System.Drawing.Size(148, 22);
-            this.tsmManuPutStation.Text = "手动【放盘】";
-            this.tsmManuPutStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
-            // 
             // tableLayoutPanel33
             // 
             this.tableLayoutPanel33.ColumnCount = 1;
@@ -4996,526 +5065,6 @@
             this.tableLayoutPanel33.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel33.Size = new System.Drawing.Size(1026, 36);
             this.tableLayoutPanel33.TabIndex = 20;
-            // 
-            // tableLayoutPanel20
-            // 
-            this.tableLayoutPanel20.ColumnCount = 1;
-            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel20.Controls.Add(this.tableLayoutPanel36, 0, 0);
-            this.tableLayoutPanel20.Controls.Add(this.tlpBlanker1, 0, 1);
-            this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel20.Location = new System.Drawing.Point(5, 286);
-            this.tableLayoutPanel20.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel20.Name = "tableLayoutPanel20";
-            this.tableLayoutPanel20.RowCount = 2;
-            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel20.Size = new System.Drawing.Size(110, 184);
-            this.tableLayoutPanel20.TabIndex = 18;
-            // 
-            // tableLayoutPanel36
-            // 
-            this.tableLayoutPanel36.ColumnCount = 2;
-            this.tableLayoutPanel36.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel36.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel36.Controls.Add(this.pbBlankerTriLamp01, 1, 0);
-            this.tableLayoutPanel36.Controls.Add(this.lbBlankerName01, 0, 0);
-            this.tableLayoutPanel36.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel36.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel36.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.tableLayoutPanel36.Name = "tableLayoutPanel36";
-            this.tableLayoutPanel36.RowCount = 1;
-            this.tableLayoutPanel36.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel36.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel36.Size = new System.Drawing.Size(105, 30);
-            this.tableLayoutPanel36.TabIndex = 34;
-            // 
-            // pbBlankerTriLamp01
-            // 
-            this.pbBlankerTriLamp01.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbBlankerTriLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbBlankerTriLamp01.Image")));
-            this.pbBlankerTriLamp01.Location = new System.Drawing.Point(85, 5);
-            this.pbBlankerTriLamp01.Margin = new System.Windows.Forms.Padding(0);
-            this.pbBlankerTriLamp01.Name = "pbBlankerTriLamp01";
-            this.pbBlankerTriLamp01.Size = new System.Drawing.Size(20, 19);
-            this.pbBlankerTriLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbBlankerTriLamp01.TabIndex = 29;
-            this.pbBlankerTriLamp01.TabStop = false;
-            // 
-            // lbBlankerName01
-            // 
-            this.lbBlankerName01.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerName01.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerName01.Location = new System.Drawing.Point(3, 0);
-            this.lbBlankerName01.Name = "lbBlankerName01";
-            this.lbBlankerName01.Size = new System.Drawing.Size(79, 30);
-            this.lbBlankerName01.TabIndex = 6;
-            this.lbBlankerName01.Text = "1#";
-            this.lbBlankerName01.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tlpBlanker1
-            // 
-            this.tlpBlanker1.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpBlanker1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tlpBlanker1.ColumnCount = 2;
-            this.tlpBlanker1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlanker1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlanker1.ContextMenuStrip = this.cmsBlanker;
-            this.tlpBlanker1.Controls.Add(this.lbBlankerFromStationName0101, 1, 0);
-            this.tlpBlanker1.Controls.Add(this.lbBlankerFromStationName0102, 0, 0);
-            this.tlpBlanker1.Controls.Add(this.tlpBlankerStationClamp0101, 1, 1);
-            this.tlpBlanker1.Controls.Add(this.tlpBlankerStationClamp0102, 0, 1);
-            this.tlpBlanker1.Controls.Add(this.lbBlankerStationName0102, 0, 2);
-            this.tlpBlanker1.Controls.Add(this.lbBlankerStationName0101, 1, 2);
-            this.tlpBlanker1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpBlanker1.Location = new System.Drawing.Point(3, 33);
-            this.tlpBlanker1.Name = "tlpBlanker1";
-            this.tlpBlanker1.RowCount = 3;
-            this.tlpBlanker1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpBlanker1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpBlanker1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpBlanker1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpBlanker1.Size = new System.Drawing.Size(104, 148);
-            this.tlpBlanker1.TabIndex = 15;
-            this.tlpBlanker1.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpBlanker_CellPaint);
-            // 
-            // cmsBlanker
-            // 
-            this.cmsBlanker.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.cmsBlanker.Name = "cmsInOutOven";
-            this.cmsBlanker.Size = new System.Drawing.Size(125, 26);
-            this.cmsBlanker.Opening += new System.ComponentModel.CancelEventHandler(this.cmsBlanker_Opening);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmCancelRasterInductive});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
-            this.toolStripMenuItem1.Text = "远程控制";
-            // 
-            // tsmCancelRasterInductive
-            // 
-            this.tsmCancelRasterInductive.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Reset_green;
-            this.tsmCancelRasterInductive.Name = "tsmCancelRasterInductive";
-            this.tsmCancelRasterInductive.Size = new System.Drawing.Size(148, 22);
-            this.tsmCancelRasterInductive.Text = "光栅报警复位";
-            this.tsmCancelRasterInductive.Click += new System.EventHandler(this.TsmCancelRasterInductive_Click);
-            // 
-            // lbBlankerFromStationName0101
-            // 
-            this.lbBlankerFromStationName0101.AutoSize = true;
-            this.lbBlankerFromStationName0101.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerFromStationName0101.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerFromStationName0101.ForeColor = System.Drawing.Color.Violet;
-            this.lbBlankerFromStationName0101.Location = new System.Drawing.Point(55, 1);
-            this.lbBlankerFromStationName0101.Name = "lbBlankerFromStationName0101";
-            this.lbBlankerFromStationName0101.Size = new System.Drawing.Size(45, 20);
-            this.lbBlankerFromStationName0101.TabIndex = 26;
-            this.lbBlankerFromStationName0101.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbBlankerFromStationName0102
-            // 
-            this.lbBlankerFromStationName0102.AutoSize = true;
-            this.lbBlankerFromStationName0102.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerFromStationName0102.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerFromStationName0102.ForeColor = System.Drawing.Color.Violet;
-            this.lbBlankerFromStationName0102.Location = new System.Drawing.Point(4, 1);
-            this.lbBlankerFromStationName0102.Name = "lbBlankerFromStationName0102";
-            this.lbBlankerFromStationName0102.Size = new System.Drawing.Size(44, 20);
-            this.lbBlankerFromStationName0102.TabIndex = 25;
-            this.lbBlankerFromStationName0102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tlpBlankerStationClamp0101
-            // 
-            this.tlpBlankerStationClamp0101.BackColor = System.Drawing.SystemColors.Window;
-            this.tlpBlankerStationClamp0101.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tlpBlankerStationClamp0101.ColumnCount = 2;
-            this.tlpBlankerStationClamp0101.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlankerStationClamp0101.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlankerStationClamp0101.Controls.Add(this.lbBlankerClampCode0101, 0, 0);
-            this.tlpBlankerStationClamp0101.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpBlankerStationClamp0101.Location = new System.Drawing.Point(57, 25);
-            this.tlpBlankerStationClamp0101.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.tlpBlankerStationClamp0101.Name = "tlpBlankerStationClamp0101";
-            this.tlpBlankerStationClamp0101.RowCount = 26;
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999749F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.002874F));
-            this.tlpBlankerStationClamp0101.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.002874F));
-            this.tlpBlankerStationClamp0101.Size = new System.Drawing.Size(41, 98);
-            this.tlpBlankerStationClamp0101.TabIndex = 4;
-            // 
-            // lbBlankerClampCode0101
-            // 
-            this.lbBlankerClampCode0101.AutoSize = true;
-            this.lbBlankerClampCode0101.BackColor = System.Drawing.SystemColors.Window;
-            this.tlpBlankerStationClamp0101.SetColumnSpan(this.lbBlankerClampCode0101, 2);
-            this.lbBlankerClampCode0101.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerClampCode0101.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerClampCode0101.ForeColor = System.Drawing.Color.Green;
-            this.lbBlankerClampCode0101.Location = new System.Drawing.Point(1, 1);
-            this.lbBlankerClampCode0101.Margin = new System.Windows.Forms.Padding(0);
-            this.lbBlankerClampCode0101.Name = "lbBlankerClampCode0101";
-            this.lbBlankerClampCode0101.Size = new System.Drawing.Size(39, 20);
-            this.lbBlankerClampCode0101.TabIndex = 0;
-            this.lbBlankerClampCode0101.Text = "XXX";
-            this.lbBlankerClampCode0101.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tlpBlankerStationClamp0102
-            // 
-            this.tlpBlankerStationClamp0102.BackColor = System.Drawing.SystemColors.Window;
-            this.tlpBlankerStationClamp0102.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tlpBlankerStationClamp0102.ColumnCount = 2;
-            this.tlpBlankerStationClamp0102.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlankerStationClamp0102.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlankerStationClamp0102.Controls.Add(this.lbBlankerClampCode0102, 0, 0);
-            this.tlpBlankerStationClamp0102.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpBlankerStationClamp0102.Location = new System.Drawing.Point(6, 25);
-            this.tlpBlankerStationClamp0102.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.tlpBlankerStationClamp0102.Name = "tlpBlankerStationClamp0102";
-            this.tlpBlankerStationClamp0102.RowCount = 26;
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.999789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.001789F));
-            this.tlpBlankerStationClamp0102.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.003071F));
-            this.tlpBlankerStationClamp0102.Size = new System.Drawing.Size(40, 98);
-            this.tlpBlankerStationClamp0102.TabIndex = 1;
-            // 
-            // lbBlankerClampCode0102
-            // 
-            this.lbBlankerClampCode0102.AutoSize = true;
-            this.lbBlankerClampCode0102.BackColor = System.Drawing.SystemColors.Window;
-            this.tlpBlankerStationClamp0102.SetColumnSpan(this.lbBlankerClampCode0102, 2);
-            this.lbBlankerClampCode0102.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerClampCode0102.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerClampCode0102.ForeColor = System.Drawing.Color.Green;
-            this.lbBlankerClampCode0102.Location = new System.Drawing.Point(1, 1);
-            this.lbBlankerClampCode0102.Margin = new System.Windows.Forms.Padding(0);
-            this.lbBlankerClampCode0102.Name = "lbBlankerClampCode0102";
-            this.lbBlankerClampCode0102.Size = new System.Drawing.Size(38, 20);
-            this.lbBlankerClampCode0102.TabIndex = 0;
-            this.lbBlankerClampCode0102.Text = "XXX";
-            this.lbBlankerClampCode0102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbBlankerStationName0102
-            // 
-            this.lbBlankerStationName0102.AutoSize = true;
-            this.lbBlankerStationName0102.BackColor = System.Drawing.Color.Transparent;
-            this.lbBlankerStationName0102.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerStationName0102.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerStationName0102.Location = new System.Drawing.Point(4, 127);
-            this.lbBlankerStationName0102.Name = "lbBlankerStationName0102";
-            this.lbBlankerStationName0102.Size = new System.Drawing.Size(44, 20);
-            this.lbBlankerStationName0102.TabIndex = 0;
-            this.lbBlankerStationName0102.Text = "XXXX";
-            this.lbBlankerStationName0102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbBlankerStationName0101
-            // 
-            this.lbBlankerStationName0101.AutoSize = true;
-            this.lbBlankerStationName0101.BackColor = System.Drawing.Color.Transparent;
-            this.lbBlankerStationName0101.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerStationName0101.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerStationName0101.Location = new System.Drawing.Point(55, 127);
-            this.lbBlankerStationName0101.Name = "lbBlankerStationName0101";
-            this.lbBlankerStationName0101.Size = new System.Drawing.Size(45, 20);
-            this.lbBlankerStationName0101.TabIndex = 3;
-            this.lbBlankerStationName0101.Text = "XXXX";
-            this.lbBlankerStationName0101.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tableLayoutPanel47
-            // 
-            this.tableLayoutPanel47.ColumnCount = 1;
-            this.tableLayoutPanel47.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel47.Controls.Add(this.tableLayoutPanel48, 0, 0);
-            this.tableLayoutPanel47.Controls.Add(this.tlpBlanker2, 0, 1);
-            this.tableLayoutPanel47.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel47.Location = new System.Drawing.Point(5, 43);
-            this.tableLayoutPanel47.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel47.Name = "tableLayoutPanel47";
-            this.tableLayoutPanel47.RowCount = 2;
-            this.tableLayoutPanel47.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel47.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel47.Size = new System.Drawing.Size(110, 182);
-            this.tableLayoutPanel47.TabIndex = 21;
-            // 
-            // tableLayoutPanel48
-            // 
-            this.tableLayoutPanel48.ColumnCount = 2;
-            this.tableLayoutPanel48.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel48.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel48.Controls.Add(this.pbBlankerTriLamp02, 1, 0);
-            this.tableLayoutPanel48.Controls.Add(this.lbBlankerName02, 0, 0);
-            this.tableLayoutPanel48.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel48.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel48.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.tableLayoutPanel48.Name = "tableLayoutPanel48";
-            this.tableLayoutPanel48.RowCount = 1;
-            this.tableLayoutPanel48.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel48.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel48.Size = new System.Drawing.Size(105, 30);
-            this.tableLayoutPanel48.TabIndex = 34;
-            // 
-            // pbBlankerTriLamp02
-            // 
-            this.pbBlankerTriLamp02.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbBlankerTriLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbBlankerTriLamp02.Image")));
-            this.pbBlankerTriLamp02.Location = new System.Drawing.Point(85, 5);
-            this.pbBlankerTriLamp02.Margin = new System.Windows.Forms.Padding(0);
-            this.pbBlankerTriLamp02.Name = "pbBlankerTriLamp02";
-            this.pbBlankerTriLamp02.Size = new System.Drawing.Size(20, 19);
-            this.pbBlankerTriLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbBlankerTriLamp02.TabIndex = 29;
-            this.pbBlankerTriLamp02.TabStop = false;
-            // 
-            // lbBlankerName02
-            // 
-            this.lbBlankerName02.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerName02.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerName02.Location = new System.Drawing.Point(3, 0);
-            this.lbBlankerName02.Name = "lbBlankerName02";
-            this.lbBlankerName02.Size = new System.Drawing.Size(79, 30);
-            this.lbBlankerName02.TabIndex = 6;
-            this.lbBlankerName02.Text = "1#";
-            this.lbBlankerName02.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tlpBlanker2
-            // 
-            this.tlpBlanker2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tlpBlanker2.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpBlanker2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tlpBlanker2.ColumnCount = 2;
-            this.tlpBlanker2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlanker2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlanker2.ContextMenuStrip = this.cmsBlanker;
-            this.tlpBlanker2.Controls.Add(this.lbBlankerFromStationName0202, 0, 2);
-            this.tlpBlanker2.Controls.Add(this.tlpBlankerStationClamp0202, 0, 1);
-            this.tlpBlanker2.Controls.Add(this.lbBlankerStationName0201, 1, 0);
-            this.tlpBlanker2.Controls.Add(this.tlpBlankerStationClamp0201, 1, 1);
-            this.tlpBlanker2.Controls.Add(this.lbBlankerStationName0202, 0, 0);
-            this.tlpBlanker2.Controls.Add(this.lbBlankerFromStationName0201, 1, 2);
-            this.tlpBlanker2.Location = new System.Drawing.Point(3, 33);
-            this.tlpBlanker2.Name = "tlpBlanker2";
-            this.tlpBlanker2.RowCount = 3;
-            this.tlpBlanker2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpBlanker2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpBlanker2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpBlanker2.Size = new System.Drawing.Size(104, 146);
-            this.tlpBlanker2.TabIndex = 15;
-            this.tlpBlanker2.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tlpBlanker_CellPaint);
-            // 
-            // lbBlankerFromStationName0202
-            // 
-            this.lbBlankerFromStationName0202.AutoSize = true;
-            this.lbBlankerFromStationName0202.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerFromStationName0202.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerFromStationName0202.ForeColor = System.Drawing.Color.Violet;
-            this.lbBlankerFromStationName0202.Location = new System.Drawing.Point(4, 125);
-            this.lbBlankerFromStationName0202.Name = "lbBlankerFromStationName0202";
-            this.lbBlankerFromStationName0202.Size = new System.Drawing.Size(44, 20);
-            this.lbBlankerFromStationName0202.TabIndex = 7;
-            this.lbBlankerFromStationName0202.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tlpBlankerStationClamp0202
-            // 
-            this.tlpBlankerStationClamp0202.BackColor = System.Drawing.SystemColors.Window;
-            this.tlpBlankerStationClamp0202.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tlpBlankerStationClamp0202.ColumnCount = 2;
-            this.tlpBlankerStationClamp0202.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlankerStationClamp0202.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlankerStationClamp0202.Controls.Add(this.lbBlankerClampCode0202, 0, 25);
-            this.tlpBlankerStationClamp0202.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpBlankerStationClamp0202.Location = new System.Drawing.Point(6, 25);
-            this.tlpBlankerStationClamp0202.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.tlpBlankerStationClamp0202.Name = "tlpBlankerStationClamp0202";
-            this.tlpBlankerStationClamp0202.RowCount = 26;
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.802282F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799902F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0202.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.015168F));
-            this.tlpBlankerStationClamp0202.Size = new System.Drawing.Size(40, 96);
-            this.tlpBlankerStationClamp0202.TabIndex = 5;
-            // 
-            // lbBlankerClampCode0202
-            // 
-            this.lbBlankerClampCode0202.AutoSize = true;
-            this.lbBlankerClampCode0202.BackColor = System.Drawing.SystemColors.Window;
-            this.tlpBlankerStationClamp0202.SetColumnSpan(this.lbBlankerClampCode0202, 2);
-            this.lbBlankerClampCode0202.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerClampCode0202.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerClampCode0202.ForeColor = System.Drawing.Color.Green;
-            this.lbBlankerClampCode0202.Location = new System.Drawing.Point(1, 76);
-            this.lbBlankerClampCode0202.Margin = new System.Windows.Forms.Padding(0);
-            this.lbBlankerClampCode0202.Name = "lbBlankerClampCode0202";
-            this.lbBlankerClampCode0202.Size = new System.Drawing.Size(38, 19);
-            this.lbBlankerClampCode0202.TabIndex = 0;
-            this.lbBlankerClampCode0202.Text = "XXX";
-            this.lbBlankerClampCode0202.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbBlankerStationName0201
-            // 
-            this.lbBlankerStationName0201.AutoSize = true;
-            this.lbBlankerStationName0201.BackColor = System.Drawing.Color.Transparent;
-            this.lbBlankerStationName0201.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerStationName0201.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerStationName0201.Location = new System.Drawing.Point(55, 1);
-            this.lbBlankerStationName0201.Name = "lbBlankerStationName0201";
-            this.lbBlankerStationName0201.Size = new System.Drawing.Size(45, 20);
-            this.lbBlankerStationName0201.TabIndex = 3;
-            this.lbBlankerStationName0201.Text = "XXXX";
-            this.lbBlankerStationName0201.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tlpBlankerStationClamp0201
-            // 
-            this.tlpBlankerStationClamp0201.BackColor = System.Drawing.SystemColors.Window;
-            this.tlpBlankerStationClamp0201.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tlpBlankerStationClamp0201.ColumnCount = 2;
-            this.tlpBlankerStationClamp0201.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlankerStationClamp0201.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBlankerStationClamp0201.Controls.Add(this.lbBlankerClampCode0201, 0, 25);
-            this.tlpBlankerStationClamp0201.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpBlankerStationClamp0201.Location = new System.Drawing.Point(57, 25);
-            this.tlpBlankerStationClamp0201.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.tlpBlankerStationClamp0201.Name = "tlpBlankerStationClamp0201";
-            this.tlpBlankerStationClamp0201.RowCount = 26;
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.802282F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799902F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.799245F));
-            this.tlpBlankerStationClamp0201.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.015168F));
-            this.tlpBlankerStationClamp0201.Size = new System.Drawing.Size(41, 96);
-            this.tlpBlankerStationClamp0201.TabIndex = 4;
-            // 
-            // lbBlankerClampCode0201
-            // 
-            this.lbBlankerClampCode0201.AutoSize = true;
-            this.lbBlankerClampCode0201.BackColor = System.Drawing.SystemColors.Window;
-            this.tlpBlankerStationClamp0201.SetColumnSpan(this.lbBlankerClampCode0201, 2);
-            this.lbBlankerClampCode0201.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerClampCode0201.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerClampCode0201.ForeColor = System.Drawing.Color.Green;
-            this.lbBlankerClampCode0201.Location = new System.Drawing.Point(1, 76);
-            this.lbBlankerClampCode0201.Margin = new System.Windows.Forms.Padding(0);
-            this.lbBlankerClampCode0201.Name = "lbBlankerClampCode0201";
-            this.lbBlankerClampCode0201.Size = new System.Drawing.Size(39, 19);
-            this.lbBlankerClampCode0201.TabIndex = 0;
-            this.lbBlankerClampCode0201.Text = "XXX";
-            this.lbBlankerClampCode0201.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbBlankerStationName0202
-            // 
-            this.lbBlankerStationName0202.AutoSize = true;
-            this.lbBlankerStationName0202.BackColor = System.Drawing.Color.Transparent;
-            this.lbBlankerStationName0202.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerStationName0202.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerStationName0202.Location = new System.Drawing.Point(4, 1);
-            this.lbBlankerStationName0202.Name = "lbBlankerStationName0202";
-            this.lbBlankerStationName0202.Size = new System.Drawing.Size(44, 20);
-            this.lbBlankerStationName0202.TabIndex = 0;
-            this.lbBlankerStationName0202.Text = "XXXX";
-            this.lbBlankerStationName0202.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbBlankerFromStationName0201
-            // 
-            this.lbBlankerFromStationName0201.AutoSize = true;
-            this.lbBlankerFromStationName0201.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerFromStationName0201.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerFromStationName0201.ForeColor = System.Drawing.Color.Violet;
-            this.lbBlankerFromStationName0201.Location = new System.Drawing.Point(55, 125);
-            this.lbBlankerFromStationName0201.Name = "lbBlankerFromStationName0201";
-            this.lbBlankerFromStationName0201.Size = new System.Drawing.Size(45, 20);
-            this.lbBlankerFromStationName0201.TabIndex = 6;
-            this.lbBlankerFromStationName0201.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel39
             // 
@@ -7908,6 +7457,71 @@
             this.panel8.Size = new System.Drawing.Size(1, 578);
             this.panel8.TabIndex = 0;
             // 
+            // cmsBlanker
+            // 
+            this.cmsBlanker.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.cmsBlanker.Name = "cmsInOutOven";
+            this.cmsBlanker.Size = new System.Drawing.Size(125, 26);
+            this.cmsBlanker.Opening += new System.ComponentModel.CancelEventHandler(this.cmsBlanker_Opening);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmCancelRasterInductive});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
+            this.toolStripMenuItem1.Text = "远程控制";
+            // 
+            // tsmCancelRasterInductive
+            // 
+            this.tsmCancelRasterInductive.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Reset_green;
+            this.tsmCancelRasterInductive.Name = "tsmCancelRasterInductive";
+            this.tsmCancelRasterInductive.Size = new System.Drawing.Size(148, 22);
+            this.tsmCancelRasterInductive.Text = "光栅报警复位";
+            this.tsmCancelRasterInductive.Click += new System.EventHandler(this.TsmCancelRasterInductive_Click);
+            // 
+            // cmsRobot
+            // 
+            this.cmsRobot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmRobotPause,
+            this.tsmRobotRestart,
+            this.tsmManuGetStation,
+            this.tsmManuPutStation});
+            this.cmsRobot.Name = "cmsRobot";
+            this.cmsRobot.Size = new System.Drawing.Size(149, 92);
+            this.cmsRobot.Opening += new System.ComponentModel.CancelEventHandler(this.cmsRobot_Opening);
+            // 
+            // tsmRobotPause
+            // 
+            this.tsmRobotPause.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Stop_Red;
+            this.tsmRobotPause.Name = "tsmRobotPause";
+            this.tsmRobotPause.Size = new System.Drawing.Size(148, 22);
+            this.tsmRobotPause.Text = "暂停";
+            this.tsmRobotPause.Click += new System.EventHandler(this.tsmRobotPause_Click);
+            // 
+            // tsmRobotRestart
+            // 
+            this.tsmRobotRestart.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Continue_Green;
+            this.tsmRobotRestart.Name = "tsmRobotRestart";
+            this.tsmRobotRestart.Size = new System.Drawing.Size(148, 22);
+            this.tsmRobotRestart.Text = "继续";
+            this.tsmRobotRestart.Click += new System.EventHandler(this.tsmRobotRestart_Click);
+            // 
+            // tsmManuGetStation
+            // 
+            this.tsmManuGetStation.Name = "tsmManuGetStation";
+            this.tsmManuGetStation.Size = new System.Drawing.Size(148, 22);
+            this.tsmManuGetStation.Text = "手动【取盘】";
+            this.tsmManuGetStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
+            // 
+            // tsmManuPutStation
+            // 
+            this.tsmManuPutStation.Name = "tsmManuPutStation";
+            this.tsmManuPutStation.Size = new System.Drawing.Size(148, 22);
+            this.tsmManuPutStation.Text = "手动【放盘】";
+            this.tsmManuPutStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
+            // 
             // groupBoxTerminal
             // 
             this.groupBoxTerminal.BackColor = System.Drawing.SystemColors.Control;
@@ -9317,156 +8931,6 @@
             this.yieldDisplay.TabIndex = 14;
             this.yieldDisplay.btnYieldClearClick += new Anchitech.Baking.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
             // 
-            // taskInfo1
-            // 
-            this.taskInfo1.BackColor = System.Drawing.SystemColors.Control;
-            this.tableLayoutPanel41.SetColumnSpan(this.taskInfo1, 2);
-            this.taskInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.taskInfo1.Location = new System.Drawing.Point(2, 550);
-            this.taskInfo1.Margin = new System.Windows.Forms.Padding(2, 8, 2, 3);
-            this.taskInfo1.Name = "taskInfo1";
-            this.taskInfo1.Size = new System.Drawing.Size(1032, 19);
-            this.taskInfo1.TabIndex = 4;
-            // 
-            // robotUC1
-            // 
-            this.robotUC1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.robotUC1.Location = new System.Drawing.Point(3, 3);
-            this.robotUC1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
-            this.robotUC1.Name = "robotUC1";
-            this.robotUC1.Size = new System.Drawing.Size(80, 46);
-            this.robotUC1.TabIndex = 0;
-            // 
-            // ovenUC05
-            // 
-            this.ovenUC05.Location = new System.Drawing.Point(794, 3);
-            this.ovenUC05.Name = "ovenUC05";
-            this.ovenUC05.OvenIndex = 5;
-            this.ovenUC05.Size = new System.Drawing.Size(107, 229);
-            this.ovenUC05.TabIndex = 7;
-            // 
-            // ovenUC06
-            // 
-            this.ovenUC06.Location = new System.Drawing.Point(681, 3);
-            this.ovenUC06.Name = "ovenUC06";
-            this.ovenUC06.OvenIndex = 6;
-            this.ovenUC06.Size = new System.Drawing.Size(107, 229);
-            this.ovenUC06.TabIndex = 6;
-            // 
-            // ovenUC07
-            // 
-            this.ovenUC07.Location = new System.Drawing.Point(568, 3);
-            this.ovenUC07.Name = "ovenUC07";
-            this.ovenUC07.OvenIndex = 7;
-            this.ovenUC07.Size = new System.Drawing.Size(107, 229);
-            this.ovenUC07.TabIndex = 5;
-            // 
-            // ovenUC08
-            // 
-            this.ovenUC08.Location = new System.Drawing.Point(455, 3);
-            this.ovenUC08.Name = "ovenUC08";
-            this.ovenUC08.OvenIndex = 8;
-            this.ovenUC08.Size = new System.Drawing.Size(107, 229);
-            this.ovenUC08.TabIndex = 4;
-            // 
-            // ovenUC09
-            // 
-            this.ovenUC09.Location = new System.Drawing.Point(342, 3);
-            this.ovenUC09.Name = "ovenUC09";
-            this.ovenUC09.OvenIndex = 9;
-            this.ovenUC09.Size = new System.Drawing.Size(107, 229);
-            this.ovenUC09.TabIndex = 3;
-            // 
-            // ovenUC10
-            // 
-            this.ovenUC10.Location = new System.Drawing.Point(229, 3);
-            this.ovenUC10.Name = "ovenUC10";
-            this.ovenUC10.OvenIndex = 10;
-            this.ovenUC10.Size = new System.Drawing.Size(107, 229);
-            this.ovenUC10.TabIndex = 2;
-            // 
-            // ovenUC11
-            // 
-            this.ovenUC11.Location = new System.Drawing.Point(116, 3);
-            this.ovenUC11.Name = "ovenUC11";
-            this.ovenUC11.OvenIndex = 11;
-            this.ovenUC11.Size = new System.Drawing.Size(107, 229);
-            this.ovenUC11.TabIndex = 1;
-            // 
-            // ovenUC12
-            // 
-            this.ovenUC12.Location = new System.Drawing.Point(3, 3);
-            this.ovenUC12.Name = "ovenUC12";
-            this.ovenUC12.OvenIndex = 12;
-            this.ovenUC12.Size = new System.Drawing.Size(107, 229);
-            this.ovenUC12.TabIndex = 0;
-            // 
-            // ovenUC02
-            // 
-            this.ovenUC02.Location = new System.Drawing.Point(229, 3);
-            this.ovenUC02.Name = "ovenUC02";
-            this.ovenUC02.OvenIndex = 2;
-            this.ovenUC02.Size = new System.Drawing.Size(107, 229);
-            this.ovenUC02.TabIndex = 11;
-            // 
-            // ovenUC01
-            // 
-            this.ovenUC01.Location = new System.Drawing.Point(342, 3);
-            this.ovenUC01.Name = "ovenUC01";
-            this.ovenUC01.OvenIndex = 1;
-            this.ovenUC01.Size = new System.Drawing.Size(107, 229);
-            this.ovenUC01.TabIndex = 10;
-            // 
-            // ovenUC04
-            // 
-            this.ovenUC04.Location = new System.Drawing.Point(3, 3);
-            this.ovenUC04.Name = "ovenUC04";
-            this.ovenUC04.OvenIndex = 4;
-            this.ovenUC04.Size = new System.Drawing.Size(107, 229);
-            this.ovenUC04.TabIndex = 9;
-            // 
-            // ovenUC03
-            // 
-            this.ovenUC03.Location = new System.Drawing.Point(116, 3);
-            this.ovenUC03.Name = "ovenUC03";
-            this.ovenUC03.OvenIndex = 3;
-            this.ovenUC03.Size = new System.Drawing.Size(107, 229);
-            this.ovenUC03.TabIndex = 8;
-            // 
-            // cacherUC1
-            // 
-            this.cacherUC1.BackColor = System.Drawing.Color.Transparent;
-            this.cacherUC1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cacherUC1.Location = new System.Drawing.Point(744, 3);
-            this.cacherUC1.Name = "cacherUC1";
-            this.cacherUC1.Size = new System.Drawing.Size(57, 168);
-            this.cacherUC1.TabIndex = 2;
-            // 
-            // transferUC1
-            // 
-            this.transferUC1.BackColor = System.Drawing.Color.Transparent;
-            this.transferUC1.Location = new System.Drawing.Point(807, 3);
-            this.transferUC1.Name = "transferUC1";
-            this.transferUC1.Size = new System.Drawing.Size(57, 78);
-            this.transferUC1.TabIndex = 3;
-            // 
-            // feederUC1
-            // 
-            this.feederUC1.BackColor = System.Drawing.Color.Transparent;
-            this.feederUC1.Location = new System.Drawing.Point(3, 3);
-            this.feederUC1.Name = "feederUC1";
-            this.feederUC1.Size = new System.Drawing.Size(176, 161);
-            this.feederUC1.TabIndex = 1;
-            // 
-            // blankerUC1
-            // 
-            this.blankerUC1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.blankerUC1.Location = new System.Drawing.Point(914, 151);
-            this.blankerUC1.Name = "blankerUC1";
-            this.tableLayoutPanel41.SetRowSpan(this.blankerUC1, 3);
-            this.blankerUC1.Size = new System.Drawing.Size(119, 240);
-            this.blankerUC1.TabIndex = 3;
-            // 
             // ManageSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -9632,26 +9096,6 @@
             this.tlpFloor0201.PerformLayout();
             this.tlpFloor0203.ResumeLayout(false);
             this.tlpFloor0203.PerformLayout();
-            this.cmsRobot.ResumeLayout(false);
-            this.tableLayoutPanel20.ResumeLayout(false);
-            this.tableLayoutPanel36.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp01)).EndInit();
-            this.tlpBlanker1.ResumeLayout(false);
-            this.tlpBlanker1.PerformLayout();
-            this.cmsBlanker.ResumeLayout(false);
-            this.tlpBlankerStationClamp0101.ResumeLayout(false);
-            this.tlpBlankerStationClamp0101.PerformLayout();
-            this.tlpBlankerStationClamp0102.ResumeLayout(false);
-            this.tlpBlankerStationClamp0102.PerformLayout();
-            this.tableLayoutPanel47.ResumeLayout(false);
-            this.tableLayoutPanel48.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp02)).EndInit();
-            this.tlpBlanker2.ResumeLayout(false);
-            this.tlpBlanker2.PerformLayout();
-            this.tlpBlankerStationClamp0202.ResumeLayout(false);
-            this.tlpBlankerStationClamp0202.PerformLayout();
-            this.tlpBlankerStationClamp0201.ResumeLayout(false);
-            this.tlpBlankerStationClamp0201.PerformLayout();
             this.tableLayoutPanel39.ResumeLayout(false);
             this.tableLayoutPanel39.PerformLayout();
             this.tabContentTemperCurve.ResumeLayout(false);
@@ -9719,6 +9163,8 @@
             this.splitContainer4.ResumeLayout(false);
             this.tableLayoutPanel24.ResumeLayout(false);
             this.tableLayoutPanel24.PerformLayout();
+            this.cmsBlanker.ResumeLayout(false);
+            this.cmsRobot.ResumeLayout(false);
             this.groupBoxTerminal.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel14.PerformLayout();
@@ -10115,13 +9561,6 @@
         private System.Windows.Forms.TextBox tbOvenStatus07;
         private System.Windows.Forms.TextBox tbOvenStatus08;
         private System.Windows.Forms.Label lbMesNameN;
-        private System.Windows.Forms.TableLayoutPanel tlpBlanker1;
-        private System.Windows.Forms.Label lbBlankerStationName0102;
-        private System.Windows.Forms.TableLayoutPanel tlpBlankerStationClamp0102;
-        private System.Windows.Forms.Label lbBlankerClampCode0102;
-        private System.Windows.Forms.TableLayoutPanel tlpBlankerStationClamp0101;
-        private System.Windows.Forms.Label lbBlankerClampCode0101;
-        private System.Windows.Forms.Label lbBlankerStationName0101;
         private System.Windows.Forms.TextBox tbFeederStatus02;
         private System.Windows.Forms.TextBox tbBlankerStatus01;
         private System.Windows.Forms.PictureBox pbFeederLamp02;
@@ -10204,10 +9643,6 @@
         private Controls.YieldDisplay yieldDisplay;
         private System.Windows.Forms.ToolStripMenuItem tsmLoadVacuum;
         private System.Windows.Forms.ToolStripMenuItem tsmClearRunTime;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel20;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel36;
-        private System.Windows.Forms.PictureBox pbBlankerTriLamp01;
-        private System.Windows.Forms.Label lbBlankerName01;
         private System.Windows.Forms.TextBox tbScanerStatus0201;
         private System.Windows.Forms.PictureBox pbScanerLamp0201;
         private System.Windows.Forms.Label lbScanerNameN0201;
@@ -10228,12 +9663,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbCount;
         private System.Windows.Forms.Button btnDebug;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel47;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel48;
-        private System.Windows.Forms.PictureBox pbBlankerTriLamp02;
-        private System.Windows.Forms.Label lbBlankerName02;
-        private System.Windows.Forms.TableLayoutPanel tlpBlanker2;
-        private System.Windows.Forms.Label lbBlankerStationName0202;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel33;
         private System.Windows.Forms.TableLayoutPanel tlpOven10;
         private System.Windows.Forms.TableLayoutPanel tlpFloor1002;
@@ -10280,8 +9709,6 @@
         private System.Windows.Forms.PictureBox pbBlankerLamp02;
         private System.Windows.Forms.TextBox tbBlankerStatus02;
         private System.Windows.Forms.Label lbTime;
-        private System.Windows.Forms.TableLayoutPanel tlpBlankerStationClamp0202;
-        private System.Windows.Forms.Label lbBlankerClampCode0202;
         private System.Windows.Forms.ComboBox cbCurveSelectedStation;
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.CheckBox cbTemperIndex04;
@@ -10331,13 +9758,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmWatContentResult;
         private System.Windows.Forms.ToolStripMenuItem tsmWatContentTestOK;
         private System.Windows.Forms.ToolStripMenuItem tsmWatContentTestNG;
-        private System.Windows.Forms.Label lbBlankerStationName0201;
-        private System.Windows.Forms.TableLayoutPanel tlpBlankerStationClamp0201;
-        private System.Windows.Forms.Label lbBlankerClampCode0201;
-        private System.Windows.Forms.Label lbBlankerFromStationName0202;
-        private System.Windows.Forms.Label lbBlankerFromStationName0201;
-        private System.Windows.Forms.Label lbBlankerFromStationName0101;
-        private System.Windows.Forms.Label lbBlankerFromStationName0102;
         private System.Windows.Forms.CheckBox cbVacuumIndex01;
         private System.Windows.Forms.Label label81;
         private System.Windows.Forms.Label label80;

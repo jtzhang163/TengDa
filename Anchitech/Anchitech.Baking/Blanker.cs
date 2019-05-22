@@ -272,8 +272,7 @@ namespace Anchitech.Baking
 
                     for (int j = 0; j < this.Stations.Count; j++)
                     {
-                        //jj 0：3/5#线 1： 4/6#线
-                        int jj = Current.blankers.IndexOf(this) == 0 ? 1 - j : j;
+                        int jj = 1 - j;
 
                         if (bOutputs[10 + j] == 1)
                         {
@@ -373,19 +372,18 @@ namespace Anchitech.Baking
                         {
                             LogHelper.WriteInfo(string.Format("{0} --> 安全光栅感应报警结束", this.Name));
 
-                            var otherBlanker = Current.blankers.FirstOrDefault(b => b.Id != this.Id);
 
-                            if (!otherBlanker.IsRasterInductive && Current.Robot.IsPausing)
-                            {
-                                if (Current.Robot.Restart(out msg))
-                                {
-                                    Tip.Alert(string.Format("{0} 安全光栅感应报警结束，已远程发送继续运动信号给 {1}", this.Name, Current.Robot.Name));
-                                }
-                                else
-                                {
-                                    Error.Alert(string.Format("{0} 安全光栅感应报警结束，远程发送继续运动信号给 {1} 失败！", this.Name, Current.Robot.Name));
-                                }
-                            }
+                            //if (!otherBlanker.IsRasterInductive && Current.Robot.IsPausing)
+                            //{
+                            //    if (Current.Robot.Restart(out msg))
+                            //    {
+                            //        Tip.Alert(string.Format("{0} 安全光栅感应报警结束，已远程发送继续运动信号给 {1}", this.Name, Current.Robot.Name));
+                            //    }
+                            //    else
+                            //    {
+                            //        Error.Alert(string.Format("{0} 安全光栅感应报警结束，远程发送继续运动信号给 {1} 失败！", this.Name, Current.Robot.Name));
+                            //    }
+                            //}
                         }
                         this.IsRasterInductive = false;
                         this.AlarmStr = "";
@@ -412,7 +410,7 @@ namespace Anchitech.Baking
 
                     for (int j = 0; j < this.Stations.Count; j++)
                     {
-                        int jj = Current.blankers.IndexOf(this) == 0 ? 1 - j : j;
+                        int jj = 1 - j;
 
                         if (this.Stations[j].SampleInfo == SampleInfo.无样品)
                         {
