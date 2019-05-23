@@ -482,9 +482,8 @@ namespace Anchitech.Baking.Dispatcher
 
                 this.ovenUCs[i].Update(Current.ovens[i]);
 
-                //if (oven.Plc.IsAlive) { if (tbOvenStatus[i].Text.Trim() == "未连接") { tbOvenStatus[i].Text = "连接成功"; } }
-                //else { this.tbOvenStatus[i].Text = "未连接"; }
-
+                if (oven.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(oven) == "未连接") { this.machinesStatusUC1.SetStatusInfo(oven, "连接成功"); } }
+                else { this.machinesStatusUC1.SetStatusInfo(oven, "未连接"); }
 
                 for (int j = 0; j < OvenFloorCount; j++)
                 {
@@ -519,12 +518,12 @@ namespace Anchitech.Baking.Dispatcher
 
             #endregion
 
-            #region 上料机
+            #region 上料机、扫码枪
 
             this.feederUC1.Update(Current.Feeder);
 
-            //    if (Current.Feeder.Plc.IsAlive) { if (tbFeederStatus[i].Text.Trim() == "未连接") { tbFeederStatus[i].Text = "连接成功"; } }
-            //    else { this.tbFeederStatus[i].Text = "未连接"; }
+            if (Current.Feeder.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Feeder) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "连接成功"); } }
+            else { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "未连接"); }
 
             //    for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
             //    {
@@ -554,25 +553,49 @@ namespace Anchitech.Baking.Dispatcher
 
             #endregion
 
-            #region 下料机
+            #region 下料机、缓存架、转移台
 
             this.blankerUC1.Update(Current.Blanker);
 
-            //if (blanker.Plc.IsAlive) { if (tbBlankerStatus[0].Text.Trim() == "未连接") { tbBlankerStatus[0].Text = "连接成功"; } }
-            //else { this.tbBlankerStatus[0].Text = "未连接"; }
+            if (Current.Blanker.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Blanker) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "连接成功"); } }
+            else { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "未连接"); }
 
-           
-            #endregion
-
-            #region 缓存架
 
             this.cacherUC1.Update(Current.Cacher);
 
+            this.transferUC1.Update(Current.Transfer);
+
             #endregion
 
-            #region 转移台
+            #region MES
 
-            this.transferUC1.Update(Current.Transfer);
+            if (Current.runStstus != RunStatus.闲置 && Current.mes.IsAlive)
+            {
+                if (this.machinesStatusUC1.GetStatusInfo(Current.mes) == "未连接")
+                {
+                    this.machinesStatusUC1.SetStatusInfo(Current.mes, "连接成功");
+                }
+                this.machinesStatusUC1.SetLampColor(Current.mes, Color.Green);
+            }
+            else
+            {
+                this.machinesStatusUC1.SetStatusInfo(Current.mes, "未连接");
+                this.machinesStatusUC1.SetLampColor(Current.mes, Color.Gray);
+            }
+
+            #endregion
+
+            #region 机器人
+
+            this.robotUC1.Update(Current.Robot);
+
+            if (Current.Robot.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Robot) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "连接成功"); } }
+            else { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "未连接"); }
+
+            //机器人急停按钮显示逻辑
+            tlpEmergencyStop.Visible = Current.Robot.IsAlive && TengDa.WF.Current.IsRunning && TengDa.WF.Current.user.Id > 0;
+
+            panelRobot.Margin = new Padding(Current.Robot.Position + 3, 3, 0, 3);
 
             #endregion
 
@@ -615,56 +638,13 @@ namespace Anchitech.Baking.Dispatcher
             this.taskInfo1.UpdateInfo();
             #endregion
 
-            #region MES
-
-            //if (Current.runStstus != RunStatus.闲置 && Current.mes.IsAlive)
-            //{
-            //    if (tbMesStatus.Text.Trim() == "未连接")
-            //    {
-            //        tbMesStatus.Text = "连接成功";
-            //    }
-            //    this.pbMesLamp.Image = Properties.Resources.Green_Round;
-            //}
-            //else
-            //{
-            //    this.tbMesStatus.Text = "未连接";
-            //    this.pbMesLamp.Image = Properties.Resources.Gray_Round;
-            //}
-            #endregion
-
-            #region 机器人
-
-            this.robotUC1.Update(Current.Robot);
-
-            //if (Current.Robot.IsAlive)
-            //{ 
-            //    if (tbRobotStatus.Text.Trim() == "未连接")
-            //    {
-            //        tbRobotStatus.Text = "连接成功";
-            //    }
-
-            //    this.pbRobotLamp.Image = Properties.Resources.Green_Round;
-            //}
-            //else
-            //{
-            //    this.tbRobotStatus.Text = "未连接";
-            //    this.pbRobotLamp.Image = Properties.Resources.Gray_Round;
-            //}
-
-
-            //机器人急停按钮显示逻辑
-            tlpEmergencyStop.Visible = Current.Robot.IsAlive && TengDa.WF.Current.IsRunning && TengDa.WF.Current.user.Id > 0;
-
-            panelRobot.Margin = new Padding(Current.Robot.Position + 3, 3, 0, 3);
-
-            #endregion
         }
 
         #endregion
 
         #region 控件数组
 
-        private const int OvenCount = 10;
+        private const int OvenCount = 12;
         private const int OvenFloorCount = 3;
 
         private OvenUC[] ovenUCs = new OvenUC[OvenCount];
@@ -901,8 +881,7 @@ namespace Anchitech.Baking.Dispatcher
                     Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.Feeder.Name, msg));
                     return false;
                 }
-
-               // this.BeginInvoke(new MethodInvoker(() => { tbFeederStatus[ii].Text = "连接成功"; }));
+                this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "连接成功");
             }
             
 
@@ -921,8 +900,7 @@ namespace Anchitech.Baking.Dispatcher
                         Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.ovens[i].Name, msg));
                         return false;
                     }
-                    int ii = i;
-                    //this.BeginInvoke(new MethodInvoker(() => { tbOvenStatus[ii].Text = "连接成功"; }));
+                    this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "连接成功");
                 }
             }
 
@@ -940,7 +918,7 @@ namespace Anchitech.Baking.Dispatcher
                     Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.Blanker.Name, msg));
                     return false;
                 }
-                //this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[ii].Text = "连接成功"; }));
+                this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "连接成功");
             }
             
 
@@ -957,8 +935,7 @@ namespace Anchitech.Baking.Dispatcher
                     Error.Alert(string.Format("打开机器人连接失败，原因：{0}", msg));
                     return false;
                 }
-
-                //this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "连接成功"; }));
+                this.machinesStatusUC1.SetStatusInfo(Current.Robot, "连接成功");
             }
 
             return true;
@@ -978,8 +955,8 @@ namespace Anchitech.Baking.Dispatcher
                     Error.Alert(msg);
                     return false;
                 }
-               // tbFeederStatus[i].Text = "未连接";
-               // this.pbFeederLamp[i].Image = Properties.Resources.Gray_Round;
+                this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "未连接");
+                this.machinesStatusUC1.SetLampColor(Current.Feeder, Color.Gray);
             }
 
             Current.Feeder.PreAlarmStr = string.Empty;
@@ -994,8 +971,8 @@ namespace Anchitech.Baking.Dispatcher
                         Error.Alert(msg);
                         return false;
                     }
-                    //tbOvenStatus[i].Text = "未连接";
-                    //this.pbOvenLamp[i].Image = Properties.Resources.Gray_Round;
+                    this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "未连接");
+                    this.machinesStatusUC1.SetLampColor(Current.ovens[i], Color.Gray);
                 }
 
                 //防止长时间未连接导致烤箱信息与实际不符
@@ -1019,8 +996,8 @@ namespace Anchitech.Baking.Dispatcher
                     Error.Alert(msg);
                     return false;
                 }
-                //tbBlankerStatus[0].Text = "未连接";
-                //this.pbBlankerLamp[0].Image = Properties.Resources.Gray_Round;
+                this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "未连接");
+                this.machinesStatusUC1.SetLampColor(Current.Blanker, Color.Gray);
             }
 
             Current.Blanker.PreAlarmStr = string.Empty;
@@ -1038,8 +1015,8 @@ namespace Anchitech.Baking.Dispatcher
                     Error.Alert(msg);
                     return false;
                 }
-                //tbRobotStatus.Text = "未连接";
-                //this.pbRobotLamp.Image = Properties.Resources.Gray_Round;
+                this.machinesStatusUC1.SetStatusInfo(Current.Robot, "未连接");
+                this.machinesStatusUC1.SetLampColor(Current.Robot, Color.Gray);
             }
 
             Current.Transfer.IsAlive = false;
@@ -1061,12 +1038,12 @@ namespace Anchitech.Baking.Dispatcher
                 }
                 else
                 {
-                    //this.BeginInvoke(new UpdateUI1PDelegate(RefreshMesStatus), "连接成功");
                     if (Current.mes.IsOffline)
                     {
                         Current.mes.IsOffline = false;
                     }
                 }
+                this.machinesStatusUC1.SetStatusInfo(Current.mes, "连接成功");
             }
             return true;
         }
@@ -1077,7 +1054,8 @@ namespace Anchitech.Baking.Dispatcher
 
             if (Current.mes.IsEnable)
             {
-                //this.BeginInvoke(new MethodInvoker(() => { this.tbMesStatus.Text = "未连接"; }));
+                this.machinesStatusUC1.SetStatusInfo(Current.mes, "未连接");
+                this.machinesStatusUC1.SetLampColor(Current.mes, Color.Gray);
             }
 
             return true;
@@ -1101,7 +1079,7 @@ namespace Anchitech.Baking.Dispatcher
                     Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.BatteryScaner.Name, msg));
                     return false;
                 }
-                //this.BeginInvoke(new MethodInvoker(() => { tbScanerStatus[ii][jj].Text = "连接成功"; }));
+                this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "连接成功");
             }
 
             if (Current.ClampScaner.IsEnable)
@@ -1118,7 +1096,8 @@ namespace Anchitech.Baking.Dispatcher
                     Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.ClampScaner.Name, msg));
                     return false;
                 }
-                //this.BeginInvoke(new MethodInvoker(() => { tbScanerStatus[ii][jj].Text = "连接成功"; }));
+
+                this.machinesStatusUC1.SetStatusInfo(Current.ClampScaner, "连接成功");
             }
 
             return true;
@@ -1140,8 +1119,9 @@ namespace Anchitech.Baking.Dispatcher
                     Error.Alert(msg);
                     return false;
                 }
-                //tbScanerStatus[0][2].Text = "未连接";
-                //this.pbScanerLamp[0][2].Image = Properties.Resources.Gray_Round;
+
+                this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "未连接");
+                this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Gray);
             }
 
             if (Current.ClampScaner.IsEnable)
@@ -1156,8 +1136,9 @@ namespace Anchitech.Baking.Dispatcher
                     Error.Alert(msg);
                     return false;
                 }
-                //tbScanerStatus[0][2].Text = "未连接";
-                //this.pbScanerLamp[0][2].Image = Properties.Resources.Gray_Round;
+
+                this.machinesStatusUC1.SetStatusInfo(Current.ClampScaner, "未连接");
+                this.machinesStatusUC1.SetLampColor(Current.ClampScaner, Color.Gray);
             }
 
             
@@ -1170,7 +1151,7 @@ namespace Anchitech.Baking.Dispatcher
 
         delegate void UpdateUI1PDelegate(string text);
 
-        System.Timers.Timer[] timerOvenRuns = new System.Timers.Timer[OvenCount] { null, null, null, null, null, null, null, null, null, null};
+        System.Timers.Timer[] timerOvenRuns = new System.Timers.Timer[OvenCount] { null, null, null, null, null, null, null, null, null, null, null, null };
 
         System.Timers.Timer[] timerFeederRuns = new System.Timers.Timer[1] { null };
 

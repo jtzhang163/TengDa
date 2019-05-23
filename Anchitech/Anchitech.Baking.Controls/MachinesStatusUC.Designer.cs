@@ -273,7 +273,7 @@ namespace Anchitech.Baking.Controls
 
         #endregion
 
-        private List<MachineIndex> machines = new List<MachineIndex>();
+        private List<MachineIndex> machineIndexs = new List<MachineIndex>();
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
