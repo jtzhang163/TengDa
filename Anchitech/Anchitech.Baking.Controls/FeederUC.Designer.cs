@@ -34,12 +34,12 @@
             this.lbFeederStationName3 = new System.Windows.Forms.Label();
             this.lbFeederStationName2 = new System.Windows.Forms.Label();
             this.lbFeederStationName1 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbTriLamp = new System.Windows.Forms.PictureBox();
-            this.lbName = new System.Windows.Forms.Label();
             this.feedClampUC3 = new Anchitech.Baking.Controls.FeedClampUC();
             this.feedClampUC2 = new Anchitech.Baking.Controls.FeedClampUC();
             this.feedClampUC1 = new Anchitech.Baking.Controls.FeedClampUC();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.pbTriLamp = new System.Windows.Forms.PictureBox();
+            this.lbName = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -63,7 +63,7 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.SystemColors.Control;
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Outset;
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -117,6 +117,36 @@
             this.lbFeederStationName1.Text = "15#";
             this.lbFeederStationName1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // feedClampUC3
+            // 
+            this.feedClampUC3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.feedClampUC3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.feedClampUC3.Location = new System.Drawing.Point(134, 7);
+            this.feedClampUC3.Margin = new System.Windows.Forms.Padding(5);
+            this.feedClampUC3.Name = "feedClampUC3";
+            this.feedClampUC3.Size = new System.Drawing.Size(53, 112);
+            this.feedClampUC3.TabIndex = 2;
+            // 
+            // feedClampUC2
+            // 
+            this.feedClampUC2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.feedClampUC2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.feedClampUC2.Location = new System.Drawing.Point(70, 7);
+            this.feedClampUC2.Margin = new System.Windows.Forms.Padding(5);
+            this.feedClampUC2.Name = "feedClampUC2";
+            this.feedClampUC2.Size = new System.Drawing.Size(52, 112);
+            this.feedClampUC2.TabIndex = 1;
+            // 
+            // feedClampUC1
+            // 
+            this.feedClampUC1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.feedClampUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.feedClampUC1.Location = new System.Drawing.Point(7, 7);
+            this.feedClampUC1.Margin = new System.Windows.Forms.Padding(5);
+            this.feedClampUC1.Name = "feedClampUC1";
+            this.feedClampUC1.Size = new System.Drawing.Size(51, 112);
+            this.feedClampUC1.TabIndex = 0;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
@@ -155,36 +185,6 @@
             this.lbName.TabIndex = 8;
             this.lbName.Text = "上料组盘机";
             this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // feedClampUC3
-            // 
-            this.feedClampUC3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.feedClampUC3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.feedClampUC3.Location = new System.Drawing.Point(134, 7);
-            this.feedClampUC3.Margin = new System.Windows.Forms.Padding(5);
-            this.feedClampUC3.Name = "feedClampUC3";
-            this.feedClampUC3.Size = new System.Drawing.Size(53, 112);
-            this.feedClampUC3.TabIndex = 2;
-            // 
-            // feedClampUC2
-            // 
-            this.feedClampUC2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.feedClampUC2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.feedClampUC2.Location = new System.Drawing.Point(70, 7);
-            this.feedClampUC2.Margin = new System.Windows.Forms.Padding(5);
-            this.feedClampUC2.Name = "feedClampUC2";
-            this.feedClampUC2.Size = new System.Drawing.Size(52, 112);
-            this.feedClampUC2.TabIndex = 1;
-            // 
-            // feedClampUC1
-            // 
-            this.feedClampUC1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.feedClampUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.feedClampUC1.Location = new System.Drawing.Point(7, 7);
-            this.feedClampUC1.Margin = new System.Windows.Forms.Padding(5);
-            this.feedClampUC1.Name = "feedClampUC1";
-            this.feedClampUC1.Size = new System.Drawing.Size(51, 112);
-            this.feedClampUC1.TabIndex = 0;
             // 
             // FeederUC
             // 

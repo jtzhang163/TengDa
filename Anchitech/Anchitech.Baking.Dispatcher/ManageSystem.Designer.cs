@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSystem));
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabMainUser = new System.Windows.Forms.TabPage();
@@ -187,12 +187,11 @@
             this.tableLayoutPanel31 = new System.Windows.Forms.TableLayoutPanel();
             this.cbVacuumIndex01 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex04 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex08 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex28 = new System.Windows.Forms.CheckBox();
+            this.cbTemperIndex20 = new System.Windows.Forms.CheckBox();
+            this.cbTemperIndex24 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex12 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex16 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex24 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex20 = new System.Windows.Forms.CheckBox();
+            this.cbTemperIndex08 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex01 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex02 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex03 = new System.Windows.Forms.CheckBox();
@@ -210,14 +209,7 @@
             this.cbTemperIndex21 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex22 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex23 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex25 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex26 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex27 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex29 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex30 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex31 = new System.Windows.Forms.CheckBox();
             this.cbTemperIndex09 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex32 = new System.Windows.Forms.CheckBox();
             this.tabContentPageTVQuery = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvTV = new System.Windows.Forms.DataGridView();
@@ -1782,6 +1774,7 @@
             // blankerUC1
             // 
             this.blankerUC1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.blankerUC1.BackColor = System.Drawing.Color.White;
             this.blankerUC1.Location = new System.Drawing.Point(914, 151);
             this.blankerUC1.Name = "blankerUC1";
             this.tableLayoutPanel41.SetRowSpan(this.blankerUC1, 3);
@@ -2219,7 +2212,7 @@
             // tableLayoutPanel31
             // 
             this.tableLayoutPanel31.BackColor = System.Drawing.SystemColors.Control;
-            this.tableLayoutPanel31.ColumnCount = 9;
+            this.tableLayoutPanel31.ColumnCount = 7;
             this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
             this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
             this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
@@ -2227,16 +2220,13 @@
             this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
             this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
             this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.29993F));
-            this.tableLayoutPanel31.Controls.Add(this.cbVacuumIndex01, 8, 0);
+            this.tableLayoutPanel31.Controls.Add(this.cbVacuumIndex01, 6, 0);
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex04, 0, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex08, 0, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex28, 0, 3);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex20, 0, 3);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex24, 0, 3);
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex12, 0, 3);
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex16, 0, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex24, 0, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex20, 0, 3);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex08, 0, 3);
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex01, 0, 0);
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex02, 0, 1);
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex03, 0, 2);
@@ -2254,14 +2244,7 @@
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex21, 5, 0);
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex22, 5, 1);
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex23, 5, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex25, 6, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex26, 6, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex27, 6, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex29, 7, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex30, 7, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex31, 7, 2);
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex09, 2, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex32, 7, 3);
             this.tableLayoutPanel31.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel31.Location = new System.Drawing.Point(40, 461);
             this.tableLayoutPanel31.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
@@ -2282,11 +2265,11 @@
             this.cbVacuumIndex01.AutoSize = true;
             this.cbVacuumIndex01.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbVacuumIndex01.ForeColor = System.Drawing.Color.Violet;
-            this.cbVacuumIndex01.Location = new System.Drawing.Point(840, 0);
+            this.cbVacuumIndex01.Location = new System.Drawing.Point(822, 0);
             this.cbVacuumIndex01.Margin = new System.Windows.Forms.Padding(0);
             this.cbVacuumIndex01.Name = "cbVacuumIndex01";
             this.tableLayoutPanel31.SetRowSpan(this.cbVacuumIndex01, 4);
-            this.cbVacuumIndex01.Size = new System.Drawing.Size(122, 107);
+            this.cbVacuumIndex01.Size = new System.Drawing.Size(140, 107);
             this.cbVacuumIndex01.TabIndex = 16;
             this.cbVacuumIndex01.Text = "真空度:100000Pa";
             this.cbVacuumIndex01.UseVisualStyleBackColor = true;
@@ -2298,47 +2281,47 @@
             this.cbTemperIndex04.Location = new System.Drawing.Point(0, 78);
             this.cbTemperIndex04.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex04.Name = "cbTemperIndex04";
-            this.cbTemperIndex04.Size = new System.Drawing.Size(105, 29);
+            this.cbTemperIndex04.Size = new System.Drawing.Size(137, 29);
             this.cbTemperIndex04.TabIndex = 79;
             this.cbTemperIndex04.Text = "主控01:000℃";
             this.cbTemperIndex04.UseVisualStyleBackColor = true;
             this.cbTemperIndex04.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
             // 
-            // cbTemperIndex08
+            // cbTemperIndex20
             // 
-            this.cbTemperIndex08.AutoSize = true;
-            this.cbTemperIndex08.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex08.Location = new System.Drawing.Point(105, 78);
-            this.cbTemperIndex08.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex08.Name = "cbTemperIndex08";
-            this.cbTemperIndex08.Size = new System.Drawing.Size(105, 29);
-            this.cbTemperIndex08.TabIndex = 78;
-            this.cbTemperIndex08.Text = "主控01:000℃";
-            this.cbTemperIndex08.UseVisualStyleBackColor = true;
-            this.cbTemperIndex08.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
+            this.cbTemperIndex20.AutoSize = true;
+            this.cbTemperIndex20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbTemperIndex20.Location = new System.Drawing.Point(548, 78);
+            this.cbTemperIndex20.Margin = new System.Windows.Forms.Padding(0);
+            this.cbTemperIndex20.Name = "cbTemperIndex20";
+            this.cbTemperIndex20.Size = new System.Drawing.Size(137, 29);
+            this.cbTemperIndex20.TabIndex = 78;
+            this.cbTemperIndex20.Text = "主控01:000℃";
+            this.cbTemperIndex20.UseVisualStyleBackColor = true;
+            this.cbTemperIndex20.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
             // 
-            // cbTemperIndex28
+            // cbTemperIndex24
             // 
-            this.cbTemperIndex28.AutoSize = true;
-            this.cbTemperIndex28.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex28.Location = new System.Drawing.Point(630, 78);
-            this.cbTemperIndex28.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex28.Name = "cbTemperIndex28";
-            this.cbTemperIndex28.Size = new System.Drawing.Size(105, 29);
-            this.cbTemperIndex28.TabIndex = 77;
-            this.cbTemperIndex28.Text = "主控01:000℃";
-            this.cbTemperIndex28.UseVisualStyleBackColor = true;
-            this.cbTemperIndex28.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
+            this.cbTemperIndex24.AutoSize = true;
+            this.cbTemperIndex24.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbTemperIndex24.Location = new System.Drawing.Point(685, 78);
+            this.cbTemperIndex24.Margin = new System.Windows.Forms.Padding(0);
+            this.cbTemperIndex24.Name = "cbTemperIndex24";
+            this.cbTemperIndex24.Size = new System.Drawing.Size(137, 29);
+            this.cbTemperIndex24.TabIndex = 75;
+            this.cbTemperIndex24.Text = "主控01:000℃";
+            this.cbTemperIndex24.UseVisualStyleBackColor = true;
+            this.cbTemperIndex24.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
             // 
             // cbTemperIndex12
             // 
             this.cbTemperIndex12.AutoSize = true;
             this.cbTemperIndex12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex12.Location = new System.Drawing.Point(210, 78);
+            this.cbTemperIndex12.Location = new System.Drawing.Point(274, 78);
             this.cbTemperIndex12.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex12.Name = "cbTemperIndex12";
-            this.cbTemperIndex12.Size = new System.Drawing.Size(105, 29);
-            this.cbTemperIndex12.TabIndex = 75;
+            this.cbTemperIndex12.Size = new System.Drawing.Size(137, 29);
+            this.cbTemperIndex12.TabIndex = 74;
             this.cbTemperIndex12.Text = "主控01:000℃";
             this.cbTemperIndex12.UseVisualStyleBackColor = true;
             this.cbTemperIndex12.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
@@ -2347,40 +2330,27 @@
             // 
             this.cbTemperIndex16.AutoSize = true;
             this.cbTemperIndex16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex16.Location = new System.Drawing.Point(315, 78);
+            this.cbTemperIndex16.Location = new System.Drawing.Point(411, 78);
             this.cbTemperIndex16.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex16.Name = "cbTemperIndex16";
-            this.cbTemperIndex16.Size = new System.Drawing.Size(105, 29);
-            this.cbTemperIndex16.TabIndex = 74;
+            this.cbTemperIndex16.Size = new System.Drawing.Size(137, 29);
+            this.cbTemperIndex16.TabIndex = 71;
             this.cbTemperIndex16.Text = "主控01:000℃";
             this.cbTemperIndex16.UseVisualStyleBackColor = true;
             this.cbTemperIndex16.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
             // 
-            // cbTemperIndex24
+            // cbTemperIndex08
             // 
-            this.cbTemperIndex24.AutoSize = true;
-            this.cbTemperIndex24.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex24.Location = new System.Drawing.Point(525, 78);
-            this.cbTemperIndex24.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex24.Name = "cbTemperIndex24";
-            this.cbTemperIndex24.Size = new System.Drawing.Size(105, 29);
-            this.cbTemperIndex24.TabIndex = 71;
-            this.cbTemperIndex24.Text = "主控01:000℃";
-            this.cbTemperIndex24.UseVisualStyleBackColor = true;
-            this.cbTemperIndex24.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex20
-            // 
-            this.cbTemperIndex20.AutoSize = true;
-            this.cbTemperIndex20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex20.Location = new System.Drawing.Point(420, 78);
-            this.cbTemperIndex20.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex20.Name = "cbTemperIndex20";
-            this.cbTemperIndex20.Size = new System.Drawing.Size(105, 29);
-            this.cbTemperIndex20.TabIndex = 64;
-            this.cbTemperIndex20.Text = "主控01:000℃";
-            this.cbTemperIndex20.UseVisualStyleBackColor = true;
-            this.cbTemperIndex20.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
+            this.cbTemperIndex08.AutoSize = true;
+            this.cbTemperIndex08.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbTemperIndex08.Location = new System.Drawing.Point(137, 78);
+            this.cbTemperIndex08.Margin = new System.Windows.Forms.Padding(0);
+            this.cbTemperIndex08.Name = "cbTemperIndex08";
+            this.cbTemperIndex08.Size = new System.Drawing.Size(137, 29);
+            this.cbTemperIndex08.TabIndex = 64;
+            this.cbTemperIndex08.Text = "主控01:000℃";
+            this.cbTemperIndex08.UseVisualStyleBackColor = true;
+            this.cbTemperIndex08.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
             // 
             // cbTemperIndex01
             // 
@@ -2390,7 +2360,7 @@
             this.cbTemperIndex01.Location = new System.Drawing.Point(0, 0);
             this.cbTemperIndex01.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex01.Name = "cbTemperIndex01";
-            this.cbTemperIndex01.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex01.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex01.TabIndex = 8;
             this.cbTemperIndex01.Text = "主控01:000℃";
             this.cbTemperIndex01.UseVisualStyleBackColor = true;
@@ -2404,7 +2374,7 @@
             this.cbTemperIndex02.Location = new System.Drawing.Point(0, 26);
             this.cbTemperIndex02.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex02.Name = "cbTemperIndex02";
-            this.cbTemperIndex02.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex02.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex02.TabIndex = 9;
             this.cbTemperIndex02.Text = "主控01:000℃";
             this.cbTemperIndex02.UseVisualStyleBackColor = true;
@@ -2417,7 +2387,7 @@
             this.cbTemperIndex03.Location = new System.Drawing.Point(0, 52);
             this.cbTemperIndex03.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex03.Name = "cbTemperIndex03";
-            this.cbTemperIndex03.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex03.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex03.TabIndex = 10;
             this.cbTemperIndex03.Text = "主控01:000℃";
             this.cbTemperIndex03.UseVisualStyleBackColor = true;
@@ -2427,10 +2397,10 @@
             // 
             this.cbTemperIndex05.AutoSize = true;
             this.cbTemperIndex05.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex05.Location = new System.Drawing.Point(105, 0);
+            this.cbTemperIndex05.Location = new System.Drawing.Point(137, 0);
             this.cbTemperIndex05.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex05.Name = "cbTemperIndex05";
-            this.cbTemperIndex05.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex05.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex05.TabIndex = 54;
             this.cbTemperIndex05.Text = "主控01:000℃";
             this.cbTemperIndex05.UseVisualStyleBackColor = true;
@@ -2440,10 +2410,10 @@
             // 
             this.cbTemperIndex06.AutoSize = true;
             this.cbTemperIndex06.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex06.Location = new System.Drawing.Point(105, 26);
+            this.cbTemperIndex06.Location = new System.Drawing.Point(137, 26);
             this.cbTemperIndex06.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex06.Name = "cbTemperIndex06";
-            this.cbTemperIndex06.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex06.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex06.TabIndex = 13;
             this.cbTemperIndex06.Text = "主控01:000℃";
             this.cbTemperIndex06.UseVisualStyleBackColor = true;
@@ -2453,10 +2423,10 @@
             // 
             this.cbTemperIndex07.AutoSize = true;
             this.cbTemperIndex07.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex07.Location = new System.Drawing.Point(105, 52);
+            this.cbTemperIndex07.Location = new System.Drawing.Point(137, 52);
             this.cbTemperIndex07.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex07.Name = "cbTemperIndex07";
-            this.cbTemperIndex07.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex07.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex07.TabIndex = 14;
             this.cbTemperIndex07.Text = "主控01:000℃";
             this.cbTemperIndex07.UseVisualStyleBackColor = true;
@@ -2466,10 +2436,10 @@
             // 
             this.cbTemperIndex10.AutoSize = true;
             this.cbTemperIndex10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex10.Location = new System.Drawing.Point(210, 26);
+            this.cbTemperIndex10.Location = new System.Drawing.Point(274, 26);
             this.cbTemperIndex10.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex10.Name = "cbTemperIndex10";
-            this.cbTemperIndex10.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex10.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex10.TabIndex = 55;
             this.cbTemperIndex10.Text = "主控01:000℃";
             this.cbTemperIndex10.UseVisualStyleBackColor = true;
@@ -2479,10 +2449,10 @@
             // 
             this.cbTemperIndex11.AutoSize = true;
             this.cbTemperIndex11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex11.Location = new System.Drawing.Point(210, 52);
+            this.cbTemperIndex11.Location = new System.Drawing.Point(274, 52);
             this.cbTemperIndex11.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex11.Name = "cbTemperIndex11";
-            this.cbTemperIndex11.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex11.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex11.TabIndex = 11;
             this.cbTemperIndex11.Text = "主控01:000℃";
             this.cbTemperIndex11.UseVisualStyleBackColor = true;
@@ -2492,10 +2462,10 @@
             // 
             this.cbTemperIndex13.AutoSize = true;
             this.cbTemperIndex13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex13.Location = new System.Drawing.Point(315, 0);
+            this.cbTemperIndex13.Location = new System.Drawing.Point(411, 0);
             this.cbTemperIndex13.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex13.Name = "cbTemperIndex13";
-            this.cbTemperIndex13.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex13.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex13.TabIndex = 57;
             this.cbTemperIndex13.Text = "主控01:000℃";
             this.cbTemperIndex13.UseVisualStyleBackColor = true;
@@ -2505,10 +2475,10 @@
             // 
             this.cbTemperIndex14.AutoSize = true;
             this.cbTemperIndex14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex14.Location = new System.Drawing.Point(315, 26);
+            this.cbTemperIndex14.Location = new System.Drawing.Point(411, 26);
             this.cbTemperIndex14.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex14.Name = "cbTemperIndex14";
-            this.cbTemperIndex14.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex14.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex14.TabIndex = 58;
             this.cbTemperIndex14.Text = "主控01:000℃";
             this.cbTemperIndex14.UseVisualStyleBackColor = true;
@@ -2518,10 +2488,10 @@
             // 
             this.cbTemperIndex15.AutoSize = true;
             this.cbTemperIndex15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex15.Location = new System.Drawing.Point(315, 52);
+            this.cbTemperIndex15.Location = new System.Drawing.Point(411, 52);
             this.cbTemperIndex15.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex15.Name = "cbTemperIndex15";
-            this.cbTemperIndex15.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex15.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex15.TabIndex = 59;
             this.cbTemperIndex15.Text = "主控01:000℃";
             this.cbTemperIndex15.UseVisualStyleBackColor = true;
@@ -2531,10 +2501,10 @@
             // 
             this.cbTemperIndex17.AutoSize = true;
             this.cbTemperIndex17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex17.Location = new System.Drawing.Point(420, 0);
+            this.cbTemperIndex17.Location = new System.Drawing.Point(548, 0);
             this.cbTemperIndex17.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex17.Name = "cbTemperIndex17";
-            this.cbTemperIndex17.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex17.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex17.TabIndex = 60;
             this.cbTemperIndex17.Text = "主控01:000℃";
             this.cbTemperIndex17.UseVisualStyleBackColor = true;
@@ -2544,10 +2514,10 @@
             // 
             this.cbTemperIndex18.AutoSize = true;
             this.cbTemperIndex18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex18.Location = new System.Drawing.Point(420, 26);
+            this.cbTemperIndex18.Location = new System.Drawing.Point(548, 26);
             this.cbTemperIndex18.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex18.Name = "cbTemperIndex18";
-            this.cbTemperIndex18.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex18.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex18.TabIndex = 62;
             this.cbTemperIndex18.Text = "主控01:000℃";
             this.cbTemperIndex18.UseVisualStyleBackColor = true;
@@ -2557,10 +2527,10 @@
             // 
             this.cbTemperIndex19.AutoSize = true;
             this.cbTemperIndex19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex19.Location = new System.Drawing.Point(420, 52);
+            this.cbTemperIndex19.Location = new System.Drawing.Point(548, 52);
             this.cbTemperIndex19.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex19.Name = "cbTemperIndex19";
-            this.cbTemperIndex19.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex19.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex19.TabIndex = 63;
             this.cbTemperIndex19.Text = "主控01:000℃";
             this.cbTemperIndex19.UseVisualStyleBackColor = true;
@@ -2570,10 +2540,10 @@
             // 
             this.cbTemperIndex21.AutoSize = true;
             this.cbTemperIndex21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex21.Location = new System.Drawing.Point(525, 0);
+            this.cbTemperIndex21.Location = new System.Drawing.Point(685, 0);
             this.cbTemperIndex21.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex21.Name = "cbTemperIndex21";
-            this.cbTemperIndex21.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex21.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex21.TabIndex = 56;
             this.cbTemperIndex21.Text = "主控01:000℃";
             this.cbTemperIndex21.UseVisualStyleBackColor = true;
@@ -2583,10 +2553,10 @@
             // 
             this.cbTemperIndex22.AutoSize = true;
             this.cbTemperIndex22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex22.Location = new System.Drawing.Point(525, 26);
+            this.cbTemperIndex22.Location = new System.Drawing.Point(685, 26);
             this.cbTemperIndex22.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex22.Name = "cbTemperIndex22";
-            this.cbTemperIndex22.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex22.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex22.TabIndex = 67;
             this.cbTemperIndex22.Text = "主控01:000℃";
             this.cbTemperIndex22.UseVisualStyleBackColor = true;
@@ -2596,118 +2566,27 @@
             // 
             this.cbTemperIndex23.AutoSize = true;
             this.cbTemperIndex23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex23.Location = new System.Drawing.Point(525, 52);
+            this.cbTemperIndex23.Location = new System.Drawing.Point(685, 52);
             this.cbTemperIndex23.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex23.Name = "cbTemperIndex23";
-            this.cbTemperIndex23.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex23.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex23.TabIndex = 65;
             this.cbTemperIndex23.Text = "主控01:000℃";
             this.cbTemperIndex23.UseVisualStyleBackColor = true;
             this.cbTemperIndex23.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
             // 
-            // cbTemperIndex25
-            // 
-            this.cbTemperIndex25.AutoSize = true;
-            this.cbTemperIndex25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex25.Location = new System.Drawing.Point(630, 0);
-            this.cbTemperIndex25.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex25.Name = "cbTemperIndex25";
-            this.cbTemperIndex25.Size = new System.Drawing.Size(105, 26);
-            this.cbTemperIndex25.TabIndex = 66;
-            this.cbTemperIndex25.Text = "主控01:000℃";
-            this.cbTemperIndex25.UseVisualStyleBackColor = true;
-            this.cbTemperIndex25.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex26
-            // 
-            this.cbTemperIndex26.AutoSize = true;
-            this.cbTemperIndex26.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex26.Location = new System.Drawing.Point(630, 26);
-            this.cbTemperIndex26.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex26.Name = "cbTemperIndex26";
-            this.cbTemperIndex26.Size = new System.Drawing.Size(105, 26);
-            this.cbTemperIndex26.TabIndex = 68;
-            this.cbTemperIndex26.Text = "主控01:000℃";
-            this.cbTemperIndex26.UseVisualStyleBackColor = true;
-            this.cbTemperIndex26.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex27
-            // 
-            this.cbTemperIndex27.AutoSize = true;
-            this.cbTemperIndex27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex27.Location = new System.Drawing.Point(630, 52);
-            this.cbTemperIndex27.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex27.Name = "cbTemperIndex27";
-            this.cbTemperIndex27.Size = new System.Drawing.Size(105, 26);
-            this.cbTemperIndex27.TabIndex = 69;
-            this.cbTemperIndex27.Text = "主控01:000℃";
-            this.cbTemperIndex27.UseVisualStyleBackColor = true;
-            this.cbTemperIndex27.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex29
-            // 
-            this.cbTemperIndex29.AutoSize = true;
-            this.cbTemperIndex29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex29.Location = new System.Drawing.Point(735, 0);
-            this.cbTemperIndex29.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex29.Name = "cbTemperIndex29";
-            this.cbTemperIndex29.Size = new System.Drawing.Size(105, 26);
-            this.cbTemperIndex29.TabIndex = 70;
-            this.cbTemperIndex29.Text = "主控01:000℃";
-            this.cbTemperIndex29.UseVisualStyleBackColor = true;
-            this.cbTemperIndex29.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex30
-            // 
-            this.cbTemperIndex30.AutoSize = true;
-            this.cbTemperIndex30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex30.Location = new System.Drawing.Point(735, 26);
-            this.cbTemperIndex30.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex30.Name = "cbTemperIndex30";
-            this.cbTemperIndex30.Size = new System.Drawing.Size(105, 26);
-            this.cbTemperIndex30.TabIndex = 61;
-            this.cbTemperIndex30.Text = "主控01:000℃";
-            this.cbTemperIndex30.UseVisualStyleBackColor = true;
-            this.cbTemperIndex30.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex31
-            // 
-            this.cbTemperIndex31.AutoSize = true;
-            this.cbTemperIndex31.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex31.Location = new System.Drawing.Point(735, 52);
-            this.cbTemperIndex31.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex31.Name = "cbTemperIndex31";
-            this.cbTemperIndex31.Size = new System.Drawing.Size(105, 26);
-            this.cbTemperIndex31.TabIndex = 72;
-            this.cbTemperIndex31.Text = "主控01:000℃";
-            this.cbTemperIndex31.UseVisualStyleBackColor = true;
-            this.cbTemperIndex31.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
             // cbTemperIndex09
             // 
             this.cbTemperIndex09.AutoSize = true;
             this.cbTemperIndex09.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex09.Location = new System.Drawing.Point(210, 0);
+            this.cbTemperIndex09.Location = new System.Drawing.Point(274, 0);
             this.cbTemperIndex09.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex09.Name = "cbTemperIndex09";
-            this.cbTemperIndex09.Size = new System.Drawing.Size(105, 26);
+            this.cbTemperIndex09.Size = new System.Drawing.Size(137, 26);
             this.cbTemperIndex09.TabIndex = 76;
             this.cbTemperIndex09.Text = "主控01:000℃";
             this.cbTemperIndex09.UseVisualStyleBackColor = true;
             this.cbTemperIndex09.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex32
-            // 
-            this.cbTemperIndex32.AutoSize = true;
-            this.cbTemperIndex32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex32.Location = new System.Drawing.Point(735, 78);
-            this.cbTemperIndex32.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex32.Name = "cbTemperIndex32";
-            this.cbTemperIndex32.Size = new System.Drawing.Size(105, 29);
-            this.cbTemperIndex32.TabIndex = 15;
-            this.cbTemperIndex32.Text = "主控01:000℃";
-            this.cbTemperIndex32.UseVisualStyleBackColor = true;
-            this.cbTemperIndex32.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
             // 
             // tabContentPageTVQuery
             // 
@@ -2741,23 +2620,23 @@
             // 
             // dgvTV
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.dgvTV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTV.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTV.DefaultCellStyle = dataGridViewCellStyle24;
             this.dgvTV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTV.Location = new System.Drawing.Point(52, 57);
             this.dgvTV.Margin = new System.Windows.Forms.Padding(0);
@@ -3324,35 +3203,35 @@
             // 
             // dgvTaskLog
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTaskLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTaskLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.dgvTaskLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTaskLog.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTaskLog.DefaultCellStyle = dataGridViewCellStyle26;
             this.dgvTaskLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTaskLog.Location = new System.Drawing.Point(52, 57);
             this.dgvTaskLog.Margin = new System.Windows.Forms.Padding(0);
             this.dgvTaskLog.Name = "dgvTaskLog";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTaskLog.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTaskLog.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
             this.dgvTaskLog.RowTemplate.Height = 23;
             this.dgvTaskLog.Size = new System.Drawing.Size(937, 462);
             this.dgvTaskLog.TabIndex = 5;
@@ -3520,23 +3399,23 @@
             // 
             // dgvAlarm
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlarm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlarm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
             this.dgvAlarm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAlarm.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAlarm.DefaultCellStyle = dataGridViewCellStyle29;
             this.dgvAlarm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAlarm.Location = new System.Drawing.Point(52, 57);
             this.dgvAlarm.Margin = new System.Windows.Forms.Padding(0);
@@ -3733,23 +3612,23 @@
             // 
             // dgViewBattery
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgViewBattery.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgViewBattery.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle30;
             this.dgViewBattery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewBattery.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewBattery.DefaultCellStyle = dataGridViewCellStyle31;
             this.dgViewBattery.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgViewBattery.Location = new System.Drawing.Point(52, 57);
             this.dgViewBattery.Margin = new System.Windows.Forms.Padding(0);
@@ -3920,23 +3799,23 @@
             // 
             // dgViewOper
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgViewOper.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgViewOper.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle32;
             this.dgViewOper.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewOper.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewOper.DefaultCellStyle = dataGridViewCellStyle33;
             this.dgViewOper.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgViewOper.Location = new System.Drawing.Point(52, 57);
             this.dgViewOper.Margin = new System.Windows.Forms.Padding(0);
@@ -4523,10 +4402,11 @@
             // 
             // machinesStatusUC1
             // 
+            this.machinesStatusUC1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.machinesStatusUC1.Location = new System.Drawing.Point(15, 5);
             this.machinesStatusUC1.Margin = new System.Windows.Forms.Padding(15, 5, 15, 0);
             this.machinesStatusUC1.Name = "machinesStatusUC1";
-            this.machinesStatusUC1.Size = new System.Drawing.Size(265, 408);
+            this.machinesStatusUC1.Size = new System.Drawing.Size(270, 408);
             this.machinesStatusUC1.TabIndex = 16;
             // 
             // ManageSystem
@@ -4844,7 +4724,6 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.CheckBox cbTemperIndex32;
         private System.Windows.Forms.CheckBox cbTemperIndex07;
         private System.Windows.Forms.CheckBox cbTemperIndex06;
         private System.Windows.Forms.CheckBox cbTemperIndex11;
@@ -4940,12 +4819,11 @@
         private System.Windows.Forms.ComboBox cbCurveSelectedStation;
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.CheckBox cbTemperIndex04;
-        private System.Windows.Forms.CheckBox cbTemperIndex08;
-        private System.Windows.Forms.CheckBox cbTemperIndex28;
+        private System.Windows.Forms.CheckBox cbTemperIndex20;
+        private System.Windows.Forms.CheckBox cbTemperIndex24;
         private System.Windows.Forms.CheckBox cbTemperIndex12;
         private System.Windows.Forms.CheckBox cbTemperIndex16;
-        private System.Windows.Forms.CheckBox cbTemperIndex24;
-        private System.Windows.Forms.CheckBox cbTemperIndex20;
+        private System.Windows.Forms.CheckBox cbTemperIndex08;
         private System.Windows.Forms.CheckBox cbTemperIndex10;
         private System.Windows.Forms.CheckBox cbTemperIndex13;
         private System.Windows.Forms.CheckBox cbTemperIndex14;
@@ -4956,12 +4834,6 @@
         private System.Windows.Forms.CheckBox cbTemperIndex21;
         private System.Windows.Forms.CheckBox cbTemperIndex22;
         private System.Windows.Forms.CheckBox cbTemperIndex23;
-        private System.Windows.Forms.CheckBox cbTemperIndex25;
-        private System.Windows.Forms.CheckBox cbTemperIndex26;
-        private System.Windows.Forms.CheckBox cbTemperIndex27;
-        private System.Windows.Forms.CheckBox cbTemperIndex29;
-        private System.Windows.Forms.CheckBox cbTemperIndex30;
-        private System.Windows.Forms.CheckBox cbTemperIndex31;
         private System.Windows.Forms.CheckBox cbTemperIndex09;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ContextMenuStrip cmsBlanker;

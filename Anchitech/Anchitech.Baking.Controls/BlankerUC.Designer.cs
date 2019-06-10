@@ -35,13 +35,13 @@
             this.lbName = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbFromStationName2 = new System.Windows.Forms.Label();
-            this.lbStationName2 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFromStationName1 = new System.Windows.Forms.Label();
             this.lbStationName1 = new System.Windows.Forms.Label();
-            this.simpleClampUC2 = new Anchitech.Baking.Controls.SimpleClampUC();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbFromStationName2 = new System.Windows.Forms.Label();
+            this.lbStationName2 = new System.Windows.Forms.Label();
             this.simpleClampUC1 = new Anchitech.Baking.Controls.SimpleClampUC();
+            this.simpleClampUC2 = new Anchitech.Baking.Controls.SimpleClampUC();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTriLamp)).BeginInit();
@@ -106,7 +106,7 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.BackColor = System.Drawing.SystemColors.Control;
+            this.tableLayoutPanel3.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel3.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Outset;
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -126,9 +126,9 @@
             this.tableLayoutPanel5.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.lbFromStationName2, 0, 2);
-            this.tableLayoutPanel5.Controls.Add(this.lbStationName2, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.simpleClampUC2, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.lbFromStationName1, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.lbStationName1, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.simpleClampUC1, 0, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(7, 124);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(5, 5, 15, 5);
@@ -140,54 +140,12 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(111, 106);
             this.tableLayoutPanel5.TabIndex = 1;
             // 
-            // lbFromStationName2
-            // 
-            this.lbFromStationName2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbFromStationName2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbFromStationName2.ForeColor = System.Drawing.Color.Violet;
-            this.lbFromStationName2.Location = new System.Drawing.Point(4, 85);
-            this.lbFromStationName2.Name = "lbFromStationName2";
-            this.lbFromStationName2.Size = new System.Drawing.Size(103, 20);
-            this.lbFromStationName2.TabIndex = 11;
-            this.lbFromStationName2.Text = "烤箱12-2右";
-            this.lbFromStationName2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbStationName2
-            // 
-            this.lbStationName2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbStationName2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbStationName2.Location = new System.Drawing.Point(4, 1);
-            this.lbStationName2.Name = "lbStationName2";
-            this.lbStationName2.Size = new System.Drawing.Size(103, 20);
-            this.lbStationName2.TabIndex = 10;
-            this.lbStationName2.Text = "17#下料位";
-            this.lbStationName2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.lbFromStationName1, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.lbStationName1, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.simpleClampUC1, 0, 1);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(7, 7);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(5, 5, 15, 5);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 3;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(111, 105);
-            this.tableLayoutPanel4.TabIndex = 0;
-            // 
             // lbFromStationName1
             // 
             this.lbFromStationName1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbFromStationName1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbFromStationName1.ForeColor = System.Drawing.Color.Violet;
-            this.lbFromStationName1.Location = new System.Drawing.Point(4, 84);
+            this.lbFromStationName1.Location = new System.Drawing.Point(4, 85);
             this.lbFromStationName1.Name = "lbFromStationName1";
             this.lbFromStationName1.Size = new System.Drawing.Size(103, 20);
             this.lbFromStationName1.TabIndex = 11;
@@ -205,15 +163,47 @@
             this.lbStationName1.Text = "17#下料位";
             this.lbStationName1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // simpleClampUC2
+            // tableLayoutPanel4
             // 
-            this.simpleClampUC2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.simpleClampUC2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.simpleClampUC2.Location = new System.Drawing.Point(6, 27);
-            this.simpleClampUC2.Margin = new System.Windows.Forms.Padding(5);
-            this.simpleClampUC2.Name = "simpleClampUC2";
-            this.simpleClampUC2.Size = new System.Drawing.Size(99, 52);
-            this.simpleClampUC2.TabIndex = 0;
+            this.tableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.lbFromStationName2, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.lbStationName2, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.simpleClampUC2, 0, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(7, 7);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(5, 5, 15, 5);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 3;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(111, 105);
+            this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // lbFromStationName2
+            // 
+            this.lbFromStationName2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbFromStationName2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbFromStationName2.ForeColor = System.Drawing.Color.Violet;
+            this.lbFromStationName2.Location = new System.Drawing.Point(4, 84);
+            this.lbFromStationName2.Name = "lbFromStationName2";
+            this.lbFromStationName2.Size = new System.Drawing.Size(103, 20);
+            this.lbFromStationName2.TabIndex = 11;
+            this.lbFromStationName2.Text = "烤箱12-2右";
+            this.lbFromStationName2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbStationName2
+            // 
+            this.lbStationName2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbStationName2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbStationName2.Location = new System.Drawing.Point(4, 1);
+            this.lbStationName2.Name = "lbStationName2";
+            this.lbStationName2.Size = new System.Drawing.Size(103, 20);
+            this.lbStationName2.TabIndex = 10;
+            this.lbStationName2.Text = "17#下料位";
+            this.lbStationName2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // simpleClampUC1
             // 
@@ -222,13 +212,24 @@
             this.simpleClampUC1.Location = new System.Drawing.Point(6, 27);
             this.simpleClampUC1.Margin = new System.Windows.Forms.Padding(5);
             this.simpleClampUC1.Name = "simpleClampUC1";
-            this.simpleClampUC1.Size = new System.Drawing.Size(99, 51);
+            this.simpleClampUC1.Size = new System.Drawing.Size(99, 52);
             this.simpleClampUC1.TabIndex = 0;
+            // 
+            // simpleClampUC2
+            // 
+            this.simpleClampUC2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.simpleClampUC2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.simpleClampUC2.Location = new System.Drawing.Point(6, 27);
+            this.simpleClampUC2.Margin = new System.Windows.Forms.Padding(5);
+            this.simpleClampUC2.Name = "simpleClampUC2";
+            this.simpleClampUC2.Size = new System.Drawing.Size(99, 51);
+            this.simpleClampUC2.TabIndex = 0;
             // 
             // BlankerUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "BlankerUC";
             this.Size = new System.Drawing.Size(141, 268);
@@ -250,12 +251,12 @@
         private System.Windows.Forms.PictureBox pbTriLamp;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private SimpleClampUC simpleClampUC1;
-        private System.Windows.Forms.Label lbStationName1;
-        private System.Windows.Forms.Label lbFromStationName1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Label lbFromStationName2;
-        private System.Windows.Forms.Label lbStationName2;
         private SimpleClampUC simpleClampUC2;
+        private System.Windows.Forms.Label lbStationName2;
+        private System.Windows.Forms.Label lbFromStationName2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Label lbFromStationName1;
+        private System.Windows.Forms.Label lbStationName1;
+        private SimpleClampUC simpleClampUC1;
     }
 }

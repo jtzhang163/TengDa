@@ -57,6 +57,21 @@ namespace Anchitech.Baking
         [DisplayName("真空度")]
         public float Vacuum { get; set; } = 0f;
 
+        /// <summary>
+        /// Math.Log10(0)会溢出报错
+        /// </summary>
+        public float Vacuum4Show
+        {
+            get
+            {
+                if(Vacuum < 10f)
+                {
+                    return 10f;
+                }
+                return Vacuum;
+            }
+        }
+
 
         [ReadOnly(true), Description("是否正在烘烤")]
         [DisplayName("是否正在烘烤")]

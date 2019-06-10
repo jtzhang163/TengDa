@@ -34,20 +34,20 @@ namespace Anchitech.Baking.Controls
 
             if (Current.Feeder.IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
             {
-                tlpFeederStationClamp.Visible = false;
+                this.Visible = false;
             }
             else if (Current.Feeder.IsAlive && canChangeVisible && station.Id == Current.Task.ToStationId)
             {
-                tlpFeederStationClamp.Visible = true;
+                this.Visible = true;
                 tlpFeederStationClamp.BackColor = Current.Task.FromClampStatus == ClampStatus.空夹具 ? Color.Cyan : Color.LimeGreen;
             }
             else
             {
-                tlpFeederStationClamp.Visible = station.ClampStatus != ClampStatus.无夹具;
+                this.Visible = station.ClampStatus != ClampStatus.无夹具;
 
                 if (!station.IsAlive)
                 {
-                    tlpFeederStationClamp.BackColor = SystemColors.Control;
+                    this.BackColor = SystemColors.Control;
                 }
                 else
                 {

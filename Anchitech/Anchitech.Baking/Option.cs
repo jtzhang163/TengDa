@@ -138,7 +138,7 @@ namespace Anchitech.Baking
             }
         }
 
-        public const int TemperaturePointCount = 32;
+        public const int TemperaturePointCount = 24;
 
         public const int VacuumPointCount = 1;
 
@@ -165,8 +165,7 @@ namespace Anchitech.Baking
         {
             "温度1", "温度2", "温度3",  "温度4",  "温度5", "温度6", "温度7", "温度8",
             "温度9", "温度10", "温度11",  "温度12",  "温度13", "温度14", "温度15", "温度16",
-            "温度17", "温度18", "温度19",  "温度20",  "温度21", "温度22", "温度23", "温度24",
-            "温度25", "温度26", "温度27",  "温度28",  "温度29", "温度30", "温度31", "温度32"
+            "温度17", "温度18", "温度19",  "温度20",  "温度21", "温度22", "温度23", "温度24"
         };
 
         public string[] TemperSetNames = new string[Option.TemperatureSetPointCount]
@@ -2397,6 +2396,14 @@ namespace Anchitech.Baking
         }
 
         public bool IsDisplayOvenCode { get; set; }
+
+        public string[,] GetTemStrs = new string[3, 2] 
+        { 
+            { "%01#RDD0005100074**", "%01#RDD0011100134**" },
+               { "%01#RDD0017100194**", "%01#RDD0023100254**" },
+                 { "%01#RDD0029100314**", "%01#RDD0035100374**" },
+        };
+
 
         //private string xxxXXXXXXXXXXXX = string.Empty;
         ///// <summary>

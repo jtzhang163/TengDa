@@ -882,6 +882,7 @@ namespace Anchitech.Baking.Dispatcher
                     return false;
                 }
                 this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "连接成功");
+                this.machinesStatusUC1.SetLampColor(Current.Feeder, Color.Green);
             }
             
 
@@ -901,6 +902,7 @@ namespace Anchitech.Baking.Dispatcher
                         return false;
                     }
                     this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "连接成功");
+                    this.machinesStatusUC1.SetLampColor(Current.ovens[i], Color.Green);
                 }
             }
 
@@ -919,6 +921,7 @@ namespace Anchitech.Baking.Dispatcher
                     return false;
                 }
                 this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "连接成功");
+                this.machinesStatusUC1.SetLampColor(Current.Blanker, Color.Green);
             }
             
 
@@ -1400,15 +1403,18 @@ namespace Anchitech.Baking.Dispatcher
 
             if (timerlock && Current.ovens[i].IsEnable)
             {
-                //this.BeginInvoke(new MethodInvoker(() => { tbOvenStatus[i].Text = "发送指令—>" + Current.ovens[i].Name + "PLC"; }));
-                //if (Current.ovens[i].GetInfo())
-                //{
-                //    this.BeginInvoke(new MethodInvoker(() => { tbOvenStatus[i].Text = "成功获得" + Current.ovens[i].Name + "信息"; }));
-                //}
-                //else
-                //{
-                //    this.BeginInvoke(new MethodInvoker(() => { tbOvenStatus[i].Text = "获取" + Current.ovens[i].Name + "信息失败"; }));
-                //}
+                if (timerlock && Current.ovens[i].IsEnable)
+                {
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "发送指令"); }));
+                    if (Current.ovens[i].GetInfo())
+                    {
+                        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "获取信息成功"); }));
+                    }
+                    else
+                    {
+                        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "获取信息失败"); }));
+                    }
+                }
 
                 if (Current.ovens[i].AlreadyGetAllInfo)
                 {
@@ -1504,17 +1510,17 @@ namespace Anchitech.Baking.Dispatcher
 
             int i = System.Convert.ToInt32(obj);
 
-            if (Current.Feeder.IsEnable)
+            if (timerlock && Current.Feeder.IsEnable)
             {
-                //this.BeginInvoke(new MethodInvoker(() => { tbFeederStatus[i].Text = "发送指令—>" + Current.Feeder.Name + "PLC"; }));
-                //if (Current.Feeder.GetInfo())
-                //{
-                //    this.BeginInvoke(new MethodInvoker(() => { tbFeederStatus[i].Text = "成功获得" + Current.Feeder.Name + "信息"; }));
-                //}
-                //else
-                //{
-                //    this.BeginInvoke(new MethodInvoker(() => { tbFeederStatus[i].Text = "获取" + Current.Feeder.Name + "信息失败"; }));
-                //}
+                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "发送指令"); }));
+                if (Current.Feeder.GetInfo())
+                {
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "获取信息成功"); }));
+                }
+                else
+                {
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "获取信息失败"); }));
+                }
 
                 if (Current.Feeder.AlreadyGetAllInfo)
                 {
@@ -1687,16 +1693,15 @@ namespace Anchitech.Baking.Dispatcher
 
             if (timerlock && Current.Blanker.IsEnable)
             {
-                //this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "发送指令—>" + Current.Blanker.Name + "PLC"; }));
-                //if (Current.Blanker.GetInfo())
-                //{
-                //    this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "成功获得" + Current.Blanker.Name + "信息"; }));
-                //}
-                //else
-                //{
-                //    this.BeginInvoke(new MethodInvoker(() => { tbBlankerStatus[i].Text = "获取" + Current.Blanker.Name + "信息失败"; }));
-                //}
-
+                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "发送指令"); }));
+                if (Current.Blanker.GetInfo())
+                {
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "获取信息成功"); }));
+                }
+                else
+                {
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "获取信息失败"); }));
+                }
             }
         }
 
@@ -3590,7 +3595,7 @@ namespace Anchitech.Baking.Dispatcher
                                         Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].RemoveAt(0);
                                     if (m == Option.TemperaturePointCount)
                                     {
-                                        Current.ovens[i].Floors[j].Stations[k].sampledDatas[Option.TemperaturePointCount].Add((float)(Math.Log10(Current.ovens[i].Floors[j].Stations[k].GetFloor().Vacuum) * 10 + 20));
+                                        Current.ovens[i].Floors[j].Stations[k].sampledDatas[Option.TemperaturePointCount].Add((float)(Math.Log10(Current.ovens[i].Floors[j].Stations[k].GetFloor().Vacuum4Show) * 10 + 20));
                                     }
                                     else
                                     {

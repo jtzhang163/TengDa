@@ -76,6 +76,10 @@ namespace Anchitech.Baking
         {
             get
             {
+                if (!this.IsAlive)
+                {
+                    triLamp = TriLamp.Unknown;
+                }
                 return triLamp;
             }
             set
@@ -260,188 +264,239 @@ namespace Anchitech.Baking
                 try
                 {
 
-                    #region 获取信息
-
-                    var bOutputs = new ushort[] { };
-                    if (!this.Plc.GetInfo("D2000", (ushort)30, out bOutputs, out msg))
+                    if (!this.Plc.GetInfo(false, "%01#RDD0001400016**", out output, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;
                         return false;
                     }
+                    if (output.Substring(3, 1) != "$")
+                    {
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RDD0001400016**", output));
+                        return false;
+                    }
+
+                    int[] iOut = new int[3];
+                    output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
+                    for (int j = 0; j < iOut.Length; j++)
+                    {
+                        iOut[j] = int.Parse(output.Substring(j * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                    }
 
                     for (int j = 0; j < this.Stations.Count; j++)
                     {
-                        int jj = 1 - j;
-
-                        if (bOutputs[10 + j] == 1)
+                        switch (iOut[j])
                         {
-                            this.Stations[jj].ClampStatus = ClampStatus.空夹具;
-                            this.Stations[jj].Status = StationStatus.可取;
-                            this.Stations[jj].SampleInfo = SampleInfo.未知;
-                        }
-                        else if (bOutputs[10 + j] == 2)
-                        {
-                            this.Stations[jj].ClampStatus = ClampStatus.无夹具;
-                            this.Stations[jj].Status = StationStatus.可放;
-                        }
-                        else if (bOutputs[10 + j] == 3)
-                        {
-                            this.Stations[jj].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[jj].Status = StationStatus.工作中;
-                        }
-                        else if (bOutputs[10 + j] == 4)
-                        {
-                            this.Stations[jj].ClampStatus = ClampStatus.异常;
-                            this.Stations[jj].Status = StationStatus.不可用;
-                        }
-                        else if (bOutputs[10 + j] == 5) //NG回炉
-                        {
-                            this.Stations[jj].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[jj].Status = StationStatus.可取;
-                            this.Stations[jj].SampleStatus = SampleStatus.水分NG;
-                        }
-                        else
-                        {
-                            this.Stations[jj].ClampStatus = ClampStatus.未知;
-                            this.Stations[jj].Status = StationStatus.不可用;
-                        }
-
-                        var samResultVal = bOutputs[21 + j];
-                        if (samResultVal == 3 || samResultVal == 4)
-                        {
-
-                            var sampleStatus = samResultVal == 3 ? SampleStatus.水分OK : SampleStatus.水分NG;
-
-                            if (this.Stations[jj].ClampStatus != ClampStatus.无夹具)
-                            {
-                                this.Stations[jj].SampleStatus = sampleStatus;
-                            }
-
-                            var floorStation = Station.GetStation(this.Stations[jj].FromStationId);
-                            if (floorStation != null && floorStation.GetPutType == GetPutType.烤箱)
-                            {
-                                floorStation.GetFloor().Stations.ForEach(s =>
-                                {
-                                    if(s.ClampStatus == ClampStatus.满夹具)
-                                    {
-                                        s.SampleStatus = sampleStatus;
-                                    }
-                                });
-                            }
+                            case 1:
+                                this.Stations[j].ClampStatus = ClampStatus.无夹具;
+                                this.Stations[j].Status = StationStatus.可放;
+                                break;
+                            case 2:
+                                this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                                this.Stations[j].Status = StationStatus.工作中;
+                                break;
+                            case 3:
+                                this.Stations[j].ClampStatus = ClampStatus.空夹具;
+                                this.Stations[j].Status = StationStatus.可取;
+                                break;
+                            case 4:
+                                this.Stations[j].ClampStatus = ClampStatus.异常;
+                                this.Stations[j].Status = StationStatus.不可用;
+                                break;
+                            default:
+                                this.Stations[j].ClampStatus = ClampStatus.未知;
+                                this.Stations[j].Status = StationStatus.不可用;
+                                break;
                         }
                     }
 
-                    switch (bOutputs[18])
+                    switch (iOut[2])
                     {
-                        case 1: this.TriLamp = TriLamp.Red; break;
+                        case 1: this.TriLamp = TriLamp.Green; break;
                         case 2: this.TriLamp = TriLamp.Yellow; break;
-                        case 3: this.TriLamp = TriLamp.Green; break;
+                        case 3: this.TriLamp = TriLamp.Red; break;
                         default: this.TriLamp = TriLamp.Unknown; break;
                     }
 
-                    this.Stations[0].DoorStatus = DoorStatus.打开;
 
-                    this.Stations[1].DoorStatus = DoorStatus.打开;
+                    #region 获取信息
 
-                    if (bOutputs[25] == 1)
-                    {
-                        if (!this.IsRasterInductive)
-                        {
-                            LogHelper.WriteInfo(string.Format("{0} --> 人员进入安全光栅感应区", this.Name));
+                    //var bOutputs = new ushort[] { };
+                    //if (!this.Plc.GetInfo("D2000", (ushort)30, out bOutputs, out msg))
+                    //{
+                    //    Error.Alert(msg);
+                    //    this.Plc.IsAlive = false;
+                    //    return false;
+                    //}
 
-                            if (!Current.Robot.IsPausing && Current.Robot.Position <= Current.option.RobotStopPosition4RasterInductive)
-                            {
-                                if (Current.Robot.Stop(out msg))
-                                {
-                                    Error.Alert(string.Format("人员进入 {0} 安全光栅感应区域，已远程发送急停信号给 {1}", this.Name, Current.Robot.Name));
-                                }
-                                else
-                                {
-                                    Error.Alert(string.Format("人员进入 {0} 安全光栅感应区域，远程发送急停信号给 {1} 失败！", this.Name, Current.Robot.Name));
-                                }
-                            }
+                    //for (int j = 0; j < this.Stations.Count; j++)
+                    //{
+                    //    int jj = 1 - j;
 
-                        }
-                        this.IsRasterInductive = true;
-                        this.AlarmStr = "安全光栅报警！";
-                    }
-                    else
-                    {
-                        if (this.IsRasterInductive)
-                        {
-                            LogHelper.WriteInfo(string.Format("{0} --> 安全光栅感应报警结束", this.Name));
+                    //    if (bOutputs[10 + j] == 1)
+                    //    {
+                    //        this.Stations[jj].ClampStatus = ClampStatus.空夹具;
+                    //        this.Stations[jj].Status = StationStatus.可取;
+                    //        this.Stations[jj].SampleInfo = SampleInfo.未知;
+                    //    }
+                    //    else if (bOutputs[10 + j] == 2)
+                    //    {
+                    //        this.Stations[jj].ClampStatus = ClampStatus.无夹具;
+                    //        this.Stations[jj].Status = StationStatus.可放;
+                    //    }
+                    //    else if (bOutputs[10 + j] == 3)
+                    //    {
+                    //        this.Stations[jj].ClampStatus = ClampStatus.满夹具;
+                    //        this.Stations[jj].Status = StationStatus.工作中;
+                    //    }
+                    //    else if (bOutputs[10 + j] == 4)
+                    //    {
+                    //        this.Stations[jj].ClampStatus = ClampStatus.异常;
+                    //        this.Stations[jj].Status = StationStatus.不可用;
+                    //    }
+                    //    else if (bOutputs[10 + j] == 5) //NG回炉
+                    //    {
+                    //        this.Stations[jj].ClampStatus = ClampStatus.满夹具;
+                    //        this.Stations[jj].Status = StationStatus.可取;
+                    //        this.Stations[jj].SampleStatus = SampleStatus.水分NG;
+                    //    }
+                    //    else
+                    //    {
+                    //        this.Stations[jj].ClampStatus = ClampStatus.未知;
+                    //        this.Stations[jj].Status = StationStatus.不可用;
+                    //    }
+
+                    //    var samResultVal = bOutputs[21 + j];
+                    //    if (samResultVal == 3 || samResultVal == 4)
+                    //    {
+
+                    //        var sampleStatus = samResultVal == 3 ? SampleStatus.水分OK : SampleStatus.水分NG;
+
+                    //        if (this.Stations[jj].ClampStatus != ClampStatus.无夹具)
+                    //        {
+                    //            this.Stations[jj].SampleStatus = sampleStatus;
+                    //        }
+
+                    //        var floorStation = Station.GetStation(this.Stations[jj].FromStationId);
+                    //        if (floorStation != null && floorStation.GetPutType == GetPutType.烤箱)
+                    //        {
+                    //            floorStation.GetFloor().Stations.ForEach(s =>
+                    //            {
+                    //                if(s.ClampStatus == ClampStatus.满夹具)
+                    //                {
+                    //                    s.SampleStatus = sampleStatus;
+                    //                }
+                    //            });
+                    //        }
+                    //    }
+                    //}
+
+                    //switch (bOutputs[18])
+                    //{
+                    //    case 1: this.TriLamp = TriLamp.Red; break;
+                    //    case 2: this.TriLamp = TriLamp.Yellow; break;
+                    //    case 3: this.TriLamp = TriLamp.Green; break;
+                    //    default: this.TriLamp = TriLamp.Unknown; break;
+                    //}
+
+                    //this.Stations[0].DoorStatus = DoorStatus.打开;
+
+                    //this.Stations[1].DoorStatus = DoorStatus.打开;
+
+                    //if (bOutputs[25] == 1)
+                    //{
+                    //    if (!this.IsRasterInductive)
+                    //    {
+                    //        LogHelper.WriteInfo(string.Format("{0} --> 人员进入安全光栅感应区", this.Name));
+
+                    //        if (!Current.Robot.IsPausing && Current.Robot.Position <= Current.option.RobotStopPosition4RasterInductive)
+                    //        {
+                    //            if (Current.Robot.Stop(out msg))
+                    //            {
+                    //                Error.Alert(string.Format("人员进入 {0} 安全光栅感应区域，已远程发送急停信号给 {1}", this.Name, Current.Robot.Name));
+                    //            }
+                    //            else
+                    //            {
+                    //                Error.Alert(string.Format("人员进入 {0} 安全光栅感应区域，远程发送急停信号给 {1} 失败！", this.Name, Current.Robot.Name));
+                    //            }
+                    //        }
+
+                    //    }
+                    //    this.IsRasterInductive = true;
+                    //    this.AlarmStr = "安全光栅报警！";
+                    //}
+                    //else
+                    //{
+                    //    if (this.IsRasterInductive)
+                    //    {
+                    //        LogHelper.WriteInfo(string.Format("{0} --> 安全光栅感应报警结束", this.Name));
 
 
-                            //if (!otherBlanker.IsRasterInductive && Current.Robot.IsPausing)
-                            //{
-                            //    if (Current.Robot.Restart(out msg))
-                            //    {
-                            //        Tip.Alert(string.Format("{0} 安全光栅感应报警结束，已远程发送继续运动信号给 {1}", this.Name, Current.Robot.Name));
-                            //    }
-                            //    else
-                            //    {
-                            //        Error.Alert(string.Format("{0} 安全光栅感应报警结束，远程发送继续运动信号给 {1} 失败！", this.Name, Current.Robot.Name));
-                            //    }
-                            //}
-                        }
-                        this.IsRasterInductive = false;
-                        this.AlarmStr = "";
-                    }
+                    //        //if (!otherBlanker.IsRasterInductive && Current.Robot.IsPausing)
+                    //        //{
+                    //        //    if (Current.Robot.Restart(out msg))
+                    //        //    {
+                    //        //        Tip.Alert(string.Format("{0} 安全光栅感应报警结束，已远程发送继续运动信号给 {1}", this.Name, Current.Robot.Name));
+                    //        //    }
+                    //        //    else
+                    //        //    {
+                    //        //        Error.Alert(string.Format("{0} 安全光栅感应报警结束，远程发送继续运动信号给 {1} 失败！", this.Name, Current.Robot.Name));
+                    //        //    }
+                    //        //}
+                    //    }
+                    //    this.IsRasterInductive = false;
+                    //    this.AlarmStr = "";
+                    //}
 
-                    this.D2027 = bOutputs[27];
+                    //this.D2027 = bOutputs[27];
+                    //if (this.toCancelRasterInductive)
+                    //{
+                    //    if (!this.Plc.SetInfo("D2019", (ushort)1, out msg))
+                    //    {
+                    //        Error.Alert(msg);
+                    //        this.Plc.IsAlive = false;
+                    //        return false;
+                    //    }
 
-                    #endregion
-
-
-                    if (this.toCancelRasterInductive)
-                    {
-                        if (!this.Plc.SetInfo("D2019", (ushort)1, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
-
-                        LogHelper.WriteInfo(string.Format("成功发送光栅感应报警复位指令到{0}:{1}", this.Name, "D2019:1"));
-                        this.toCancelRasterInductive = false;
-                    }
+                    //    LogHelper.WriteInfo(string.Format("成功发送光栅感应报警复位指令到{0}:{1}", this.Name, "D2019:1"));
+                    //    this.toCancelRasterInductive = false;
+                    //}
 
 
-                    for (int j = 0; j < this.Stations.Count; j++)
-                    {
-                        int jj = 1 - j;
+                    //for (int j = 0; j < this.Stations.Count; j++)
+                    //{
+                    //    int jj = 1 - j;
 
-                        if (this.Stations[j].SampleInfo == SampleInfo.无样品)
-                        {
-                            if (bOutputs[21 + jj] == 0)
-                            {
-                                if (!this.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), (ushort)1, out msg))
-                                {
-                                    Error.Alert(msg);
-                                    this.Plc.IsAlive = false;
-                                    return false;
-                                }
+                    //    if (this.Stations[j].SampleInfo == SampleInfo.无样品)
+                    //    {
+                    //        if (bOutputs[21 + jj] == 0)
+                    //        {
+                    //            if (!this.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), (ushort)1, out msg))
+                    //            {
+                    //                Error.Alert(msg);
+                    //                this.Plc.IsAlive = false;
+                    //                return false;
+                    //            }
 
-                                LogHelper.WriteInfo(string.Format("成功发送无水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + jj).ToString("D4") + "1"));
-                            }
-                        }
+                    //            LogHelper.WriteInfo(string.Format("成功发送无水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + jj).ToString("D4") + "1"));
+                    //        }
+                    //    }
 
-                        if (this.Stations[j].SampleInfo == SampleInfo.有样品)
-                        {
-                            if (bOutputs[21 + jj] == 0)
-                            {
-                                if (!this.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), (ushort)2, out msg))
-                                {
-                                    Error.Alert(msg);
-                                    this.Plc.IsAlive = false;
-                                    return false;
-                                }
+                    //    if (this.Stations[j].SampleInfo == SampleInfo.有样品)
+                    //    {
+                    //        if (bOutputs[21 + jj] == 0)
+                    //        {
+                    //            if (!this.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), (ushort)2, out msg))
+                    //            {
+                    //                Error.Alert(msg);
+                    //                this.Plc.IsAlive = false;
+                    //                return false;
+                    //            }
 
-                                LogHelper.WriteInfo(string.Format("成功发送有水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + jj).ToString("D4") + "2"));
-                            }
-                        }
-                    }
+                    //            LogHelper.WriteInfo(string.Format("成功发送有水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + jj).ToString("D4") + "2"));
+                    //        }
+                    //    }
+                    //}
 
 
                     //避让功能
@@ -454,6 +509,8 @@ namespace Anchitech.Baking
                     //        return false;
                     //    }
                     //}
+
+                    #endregion
 
                     Thread.Sleep(100);
                 }
