@@ -25,8 +25,8 @@ namespace Anchitech.Baking.Controls
             this.lbStationName1.Text = blanker.Stations[0].Name;
             this.lbStationName2.Text = blanker.Stations[1].Name;
 
-            this.lbFromStationName1.Text = blanker.Stations[0].FromStation.Name;
-            this.lbFromStationName2.Text = blanker.Stations[1].FromStation.Name;
+            //this.lbFromStationName1.Text = blanker.Stations[0].FromStation.Name;
+            //this.lbFromStationName2.Text = blanker.Stations[1].FromStation.Name;
 
             this.simpleClampUC1.Init(blanker.Stations[0]);
             this.simpleClampUC2.Init(blanker.Stations[1]);
@@ -72,8 +72,8 @@ namespace Anchitech.Baking.Controls
             }
             blanker.PreAlarmStr = blanker.AlarmStr;
 
-            this.lbFromStationName1.Text = blanker.Stations[0].FromStation.Name;
-            this.lbFromStationName2.Text = blanker.Stations[1].FromStation.Name;
+            //this.lbFromStationName1.Text = blanker.Stations[0].FromStation.Name;
+            //this.lbFromStationName2.Text = blanker.Stations[1].FromStation.Name;
 
             this.simpleClampUC1.Update(blanker.Stations[0]);
             this.simpleClampUC2.Update(blanker.Stations[1]);

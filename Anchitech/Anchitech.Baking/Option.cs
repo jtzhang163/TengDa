@@ -2404,6 +2404,36 @@ namespace Anchitech.Baking
                  { "%01#RDD0029100314**", "%01#RDD0035100374**" },
         };
 
+        public string[] OpenOvenDoorStrs = new string[3]
+        {
+            "%01#WCP1R09011**",
+            "%01#WCP1R09111**",
+            "%01#WCP1R02111**"
+        };
+
+        public string[] CloseOvenDoorStrs = new string[3]
+        {
+            "%01#WCP1R09021**",
+            "%01#WCP1R09121**",
+            "%01#WCP1R02121**"
+        };
+
+        public string[] GetRuntimeStrs = new string[3]
+        {
+            "%01#RDD0501805018**",
+            "%01#RDD0505805058**",
+            "%01#RDD0509805098**"
+        };
+
+        public string[] GetRuntimeSetStrs = new string[3]
+        {
+            "%01#RDD0502005020**",
+            "%01#RDD0504005040**",
+            "%01#RDD0510005100**"
+        };
+
+
+
 
         //private string xxxXXXXXXXXXXXX = string.Empty;
         ///// <summary>

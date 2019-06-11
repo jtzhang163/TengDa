@@ -13,6 +13,7 @@ namespace Anchitech.Baking.Controls
 {
     public partial class OvenUC : UserControl
     {
+        private Oven oven;
         public OvenUC()
         {
             InitializeComponent();
@@ -21,10 +22,15 @@ namespace Anchitech.Baking.Controls
 
         public void Init(Oven oven)
         {
-            this.lbName.Text = oven.Name;
+            this.oven = oven;
+            this.lbName.Text = this.oven.Name;
+            for (int j = 0; j < this.oven.Floors.Count; j++)
+            {
+                this.floorUCs[j].Init(this.oven.Floors[j]);
+            }
         }
 
-        public void Update(Oven oven)
+        public void UpdateUI()
         {
             oven.IsAlive = oven.IsEnable && oven.Plc.IsAlive;
             oven.Floors.ForEach(f => f.IsAlive = f.IsEnable && (oven.IsAlive || oven.PreIsAlive));
@@ -70,7 +76,7 @@ namespace Anchitech.Baking.Controls
 
             for (int j = 0; j < floorUCs.Length; j++)
             {
-                this.floorUCs[j].Update(oven, oven.Floors[j]);
+                this.floorUCs[j].UpdateUI();
             }
 
         }

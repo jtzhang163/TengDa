@@ -480,7 +480,7 @@ namespace Anchitech.Baking.Dispatcher
             {
                 Oven oven = Current.ovens[i];
 
-                this.ovenUCs[i].Update(Current.ovens[i]);
+                this.ovenUCs[i].UpdateUI();
 
                 if (oven.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(oven) == "未连接") { this.machinesStatusUC1.SetStatusInfo(oven, "连接成功"); } }
                 else { this.machinesStatusUC1.SetStatusInfo(oven, "未连接"); }
@@ -3145,43 +3145,12 @@ namespace Anchitech.Baking.Dispatcher
 
         private void tsmOvenOpenDoor_Click(object sender, EventArgs e)
         {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
 
-            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-            Current.ovens[i].Floors[j].AddLog("手动开门");
-            Current.ovens[i].OpenDoor(j);
         }
 
         private void tsmOvenCloseDoor_Click(object sender, EventArgs e)
         {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
 
-            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-
-            if (Current.ovens[i].Floors[j].Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
-            {
-                Tip.Alert(Current.Task.FromStationName + "正在取盘，无法关门！");
-                return;
-            }
-
-            if (Current.ovens[i].Floors[j].Stations.Count(s => s.Id == Current.Task.ToStationId) > 0 && (Current.Task.Status == TaskStatus.可放 || Current.Task.Status == TaskStatus.正放))
-            {
-                Tip.Alert(Current.Task.FromStationName + "正在放盘，无法关门！");
-                return;
-            }
-
-            Current.ovens[i].Floors[j].AddLog("手动关门");
-            Current.ovens[i].CloseDoor(j);
         }
 
         private void tlpFeederStationClamp_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
@@ -3233,30 +3202,12 @@ namespace Anchitech.Baking.Dispatcher
 
         private void tsmStartBaking_Click(object sender, EventArgs e)
         {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
 
-            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-            Current.ovens[i].Floors[j].AddLog("手动启动运行");
-            Current.ovens[i].StartBaking(j);
         }
 
         private void tsmStopBaking_Click(object sender, EventArgs e)
         {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
 
-            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-            Current.ovens[i].Floors[j].AddLog("手动停止运行");
-            Current.ovens[i].StopBaking(j);
         }
 
         private void tlpFloor_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
@@ -3365,110 +3316,6 @@ namespace Anchitech.Baking.Dispatcher
             //g.FillRectangle(brush, r);
         }
 
-        private void tsmUploadVacuum_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-
-            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-
-            Current.ovens[i].Floors[j].AddLog("手动破真空");
-            Current.ovens[i].UploadVacuum(j);
-
-        }
-
-        private void tsmLoadVacuum_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-
-            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-
-            Current.ovens[i].Floors[j].AddLog("手动抽真空");
-            Current.ovens[i].LoadVacuum(j);
-
-        }
-
-        private void tsmCancelLoadVacuum_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-
-            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-
-            Current.ovens[i].Floors[j].AddLog("手动取消破真空");
-            Current.ovens[i].CancelLoadVacuum(j);
-        }
-
-        private void tsmCancelUploadVacuum_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-
-            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-
-            Current.ovens[i].Floors[j].AddLog("手动取消抽真空");
-            Current.ovens[i].CancelUploadVacuum(j);
-        }
-
-        private void tsmClearRunTime_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-
-            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-            Current.ovens[i].Floors[j].AddLog("手动运行时间清零");
-            Current.ovens[i].ClearRunTime(j);
-        }
-
-        private void tsmOpenNetControl_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-
-            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-            Current.ovens[i].Floors[j].AddLog("手动打开网控");
-            Current.ovens[i].OpenNetControl(j);
-        }
-
-        private void tsmAlarmReset_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-
-            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-
-            Current.ovens[i].Floors[j].AddLog("手动报警复位");
-            Current.ovens[i].AlarmReset(j);
-        }
 
         private string srcBlankerName = string.Empty;
         private void cmsBlanker_Opening(object sender, CancelEventArgs e)
@@ -3702,62 +3549,6 @@ namespace Anchitech.Baking.Dispatcher
         /// <summary>
         /// 右键源控件名称 如：tlpFloor0401
         /// </summary>
-        private string srcFloorName = string.Empty;
-
-        private void cmsFloor_Opening(object sender, CancelEventArgs e)
-        {
-            srcFloorName = (sender as ContextMenuStrip).SourceControl.Name;
-
-            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-
-            this.tsmOvenOpenDoor.Enabled =
-                Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].IsAlive
-                && Current.ovens[i].Floors[j].DoorStatus != DoorStatus.打开
-                && !Current.ovens[i].Floors[j].IsBaking
-                && !Current.ovens[i].Floors[j].IsVacuum
-                && !Current.ovens[i].Floors[j].Stations[0].IsOpenDoorIntervene;
-            this.tsmOvenCloseDoor.Enabled =
-                Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].IsAlive
-                && Current.ovens[i].Floors[j].DoorStatus != DoorStatus.关闭;
-            //  this.tsmOpenNetControl.Enabled = Current.ovens[i].Floors[j].IsAlive && !Current.ovens[i].Floors[j].IsNetControlOpen;
-            this.tsmLoadVacuum.Enabled =
-                Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].IsAlive
-                 && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.关闭
-                && !Current.ovens[i].Floors[j].VacuumIsLoading
-                && !Current.ovens[i].Floors[j].IsVacuum;
-            this.tsmCancelLoadVacuum.Enabled =
-                Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].IsAlive
-              && Current.ovens[i].Floors[j].VacuumIsLoading;
-            this.tsmUploadVacuum.Enabled =
-                Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].IsAlive
-                && !Current.ovens[i].Floors[j].IsBaking
-              && !Current.ovens[i].Floors[j].VacuumIsUploading
-              && Current.ovens[i].Floors[j].IsVacuum;
-            this.tsmCancelUploadVacuum.Enabled =
-                Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].IsAlive
-                && Current.ovens[i].Floors[j].VacuumIsUploading;
-            this.tsmClearRunTime.Enabled = false;
-            //Current.ovens[i].Floors[j].IsNetControlOpen
-            //&& Current.ovens[i].IsAlive;
-            this.tsmStartBaking.Enabled =
-                Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].IsAlive
-                && !Current.ovens[i].Floors[j].IsBaking
-                && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.关闭;
-            this.tsmStopBaking.Enabled =
-                Current.ovens[i].Floors[j].IsNetControlOpen
-                && Current.ovens[i].IsAlive
-                && Current.ovens[i].Floors[j].IsBaking;
-            this.tsmAlarmReset.Enabled = Current.ovens[i].IsAlive;
-            this.tsmWatContentResult.Enabled = Current.ovens[i].Floors[j].Stations.Count(s => s.FloorStatus == FloorStatus.待出 || (s.FloorStatus == FloorStatus.待烤 && s.SampleStatus == SampleStatus.水分NG)) > 0;
-        }
 
         #endregion
 
@@ -4323,115 +4114,6 @@ namespace Anchitech.Baking.Dispatcher
 
         #endregion
 
-        private void tsmWatContentTestOK_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-
-            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-
-            var floorName = Current.ovens[i].Floors[j].Name;
-
-            var floorStationIds = new List<int>();
-
-            DialogResult dr = MessageBox.Show("确定"+ floorName + "水分测试结果OK？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-            if (dr == DialogResult.OK)
-            {
-                Current.ovens[i].Floors[j].Stations.ForEach(s =>
-                {
-                    floorStationIds.Add(s.Id);
-                    if (s.ClampStatus == ClampStatus.满夹具)
-                    {
-                        s.SampleStatus = SampleStatus.水分OK;
-                        s.FloorStatus = FloorStatus.待出;
-                        s.SampleInfo = SampleInfo.无样品;
-                    }
-                    else
-                    {
-                        s.SampleStatus = SampleStatus.未知;
-                    }
-                });
-
-                Current.Blanker.Stations.ForEach(s =>
-                {
-                    if (floorStationIds.Contains(s.FromStationId) && s.ClampStatus == ClampStatus.满夹具)
-                    {
-                        s.SampleStatus = SampleStatus.水分OK;
-
-                        var offset = 0;
-
-                        var addr = string.Format("D{0:D4}", 2021 + offset);
-
-                        if (!Current.Blanker.Plc.SetInfo(addr, (ushort)3, out string msg))
-                        {
-                            Error.Alert(msg);
-                        }
-                        else
-                        {
-                            LogHelper.WriteInfo(string.Format("成功发送水分OK指令到{0} {1}:{2}", s.Name, addr, 3));
-                        }
-                    }
-                });
-             
-            }
-        }
-
-        private void tsmWatContentTestNG_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-
-            int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-
-            var floorName = Current.ovens[i].Floors[j].Name;
-            var floorStationIds = new List<int>();
-
-            DialogResult dr = MessageBox.Show("确定" + floorName + "水分测试结果NG？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-            if (dr == DialogResult.OK)
-            {
-                Current.ovens[i].Floors[j].Stations.ForEach(s =>
-                {
-                    floorStationIds.Add(s.Id);
-                    if (s.ClampStatus == ClampStatus.满夹具)
-                    {
-                        s.SampleStatus = SampleStatus.水分NG;
-                        s.FloorStatus = FloorStatus.待烤;
-                    }
-                });
-
-
-
-                Current.Blanker.Stations.ForEach(s =>
-                {
-                    if (floorStationIds.Contains(s.FromStationId) && s.ClampStatus == ClampStatus.满夹具)
-                    {
-                        s.SampleStatus = SampleStatus.水分NG;
-
-                        var offset = 0;
-
-                        var addr = string.Format("D{0:D4}", 2021 + offset);
-
-                        if (!Current.Blanker.Plc.SetInfo(addr, (ushort)4, out string msg))
-                        {
-                            Error.Alert(msg);
-                        }
-                        else
-                        {
-                            LogHelper.WriteInfo(string.Format("成功发送水分NG指令到{0} {1}:{2}", s.Name, addr, 4));
-                        }
-                    }
-                });
-               
-            }
-        }
 
         private void btnDebug_Click(object sende, EventArgs e)
         {

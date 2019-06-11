@@ -44,13 +44,13 @@ namespace Anchitech.Baking
 
         [ReadOnly(true), Description("总运行时间设置，单位：min")]
         [DisplayName("总运行时间设置")]
-        public int RunMinutesSet
-        {
-            get
-            {
-                return this.PreheatTimeSet + this.BakingTimeSet;
-            }
-        }
+        public int RunMinutesSet { get; set; }
+        //{
+        //    get
+        //    {
+        //        return this.PreheatTimeSet + this.BakingTimeSet;
+        //    }
+        //}
 
 
         [ReadOnly(true), Description("真空度，单位：Pa")]

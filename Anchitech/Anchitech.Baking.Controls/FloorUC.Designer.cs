@@ -28,11 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tlpFloor = new System.Windows.Forms.TableLayoutPanel();
             this.lbInfoTop = new System.Windows.Forms.Label();
             this.pbRunTime = new System.Windows.Forms.ProgressBar();
             this.lbStatus = new System.Windows.Forms.Label();
+            this.cmsFloor = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmRemoteControl = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAlarmReset = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmOvenOpenDoor = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmOvenCloseDoor = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStartBaking = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmLoadVacuum = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCancelLoadVacuum = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmUploadVacuum = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCancelUploadVacuum = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStopBaking = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmClearRunTime = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmWatContentResult = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmWatContentTestOK = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmWatContentTestNG = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpFloor.SuspendLayout();
+            this.cmsFloor.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlpFloor
@@ -62,7 +79,7 @@
             this.lbInfoTop.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor.SetColumnSpan(this.lbInfoTop, 3);
             this.lbInfoTop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbInfoTop.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbInfoTop.Font = new System.Drawing.Font("Consolas", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbInfoTop.ForeColor = System.Drawing.Color.Red;
             this.lbInfoTop.Location = new System.Drawing.Point(0, 8);
             this.lbInfoTop.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
@@ -101,14 +118,138 @@
             this.lbStatus.Text = "右 关闭 100/200 左";
             this.lbStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // cmsFloor
+            // 
+            this.cmsFloor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmRemoteControl,
+            this.tsmWatContentResult});
+            this.cmsFloor.Name = "cmsInOutOven";
+            this.cmsFloor.Size = new System.Drawing.Size(181, 70);
+            this.cmsFloor.Opening += new System.ComponentModel.CancelEventHandler(this.CmsFloor_Opening);
+            // 
+            // tsmRemoteControl
+            // 
+            this.tsmRemoteControl.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmAlarmReset,
+            this.tsmOvenOpenDoor,
+            this.tsmOvenCloseDoor,
+            this.tsmStartBaking,
+            this.tsmLoadVacuum,
+            this.tsmCancelLoadVacuum,
+            this.tsmUploadVacuum,
+            this.tsmCancelUploadVacuum,
+            this.tsmStopBaking,
+            this.tsmClearRunTime});
+            this.tsmRemoteControl.Name = "tsmRemoteControl";
+            this.tsmRemoteControl.Size = new System.Drawing.Size(180, 22);
+            this.tsmRemoteControl.Text = "远程控制";
+            // 
+            // tsmAlarmReset
+            // 
+            this.tsmAlarmReset.Name = "tsmAlarmReset";
+            this.tsmAlarmReset.Size = new System.Drawing.Size(180, 22);
+            this.tsmAlarmReset.Text = "报警复位";
+            this.tsmAlarmReset.Click += new System.EventHandler(this.TsmAlarmReset_Click);
+            // 
+            // tsmOvenOpenDoor
+            // 
+            this.tsmOvenOpenDoor.Name = "tsmOvenOpenDoor";
+            this.tsmOvenOpenDoor.Size = new System.Drawing.Size(180, 22);
+            this.tsmOvenOpenDoor.Text = "开门";
+            this.tsmOvenOpenDoor.Click += new System.EventHandler(this.TsmOvenOpenDoor_Click);
+            // 
+            // tsmOvenCloseDoor
+            // 
+            this.tsmOvenCloseDoor.Name = "tsmOvenCloseDoor";
+            this.tsmOvenCloseDoor.Size = new System.Drawing.Size(180, 22);
+            this.tsmOvenCloseDoor.Text = "关门";
+            this.tsmOvenCloseDoor.Click += new System.EventHandler(this.TsmOvenCloseDoor_Click);
+            // 
+            // tsmStartBaking
+            // 
+            this.tsmStartBaking.Name = "tsmStartBaking";
+            this.tsmStartBaking.Size = new System.Drawing.Size(180, 22);
+            this.tsmStartBaking.Text = "启动";
+            this.tsmStartBaking.Click += new System.EventHandler(this.TsmStartBaking_Click);
+            // 
+            // tsmLoadVacuum
+            // 
+            this.tsmLoadVacuum.Name = "tsmLoadVacuum";
+            this.tsmLoadVacuum.Size = new System.Drawing.Size(180, 22);
+            this.tsmLoadVacuum.Text = "抽真空";
+            this.tsmLoadVacuum.Click += new System.EventHandler(this.TsmLoadVacuum_Click);
+            // 
+            // tsmCancelLoadVacuum
+            // 
+            this.tsmCancelLoadVacuum.Name = "tsmCancelLoadVacuum";
+            this.tsmCancelLoadVacuum.Size = new System.Drawing.Size(180, 22);
+            this.tsmCancelLoadVacuum.Text = "取消抽真空";
+            this.tsmCancelLoadVacuum.Visible = false;
+            this.tsmCancelLoadVacuum.Click += new System.EventHandler(this.TsmCancelLoadVacuum_Click);
+            // 
+            // tsmUploadVacuum
+            // 
+            this.tsmUploadVacuum.Name = "tsmUploadVacuum";
+            this.tsmUploadVacuum.Size = new System.Drawing.Size(180, 22);
+            this.tsmUploadVacuum.Text = "破真空";
+            this.tsmUploadVacuum.Click += new System.EventHandler(this.TsmUploadVacuum_Click);
+            // 
+            // tsmCancelUploadVacuum
+            // 
+            this.tsmCancelUploadVacuum.Name = "tsmCancelUploadVacuum";
+            this.tsmCancelUploadVacuum.Size = new System.Drawing.Size(180, 22);
+            this.tsmCancelUploadVacuum.Text = "取消破真空";
+            this.tsmCancelUploadVacuum.Visible = false;
+            this.tsmCancelUploadVacuum.Click += new System.EventHandler(this.TsmCancelUploadVacuum_Click);
+            // 
+            // tsmStopBaking
+            // 
+            this.tsmStopBaking.Name = "tsmStopBaking";
+            this.tsmStopBaking.Size = new System.Drawing.Size(180, 22);
+            this.tsmStopBaking.Text = "停止";
+            this.tsmStopBaking.Click += new System.EventHandler(this.TsmStopBaking_Click);
+            // 
+            // tsmClearRunTime
+            // 
+            this.tsmClearRunTime.Name = "tsmClearRunTime";
+            this.tsmClearRunTime.Size = new System.Drawing.Size(180, 22);
+            this.tsmClearRunTime.Text = "运行时间清零";
+            this.tsmClearRunTime.Visible = false;
+            this.tsmClearRunTime.Click += new System.EventHandler(this.TsmClearRunTime_Click);
+            // 
+            // tsmWatContentResult
+            // 
+            this.tsmWatContentResult.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmWatContentTestOK,
+            this.tsmWatContentTestNG});
+            this.tsmWatContentResult.Name = "tsmWatContentResult";
+            this.tsmWatContentResult.Size = new System.Drawing.Size(180, 22);
+            this.tsmWatContentResult.Text = "水分测试结果";
+            // 
+            // tsmWatContentTestOK
+            // 
+            this.tsmWatContentTestOK.Name = "tsmWatContentTestOK";
+            this.tsmWatContentTestOK.Size = new System.Drawing.Size(180, 22);
+            this.tsmWatContentTestOK.Text = "结果OK";
+            this.tsmWatContentTestOK.Click += new System.EventHandler(this.TsmWatContentTestOK_Click);
+            // 
+            // tsmWatContentTestNG
+            // 
+            this.tsmWatContentTestNG.Name = "tsmWatContentTestNG";
+            this.tsmWatContentTestNG.Size = new System.Drawing.Size(180, 22);
+            this.tsmWatContentTestNG.Text = "结果NG";
+            this.tsmWatContentTestNG.Click += new System.EventHandler(this.TsmWatContentTestNG_Click);
+            // 
             // FloorUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ContextMenuStrip = this.cmsFloor;
             this.Controls.Add(this.tlpFloor);
             this.Name = "FloorUC";
             this.tlpFloor.ResumeLayout(false);
             this.tlpFloor.PerformLayout();
+            this.cmsFloor.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -119,5 +260,20 @@
         private System.Windows.Forms.Label lbInfoTop;
         private System.Windows.Forms.ProgressBar pbRunTime;
         private System.Windows.Forms.Label lbStatus;
+        private System.Windows.Forms.ContextMenuStrip cmsFloor;
+        private System.Windows.Forms.ToolStripMenuItem tsmRemoteControl;
+        private System.Windows.Forms.ToolStripMenuItem tsmAlarmReset;
+        private System.Windows.Forms.ToolStripMenuItem tsmOvenOpenDoor;
+        private System.Windows.Forms.ToolStripMenuItem tsmOvenCloseDoor;
+        private System.Windows.Forms.ToolStripMenuItem tsmStartBaking;
+        private System.Windows.Forms.ToolStripMenuItem tsmLoadVacuum;
+        private System.Windows.Forms.ToolStripMenuItem tsmCancelLoadVacuum;
+        private System.Windows.Forms.ToolStripMenuItem tsmUploadVacuum;
+        private System.Windows.Forms.ToolStripMenuItem tsmCancelUploadVacuum;
+        private System.Windows.Forms.ToolStripMenuItem tsmStopBaking;
+        private System.Windows.Forms.ToolStripMenuItem tsmClearRunTime;
+        private System.Windows.Forms.ToolStripMenuItem tsmWatContentResult;
+        private System.Windows.Forms.ToolStripMenuItem tsmWatContentTestOK;
+        private System.Windows.Forms.ToolStripMenuItem tsmWatContentTestNG;
     }
 }
