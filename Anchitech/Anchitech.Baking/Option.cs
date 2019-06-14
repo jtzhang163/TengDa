@@ -2428,7 +2428,7 @@ namespace Anchitech.Baking
         public string[] GetRuntimeSetStrs = new string[3]
         {
             "%01#RDD0502005020**",
-            "%01#RDD0504005040**",
+            "%01#RDD0506005060**",
             "%01#RDD0510005100**"
         };
 

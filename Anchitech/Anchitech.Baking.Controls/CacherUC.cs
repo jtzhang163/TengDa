@@ -27,7 +27,8 @@ namespace Anchitech.Baking.Controls
 
         public void Update(Cacher cacher)
         {
-            cacher.IsAlive = cacher.IsEnable && cacher.Plc.IsAlive;
+            cacher.IsAlive = cacher.IsEnable;
+            //cacher.IsAlive = cacher.IsEnable && cacher.Plc.IsAlive;
             cacher.Stations.ForEach(s => s.IsAlive = s.IsEnable && cacher.IsAlive);
             this.BackColor = cacher.IsAlive ? Color.White : Color.LightGray;
             this.simpleClampUC1.Update(cacher.Stations[0]);

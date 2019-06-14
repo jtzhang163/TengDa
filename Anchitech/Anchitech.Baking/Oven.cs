@@ -305,56 +305,6 @@ namespace Anchitech.Baking
                         }
                         #endregion
 
-                        //#region 获取预热时间、烘烤时间、呼吸周期、真空设定参数
-                        //for (int j = 0; j < this.Floors.Count; j++)
-                        //{
-
-                        //    output = string.Empty;
-                        //    if (!this.Plc.GetInfo(false, Current.option.GetParamSettingStrs1.Split(',')[j], out output, out msg))
-                        //    {
-                        //        Error.Alert(msg);
-                        //        this.Plc.IsAlive = false;
-                        //        return false;
-                        //    }
-                        //    if (output.Substring(3, 1) != "$")
-                        //    {
-                        //        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetParamSettingStrs1.Split(',')[j], output));
-                        //        return false;
-                        //    }
-
-                        //    output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-
-                        //    this.Floors[j].PreheatTimeSet = int.Parse(output.Substring(4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                        //    this.Floors[j].BakingTimeSet = int.Parse(output.Substring(12, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                        //    this.Floors[j].VacuumSet = int.Parse(output.Substring(84, 4) + output.Substring(80, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                        //}
-                        //#endregion
-
-                        //#region 获取烤箱一段呼吸周期、二段呼吸周期、工艺温度参数
-                        //for (int j = 0; j < this.Floors.Count; j++)
-                        //{
-
-                        //    output = string.Empty;
-                        //    if (!this.Plc.GetInfo(false, Current.option.GetParamSettingStrs2.Split(',')[j], out output, out msg))
-                        //    {
-                        //        Error.Alert(msg);
-                        //        this.Plc.IsAlive = false;
-                        //        return false;
-                        //    }
-                        //    if (output.Substring(3, 1) != "$")
-                        //    {
-                        //        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetParamSettingStrs2.Split(',')[j], output));
-                        //        return false;
-                        //    }
-
-                        //    output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-
-                        //    this.Floors[j].BreathingCycleSet1 = int.Parse(output.Substring(0, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                        //    this.Floors[j].BreathingCycleSet2 = int.Parse(output.Substring(4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                        //    this.Floors[j].ProcessTemperSet = int.Parse(output.Substring(8, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                        //}
-                        //#endregion
-
                     }
                     else if (getInfoNum == 3)
                     {
@@ -381,26 +331,37 @@ namespace Anchitech.Baking
                         }
                         #endregion
 
-                        //#region 获取网控状态
-                        //output = string.Empty;
-                        //if (!this.Plc.GetInfo(false, Current.option.GetNetControlStatusStr, out output, out msg))
-                        //{
-                        //    Error.Alert(msg);
-                        //    this.Plc.IsAlive = false;
-                        //    return false;
-                        //}
+                        #region 获取网控状态、三色灯
+                        output = string.Empty;
+                        if (!this.Plc.GetInfo(false, "%01#RCP6R060BR061BR062BY014BY014AY0149**", out output, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
 
-                        //if (output.Substring(3, 1) != "$")
-                        //{
-                        //    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetNetControlStatusStr, output));
-                        //    return false;
-                        //}
+                        if (output.Substring(3, 1) != "$")
+                        {
+                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RCP6R060BR061BR062BY014BY014AY0149**", output));
+                            return false;
+                        }
 
-                        //for (int j = 0; j < this.Floors.Count; j++)
-                        //{
-                        //    this.Floors[j].IsNetControlOpen = output.Substring(6 + j, 1) == "1";
-                        //}
-                        //#endregion
+                        for (int j = 0; j < this.Floors.Count; j++)
+                        {
+                            this.Floors[j].IsNetControlOpen = output.Substring(6 + j, 1) == "1";
+                        }
+
+                        TriLamp triLamp = TriLamp.Unknown;
+                        for (int x = 0; x < 3; x++)
+                        { 
+                            if (output.Substring(9 + x, 1) == "1")
+                            {
+                                triLamp = x == 0 ? TriLamp.Green : x == 1 ? TriLamp.Yellow : TriLamp.Red;
+                            }         
+                        }
+                        this.TriLamp = triLamp;
+
+                        #endregion
 
                         #region 获取已运行时间
                         for (int j = 0; j < this.Floors.Count; j++)
@@ -447,7 +408,7 @@ namespace Anchitech.Baking
                     if (getInfoNum % 2 == 0)
                     {
 
-                        //#region 获取真空状态
+                        #region 获取真空状态
                         //output = string.Empty;
                         //if (!this.Plc.GetInfo(false, Current.option.GetVacuumStatusStr, out output, out msg))
                         //{
@@ -466,9 +427,9 @@ namespace Anchitech.Baking
                         //{
                         //    this.Floors[j].IsVacuum = output.Substring(6 + j, 1) == "0";
                         //}
-                        //#endregion
+                        #endregion
 
-                        //#region 报警信息
+                        #region 报警信息
                         //output = string.Empty;
                         //if (!this.Plc.GetInfo(false, Current.option.GetAlarmStr, out output, out msg))
                         //{
@@ -561,36 +522,105 @@ namespace Anchitech.Baking
                         //}
 
                         //this.PreAlarm2BinString = this.Alarm2BinString;
-                        //#endregion
+                        #endregion
 
-                        //#region 获取烤箱设定温度
-                        //for (int j = 0; j < this.Floors.Count; j++)
-                        //{
-
-                        //    output = string.Empty;
-                        //    if (!this.Plc.GetInfo(false, Current.option.GetTemSetStrs.Split(',')[j], out output, out msg))
-                        //    {
-                        //        Error.Alert(msg);
-                        //        this.Plc.IsAlive = false;
-                        //        return false;
-                        //    }
-                        //    if (output.Substring(3, 1) != "$")
-                        //    {
-                        //        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetTemSetStrs.Split(',')[j], output));
-                        //        return false;
-                        //    }
-
-                        //    output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-
-                        //    for (int k = 0; k < this.floors[j].TemperatureSets.Length; k++)
-                        //    {
-                        //        this.Floors[j].TemperatureSets[k] = (float)int.Parse(output.Substring(k * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                        //    }
-
-                        //    this.Floors[j].YunfengTemperatureSet = (float)int.Parse(output.Substring(44, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                        //}
-                        //#endregion
                     }
+
+                    #region 获取运行状态、运行完成状态
+                    output = string.Empty;
+                    if (!this.Plc.GetInfo(false, "%01#RCP6R0601R0611R0621R0771R0772R0773**", out output, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    if (output.Substring(3, 1) != "$")
+                    {
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RCP6R0601R0611R0621R0771R0772R0773**", output));
+                        return false;
+                    }
+
+                    for (int j = 0; j < this.Floors.Count; j++)
+                    {
+                        this.Floors[j].IsBaking = output.Substring(6 + j, 1) == "1";
+                        this.Floors[j].IsBakeFinished = output.Substring(9 + j, 1) == "1";
+                    }
+
+                    Thread.Sleep(100);
+                    #endregion
+
+
+                    #region 获取门状态
+
+                    output = string.Empty;
+                    if (!this.Plc.GetInfo(false, "%01#RCP6R0680R0681R0682R0683R0684R0685**", out output, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    if (output.Substring(3, 1) != "$")
+                    {
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RCP6R0680R0681R0682R0683R0684R0685**", output));
+                        return false;
+                    }
+
+                    for (int j = 0; j < this.Floors.Count; j++)
+                    {
+                        var doorInfo = output.Substring(6 + j * 2, 2);
+
+                        switch (doorInfo)
+                        {
+                            case "10": this.Floors[j].DoorStatusNotFinal = DoorStatus.打开; this.Floors[j].DoorIsOpenning = false; break;
+                            case "01": this.Floors[j].DoorStatusNotFinal = DoorStatus.关闭; this.Floors[j].DoorIsClosing = false; break;
+                            case "00": this.Floors[j].DoorStatusNotFinal = DoorStatus.异常; break;
+                            default: this.Floors[j].DoorStatusNotFinal = DoorStatus.未知; break;
+                        }
+                    }
+
+                    #endregion
+
+                    #region 获取夹具状态
+
+                    output = string.Empty;
+                    if (!this.Plc.GetInfo(false, "%01#RCP6R0690R0691R0692R0693R0694R0695**", out output, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    if (output.Substring(3, 1) != "$")
+                    {
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RCP6R0690R0691R0692R0693R0694R0695**", output));
+                        return false;
+                    }
+
+                    for (int j = 0; j < this.Floors.Count; j++)
+                    {
+                        for (int k = 0; k < this.Floors[j].Stations.Count; k++)
+                        {
+                            if (output.Substring(6 + j * 2 + k, 1) == "1")
+                            {
+                                if (this.Floors[j].Stations[k].Id == Current.Task.FromStationId && Current.Task.Status == TaskStatus.正取)
+                                {
+
+                                }
+                                else
+                                {
+                                    this.Floors[j].Stations[k].ClampStatus = this.Floors[j].Stations[k].ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
+                                }
+                            }
+                            else
+                            {
+                                this.Floors[j].Stations[k].ClampStatus = ClampStatus.无夹具;
+                            }
+                        }
+                    }
+
+                    #endregion
 
                     //#region 获取门控制指令信息
                     //output = string.Empty;
@@ -620,50 +650,6 @@ namespace Anchitech.Baking
                     //}
                     //#endregion
 
-                    #region 获取门状态、和三色灯
-                    //for (int j = 0; j < this.Floors.Count; j++)
-                    //{
-                    //    output = string.Empty;
-                    //    if (!this.Plc.GetInfo(false, Current.option.GetMultiInfoStrs.Split(',')[j], out output, out msg))
-                    //    {
-                    //        Error.Alert(msg);
-                    //        this.Plc.IsAlive = false;
-                    //        return false;
-                    //    }
-
-                    //    if (output.Substring(3, 1) != "$")
-                    //    {
-                    //        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetMultiInfoStrs.Split(',')[j], output));
-                    //        return false;
-                    //    }
-
-                    //    var tmpStr = output;
-
-                    //    output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-
-                    //    switch (int.Parse(output.Substring(0, 4), System.Globalization.NumberStyles.AllowHexSpecifier))
-                    //    {
-                    //        case 1: this.Floors[j].DoorStatusNotFinal = DoorStatus.打开; this.Floors[j].DoorIsOpenning = false; break;
-                    //        case 2: this.Floors[j].DoorStatusNotFinal = DoorStatus.关闭; this.Floors[j].DoorIsClosing = false; break;
-                    //        case 3: break;
-                    //        case 4: this.Floors[j].DoorStatusNotFinal = DoorStatus.异常; break;
-                    //        default: this.Floors[j].DoorStatusNotFinal = DoorStatus.未知; break;
-                    //    }
-
-                    //    switch (int.Parse(output.Substring(4, 4), System.Globalization.NumberStyles.AllowHexSpecifier))
-                    //    {
-                    //        case 1: this.Floors[j].TriLamp = TriLamp.Green; break;
-                    //        case 2: this.Floors[j].TriLamp = TriLamp.Yellow; break;
-                    //        case 3: this.Floors[j].TriLamp = TriLamp.Red; break;
-                    //        default: this.Floors[j].TriLamp = TriLamp.Unknown; break;
-                    //    }
-
-                    //    var tmpStr2 = PanasonicPLC.ConvertHexStr(tmpStr.TrimEnd('\r'), true, true);
-
-                    //}
-
-                    #endregion
-
                     //#region 获取真空控制指令信息
                     //output = string.Empty;
                     //if (!this.Plc.GetInfo(false, Current.option.GetVacuumCommandStr, out output, out msg))
@@ -686,74 +672,30 @@ namespace Anchitech.Baking
                     //}
                     //#endregion
 
-                    //#region 获取运行状态
-                    //output = string.Empty;
-                    //if (!this.Plc.GetInfo(false, Current.option.GetRunStatusStr, out output, out msg))
-                    //{
-                    //    Error.Alert(msg);
-                    //    this.Plc.IsAlive = false;
-                    //    return false;
-                    //}
 
-                    //if (output.Substring(3, 1) != "$")
-                    //{
-                    //    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetRunStatusStr, output));
-                    //    return false;
-                    //}
-
-                    //for (int j = 0; j < this.Floors.Count; j++)
-                    //{
-                    //    this.Floors[j].IsBaking = output.Substring(6 + j, 1) == "1";
-                    //}
-
-                    //Thread.Sleep(100);
-                    //#endregion
-
-                    //#region 获取是否运行完成
-
-                    //output = string.Empty;
-                    //if (!this.Plc.GetInfo(false, Current.option.GetBakingIsFinishedStr, out output, out msg))
-                    //{
-                    //    Error.Alert(msg);
-                    //    this.Plc.IsAlive = false;
-                    //    return false;
-                    //}
-
-                    //if (output.Substring(3, 1) != "$")
-                    //{
-                    //    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetBakingIsFinishedStr, output));
-                    //    return false;
-                    //}
-
-                    //for (int j = 0; j < this.Floors.Count; j++)
-                    //{
-                    //    this.Floors[j].IsBakeFinished = output.Substring(6 + j, 1) == "1";
-                    //}
-
-                    //#endregion
 
                     #region 写指令 控制开关门、启动运行、抽卸真空
                     for (int j = 0; j < this.Floors.Count; j++)
                     {
 
-                        //    if (this.Floors[j].DoorIsOpenning && this.Floors[j].DoorStatusNotFinal != DoorStatus.打开)
-                        //    {
-                        //        this.Floors[j].DoorStatus = DoorStatus.正在打开;
-                        //    }
-                        //    else if (this.Floors[j].DoorIsClosing && this.Floors[j].DoorStatusNotFinal != DoorStatus.关闭)
-                        //    {
-                        //        this.Floors[j].DoorStatus = DoorStatus.正在关闭;
-                        //    }
-                        //    else
-                        //    {
-                        //        this.Floors[j].DoorStatus = this.Floors[j].DoorStatusNotFinal;
-                        //    }
+                        if (this.Floors[j].DoorIsOpenning && this.Floors[j].DoorStatusNotFinal != DoorStatus.打开)
+                        {
+                            this.Floors[j].DoorStatus = DoorStatus.正在打开;
+                        }
+                        else if (this.Floors[j].DoorIsClosing && this.Floors[j].DoorStatusNotFinal != DoorStatus.关闭)
+                        {
+                            this.Floors[j].DoorStatus = DoorStatus.正在关闭;
+                        }
+                        else
+                        {
+                            this.Floors[j].DoorStatus = this.Floors[j].DoorStatusNotFinal;
+                        }
 
-                        //    #region 控制开门
-                        //    if (this.Floors[j].DoorStatus == DoorStatus.打开)
-                        //    {
-                        //        this.Floors[j].toOpenDoor = false;
-                        //    }
+                        #region 控制开门
+                        if (this.Floors[j].DoorStatus == DoorStatus.打开)
+                        {
+                            this.Floors[j].toOpenDoor = false;
+                        }
 
                         if (this.Floors[j].toOpenDoor)
                         {
@@ -1375,5 +1317,7 @@ namespace Anchitech.Baking
         //    j = (++j) % this.Floors.Count;
         //    this.Floors[j].IsTestWaterContent = true;
         //}
+        #endregion
     }
 }
+

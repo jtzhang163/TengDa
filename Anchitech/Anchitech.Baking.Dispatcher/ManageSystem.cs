@@ -3210,68 +3210,6 @@ namespace Anchitech.Baking.Dispatcher
 
         }
 
-        private void tlpFloor_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
-        {
-            //tlpFloor0501
-            int i = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(8, 2), 0) - 1;
-            int j = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(10, 2), 0) - 1;
-
-            Graphics g = e.Graphics;
-            Rectangle r = e.CellBounds;
-            Brush brush = Brushes.White;
-
-            for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
-            {
-                if (e.Column == (Current.ovens[i].ClampOri == ClampOri.B ? k * 2 : Current.ovens[i].Floors[j].Stations.Count - k * 2))
-                {
-
-                    Station station = Current.ovens[i].Floors[j].Stations[k];
-
-                    bool canChangeColor = DateTime.Now.Second % 3 == 1;
-
-                    if (canChangeColor && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
-                    {
-                        brush = Brushes.White;
-                    }
-                    else if (canChangeColor && station.ClampStatus == ClampStatus.异常)
-                    {
-                        brush = Brushes.Red;
-                    }
-                    else if (canChangeColor && station.Id == Current.Task.ToStationId)
-                    {
-                        brush = Current.Task.FromClampStatus == ClampStatus.空夹具 ? Brushes.Cyan : Brushes.Yellow;
-                    }
-                    else
-                    {
-                        if (!station.IsAlive)
-                        {
-                            brush = Brushes.LightGray;
-                        }
-                        else
-                        {
-                            if (station.SampleStatus == SampleStatus.待结果 && station.FloorStatus == FloorStatus.待出)
-                            {
-                                brush = Brushes.DeepSkyBlue;
-                            }
-                            else
-                            {
-                                switch (station.FloorStatus)
-                                {
-                                    case FloorStatus.无盘: brush = Brushes.White; break;
-                                    case FloorStatus.空盘: brush = Brushes.Cyan; break;
-                                    case FloorStatus.待烤: brush = Brushes.Yellow; break;
-                                    case FloorStatus.烘烤: brush = Brushes.Pink; break;
-                                    case FloorStatus.待出: brush = Brushes.LimeGreen; break;
-                                    default: brush = Brushes.WhiteSmoke; break;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            g.FillRectangle(brush, r);
-        }
-
         private void tlpBlanker_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
         {
             //tlpBlanker1

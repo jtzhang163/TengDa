@@ -60,42 +60,40 @@ namespace Anchitech.Baking.Controls
             {
                 var centerStr = floor.IsEnable ? floor.Vacuum.ToString().PadLeft(4) + "Pa" : "炉层禁用";
 
-                //if (floor.IsBaking)
-                //{
+                if (floor.IsBaking)
+                {
                     this.lbInfoTop.Text = string.Format("{0}℃ {1} {2}℃",
                          floor.Stations[0].Temperatures[Current.option.DisplayTemperIndex].ToString().PadLeft(2),
                          centerStr,
                          floor.Stations[1].Temperatures[Current.option.DisplayTemperIndex].ToString().PadLeft(2));
-                //}
-                //else
-                //{
+                }
+                else
+                {
 
-                //    var ss = new List<Station>() { oven.ClampOri == ClampOri.B ? floor.Stations[0] : floor.Stations[1], oven.ClampOri == ClampOri.B ? floor.Stations[1] : floor.Stations[0] };
-                //    var strs = new List<string>() { "", "" };
+                    var ss = new List<Station>() { oven.ClampOri == ClampOri.B ? floor.Stations[0] : floor.Stations[1], oven.ClampOri == ClampOri.B ? floor.Stations[1] : floor.Stations[0] };
+                    var strs = new List<string>() { "", "" };
 
-                //    for (var x = 0; x < ss.Count; x++)
-                //    {
-                //        if (ss[x].FloorStatus == FloorStatus.待出)
-                //        {
-                //            strs[x] = ss[x].SampleStatus == SampleStatus.待结果 ? "待测" : ss[x].SampleStatus == SampleStatus.水分OK ? "水分OK" : ss[x].SampleStatus == SampleStatus.水分NG ? "水分NG" : "未知";
-                //        }
-                //        else if (ss[x].FloorStatus == FloorStatus.待烤 && ss[x].SampleStatus == SampleStatus.水分NG)
-                //        {
-                //            strs[x] = "水分NG";
-                //        }
-                //        else
-                //        {
-                //            strs[x] = ss[x].FloorStatus.ToString();
-                //        }
-                //    }
+                    for (var x = 0; x < ss.Count; x++)
+                    {
+                        if (ss[x].FloorStatus == FloorStatus.待出)
+                        {
+                            strs[x] = ss[x].SampleStatus == SampleStatus.待结果 ? "待测" : ss[x].SampleStatus == SampleStatus.水分OK ? "水分OK" : ss[x].SampleStatus == SampleStatus.水分NG ? "水分NG" : "未知";
+                        }
+                        else if (ss[x].FloorStatus == FloorStatus.待烤 && ss[x].SampleStatus == SampleStatus.水分NG)
+                        {
+                            strs[x] = "水分NG";
+                        }
+                        else
+                        {
+                            strs[x] = ss[x].FloorStatus.ToString();
+                        }
+                    }
 
-                //    this.lbInfoTop.Text = string.Format("{0} {3}{1} {4}{2}",
-                //         strs[0],
-                //         centerStr,
-                //         strs[1],
-                //         ss[0].HasSampleFlag ? "★ " : "",
-                //         ss[1].HasSampleFlag ? "★ " : "");
-                //}
+                    this.lbInfoTop.Text = string.Format("{0} {1} {2}",
+                         strs[0],
+                         centerStr,
+                         strs[1]);
+                }
 
                 this.lbInfoTop.ForeColor = Color.Red;
                 this.lbInfoTop.BackColor = Color.Transparent;
@@ -146,20 +144,19 @@ namespace Anchitech.Baking.Controls
         private void CmsFloor_Opening(object sender, CancelEventArgs e)
         {
 
-            //this.tsmOvenOpenDoor.Enabled =
-            //    floor.IsNetControlOpen
-            //    && Current.runStstus == RunStatus.运行
-            //    && oven.IsAlive
-            //    && floor.DoorStatus != DoorStatus.打开
-            //    && !floor.IsBaking
-            //    && !floor.IsVacuum
-            //    && !floor.Stations[0].IsOpenDoorIntervene;
-            //this.tsmOvenCloseDoor.Enabled =
-            //    floor.IsNetControlOpen
-            //    && Current.runStstus == RunStatus.运行
-            //    && oven.IsAlive
-            //    && floor.DoorStatus != DoorStatus.关闭;
-            //  this.tsmOpenNetControl.Enabled = Current.ovens[i].Floors[j].IsAlive && !Current.ovens[i].Floors[j].IsNetControlOpen;
+            this.tsmOvenOpenDoor.Enabled =
+                floor.IsNetControlOpen
+                && Current.runStstus == RunStatus.运行
+                && oven.IsAlive
+                && floor.DoorStatus != DoorStatus.打开
+                && !floor.IsBaking
+                && !floor.IsVacuum
+                && !floor.Stations[0].IsOpenDoorIntervene;
+            this.tsmOvenCloseDoor.Enabled =
+                floor.IsNetControlOpen
+                && Current.runStstus == RunStatus.运行
+                && oven.IsAlive
+                && floor.DoorStatus != DoorStatus.关闭;
             this.tsmLoadVacuum.Enabled =
                 floor.IsNetControlOpen
                 && Current.runStstus == RunStatus.运行
@@ -185,8 +182,6 @@ namespace Anchitech.Baking.Controls
                 && oven.IsAlive
                 && floor.VacuumIsUploading;
             this.tsmClearRunTime.Enabled = false;
-            //Current.ovens[i].Floors[j].IsNetControlOpen
-            //&& Current.ovens[i].IsAlive;
             this.tsmStartBaking.Enabled =
                 floor.IsNetControlOpen
                 && Current.runStstus == RunStatus.运行
@@ -374,6 +369,65 @@ namespace Anchitech.Baking.Controls
             //    });
 
             //}
+        }
+
+        private void TlpFloor_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+        {
+
+            Graphics g = e.Graphics;
+            Rectangle r = e.CellBounds;
+            Brush brush = Brushes.White;
+
+            for (int k = 0; k < this.floor.Stations.Count; k++)
+            {
+                if (e.Column == (this.oven.ClampOri == ClampOri.B ? k * 2 : this.floor.Stations.Count - k * 2))
+                {
+
+                    Station station = this.floor.Stations[k];
+
+                    bool canChangeColor = DateTime.Now.Second % 3 == 1;
+
+                    if (canChangeColor && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
+                    {
+                        brush = Brushes.White;
+                    }
+                    else if (canChangeColor && station.ClampStatus == ClampStatus.异常)
+                    {
+                        brush = Brushes.Red;
+                    }
+                    else if (canChangeColor && station.Id == Current.Task.ToStationId)
+                    {
+                        brush = Current.Task.FromClampStatus == ClampStatus.空夹具 ? Brushes.Cyan : Brushes.Yellow;
+                    }
+                    else
+                    {
+                        if (!station.IsAlive)
+                        {
+                            brush = Brushes.LightGray;
+                        }
+                        else
+                        {
+                            if (station.SampleStatus == SampleStatus.待结果 && station.FloorStatus == FloorStatus.待出)
+                            {
+                                brush = Brushes.DeepSkyBlue;
+                            }
+                            else
+                            {
+                                switch (station.FloorStatus)
+                                {
+                                    case FloorStatus.无盘: brush = Brushes.White; break;
+                                    case FloorStatus.空盘: brush = Brushes.Cyan; break;
+                                    case FloorStatus.待烤: brush = Brushes.Yellow; break;
+                                    case FloorStatus.烘烤: brush = Brushes.Pink; break;
+                                    case FloorStatus.待出: brush = Brushes.LimeGreen; break;
+                                    default: brush = Brushes.WhiteSmoke; break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            g.FillRectangle(brush, r);
         }
     }
 }

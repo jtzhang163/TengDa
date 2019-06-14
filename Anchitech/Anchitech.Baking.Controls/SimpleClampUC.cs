@@ -44,12 +44,12 @@ namespace Anchitech.Baking.Controls
 
                 if (!station.IsAlive)
                 {
-                    this.LabelClampCode.Visible = true;
+                    this.Visible = true;
                     this.LabelClampCode.BackColor = Color.LightGray;
                 }
                 else
                 {
-                    this.LabelClampCode.Visible = station.ClampStatus != ClampStatus.无夹具;
+                    this.Visible = station.ClampStatus != ClampStatus.无夹具;
                     switch (station.ClampStatus)
                     {
                         case ClampStatus.满夹具: this.LabelClampCode.BackColor = Color.LimeGreen; break;
