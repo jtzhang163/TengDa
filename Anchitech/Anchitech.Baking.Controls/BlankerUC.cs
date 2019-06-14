@@ -28,8 +28,8 @@ namespace Anchitech.Baking.Controls
             //this.lbFromStationName1.Text = blanker.Stations[0].FromStation.Name;
             //this.lbFromStationName2.Text = blanker.Stations[1].FromStation.Name;
 
-            this.simpleClampUC1.Init(blanker.Stations[0]);
-            this.simpleClampUC2.Init(blanker.Stations[1]);
+            this.simpleClampUC2.Init(blanker.Stations[0]);
+            this.simpleClampUC1.Init(blanker.Stations[1]);
         }
 
         public void Update(Blanker blanker)
@@ -75,8 +75,8 @@ namespace Anchitech.Baking.Controls
             //this.lbFromStationName1.Text = blanker.Stations[0].FromStation.Name;
             //this.lbFromStationName2.Text = blanker.Stations[1].FromStation.Name;
 
-            this.simpleClampUC1.Update(blanker.Stations[0]);
-            this.simpleClampUC2.Update(blanker.Stations[1]);
+            this.simpleClampUC2.Update(blanker.Stations[0]);
+            this.simpleClampUC1.Update(blanker.Stations[1]);
         }
     }
 }

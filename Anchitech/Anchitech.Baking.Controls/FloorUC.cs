@@ -373,7 +373,7 @@ namespace Anchitech.Baking.Controls
 
         private void TlpFloor_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
         {
-
+            if (this.floor == null) return;
             Graphics g = e.Graphics;
             Rectangle r = e.CellBounds;
             Brush brush = Brushes.White;

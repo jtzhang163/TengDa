@@ -2418,6 +2418,34 @@ namespace Anchitech.Baking
             "%01#WCP1R02121**"
         };
 
+        public string[] StartBakingStrs = new string[3]
+        {
+            "%01#WCP1R06011**",
+            "%01#WCP1R06111**",
+            "%01#WCP1R06211**"
+        };
+
+        public string[] StopBakingStrs = new string[3]
+        {
+            "%01#WCP1R06010**",
+            "%01#WCP1R06110**",
+            "%01#WCP1R06210**"
+        };
+
+        public string[] LoadVacuumStrs = new string[3]
+        {
+            "%01#WCP1R06081**",
+            "%01#WCP1R06181**",
+            "%01#WCP1R06281**"
+        };
+
+        public string[] UnloadVacuumStrs = new string[3]
+        {
+            "%01#WCP1R06091**",
+            "%01#WCP1R06191**",
+            "%01#WCP1R06291**"
+        };
+
         public string[] GetRuntimeStrs = new string[3]
         {
             "%01#RDD0501805018**",
