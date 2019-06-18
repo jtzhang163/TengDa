@@ -70,7 +70,7 @@ namespace Anchitech.Baking.Controls
                 else
                 {
 
-                    var ss = new List<Station>() { oven.ClampOri == ClampOri.B ? floor.Stations[0] : floor.Stations[1], oven.ClampOri == ClampOri.B ? floor.Stations[1] : floor.Stations[0] };
+                    var ss = new List<Station>() { oven.ClampOri == ClampOri.A ? floor.Stations[0] : floor.Stations[1], oven.ClampOri == ClampOri.A ? floor.Stations[1] : floor.Stations[0] };
                     var strs = new List<string>() { "", "" };
 
                     for (var x = 0; x < ss.Count; x++)
@@ -116,8 +116,8 @@ namespace Anchitech.Baking.Controls
             {
                 lbStatus.Text =
                     string.Format("{0} {1}",
-                    (oven.ClampOri == ClampOri.B ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadRight(8),
-                    (oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadLeft(8)
+                    (oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadRight(8),
+                    (oven.ClampOri == ClampOri.B ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadLeft(8)
                     );
             }
 
@@ -380,7 +380,7 @@ namespace Anchitech.Baking.Controls
 
             for (int k = 0; k < this.floor.Stations.Count; k++)
             {
-                if (e.Column == (this.oven.ClampOri == ClampOri.B ? k * 2 : this.floor.Stations.Count - k * 2))
+                if (e.Column == (this.oven.ClampOri == ClampOri.A ? k * 2 : this.floor.Stations.Count - k * 2))
                 {
 
                     Station station = this.floor.Stations[k];

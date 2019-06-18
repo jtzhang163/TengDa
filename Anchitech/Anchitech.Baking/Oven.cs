@@ -554,7 +554,7 @@ namespace Anchitech.Baking
                     #region 获取门状态
 
                     output = string.Empty;
-                    if (!this.Plc.GetInfo(false, "%01#RCP6R0680R0681R0682R0683R0684R0685**", out output, out msg))
+                    if (!this.Plc.GetInfo(false, "%01#RCP6R0680R0681R0682R0683R0685R0686**", out output, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;

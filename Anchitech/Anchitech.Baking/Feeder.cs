@@ -453,6 +453,25 @@ namespace Anchitech.Baking
                         Current.BatteryScaner.CanScan = false;
                     }
 
+                    switch (iOut[3])
+                    {
+                        case 1: this.TriLamp = TriLamp.Green; break;
+                        case 2: this.TriLamp = TriLamp.Yellow; break;
+                        case 3: this.TriLamp = TriLamp.Red; break;
+                        default: this.TriLamp = TriLamp.Unknown; break;
+                    }
+
+                    if (!this.Plc.GetInfo(false, "%01#RCP3R0212R0211R0210**", out output, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+                    if (output.Substring(3, 1) != "$")
+                    {
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RCP3R0212R0211R0210**", output));
+                        return false;
+                    }
 
                     for (int j = 0; j < this.Stations.Count; j++)
                     {
@@ -463,8 +482,16 @@ namespace Anchitech.Baking
                                 this.Stations[j].Status = StationStatus.可放;
                                 break;
                             case 2:
-                                this.Stations[j].ClampStatus = this.Stations[j].ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
-                                //this.Stations[j].Status = StationStatus.工作中;
+
+                                if(output.Substring(6 + j, 1) == "1")
+                                {
+                                    this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                                }
+                                else
+                                {
+                                    this.Stations[j].ClampStatus = ClampStatus.空夹具;
+                                }
+                                
                                 break;
                             case 4:
                                 this.Stations[j].ClampStatus = ClampStatus.异常;
@@ -491,15 +518,6 @@ namespace Anchitech.Baking
                         }
                         //this.Stations[j].IsClampScanReady = iOut[j + 4] == 1;
                     }
-
-                    switch (iOut[3])
-                    {
-                        case 1: this.TriLamp = TriLamp.Green; break;
-                        case 2: this.TriLamp = TriLamp.Yellow; break;
-                        case 3: this.TriLamp = TriLamp.Red; break;
-                        default: this.TriLamp = TriLamp.Unknown; break;
-                    }
-
 
                     //两台上料机信号传递（上料机器人和搬运机器人干涉防呆）
                     //if (Current.feeders.Count(f => f.IsAlive) == Current.feeders.Count)
