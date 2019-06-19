@@ -82,12 +82,11 @@ namespace Anchitech.Baking.Controls
             // 
             // simpleClampUC1
             // 
-            this.simpleClampUC1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.simpleClampUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.simpleClampUC1.Location = new System.Drawing.Point(7, 7);
-            this.simpleClampUC1.Margin = new System.Windows.Forms.Padding(5);
+            this.simpleClampUC1.Location = new System.Drawing.Point(2, 2);
+            this.simpleClampUC1.Margin = new System.Windows.Forms.Padding(0);
             this.simpleClampUC1.Name = "simpleClampUC1";
-            this.simpleClampUC1.Size = new System.Drawing.Size(103, 55);
+            this.simpleClampUC1.Size = new System.Drawing.Size(113, 65);
             this.simpleClampUC1.TabIndex = 0;
             // 
             // TransferUC

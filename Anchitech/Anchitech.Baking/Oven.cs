@@ -604,7 +604,7 @@ namespace Anchitech.Baking
                         {
                             if (output.Substring(6 + j * 2 + k, 1) == "1")
                             {
-                                if (this.Floors[j].Stations[k].Id == Current.Task.FromStationId && Current.Task.Status == TaskStatus.正取)
+                                if (this.Floors[j].Stations[k].Id == Current.Task.FromStationId || this.Floors[j].Stations[k].Id == Current.Task.ToStationId)
                                 {
 
                                 }

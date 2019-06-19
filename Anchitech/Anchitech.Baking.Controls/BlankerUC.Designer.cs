@@ -34,10 +34,10 @@
             this.pbTriLamp = new System.Windows.Forms.PictureBox();
             this.lbName = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.simpleClampUC2 = new Anchitech.Baking.Controls.SimpleClampUC();
-            this.lbStationName2 = new System.Windows.Forms.Label();
-            this.lbStationName1 = new System.Windows.Forms.Label();
             this.simpleClampUC1 = new Anchitech.Baking.Controls.SimpleClampUC();
+            this.lbStationName1 = new System.Windows.Forms.Label();
+            this.lbStationName2 = new System.Windows.Forms.Label();
+            this.simpleClampUC2 = new Anchitech.Baking.Controls.SimpleClampUC();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTriLamp)).BeginInit();
@@ -119,26 +119,14 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(135, 237);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
-            // simpleClampUC2
+            // simpleClampUC1
             // 
-            this.simpleClampUC2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.simpleClampUC2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.simpleClampUC2.Location = new System.Drawing.Point(7, 29);
-            this.simpleClampUC2.Margin = new System.Windows.Forms.Padding(5);
-            this.simpleClampUC2.Name = "simpleClampUC2";
-            this.simpleClampUC2.Size = new System.Drawing.Size(121, 83);
-            this.simpleClampUC2.TabIndex = 15;
-            // 
-            // lbStationName2
-            // 
-            this.lbStationName2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbStationName2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbStationName2.Location = new System.Drawing.Point(5, 2);
-            this.lbStationName2.Name = "lbStationName2";
-            this.lbStationName2.Size = new System.Drawing.Size(125, 20);
-            this.lbStationName2.TabIndex = 16;
-            this.lbStationName2.Text = "17#下料位";
-            this.lbStationName2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.simpleClampUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.simpleClampUC1.Location = new System.Drawing.Point(2, 141);
+            this.simpleClampUC1.Margin = new System.Windows.Forms.Padding(0);
+            this.simpleClampUC1.Name = "simpleClampUC1";
+            this.simpleClampUC1.Size = new System.Drawing.Size(131, 94);
+            this.simpleClampUC1.TabIndex = 18;
             // 
             // lbStationName1
             // 
@@ -151,15 +139,25 @@
             this.lbStationName1.Text = "17#下料位";
             this.lbStationName1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // simpleClampUC1
+            // lbStationName2
             // 
-            this.simpleClampUC1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.simpleClampUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.simpleClampUC1.Location = new System.Drawing.Point(7, 146);
-            this.simpleClampUC1.Margin = new System.Windows.Forms.Padding(5);
-            this.simpleClampUC1.Name = "simpleClampUC1";
-            this.simpleClampUC1.Size = new System.Drawing.Size(121, 84);
-            this.simpleClampUC1.TabIndex = 18;
+            this.lbStationName2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbStationName2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbStationName2.Location = new System.Drawing.Point(5, 2);
+            this.lbStationName2.Name = "lbStationName2";
+            this.lbStationName2.Size = new System.Drawing.Size(125, 20);
+            this.lbStationName2.TabIndex = 16;
+            this.lbStationName2.Text = "17#下料位";
+            this.lbStationName2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // simpleClampUC2
+            // 
+            this.simpleClampUC2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.simpleClampUC2.Location = new System.Drawing.Point(2, 24);
+            this.simpleClampUC2.Margin = new System.Windows.Forms.Padding(0);
+            this.simpleClampUC2.Name = "simpleClampUC2";
+            this.simpleClampUC2.Size = new System.Drawing.Size(131, 93);
+            this.simpleClampUC2.TabIndex = 15;
             // 
             // BlankerUC
             // 

@@ -31,9 +31,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbToStation = new System.Windows.Forms.Label();
             this.lbFromStation = new System.Windows.Forms.Label();
-            this.state7 = new System.Windows.Forms.Label();
-            this.state6 = new System.Windows.Forms.Label();
-            this.state5 = new System.Windows.Forms.Label();
             this.state4 = new System.Windows.Forms.Label();
             this.state3 = new System.Windows.Forms.Label();
             this.state2 = new System.Windows.Forms.Label();
@@ -48,7 +45,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 14;
+            this.tableLayoutPanel1.ColumnCount = 11;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
@@ -60,14 +57,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28572F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28572F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28572F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28572F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28572F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28572F));
             this.tableLayoutPanel1.Controls.Add(this.lbToStation, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbFromStation, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.state7, 13, 0);
-            this.tableLayoutPanel1.Controls.Add(this.state6, 12, 0);
-            this.tableLayoutPanel1.Controls.Add(this.state5, 11, 0);
             this.tableLayoutPanel1.Controls.Add(this.state4, 10, 0);
             this.tableLayoutPanel1.Controls.Add(this.state3, 9, 0);
             this.tableLayoutPanel1.Controls.Add(this.state2, 8, 0);
@@ -111,60 +102,18 @@
             this.lbFromStation.TabIndex = 13;
             this.lbFromStation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // state7
-            // 
-            this.state7.AutoSize = true;
-            this.state7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.state7.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.state7.ForeColor = System.Drawing.Color.DarkGreen;
-            this.state7.Location = new System.Drawing.Point(940, 0);
-            this.state7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.state7.Name = "state7";
-            this.state7.Size = new System.Drawing.Size(48, 30);
-            this.state7.TabIndex = 8;
-            this.state7.Text = "完成";
-            this.state7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // state6
-            // 
-            this.state6.AutoSize = true;
-            this.state6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.state6.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.state6.ForeColor = System.Drawing.Color.DarkGreen;
-            this.state6.Location = new System.Drawing.Point(892, 0);
-            this.state6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.state6.Name = "state6";
-            this.state6.Size = new System.Drawing.Size(44, 30);
-            this.state6.TabIndex = 7;
-            this.state6.Text = "正放";
-            this.state6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // state5
-            // 
-            this.state5.AutoSize = true;
-            this.state5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.state5.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.state5.ForeColor = System.Drawing.Color.DarkGreen;
-            this.state5.Location = new System.Drawing.Point(844, 0);
-            this.state5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.state5.Name = "state5";
-            this.state5.Size = new System.Drawing.Size(44, 30);
-            this.state5.TabIndex = 6;
-            this.state5.Text = "可放";
-            this.state5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // state4
             // 
             this.state4.AutoSize = true;
             this.state4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.state4.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.state4.ForeColor = System.Drawing.Color.DarkGreen;
-            this.state4.Location = new System.Drawing.Point(796, 0);
+            this.state4.Location = new System.Drawing.Point(906, 0);
             this.state4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.state4.Name = "state4";
-            this.state4.Size = new System.Drawing.Size(44, 30);
+            this.state4.Size = new System.Drawing.Size(82, 30);
             this.state4.TabIndex = 5;
-            this.state4.Text = "取完";
+            this.state4.Text = "完成";
             this.state4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // state3
@@ -173,12 +122,12 @@
             this.state3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.state3.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.state3.ForeColor = System.Drawing.Color.DarkGreen;
-            this.state3.Location = new System.Drawing.Point(748, 0);
+            this.state3.Location = new System.Drawing.Point(821, 0);
             this.state3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.state3.Name = "state3";
-            this.state3.Size = new System.Drawing.Size(44, 30);
+            this.state3.Size = new System.Drawing.Size(81, 30);
             this.state3.TabIndex = 4;
-            this.state3.Text = "正取";
+            this.state3.Text = "取放中";
             this.state3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // state2
@@ -187,12 +136,12 @@
             this.state2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.state2.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.state2.ForeColor = System.Drawing.Color.DarkGreen;
-            this.state2.Location = new System.Drawing.Point(700, 0);
+            this.state2.Location = new System.Drawing.Point(736, 0);
             this.state2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.state2.Name = "state2";
-            this.state2.Size = new System.Drawing.Size(44, 30);
+            this.state2.Size = new System.Drawing.Size(81, 30);
             this.state2.TabIndex = 3;
-            this.state2.Text = "可取";
+            this.state2.Text = "可取放";
             this.state2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // state1
@@ -204,7 +153,7 @@
             this.state1.Location = new System.Drawing.Point(652, 0);
             this.state1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.state1.Name = "state1";
-            this.state1.Size = new System.Drawing.Size(44, 30);
+            this.state1.Size = new System.Drawing.Size(80, 30);
             this.state1.TabIndex = 2;
             this.state1.Text = "就绪";
             this.state1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -292,9 +241,6 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label state7;
-        private System.Windows.Forms.Label state6;
-        private System.Windows.Forms.Label state5;
         private System.Windows.Forms.Label state4;
         private System.Windows.Forms.Label state3;
         private System.Windows.Forms.Label state2;

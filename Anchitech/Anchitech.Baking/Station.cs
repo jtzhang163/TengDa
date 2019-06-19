@@ -320,10 +320,10 @@ namespace Anchitech.Baking
 
         private string robotValues = string.Empty;
         /// <summary>
-        /// 机器人取放位置编码(取编码,放编码)
+        /// 机器人取放编码
         /// </summary>
-        [ReadOnly(true), DisplayName("机器人取放位置编码")]
-        [Description("机器人取放位置编码(取编码,放编码)")]
+        [ReadOnly(true), DisplayName("机器人取放编码")]
+        [Description("机器人取放编码(取编码,放编码)")]
         public string RobotValues
         {
             get { return robotValues; }
@@ -337,29 +337,9 @@ namespace Anchitech.Baking
             }
         }
 
-        /// <summary>
-        /// 机器人取盘位置编码
-        /// </summary>
-        [ReadOnly(true), DisplayName("机器人取盘位置编码")]
-        public int RobotGetCode
-        {
-            get
-            {
-                return TengDa._Convert.StrToInt(RobotValues.Split(',')[0], 0);
-            }
-        }
-
-        /// <summary>
-        /// 机器人放盘位置编码
-        /// </summary>
-        [ReadOnly(true), DisplayName("机器人放盘位置编码")]
-        public int RobotPutCode
-        {
-            get
-            {
-                return TengDa._Convert.StrToInt(RobotValues.Split(',')[1], 0);
-            }
-        }
+        public string RobotValue1 { get { return RobotValues.Split(',')[0]; } }
+        public string RobotValue2 { get { return RobotValues.Split(',')[1]; } }
+        public string RobotValue3 { get { return RobotValues.Split(',')[2]; } }
 
         public FloorStatus PreFloorStatus;
 

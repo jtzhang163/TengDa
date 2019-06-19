@@ -592,9 +592,6 @@ namespace Anchitech.Baking.Dispatcher
             if (Current.Robot.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Robot) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "连接成功"); } }
             else { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "未连接"); }
 
-            //机器人急停按钮显示逻辑
-            tlpEmergencyStop.Visible = Current.Robot.IsAlive && TengDa.WF.Current.IsRunning && TengDa.WF.Current.user.Id > 0;
-
             panelRobot.Margin = new Padding(Current.Robot.Position + 3, 3, 0, 3);
 
             #endregion
@@ -784,11 +781,11 @@ namespace Anchitech.Baking.Dispatcher
                     }
                     if (Current.Robot.IsAlive)
                     {
-                        if (!Current.Robot.IsExecuting)
-                        {
-                            Tip.Alert("机器人尚未成功启动，不能切换自动");
-                            return;
-                        }
+                        //if (!Current.Robot.IsExecuting)
+                        //{
+                        //    Tip.Alert("机器人尚未成功启动，不能切换自动");
+                        //    return;
+                        //}
 
                         if (Current.Robot.ClampStatus != ClampStatus.无夹具)
                         {
@@ -862,6 +859,8 @@ namespace Anchitech.Baking.Dispatcher
             Current.Task.StartTime = TengDa.Common.DefaultTime;
             Current.Task.FromClampStatus = ClampStatus.未知;
             Current.Task.Status = TaskStatus.完成;
+            Current.Robot.IsMoving = false;
+            Current.Robot.IsAlreadySendCmd = false;
         }
 
         private bool PlcConnect()
@@ -939,6 +938,7 @@ namespace Anchitech.Baking.Dispatcher
                     return false;
                 }
                 this.machinesStatusUC1.SetStatusInfo(Current.Robot, "连接成功");
+                this.machinesStatusUC1.SetLampColor(Current.Robot, Color.Green);
             }
 
             return true;
@@ -1756,12 +1756,12 @@ namespace Anchitech.Baking.Dispatcher
                                 Current.ovens[i].CloseDoor(j);
                             }
 
-                            //从某一炉子取完盘后，立即关门，无需等到整个任务结束
-                            if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
-                                && Current.Robot.IsAlive && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
-                            {
-                                Current.ovens[i].CloseDoor(j);
-                            }
+                            ////从某一炉子取完盘后，立即关门，无需等到整个任务结束
+                            //if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
+                            //    && Current.Robot.IsAlive && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
+                            //{
+                            //    Current.ovens[i].CloseDoor(j);
+                            //}
 
                             //开始烘烤
                             if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤) == floor.Stations.Count)
@@ -1863,12 +1863,12 @@ namespace Anchitech.Baking.Dispatcher
                             station.CloseDoor();
                         }
 
-                        //从某一炉子取完盘后，立即关门，无需等到整个任务结束
-                        if (station.DoorStatus == DoorStatus.打开 && station.Id == Current.Task.FromStationId && station.IsAlive
-                            && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
-                        {
-                            station.CloseDoor();
-                        }
+                        ////从某一炉子取完盘后，立即关门，无需等到整个任务结束
+                        //if (station.DoorStatus == DoorStatus.打开 && station.Id == Current.Task.FromStationId && station.IsAlive
+                        //    && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
+                        //{
+                        //    station.CloseDoor();
+                        //}
                     }
                     
                 }
@@ -3689,369 +3689,6 @@ namespace Anchitech.Baking.Dispatcher
         }
 
         #endregion
-
-        #region 机器人手动操作
-
-        private void cmsRobot_Opening(object sender, CancelEventArgs e)
-        {
-            this.tsmRobotPause.Enabled = Current.Robot.IsAlive && !Current.Robot.IsPausing;
-            this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing;
-            this.tsmManuGetStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && (Current.Task.Status == TaskStatus.正放 || Current.Robot.IsStarting) && Current.Task.Status != TaskStatus.可取 && Current.Task.Status != TaskStatus.正取;
-            this.tsmManuPutStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.Robot.IsAlive && Current.Robot.ClampStatus != ClampStatus.无夹具 && (Current.Task.Status == TaskStatus.正取 || Current.Robot.IsStarting) && Current.Task.Status != TaskStatus.可放 && Current.Task.Status != TaskStatus.正放;
-        }
-
-        private void tsmRobotStart_Click(object sender, EventArgs e)
-        {
-            var msg = string.Empty;
-            if (Current.Robot.Start(out msg))
-            {
-                Tip.Alert(Current.Robot.Name + "启动成功！");
-            }
-            else
-            {
-                Error.Alert("启动失败！原因：" + msg);
-            }
-        }
-
-        private void tsmRobotPause_Click(object sender, EventArgs e)
-        {
-            var msg = string.Empty;
-            if (Current.Robot.Pause(out msg))
-            {
-                Tip.Alert(Current.Robot.Name + "暂停运行成功！");
-            }
-            else
-            {
-                Error.Alert(msg);
-            }
-        }
-
-        private void tsmRobotRestart_Click(object sender, EventArgs e)
-        {
-            var msg = string.Empty;
-            if (Current.Robot.Restart(out msg))
-            {
-                Tip.Alert(Current.Robot.Name + "继续运行成功！");
-            }
-            else
-            {
-                Error.Alert(msg);
-            }
-        }
-
-        private void pbEmergencyStop_Click(object sender, EventArgs e)
-        {
-            var msg = string.Empty;
-            if (Current.Robot.Stop(out msg))
-            {
-                Tip.Alert(Current.Robot.Name + "急停成功！");
-            }
-            else
-            {
-                Error.Alert(msg);
-            }
-        }
-
-        private void tsmManuStation_DropDownOpening(object sender, EventArgs e)
-        {
-            string ManuFlag = string.Empty;
-            bool isGet = false, isPut = false; 
-
-            if ((sender as ToolStripItem).Name.Contains("Get"))
-            {
-                isGet = true;
-                ManuFlag = "Get";
-            }
-            else if ((sender as ToolStripItem).Name.Contains("Put"))
-            {
-                isPut = true;
-                ManuFlag = "Put";
-            }
-
-            List<ToolStripItem> tsiStations = new List<ToolStripItem>();
-
-
-            ToolStripMenuItem tsmiFeederStation = new ToolStripMenuItem();
-            List<ToolStripItem> tsiFeederStations = new List<ToolStripItem>();
-            tsmiFeederStation.Text = Current.Feeder.Name;
-
-            var isFeederEnabled = false;
-
-            Current.Feeder.Stations.ForEach(s =>
-            {
-                ToolStripMenuItem tsiStation = new ToolStripMenuItem();
-                tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
-                tsiStation.Text = s.Name;
-                tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
-
-                tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
-                tsiStation.ForeColor = GetForeColor(ManuFlag, s);
-
-                if (tsiStation.Enabled) isFeederEnabled = true;
-
-                tsmiFeederStation.DropDownItems.Add(tsiStation);
-            });
-
-            tsmiFeederStation.Enabled = isFeederEnabled;
-            tsiStations.Add(tsmiFeederStation);
-            
-
-            for (int i = 0; i < OvenCount; i++)
-            {
-                ToolStripMenuItem tsmiOvenStation = new ToolStripMenuItem();
-                List<ToolStripItem> tsiOvenStations = new List<ToolStripItem>();
-                tsmiOvenStation.Text = Current.ovens[i].Name;
-
-                var isEnabled = false;
-
-                Current.ovens[i].Floors.ForEach(f => f.Stations.ForEach(s =>
-                {
-                    ToolStripMenuItem tsiStation = new ToolStripMenuItem();
-                    tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
-                    tsiStation.Text = s.Name;
-                    tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
-
-                    tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
-                    tsiStation.ForeColor = GetForeColor(ManuFlag, s);
-
-                    if (tsiStation.Enabled) isEnabled = true;
-
-                    tsmiOvenStation.DropDownItems.Add(tsiStation);
-                }));
-
-                tsmiOvenStation.Enabled = isEnabled;
-                tsiStations.Add(tsmiOvenStation);
-            }
-
-
-            ToolStripMenuItem tsmiBlankerStation = new ToolStripMenuItem();
-            List<ToolStripItem> tsiBlankerStations = new List<ToolStripItem>();
-            tsmiBlankerStation.Text = Current.Blanker.Name;
-
-            var isBlankerEnabled = false;
-
-            Current.Blanker.Stations.ForEach(s =>
-            {
-                ToolStripMenuItem tsiStation = new ToolStripMenuItem();
-                tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
-                tsiStation.Text = s.Name;
-                tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
-                tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
-                tsiStation.ForeColor = GetForeColor(ManuFlag, s);
-
-                if (tsiStation.Enabled) isBlankerEnabled = true;
-
-                tsmiBlankerStation.DropDownItems.Add(tsiStation);
-            });
-
-            tsmiBlankerStation.Enabled = isBlankerEnabled;
-            tsiStations.Add(tsmiBlankerStation);
-            
-
-            ToolStripMenuItem tsmiCacheStation = new ToolStripMenuItem();
-            List<ToolStripItem> tsiCacheStations = new List<ToolStripItem>();
-            tsmiCacheStation.Text = Current.Cacher.Name;
-
-            var isCacheEnabled = false;
-
-            Current.Cacher.Stations.ForEach(s =>
-            {
-                ToolStripMenuItem tsiStation = new ToolStripMenuItem();
-                tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
-                tsiStation.Text = s.Name;
-                tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
-
-                tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
-                tsiStation.ForeColor = GetForeColor(ManuFlag, s);
-
-                if (tsiStation.Enabled) isCacheEnabled = true;
-                tsmiCacheStation.DropDownItems.Add(tsiStation);
-            });
-
-            tsmiCacheStation.Enabled = isCacheEnabled;
-            tsiStations.Add(tsmiCacheStation);
-
-            ToolStripMenuItem tsmiRotaterStation = new ToolStripMenuItem();
-            tsmiRotaterStation.Text = Current.Transfer.Station.Name;
-            tsmiRotaterStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, Current.Transfer.Station.Name);
-            tsmiRotaterStation.Click += new System.EventHandler(this.tsmManuStation_Click);
-
-            tsmiRotaterStation.Enabled = GetTsiEnabled(ManuFlag, Current.Transfer.Station);
-            tsmiRotaterStation.ForeColor = GetForeColor(ManuFlag, Current.Transfer.Station);
-
-            tsiStations.Add(tsmiRotaterStation);
-
-            if (isGet)
-            {
-                this.tsmManuGetStation.DropDownItems.Clear();
-                this.tsmManuGetStation.DropDownItems.AddRange(tsiStations.ToArray());
-            }
-            else if (isPut)
-            {
-                this.tsmManuPutStation.DropDownItems.Clear();
-                this.tsmManuPutStation.DropDownItems.AddRange(tsiStations.ToArray());
-            }
-
-        }
-
-        /// <summary>
-        /// 手动时取放盘的按钮变灰防呆
-        /// </summary>
-        /// <param name="manuFlag"></param>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        private bool GetTsiEnabled(string manuFlag, Station s)
-        {
-            var result = true;
-            if (manuFlag == "Get")
-            {
-                result = s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.ClampStatus != ClampStatus.无夹具;
-            }
-            else if (manuFlag == "Put")
-            {
-                result = s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.ClampStatus == ClampStatus.无夹具;
-            }
-            return result;
-        }
-
-        private Color GetForeColor(string manuFlag, Station s)
-        {
-            var result = Color.Red;
-            if (manuFlag == "Get" && s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.Status == StationStatus.可取)
-            {
-                result = Color.Black;
-            }
-            else if (manuFlag == "Put" && s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.Status == StationStatus.可放)
-            {
-                result = Color.Black;
-            }
-            return result;
-        }
-
-        private void tsmManuStation_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-                if (Current.TaskMode == TaskMode.自动任务)
-                {
-                    Tip.Alert("请切换至手动任务模式！");
-                    return;
-                }
-
-                if (!TengDa.WF.Current.IsTerminalInitFinished)
-                {
-                    Tip.Alert("烤箱信息初始化尚未完成，请稍后！");
-                    return;
-                }
-
-                bool isGet = false, isPut = false; // (sender as ToolStripItem).Name.Contains("Get");
-
-                if ((sender as ToolStripItem).Name.Contains("Get"))
-                {
-                    isGet = true;
-                }
-                else if ((sender as ToolStripItem).Name.Contains("Put"))
-                {
-                    isPut = true;
-                }
-
-                Station station = Station.StationList.First(s => s.Name == (sender as ToolStripItem).Name.Split('_')[2]);
-
-                if (isGet)
-                {
-                    if (station.ClampStatus == ClampStatus.无夹具)
-                    {
-                        Tip.Alert("该位置无夹具，不能取盘！");
-                        return;
-                    }
-
-                    if (Current.Robot.ClampStatus != ClampStatus.无夹具)
-                    {
-                        Tip.Alert(Current.Robot.Name + "上有夹具，不能取盘！");
-                        return;
-                    }
-
-                    if (station.DoorStatus != DoorStatus.打开)
-                    {
-                        Tip.Alert(station.Name + "门未打开，不能取盘！");
-                        return;
-                    }
-
-                    Current.Task.StartTime = DateTime.Now;
-                    Current.Task.TaskId = -1;
-                    Current.Task.NextFromStationId = station.Id;
-                }
-                else if (isPut)
-                {
-
-                    //if (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取)
-                    //{
-                    //    Tip.Alert("取盘任务尚未完成！");
-                    //    return;
-                    //}
-
-                    if (station.ClampStatus != ClampStatus.无夹具)
-                    {
-                        Tip.Alert("该位置有夹具，不能放盘！");
-                        return;
-                    }
-
-                    if (Current.Task.FromStationId > 0 && station.ClampOri != Current.Task.FromStation.ClampOri)
-                    {
-                        Tip.Alert("夹具方向相反，不能放盘！");
-                        return;
-                    }
-
-                    if (Current.Task.FromClampStatus == ClampStatus.满夹具 && station.GetPutType == GetPutType.上料机)
-                    {
-                        Tip.Alert(station.Name + "不允许放满夹具！");
-                        return;
-                    }
-
-                    if (Current.Robot.ClampStatus == ClampStatus.无夹具)
-                    {
-                        Tip.Alert(Current.Robot.Name + "上无夹具，不能放盘！");
-                        return;
-                    }
-
-                    if (station.DoorStatus != DoorStatus.打开)
-                    {
-                        Tip.Alert(station.Name + "门未打开，不能放盘！");
-                        return;
-                    }
-
-                    if (Current.Task.StartTime == TengDa.Common.DefaultTime)
-                    {
-                        Current.Task.StartTime = DateTime.Now;
-                    }
-
-                    Current.Task.TaskId = -1;
-                    Current.Task.NextToStationId = station.Id;
-
-                    if (Current.Task.Status != TaskStatus.正取 && Current.Task.Status != TaskStatus.取完)
-                    {
-                        Current.Task.Status = TaskStatus.取完;
-                    }
-
-                    if (Current.Task.FromClampStatus != ClampStatus.空夹具 && Current.Task.FromClampStatus != ClampStatus.满夹具)
-                    {
-                        Current.Task.FromClampStatus = Current.Robot.ClampStatus;
-                    }
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Error.Alert(ex);
-            }
-
-        }
-
-
-        #endregion
-
 
         private void btnDebug_Click(object sende, EventArgs e)
         {

@@ -32,7 +32,7 @@ namespace Anchitech.Baking.Controls
 
             bool canChangeVisible = DateTime.Now.Second % 3 == 1;
 
-            if (Current.Feeder.IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
+            if (Current.Feeder.IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId/* && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取)*/)
             {
                 this.Visible = false;
             }

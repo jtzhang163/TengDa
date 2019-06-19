@@ -12,7 +12,7 @@ namespace Anchitech.Baking.Controls
 {
     public partial class TaskInfo : UserControl
     {
-        Label[] state = new Label[7];
+        Label[] state = new Label[4];
 
         public TaskInfo()
         {

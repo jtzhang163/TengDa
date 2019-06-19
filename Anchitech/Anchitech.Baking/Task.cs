@@ -408,6 +408,7 @@ namespace Anchitech.Baking
                         CurrentTask.ToSwitchManuTaskMode = false;
                         return;
                     }
+                    Current.Robot.IsAlreadySendCmd = false;
                     ///任务遍历
                     foreach (Task task in Task.CanGetPutTaskList.Where(t => t.IsEnable))
                     {
@@ -429,56 +430,56 @@ namespace Anchitech.Baking
                             .OrderBy(s => s.GetPutTime)
                             .ToList();
 
-                        //入炉前逻辑
-                        //根据水分状态判断是否可入烤箱
-                        if (task.FromType == GetPutType.上料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
-                        {
-                            if (task.FromSampleInfo == SampleInfo.有样品)
-                            {
-                                toStations = toStations.Where(s => s.GetLabStation().SampleInfo != SampleInfo.有样品).ToList();
-                            }
-                        }
+                        ////入炉前逻辑
+                        ////根据水分状态判断是否可入烤箱
+                        //if (task.FromType == GetPutType.上料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
+                        //{
+                        //    if (task.FromSampleInfo == SampleInfo.有样品)
+                        //    {
+                        //        toStations = toStations.Where(s => s.GetLabStation().SampleInfo != SampleInfo.有样品).ToList();
+                        //    }
+                        //}
 
-                        //水分NG烤箱空位要回炉，无法上料
-                        if (task.FromType == GetPutType.上料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
-                        {
-                            toStations = toStations.Where(s => s.GetLabStation().SampleStatus != SampleStatus.水分NG).ToList();
-                        }
+                        ////水分NG烤箱空位要回炉，无法上料
+                        //if (task.FromType == GetPutType.上料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
+                        //{
+                        //    toStations = toStations.Where(s => s.GetLabStation().SampleStatus != SampleStatus.水分NG).ToList();
+                        //}
 
-                        //测试水分出烤箱前逻辑
-                        if (task.FromType == GetPutType.烤箱 && task.ToType == GetPutType.下料机 && task.FromClampStatus == ClampStatus.满夹具)
-                        {
-                            if (task.FromSampleInfo == SampleInfo.有样品 && task.FromSampleStatus == SampleStatus.待结果)
-                            {
-                                toStations = toStations.Where(s => s.GetBlanker().CanTestWatContent).ToList();
-                            }
-                        }
+                        ////测试水分出烤箱前逻辑
+                        //if (task.FromType == GetPutType.烤箱 && task.ToType == GetPutType.下料机 && task.FromClampStatus == ClampStatus.满夹具)
+                        //{
+                        //    if (task.FromSampleInfo == SampleInfo.有样品 && task.FromSampleStatus == SampleStatus.待结果)
+                        //    {
+                        //        toStations = toStations.Where(s => s.GetBlanker().CanTestWatContent).ToList();
+                        //    }
+                        //}
 
-                        //下料取完水分返回烤箱逻辑
-                        if (task.FromType == GetPutType.下料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
-                        {
-                            var fromStationsTmp = new List<Station>();
-                            var toStationsTmp = new List<Station>();
+                        ////下料取完水分返回烤箱逻辑
+                        //if (task.FromType == GetPutType.下料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
+                        //{
+                        //    var fromStationsTmp = new List<Station>();
+                        //    var toStationsTmp = new List<Station>();
 
-                            var isAdded = false;
-                            foreach (var fromStation in fromStations)
-                            {
-                                foreach (var toStation in toStations)
-                                {
-                                    if (fromStation.FromStationId == toStation.Id && fromStation.SampleInfo == task.FromSampleInfo)
-                                    {
-                                        if (!isAdded)
-                                        {
-                                            fromStationsTmp.Add(fromStation);
-                                            toStationsTmp.Add(toStation);
-                                            isAdded = true;
-                                        }
-                                    }
-                                }
-                            }
-                            fromStations = fromStationsTmp;
-                            toStations = toStationsTmp;
-                        }
+                        //    var isAdded = false;
+                        //    foreach (var fromStation in fromStations)
+                        //    {
+                        //        foreach (var toStation in toStations)
+                        //        {
+                        //            if (fromStation.FromStationId == toStation.Id && fromStation.SampleInfo == task.FromSampleInfo)
+                        //            {
+                        //                if (!isAdded)
+                        //                {
+                        //                    fromStationsTmp.Add(fromStation);
+                        //                    toStationsTmp.Add(toStation);
+                        //                    isAdded = true;
+                        //                }
+                        //            }
+                        //        }
+                        //    }
+                        //    fromStations = fromStationsTmp;
+                        //    toStations = toStationsTmp;
+                        //}
 
 
                         if (fromStations.Count > 0 && toStations.Count > 0)
@@ -535,84 +536,42 @@ namespace Anchitech.Baking
                         {
                             Current.Task.FromStation.OpenDoor();
                         }
-
-                        if (Current.Task.FromStation.DoorStatus == DoorStatus.打开)
-                        {
-                            Current.Task.Status = TaskStatus.可取;
-                        }
-
-                    }
-                    else if (Current.Task.Status == TaskStatus.可取 && Current.Task.FromStation != null)
-                    {
-
-                        byte pos = byte.Parse(Current.Task.FromStation.RobotValues.Split(',')[0]);
-                        if (Current.Robot.IsReadyGet)
-                        {
-                            if (Current.Robot.GetOrPut(pos))
-                            {
-
-                            }
-                        }
-
-                        if (Current.Robot.IsGettingOrPutting)
-                        {
-                            Current.Task.Status = TaskStatus.正取;
-                        }
-
-                    }
-                    else if (Current.Task.Status == TaskStatus.正取 && Current.Task.FromStation != null)
-                    {
-                        //提前把放盘位门打开
-                        if (Current.Task.ToStation.DoorStatus != DoorStatus.打开 && Current.Task.ToStation != null && Current.Task.ToStation.GetPutType == GetPutType.烤箱)
-                        {
-                            Current.Task.ToStation.OpenDoor();
-                        }
-
-                        if (Current.Robot.ClampStatus != ClampStatus.无夹具)
-                        {
-                            Current.Robot.ClampStatus = Current.Task.FromClampStatus;
-                            Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
-                            Current.Robot.ClampId = Current.Task.ClampId;
-                        }
-
-                        if (!Current.Robot.IsGettingOrPutting)
-                        {
-                            Current.Task.Status = TaskStatus.取完;
-                        }
-                    }
-                    else if (Current.Task.Status == TaskStatus.取完 && Current.Task.ToStation != null)
-                    {
                         if (Current.Task.ToStation.DoorStatus != DoorStatus.打开)
                         {
                             Current.Task.ToStation.OpenDoor();
                         }
-                        else
-                        {
-                            Current.Task.Status = TaskStatus.可放;
-                        }
-                    }
-                    else if (Current.Task.Status == TaskStatus.可放 && Current.Task.ToStation != null)
-                    {
 
-                        byte pos = byte.Parse(Current.Task.ToStation.RobotValues.Split(',')[1]);
-
-                        if (Current.Robot.IsReadyPut)
+                        if (Current.Task.FromStation.DoorStatus == DoorStatus.打开 && Current.Task.ToStation.DoorStatus == DoorStatus.打开)
                         {
-                            if (Current.Robot.GetOrPut(pos))
-                            {
-                               
-                            }
-                        }
-
-                        if (Current.Robot.IsGettingOrPutting)
-                        {
-                            Current.Task.Status = TaskStatus.正放;
+                            Current.Task.Status = TaskStatus.可取放;
                         }
 
                     }
-                    else if (Current.Task.Status == TaskStatus.正放 && Current.Task.ToStation != null)
+                    else if (Current.Task.Status == TaskStatus.可取放 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
                     {
-                        if (Current.Robot.ClampStatus == ClampStatus.无夹具)
+
+                        if (!Current.Robot.IsAlreadySendCmd)
+                        {
+                            LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送前。。"));
+
+                            Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation);
+
+                            LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送后。。"));
+
+                            Current.Robot.IsAlreadySendCmd = true;
+                        }
+
+                        if (Current.Robot.IsMoving)
+                        {
+                            Current.Task.Status = TaskStatus.取放中;
+                        }
+
+                    }
+                    else if (Current.Task.Status == TaskStatus.取放中 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
+                    {
+                        Current.Robot.ClampStatus = Current.Task.FromClampStatus;                           
+                        Current.Robot.ClampId = Current.Task.ClampId;
+                        if (!Current.Robot.IsMoving)
                         {
                             Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                             Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
@@ -640,7 +599,7 @@ namespace Anchitech.Baking
 
                             if (Current.Task.FromStation != null && Current.Task.FromStation != Current.Task.ToStation)
                             {
-                               // Current.Task.FromStation.ClampId = -1;
+                                // Current.Task.FromStation.ClampId = -1;
                             }
 
 
@@ -662,18 +621,7 @@ namespace Anchitech.Baking
                                     Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
                                 }
                             }
-
-                        }
-
-
-                        if (!Current.Robot.IsGettingOrPutting)
-                        {
-                            if (!TaskLog.Add(out msg))//记录
-                            {
-                                Error.Alert("保存搬运记录失败：" + msg);
-                            }
                             Current.Task.Status = TaskStatus.完成;
-                            Current.Task.ClampId = -1;
                         }
                     }
                 }
@@ -689,163 +637,125 @@ namespace Anchitech.Baking
                     //防止任务复位导致ClampId丢失
                     Current.Task.ToStationId = -1;
                     Current.Task.FromClampStatus = ClampStatus.未知;
+                    Current.Robot.IsAlreadySendCmd = false;
                     Current.Task.Status = TaskStatus.完成;
 
-                    if (Current.Task.NextFromStationId > 0)
+                    if (Current.Task.NextFromStationId > 0 && Current.Task.NextToStationId > 0)
                     {
                         Current.Task.FromStationId = Current.Task.NextFromStationId;
+                        Current.Task.ToStationId = Current.Task.NextToStationId;
                         Current.Task.ClampId = Current.Task.FromStation.ClampId;
                         Current.Task.NextFromStationId = -1;
+                        Current.Task.NextToStationId = -1;
                         Current.Task.FromClampStatus = Current.Task.FromStation.ClampStatus;
                         Current.Task.Status = TaskStatus.就绪;
                     }
                 }
-                else if (Current.Task.Status == TaskStatus.就绪 && Current.Task.FromStation != null)
-                {
-                    if (Current.Task.FromStation.DoorStatus != DoorStatus.打开)
-                    {
-                        Tip.Alert(Current.Task.FromStation.Name + "门未打开！");
-                    }
-
-                    if (Current.Task.FromStation.DoorStatus == DoorStatus.打开)
-                    {
-                        Current.Task.Status = TaskStatus.可取;
-                    }
-                }
-                else if (Current.Task.Status == TaskStatus.可取 && Current.Task.FromStation != null)
+                else if (Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
                 {
 
-                    byte pos = byte.Parse(Current.Task.FromStation.RobotValues.Split(',')[0]);
-                    if (Current.Robot.IsReadyGet)
+                    if (Current.Task.Status == TaskStatus.就绪)
                     {
-                        if (Current.Robot.GetOrPut(pos))
+                        if (Current.Task.FromStation.DoorStatus != DoorStatus.打开)
                         {
-
+                            Current.Task.FromStation.OpenDoor();
                         }
-                    }
-
-                    if (Current.Robot.IsGettingOrPutting)
-                    {
-                        Current.Task.Status = TaskStatus.正取;
-                    }
-                }
-                else if (Current.Task.Status == TaskStatus.正取 && Current.Task.FromStation != null)
-                {
-
-                    if (Current.Robot.ClampStatus != ClampStatus.无夹具)
-                    {
-                        Current.Robot.ClampStatus = Current.Task.FromClampStatus;
-                        Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
-                        Current.Robot.ClampId = Current.Task.ClampId;
-                    }
-
-                    if (!Current.Robot.IsGettingOrPutting)
-                    {
-                        Current.Task.Status = TaskStatus.取完;
-                    }
-                }
-                else if (Current.Task.Status == TaskStatus.取完)
-                {
-                    if (Current.Task.NextToStationId > 0)
-                    {
-                        Current.Task.ToStationId = Current.Task.NextToStationId;
-                        Current.Task.NextToStationId = -1;
-                    }
-                    if (Current.Task.ToStation != null)
-                    {
                         if (Current.Task.ToStation.DoorStatus != DoorStatus.打开)
                         {
-                            Tip.Alert(Current.Task.ToStation.Name + "门未打开！");
+                            Current.Task.ToStation.OpenDoor();
                         }
-                        if (Current.Task.ToStation.DoorStatus == DoorStatus.打开)
+
+                        if (Current.Task.FromStation.DoorStatus == DoorStatus.打开 && Current.Task.ToStation.DoorStatus == DoorStatus.打开)
                         {
-                            Current.Task.Status = TaskStatus.可放;
+                            Current.Task.Status = TaskStatus.可取放;
                         }
+
                     }
-                }
-                else if (Current.Task.Status == TaskStatus.可放 && Current.Task.ToStation != null)
-                {
-
-                    byte pos = byte.Parse(Current.Task.ToStation.RobotValues.Split(',')[1]);
-
-                    if (Current.Robot.IsReadyPut)
+                    else if (Current.Task.Status == TaskStatus.可取放 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
                     {
-                        if (Current.Robot.GetOrPut(pos))
-                        {
 
+                        if (!Current.Robot.IsAlreadySendCmd)
+                        {
+                            LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送前。。"));
+
+                            Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation);
+
+                            LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送后。。"));
+
+                            Current.Robot.IsAlreadySendCmd = true;
                         }
-                    }
 
-                    if (Current.Robot.IsGettingOrPutting)
-                    {
-                        Current.Task.Status = TaskStatus.正放;
-                    }
-                }
-                else if (Current.Task.Status == TaskStatus.正放 && Current.Task.ToStation != null)
-                {
-                    if (Current.Robot.ClampStatus == ClampStatus.无夹具)
-                    {
-                        Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
-                        Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
-
-                        if (Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
+                        if (Current.Robot.IsReceived())
                         {
+                            Current.Robot.IsMoving = true;
+                        }
 
-                            int clampId = Clamp.Add(new Clamp(Current.Task.ClampId).Code, out msg);
-                            if (clampId > 0)
+                        if (Current.Robot.IsMoving)
+                        {
+                            Current.Task.Status = TaskStatus.取放中;
+                        }
+
+                    }
+                    else if (Current.Task.Status == TaskStatus.取放中 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
+                    {
+                        Current.Robot.ClampStatus = Current.Task.FromClampStatus;
+                        Current.Robot.ClampId = Current.Task.ClampId;
+                        if (Current.Robot.IsFinished())
+                        {
+                            Current.Robot.IsMoving = false;
+                            Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
+                            Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
+
+                            if (Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
                             {
-                                Current.Task.ToStation.ClampId = clampId;
+
+                                int clampId = Clamp.Add(new Clamp(Current.Task.ClampId).Code, out msg);
+                                if (clampId > 0)
+                                {
+                                    Current.Task.ToStation.ClampId = clampId;
+                                }
+                                else
+                                {
+                                    Error.Alert(msg);
+                                    Current.Task.ToStation.ClampId = Current.Task.ClampId;
+                                }
                             }
                             else
                             {
-                                Error.Alert(msg);
                                 Current.Task.ToStation.ClampId = Current.Task.ClampId;
                             }
-                        }
-                        else
-                        {
-                            Current.Task.ToStation.ClampId = Current.Task.ClampId;
-                        }
-                        
-                        // Current.Robot.ClampId = -1;
 
-                        if (Current.Task.FromStation != null && Current.Task.FromStation != Current.Task.ToStation)
-                        {
-                            // Current.Task.FromStation.ClampId = -1;
-                        }
+                            // Current.Robot.ClampId = -1;
 
-                        //入炉后逻辑
-                        //修改工位状态
-                        if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具)
-                        {
-                            if (Current.Task.ToStation.FloorStatus == FloorStatus.待烤)
+                            if (Current.Task.FromStation != null && Current.Task.FromStation != Current.Task.ToStation)
                             {
-                                Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
+                                // Current.Task.FromStation.ClampId = -1;
                             }
-                        }
 
-                        //测试水分出烤箱后逻辑
-                        if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
-                        {
-                            if (Current.Task.FromStation.SampleInfo == SampleInfo.有样品 && Current.Task.FromStation.SampleStatus == SampleStatus.待结果)
+
+                            //入炉后逻辑
+                            //修改工位状态
+                            if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具)
                             {
-                                Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
+                                if (Current.Task.ToStation.FloorStatus == FloorStatus.待烤)
+                                {
+                                    Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
+                                }
                             }
+
+                            //测试水分出烤箱后逻辑
+                            if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
+                            {
+                                if (Current.Task.FromStation.SampleInfo == SampleInfo.有样品 && Current.Task.FromStation.SampleStatus == SampleStatus.待结果)
+                                {
+                                    Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
+                                }
+                            }
+                            Current.Task.Status = TaskStatus.完成;
                         }
-
-                    }
-
-
-                    if (!Current.Robot.IsGettingOrPutting)
-                    {
-                        if (!TaskLog.Add(out msg))//记录
-                        {
-                            Error.Alert("保存搬运记录失败：" + msg);
-                        }
-                        Current.Task.Status = TaskStatus.完成;
-                        Current.Task.ClampId = -1;
                     }
                 }
+
             }
         }
     }
@@ -1268,11 +1178,8 @@ namespace Anchitech.Baking
     {
         未知,
         就绪,
-        可取,
-        正取,
-        取完,
-        可放,
-        正放,
+        可取放,
+        取放中,
         完成
     }
 }

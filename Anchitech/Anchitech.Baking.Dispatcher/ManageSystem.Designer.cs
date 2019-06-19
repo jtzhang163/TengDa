@@ -317,18 +317,10 @@
             this.cmsBlanker = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCancelRasterInductive = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsRobot = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmRobotPause = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRobotRestart = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmManuGetStation = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmManuPutStation = new System.Windows.Forms.ToolStripMenuItem();
             this.lbRunStatus = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbTaskMode = new System.Windows.Forms.Label();
-            this.tlpEmergencyStop = new System.Windows.Forms.TableLayoutPanel();
-            this.label57 = new System.Windows.Forms.Label();
-            this.pbEmergencyStop = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -424,14 +416,11 @@
             this.splitContainer4.SuspendLayout();
             this.tableLayoutPanel24.SuspendLayout();
             this.cmsBlanker.SuspendLayout();
-            this.cmsRobot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tlpEmergencyStop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbEmergencyStop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -4028,47 +4017,6 @@
             this.tsmCancelRasterInductive.Text = "光栅报警复位";
             this.tsmCancelRasterInductive.Click += new System.EventHandler(this.TsmCancelRasterInductive_Click);
             // 
-            // cmsRobot
-            // 
-            this.cmsRobot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmRobotPause,
-            this.tsmRobotRestart,
-            this.tsmManuGetStation,
-            this.tsmManuPutStation});
-            this.cmsRobot.Name = "cmsRobot";
-            this.cmsRobot.Size = new System.Drawing.Size(149, 92);
-            this.cmsRobot.Opening += new System.ComponentModel.CancelEventHandler(this.cmsRobot_Opening);
-            // 
-            // tsmRobotPause
-            // 
-            this.tsmRobotPause.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Stop_Red;
-            this.tsmRobotPause.Name = "tsmRobotPause";
-            this.tsmRobotPause.Size = new System.Drawing.Size(148, 22);
-            this.tsmRobotPause.Text = "暂停";
-            this.tsmRobotPause.Click += new System.EventHandler(this.tsmRobotPause_Click);
-            // 
-            // tsmRobotRestart
-            // 
-            this.tsmRobotRestart.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Continue_Green;
-            this.tsmRobotRestart.Name = "tsmRobotRestart";
-            this.tsmRobotRestart.Size = new System.Drawing.Size(148, 22);
-            this.tsmRobotRestart.Text = "继续";
-            this.tsmRobotRestart.Click += new System.EventHandler(this.tsmRobotRestart_Click);
-            // 
-            // tsmManuGetStation
-            // 
-            this.tsmManuGetStation.Name = "tsmManuGetStation";
-            this.tsmManuGetStation.Size = new System.Drawing.Size(148, 22);
-            this.tsmManuGetStation.Text = "手动【取盘】";
-            this.tsmManuGetStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
-            // 
-            // tsmManuPutStation
-            // 
-            this.tsmManuPutStation.Name = "tsmManuPutStation";
-            this.tsmManuPutStation.Size = new System.Drawing.Size(148, 22);
-            this.tsmManuPutStation.Text = "手动【放盘】";
-            this.tsmManuPutStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
-            // 
             // lbRunStatus
             // 
             this.lbRunStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -4112,7 +4060,6 @@
             this.tableLayoutPanel1.Controls.Add(this.tabMain, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbRunStatus, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbTaskMode, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tlpEmergencyStop, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -4133,51 +4080,6 @@
             this.lbTaskMode.Size = new System.Drawing.Size(248, 56);
             this.lbTaskMode.TabIndex = 10;
             this.lbTaskMode.Text = "手动任务";
-            // 
-            // tlpEmergencyStop
-            // 
-            this.tlpEmergencyStop.ColumnCount = 1;
-            this.tlpEmergencyStop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpEmergencyStop.Controls.Add(this.label57, 0, 1);
-            this.tlpEmergencyStop.Controls.Add(this.pbEmergencyStop, 0, 0);
-            this.tlpEmergencyStop.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tlpEmergencyStop.Location = new System.Drawing.Point(528, 3);
-            this.tlpEmergencyStop.Name = "tlpEmergencyStop";
-            this.tlpEmergencyStop.RowCount = 2;
-            this.tlpEmergencyStop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.95652F));
-            this.tlpEmergencyStop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.04348F));
-            this.tlpEmergencyStop.Size = new System.Drawing.Size(81, 115);
-            this.tlpEmergencyStop.TabIndex = 11;
-            this.tlpEmergencyStop.Visible = false;
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.BackColor = System.Drawing.Color.Red;
-            this.label57.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label57.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label57.ForeColor = System.Drawing.Color.White;
-            this.label57.Location = new System.Drawing.Point(0, 99);
-            this.label57.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(78, 16);
-            this.label57.TabIndex = 12;
-            this.label57.Text = "机器人急停";
-            this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbEmergencyStop
-            // 
-            this.pbEmergencyStop.BackColor = System.Drawing.Color.Transparent;
-            this.pbEmergencyStop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbEmergencyStop.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pbEmergencyStop.Image = ((System.Drawing.Image)(resources.GetObject("pbEmergencyStop.Image")));
-            this.pbEmergencyStop.Location = new System.Drawing.Point(3, 21);
-            this.pbEmergencyStop.Name = "pbEmergencyStop";
-            this.pbEmergencyStop.Size = new System.Drawing.Size(75, 75);
-            this.pbEmergencyStop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbEmergencyStop.TabIndex = 11;
-            this.pbEmergencyStop.TabStop = false;
-            this.pbEmergencyStop.Click += new System.EventHandler(this.pbEmergencyStop_Click);
             // 
             // panel5
             // 
@@ -4415,16 +4317,12 @@
             this.tableLayoutPanel24.ResumeLayout(false);
             this.tableLayoutPanel24.PerformLayout();
             this.cmsBlanker.ResumeLayout(false);
-            this.cmsRobot.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.tlpEmergencyStop.ResumeLayout(false);
-            this.tlpEmergencyStop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbEmergencyStop)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -4601,9 +4499,6 @@
         private System.Windows.Forms.CheckBox cbTemperIndex02;
         private System.Windows.Forms.CheckBox cbTemperIndex01;
         private System.Windows.Forms.TabPage tabContentPageTips;
-        private System.Windows.Forms.ContextMenuStrip cmsRobot;
-        private System.Windows.Forms.ToolStripMenuItem tsmManuGetStation;
-        private System.Windows.Forms.ToolStripMenuItem tsmManuPutStation;
         private System.Windows.Forms.Panel panelSwitchAuto;
         private System.Windows.Forms.Label lbAuto;
         private System.Windows.Forms.PictureBox pictureBoxAuto;
@@ -4660,11 +4555,6 @@
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.Label label66;
         private Controls.YieldDisplay yieldDisplay;
-        private System.Windows.Forms.ToolStripMenuItem tsmRobotPause;
-        private System.Windows.Forms.ToolStripMenuItem tsmRobotRestart;
-        private System.Windows.Forms.PictureBox pbEmergencyStop;
-        private System.Windows.Forms.TableLayoutPanel tlpEmergencyStop;
-        private System.Windows.Forms.Label label57;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnClampScanNgBackToFeeder;
         private System.Windows.Forms.Label label2;

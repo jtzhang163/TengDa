@@ -35,5 +35,6 @@ namespace Anchitech.Baking.Controls
             this.simpleClampUC2.Update(cacher.Stations[1]);
             this.simpleClampUC3.Update(cacher.Stations[2]);
         }
+
     }
 }

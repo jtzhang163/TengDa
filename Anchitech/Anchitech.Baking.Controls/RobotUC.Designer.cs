@@ -28,13 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelRobot = new System.Windows.Forms.Panel();
             this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
             this.lbClampCode = new System.Windows.Forms.Label();
             this.lbInfo = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
+            this.cmsRobot = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmManuGetStation = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmManuPutStation = new System.Windows.Forms.ToolStripMenuItem();
             this.panelRobot.SuspendLayout();
             this.tableLayoutPanel21.SuspendLayout();
+            this.cmsRobot.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelRobot
@@ -106,15 +111,40 @@
             this.lbName.Text = "XXXX";
             this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // cmsRobot
+            // 
+            this.cmsRobot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmManuGetStation,
+            this.tsmManuPutStation});
+            this.cmsRobot.Name = "cmsRobot";
+            this.cmsRobot.Size = new System.Drawing.Size(181, 70);
+            this.cmsRobot.Opening += new System.ComponentModel.CancelEventHandler(this.CmsRobot_Opening);
+            // 
+            // tsmManuGetStation
+            // 
+            this.tsmManuGetStation.Name = "tsmManuGetStation";
+            this.tsmManuGetStation.Size = new System.Drawing.Size(180, 22);
+            this.tsmManuGetStation.Text = "手动【取盘】";
+            this.tsmManuGetStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
+            // 
+            // tsmManuPutStation
+            // 
+            this.tsmManuPutStation.Name = "tsmManuPutStation";
+            this.tsmManuPutStation.Size = new System.Drawing.Size(180, 22);
+            this.tsmManuPutStation.Text = "手动【放盘】";
+            this.tsmManuPutStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
+            // 
             // RobotUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ContextMenuStrip = this.cmsRobot;
             this.Controls.Add(this.panelRobot);
             this.Name = "RobotUC";
             this.panelRobot.ResumeLayout(false);
             this.tableLayoutPanel21.ResumeLayout(false);
             this.tableLayoutPanel21.PerformLayout();
+            this.cmsRobot.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -126,5 +156,8 @@
         private System.Windows.Forms.Label lbClampCode;
         private System.Windows.Forms.Label lbInfo;
         private System.Windows.Forms.Label lbName;
+        private System.Windows.Forms.ContextMenuStrip cmsRobot;
+        private System.Windows.Forms.ToolStripMenuItem tsmManuGetStation;
+        private System.Windows.Forms.ToolStripMenuItem tsmManuPutStation;
     }
 }

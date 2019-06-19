@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using TengDa;
 using TengDa.WF;
 
@@ -96,58 +97,8 @@ namespace Anchitech.Baking
             }
         }
 
-        /// <summary>
-        /// 正在取放位置编号
-        /// </summary>
-        [ReadOnly(true), DisplayName("正在取放位置编号")]
-        public ushort GetPutNumber { get; set; }
-
-        /// <summary>
-        /// 启动完成
-        /// </summary>
-        [ReadOnly(true), DisplayName("启动完成")]
-        public bool IsStarting { get; set; } = false;
-
-        /// <summary>
-        /// 程序执行中
-        /// </summary>
-        [ReadOnly(true), DisplayName("程序执行中")]
-        public bool IsExecuting { get; set; } = false;
-
-        [ReadOnly(true), DisplayName("可发送取盘指令")]
-        public bool IsReadyGet
-        {
-            get
-            {
-                return Current.Robot.IsExecuting && (Current.Robot.GetPutNumber == 0) && Current.Robot.ClampStatus == ClampStatus.无夹具;
-            }
-        }
-
-        [ReadOnly(true), DisplayName("可发送放盘指令")]
-        public bool IsReadyPut
-        {
-            get
-            {
-                return Current.Robot.IsExecuting && (Current.Robot.GetPutNumber == 0) && Current.Robot.ClampStatus != ClampStatus.无夹具;
-            }
-        }
-        /// <summary>
-        /// 货叉正在运动
-        /// </summary>
-        [ReadOnly(true), DisplayName("货叉正在运动")]
-        public bool IsGettingOrPutting
-        {
-            get
-            {
-                return Current.Robot.GetPutNumber != 0;
-            }
-        }
-
         [ReadOnly(true), DisplayName("机器人正在移动")]
         public bool IsMoving { get; set; } = false;
-
-        //[ReadOnly(true), DisplayName("可确认是否取放夹具到位")]
-        //public bool CanCheckGetPutClampIsOk { get; set; } = false;
 
         [ReadOnly(true), DisplayName("可确认放夹具到位信号出现次数")]
         public int CanCheckPutClampIsOkCount { get; set; } = 0;
@@ -196,6 +147,8 @@ namespace Anchitech.Baking
         /// </summary>
         [ReadOnly(true), DisplayName("已请求启动")]
         public bool IsRequestStart { get; set; } = false;
+
+        public bool IsAlreadySendCmd { get; set; } = false;
 
         #endregion
 
@@ -303,17 +256,13 @@ namespace Anchitech.Baking
 
         public bool GetInfo()
         {
-
             return true;
-         
         }
 
         /// <summary>
         /// 执行取放
         /// </summary>
-        /// <param name="pos">取放位置编号</param>
-        /// <returns></returns>
-        public bool GetOrPut(ushort pos)
+        public bool Move(Station fromStation, Station toStation)
         {
             if (!this.Plc.IsPingSuccess)
             {
@@ -321,35 +270,43 @@ namespace Anchitech.Baking
                 return false;
             }
 
-            string msg = string.Empty;
+            string cmd = string.Format("<Sensor><WORKNUM>0</WORKNUM><N1>{0}</N1><N2>{1}</N2><N3>{2}</N3><N4>{3}</N4><N5>{4}</N5><N6>{5}</N6><CMD>1</CMD></Sensor>",
+                fromStation.RobotValue1, fromStation.RobotValue2, fromStation.RobotValue3, toStation.RobotValue1, toStation.RobotValue2, toStation.RobotValue3);
 
+            LogHelper.WriteInfo(string.Format("给机器人发送取放盘指令------：{0}", cmd));
 
-            #region 获取正在执行取放的位置编号
-
-            var bOutputs = new ushort[] { };
-            if (!Current.Robot.Plc.GetInfo("D1000", (ushort)1, out bOutputs, out msg))
+            if (!Current.Robot.Plc.SetInfo(cmd, out string msg))
             {
-                Error.Alert(msg);
-            }
-
-
-            #endregion
-
-            if (pos == bOutputs[0])
-            {
-                return true;
-            }
-
-            if (!Current.Robot.Plc.SetInfo("D1000", pos, out msg))
-            {
+                LogHelper.WriteInfo(string.Format("发送取放盘指令失败--：{0}", msg));
                 Error.Alert(msg);
                 this.Plc.IsAlive = false;
                 return false;
             }
 
-            LogHelper.WriteInfo(string.Format("给机器人发送到位取放指令------{0}：{1}  ", "D1000", pos));
-
             return true;
+        }
+
+
+        public bool IsReceived()
+        {
+            this.Plc.GetInfoNoWrite(out string output);
+            if (output.Contains("REC"))
+            {
+                LogHelper.WriteInfo(string.Format("收到机器人REC指令------：{0}", output));
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsFinished()
+        {
+            this.Plc.GetInfoNoWrite(out string output);
+            if (output.Contains("FINISH"))
+            {
+                LogHelper.WriteInfo(string.Format("收到机器人FINISH指令------：{0}", output));
+                return true;
+            }
+            return false;
         }
 
         /// <summary>

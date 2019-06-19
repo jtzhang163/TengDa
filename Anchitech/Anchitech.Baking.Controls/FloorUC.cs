@@ -387,7 +387,7 @@ namespace Anchitech.Baking.Controls
 
                     bool canChangeColor = DateTime.Now.Second % 3 == 1;
 
-                    if (canChangeColor && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
+                    if (canChangeColor && station.Id == Current.Task.FromStationId/* && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取)*/)
                     {
                         brush = Brushes.White;
                     }
