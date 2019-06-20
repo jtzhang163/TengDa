@@ -527,9 +527,8 @@ namespace Anchitech.Baking
                     }
                 }
 
-                else if (Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0 && Current.Task.FromStation != null && Current.Task.ToStation != null)
+                else if (Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
                 {
-
                     if (Current.Task.Status == TaskStatus.就绪)
                     {
                         if (Current.Task.FromStation.DoorStatus != DoorStatus.打开)
@@ -554,26 +553,30 @@ namespace Anchitech.Baking
                         {
                             LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送前。。"));
 
-                            Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation);
+                            if(Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation))
+                            {
+                                Current.Robot.IsMoving = true;
+                                Current.Task.Status = TaskStatus.取放中;
+                            }
 
                             LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送后。。"));
 
                             Current.Robot.IsAlreadySendCmd = true;
                         }
-
-                        if (Current.Robot.IsMoving)
-                        {
-                            Current.Task.Status = TaskStatus.取放中;
-                        }
-
                     }
                     else if (Current.Task.Status == TaskStatus.取放中 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
                     {
-                        Current.Robot.ClampStatus = Current.Task.FromClampStatus;                           
+                        Current.Robot.ClampStatus = Current.Task.FromClampStatus;
                         Current.Robot.ClampId = Current.Task.ClampId;
-                        if (!Current.Robot.IsMoving)
+                        if (Current.Robot.IsFinished())
                         {
+                            Current.Robot.IsMoving = false;
+
+                            Current.Robot.ClampStatus = ClampStatus.无夹具;
+
+                            Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
                             Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
+
                             Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
 
                             if (Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
@@ -632,13 +635,16 @@ namespace Anchitech.Baking
                 {
                     Current.Task.StartTime = TengDa.Common.DefaultTime;
                     Current.Task.TaskId = -1;
+
                     Current.Task.FromStationId = -1;
                     //Current.Task.ClampId = -1;
                     //防止任务复位导致ClampId丢失
                     Current.Task.ToStationId = -1;
-                    Current.Task.FromClampStatus = ClampStatus.未知;
-                    Current.Robot.IsAlreadySendCmd = false;
+
+              
                     Current.Task.Status = TaskStatus.完成;
+
+                    Current.Task.FromClampStatus = ClampStatus.未知;
 
                     if (Current.Task.NextFromStationId > 0 && Current.Task.NextToStationId > 0)
                     {
@@ -647,13 +653,11 @@ namespace Anchitech.Baking
                         Current.Task.ClampId = Current.Task.FromStation.ClampId;
                         Current.Task.NextFromStationId = -1;
                         Current.Task.NextToStationId = -1;
-                        Current.Task.FromClampStatus = Current.Task.FromStation.ClampStatus;
                         Current.Task.Status = TaskStatus.就绪;
                     }
                 }
                 else if (Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
                 {
-
                     if (Current.Task.Status == TaskStatus.就绪)
                     {
                         if (Current.Task.FromStation.DoorStatus != DoorStatus.打开)
@@ -678,7 +682,11 @@ namespace Anchitech.Baking
                         {
                             LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送前。。"));
 
-                            Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation);
+                            if (Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation))
+                            {
+                                Current.Robot.IsMoving = true;
+                                Current.Task.Status = TaskStatus.取放中;
+                            }
 
                             LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送后。。"));
 
@@ -688,13 +696,8 @@ namespace Anchitech.Baking
                         if (Current.Robot.IsReceived())
                         {
                             Current.Robot.IsMoving = true;
-                        }
-
-                        if (Current.Robot.IsMoving)
-                        {
                             Current.Task.Status = TaskStatus.取放中;
                         }
-
                     }
                     else if (Current.Task.Status == TaskStatus.取放中 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
                     {
@@ -702,9 +705,24 @@ namespace Anchitech.Baking
                         Current.Robot.ClampId = Current.Task.ClampId;
                         if (Current.Robot.IsFinished())
                         {
+                            if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
+                            {
+                                var j = Current.Feeder.Stations.IndexOf(Current.Task.FromStation);
+                                Current.Feeder.SetGetClampFinish(j);
+                            }
+
+                            if (Current.Task.ToStation.GetPutType == GetPutType.上料机)
+                            {
+                                var j = Current.Feeder.Stations.IndexOf(Current.Task.ToStation);
+                                Current.Feeder.SetPutClampFinish(j);
+                            }
+
                             Current.Robot.IsMoving = false;
+                            Current.Robot.ClampStatus = ClampStatus.无夹具;
                             Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                             Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
+                            Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
+                            Current.Robot.IsAlreadySendCmd = false;
 
                             if (Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
                             {

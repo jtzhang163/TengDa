@@ -158,15 +158,14 @@ namespace Anchitech.Baking
                 return ScanResult.Error;
             }
 
-            this.GetInfoNoWrite(out output);
-
             if (string.IsNullOrEmpty(output))
             {
                 msg = "指定时间未接收到串口数据！";
                 return ScanResult.Error;
             }
 
-            code = Regex.Match(output, Current.option.BatteryCodeRegularExpression).Value;
+            code = output;
+           // code = Regex.Match(output, Current.option.BatteryCodeRegularExpression).Value;
             if (!string.IsNullOrEmpty(code))
             {
                 return ScanResult.OK;

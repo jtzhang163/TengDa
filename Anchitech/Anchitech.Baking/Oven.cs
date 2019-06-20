@@ -409,24 +409,24 @@ namespace Anchitech.Baking
                     {
 
                         #region 获取真空状态
-                        //output = string.Empty;
-                        //if (!this.Plc.GetInfo(false, Current.option.GetVacuumStatusStr, out output, out msg))
-                        //{
-                        //    Error.Alert(msg);
-                        //    this.Plc.IsAlive = false;
-                        //    return false;
-                        //}
+                        output = string.Empty;
+                        if (!this.Plc.GetInfo(false, "%01#RCP3R0687R0688R0689**", out output, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
 
-                        //if (output.Substring(3, 1) != "$")
-                        //{
-                        //    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetVacuumStatusStr, output));
-                        //    return false;
-                        //}
+                        if (output.Substring(3, 1) != "$")
+                        {
+                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RCP3R0687R0688R0689**", output));
+                            return false;
+                        }
 
-                        //for (int j = 0; j < this.Floors.Count; j++)
-                        //{
-                        //    this.Floors[j].IsVacuum = output.Substring(6 + j, 1) == "0";
-                        //}
+                        for (int j = 0; j < this.Floors.Count; j++)
+                        {
+                            this.Floors[j].IsVacuum = output.Substring(6 + j, 1) == "0";
+                        }
                         #endregion
 
                         #region 报警信息

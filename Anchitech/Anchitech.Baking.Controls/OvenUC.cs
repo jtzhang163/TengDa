@@ -30,6 +30,11 @@ namespace Anchitech.Baking.Controls
             }
         }
 
+        public void Invalidate(int j)
+        {
+            this.floorUCs[j].Invalidate();
+        }
+
         public void UpdateUI()
         {
             oven.IsAlive = oven.IsEnable && oven.Plc.IsAlive;

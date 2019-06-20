@@ -292,10 +292,10 @@ namespace Anchitech.Baking
             this.Plc.GetInfoNoWrite(out string output);
             if (output.Contains("REC"))
             {
-                LogHelper.WriteInfo(string.Format("收到机器人REC指令------：{0}", output));
-                return true;
+
             }
-            return false;
+            LogHelper.WriteInfo(string.Format("收到机器人REC指令------：{0}", output));
+            return true;
         }
 
         public bool IsFinished()

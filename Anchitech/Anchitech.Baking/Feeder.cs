@@ -461,7 +461,7 @@ namespace Anchitech.Baking
                         default: this.TriLamp = TriLamp.Unknown; break;
                     }
 
-                    if (!this.Plc.GetInfo(false, "%01#RCP3R0212R0211R0210**", out output, out msg))
+                    if (!this.Plc.GetInfo(false, "%01#RCP6R0212R0211R0210R0215R0214R0213**", out output, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;
@@ -486,10 +486,12 @@ namespace Anchitech.Baking
                                 if(output.Substring(6 + j, 1) == "1")
                                 {
                                     this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                                    this.Stations[j].Status = StationStatus.可取;
                                 }
                                 else
                                 {
                                     this.Stations[j].ClampStatus = ClampStatus.空夹具;
+                                    this.Stations[j].Status = StationStatus.工作中;
                                 }
                                 
                                 break;
@@ -516,6 +518,12 @@ namespace Anchitech.Baking
                         {
                             EmptyClampCount[j] = 0;
                         }
+
+                        if (output.Substring(9 + j, 1) == "1")
+                        {
+                            this.CurrentPutStationId = this.Stations[j].Id;
+                        }
+
                         //this.Stations[j].IsClampScanReady = iOut[j + 4] == 1;
                     }
 
@@ -584,63 +592,49 @@ namespace Anchitech.Baking
             return true;
         }
 
-        public bool SetScanBatteryResult(ScanResult[] scanResults, out string msg)
+        public bool SetScanBatteryResult(ScanResult scanResult, out string msg)
         {
 
-            var val = (ushort)0;
-            if (scanResults[0] == ScanResult.OK && scanResults[1] == ScanResult.OK)
+            if (this.Plc.GetInfo("%01#WCSR02050**", out string output, out msg))
             {
-                val = (ushort)2;
+                if (this.Plc.GetInfo("%01#WCSR02000**", out output, out msg))
+                {
+                    LogHelper.WriteInfo(string.Format("成功发送电池扫码OK结果到{0}", this.Plc.Name));
+                    return true;
+                }
             }
-            else if (scanResults[0] == ScanResult.NG && scanResults[1] == ScanResult.OK)
-            {
-                val = (ushort)8;
-            }
-            else if (scanResults[0] == ScanResult.OK && scanResults[1] == ScanResult.NG)
-            {
-                val = (ushort)16;
-            }
-            else
-            {
-                val = (ushort)4;
-            }
+            return false;
+        }
 
-            val = 2;//________________________________
+        public bool SetGetClampFinish(int j)
+        {
+            var ret = this.Plc.GetInfo(string.Format("%01#WCSR{0:D4}0**", 212 - j), out string output, out string msg);
 
-            if (!this.Plc.SetInfo("D1002", val, out msg))
-            {
-                Error.Alert(msg);
-                this.Plc.IsAlive = false;
-                return false;
-            }
+            LogHelper.WriteInfo(string.Format("%01#WCSR{0:D4}0**", 212 - j) + string.Format("发送取完夹具信号到{0}，", this.Plc.Name) + ret);
 
-            LogHelper.WriteInfo(string.Format("成功发送电池扫码结果到{0} D1002:{1}", this.Plc.Name, val));
-            return true;
+            return ret;
+        }
+
+        public bool SetPutClampFinish(int j)
+        {
+            var ret = this.Plc.GetInfo(string.Format("%01#WCSY000{0}1**", 3 + j), out string output, out string msg);
+
+            LogHelper.WriteInfo(string.Format("%01#WCSY000{0}1**", 3 + j) + string.Format("发送放完夹具信号到{0}，", this.Plc.Name) + ret);
+
+            return ret;
         }
 
         public bool SetScanClampResult(ScanResult scanResult, out string msg)
         {
-            var val = (ushort)0;
-            if (scanResult == ScanResult.OK)
+            if (this.Plc.GetInfo("%01#WCSR02051**", out string output, out msg))
             {
-                val = (ushort)1;
+                if (this.Plc.GetInfo("%01#WCSR02000**", out output, out msg))
+                {
+                    LogHelper.WriteInfo(string.Format("成功发送电池扫码NG结果到{0}", this.Plc.Name));
+                    return true;
+                }
             }
-            else
-            {
-                val = (ushort)0;
-            }
-
-            val = (ushort)2;
-
-            if (!this.Plc.SetInfo("D1002", val, out msg))
-            {
-                Error.Alert(msg);
-                this.Plc.IsAlive = false;
-                return false;
-            }
-
-            LogHelper.WriteInfo(string.Format("成功发送夹具扫码结果到{0} D1002:{1}", this.Plc.Name, val));
-            return true;
+            return false;
         }
 
         #endregion

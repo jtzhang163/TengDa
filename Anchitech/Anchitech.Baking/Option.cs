@@ -2408,14 +2408,14 @@ namespace Anchitech.Baking
         {
             "%01#WCP1R09011**",
             "%01#WCP1R09111**",
-            "%01#WCP1R02111**"
+            "%01#WCP1R09211**"
         };
 
         public string[] CloseOvenDoorStrs = new string[3]
         {
             "%01#WCP1R09021**",
             "%01#WCP1R09121**",
-            "%01#WCP1R02121**"
+            "%01#WCP1R09221**"
         };
 
         public string[] StartBakingStrs = new string[3]

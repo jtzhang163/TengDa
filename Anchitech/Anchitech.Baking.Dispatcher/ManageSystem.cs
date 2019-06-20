@@ -502,15 +502,17 @@ namespace Anchitech.Baking.Dispatcher
                         }
                     });
 
-                    //if (floor.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId) > 0)
-                    //{
-                    //    this.tlpFloor[i][j].Invalidate();
-                    //}
+                    var floor = oven.Floors[j];
 
-                    //if (floor.PreIsAlive != floor.IsAlive)
-                    //{
-                    //    this.tlpFloor[i][j].Invalidate();
-                    //}
+                    if (floor.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId) > 0)
+                    {
+                        this.ovenUCs[i].Invalidate(j);
+                    }
+
+                    if (floor.PreIsAlive != floor.IsAlive)
+                    {
+                        this.ovenUCs[i].Invalidate(j);
+                    }
 
                 }
 
@@ -768,17 +770,17 @@ namespace Anchitech.Baking.Dispatcher
 
                 if (Current.TaskMode == TaskMode.手动任务)
                 {
-                    for (int i = 0; i < OvenCount; i++)
-                    {
-                        for (int j = 0; j < OvenFloorCount; j++)
-                        {
-                            if (Current.ovens[i].Floors[j].IsAlive && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.打开)
-                            {
-                                Tip.Alert(Current.ovens[i].Floors[j].Name + "门尚未关闭，请手动关闭后再切换自动");
-                                return;
-                            }
-                        }
-                    }
+                    //for (int i = 0; i < OvenCount; i++)
+                    //{
+                    //    for (int j = 0; j < OvenFloorCount; j++)
+                    //    {
+                    //        if (Current.ovens[i].Floors[j].IsAlive && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.打开)
+                    //        {
+                    //            Tip.Alert(Current.ovens[i].Floors[j].Name + "门尚未关闭，请手动关闭后再切换自动");
+                    //            return;
+                    //        }
+                    //    }
+                    //}
                     if (Current.Robot.IsAlive)
                     {
                         //if (!Current.Robot.IsExecuting)
@@ -1047,6 +1049,7 @@ namespace Anchitech.Baking.Dispatcher
                     }
                 }
                 this.machinesStatusUC1.SetStatusInfo(Current.mes, "连接成功");
+                this.machinesStatusUC1.SetLampColor(Current.mes, Color.Green);
             }
             return true;
         }
@@ -1083,6 +1086,7 @@ namespace Anchitech.Baking.Dispatcher
                     return false;
                 }
                 this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "连接成功");
+                this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Green);
             }
 
             if (Current.ClampScaner.IsEnable)
@@ -1101,6 +1105,7 @@ namespace Anchitech.Baking.Dispatcher
                 }
 
                 this.machinesStatusUC1.SetStatusInfo(Current.ClampScaner, "连接成功");
+                this.machinesStatusUC1.SetLampColor(Current.ClampScaner, Color.Green);
             }
 
             return true;
@@ -1403,18 +1408,17 @@ namespace Anchitech.Baking.Dispatcher
 
             if (timerlock && Current.ovens[i].IsEnable)
             {
-                if (timerlock && Current.ovens[i].IsEnable)
+
+                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "发送指令"); }));
+                if (Current.ovens[i].GetInfo())
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "发送指令"); }));
-                    if (Current.ovens[i].GetInfo())
-                    {
-                        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "获取信息成功"); }));
-                    }
-                    else
-                    {
-                        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "获取信息失败"); }));
-                    }
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "获取信息成功"); }));
                 }
+                else
+                {
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "获取信息失败"); }));
+                }
+                
 
                 if (Current.ovens[i].AlreadyGetAllInfo)
                 {
@@ -1461,11 +1465,12 @@ namespace Anchitech.Baking.Dispatcher
                                     Current.ovens[i].UploadVacuum(j);
 
                                 }
-                                //this.tlpFloor[i][j].Invalidate();
+                                this.ovenUCs[i].Invalidate(j);
+                              
                             }
                             else if (station.ClampStatus == ClampStatus.异常)
                             {
-                                //this.tlpFloor[i][j].Invalidate();
+                                this.ovenUCs[i].Invalidate(j);                            
                             }
 
                             station.PreFloorStatus = station.FloorStatus;
@@ -1564,15 +1569,15 @@ namespace Anchitech.Baking.Dispatcher
 
                     #region 电池扫码逻辑
 
-                    var batteryScanResults = new ScanResult[2];
+                    var batteryScanResult = ScanResult.Unknown;
 
                     var isScanFlag = false;//是否执行了扫码
 
                     if (Current.BatteryScaner.IsEnable && Current.BatteryScaner.CanScan)
                     {
 
-                        string code = string.Empty;
-                        ScanResult result = Current.BatteryScaner.StartBatteryScan(out code, out msg);
+                        string codes = string.Empty;
+                        ScanResult result = Current.BatteryScaner.StartBatteryScan(out codes, out msg);
 
                         isScanFlag = true;
 
@@ -1595,19 +1600,22 @@ namespace Anchitech.Baking.Dispatcher
                             });
                             t.Start();
 
-                            int id = Battery.Add(new Battery(code, Current.Feeder.Id, Current.Feeder.CurrentPutClampId), out msg);
-                            if (id < 1)
+                            foreach (var code in codes.Split(';'))
                             {
-                                Error.Alert(msg);
+                                int id = Battery.Add(new Battery(code, Current.Feeder.Id, Current.Feeder.CurrentPutClampId), out msg);
+                                if (id < 1)
+                                {
+                                    Error.Alert(msg);
+                                }
                             }
 
-                            batteryScanResults[0] = ScanResult.OK;
+                            batteryScanResult = ScanResult.OK;
 
                         }
                         else if (result == ScanResult.NG || result == ScanResult.Timeout)
                         {
                             //再扫一次
-                            result = Current.BatteryScaner.StartBatteryScan(out code, out msg);
+                            result = Current.BatteryScaner.StartBatteryScan(out codes, out msg);
                             if (result == ScanResult.OK)
                             {
                                 this.BeginInvoke(new MethodInvoker(() => 
@@ -1627,18 +1635,21 @@ namespace Anchitech.Baking.Dispatcher
                                 });
                                 t.Start();
 
-                                int id = Battery.Add(new Battery(code, Current.Feeder.Id, Current.Feeder.CurrentPutClampId), out msg);
-                                if (id < 1)
+                                foreach (var code in codes.Split(';'))
                                 {
-                                    Error.Alert(msg);
+                                    int id = Battery.Add(new Battery(code, Current.Feeder.Id, Current.Feeder.CurrentPutClampId), out msg);
+                                    if (id < 1)
+                                    {
+                                        Error.Alert(msg);
+                                    }
                                 }
 
-                                batteryScanResults[0] = ScanResult.OK;
+                                batteryScanResult = ScanResult.OK;
                             }
                             else if (result == ScanResult.NG || result == ScanResult.Timeout)
                             {
                                 //this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[ii][jj].Text = "扫码NG"; }));
-                                batteryScanResults[0] = ScanResult.NG;
+                                batteryScanResult = ScanResult.NG;
                             }
                         }
                         else
@@ -1652,7 +1663,7 @@ namespace Anchitech.Baking.Dispatcher
 
                     if (isScanFlag)
                     {
-                        if (!Current.Feeder.SetScanBatteryResult(batteryScanResults, out msg))
+                        if (!Current.Feeder.SetScanBatteryResult(batteryScanResult, out msg))
                         {
                             Error.Alert(msg);
                         }
@@ -1710,15 +1721,15 @@ namespace Anchitech.Baking.Dispatcher
             string msg = string.Empty;
             if (timerlock && Current.Robot.IsEnable)
             {
-                //this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "发送指令—>" + Current.Robot.Name + "PLC"; }));
-                //if (Current.Robot.GetInfo())
-                //{
-                //    this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "成功获得" + Current.Robot.Name + "信息"; }));
-                //}
-                //else
-                //{
-                //    this.BeginInvoke(new MethodInvoker(() => { tbRobotStatus.Text = "获取" + Current.Robot.Name + "信息失败"; }));
-                //}
+                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "发送指令"); }));
+                if (Current.Robot.GetInfo())
+                {
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "获取信息成功"); }));
+                }
+                else
+                {
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "获取信息失败"); }));
+                }
 
                 if (Current.Robot.AlreadyGetAllInfo)
                 {
@@ -1748,13 +1759,13 @@ namespace Anchitech.Baking.Dispatcher
                         {
                             Floor floor = Current.ovens[i].Floors[j];
 
-                            //无任务默认关门
-                            if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) < 1
-                                && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) < 1
-                                && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
-                            {
-                                Current.ovens[i].CloseDoor(j);
-                            }
+                            ////无任务默认关门
+                            //if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) < 1
+                            //    && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) < 1
+                            //    && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
+                            //{
+                            //    Current.ovens[i].CloseDoor(j);
+                            //}
 
                             ////从某一炉子取完盘后，立即关门，无需等到整个任务结束
                             //if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
@@ -3574,29 +3585,32 @@ namespace Anchitech.Baking.Dispatcher
 
         private void btnBatteryScanStart_Click(object sender, EventArgs e)
         {
+            Thread t = new Thread(() =>{
+                string code = string.Empty;
+                string msg = string.Empty;
+                ScanResult scanResult = Current.BatteryScaner.StartBatteryScan(out code, out msg);
+                if (scanResult == ScanResult.OK)
+                {
+                    Tip.Alert(code);
+                }
+                else if (scanResult == ScanResult.NG)
+                {
+                    Tip.Alert("扫码返回NG！");
+                }
+                else
+                {
+                    Error.Alert(msg);
+                }
+            });
 
-            string code = string.Empty;
-            string msg = string.Empty;
-            ScanResult scanResult = Current.BatteryScaner.StartBatteryScan(out code, out msg);
-            if (scanResult == ScanResult.OK)
-            {
-                Tip.Alert(code);
-            }
-            else if (scanResult == ScanResult.NG)
-            {
-                Tip.Alert("扫码返回NG！");
-            }
-            else
-            {
-                Error.Alert(msg);
-            }
+            t.Start();
         }
 
         private void btnBatteryScanOkBackToFeeder_Click(object sender, EventArgs e)
         {
             int i = cbBatteryScaner.SelectedIndex / 2;
             string msg = string.Empty;
-            if (!Current.Feeder.SetScanBatteryResult(new ScanResult[2] { ScanResult.OK, ScanResult.OK }, out msg))
+            if (!Current.Feeder.SetScanBatteryResult(ScanResult.OK, out msg))
             {
                 Error.Alert(msg);
             }
@@ -3610,7 +3624,7 @@ namespace Anchitech.Baking.Dispatcher
         {
             int i = cbBatteryScaner.SelectedIndex / 2;
             string msg = string.Empty;
-            if (!Current.Feeder.SetScanBatteryResult(new ScanResult[2] { ScanResult.NG, ScanResult.NG }, out msg))
+            if (!Current.Feeder.SetScanBatteryResult(ScanResult.NG, out msg))
             {
                 Error.Alert(msg);
             }
