@@ -43,5 +43,15 @@ namespace Anchitech.Mes.Test.Properties {
                 return ((string)(this["Anchitech_Mes_Test_ExecutingWebReference_ExecutingServiceService"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.100.11:8094/EquipService.asmx")]
+        public string Anchitech_Mes_Test_MesService_EquipService {
+            get {
+                return ((string)(this["Anchitech_Mes_Test_MesService_EquipService"]));
+            }
+        }
     }
 }

@@ -64,30 +64,10 @@
     <Compile Include="Common.cs" />
     <Compile Include="ExecuteData.cs" />
     <Compile Include="JsonHelper.cs" />
-    <Compile Include="Web References\ExecutingWebReference\Reference.cs">
+    <Compile Include="Web References\MesService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
-    <Compile Include="Web References\MachineAccessWebReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\JudgeSfcRepeatCodeWindow.xaml.cs">
-      <DependentUpon>JudgeSfcRepeatCodeWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\MachineStatusWindow.xaml.cs">
-      <DependentUpon>MachineStatusWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\BakingNgWindow.xaml.cs">
-      <DependentUpon>BakingNgWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\BakingOutSiteWindow.xaml.cs">
-      <DependentUpon>BakingOutSiteWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\BakingEnterSiteWindow.xaml.cs">
-      <DependentUpon>BakingEnterSiteWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MachineAccessTestWindow.xaml.cs">
       <DependentUpon>MachineAccessTestWindow.xaml</DependentUpon>
@@ -104,26 +84,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Windows\JudgeSfcRepeatCodeWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\MachineStatusWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\BakingNgWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\BakingOutSiteWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\BakingEnterSiteWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Windows\MachineAccessTestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,21 +111,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\ExecutingWebReference\executeResponse1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ExecutingWebReference\ExecutingServiceService.wsdl" />
-    <None Include="Web References\ExecutingWebReference\Reference.map">
+    <None Include="Web References\MesService\EquipService.wsdl" />
+    <None Include="Web References\MesService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\MachineAccessWebReference\getResourceDescriptionResponse1.datasource">
+    <None Include="Web References\MesService\VMResult.datasource">
       <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\MachineAccessWebReference\MachineAccessTestServiceService.wsdl" />
-    <None Include="Web References\MachineAccessWebReference\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -178,28 +130,20 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://10.10.180.13:50000/sapdevwebservice/ExecutingServiceService%3fwsdl">
+    <WebReferenceUrl Include="http://192.168.100.11:8094/EquipService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\ExecutingWebReference\</RelPath>
-      <UpdateFromURL>http://10.10.180.13:50000/sapdevwebservice/ExecutingServiceService%3fwsdl</UpdateFromURL>
+      <RelPath>Web References\MesService\</RelPath>
+      <UpdateFromURL>http://192.168.100.11:8094/EquipService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Soundon_Mes_Test_ExecutingWebReference_ExecutingServiceService</CachedSettingsPropName>
+      <CachedSettingsPropName>Anchitech_Mes_Test_MesService_EquipService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://10.10.180.13:50000/sapdevwebservice/MachineAccessTestServiceService%3fwsdl">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\MachineAccessWebReference\</RelPath>
-      <UpdateFromURL>http://10.10.180.13:50000/sapdevwebservice/MachineAccessTestServiceService%3fwsdl</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Soundon_Mes_Test_MachineAccessWebReference_MachineAccessTestServiceService</CachedSettingsPropName>
-    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\MesService\EquipService.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -44,27 +44,27 @@ namespace Anchitech.Mes.Test
 
         private void JudgeSfcRepeatCode_Click(object sender, RoutedEventArgs e)
         {
-            new JudgeSfcRepeatCodeWindow().Show();
+            //new JudgeSfcRepeatCodeWindow().Show();
         }
 
         private void InSite_Click(object sender, RoutedEventArgs e)
         {
-            new BakingEnterSiteWindow().Show();
+            //new BakingEnterSiteWindow().Show();
         }
 
         private void OutSite_Click(object sender, RoutedEventArgs e)
         {
-            new BakingOutSiteWindow().Show();
+            //new BakingOutSiteWindow().Show();
         }
 
         private void BakingNg_Click(object sender, RoutedEventArgs e)
         {
-            new BakingNgWindow().Show();
+            //new BakingNgWindow().Show();
         }
 
         private void MachineStatus_Click(object sender, RoutedEventArgs e)
         {
-            new MachineStatusWindow().Show();
+            //new MachineStatusWindow().Show();
         }
 
     }

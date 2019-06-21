@@ -1,4 +1,4 @@
-﻿using Anchitech.Mes.Test.MachineAccessWebReference;
+﻿using Anchitech.Mes.Test.MesService;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,48 +35,30 @@ namespace Anchitech.Mes.Test.Windows
         private void btnUpload_Click(object sender, RoutedEventArgs e)
         {
 
-            var wsProxy = new MachineAccessTestServiceService();
-            wsProxy.Credentials = new NetworkCredential(Common.Username, Common.Password, null);
-            wsProxy.PreAuthenticate = true;
-            wsProxy.Timeout = 2000;
-            wsProxy.Url = this.Url;
+            var wsProxy = new MesService.EquipService();
+            //wsProxy.Credentials = new NetworkCredential(Common.Username, Common.Password, null);
+            //wsProxy.PreAuthenticate = true;
+            //wsProxy.Timeout = 2000;
+            //wsProxy.Url = this.Url;
 
             try
             {
-                var request = new machineAccessTestRequest()
-                {
-                    site = this.site.Text.Trim(),
-                    resource = this.resource.Text.Trim()
-                };
 
-                var response = wsProxy.getResourceDescription(new getResourceDescription() { pRequest = request });
-                this.status.Text = response.@return.status;
-                this.message.Text = response.@return.message;
-                this.description.Text = response.@return.description;
+                var response1 = wsProxy.TestConnection();
+
+                var request2 = "";
+                //{"Barcode":"36ANCCB23140160N18E01C18E04H1000784","MachineCode":"BK02-04-01","TrayNo":"","StartTime":"2019\/6\/21 14:19:12","EndTime":"2019\/6\/21 14:19:12","Temperature":92.3,"Vacuum":12.3}
+                var response2 = wsProxy.UploadBakingData(request2);
+
+                var request3 = "";
+                //[{"MachCode":"BK01-04-02","MachStatus":"99","StepProdLotNo":null,"MachTrouble":null}]
+                //[{"MachCode":"BK01-04-02","MachStatus":"99","StepProdLotNo":null,"MachTrouble":null},{"MachCode":"BK01-04-01","MachStatus":"99","StepProdLotNo":null,"MachTrouble":null}]
+                var response3 = wsProxy.UploadMultiMachStateListInfo(request3);
             }
             catch (Exception ex)
             {
-                this.status.Text = "ERROR";
-                this.message.Text = ex.Message;
-                this.description.Text = ex.ToString();
-            }
-            finally
-            {
-                if (this.status.Text.Trim().ToLower() == "true")
-                {
-                    this.status.Foreground = Brushes.Green;
-                    this.message.Foreground = Brushes.Green;
-                    this.description.Foreground = Brushes.Green;
-                }
-                else
-                {
-                    this.status.Foreground = Brushes.Red;
-                    this.message.Foreground = Brushes.Red;
-                    this.description.Foreground = Brushes.Red;
-                }
-            }
 
-            ShowLog();
+            }
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)

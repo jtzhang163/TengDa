@@ -8,5 +8,8 @@
     <Setting Name="Anchitech_Mes_Test_ExecutingWebReference_ExecutingServiceService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://MEAPVIP.soundnewenergy.net:50000/sapdevwebservice/ExecutingServiceService</Value>
     </Setting>
+    <Setting Name="Anchitech_Mes_Test_MesService_EquipService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.168.100.11:8094/EquipService.asmx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
