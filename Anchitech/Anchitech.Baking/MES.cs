@@ -46,45 +46,45 @@ namespace Anchitech.Baking
             }
         }
 
-        private string username = string.Empty;
-        public string Username
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(username))
-                {
-                    username = ConfigurationManager.AppSettings["mes_username"].ToString();
-                }
-                return username;
-            }
-        }
+        //private string username = string.Empty;
+        //public string Username
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(username))
+        //        {
+        //            username = ConfigurationManager.AppSettings["mes_username"].ToString();
+        //        }
+        //        return username;
+        //    }
+        //}
 
-        private string password = string.Empty;
-        public string Password
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(password))
-                {
-                    password = ConfigurationManager.AppSettings["mes_password"].ToString();
-                }
-                return password;
-            }
-        }
+        //private string password = string.Empty;
+        //public string Password
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(password))
+        //        {
+        //            password = ConfigurationManager.AppSettings["mes_password"].ToString();
+        //        }
+        //        return password;
+        //    }
+        //}
 
 
-        private string site = string.Empty;
-        public string Site
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(site))
-                {
-                    site = ConfigurationManager.AppSettings["mes_site"].ToString();
-                }
-                return site;
-            }
-        }
+        //private string site = string.Empty;
+        //public string Site
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(site))
+        //        {
+        //            site = ConfigurationManager.AppSettings["mes_site"].ToString();
+        //        }
+        //        return site;
+        //    }
+        //}
 
         #endregion
 
@@ -221,7 +221,10 @@ namespace Anchitech.Baking
             {
                 if (_wsProxy == null)
                 {
-                    _wsProxy = new EquipService();
+                    _wsProxy = new EquipService()
+                    {
+                        Url = Current.mes.WebServiceUrl
+                    };
                     //{
                     //    Credentials = new NetworkCredential(Current.mes.Username, Current.mes.Password, null),
                     //    PreAuthenticate = true,
@@ -234,32 +237,61 @@ namespace Anchitech.Baking
         }
 
         /// <summary>
-        /// 入炉数据上传
+        /// 烘烤数据上传
         /// </summary>
         /// <param name="clamps"></param>
         /// <returns></returns>
         public static void UploadBatteryInfo(List<Clamp> clamps)
         {
-
             for (int i = 0; i < clamps.Count; i++)
             {
                 var clamp = clamps[i];
                 var station = Station.StationList.FirstOrDefault(s => s.Id == clamp.OvenStationId);
+                if (station.GetPutType != GetPutType.烤箱)
+                {
+                    LogHelper.WriteError(string.Format("异常,ID为{0}的夹具所属烤箱工位为：", clamp.Id, station.Name));
+                    break;
+                }
                 var floor = station.GetFloor();
                 var oven = floor.GetOven();
-
                 try
                 {
+                    var allIsPass = true;
+                    clamp.Batteries.ForEach(battery =>
+                    {
+                        var data = new BakingMesData()
+                        {
+                            Barcode = battery.Code,
+                            TrayNo = clamp.CompleteCode,
+                            StartTime = clamp.BakingStartTime.ToString("yyyy/MM/dd HH:mm:ss"),
+                            EndTime = clamp.BakingStartTime.ToString("yyyy/MM/dd HH:mm:ss"),
+                            Temperature = clamp.Temperature,
+                            Vacuum = clamp.Vacuum,
+                            MachineCode = station.Number
+                        };
+                        var info = JsonHelper.SerializeObject(data);
+                        var result = wsProxy.UploadBakingData(info);
+                        if (result.ResultCode == 0)
+                        {
+                            LogHelper.WriteInfo(string.Format("上传mes成功，参数：{0}", info));
+                        }
+                        else
+                        {
+                            allIsPass = false;
+                            LogHelper.WriteError(string.Format("上传mes失败，参数：{0} 原因：{1}", info, result.ResultMsg));
+                        }
+                    });
 
+                    if (allIsPass)
+                    {
+                        clamp.IsUploaded = true;
+                    }
+                    //{"Barcode":"36ANCCB23140160N18E01C18E04H1000784","MachineCode":"BK02-04-01","TrayNo":"","StartTime":"2019\/6\/21 14:19:12","EndTime":"2019\/6\/21 14:19:12","Temperature":92.3,"Vacuum":12.3}
                 }
                 catch (System.Exception ex)
                 {
-
                     LogHelper.WriteError(ex);
                 }
-
-                    clamp.IsUploaded = true;
-                
             }
         }
 
@@ -272,30 +304,62 @@ namespace Anchitech.Baking
         /// <returns></returns>
         public static void UploadMachineStatus()
         {
-
             try
             {
+                var datas = new List<MachineStatusData>();
+                Station.StationList.Where(s => s.GetPutType == GetPutType.烤箱).ToList().ForEach(station =>
+                {
+                    var floor = station.GetFloor();
+                    var oven = floor.GetOven();
 
+                    var data = new MachineStatusData()
+                    {
+                        MachCode = station.Number,
+                        MachStatus = oven.IsAlive ? "99" : "12",
+                        MachTrouble = null,
+                        StepProdLotNo = null
+                    };
+                    datas.Add(data);
+
+                });
+
+                var info = JsonHelper.SerializeObjectList<MachineStatusData>(datas);
+                var result = wsProxy.UploadMultiMachStateListInfo(info);
+                if (result.ResultCode == 0)
+                {
+                    LogHelper.WriteInfo(string.Format("上传mes成功，参数：{0}", info));
+                }
+                else
+                {
+                    LogHelper.WriteError(string.Format("上传mes失败，参数：{0} 原因：{1}", info, result.ResultMsg));
+                }
+                //[{"MachCode":"BK01-04-02","MachStatus":"99","StepProdLotNo":null,"MachTrouble":null}]
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-
                 LogHelper.WriteError(ex);
             }
-
         }
-
         #endregion
     }
 
     public class BakingMesData
     {
-
+        public string Barcode { get; set; }
+        public string MachineCode { get; set; }
+        public string TrayNo { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
+        public float Temperature { get; set; }
+        public float Vacuum { get; set; }
     }
 
     public class MachineStatusData
     {
-
+        public string MachCode { get; set; }
+        public string MachStatus { get; set; }
+        public string StepProdLotNo { get; set; }
+        public string MachTrouble { get; set; }
     }
 
 }

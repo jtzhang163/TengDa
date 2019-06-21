@@ -85,26 +85,26 @@ namespace Anchitech.Baking
         {
             get
             {
-                return isVacuum;
+                return false;
             }
-            set
-            {
-                if (TengDa.WF.Current.IsTerminalInitFinished)
-                {
-                    if (isVacuum != value)
-                    {
-                        if (value)
-                        {
-                            AddLog("开始抽真空");
-                        }
-                        else
-                        {
-                            AddLog("破真空完成");
-                        }
-                    }
-                }
-                isVacuum = value;
-            }
+            //set
+            //{
+            //    if (TengDa.WF.Current.IsTerminalInitFinished)
+            //    {
+            //        if (isVacuum != value)
+            //        {
+            //            if (value)
+            //            {
+            //                AddLog("开始抽真空");
+            //            }
+            //            else
+            //            {
+            //                AddLog("破真空完成");
+            //            }
+            //        }
+            //    }
+            //    isVacuum = value;
+            //}
         }
 
         [ReadOnly(true), Description("网控已开启")]

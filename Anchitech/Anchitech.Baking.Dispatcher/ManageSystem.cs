@@ -1977,9 +1977,12 @@ namespace Anchitech.Baking.Dispatcher
                     return;
                 }
 
-                //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传入烤箱数据..."; }));
+                this.BeginInvoke(new MethodInvoker(() =>
+                {
+                    this.machinesStatusUC1.SetStatusInfo(Current.mes, clamps[0].Code + "..上传烘烤数据");
+                }));
                 MES.UploadBatteryInfo(clamps);
-                //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "入烤箱数据上传完成..."; }));
+
             }
             catch (Exception ex)
             {
@@ -1994,13 +1997,16 @@ namespace Anchitech.Baking.Dispatcher
         {
             try
             {
+                this.BeginInvoke(new MethodInvoker(() =>
+                {
+                    this.machinesStatusUC1.SetStatusInfo(Current.mes, "上传设备数据...");
+                }));
                 MES.UploadMachineStatus();
             }
             catch (Exception ex)
             {
                 Error.Alert(ex.Message);
             }
-
         }
 
         #endregion

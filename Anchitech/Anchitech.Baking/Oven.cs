@@ -425,7 +425,7 @@ namespace Anchitech.Baking
 
                         for (int j = 0; j < this.Floors.Count; j++)
                         {
-                            this.Floors[j].IsVacuum = output.Substring(6 + j, 1) == "0";
+                            //this.Floors[j].IsVacuum = output.Substring(6 + j, 1) == "0";
                         }
                         #endregion
 

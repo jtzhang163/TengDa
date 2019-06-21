@@ -28,6 +28,14 @@ namespace Anchitech.Baking
             }
         }
 
+        public string CompleteCode
+        {
+            get
+            {
+                return "ACBT" + this.Code;
+            }
+        }
+
         private int ovenStationId = -1;
         /// <summary>
         /// 烘烤所在炉腔工位Id
