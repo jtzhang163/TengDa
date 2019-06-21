@@ -30,17 +30,18 @@ namespace Anchitech.Baking
 
         [ReadOnly(true), Description("已运行时间，单位：min")]
         [DisplayName("已运行时间")]
-        public int RunMinutes { get; set; } = 0;
-
-        [ReadOnly(true), Description("剩余时间，单位：min")]
-        [DisplayName("剩余时间")]
-        public int RunRemainMinutes
+        public int RunMinutes
         {
             get
             {
-                return RunMinutesSet - RunMinutes;
+                return RunMinutesSet - RunRemainMinutes;
             }
         }
+
+        [ReadOnly(true), Description("剩余时间，单位：min")]
+        [DisplayName("剩余时间")]
+        public int RunRemainMinutes { get; set; }
+
 
         [ReadOnly(true), Description("总运行时间设置，单位：min")]
         [DisplayName("总运行时间设置")]
@@ -298,33 +299,6 @@ namespace Anchitech.Baking
 
         #region 要设置的参数
 
-        /// <summary>
-        /// 设置预热时间
-        /// </summary>
-        [Description("设置预热时间，单位：min")]
-        [DisplayName("设置预热时间")]
-        public int PreheatTimeSet { get; set; } = 0;
-
-        /// <summary>
-        /// 设置烘烤时间
-        /// </summary>
-        [Description("设置烘烤时间，单位：min")]
-        [DisplayName("设置烘烤时间")]
-        public int BakingTimeSet { get; set; } = 0;
-
-        /// <summary>
-        /// 设置呼吸周期
-        /// </summary>
-        [Description("设置呼吸周期，单位：min")]
-        [DisplayName("设置呼吸周期")]
-        public int BreathingCycleSet { get; set; } = 0;
-
-        /// <summary>
-        /// 设置工艺温度
-        /// </summary>
-        [Description("设置工艺温度，单位：℃")]
-        [DisplayName("设置工艺温度")]
-        public int ProcessTemperSet { get; set; } = -1;
 
         #endregion
 

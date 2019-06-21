@@ -32,7 +32,7 @@ namespace Anchitech.Baking.Controls
 
         public void Invalidate(int j)
         {
-            this.floorUCs[j].Invalidate();
+            this.floorUCs[j].Invalidate4ClampStatus();
         }
 
         public void UpdateUI()

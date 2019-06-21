@@ -43,5 +43,15 @@ namespace Anchitech.Baking.Properties {
                 return ((string)(this["Anchitech_Dispatcher_ExecutingWebReference_ExecutingServiceService"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.100.11:8094/EquipService.asmx")]
+        public string Anchitech_Baking_MesService_EquipService {
+            get {
+                return ((string)(this["Anchitech_Baking_MesService_EquipService"]));
+            }
+        }
     }
 }

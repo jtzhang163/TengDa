@@ -367,17 +367,6 @@ namespace Anchitech.Baking
 
                         this.Clamp.BakingStartTime = DateTime.Now;
 
-                        this.Clamp.ProcessTemperSet = floor.ProcessTemperSet;
-                        this.Clamp.TsSet = floor.TemperatureSets;
-                        this.Clamp.YunFengTSet = floor.YunfengTemperatureSet;
-                        this.Clamp.VacuumSet = floor.VacuumSet;
-
-                        this.Clamp.PreheatTimeSet = floor.PreheatTimeSet;
-                        this.Clamp.BakingTimeSet = floor.BakingTimeSet;
-                        this.Clamp.BreathingCycleSet = floor.BreathingCycleSet;
-
-                        this.Clamp.IsInFinished = true;
-
                     }
                     else if (value == FloorStatus.待出)
                     {
@@ -387,7 +376,7 @@ namespace Anchitech.Baking
                     if (value == FloorStatus.无盘 && floorStatus == FloorStatus.待出)
                     {
                         this.Clamp.OutOvenTime = DateTime.Now;
-                        this.Clamp.IsOutFinished = true; 
+                        this.Clamp.IsFinished = true; 
                     }
                 }
 

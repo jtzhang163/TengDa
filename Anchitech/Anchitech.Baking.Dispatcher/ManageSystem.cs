@@ -1569,11 +1569,7 @@ namespace Anchitech.Baking.Dispatcher
 
                     #region 电池扫码逻辑
 
-
-                    if (Current.Feeder.CurrentBatteryCount < 0)
-                    {
-                        Current.Feeder.CurrentBatteryCount = Battery.GetCountByClampId(Current.Feeder.CurrentPutClampId, out msg);
-                    }
+                    Current.Feeder.CurrentBatteryCount = Battery.GetCountByClampId(Current.Feeder.CurrentPutClampId, out msg);  
 
                     var batteryScanResult = ScanResult.Unknown;
 
@@ -1954,15 +1950,12 @@ namespace Anchitech.Baking.Dispatcher
             string msg = string.Empty;
             if (timerlock && Current.mes.IsEnable)
             {
-                UploadMesTVD();
-
-                UploadInOvenInfo(new List<Clamp>());
-
-                UploadOutOvenInfo(new List<Clamp>());
+                UploadMachineStatus();
+                UploadBatteryInfo(new List<Clamp>());
             }
         }
 
-        public void UploadInOvenInfo(object obj)
+        public void UploadBatteryInfo(object obj)
         {
             try
             {
@@ -1971,7 +1964,7 @@ namespace Anchitech.Baking.Dispatcher
                 string msg = string.Empty;
                 if (clamps.Count < 1)
                 {
-                    clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsInUploaded] = 'false' AND [IsInFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
+                    clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsUploaded] = 'false' AND [IsFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
                     if (!string.IsNullOrEmpty(msg))
                     {
                         Error.Alert(msg);
@@ -1985,40 +1978,8 @@ namespace Anchitech.Baking.Dispatcher
                 }
 
                 //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传入烤箱数据..."; }));
-                MES.UploadInOven(clamps);
+                MES.UploadBatteryInfo(clamps);
                 //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "入烤箱数据上传完成..."; }));
-            }
-            catch (Exception ex)
-            {
-                Error.Alert(ex.Message);
-            }
-        }
-
-        public void UploadOutOvenInfo(object obj)
-        {
-            try
-            {
-                Thread.Sleep(200);
-                List<Clamp> clamps = (List<Clamp>)obj;
-                string msg = string.Empty;
-                if (clamps.Count < 1)
-                {
-                    clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsOutUploaded] = 'false' AND [IsOutFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
-                    if (!string.IsNullOrEmpty(msg))
-                    {
-                        Error.Alert(msg);
-                        return;
-                    }
-                }
-
-                if (clamps.Count < 1)
-                {
-                    return;
-                }
-
-                //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传出烤箱数据..."; }));
-                MES.UploadOutOven(clamps);
-                //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "出烤箱数据上传完成..."; }));
             }
             catch (Exception ex)
             {
@@ -2029,65 +1990,11 @@ namespace Anchitech.Baking.Dispatcher
         /// <summary>
         /// 定时上传真空温度数据
         /// </summary>
-        public void UploadMesTVD()
+        public void UploadMachineStatus()
         {
             try
             {
-                var uploadTVDs = new List<UploadTVD>();
-                for (int i = 0; i < OvenCount; i++)
-                {
-                    for (int j = 0; j < OvenFloorCount; j++)
-                    {
-                        for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
-                        {
-                            var station = Current.ovens[i].Floors[j].Stations[k];
-                            if (station.IsAlive && station.FloorStatus == FloorStatus.烘烤 && station.ClampId > 0)
-                            {
-                                uploadTVDs.Add(new UploadTVD()
-                                {
-                                    ClampId = station.ClampId,
-                                    DeviceStatus = 0,
-                                    CollectorTime = DateTime.Now,
-                                    IsUploaded = false,
-                                    ParameterFlag = 0,
-                                    T = Current.ovens[i].Floors[j].Temperatures,
-                                    V1 = Current.ovens[i].Floors[j].Vacuum
-                                });
-                            }
-                        }
-                    }
-                }
-
-                if (uploadTVDs.Count > 0 && Current.mes.IsAlive)
-                {
-                    //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传实时温度真空数据..."; }));
-                    //await MES.UploadTvdInfoAsync(uploadTVDs);
-                    Thread.Sleep(100);
-                    //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "实时温度真空数据上传完成"; }));
-                }
-
-                //保存进数据库
-                var msg = string.Empty;
-                if (!UploadTVD.Add(uploadTVDs, out msg))
-                {
-                    LogHelper.WriteError(msg);
-                }
-
-                if (Current.mes.IsAlive)
-                {
-                    //检测上传失败的
-                    uploadTVDs.Clear();
-                    uploadTVDs = UploadTVD.GetList("SELECT TOP 100 * FROM [" + UploadTVD.TableName + "] WHERE IsUploaded = 'False' ORDER BY [CollectorTime] DESC", out msg);
-
-                    if (uploadTVDs.Count > 0)
-                    {
-                        //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传历史温度真空数据..."; }));
-                        //await MES.UploadTvdInfoAsync(uploadTVDs);
-                        Thread.Sleep(100);
-                        //this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "历史温度真空数据上传完成"; }));
-                    }
-                }
-
+                MES.UploadMachineStatus();
             }
             catch (Exception ex)
             {
@@ -3669,20 +3576,7 @@ namespace Anchitech.Baking.Dispatcher
 
         private void btnDebug_Click(object sende, EventArgs e)
         {
-            string msg = string.Empty;
-            for (int i = 4600; i < 5000; i++)
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.Append("INSERT INTO [dbo].[Anchitech.Baking.Alarm] ([WordAdd], [BitAdd1], [BitAdd2], [AlarmStr], [FloorNum]) VALUES ");
-
-                for (int j = 0; j < 16; j++)
-                {
-                    var wordAdd = string.Format("D{0:D4}.{1:D2}", i, j);
-                    sb.Append(string.Format("('{0}', '{1}', '{2}', '{3}',  {4}),", wordAdd, "", "", "", -2));
-                }
-                Database.NonQuery(sb.ToString().TrimEnd(','), out msg);
-                Thread.Sleep(10);
-            }
+            Clamp.Add("6666", out string msg);
         }
 
         private void cbDisplayOvenCode_CheckedChanged(object sender, EventArgs e)

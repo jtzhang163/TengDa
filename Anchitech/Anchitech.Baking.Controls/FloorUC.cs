@@ -103,7 +103,7 @@ namespace Anchitech.Baking.Controls
             {
                 lbStatus.Text =
                     string.Format("{0} {1} {2}/{3} {4}",
-                    "",
+                    oven.ClampOri == ClampOri.A ? "左" : "右",
                     //oven.ClampOri == ClampOri.B ? floor.Stations[0].RobotGetCode : floor.Stations[1].RobotGetCode,
                     floor.DoorStatus,
                     floor.RunMinutes.ToString().PadLeft(3),
@@ -139,6 +139,11 @@ namespace Anchitech.Baking.Controls
             }
 
             floor.PreAlarmStr = floor.AlarmStr;
+        }
+
+        public void Invalidate4ClampStatus()
+        {
+            this.tlpFloor.Invalidate();
         }
 
         private void CmsFloor_Opening(object sender, CancelEventArgs e)

@@ -139,253 +139,93 @@ namespace Anchitech.Baking
             }
         }
 
-        private bool isInUploaded;
+        private bool isUploaded;
         /// <summary>
-        /// 入炉是否已上传MES
+        /// 是否已上传MES
         /// </summary>
-        [DisplayName("入炉是否已上传MES")]
+        [DisplayName("是否已上传MES")]
         [Category("基本信息")]
-        public bool IsInUploaded
+        public bool IsUploaded
         {
             get
             {
-                return isInUploaded;
+                return isUploaded;
             }
             set
             {
-                if (isInUploaded != value)
+                if (isUploaded != value)
                 {
-                    UpdateDbField("IsInUploaded", value);
+                    UpdateDbField("IsUploaded", value);
                 }
-                isInUploaded = value;
+                isUploaded = value;
             }
         }
 
-        private bool isOutUploaded;
+        private bool isFinished;
         /// <summary>
-        /// 出炉是否已上传MES
+        /// 是否已完成
         /// </summary>
-        [DisplayName("出炉是否已上传MES")]
+        [DisplayName("是否已完成")]
         [Category("基本信息")]
-        public bool IsOutUploaded
+        public bool IsFinished
         {
             get
             {
-                return isOutUploaded;
+                return isFinished;
             }
             set
             {
-                if (isOutUploaded != value)
+                if (isFinished != value)
                 {
-                    UpdateDbField("IsOutUploaded", value);
+                    UpdateDbField("IsFinished", value);
                 }
-                isOutUploaded = value;
-            }
-        }
-
-        private bool isInFinished;
-        /// <summary>
-        /// 是否入炉已完成
-        /// </summary>
-        [DisplayName("是否入炉已完成")]
-        [Category("基本信息")]
-        public bool IsInFinished
-        {
-            get
-            {
-                return isInFinished;
-            }
-            set
-            {
-                if (isInFinished != value)
-                {
-                    UpdateDbField("IsInFinished", value);
-                }
-                isInFinished = value;
-            }
-        }
-
-        private bool isOutFinished;
-        /// <summary>
-        /// 是否出炉已完成
-        /// </summary>
-        [DisplayName("是否出炉已完成")]
-        [Category("基本信息")]
-        public bool IsOutFinished
-        {
-            get
-            {
-                return isOutFinished;
-            }
-            set
-            {
-                if (isOutFinished != value)
-                {
-                    UpdateDbField("IsOutFinished", value);
-                }
-                isOutFinished = value;
+                isFinished = value;
             }
         }
 
 
-        private float processTemperSet = -1;
+        private float temperature = -1;
         /// <summary>
-        /// 工艺温度
+        /// 温度值
         /// </summary>
-        [ReadOnly(true), DisplayName("工艺温度")]
+        [ReadOnly(true), DisplayName("温度值")]
         [Category("基本信息")]
-        public float ProcessTemperSet
+        public float Temperature
         {
             get
             {
-                return processTemperSet;
+                return temperature;
             }
             set
             {
-                if (processTemperSet != value)
+                if (temperature != value)
                 {
-                    UpdateDbField("ProcessTemperSet", value);
+                    UpdateDbField("Temperature", value);
                 }
-                processTemperSet = value;
+                temperature = value;
             }
         }
 
 
-        private float[] tsSet = new float[Option.TemperatureSetPointCount];
+        private float vacuum = -1;
         /// <summary>
-        /// 温度设置数组值
+        /// 真空值
         /// </summary>
-        [ReadOnly(true), DisplayName("温度设置数组值")]
+        [ReadOnly(true), DisplayName("真空值")]
         [Category("基本信息")]
-        public float[] TsSet
+        public float Vacuum
         {
             get
             {
-                return tsSet;
+                return vacuum;
             }
             set
             {
-                if (tsSet != value)
+                if (vacuum != value)
                 {
-                    for (int i = 0; i < Option.TemperatureSetPointCount; i++)
-                    {
-                        UpdateDbField(string.Format("T{0:D2}Set", i + 1), value[i]);
-                    }
+                    UpdateDbField("Vacuum", value);
                 }
-                tsSet = value;
-            }
-        }
-
-
-
-        private float vacuumSet = -1;
-        /// <summary>
-        /// 真空设置值
-        /// </summary>
-        [ReadOnly(true), DisplayName("真空设置值")]
-        [Category("基本信息")]
-        public float VacuumSet
-        {
-            get
-            {
-                return vacuumSet;
-            }
-            set
-            {
-                if (vacuumSet != value)
-                {
-                    UpdateDbField("VacuumSet", value);
-                }
-                vacuumSet = value;
-            }
-        }
-
-
-        private float yunFengTSet = -1;
-        /// <summary>
-        /// 运风温度设置
-        /// </summary>
-        [ReadOnly(true), DisplayName("运风温度设置")]
-        [Category("基本信息")]
-        public float YunFengTSet
-        {
-            get
-            {
-                return yunFengTSet;
-            }
-            set
-            {
-                if (yunFengTSet != value)
-                {
-                    UpdateDbField("YunFengTSet", value);
-                }
-                yunFengTSet = value;
-            }
-        }
-
-        private int preheatTimeSet = -1;
-        /// <summary>
-        /// 预热时间设置
-        /// </summary>
-        [ReadOnly(true), DisplayName("预热时间设置")]
-        [Category("基本信息")]
-        public int PreheatTimeSet
-        {
-            get
-            {
-                return preheatTimeSet;
-            }
-            set
-            {
-                if (preheatTimeSet != value)
-                {
-                    UpdateDbField("PreheatTimeSet", value);
-                }
-                preheatTimeSet = value;
-            }
-        }
-
-        private int bakingTimeSet = -1;
-        /// <summary>
-        /// Baking时间设置
-        /// </summary>
-        [ReadOnly(true), DisplayName("Baking时间设置")]
-        [Category("基本信息")]
-        public int BakingTimeSet
-        {
-            get
-            {
-                return bakingTimeSet;
-            }
-            set
-            {
-                if (bakingTimeSet != value)
-                {
-                    UpdateDbField("BakingTimeSet", value);
-                }
-                bakingTimeSet = value;
-            }
-        }
-
-        private int breathingCycleSet = -1;
-        /// <summary>
-        /// 呼吸循环时间设置
-        /// </summary>
-        [ReadOnly(true), DisplayName("呼吸循环时间设置")]
-        [Category("基本信息")]
-        public int BreathingCycleSet
-        {
-            get
-            {
-                return breathingCycleSet;
-            }
-            set
-            {
-                if (breathingCycleSet != value)
-                {
-                    UpdateDbField("BreathingCycleSet", value);
-                }
-                breathingCycleSet = value;
+                vacuum = value;
             }
         }
 
@@ -473,21 +313,11 @@ namespace Anchitech.Baking
             this.bakingStopTime = TengDa._Convert.StrToDateTime(rowInfo["BakingStopTime"].ToString(), Common.DefaultTime);
             this.inOvenTime = TengDa._Convert.StrToDateTime(rowInfo["InOvenTime"].ToString(), Common.DefaultTime);
             this.outOvenTime = TengDa._Convert.StrToDateTime(rowInfo["OutOvenTime"].ToString(), Common.DefaultTime);
-            this.isInFinished = TengDa._Convert.StrToBool(rowInfo["IsInFinished"].ToString(), false);
-            this.isOutFinished = TengDa._Convert.StrToBool(rowInfo["IsOutFinished"].ToString(), false);
-            this.isInUploaded = TengDa._Convert.StrToBool(rowInfo["IsInUploaded"].ToString(), true);
-            this.isOutUploaded = TengDa._Convert.StrToBool(rowInfo["IsOutUploaded"].ToString(), true);
+            this.isFinished = TengDa._Convert.StrToBool(rowInfo["IsFinished"].ToString(), false);
+            this.isUploaded = TengDa._Convert.StrToBool(rowInfo["IsUploaded"].ToString(), true);
             this.scanTime = TengDa._Convert.StrToDateTime(rowInfo["ScanTime"].ToString(), Common.DefaultTime);
-            this.processTemperSet = TengDa._Convert.StrToFloat(rowInfo["ProcessTemperSet"].ToString(), -1);
-            this.vacuumSet = TengDa._Convert.StrToFloat(rowInfo["VacuumSet"].ToString(), -1);
-            for (int i = 0; i < Option.TemperatureSetPointCount; i++)
-            {
-                this.tsSet[i] = TengDa._Convert.StrToFloat(rowInfo[string.Format("T{0:D2}Set", i + 1)].ToString(), -1);
-            }
-            this.yunFengTSet = TengDa._Convert.StrToFloat(rowInfo["YunFengTSet"].ToString(), -1);
-            this.preheatTimeSet = TengDa._Convert.StrToInt(rowInfo["PreheatTimeSet"].ToString(), -1);
-            this.bakingTimeSet = TengDa._Convert.StrToInt(rowInfo["BakingTimeSet"].ToString(), -1);
-            this.breathingCycleSet = TengDa._Convert.StrToInt(rowInfo["BreathingCycleSet"].ToString(), -1);
+            this.temperature = TengDa._Convert.StrToFloat(rowInfo["Temperature"].ToString(), -1);
+            this.vacuum = TengDa._Convert.StrToFloat(rowInfo["Vacuum"].ToString(), -1);
             this.sampleInfo = (SampleInfo)Enum.Parse(typeof(SampleInfo), rowInfo["SampleInfo"].ToString());
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
         }
@@ -544,7 +374,7 @@ namespace Anchitech.Baking
         {
             if (string.IsNullOrEmpty(code))
             {
-                code = "88888";
+                code = "6666";
             }
             var clamp = new Clamp(code);
             clamp.scanTime = DateTime.Now;
@@ -553,11 +383,8 @@ namespace Anchitech.Baking
 
         public static int Add(Clamp addClamp, out string msg)
         {
-            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsInFinished], [IsOutFinished], [IsInUploaded], [IsOutUploaded], [VacuumSet], [T01Set], [T02Set], [T03Set], [T04Set], [T05Set], [T06Set], [T07Set], [T08Set], [T09Set], [T10Set], [YunFengTSet], [PreheatTimeSet], [BakingTimeSet], [BreathingCycleSet], [ProcessTemperSet], [SampleInfo]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}')", TableName,
-              addClamp.Code, TengDa.WF.Current.user.Id, addClamp.OvenStationId, addClamp.Location, 
-              addClamp.BakingStartTime, addClamp.BakingStopTime, addClamp.ScanTime, addClamp.InOvenTime, addClamp.OutOvenTime,addClamp.IsInFinished,addClamp.IsOutFinished,addClamp.IsInUploaded,addClamp.IsOutUploaded,addClamp.VacuumSet,
-              addClamp.TsSet[0], addClamp.TsSet[1], addClamp.TsSet[2], addClamp.TsSet[3], addClamp.TsSet[4], addClamp.TsSet[5], addClamp.TsSet[6], addClamp.TsSet[7], addClamp.TsSet[8], addClamp.TsSet[9], 
-              addClamp.YunFengTSet, addClamp.PreheatTimeSet, addClamp.BakingTimeSet, addClamp.BreathingCycleSet, addClamp.ProcessTemperSet, addClamp.SampleInfo), out msg);
+            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsFinished], [IsUploaded], [Temperature], [Vacuum], [SampleInfo]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}')", TableName,
+              addClamp.Code, TengDa.WF.Current.user.Id, addClamp.OvenStationId, addClamp.Location, addClamp.BakingStartTime, addClamp.BakingStopTime, addClamp.ScanTime, addClamp.InOvenTime, addClamp.OutOvenTime, addClamp.IsFinished, addClamp.IsUploaded, addClamp.Temperature, addClamp.Vacuum, addClamp.SampleInfo), out msg);
         }
 
         public static bool Delete(Clamp delClamp, out string msg)

@@ -380,7 +380,7 @@ namespace Anchitech.Baking
                                 return false;
                             }
                             output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-                            this.Floors[j].RunMinutes = int.Parse(output.Substring(0, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
+                            this.Floors[j].RunRemainMinutes = int.Parse(output.Substring(0, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
                         }
                         #endregion
 

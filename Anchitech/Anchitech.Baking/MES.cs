@@ -16,8 +16,7 @@ using System.Web.Services.Description;
 using TengDa;
 using TengDa.Web;
 using TengDa.WF;
-using Anchitech.Baking.MesWebService;
-using Anchitech.Baking.ExecutingWebReference;
+using Anchitech.Baking.MesService;
 
 namespace Anchitech.Baking
 {
@@ -214,30 +213,21 @@ namespace Anchitech.Baking
 
         #region MES方法
 
-        /// <summary>
-        /// 上传真空温度数据
-        /// </summary>
-        /// <param name="uploadTVDs"></param>
-        /// <returns></returns>
-        public static void UploadTvdInfo(List<UploadTVD> uploadTVDs)
-        {
 
-        }
-
-        private static ExecutingServiceService _wsProxy = null;
-        private static ExecutingServiceService wsProxy
+        private static EquipService _wsProxy = null;
+        private static EquipService wsProxy
         {
             get
             {
                 if (_wsProxy == null)
                 {
-                    _wsProxy = new ExecutingServiceService
-                    {
-                        Credentials = new NetworkCredential(Current.mes.Username, Current.mes.Password, null),
-                        PreAuthenticate = true,
-                        Timeout = 2000,
-                        Url = Current.mes.WebServiceUrl
-                    };
+                    _wsProxy = new EquipService();
+                    //{
+                    //    Credentials = new NetworkCredential(Current.mes.Username, Current.mes.Password, null),
+                    //    PreAuthenticate = true,
+                    //    Timeout = 2000,
+                    //    Url = Current.mes.WebServiceUrl
+                    //};
                 }
                 return _wsProxy;
             }
@@ -248,7 +238,7 @@ namespace Anchitech.Baking
         /// </summary>
         /// <param name="clamps"></param>
         /// <returns></returns>
-        public static void UploadInOven(List<Clamp> clamps)
+        public static void UploadBatteryInfo(List<Clamp> clamps)
         {
 
             for (int i = 0; i < clamps.Count; i++)
@@ -258,150 +248,21 @@ namespace Anchitech.Baking
                 var floor = station.GetFloor();
                 var oven = floor.GetOven();
 
-                var sfcDatas = new List<SfcData>();
-                foreach (var battery in clamp.Batteries)
-                {
-                    sfcDatas.Add(new SfcData() { SFC = battery.Code });
-                }
-
-                var response = new executeResponse();
                 try
                 {
-                    var request = new executingServiceRequest()
-                    {
-                        site = Current.mes.Site,
-                        serviceCode = "GetSfcListAndContainerIdOfBakeService",
-                        data = JsonHelper.SerializeObject(new ExecuteData()
-                        {
-                            RESOURCE = oven.Number,
-                            ACTION = "S",
-                            CONTAINER_ID = clamp.Code,
-                            IS_PROCESS_LOT = "N",
-                            SFC_LIST = sfcDatas.ToArray(),
-                            SFC = ""
-                        })
-                    };
-                    response = wsProxy.execute(new execute() { pRequest = request });
+
                 }
                 catch (System.Exception ex)
                 {
-                    response.@return.status = "error";
-                    response.@return.message = ex.Message;
+
                     LogHelper.WriteError(ex);
                 }
 
-                if (response.@return.status.ToLower().Contains("true"))
-                {
-                    clamp.IsInUploaded = true;
-                }
+                    clamp.IsUploaded = true;
+                
             }
         }
 
-        /// <summary>
-        /// 出炉数据上传
-        /// </summary>
-        /// <param name="clamps"></param>
-        /// <returns></returns>
-        public static void UploadOutOven(List<Clamp> clamps)
-        {
-
-            for (int i = 0; i < clamps.Count; i++)
-            {
-                var clamp = clamps[i];
-                var station = Station.StationList.FirstOrDefault(s => s.Id == clamp.OvenStationId);
-                var floor = station.GetFloor();
-                var oven = floor.GetOven();
-
-                var sfcDatas = new List<SfcData>();
-                foreach (var battery in clamp.Batteries)
-                {
-                    sfcDatas.Add(new SfcData() { SFC = battery.Code });
-                }
-
-                var response = new executeResponse();
-
-                try
-                {
-                    var request = new executingServiceRequest()
-                    {
-                        site = Current.mes.Site,
-                        serviceCode = "UntieContainerIdOfBakeService",
-                        data = JsonHelper.SerializeObject(new ExecuteData()
-                        {
-                            RESOURCE = oven.Number,
-                            CONTAINER_ID = clamp.Code,
-                            NC_SFC_LIST = sfcDatas.ToArray()
-                        })
-                    };
-                    response = wsProxy.execute(new execute() { pRequest = request });
-                }
-                catch (System.Exception ex)
-                {
-                    response.@return.status = "error";
-                    response.@return.message = ex.Message;
-                    LogHelper.WriteError(ex);
-                }
-
-                if (response.@return.status.ToLower().Contains("true"))
-                {
-                    clamp.IsOutUploaded = true;
-                }
-            }
-        }
-
-
-
-        /// <summary>
-        /// 烘烤NG数据上传
-        /// </summary>
-        /// <param name="clamps"></param>
-        /// <returns></returns>
-        public static void UploadNgData(List<Clamp> clamps)
-        {
-
-            for (int i = 0; i < clamps.Count; i++)
-            {
-                var clamp = clamps[i];
-                var station = Station.StationList.FirstOrDefault(s => s.Id == clamp.OvenStationId);
-                var floor = station.GetFloor();
-                var oven = floor.GetOven();
-
-                var sfcDatas = new List<SfcData>();
-                foreach (var battery in clamp.Batteries)
-                {
-                    sfcDatas.Add(new SfcData() { SFC = battery.Code });
-                }
-
-                var response = new executeResponse();
-
-                try
-                {
-                    var request = new executingServiceRequest()
-                    {
-                        site = Current.mes.Site,
-                        serviceCode = "BakeReworkUnbundlingService",
-                        data = JsonHelper.SerializeObject(new ExecuteData()
-                        {
-                            RESOURCE = oven.Number,
-                            CONTAINER_ID = clamp.Code,
-                            NC_SFC_LIST = sfcDatas.ToArray()
-                        })
-                    };
-                    response = wsProxy.execute(new execute() { pRequest = request });
-                }
-                catch (System.Exception ex)
-                {
-                    response.@return.status = "error";
-                    response.@return.message = ex.Message;
-                    LogHelper.WriteError(ex);
-                }
-
-                //if (response.@return.status.ToLower().Contains("true"))
-                //{
-                //    clamp.IsOutUploaded = true;
-                //}
-            }
-        }
 
 
         /// <summary>
@@ -411,31 +272,14 @@ namespace Anchitech.Baking
         /// <returns></returns>
         public static void UploadMachineStatus()
         {
-            var machStatuss = new List<MachStatus>();
-            for (int i = 0; i < Current.ovens.Count; i++)
-            {
-                var oven = Current.ovens[i];
-                machStatuss.Add(new MachStatus() { RESOURCE = oven.Number, STATUS = "1" });
-            }
 
-            var response = new executeResponse();
             try
             {
-                var request = new executingServiceRequest()
-                {
-                    site = Current.mes.Site,
-                    serviceCode = "ResourceStatusChangeService",
-                    data = JsonHelper.SerializeObject(new ExecuteData()
-                    {
-                        RESOURCE_LIST = machStatuss.ToArray()
-                    })
-                };
-                response = wsProxy.execute(new execute() { pRequest = request });
+
             }
             catch (System.Exception ex)
             {
-                response.@return.status = "error";
-                response.@return.message = ex.Message;
+
                 LogHelper.WriteError(ex);
             }
 
@@ -444,42 +288,14 @@ namespace Anchitech.Baking
         #endregion
     }
 
-    /// <summary>
-    /// 调用MES后返回数据的对象类型
-    /// </summary>
-    public class MesResponse
+    public class BakingMesData
     {
-        /// <summary>
-        /// 状态
-        /// 0：成功
-        /// </summary>
-        public int status { get; set; }
-        public string msg { get; set; }
-        public string errorMsg { get; set; }
-        public string map { get; set; }
-        public string data { get; set; }
+
     }
 
-    public class ExecuteData
+    public class MachineStatusData
     {
-        public string RESOURCE { get; set; }
-        public string ACTION { get; set; }
-        public string CONTAINER_ID { get; set; }
-        public string IS_PROCESS_LOT { get; set; }
-        public SfcData[] SFC_LIST { get; set; }
-        public SfcData[] NC_SFC_LIST { get; set; }
-        public string SFC { get; set; }
-        public MachStatus[] RESOURCE_LIST { get; set; }
+
     }
 
-    public class SfcData
-    {
-        public string SFC { get; set; }
-    }
-
-    public class MachStatus
-    {
-        public string RESOURCE { get; set; }
-        public string STATUS { get; set; }
-    }
 }

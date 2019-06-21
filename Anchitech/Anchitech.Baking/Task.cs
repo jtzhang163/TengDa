@@ -553,7 +553,7 @@ namespace Anchitech.Baking
                         {
                             LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送前。。"));
 
-                            if(Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation))
+                            if (Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation))
                             {
                                 Current.Robot.IsMoving = true;
                                 Current.Task.Status = TaskStatus.取放中;
@@ -568,6 +568,11 @@ namespace Anchitech.Baking
                             LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送后。。"));
 
                             Current.Robot.IsAlreadySendCmd = true;
+                        }
+
+                        if (Current.Robot.IsReceived())
+                        {
+                            Current.Robot.IsMoving = true;
                         }
                     }
                     else if (Current.Task.Status == TaskStatus.取放中 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
@@ -589,7 +594,7 @@ namespace Anchitech.Baking
                             Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
 
                             Current.Robot.ClampStatus = ClampStatus.无夹具;
-                            Current.Robot.IsAlreadySendCmd = false; 
+                            Current.Robot.IsAlreadySendCmd = false;
 
                             if (Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
                             {
@@ -609,6 +614,8 @@ namespace Anchitech.Baking
                             {
                                 Current.Task.ToStation.ClampId = Current.Task.ClampId;
                             }
+
+                            Current.Task.Status = TaskStatus.完成;
 
                             // Current.Robot.ClampId = -1;
 
@@ -636,7 +643,7 @@ namespace Anchitech.Baking
                                     Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
                                 }
                             }
-                            Current.Task.Status = TaskStatus.完成;
+
                         }
                     }
                 }
@@ -696,11 +703,13 @@ namespace Anchitech.Baking
                                 Current.Robot.IsMoving = true;
                                 Current.Task.Status = TaskStatus.取放中;
 
+
                                 if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
                                 {
                                     var j = Current.Feeder.Stations.IndexOf(Current.Task.FromStation);
                                     Current.Feeder.SetGetClampFinish(j);
                                 }
+
                             }
 
                             LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送后。。"));
@@ -711,7 +720,6 @@ namespace Anchitech.Baking
                         if (Current.Robot.IsReceived())
                         {
                             Current.Robot.IsMoving = true;
-                            Current.Task.Status = TaskStatus.取放中;
                         }
                     }
                     else if (Current.Task.Status == TaskStatus.取放中 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
@@ -754,6 +762,8 @@ namespace Anchitech.Baking
                                 Current.Task.ToStation.ClampId = Current.Task.ClampId;
                             }
 
+                            Current.Task.Status = TaskStatus.完成;
+
                             // Current.Robot.ClampId = -1;
 
                             if (Current.Task.FromStation != null && Current.Task.FromStation != Current.Task.ToStation)
@@ -780,7 +790,7 @@ namespace Anchitech.Baking
                                     Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
                                 }
                             }
-                            Current.Task.Status = TaskStatus.完成;
+                            
                         }
                     }
                 }

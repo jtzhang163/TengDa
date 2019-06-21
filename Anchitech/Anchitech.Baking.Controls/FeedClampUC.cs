@@ -67,7 +67,7 @@ namespace Anchitech.Baking.Controls
 
         private void TlpFeederStationClamp_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
         {
-
+            if (this.station == null) return;
             Graphics g = e.Graphics;
             Rectangle r = e.CellBounds;
             Brush brush = Brushes.Cyan;

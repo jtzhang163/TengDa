@@ -109,7 +109,7 @@
             this.lbStatus.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor.SetColumnSpan(this.lbStatus, 3);
             this.lbStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbStatus.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStatus.Font = new System.Drawing.Font("Consolas", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStatus.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbStatus.Location = new System.Drawing.Point(0, 85);
             this.lbStatus.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
