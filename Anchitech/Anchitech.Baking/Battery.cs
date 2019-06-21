@@ -145,6 +145,16 @@ namespace Anchitech.Baking
             return false;
         }
 
+        public static int GetCountByClampId(int clampId, out string msg)
+        {
+            DataTable dt = Database.Query(string.Format("SELECT COUNT(*) FROM [dbo].[{0}] WHERE ClampId = {1};", TableName, clampId), out msg);
+            if (dt.Rows.Count > 0)
+            {
+                return TengDa._Convert.StrToInt(dt.Rows[0][0].ToString(), -1);
+            }
+            return 0;
+        }
+
         public static int Add(Battery addBattery, out string msg)
         {
             return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [FeederId], [Location], [ScanTime]) VALUES ('{1}', {2}, {3}, '{4}', '{5}')", TableName, addBattery.Code, addBattery.ClampId, addBattery.FeederId, addBattery.Location, DateTime.Now), out msg);

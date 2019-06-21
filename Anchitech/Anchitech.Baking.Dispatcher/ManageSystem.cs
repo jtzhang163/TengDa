@@ -594,7 +594,7 @@ namespace Anchitech.Baking.Dispatcher
             if (Current.Robot.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Robot) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "连接成功"); } }
             else { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "未连接"); }
 
-            panelRobot.Margin = new Padding(Current.Robot.Position + 3, 3, 0, 3);
+            //this.panelRobot.Padding = new Padding(Current.Robot.Position + 3, 3, 0, 3);
 
             #endregion
 
@@ -1569,6 +1569,12 @@ namespace Anchitech.Baking.Dispatcher
 
                     #region 电池扫码逻辑
 
+
+                    if (Current.Feeder.CurrentBatteryCount < 0)
+                    {
+                        Current.Feeder.CurrentBatteryCount = Battery.GetCountByClampId(Current.Feeder.CurrentPutClampId, out msg);
+                    }
+
                     var batteryScanResult = ScanResult.Unknown;
 
                     var isScanFlag = false;//是否执行了扫码
@@ -1585,17 +1591,17 @@ namespace Anchitech.Baking.Dispatcher
                         {
                             this.BeginInvoke(new MethodInvoker(() =>
                             {
-                                //this.tbScanerStatus[ii][jj].Text = "+" + code;
-                                //this.tbScanerStatus[ii][jj].ForeColor = SystemColors.Control;
-                                //this.tbScanerStatus[ii][jj].BackColor = Color.Green;
+                                this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "+" + codes);
+                                this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, SystemColors.Control);
+                                this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, Color.Green);
                             }));
 
                             Thread t = new Thread(() => {
                                 Thread.Sleep(1000);
                                 this.BeginInvoke(new MethodInvoker(() =>
                                 {
-                                    //this.tbScanerStatus[ii][jj].ForeColor = Color.Green;
-                                    //this.tbScanerStatus[ii][jj].BackColor = SystemColors.Control;
+                                    this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Green);
+                                    this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, SystemColors.Control);
                                 }));
                             });
                             t.Start();
@@ -1608,11 +1614,9 @@ namespace Anchitech.Baking.Dispatcher
                                     Error.Alert(msg);
                                 }
                             }
-
                             batteryScanResult = ScanResult.OK;
-
                         }
-                        else if (result == ScanResult.NG || result == ScanResult.Timeout)
+                        else
                         {
                             //再扫一次
                             result = Current.BatteryScaner.StartBatteryScan(out codes, out msg);
@@ -1620,17 +1624,17 @@ namespace Anchitech.Baking.Dispatcher
                             {
                                 this.BeginInvoke(new MethodInvoker(() => 
                                 {
-                                    //this.tbScanerStatus[ii][jj].Text = "+" + code;
-                                    //this.tbScanerStatus[ii][jj].ForeColor = SystemColors.Control;
-                                    //this.tbScanerStatus[ii][jj].BackColor = Color.Green;
+                                    this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "+" + codes);
+                                    this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, SystemColors.Control);
+                                    this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, Color.Green);
                                 }));
 
                                 Thread t = new Thread(() => {
                                     Thread.Sleep(1000);
                                     this.BeginInvoke(new MethodInvoker(() =>
                                     {
-                                        //this.tbScanerStatus[ii][jj].ForeColor = Color.Green;
-                                        //this.tbScanerStatus[ii][jj].BackColor = SystemColors.Control;
+                                        this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Green);
+                                        this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, SystemColors.Control);
                                     }));
                                 });
                                 t.Start();
@@ -1646,16 +1650,19 @@ namespace Anchitech.Baking.Dispatcher
 
                                 batteryScanResult = ScanResult.OK;
                             }
-                            else if (result == ScanResult.NG || result == ScanResult.Timeout)
+                            else
                             {
-                                //this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[ii][jj].Text = "扫码NG"; }));
+                                this.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "扫码NG");
+                                    this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Red);
+                                }));
+
                                 batteryScanResult = ScanResult.NG;
                             }
                         }
-                        else
-                        {
-                            Error.Alert(msg);
-                        }
+
+                        Current.Feeder.CurrentBatteryCount = Battery.GetCountByClampId(Current.Feeder.CurrentPutClampId, out msg);
 
                         Current.BatteryScaner.CanScan = false;
                     }
@@ -1678,13 +1685,15 @@ namespace Anchitech.Baking.Dispatcher
                         {
                             if (Current.Feeder.PreCurrentBatteryCount != Current.Feeder.CurrentBatteryCount)
                             {
-                              //  this.tlpFeederStationClamp[i][j].Invalidate();
+                                this.feederUC1.Invalidate(j);
+                                //  this.tlpFeederStationClamp[i][j].Invalidate();
                             }
                         }
 
                         if (Current.Feeder.Stations[j].PreIsAlive != Current.Feeder.Stations[j].IsAlive)
                         {
-                           // this.tlpFeederStationClamp[i][j].Invalidate();
+                            this.feederUC1.Invalidate(j);
+                            // this.tlpFeederStationClamp[i][j].Invalidate();
                         }
                         Current.Feeder.Stations[j].PreIsAlive = Current.Feeder.Stations[j].IsAlive;
                     }
@@ -2970,15 +2979,15 @@ namespace Anchitech.Baking.Dispatcher
                     }
                     else if (e.Node.Level == 1 && e.Node.Parent.Text == "烤箱")
                     {
-                        this.propertyGridSettings.SelectedObject = Oven.OvenList.First(o => o.Id.ToString() == e.Node.Text.Split(':')[0]);
+                        this.propertyGridSettings.SelectedObject = Current.ovens.First(o => o.Id.ToString() == e.Node.Text.Split(':')[0]);
                     }
                     else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "烤箱" && e.Node.Text == "PLC")
                     {
-                        this.propertyGridSettings.SelectedObject = Oven.OvenList.First(o => o.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
+                        this.propertyGridSettings.SelectedObject = Current.ovens.First(o => o.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
                     }
                     else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "烤箱" && e.Node.Text.IndexOf("烤箱") > -1)
                     {
-                        Oven oven = Oven.OvenList.First(o => o.Id.ToString() == e.Node.Parent.Text.Split(':')[0]);
+                        Oven oven = Current.ovens.First(o => o.Id.ToString() == e.Node.Parent.Text.Split(':')[0]);
                         this.propertyGridSettings.SelectedObject = oven.Floors.First(f => f.Id.ToString() == e.Node.Text.Split(':')[0]);
                     }
                     else if (e.Node.Level == 0 && e.Node.Text == "MES")
@@ -3025,7 +3034,8 @@ namespace Anchitech.Baking.Dispatcher
                     }
                     else if (e.Node.Level == 1 && e.Node.Parent.Text == "上料机")
                     {
-                        this.propertyGridSettings.SelectedObject = Feeder.FeederList.First(f => f.Id.ToString() == e.Node.Text.Split(':')[0]);
+                        this.propertyGridSettings.SelectedObject = Current.Feeder;
+                        //this.propertyGridSettings.SelectedObject = Feeder.FeederList.First(f => f.Id.ToString() == e.Node.Text.Split(':')[0]);
                     }
                     else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "上料机" && e.Node.Text == "PLC")
                     {
@@ -3162,53 +3172,6 @@ namespace Anchitech.Baking.Dispatcher
         private void tsmOvenCloseDoor_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void tlpFeederStationClamp_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
-        {
-            return;
-            /*
-            //tlpFeederStationClamp0102
-            int i = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(21, 2), 0) - 1;
-            int j = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(23, 2), 0) - 1;
-
-            Graphics g = e.Graphics;
-            Rectangle r = e.CellBounds;
-            Brush brush = Brushes.Cyan;
-            if (!(Current.Feeder.Stations[j].IsAlive || Current.Feeder.Plc.PreIsAlive))//|| Current.Feeder.Plc.PreIsAlive防闪烁
-            {
-                brush = Brushes.WhiteSmoke;
-            }
-            else if (Current.Feeder.Stations[j].ClampStatus == ClampStatus.满夹具)
-            {
-                brush = Brushes.LimeGreen;
-            }
-            else if (Current.Feeder.Stations[j].ClampStatus == ClampStatus.空夹具)
-            {
-                brush = Brushes.Cyan;
-                if (Current.Feeder.Stations[j].Id == Current.Feeder.CurrentPutStationId)
-                {
-                    for (int x = 0; x < 2; x++)
-                    {
-                        for (int y = 0; y < 25; y++)
-                        {
-                            if (e.Row == y && e.Column == x)
-                            {
-
-                                if ((24 - y) * 2 + x < Current.Feeder.CurrentBatteryCount)
-                                {
-                                    brush = Brushes.LimeGreen;
-                                }
-
-                                //g.FillRectangle(brush, r);
-                            }
-                        }
-                    }
-                }
-            }
-            g.FillRectangle(brush, r);
-            //tableLayoutPanel1.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(tableLayoutPanel1, true, null); 
-            */
         }
 
         private void tsmStartBaking_Click(object sender, EventArgs e)

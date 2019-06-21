@@ -55,6 +55,16 @@ namespace Anchitech.Baking.Controls
             this.tbStatus.Text = info;
         }
 
+        public void SetForeColor(Color color)
+        {
+            this.tbStatus.ForeColor = color;
+        }
+
+        public void SetBackColor(Color color)
+        {
+            this.tbStatus.BackColor = color;
+        }
+
         public object GetProperty(object obj, string propertyName)
         {
             return obj.GetType().GetProperty(propertyName).GetValue(obj);

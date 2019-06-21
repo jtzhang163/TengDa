@@ -13,6 +13,7 @@ namespace Anchitech.Baking.Controls
 {
     public partial class FeederUC : UserControl
     {
+        private Feeder feeder;
         public FeederUC()
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace Anchitech.Baking.Controls
             this.feedClampUC1.Init(feeder.Stations[0]);
             this.feedClampUC2.Init(feeder.Stations[1]);
             this.feedClampUC3.Init(feeder.Stations[2]);
+            this.feeder = feeder;
         }
 
         public void Update(Feeder feeder)
@@ -73,6 +75,22 @@ namespace Anchitech.Baking.Controls
             this.feedClampUC1.Update(feeder.Stations[0]);
             this.feedClampUC2.Update(feeder.Stations[1]);
             this.feedClampUC3.Update(feeder.Stations[2]);
+        }
+
+        public void Invalidate(int j)
+        {
+            if (j == 0)
+            {
+                this.feedClampUC1.InvalidateShowBatteryCount();
+            }
+            else if (j == 1)
+            {
+                this.feedClampUC2.InvalidateShowBatteryCount();
+            }
+            else if (j == 2)
+            {
+                this.feedClampUC3.InvalidateShowBatteryCount();
+            }
         }
     }
 }

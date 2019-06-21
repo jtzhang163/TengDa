@@ -53,6 +53,16 @@ namespace Anchitech.Baking.Controls
             this.machineIndexs.FirstOrDefault(o => o.Machine == machine).MsUC.SetStatusInfo(info);
         }
 
+        public void SetForeColor(object machine, Color color)
+        {
+            this.machineIndexs.FirstOrDefault(o => o.Machine == machine).MsUC.SetForeColor(color);
+        }
+
+        public void SetBackColor(object machine, Color color)
+        {
+            this.machineIndexs.FirstOrDefault(o => o.Machine == machine).MsUC.SetBackColor(color);
+        }
+
         public string GetStatusInfo(object machine)
         {
             return this.machineIndexs.FirstOrDefault(o => o.Machine == machine).MsUC.GetStatusInfo();

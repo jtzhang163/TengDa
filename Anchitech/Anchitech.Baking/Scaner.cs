@@ -164,10 +164,10 @@ namespace Anchitech.Baking
                 return ScanResult.Error;
             }
 
-            code = output;
-           // code = Regex.Match(output, Current.option.BatteryCodeRegularExpression).Value;
-            if (!string.IsNullOrEmpty(code))
+            if (!string.IsNullOrEmpty(output) && output.Length > 5)
             {
+                code = output;
+                // code = Regex.Match(output, Current.option.BatteryCodeRegularExpression).Value;
                 return ScanResult.OK;
             }
 

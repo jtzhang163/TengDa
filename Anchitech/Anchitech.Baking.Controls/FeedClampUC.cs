@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TengDa;
 
 namespace Anchitech.Baking.Controls
 {
     public partial class FeedClampUC : UserControl
     {
+        private Station station;
         public FeedClampUC()
         {
             InitializeComponent();
@@ -20,6 +22,7 @@ namespace Anchitech.Baking.Controls
         public void Init(Station station)
         {
             this.lbClampCode.Text = station.Clamp.Code;
+            this.station = station;
         }
 
         public void Update(Station station)
@@ -60,6 +63,53 @@ namespace Anchitech.Baking.Controls
                     }
                 }
             }
+        }
+
+        private void TlpFeederStationClamp_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+        {
+
+            Graphics g = e.Graphics;
+            Rectangle r = e.CellBounds;
+            Brush brush = Brushes.Cyan;
+            if (!(this.station.IsAlive || Current.Feeder.Plc.PreIsAlive))//|| Current.Feeder.Plc.PreIsAlive防闪烁
+            {
+                brush = Brushes.WhiteSmoke;
+            }
+            else if (this.station.ClampStatus == ClampStatus.满夹具)
+            {
+                brush = Brushes.LimeGreen;
+            }
+            else if (this.station.ClampStatus == ClampStatus.空夹具)
+            {
+                brush = Brushes.Cyan;
+                if (this.station.Id == Current.Feeder.CurrentPutStationId)
+                {
+                    for (int x = 0; x < 3; x++)
+                    {
+                        for (int y = 0; y < 20; y++)
+                        {
+                            if (e.Row == y && e.Column == x)
+                            {
+
+                                if (y + x * 20 < Current.Feeder.CurrentBatteryCount)
+                                {
+                                    brush = Brushes.LimeGreen;
+                                }
+
+                                //g.FillRectangle(brush, r);
+                            }
+                        }
+                    }
+                }
+            }
+            g.FillRectangle(brush, r);
+            //tableLayoutPanel1.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(tableLayoutPanel1, true, null); 
+
+        }
+
+        public void InvalidateShowBatteryCount()
+        {
+            this.tlpFeederStationClamp.Invalidate();
         }
     }
 }

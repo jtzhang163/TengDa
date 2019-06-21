@@ -1510,14 +1510,14 @@
             this.panelRobot.Location = new System.Drawing.Point(10, 244);
             this.panelRobot.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.panelRobot.Name = "panelRobot";
-            this.panelRobot.Padding = new System.Windows.Forms.Padding(3);
+            this.panelRobot.Padding = new System.Windows.Forms.Padding(450, 3, 3, 3);
             this.panelRobot.Size = new System.Drawing.Size(943, 54);
             this.panelRobot.TabIndex = 0;
             // 
             // robotUC1
             // 
             this.robotUC1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.robotUC1.Location = new System.Drawing.Point(3, 3);
+            this.robotUC1.Location = new System.Drawing.Point(450, 3);
             this.robotUC1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
             this.robotUC1.Name = "robotUC1";
             this.robotUC1.Size = new System.Drawing.Size(80, 46);

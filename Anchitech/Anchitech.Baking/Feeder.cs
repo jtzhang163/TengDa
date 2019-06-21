@@ -469,7 +469,7 @@ namespace Anchitech.Baking
                     }
                     if (output.Substring(3, 1) != "$")
                     {
-                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RCP3R0212R0211R0210**", output));
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RCP6R0212R0211R0210R0215R0214R0213**", output));
                         return false;
                     }
 
@@ -594,15 +594,29 @@ namespace Anchitech.Baking
 
         public bool SetScanBatteryResult(ScanResult scanResult, out string msg)
         {
-
-            if (this.Plc.GetInfo("%01#WCSR02050**", out string output, out msg))
+            if (scanResult == ScanResult.OK)
             {
-                if (this.Plc.GetInfo("%01#WCSR02000**", out output, out msg))
+                if (this.Plc.GetInfo("%01#WCSR02050**", out string output, out msg))
                 {
-                    LogHelper.WriteInfo(string.Format("成功发送电池扫码OK结果到{0}", this.Plc.Name));
-                    return true;
+                    if (this.Plc.GetInfo("%01#WCSR02000**", out output, out msg))
+                    {
+                        LogHelper.WriteInfo(string.Format("成功发送电池扫码OK结果到{0}", this.Plc.Name));
+                        return true;
+                    }
                 }
             }
+            else
+            {
+                if (this.Plc.GetInfo("%01#WCSR02051**", out string output, out msg))
+                {
+                    if (this.Plc.GetInfo("%01#WCSR02000**", out output, out msg))
+                    {
+                        LogHelper.WriteInfo(string.Format("成功发送电池扫码NG结果到{0}", this.Plc.Name));
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
 

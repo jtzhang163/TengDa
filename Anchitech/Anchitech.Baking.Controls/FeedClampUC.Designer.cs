@@ -98,6 +98,7 @@
             this.tlpFeederStationClamp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tlpFeederStationClamp.Size = new System.Drawing.Size(70, 144);
             this.tlpFeederStationClamp.TabIndex = 0;
+            this.tlpFeederStationClamp.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.TlpFeederStationClamp_CellPaint);
             // 
             // FeedClampUC
             // 
