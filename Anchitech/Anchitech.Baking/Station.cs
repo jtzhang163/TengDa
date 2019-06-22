@@ -39,7 +39,7 @@ namespace Anchitech.Baking
         {
             get
             {
-                if (this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.转移台)
+                if (this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.暂存台)
                 {
                     var _status = StationStatus.不可用;
                     if (this.ClampStatus == ClampStatus.无夹具)
@@ -278,7 +278,7 @@ namespace Anchitech.Baking
         {
             get
             {
-                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.转移台)
+                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.暂存台)
                 {
                     doorStatus = DoorStatus.打开;
                 }
@@ -308,7 +308,7 @@ namespace Anchitech.Baking
         {
             get
             {
-                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.转移台 || this.GetPutType == GetPutType.下料机)
+                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.暂存台 || this.GetPutType == GetPutType.下料机)
                 {
                     return true;
                 }

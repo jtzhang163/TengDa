@@ -58,43 +58,48 @@ namespace Anchitech.Baking.Controls
             }
             else
             {
-                var centerStr = floor.IsEnable ? floor.Vacuum.ToString().PadLeft(4) + "Pa" : "炉层禁用";
+                var centerStr = floor.IsEnable ? floor.Vacuum.ToString().PadLeft(4) + "" : "炉层禁用";
+
+                var ss = new List<Station>() { oven.ClampOri == ClampOri.A ? floor.Stations[0] : floor.Stations[1], oven.ClampOri == ClampOri.A ? floor.Stations[1] : floor.Stations[0] };
+                var strs = new List<string>() { "", "" };
+
+                for (var x = 0; x < ss.Count; x++)
+                {
+                    if (ss[x].FloorStatus == FloorStatus.待出)
+                    {
+                        strs[x] = ss[x].SampleStatus == SampleStatus.待结果 ? "待测" : ss[x].SampleStatus == SampleStatus.水分OK ? "水分OK" : ss[x].SampleStatus == SampleStatus.水分NG ? "水分NG" : "未知";
+                    }
+                    else if (ss[x].FloorStatus == FloorStatus.待烤 && ss[x].SampleStatus == SampleStatus.水分NG)
+                    {
+                        strs[x] = "水分NG";
+                    }
+                    else
+                    {
+                        strs[x] = ss[x].FloorStatus.ToString();
+                    }
+                }
 
                 if (floor.IsBaking)
                 {
-                    this.lbInfoTop.Text = string.Format("{0}℃ {1} {2}℃",
-                         floor.Stations[0].Temperatures[Current.option.DisplayTemperIndex].ToString().PadLeft(2),
+                    this.lbInfoTop.Text = string.Format("{0}℃{3} {1} {4}{2}℃",
+                         ss[0].Temperatures[Current.option.DisplayTemperIndex].ToString().PadLeft(2),
                          centerStr,
-                         floor.Stations[1].Temperatures[Current.option.DisplayTemperIndex].ToString().PadLeft(2));
+                         ss[1].Temperatures[Current.option.DisplayTemperIndex].ToString().PadLeft(2),
+                         ss[0].HasSampleFlag ? "■" : "",
+                         ss[1].HasSampleFlag ? "■" : ""
+                         );
                 }
                 else
                 {
-
-                    var ss = new List<Station>() { oven.ClampOri == ClampOri.A ? floor.Stations[0] : floor.Stations[1], oven.ClampOri == ClampOri.A ? floor.Stations[1] : floor.Stations[0] };
-                    var strs = new List<string>() { "", "" };
-
-                    for (var x = 0; x < ss.Count; x++)
-                    {
-                        if (ss[x].FloorStatus == FloorStatus.待出)
-                        {
-                            strs[x] = ss[x].SampleStatus == SampleStatus.待结果 ? "待测" : ss[x].SampleStatus == SampleStatus.水分OK ? "水分OK" : ss[x].SampleStatus == SampleStatus.水分NG ? "水分NG" : "未知";
-                        }
-                        else if (ss[x].FloorStatus == FloorStatus.待烤 && ss[x].SampleStatus == SampleStatus.水分NG)
-                        {
-                            strs[x] = "水分NG";
-                        }
-                        else
-                        {
-                            strs[x] = ss[x].FloorStatus.ToString();
-                        }
-                    }
-
-                    this.lbInfoTop.Text = string.Format("{0} {1} {2}",
+                    this.lbInfoTop.Text = string.Format("{0}{3} {1} {4}{2}",
                          strs[0],
                          centerStr,
-                         strs[1]);
+                         strs[1],
+                         ss[0].HasSampleFlag ? "■" : "",
+                         ss[1].HasSampleFlag ? "■" : "");
                 }
 
+                //}
                 this.lbInfoTop.ForeColor = Color.Red;
                 this.lbInfoTop.BackColor = Color.Transparent;
             }
@@ -217,17 +222,17 @@ namespace Anchitech.Baking.Controls
         private void TsmOvenCloseDoor_Click(object sender, EventArgs e)
         {
 
-            //if (floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
-            //{
-            //    Tip.Alert(Current.Task.FromStationName + "正在取盘，无法关门！");
-            //    return;
-            //}
+            if (floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && Current.Task.Status != TaskStatus.完成)
+            {
+                Tip.Alert(Current.Task.FromStationName + "正在取盘，无法关门！");
+                return;
+            }
 
-            //if (floor.Stations.Count(s => s.Id == Current.Task.ToStationId) > 0 && (Current.Task.Status == TaskStatus.可放 || Current.Task.Status == TaskStatus.正放))
-            //{
-            //    Tip.Alert(Current.Task.FromStationName + "正在放盘，无法关门！");
-            //    return;
-            //}
+            if (floor.Stations.Count(s => s.Id == Current.Task.ToStationId) > 0 && Current.Task.Status != TaskStatus.完成)
+            {
+                Tip.Alert(Current.Task.FromStationName + "正在放盘，无法关门！");
+                return;
+            }
 
             floor.AddLog("手动关门");
             oven.CloseDoor(oven.Floors.IndexOf(floor));
@@ -277,103 +282,42 @@ namespace Anchitech.Baking.Controls
 
         private void TsmWatContentTestOK_Click(object sender, EventArgs e)
         {
-            //var floorName = Current.ovens[i].Floors[j].Name;
-
-            //var floorStationIds = new List<int>();
-
-            //DialogResult dr = MessageBox.Show("确定" + floorName + "水分测试结果OK？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-            //if (dr == DialogResult.OK)
-            //{
-            //    Current.ovens[i].Floors[j].Stations.ForEach(s =>
-            //    {
-            //        floorStationIds.Add(s.Id);
-            //        if (s.ClampStatus == ClampStatus.满夹具)
-            //        {
-            //            s.SampleStatus = SampleStatus.水分OK;
-            //            s.FloorStatus = FloorStatus.待出;
-            //            s.SampleInfo = SampleInfo.无样品;
-            //        }
-            //        else
-            //        {
-            //            s.SampleStatus = SampleStatus.未知;
-            //        }
-            //    });
-
-            //    Current.Blanker.Stations.ForEach(s =>
-            //    {
-            //        if (floorStationIds.Contains(s.FromStationId) && s.ClampStatus == ClampStatus.满夹具)
-            //        {
-            //            s.SampleStatus = SampleStatus.水分OK;
-
-            //            var offset = 0;
-
-            //            var addr = string.Format("D{0:D4}", 2021 + offset);
-
-            //            if (!Current.Blanker.Plc.SetInfo(addr, (ushort)3, out string msg))
-            //            {
-            //                Error.Alert(msg);
-            //            }
-            //            else
-            //            {
-            //                LogHelper.WriteInfo(string.Format("成功发送水分OK指令到{0} {1}:{2}", s.Name, addr, 3));
-            //            }
-            //        }
-            //    });
-
-            //}
+            var floorName = this.floor.Name;
+            DialogResult dr = MessageBox.Show("确定" + floorName + "水分测试结果OK？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            if (dr == DialogResult.OK)
+            {
+                this.floor.Stations.ForEach(s =>
+                {
+                    if (s.ClampStatus == ClampStatus.满夹具)
+                    {
+                        s.SampleStatus = SampleStatus.水分OK;
+                        s.FloorStatus = FloorStatus.待出;
+                        s.SampleInfo = SampleInfo.无样品;
+                    }
+                    else
+                    {
+                        s.SampleStatus = SampleStatus.未知;
+                    }
+                });
+            }
         }
 
         private void TsmWatContentTestNG_Click(object sender, EventArgs e)
         {
-            //if (Current.runStstus != RunStatus.运行)
-            //{
-            //    Tip.Alert("请先启动！");
-            //    return;
-            //}
 
-            //int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
-            //int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-
-            //var floorName = Current.ovens[i].Floors[j].Name;
-            //var floorStationIds = new List<int>();
-
-            //DialogResult dr = MessageBox.Show("确定" + floorName + "水分测试结果NG？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-            //if (dr == DialogResult.OK)
-            //{
-            //    Current.ovens[i].Floors[j].Stations.ForEach(s =>
-            //    {
-            //        floorStationIds.Add(s.Id);
-            //        if (s.ClampStatus == ClampStatus.满夹具)
-            //        {
-            //            s.SampleStatus = SampleStatus.水分NG;
-            //            s.FloorStatus = FloorStatus.待烤;
-            //        }
-            //    });
-
-
-
-            //    Current.Blanker.Stations.ForEach(s =>
-            //    {
-            //        if (floorStationIds.Contains(s.FromStationId) && s.ClampStatus == ClampStatus.满夹具)
-            //        {
-            //            s.SampleStatus = SampleStatus.水分NG;
-
-            //            var offset = 0;
-
-            //            var addr = string.Format("D{0:D4}", 2021 + offset);
-
-            //            if (!Current.Blanker.Plc.SetInfo(addr, (ushort)4, out string msg))
-            //            {
-            //                Error.Alert(msg);
-            //            }
-            //            else
-            //            {
-            //                LogHelper.WriteInfo(string.Format("成功发送水分NG指令到{0} {1}:{2}", s.Name, addr, 4));
-            //            }
-            //        }
-            //    });
-
-            //}
+            var floorName = this.floor.Name;
+            DialogResult dr = MessageBox.Show("确定" + floorName + "水分测试结果NG？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            if (dr == DialogResult.OK)
+            {
+                this.floor.Stations.ForEach(s =>
+                {
+                    if (s.ClampStatus == ClampStatus.满夹具)
+                    {
+                        s.SampleStatus = SampleStatus.水分NG;
+                        s.FloorStatus = FloorStatus.待烤;
+                    }
+                });
+            }
         }
 
         private void TlpFloor_CellPaint(object sender, TableLayoutCellPaintEventArgs e)

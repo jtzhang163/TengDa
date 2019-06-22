@@ -430,98 +430,141 @@ namespace Anchitech.Baking
                         #endregion
 
                         #region 报警信息
-                        //output = string.Empty;
-                        //if (!this.Plc.GetInfo(false, Current.option.GetAlarmStr, out output, out msg))
-                        //{
-                        //    Error.Alert(msg);
-                        //    this.Plc.IsAlive = false;
-                        //    return false;
-                        //}
 
-                        //if (output.Substring(3, 1) != "$")
-                        //{
-                        //    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", Current.option.GetAlarmStr, output));
-                        //    return false;
-                        //}
-                        //this.Alarm2BinString = PanasonicPLC.Convert2BinStringForAlarm(output.TrimEnd('\r'));
+                        var tmpAlarm2BinString = "";
 
+                        output = string.Empty;
+                        if (!this.Plc.GetInfo(false, "%01#RCP6R0251R0252R0253R0254R0255R0256**", out output, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
+                        tmpAlarm2BinString += output.Substring(6, 6);
 
-                        //if (this.Alarm2BinString != this.PreAlarm2BinString)
-                        //{
-                        //    this.AlarmStr = string.Empty;
-                        //    for (int j = 0; j < this.Floors.Count; j++)
-                        //    {
-                        //        this.Floors[j].AlarmStr = string.Empty;
-                        //    }
+                        output = string.Empty;
+                        if (!this.Plc.GetInfo(false, "%01#RCP6R0263R0264R0265R0266R0267R0268**", out output, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
+                        tmpAlarm2BinString += output.Substring(6, 6);
 
-                        //    List<AlarmLog> alarmLogs = new List<AlarmLog>();
+                        output = string.Empty;
+                        if (!this.Plc.GetInfo(false, "%01#RCP6R0259R025AR025BR025CR025DR025E**", out output, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
+                        tmpAlarm2BinString += output.Substring(6, 6);
 
-                        //    for (int x = 0; x < this.Alarm2BinString.Length; x++)
-                        //    {
-                        //        if (x > Alarm.Alarms.Count - 1)
-                        //        {
-                        //            break;
-                        //        }
-                        //        char c = this.Alarm2BinString[x];
-                        //        char cPre = this.PreAlarm2BinString.Length < this.Alarm2BinString.Length ? '0' : this.PreAlarm2BinString[x];
-                        //        if (c == '1')
-                        //        {
-                        //            Alarm alarm = (from a in Alarm.Alarms where a.Id == x + 1 select a).ToList()[0];
-                        //            if (alarm.FloorNum == 0)
-                        //            {
-                        //                this.AlarmStr += alarm.AlarmStr + ",";
+                        output = string.Empty;
+                        if (!this.Plc.GetInfo(false, "%01#RCP6R0636R0637R0638R0639R063AR063B**", out output, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
+                        tmpAlarm2BinString += output.Substring(6, 6);
 
-                        //                if (cPre == '0')
-                        //                {
-                        //                    AlarmLog alarmLog = new AlarmLog();
-                        //                    alarmLog.AlarmId = x + 1;
-                        //                    alarmLog.AlarmType = AlarmType.Oven;
-                        //                    alarmLog.TypeId = this.Id;
-                        //                    alarmLogs.Add(alarmLog);
-                        //                }
-                        //            }
-                        //            else if (alarm.FloorNum > 0 && alarm.FloorNum <= this.Floors.Count)
-                        //            {
-                        //                this.Floors[alarm.FloorNum - 1].AlarmStr += alarm.AlarmStr + ",";
+                        output = string.Empty;
+                        if (!this.Plc.GetInfo(false, "%01#RCP6R063FR0641R0642R0643R0644R0645**", out output, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
+                        tmpAlarm2BinString += output.Substring(6, 6);
 
-                        //                if (cPre == '0')
-                        //                {
-                        //                    AlarmLog alarmLog = new AlarmLog();
-                        //                    alarmLog.AlarmId = x + 1;
-                        //                    alarmLog.AlarmType = AlarmType.Floor;
-                        //                    alarmLog.TypeId = this.Floors[alarm.FloorNum - 1].Id;
-                        //                    alarmLogs.Add(alarmLog);
-                        //                }
-                        //            }
-                        //        }
-                        //        else if (c == '0')
-                        //        {
-                        //            Alarm alarm = (from a in Alarm.Alarms where a.Id == x + 1 select a).ToList()[0];
-                        //            if (alarm.FloorNum == 0)
-                        //            {
-                        //                if (cPre == '1')
-                        //                {
-                        //                    AlarmLog.Stop(AlarmType.Oven, x + 1, this.Id, out msg);
-                        //                }
-                        //            }
-                        //            else if (alarm.FloorNum > 0 && alarm.FloorNum <= this.Floors.Count)
-                        //            {
-                        //                if (cPre == '1')
-                        //                {
-                        //                    AlarmLog.Stop(AlarmType.Floor, x + 1, this.Floors[alarm.FloorNum - 1].Id, out msg);
-                        //                }
-                        //            }
-                        //        }
-                        //    }
+                        output = string.Empty;
+                        if (!this.Plc.GetInfo(false, "%01#RCP6R0646R0647R0648R0649R064AR064B**", out output, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
+                        tmpAlarm2BinString += output.Substring(6, 6);
 
-                        //    if (!AlarmLog.Add(alarmLogs, out msg))
-                        //    {
-                        //        Error.Alert(msg);
-                        //    }
+                        this.Alarm2BinString = tmpAlarm2BinString;
 
-                        //}
+                        if (this.Alarm2BinString != this.PreAlarm2BinString)
+                        {
+                            this.AlarmStr = string.Empty;
+                            for (int j = 0; j < this.Floors.Count; j++)
+                            {
+                                this.Floors[j].AlarmStr = string.Empty;
+                            }
 
-                        //this.PreAlarm2BinString = this.Alarm2BinString;
+                            List<AlarmLog> alarmLogs = new List<AlarmLog>();
+
+                            for (int x = 0; x < this.Alarm2BinString.Length; x++)
+                            {
+                                if (x > Alarm.Alarms.Count - 1)
+                                {
+                                    break;
+                                }
+                                char c = this.Alarm2BinString[x];
+                                char cPre = this.PreAlarm2BinString.Length < this.Alarm2BinString.Length ? '0' : this.PreAlarm2BinString[x];
+                                if (c == '1')
+                                {
+                                    Alarm alarm = (from a in Alarm.Alarms where a.Id == x + 1 select a).ToList()[0];
+                                    if (alarm.FloorNum == 0)
+                                    {
+                                        this.AlarmStr += alarm.AlarmStr + ",";
+
+                                        if (cPre == '0')
+                                        {
+                                            AlarmLog alarmLog = new AlarmLog();
+                                            alarmLog.AlarmId = x + 1;
+                                            alarmLog.AlarmType = AlarmType.Oven;
+                                            alarmLog.TypeId = this.Id;
+                                            alarmLogs.Add(alarmLog);
+                                        }
+                                    }
+                                    else if (alarm.FloorNum > 0 && alarm.FloorNum <= this.Floors.Count)
+                                    {
+                                        this.Floors[alarm.FloorNum - 1].AlarmStr += alarm.AlarmStr + ",";
+
+                                        if (cPre == '0')
+                                        {
+                                            AlarmLog alarmLog = new AlarmLog();
+                                            alarmLog.AlarmId = x + 1;
+                                            alarmLog.AlarmType = AlarmType.Floor;
+                                            alarmLog.TypeId = this.Floors[alarm.FloorNum - 1].Id;
+                                            alarmLogs.Add(alarmLog);
+                                        }
+                                    }
+                                }
+                                else if (c == '0')
+                                {
+                                    Alarm alarm = (from a in Alarm.Alarms where a.Id == x + 1 select a).ToList()[0];
+                                    if (alarm.FloorNum == 0)
+                                    {
+                                        if (cPre == '1')
+                                        {
+                                            AlarmLog.Stop(AlarmType.Oven, x + 1, this.Id, out msg);
+                                        }
+                                    }
+                                    else if (alarm.FloorNum > 0 && alarm.FloorNum <= this.Floors.Count)
+                                    {
+                                        if (cPre == '1')
+                                        {
+                                            AlarmLog.Stop(AlarmType.Floor, x + 1, this.Floors[alarm.FloorNum - 1].Id, out msg);
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (!AlarmLog.Add(alarmLogs, out msg))
+                            {
+                                Error.Alert(msg);
+                            }
+
+                        }
+
+                        this.PreAlarm2BinString = this.Alarm2BinString;
                         #endregion
 
                     }
@@ -604,14 +647,14 @@ namespace Anchitech.Baking
                         {
                             if (output.Substring(6 + j * 2 + k, 1) == "1")
                             {
-                                if (this.Floors[j].Stations[k].Id == Current.Task.FromStationId || this.Floors[j].Stations[k].Id == Current.Task.ToStationId)
-                                {
+                                //if (this.Floors[j].Stations[k].Id == Current.Task.FromStationId || this.Floors[j].Stations[k].Id == Current.Task.ToStationId)
+                                //{
 
-                                }
-                                else
-                                {
+                                //}
+                                //else
+                                //{
                                     this.Floors[j].Stations[k].ClampStatus = this.Floors[j].Stations[k].ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具;
-                                }
+                                //}
                             }
                             else
                             {
@@ -671,8 +714,6 @@ namespace Anchitech.Baking
                         this.Floors[j].VacuumIsUploading = output.Substring(9 + j, 1) == "1";
                     }
                     #endregion
-
-
 
                     #region 写指令 控制开关门、启动运行、抽卸真空
                     for (int j = 0; j < this.Floors.Count; j++)

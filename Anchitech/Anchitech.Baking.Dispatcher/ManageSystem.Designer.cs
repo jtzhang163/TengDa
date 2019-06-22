@@ -128,52 +128,14 @@
             this.cbMesRem = new System.Windows.Forms.CheckBox();
             this.tabContentPageMain = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel41 = new System.Windows.Forms.TableLayoutPanel();
-            this.taskInfo1 = new Anchitech.Baking.Controls.TaskInfo();
             this.panelRobot = new System.Windows.Forms.Panel();
-            this.robotUC1 = new Anchitech.Baking.Controls.RobotUC();
             this.tableLayoutPanel42 = new System.Windows.Forms.TableLayoutPanel();
-            this.ovenUC05 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC06 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC07 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC08 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC09 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC10 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC11 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC12 = new Anchitech.Baking.Controls.OvenUC();
             this.tableLayoutPanel43 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel44 = new System.Windows.Forms.TableLayoutPanel();
-            this.ovenUC02 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC01 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC04 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC03 = new Anchitech.Baking.Controls.OvenUC();
-            this.cacherUC1 = new Anchitech.Baking.Controls.CacherUC();
-            this.transferUC1 = new Anchitech.Baking.Controls.TransferUC();
             this.tableLayoutPanel45 = new System.Windows.Forms.TableLayoutPanel();
             this.cbDisplayOvenCode = new System.Windows.Forms.CheckBox();
-            this.feederUC1 = new Anchitech.Baking.Controls.FeederUC();
-            this.blankerUC1 = new Anchitech.Baking.Controls.BlankerUC();
             this.tabContentTemperCurve = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
-            this.pCurve = new TengDa.WF.Controls.DoubleBufferPanel();
-            this.label81 = new System.Windows.Forms.Label();
-            this.label80 = new System.Windows.Forms.Label();
-            this.label79 = new System.Windows.Forms.Label();
-            this.label78 = new System.Windows.Forms.Label();
-            this.label77 = new System.Windows.Forms.Label();
-            this.label76 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.tableLayoutPanel32 = new System.Windows.Forms.TableLayoutPanel();
             this.cbCurveSelectedStation = new System.Windows.Forms.ComboBox();
@@ -326,8 +288,46 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.lbTime = new System.Windows.Forms.Label();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
+            this.pCurve = new TengDa.WF.Controls.DoubleBufferPanel();
+            this.label81 = new System.Windows.Forms.Label();
+            this.label80 = new System.Windows.Forms.Label();
+            this.label79 = new System.Windows.Forms.Label();
+            this.label78 = new System.Windows.Forms.Label();
+            this.label77 = new System.Windows.Forms.Label();
+            this.label76 = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             this.yieldDisplay = new Anchitech.Baking.Controls.YieldDisplay();
             this.machinesStatusUC1 = new Anchitech.Baking.Controls.MachinesStatusUC();
+            this.taskInfo1 = new Anchitech.Baking.Controls.TaskInfo();
+            this.robotUC1 = new Anchitech.Baking.Controls.RobotUC();
+            this.ovenUC05 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC06 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC07 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC08 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC09 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC10 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC11 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC12 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC02 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC01 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC04 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC03 = new Anchitech.Baking.Controls.OvenUC();
+            this.cacherUC1 = new Anchitech.Baking.Controls.CacherUC();
+            this.transferUC1 = new Anchitech.Baking.Controls.TransferUC();
+            this.feederUC1 = new Anchitech.Baking.Controls.FeederUC();
+            this.blankerUC1 = new Anchitech.Baking.Controls.BlankerUC();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -368,7 +368,6 @@
             this.tableLayoutPanel45.SuspendLayout();
             this.tabContentTemperCurve.SuspendLayout();
             this.tableLayoutPanel18.SuspendLayout();
-            this.pCurve.SuspendLayout();
             this.tableLayoutPanel32.SuspendLayout();
             this.tableLayoutPanel31.SuspendLayout();
             this.tabContentPageTVQuery.SuspendLayout();
@@ -424,6 +423,7 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.pCurve.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMain
@@ -1470,14 +1470,12 @@
             // tableLayoutPanel41
             // 
             this.tableLayoutPanel41.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.tableLayoutPanel41.ColumnCount = 2;
+            this.tableLayoutPanel41.ColumnCount = 1;
             this.tableLayoutPanel41.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 93F));
-            this.tableLayoutPanel41.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
             this.tableLayoutPanel41.Controls.Add(this.taskInfo1, 0, 3);
             this.tableLayoutPanel41.Controls.Add(this.panelRobot, 0, 1);
             this.tableLayoutPanel41.Controls.Add(this.tableLayoutPanel42, 0, 0);
             this.tableLayoutPanel41.Controls.Add(this.tableLayoutPanel43, 0, 2);
-            this.tableLayoutPanel41.Controls.Add(this.blankerUC1, 1, 0);
             this.tableLayoutPanel41.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel41.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel41.Name = "tableLayoutPanel41";
@@ -1488,17 +1486,6 @@
             this.tableLayoutPanel41.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel41.Size = new System.Drawing.Size(1036, 572);
             this.tableLayoutPanel41.TabIndex = 0;
-            // 
-            // taskInfo1
-            // 
-            this.taskInfo1.BackColor = System.Drawing.SystemColors.Control;
-            this.tableLayoutPanel41.SetColumnSpan(this.taskInfo1, 2);
-            this.taskInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.taskInfo1.Location = new System.Drawing.Point(2, 550);
-            this.taskInfo1.Margin = new System.Windows.Forms.Padding(2, 8, 2, 3);
-            this.taskInfo1.Name = "taskInfo1";
-            this.taskInfo1.Size = new System.Drawing.Size(1032, 19);
-            this.taskInfo1.TabIndex = 4;
             // 
             // panelRobot
             // 
@@ -1511,17 +1498,8 @@
             this.panelRobot.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.panelRobot.Name = "panelRobot";
             this.panelRobot.Padding = new System.Windows.Forms.Padding(450, 3, 3, 3);
-            this.panelRobot.Size = new System.Drawing.Size(943, 54);
+            this.panelRobot.Size = new System.Drawing.Size(1016, 54);
             this.panelRobot.TabIndex = 0;
-            // 
-            // robotUC1
-            // 
-            this.robotUC1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.robotUC1.Location = new System.Drawing.Point(450, 3);
-            this.robotUC1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
-            this.robotUC1.Name = "robotUC1";
-            this.robotUC1.Size = new System.Drawing.Size(80, 46);
-            this.robotUC1.TabIndex = 0;
             // 
             // tableLayoutPanel42
             // 
@@ -1547,99 +1525,28 @@
             this.tableLayoutPanel42.Name = "tableLayoutPanel42";
             this.tableLayoutPanel42.RowCount = 1;
             this.tableLayoutPanel42.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel42.Size = new System.Drawing.Size(957, 235);
+            this.tableLayoutPanel42.Size = new System.Drawing.Size(1030, 235);
             this.tableLayoutPanel42.TabIndex = 1;
-            // 
-            // ovenUC05
-            // 
-            this.ovenUC05.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC05.Location = new System.Drawing.Point(836, 3);
-            this.ovenUC05.Name = "ovenUC05";
-            this.ovenUC05.OvenIndex = 5;
-            this.ovenUC05.Size = new System.Drawing.Size(118, 229);
-            this.ovenUC05.TabIndex = 7;
-            // 
-            // ovenUC06
-            // 
-            this.ovenUC06.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC06.Location = new System.Drawing.Point(717, 3);
-            this.ovenUC06.Name = "ovenUC06";
-            this.ovenUC06.OvenIndex = 6;
-            this.ovenUC06.Size = new System.Drawing.Size(113, 229);
-            this.ovenUC06.TabIndex = 6;
-            // 
-            // ovenUC07
-            // 
-            this.ovenUC07.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC07.Location = new System.Drawing.Point(598, 3);
-            this.ovenUC07.Name = "ovenUC07";
-            this.ovenUC07.OvenIndex = 7;
-            this.ovenUC07.Size = new System.Drawing.Size(113, 229);
-            this.ovenUC07.TabIndex = 5;
-            // 
-            // ovenUC08
-            // 
-            this.ovenUC08.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC08.Location = new System.Drawing.Point(479, 3);
-            this.ovenUC08.Name = "ovenUC08";
-            this.ovenUC08.OvenIndex = 8;
-            this.ovenUC08.Size = new System.Drawing.Size(113, 229);
-            this.ovenUC08.TabIndex = 4;
-            // 
-            // ovenUC09
-            // 
-            this.ovenUC09.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC09.Location = new System.Drawing.Point(360, 3);
-            this.ovenUC09.Name = "ovenUC09";
-            this.ovenUC09.OvenIndex = 9;
-            this.ovenUC09.Size = new System.Drawing.Size(113, 229);
-            this.ovenUC09.TabIndex = 3;
-            // 
-            // ovenUC10
-            // 
-            this.ovenUC10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC10.Location = new System.Drawing.Point(241, 3);
-            this.ovenUC10.Name = "ovenUC10";
-            this.ovenUC10.OvenIndex = 10;
-            this.ovenUC10.Size = new System.Drawing.Size(113, 229);
-            this.ovenUC10.TabIndex = 2;
-            // 
-            // ovenUC11
-            // 
-            this.ovenUC11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC11.Location = new System.Drawing.Point(122, 3);
-            this.ovenUC11.Name = "ovenUC11";
-            this.ovenUC11.OvenIndex = 11;
-            this.ovenUC11.Size = new System.Drawing.Size(113, 229);
-            this.ovenUC11.TabIndex = 1;
-            // 
-            // ovenUC12
-            // 
-            this.ovenUC12.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC12.Location = new System.Drawing.Point(3, 3);
-            this.ovenUC12.Name = "ovenUC12";
-            this.ovenUC12.OvenIndex = 12;
-            this.ovenUC12.Size = new System.Drawing.Size(113, 229);
-            this.ovenUC12.TabIndex = 0;
             // 
             // tableLayoutPanel43
             // 
             this.tableLayoutPanel43.ColumnCount = 5;
-            this.tableLayoutPanel43.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32F));
+            this.tableLayoutPanel43.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29F));
             this.tableLayoutPanel43.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel43.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
             this.tableLayoutPanel43.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
-            this.tableLayoutPanel43.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            this.tableLayoutPanel43.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
             this.tableLayoutPanel43.Controls.Add(this.tableLayoutPanel44, 1, 0);
             this.tableLayoutPanel43.Controls.Add(this.cacherUC1, 2, 0);
             this.tableLayoutPanel43.Controls.Add(this.transferUC1, 3, 0);
             this.tableLayoutPanel43.Controls.Add(this.tableLayoutPanel45, 0, 0);
+            this.tableLayoutPanel43.Controls.Add(this.blankerUC1, 4, 0);
             this.tableLayoutPanel43.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel43.Location = new System.Drawing.Point(3, 304);
             this.tableLayoutPanel43.Name = "tableLayoutPanel43";
             this.tableLayoutPanel43.RowCount = 1;
             this.tableLayoutPanel43.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel43.Size = new System.Drawing.Size(957, 235);
+            this.tableLayoutPanel43.Size = new System.Drawing.Size(1030, 235);
             this.tableLayoutPanel43.TabIndex = 2;
             // 
             // tableLayoutPanel44
@@ -1654,67 +1561,13 @@
             this.tableLayoutPanel44.Controls.Add(this.ovenUC04, 0, 0);
             this.tableLayoutPanel44.Controls.Add(this.ovenUC03, 0, 0);
             this.tableLayoutPanel44.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel44.Location = new System.Drawing.Point(306, 0);
+            this.tableLayoutPanel44.Location = new System.Drawing.Point(298, 0);
             this.tableLayoutPanel44.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel44.Name = "tableLayoutPanel44";
             this.tableLayoutPanel44.RowCount = 1;
             this.tableLayoutPanel44.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel44.Size = new System.Drawing.Size(478, 235);
+            this.tableLayoutPanel44.Size = new System.Drawing.Size(515, 235);
             this.tableLayoutPanel44.TabIndex = 0;
-            // 
-            // ovenUC02
-            // 
-            this.ovenUC02.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ovenUC02.Location = new System.Drawing.Point(241, 3);
-            this.ovenUC02.Name = "ovenUC02";
-            this.ovenUC02.OvenIndex = 2;
-            this.ovenUC02.Size = new System.Drawing.Size(113, 229);
-            this.ovenUC02.TabIndex = 11;
-            // 
-            // ovenUC01
-            // 
-            this.ovenUC01.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ovenUC01.Location = new System.Drawing.Point(360, 3);
-            this.ovenUC01.Name = "ovenUC01";
-            this.ovenUC01.OvenIndex = 1;
-            this.ovenUC01.Size = new System.Drawing.Size(115, 229);
-            this.ovenUC01.TabIndex = 10;
-            // 
-            // ovenUC04
-            // 
-            this.ovenUC04.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ovenUC04.Location = new System.Drawing.Point(3, 3);
-            this.ovenUC04.Name = "ovenUC04";
-            this.ovenUC04.OvenIndex = 4;
-            this.ovenUC04.Size = new System.Drawing.Size(113, 229);
-            this.ovenUC04.TabIndex = 9;
-            // 
-            // ovenUC03
-            // 
-            this.ovenUC03.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ovenUC03.Location = new System.Drawing.Point(122, 3);
-            this.ovenUC03.Name = "ovenUC03";
-            this.ovenUC03.OvenIndex = 3;
-            this.ovenUC03.Size = new System.Drawing.Size(113, 229);
-            this.ovenUC03.TabIndex = 8;
-            // 
-            // cacherUC1
-            // 
-            this.cacherUC1.BackColor = System.Drawing.Color.Transparent;
-            this.cacherUC1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cacherUC1.Location = new System.Drawing.Point(787, 3);
-            this.cacherUC1.Name = "cacherUC1";
-            this.cacherUC1.Size = new System.Drawing.Size(60, 168);
-            this.cacherUC1.TabIndex = 2;
-            // 
-            // transferUC1
-            // 
-            this.transferUC1.BackColor = System.Drawing.Color.Transparent;
-            this.transferUC1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.transferUC1.Location = new System.Drawing.Point(853, 3);
-            this.transferUC1.Name = "transferUC1";
-            this.transferUC1.Size = new System.Drawing.Size(60, 78);
-            this.transferUC1.TabIndex = 3;
             // 
             // tableLayoutPanel45
             // 
@@ -1729,7 +1582,7 @@
             this.tableLayoutPanel45.RowCount = 2;
             this.tableLayoutPanel45.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel45.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel45.Size = new System.Drawing.Size(300, 229);
+            this.tableLayoutPanel45.Size = new System.Drawing.Size(292, 229);
             this.tableLayoutPanel45.TabIndex = 4;
             // 
             // cbDisplayOvenCode
@@ -1746,24 +1599,6 @@
             this.cbDisplayOvenCode.Text = "显示烤箱夹具条码";
             this.cbDisplayOvenCode.UseVisualStyleBackColor = true;
             this.cbDisplayOvenCode.CheckedChanged += new System.EventHandler(this.cbDisplayOvenCode_CheckedChanged);
-            // 
-            // feederUC1
-            // 
-            this.feederUC1.BackColor = System.Drawing.Color.Transparent;
-            this.feederUC1.Location = new System.Drawing.Point(3, 3);
-            this.feederUC1.Name = "feederUC1";
-            this.feederUC1.Size = new System.Drawing.Size(176, 161);
-            this.feederUC1.TabIndex = 1;
-            // 
-            // blankerUC1
-            // 
-            this.blankerUC1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.blankerUC1.BackColor = System.Drawing.Color.White;
-            this.blankerUC1.Location = new System.Drawing.Point(966, 187);
-            this.blankerUC1.Name = "blankerUC1";
-            this.tableLayoutPanel41.SetRowSpan(this.blankerUC1, 3);
-            this.blankerUC1.Size = new System.Drawing.Size(67, 167);
-            this.blankerUC1.TabIndex = 3;
             // 
             // tabContentTemperCurve
             // 
@@ -1798,260 +1633,6 @@
             this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel18.Size = new System.Drawing.Size(1042, 578);
             this.tableLayoutPanel18.TabIndex = 0;
-            // 
-            // pCurve
-            // 
-            this.pCurve.BackColor = System.Drawing.Color.Black;
-            this.pCurve.Controls.Add(this.label81);
-            this.pCurve.Controls.Add(this.label80);
-            this.pCurve.Controls.Add(this.label79);
-            this.pCurve.Controls.Add(this.label78);
-            this.pCurve.Controls.Add(this.label77);
-            this.pCurve.Controls.Add(this.label76);
-            this.pCurve.Controls.Add(this.label61);
-            this.pCurve.Controls.Add(this.label60);
-            this.pCurve.Controls.Add(this.label58);
-            this.pCurve.Controls.Add(this.label59);
-            this.pCurve.Controls.Add(this.label46);
-            this.pCurve.Controls.Add(this.label44);
-            this.pCurve.Controls.Add(this.label43);
-            this.pCurve.Controls.Add(this.label42);
-            this.pCurve.Controls.Add(this.label40);
-            this.pCurve.Controls.Add(this.label38);
-            this.pCurve.Controls.Add(this.label34);
-            this.pCurve.Controls.Add(this.label33);
-            this.pCurve.Controls.Add(this.label32);
-            this.pCurve.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pCurve.Location = new System.Drawing.Point(40, 20);
-            this.pCurve.Margin = new System.Windows.Forms.Padding(0);
-            this.pCurve.Name = "pCurve";
-            this.pCurve.Size = new System.Drawing.Size(962, 400);
-            this.pCurve.TabIndex = 4;
-            this.pCurve.Paint += new System.Windows.Forms.PaintEventHandler(this.pCurve_Paint);
-            // 
-            // label81
-            // 
-            this.label81.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label81.AutoSize = true;
-            this.label81.BackColor = System.Drawing.Color.Transparent;
-            this.label81.ForeColor = System.Drawing.Color.Lime;
-            this.label81.Location = new System.Drawing.Point(935, 313);
-            this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(23, 12);
-            this.label81.TabIndex = 21;
-            this.label81.Text = "1Pa";
-            // 
-            // label80
-            // 
-            this.label80.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label80.AutoSize = true;
-            this.label80.BackColor = System.Drawing.Color.Transparent;
-            this.label80.ForeColor = System.Drawing.Color.Lime;
-            this.label80.Location = new System.Drawing.Point(929, 273);
-            this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(29, 12);
-            this.label80.TabIndex = 20;
-            this.label80.Text = "10Pa";
-            // 
-            // label79
-            // 
-            this.label79.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label79.AutoSize = true;
-            this.label79.BackColor = System.Drawing.Color.Transparent;
-            this.label79.ForeColor = System.Drawing.Color.Lime;
-            this.label79.Location = new System.Drawing.Point(923, 233);
-            this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(35, 12);
-            this.label79.TabIndex = 19;
-            this.label79.Text = "100Pa";
-            // 
-            // label78
-            // 
-            this.label78.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label78.AutoSize = true;
-            this.label78.BackColor = System.Drawing.Color.Transparent;
-            this.label78.ForeColor = System.Drawing.Color.Lime;
-            this.label78.Location = new System.Drawing.Point(917, 193);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(41, 12);
-            this.label78.TabIndex = 18;
-            this.label78.Text = "1000Pa";
-            // 
-            // label77
-            // 
-            this.label77.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label77.AutoSize = true;
-            this.label77.BackColor = System.Drawing.Color.Transparent;
-            this.label77.ForeColor = System.Drawing.Color.Lime;
-            this.label77.Location = new System.Drawing.Point(911, 153);
-            this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(47, 12);
-            this.label77.TabIndex = 17;
-            this.label77.Text = "10000Pa";
-            // 
-            // label76
-            // 
-            this.label76.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label76.AutoSize = true;
-            this.label76.BackColor = System.Drawing.Color.Transparent;
-            this.label76.ForeColor = System.Drawing.Color.Lime;
-            this.label76.Location = new System.Drawing.Point(905, 113);
-            this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(53, 12);
-            this.label76.TabIndex = 16;
-            this.label76.Text = "100000Pa";
-            // 
-            // label61
-            // 
-            this.label61.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label61.AutoSize = true;
-            this.label61.BackColor = System.Drawing.Color.Transparent;
-            this.label61.ForeColor = System.Drawing.Color.Lime;
-            this.label61.Location = new System.Drawing.Point(3, 115);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(29, 12);
-            this.label61.TabIndex = 13;
-            this.label61.Text = "70℃";
-            // 
-            // label60
-            // 
-            this.label60.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label60.AutoSize = true;
-            this.label60.BackColor = System.Drawing.Color.Transparent;
-            this.label60.ForeColor = System.Drawing.Color.Lime;
-            this.label60.Location = new System.Drawing.Point(3, 155);
-            this.label60.Margin = new System.Windows.Forms.Padding(0);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(29, 12);
-            this.label60.TabIndex = 12;
-            this.label60.Text = "60℃";
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.BackColor = System.Drawing.Color.Transparent;
-            this.label58.ForeColor = System.Drawing.Color.Lime;
-            this.label58.Location = new System.Drawing.Point(3, 235);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(29, 12);
-            this.label58.TabIndex = 11;
-            this.label58.Text = "40℃";
-            // 
-            // label59
-            // 
-            this.label59.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label59.AutoSize = true;
-            this.label59.BackColor = System.Drawing.Color.Transparent;
-            this.label59.ForeColor = System.Drawing.Color.Lime;
-            this.label59.Location = new System.Drawing.Point(3, 195);
-            this.label59.Margin = new System.Windows.Forms.Padding(0);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(29, 12);
-            this.label59.TabIndex = 10;
-            this.label59.Text = "50℃";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.BackColor = System.Drawing.Color.Transparent;
-            this.label46.ForeColor = System.Drawing.Color.Lime;
-            this.label46.Location = new System.Drawing.Point(3, 355);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(29, 12);
-            this.label46.TabIndex = 8;
-            this.label46.Text = "10℃";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.BackColor = System.Drawing.Color.Transparent;
-            this.label44.ForeColor = System.Drawing.Color.Lime;
-            this.label44.Location = new System.Drawing.Point(3, 315);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(29, 12);
-            this.label44.TabIndex = 7;
-            this.label44.Text = "20℃";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.BackColor = System.Drawing.Color.Transparent;
-            this.label43.ForeColor = System.Drawing.Color.Lime;
-            this.label43.Location = new System.Drawing.Point(3, 75);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(29, 12);
-            this.label43.TabIndex = 6;
-            this.label43.Text = "80℃";
-            // 
-            // label42
-            // 
-            this.label42.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label42.AutoSize = true;
-            this.label42.ForeColor = System.Drawing.Color.Lime;
-            this.label42.Location = new System.Drawing.Point(146, 386);
-            this.label42.Margin = new System.Windows.Forms.Padding(3, 0, 600, 0);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(35, 12);
-            this.label42.TabIndex = 5;
-            this.label42.Text = "40min";
-            // 
-            // label40
-            // 
-            this.label40.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label40.AutoSize = true;
-            this.label40.ForeColor = System.Drawing.Color.Lime;
-            this.label40.Location = new System.Drawing.Point(346, 386);
-            this.label40.Margin = new System.Windows.Forms.Padding(3, 0, 600, 0);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(35, 12);
-            this.label40.TabIndex = 4;
-            this.label40.Text = "30min";
-            // 
-            // label38
-            // 
-            this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label38.AutoSize = true;
-            this.label38.ForeColor = System.Drawing.Color.Lime;
-            this.label38.Location = new System.Drawing.Point(546, 386);
-            this.label38.Margin = new System.Windows.Forms.Padding(3, 0, 400, 0);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(35, 12);
-            this.label38.TabIndex = 3;
-            this.label38.Text = "20min";
-            // 
-            // label34
-            // 
-            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label34.AutoSize = true;
-            this.label34.ForeColor = System.Drawing.Color.Lime;
-            this.label34.Location = new System.Drawing.Point(746, 386);
-            this.label34.Margin = new System.Windows.Forms.Padding(3, 0, 200, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(35, 12);
-            this.label34.TabIndex = 2;
-            this.label34.Text = "10min";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.BackColor = System.Drawing.Color.Transparent;
-            this.label33.ForeColor = System.Drawing.Color.Lime;
-            this.label33.Location = new System.Drawing.Point(3, 275);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(29, 12);
-            this.label33.TabIndex = 1;
-            this.label33.Text = "30℃";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.ForeColor = System.Drawing.Color.Lime;
-            this.label32.Location = new System.Drawing.Point(3, 35);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(29, 12);
-            this.label32.TabIndex = 0;
-            this.label32.Text = "90℃";
             // 
             // label31
             // 
@@ -4146,6 +3727,260 @@
             this.userDisplay.Size = new System.Drawing.Size(270, 65);
             this.userDisplay.TabIndex = 13;
             // 
+            // pCurve
+            // 
+            this.pCurve.BackColor = System.Drawing.Color.Black;
+            this.pCurve.Controls.Add(this.label81);
+            this.pCurve.Controls.Add(this.label80);
+            this.pCurve.Controls.Add(this.label79);
+            this.pCurve.Controls.Add(this.label78);
+            this.pCurve.Controls.Add(this.label77);
+            this.pCurve.Controls.Add(this.label76);
+            this.pCurve.Controls.Add(this.label61);
+            this.pCurve.Controls.Add(this.label60);
+            this.pCurve.Controls.Add(this.label58);
+            this.pCurve.Controls.Add(this.label59);
+            this.pCurve.Controls.Add(this.label46);
+            this.pCurve.Controls.Add(this.label44);
+            this.pCurve.Controls.Add(this.label43);
+            this.pCurve.Controls.Add(this.label42);
+            this.pCurve.Controls.Add(this.label40);
+            this.pCurve.Controls.Add(this.label38);
+            this.pCurve.Controls.Add(this.label34);
+            this.pCurve.Controls.Add(this.label33);
+            this.pCurve.Controls.Add(this.label32);
+            this.pCurve.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pCurve.Location = new System.Drawing.Point(40, 20);
+            this.pCurve.Margin = new System.Windows.Forms.Padding(0);
+            this.pCurve.Name = "pCurve";
+            this.pCurve.Size = new System.Drawing.Size(962, 400);
+            this.pCurve.TabIndex = 4;
+            this.pCurve.Paint += new System.Windows.Forms.PaintEventHandler(this.pCurve_Paint);
+            // 
+            // label81
+            // 
+            this.label81.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label81.AutoSize = true;
+            this.label81.BackColor = System.Drawing.Color.Transparent;
+            this.label81.ForeColor = System.Drawing.Color.Lime;
+            this.label81.Location = new System.Drawing.Point(935, 313);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(23, 12);
+            this.label81.TabIndex = 21;
+            this.label81.Text = "1Pa";
+            // 
+            // label80
+            // 
+            this.label80.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label80.AutoSize = true;
+            this.label80.BackColor = System.Drawing.Color.Transparent;
+            this.label80.ForeColor = System.Drawing.Color.Lime;
+            this.label80.Location = new System.Drawing.Point(929, 273);
+            this.label80.Name = "label80";
+            this.label80.Size = new System.Drawing.Size(29, 12);
+            this.label80.TabIndex = 20;
+            this.label80.Text = "10Pa";
+            // 
+            // label79
+            // 
+            this.label79.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label79.AutoSize = true;
+            this.label79.BackColor = System.Drawing.Color.Transparent;
+            this.label79.ForeColor = System.Drawing.Color.Lime;
+            this.label79.Location = new System.Drawing.Point(923, 233);
+            this.label79.Name = "label79";
+            this.label79.Size = new System.Drawing.Size(35, 12);
+            this.label79.TabIndex = 19;
+            this.label79.Text = "100Pa";
+            // 
+            // label78
+            // 
+            this.label78.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label78.AutoSize = true;
+            this.label78.BackColor = System.Drawing.Color.Transparent;
+            this.label78.ForeColor = System.Drawing.Color.Lime;
+            this.label78.Location = new System.Drawing.Point(917, 193);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(41, 12);
+            this.label78.TabIndex = 18;
+            this.label78.Text = "1000Pa";
+            // 
+            // label77
+            // 
+            this.label77.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label77.AutoSize = true;
+            this.label77.BackColor = System.Drawing.Color.Transparent;
+            this.label77.ForeColor = System.Drawing.Color.Lime;
+            this.label77.Location = new System.Drawing.Point(911, 153);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(47, 12);
+            this.label77.TabIndex = 17;
+            this.label77.Text = "10000Pa";
+            // 
+            // label76
+            // 
+            this.label76.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label76.AutoSize = true;
+            this.label76.BackColor = System.Drawing.Color.Transparent;
+            this.label76.ForeColor = System.Drawing.Color.Lime;
+            this.label76.Location = new System.Drawing.Point(905, 113);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(53, 12);
+            this.label76.TabIndex = 16;
+            this.label76.Text = "100000Pa";
+            // 
+            // label61
+            // 
+            this.label61.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label61.AutoSize = true;
+            this.label61.BackColor = System.Drawing.Color.Transparent;
+            this.label61.ForeColor = System.Drawing.Color.Lime;
+            this.label61.Location = new System.Drawing.Point(3, 115);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(29, 12);
+            this.label61.TabIndex = 13;
+            this.label61.Text = "70℃";
+            // 
+            // label60
+            // 
+            this.label60.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label60.AutoSize = true;
+            this.label60.BackColor = System.Drawing.Color.Transparent;
+            this.label60.ForeColor = System.Drawing.Color.Lime;
+            this.label60.Location = new System.Drawing.Point(3, 155);
+            this.label60.Margin = new System.Windows.Forms.Padding(0);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(29, 12);
+            this.label60.TabIndex = 12;
+            this.label60.Text = "60℃";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.BackColor = System.Drawing.Color.Transparent;
+            this.label58.ForeColor = System.Drawing.Color.Lime;
+            this.label58.Location = new System.Drawing.Point(3, 235);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(29, 12);
+            this.label58.TabIndex = 11;
+            this.label58.Text = "40℃";
+            // 
+            // label59
+            // 
+            this.label59.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label59.AutoSize = true;
+            this.label59.BackColor = System.Drawing.Color.Transparent;
+            this.label59.ForeColor = System.Drawing.Color.Lime;
+            this.label59.Location = new System.Drawing.Point(3, 195);
+            this.label59.Margin = new System.Windows.Forms.Padding(0);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(29, 12);
+            this.label59.TabIndex = 10;
+            this.label59.Text = "50℃";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.BackColor = System.Drawing.Color.Transparent;
+            this.label46.ForeColor = System.Drawing.Color.Lime;
+            this.label46.Location = new System.Drawing.Point(3, 355);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(29, 12);
+            this.label46.TabIndex = 8;
+            this.label46.Text = "10℃";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.BackColor = System.Drawing.Color.Transparent;
+            this.label44.ForeColor = System.Drawing.Color.Lime;
+            this.label44.Location = new System.Drawing.Point(3, 315);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(29, 12);
+            this.label44.TabIndex = 7;
+            this.label44.Text = "20℃";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.BackColor = System.Drawing.Color.Transparent;
+            this.label43.ForeColor = System.Drawing.Color.Lime;
+            this.label43.Location = new System.Drawing.Point(3, 75);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(29, 12);
+            this.label43.TabIndex = 6;
+            this.label43.Text = "80℃";
+            // 
+            // label42
+            // 
+            this.label42.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label42.AutoSize = true;
+            this.label42.ForeColor = System.Drawing.Color.Lime;
+            this.label42.Location = new System.Drawing.Point(146, 386);
+            this.label42.Margin = new System.Windows.Forms.Padding(3, 0, 600, 0);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(35, 12);
+            this.label42.TabIndex = 5;
+            this.label42.Text = "40min";
+            // 
+            // label40
+            // 
+            this.label40.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label40.AutoSize = true;
+            this.label40.ForeColor = System.Drawing.Color.Lime;
+            this.label40.Location = new System.Drawing.Point(346, 386);
+            this.label40.Margin = new System.Windows.Forms.Padding(3, 0, 600, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(35, 12);
+            this.label40.TabIndex = 4;
+            this.label40.Text = "30min";
+            // 
+            // label38
+            // 
+            this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label38.AutoSize = true;
+            this.label38.ForeColor = System.Drawing.Color.Lime;
+            this.label38.Location = new System.Drawing.Point(546, 386);
+            this.label38.Margin = new System.Windows.Forms.Padding(3, 0, 400, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(35, 12);
+            this.label38.TabIndex = 3;
+            this.label38.Text = "20min";
+            // 
+            // label34
+            // 
+            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label34.AutoSize = true;
+            this.label34.ForeColor = System.Drawing.Color.Lime;
+            this.label34.Location = new System.Drawing.Point(746, 386);
+            this.label34.Margin = new System.Windows.Forms.Padding(3, 0, 200, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(35, 12);
+            this.label34.TabIndex = 2;
+            this.label34.Text = "10min";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.BackColor = System.Drawing.Color.Transparent;
+            this.label33.ForeColor = System.Drawing.Color.Lime;
+            this.label33.Location = new System.Drawing.Point(3, 275);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(29, 12);
+            this.label33.TabIndex = 1;
+            this.label33.Text = "30℃";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.Color.Transparent;
+            this.label32.ForeColor = System.Drawing.Color.Lime;
+            this.label32.Location = new System.Drawing.Point(3, 35);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(29, 12);
+            this.label32.TabIndex = 0;
+            this.label32.Text = "90℃";
+            // 
             // yieldDisplay
             // 
             this.yieldDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -4164,6 +3999,168 @@
             this.machinesStatusUC1.Name = "machinesStatusUC1";
             this.machinesStatusUC1.Size = new System.Drawing.Size(270, 416);
             this.machinesStatusUC1.TabIndex = 16;
+            // 
+            // taskInfo1
+            // 
+            this.taskInfo1.BackColor = System.Drawing.SystemColors.Control;
+            this.taskInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.taskInfo1.Location = new System.Drawing.Point(2, 550);
+            this.taskInfo1.Margin = new System.Windows.Forms.Padding(2, 8, 2, 3);
+            this.taskInfo1.Name = "taskInfo1";
+            this.taskInfo1.Size = new System.Drawing.Size(1032, 19);
+            this.taskInfo1.TabIndex = 4;
+            // 
+            // robotUC1
+            // 
+            this.robotUC1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.robotUC1.Location = new System.Drawing.Point(450, 3);
+            this.robotUC1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
+            this.robotUC1.Name = "robotUC1";
+            this.robotUC1.Size = new System.Drawing.Size(80, 46);
+            this.robotUC1.TabIndex = 0;
+            // 
+            // ovenUC05
+            // 
+            this.ovenUC05.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC05.Location = new System.Drawing.Point(899, 3);
+            this.ovenUC05.Name = "ovenUC05";
+            this.ovenUC05.OvenIndex = 5;
+            this.ovenUC05.Size = new System.Drawing.Size(128, 229);
+            this.ovenUC05.TabIndex = 7;
+            // 
+            // ovenUC06
+            // 
+            this.ovenUC06.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC06.Location = new System.Drawing.Point(771, 3);
+            this.ovenUC06.Name = "ovenUC06";
+            this.ovenUC06.OvenIndex = 6;
+            this.ovenUC06.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC06.TabIndex = 6;
+            // 
+            // ovenUC07
+            // 
+            this.ovenUC07.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC07.Location = new System.Drawing.Point(643, 3);
+            this.ovenUC07.Name = "ovenUC07";
+            this.ovenUC07.OvenIndex = 7;
+            this.ovenUC07.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC07.TabIndex = 5;
+            // 
+            // ovenUC08
+            // 
+            this.ovenUC08.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC08.Location = new System.Drawing.Point(515, 3);
+            this.ovenUC08.Name = "ovenUC08";
+            this.ovenUC08.OvenIndex = 8;
+            this.ovenUC08.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC08.TabIndex = 4;
+            // 
+            // ovenUC09
+            // 
+            this.ovenUC09.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC09.Location = new System.Drawing.Point(387, 3);
+            this.ovenUC09.Name = "ovenUC09";
+            this.ovenUC09.OvenIndex = 9;
+            this.ovenUC09.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC09.TabIndex = 3;
+            // 
+            // ovenUC10
+            // 
+            this.ovenUC10.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC10.Location = new System.Drawing.Point(259, 3);
+            this.ovenUC10.Name = "ovenUC10";
+            this.ovenUC10.OvenIndex = 10;
+            this.ovenUC10.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC10.TabIndex = 2;
+            // 
+            // ovenUC11
+            // 
+            this.ovenUC11.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC11.Location = new System.Drawing.Point(131, 3);
+            this.ovenUC11.Name = "ovenUC11";
+            this.ovenUC11.OvenIndex = 11;
+            this.ovenUC11.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC11.TabIndex = 1;
+            // 
+            // ovenUC12
+            // 
+            this.ovenUC12.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC12.Location = new System.Drawing.Point(3, 3);
+            this.ovenUC12.Name = "ovenUC12";
+            this.ovenUC12.OvenIndex = 12;
+            this.ovenUC12.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC12.TabIndex = 0;
+            // 
+            // ovenUC02
+            // 
+            this.ovenUC02.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ovenUC02.Location = new System.Drawing.Point(259, 3);
+            this.ovenUC02.Name = "ovenUC02";
+            this.ovenUC02.OvenIndex = 2;
+            this.ovenUC02.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC02.TabIndex = 11;
+            // 
+            // ovenUC01
+            // 
+            this.ovenUC01.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ovenUC01.Location = new System.Drawing.Point(387, 3);
+            this.ovenUC01.Name = "ovenUC01";
+            this.ovenUC01.OvenIndex = 1;
+            this.ovenUC01.Size = new System.Drawing.Size(125, 229);
+            this.ovenUC01.TabIndex = 10;
+            // 
+            // ovenUC04
+            // 
+            this.ovenUC04.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ovenUC04.Location = new System.Drawing.Point(3, 3);
+            this.ovenUC04.Name = "ovenUC04";
+            this.ovenUC04.OvenIndex = 4;
+            this.ovenUC04.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC04.TabIndex = 9;
+            // 
+            // ovenUC03
+            // 
+            this.ovenUC03.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ovenUC03.Location = new System.Drawing.Point(131, 3);
+            this.ovenUC03.Name = "ovenUC03";
+            this.ovenUC03.OvenIndex = 3;
+            this.ovenUC03.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC03.TabIndex = 8;
+            // 
+            // cacherUC1
+            // 
+            this.cacherUC1.BackColor = System.Drawing.Color.Transparent;
+            this.cacherUC1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cacherUC1.Location = new System.Drawing.Point(816, 3);
+            this.cacherUC1.Name = "cacherUC1";
+            this.cacherUC1.Size = new System.Drawing.Size(66, 168);
+            this.cacherUC1.TabIndex = 2;
+            // 
+            // transferUC1
+            // 
+            this.transferUC1.BackColor = System.Drawing.Color.Transparent;
+            this.transferUC1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.transferUC1.Location = new System.Drawing.Point(888, 3);
+            this.transferUC1.Name = "transferUC1";
+            this.transferUC1.Size = new System.Drawing.Size(66, 103);
+            this.transferUC1.TabIndex = 3;
+            // 
+            // feederUC1
+            // 
+            this.feederUC1.BackColor = System.Drawing.Color.Transparent;
+            this.feederUC1.Location = new System.Drawing.Point(3, 3);
+            this.feederUC1.Name = "feederUC1";
+            this.feederUC1.Size = new System.Drawing.Size(176, 161);
+            this.feederUC1.TabIndex = 1;
+            // 
+            // blankerUC1
+            // 
+            this.blankerUC1.BackColor = System.Drawing.Color.White;
+            this.blankerUC1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.blankerUC1.Location = new System.Drawing.Point(960, 3);
+            this.blankerUC1.Name = "blankerUC1";
+            this.blankerUC1.Size = new System.Drawing.Size(67, 167);
+            this.blankerUC1.TabIndex = 3;
             // 
             // ManageSystem
             // 
@@ -4235,8 +4232,6 @@
             this.tableLayoutPanel45.PerformLayout();
             this.tabContentTemperCurve.ResumeLayout(false);
             this.tableLayoutPanel18.ResumeLayout(false);
-            this.pCurve.ResumeLayout(false);
-            this.pCurve.PerformLayout();
             this.tableLayoutPanel32.ResumeLayout(false);
             this.tableLayoutPanel32.PerformLayout();
             this.tableLayoutPanel31.ResumeLayout(false);
@@ -4310,6 +4305,8 @@
             this.splitContainer2.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.pCurve.ResumeLayout(false);
+            this.pCurve.PerformLayout();
             this.ResumeLayout(false);
 
         }

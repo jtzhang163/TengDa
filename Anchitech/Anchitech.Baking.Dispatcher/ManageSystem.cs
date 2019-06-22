@@ -770,17 +770,17 @@ namespace Anchitech.Baking.Dispatcher
 
                 if (Current.TaskMode == TaskMode.手动任务)
                 {
-                    //for (int i = 0; i < OvenCount; i++)
-                    //{
-                    //    for (int j = 0; j < OvenFloorCount; j++)
-                    //    {
-                    //        if (Current.ovens[i].Floors[j].IsAlive && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.打开)
-                    //        {
-                    //            Tip.Alert(Current.ovens[i].Floors[j].Name + "门尚未关闭，请手动关闭后再切换自动");
-                    //            return;
-                    //        }
-                    //    }
-                    //}
+                    for (int i = 0; i < OvenCount; i++)
+                    {
+                        for (int j = 0; j < OvenFloorCount; j++)
+                        {
+                            if (Current.ovens[i].Floors[j].IsAlive && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.打开)
+                            {
+                                Tip.Alert(Current.ovens[i].Floors[j].Name + "门尚未关闭，请手动关闭后再切换自动");
+                                return;
+                            }
+                        }
+                    }
                     if (Current.Robot.IsAlive)
                     {
                         //if (!Current.Robot.IsExecuting)
@@ -1463,7 +1463,6 @@ namespace Anchitech.Baking.Dispatcher
                                 if (station.FloorStatus == FloorStatus.待出 && floor.IsVacuum && floor.RunRemainMinutes <= 1)
                                 {
                                     Current.ovens[i].UploadVacuum(j);
-
                                 }
                                 this.ovenUCs[i].Invalidate(j);
                               
@@ -1604,6 +1603,12 @@ namespace Anchitech.Baking.Dispatcher
 
                             foreach (var code in codes.Split(';'))
                             {
+                                //
+                                if (code.Contains("0000000000"))
+                                {
+                                    Station.StationList.First(o=>o.Id == Current.Feeder.CurrentPutStationId).SampleInfo = SampleInfo.有样品;
+                                }
+
                                 int id = Battery.Add(new Battery(code, Current.Feeder.Id, Current.Feeder.CurrentPutClampId), out msg);
                                 if (id < 1)
                                 {
@@ -1764,13 +1769,13 @@ namespace Anchitech.Baking.Dispatcher
                         {
                             Floor floor = Current.ovens[i].Floors[j];
 
-                            ////无任务默认关门
-                            //if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) < 1
-                            //    && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) < 1
-                            //    && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
-                            //{
-                            //    Current.ovens[i].CloseDoor(j);
-                            //}
+                            //无任务默认关门
+                            if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) == 0
+                                && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) == 0
+                                && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
+                            {
+                                Current.ovens[i].CloseDoor(j);
+                            }
 
                             ////从某一炉子取完盘后，立即关门，无需等到整个任务结束
                             //if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive

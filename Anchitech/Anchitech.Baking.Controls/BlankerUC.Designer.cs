@@ -132,9 +132,10 @@
             // 
             this.lbStationName1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbStationName1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbStationName1.Location = new System.Drawing.Point(5, 119);
+            this.lbStationName1.Location = new System.Drawing.Point(2, 119);
+            this.lbStationName1.Margin = new System.Windows.Forms.Padding(0);
             this.lbStationName1.Name = "lbStationName1";
-            this.lbStationName1.Size = new System.Drawing.Size(125, 20);
+            this.lbStationName1.Size = new System.Drawing.Size(131, 20);
             this.lbStationName1.TabIndex = 17;
             this.lbStationName1.Text = "17#下料位";
             this.lbStationName1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -143,9 +144,10 @@
             // 
             this.lbStationName2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbStationName2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbStationName2.Location = new System.Drawing.Point(5, 2);
+            this.lbStationName2.Location = new System.Drawing.Point(2, 2);
+            this.lbStationName2.Margin = new System.Windows.Forms.Padding(0);
             this.lbStationName2.Name = "lbStationName2";
-            this.lbStationName2.Size = new System.Drawing.Size(125, 20);
+            this.lbStationName2.Size = new System.Drawing.Size(131, 20);
             this.lbStationName2.TabIndex = 16;
             this.lbStationName2.Text = "17#下料位";
             this.lbStationName2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

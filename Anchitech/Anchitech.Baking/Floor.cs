@@ -34,7 +34,8 @@ namespace Anchitech.Baking
         {
             get
             {
-                return RunMinutesSet - RunRemainMinutes;
+                var runMinutes = RunMinutesSet - RunRemainMinutes;
+                return runMinutes > 0 ? runMinutes : 0;
             }
         }
 
@@ -78,8 +79,8 @@ namespace Anchitech.Baking
         [DisplayName("是否正在烘烤")]
         public bool IsBaking { get; set; }
 
-        private bool isVacuum = false;
-        [ReadOnly(true), Description("是否腔内有真空")]
+        //private bool isVacuum = false;
+        [Browsable(false), Description("是否腔内有真空")]
         [DisplayName("是否腔内有真空")]
         public bool IsVacuum
         {

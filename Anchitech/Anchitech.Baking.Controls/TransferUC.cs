@@ -30,6 +30,21 @@ namespace Anchitech.Baking.Controls
             transfer.Station.IsAlive = transfer.IsAlive && transfer.Station.IsEnable;
             this.BackColor = transfer.IsAlive ? Color.White : Color.LightGray;
             this.simpleClampUC1.Update(transfer.Station);
+
+            if (transfer.Station.ClampStatus == ClampStatus.无夹具)
+            {
+                this.lbFromStation.Text = "";
+            }
+            else
+            {
+                this.lbFromStation.Text = transfer.Station.FromStation.Name;
+            }
+            
+        }
+
+        private void TsmGetSampleFinished_Click(object sender, EventArgs e)
+        {
+            Current.Transfer.Station.SampleStatus = SampleStatus.待结果;
         }
     }
 }

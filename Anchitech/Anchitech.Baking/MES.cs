@@ -259,26 +259,29 @@ namespace Anchitech.Baking
                     var allIsPass = true;
                     clamp.Batteries.ForEach(battery =>
                     {
-                        var data = new BakingMesData()
+                        if (!battery.Code.Contains("0000000000"))//样品电池数据不上传
                         {
-                            Barcode = battery.Code,
-                            TrayNo = clamp.CompleteCode,
-                            StartTime = clamp.BakingStartTime.ToString("yyyy/MM/dd HH:mm:ss"),
-                            EndTime = clamp.BakingStartTime.ToString("yyyy/MM/dd HH:mm:ss"),
-                            Temperature = clamp.Temperature,
-                            Vacuum = clamp.Vacuum,
-                            MachineCode = station.Number
-                        };
-                        var info = JsonHelper.SerializeObject(data);
-                        var result = wsProxy.UploadBakingData(info);
-                        if (result.ResultCode == 0)
-                        {
-                            LogHelper.WriteInfo(string.Format("上传mes成功，参数：{0}", info));
-                        }
-                        else
-                        {
-                            allIsPass = false;
-                            LogHelper.WriteError(string.Format("上传mes失败，参数：{0} 原因：{1}", info, result.ResultMsg));
+                            var data = new BakingMesData()
+                            {
+                                Barcode = battery.Code,
+                                TrayNo = clamp.CompleteCode,
+                                StartTime = clamp.BakingStartTime.ToString("yyyy/MM/dd HH:mm:ss"),
+                                EndTime = clamp.BakingStartTime.ToString("yyyy/MM/dd HH:mm:ss"),
+                                Temperature = clamp.Temperature,
+                                Vacuum = clamp.Vacuum,
+                                MachineCode = station.Number
+                            };
+                            var info = JsonHelper.SerializeObject(data);
+                            var result = wsProxy.UploadBakingData(info);
+                            if (result.ResultCode == 0)
+                            {
+                                LogHelper.WriteInfo(string.Format("上传mes成功，参数：{0}", info));
+                            }
+                            else
+                            {
+                                allIsPass = false;
+                                LogHelper.WriteError(string.Format("上传mes失败，参数：{0} 原因：{1}", info, result.ResultMsg));
+                            }
                         }
                     });
 

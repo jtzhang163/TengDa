@@ -386,6 +386,7 @@ namespace Anchitech.Baking
             }
             var clamp = new Clamp(code);
             clamp.scanTime = DateTime.Now;
+            clamp.sampleInfo = SampleInfo.无样品;
             return Add(clamp, out msg);
         }
 
