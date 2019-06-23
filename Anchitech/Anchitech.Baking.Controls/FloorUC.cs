@@ -378,5 +378,11 @@ namespace Anchitech.Baking.Controls
             }
             g.FillRectangle(brush, r);
         }
+
+        private void TsmParamSetting_Click(object sender, EventArgs e)
+        {
+            var ovenParamSettingForm = new ParamSettingForm(this.floor);
+            ovenParamSettingForm.ShowDialog();
+        }
     }
 }

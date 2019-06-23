@@ -52,6 +52,7 @@
     <Compile Include="Alarm.cs" />
     <Compile Include="Battery.cs" />
     <Compile Include="BatteryCache.cs" />
+    <Compile Include="OvenParam.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

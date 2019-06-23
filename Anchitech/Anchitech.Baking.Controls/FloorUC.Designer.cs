@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FloorUC));
             this.tlpFloor = new System.Windows.Forms.TableLayoutPanel();
             this.lbInfoTop = new System.Windows.Forms.Label();
             this.pbRunTime = new System.Windows.Forms.ProgressBar();
@@ -42,12 +43,13 @@
             this.tsmCancelLoadVacuum = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUploadVacuum = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCancelUploadVacuum = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStartBaking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStopBaking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmClearRunTime = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmWatContentResult = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmWatContentTestOK = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmWatContentTestNG = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmStartBaking = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmParamSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpFloor.SuspendLayout();
             this.cmsFloor.SuspendLayout();
             this.SuspendLayout();
@@ -123,9 +125,10 @@
             // 
             this.cmsFloor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmRemoteControl,
-            this.tsmWatContentResult});
+            this.tsmWatContentResult,
+            this.tsmParamSetting});
             this.cmsFloor.Name = "cmsInOutOven";
-            this.cmsFloor.Size = new System.Drawing.Size(149, 48);
+            this.cmsFloor.Size = new System.Drawing.Size(181, 92);
             this.cmsFloor.Opening += new System.ComponentModel.CancelEventHandler(this.CmsFloor_Opening);
             // 
             // tsmRemoteControl
@@ -142,27 +145,27 @@
             this.tsmStopBaking,
             this.tsmClearRunTime});
             this.tsmRemoteControl.Name = "tsmRemoteControl";
-            this.tsmRemoteControl.Size = new System.Drawing.Size(148, 22);
+            this.tsmRemoteControl.Size = new System.Drawing.Size(180, 22);
             this.tsmRemoteControl.Text = "远程控制";
             // 
             // tsmAlarmReset
             // 
             this.tsmAlarmReset.Name = "tsmAlarmReset";
-            this.tsmAlarmReset.Size = new System.Drawing.Size(180, 22);
+            this.tsmAlarmReset.Size = new System.Drawing.Size(148, 22);
             this.tsmAlarmReset.Text = "报警复位";
             this.tsmAlarmReset.Click += new System.EventHandler(this.TsmAlarmReset_Click);
             // 
             // tsmOvenOpenDoor
             // 
             this.tsmOvenOpenDoor.Name = "tsmOvenOpenDoor";
-            this.tsmOvenOpenDoor.Size = new System.Drawing.Size(180, 22);
+            this.tsmOvenOpenDoor.Size = new System.Drawing.Size(148, 22);
             this.tsmOvenOpenDoor.Text = "开门";
             this.tsmOvenOpenDoor.Click += new System.EventHandler(this.TsmOvenOpenDoor_Click);
             // 
             // tsmOvenCloseDoor
             // 
             this.tsmOvenCloseDoor.Name = "tsmOvenCloseDoor";
-            this.tsmOvenCloseDoor.Size = new System.Drawing.Size(180, 22);
+            this.tsmOvenCloseDoor.Size = new System.Drawing.Size(148, 22);
             this.tsmOvenCloseDoor.Text = "关门";
             this.tsmOvenCloseDoor.Click += new System.EventHandler(this.TsmOvenCloseDoor_Click);
             // 
@@ -170,7 +173,7 @@
             // 
             this.tsmLoadVacuum.Enabled = false;
             this.tsmLoadVacuum.Name = "tsmLoadVacuum";
-            this.tsmLoadVacuum.Size = new System.Drawing.Size(180, 22);
+            this.tsmLoadVacuum.Size = new System.Drawing.Size(148, 22);
             this.tsmLoadVacuum.Text = "抽真空";
             this.tsmLoadVacuum.Click += new System.EventHandler(this.TsmLoadVacuum_Click);
             // 
@@ -178,7 +181,7 @@
             // 
             this.tsmCancelLoadVacuum.Enabled = false;
             this.tsmCancelLoadVacuum.Name = "tsmCancelLoadVacuum";
-            this.tsmCancelLoadVacuum.Size = new System.Drawing.Size(180, 22);
+            this.tsmCancelLoadVacuum.Size = new System.Drawing.Size(148, 22);
             this.tsmCancelLoadVacuum.Text = "取消抽真空";
             this.tsmCancelLoadVacuum.Visible = false;
             this.tsmCancelLoadVacuum.Click += new System.EventHandler(this.TsmCancelLoadVacuum_Click);
@@ -187,7 +190,7 @@
             // 
             this.tsmUploadVacuum.Enabled = false;
             this.tsmUploadVacuum.Name = "tsmUploadVacuum";
-            this.tsmUploadVacuum.Size = new System.Drawing.Size(180, 22);
+            this.tsmUploadVacuum.Size = new System.Drawing.Size(148, 22);
             this.tsmUploadVacuum.Text = "泄真空";
             this.tsmUploadVacuum.Click += new System.EventHandler(this.TsmUploadVacuum_Click);
             // 
@@ -195,23 +198,31 @@
             // 
             this.tsmCancelUploadVacuum.Enabled = false;
             this.tsmCancelUploadVacuum.Name = "tsmCancelUploadVacuum";
-            this.tsmCancelUploadVacuum.Size = new System.Drawing.Size(180, 22);
+            this.tsmCancelUploadVacuum.Size = new System.Drawing.Size(148, 22);
             this.tsmCancelUploadVacuum.Text = "取消泄真空";
             this.tsmCancelUploadVacuum.Visible = false;
             this.tsmCancelUploadVacuum.Click += new System.EventHandler(this.TsmCancelUploadVacuum_Click);
             // 
+            // tsmStartBaking
+            // 
+            this.tsmStartBaking.Image = global::Anchitech.Baking.Controls.Properties.Resources.Continue_Green;
+            this.tsmStartBaking.Name = "tsmStartBaking";
+            this.tsmStartBaking.Size = new System.Drawing.Size(148, 22);
+            this.tsmStartBaking.Text = "启动";
+            this.tsmStartBaking.Click += new System.EventHandler(this.TsmStartBaking_Click);
+            // 
             // tsmStopBaking
             // 
-            this.tsmStopBaking.Image = global::Anchitech.Baking.Controls.Properties.Resources.Stop_Red;
+            this.tsmStopBaking.Image = ((System.Drawing.Image)(resources.GetObject("tsmStopBaking.Image")));
             this.tsmStopBaking.Name = "tsmStopBaking";
-            this.tsmStopBaking.Size = new System.Drawing.Size(180, 22);
+            this.tsmStopBaking.Size = new System.Drawing.Size(148, 22);
             this.tsmStopBaking.Text = "停止";
             this.tsmStopBaking.Click += new System.EventHandler(this.TsmStopBaking_Click);
             // 
             // tsmClearRunTime
             // 
             this.tsmClearRunTime.Name = "tsmClearRunTime";
-            this.tsmClearRunTime.Size = new System.Drawing.Size(180, 22);
+            this.tsmClearRunTime.Size = new System.Drawing.Size(148, 22);
             this.tsmClearRunTime.Text = "运行时间清零";
             this.tsmClearRunTime.Visible = false;
             this.tsmClearRunTime.Click += new System.EventHandler(this.TsmClearRunTime_Click);
@@ -222,30 +233,29 @@
             this.tsmWatContentTestOK,
             this.tsmWatContentTestNG});
             this.tsmWatContentResult.Name = "tsmWatContentResult";
-            this.tsmWatContentResult.Size = new System.Drawing.Size(148, 22);
+            this.tsmWatContentResult.Size = new System.Drawing.Size(180, 22);
             this.tsmWatContentResult.Text = "水分测试结果";
             // 
             // tsmWatContentTestOK
             // 
             this.tsmWatContentTestOK.Name = "tsmWatContentTestOK";
-            this.tsmWatContentTestOK.Size = new System.Drawing.Size(119, 22);
+            this.tsmWatContentTestOK.Size = new System.Drawing.Size(180, 22);
             this.tsmWatContentTestOK.Text = "结果OK";
             this.tsmWatContentTestOK.Click += new System.EventHandler(this.TsmWatContentTestOK_Click);
             // 
             // tsmWatContentTestNG
             // 
             this.tsmWatContentTestNG.Name = "tsmWatContentTestNG";
-            this.tsmWatContentTestNG.Size = new System.Drawing.Size(119, 22);
+            this.tsmWatContentTestNG.Size = new System.Drawing.Size(180, 22);
             this.tsmWatContentTestNG.Text = "结果NG";
             this.tsmWatContentTestNG.Click += new System.EventHandler(this.TsmWatContentTestNG_Click);
             // 
-            // tsmStartBaking
+            // tsmParamSetting
             // 
-            this.tsmStartBaking.Image = global::Anchitech.Baking.Controls.Properties.Resources.Continue_Green;
-            this.tsmStartBaking.Name = "tsmStartBaking";
-            this.tsmStartBaking.Size = new System.Drawing.Size(180, 22);
-            this.tsmStartBaking.Text = "启动";
-            this.tsmStartBaking.Click += new System.EventHandler(this.TsmStartBaking_Click);
+            this.tsmParamSetting.Name = "tsmParamSetting";
+            this.tsmParamSetting.Size = new System.Drawing.Size(180, 22);
+            this.tsmParamSetting.Text = "参数设置...";
+            this.tsmParamSetting.Click += new System.EventHandler(this.TsmParamSetting_Click);
             // 
             // FloorUC
             // 
@@ -282,5 +292,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmWatContentResult;
         private System.Windows.Forms.ToolStripMenuItem tsmWatContentTestOK;
         private System.Windows.Forms.ToolStripMenuItem tsmWatContentTestNG;
+        private System.Windows.Forms.ToolStripMenuItem tsmParamSetting;
     }
 }

@@ -60,6 +60,18 @@
     <Compile Include="MachineStatusUC.Designer.cs">
       <DependentUpon>MachineStatusUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="OvenParamUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OvenParamUC.Designer.cs">
+      <DependentUpon>OvenParamUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParamSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ParamSettingForm.Designer.cs">
+      <DependentUpon>ParamSettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -137,6 +149,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineStatusUC.resx">
       <DependentUpon>MachineStatusUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OvenParamUC.resx">
+      <DependentUpon>OvenParamUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParamSettingForm.resx">
+      <DependentUpon>ParamSettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -9,7 +9,7 @@ using TengDa.WF;
 
 namespace Anchitech.Baking
 {
-    public class OvenParam
+    public class OvenParam : Service
     {
         #region 属性字段
         private static string tableName = string.Empty;
@@ -19,20 +19,30 @@ namespace Anchitech.Baking
             {
                 if (string.IsNullOrEmpty(tableName))
                 {
-                    tableName = Config.DbTableNamePre + ".PLCs";
+                    tableName = Config.DbTableNamePre + ".OvenParam";
                 }
                 return tableName;
             }
         }
+
+        public string Content { get; set; }
+
+        public string Unit { get; set; }
+
+        public int Floor1Addr { get; set; }
+
+        public int Floor2Addr { get; set; }
+
+        public int Floor3Addr { get; set; }
         #endregion
 
-        #region 系统PLC列表
-        private static List<PLC> plcList = new List<PLC>();
-        public static List<PLC> PlcList
+        #region 列表
+        private static List<OvenParam> ovenParamList = new List<OvenParam>();
+        public static List<OvenParam> OvenParamList
         {
             get
             {
-                if (plcList.Count < 1)
+                if (ovenParamList.Count < 1)
                 {
                     string msg = string.Empty;
 
@@ -48,23 +58,23 @@ namespace Anchitech.Baking
 
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            PLC plc = new PLC();
-                            plc.InitFields(dt.Rows[i]);
-                            plcList.Add(plc);
+                            OvenParam ovenParam = new OvenParam();
+                            ovenParam.InitFields(dt.Rows[i]);
+                            ovenParamList.Add(ovenParam);
                         }
                     }
 
                 }
 
-                return plcList;
+                return ovenParamList;
             }
         }
         #endregion
 
         #region 构造方法
-        public PLC() : this(-1) { }
+        public OvenParam() : this(-1) { }
 
-        public PLC(int id)
+        public OvenParam(int id)
         {
             if (id < 0)
             {
@@ -107,12 +117,11 @@ namespace Anchitech.Baking
         protected void InitFields(DataRow rowInfo)
         {
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
-            this.name = rowInfo["Name"].ToString();
-            this.company = rowInfo["Company"].ToString();
-            this.model = rowInfo["Model"].ToString();
-            this.ip = rowInfo["IP"].ToString();
-            this.port = TengDa._Convert.StrToInt(rowInfo["Port"].ToString(), -1);
-            this.number = rowInfo["Number"].ToString();
+            this.Content = rowInfo["Content"].ToString();
+            this.Unit = rowInfo["Unit"].ToString();
+            this.Floor1Addr = TengDa._Convert.StrToInt(rowInfo["Floor1Addr"].ToString(), -1);
+            this.Floor2Addr = TengDa._Convert.StrToInt(rowInfo["Floor2Addr"].ToString(), -1);
+            this.Floor3Addr = TengDa._Convert.StrToInt(rowInfo["Floor3Addr"].ToString(), -1);
         }
         #endregion
 
