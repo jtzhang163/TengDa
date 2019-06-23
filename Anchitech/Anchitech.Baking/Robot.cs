@@ -148,6 +148,7 @@ namespace Anchitech.Baking
         [ReadOnly(true), DisplayName("已请求启动")]
         public bool IsRequestStart { get; set; } = false;
 
+        [Browsable(false)]
         public bool IsAlreadySendCmd { get; set; } = false;
 
         #endregion

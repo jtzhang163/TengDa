@@ -30,18 +30,13 @@ namespace Anchitech.Baking.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFromStation = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.simpleClampUC1 = new Anchitech.Baking.Controls.SimpleClampUC();
-            this.cmsTransfer = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmGetSampleFinished = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.cmsTransfer.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -109,41 +104,17 @@ namespace Anchitech.Baking.Controls
             this.simpleClampUC1.Size = new System.Drawing.Size(113, 54);
             this.simpleClampUC1.TabIndex = 0;
             // 
-            // cmsTransfer
-            // 
-            this.cmsTransfer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.cmsTransfer.Name = "cmsInOutOven";
-            this.cmsTransfer.Size = new System.Drawing.Size(181, 48);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmGetSampleFinished});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem1.Text = "控制";
-            // 
-            // tsmGetSampleFinished
-            // 
-            this.tsmGetSampleFinished.Name = "tsmGetSampleFinished";
-            this.tsmGetSampleFinished.Size = new System.Drawing.Size(180, 22);
-            this.tsmGetSampleFinished.Text = "取完水分可回炉";
-            this.tsmGetSampleFinished.Click += new System.EventHandler(this.TsmGetSampleFinished_Click);
-            // 
             // TransferUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.ContextMenuStrip = this.cmsTransfer;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "TransferUC";
             this.Size = new System.Drawing.Size(123, 114);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.cmsTransfer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -155,8 +126,5 @@ namespace Anchitech.Baking.Controls
         private System.Windows.Forms.Label lbName;
         private SimpleClampUC simpleClampUC1;
         private Label lbFromStation;
-        private ContextMenuStrip cmsTransfer;
-        private ToolStripMenuItem toolStripMenuItem1;
-        private ToolStripMenuItem tsmGetSampleFinished;
     }
 }

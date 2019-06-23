@@ -539,36 +539,13 @@ namespace Anchitech.Baking
             this.toCancelRasterInductive = true;
         }
 
-        public bool SetScanResult(ScanResult scanResult)
+        public bool SetPutClampFinish(int j)
         {
-            string input = string.Empty;
-            if (scanResult == ScanResult.OK)
-            {
-                input = Current.option.SendScanOkStr;
-            }
-            else if (scanResult == ScanResult.NG)
-            {
-                input = Current.option.SendScanNgStr;
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException("bool SetScanResult(ScanResult scanResult) 参数值与预期不符！");
-            }
+            var ret = this.Plc.GetInfo(string.Format("%01#WCSR030{0}1**", 8 + j), out string output, out string msg);
 
-            string output = string.Empty;
-            string msg = string.Empty;
-            if (this.Plc.GetInfo(input, out output, out msg))
-            {
-                if (output.Substring(3, 1) == "$")
-                {
-                    return true;
-                }
-                else
-                {
-                    LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", input, output));
-                }
-            }
-            return false;
+            LogHelper.WriteInfo(string.Format("%01#WCSR030{0}1**", 8 + j) + string.Format("发送放完夹具信号到{0}，", this.Plc.Name) + ret);
+
+            return ret;
         }
         #endregion
     }

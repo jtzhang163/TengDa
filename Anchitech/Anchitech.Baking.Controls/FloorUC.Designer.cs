@@ -125,7 +125,7 @@
             this.tsmRemoteControl,
             this.tsmWatContentResult});
             this.cmsFloor.Name = "cmsInOutOven";
-            this.cmsFloor.Size = new System.Drawing.Size(149, 48);
+            this.cmsFloor.Size = new System.Drawing.Size(181, 70);
             this.cmsFloor.Opening += new System.ComponentModel.CancelEventHandler(this.CmsFloor_Opening);
             // 
             // tsmRemoteControl
@@ -142,63 +142,67 @@
             this.tsmStopBaking,
             this.tsmClearRunTime});
             this.tsmRemoteControl.Name = "tsmRemoteControl";
-            this.tsmRemoteControl.Size = new System.Drawing.Size(148, 22);
+            this.tsmRemoteControl.Size = new System.Drawing.Size(180, 22);
             this.tsmRemoteControl.Text = "远程控制";
             // 
             // tsmAlarmReset
             // 
             this.tsmAlarmReset.Name = "tsmAlarmReset";
-            this.tsmAlarmReset.Size = new System.Drawing.Size(148, 22);
+            this.tsmAlarmReset.Size = new System.Drawing.Size(180, 22);
             this.tsmAlarmReset.Text = "报警复位";
             this.tsmAlarmReset.Click += new System.EventHandler(this.TsmAlarmReset_Click);
             // 
             // tsmOvenOpenDoor
             // 
             this.tsmOvenOpenDoor.Name = "tsmOvenOpenDoor";
-            this.tsmOvenOpenDoor.Size = new System.Drawing.Size(148, 22);
+            this.tsmOvenOpenDoor.Size = new System.Drawing.Size(180, 22);
             this.tsmOvenOpenDoor.Text = "开门";
             this.tsmOvenOpenDoor.Click += new System.EventHandler(this.TsmOvenOpenDoor_Click);
             // 
             // tsmOvenCloseDoor
             // 
             this.tsmOvenCloseDoor.Name = "tsmOvenCloseDoor";
-            this.tsmOvenCloseDoor.Size = new System.Drawing.Size(148, 22);
+            this.tsmOvenCloseDoor.Size = new System.Drawing.Size(180, 22);
             this.tsmOvenCloseDoor.Text = "关门";
             this.tsmOvenCloseDoor.Click += new System.EventHandler(this.TsmOvenCloseDoor_Click);
             // 
             // tsmStartBaking
             // 
             this.tsmStartBaking.Name = "tsmStartBaking";
-            this.tsmStartBaking.Size = new System.Drawing.Size(148, 22);
+            this.tsmStartBaking.Size = new System.Drawing.Size(180, 22);
             this.tsmStartBaking.Text = "启动";
             this.tsmStartBaking.Click += new System.EventHandler(this.TsmStartBaking_Click);
             // 
             // tsmLoadVacuum
             // 
+            this.tsmLoadVacuum.Enabled = false;
             this.tsmLoadVacuum.Name = "tsmLoadVacuum";
-            this.tsmLoadVacuum.Size = new System.Drawing.Size(148, 22);
+            this.tsmLoadVacuum.Size = new System.Drawing.Size(180, 22);
             this.tsmLoadVacuum.Text = "抽真空";
             this.tsmLoadVacuum.Click += new System.EventHandler(this.TsmLoadVacuum_Click);
             // 
             // tsmCancelLoadVacuum
             // 
+            this.tsmCancelLoadVacuum.Enabled = false;
             this.tsmCancelLoadVacuum.Name = "tsmCancelLoadVacuum";
-            this.tsmCancelLoadVacuum.Size = new System.Drawing.Size(148, 22);
+            this.tsmCancelLoadVacuum.Size = new System.Drawing.Size(180, 22);
             this.tsmCancelLoadVacuum.Text = "取消抽真空";
             this.tsmCancelLoadVacuum.Visible = false;
             this.tsmCancelLoadVacuum.Click += new System.EventHandler(this.TsmCancelLoadVacuum_Click);
             // 
             // tsmUploadVacuum
             // 
+            this.tsmUploadVacuum.Enabled = false;
             this.tsmUploadVacuum.Name = "tsmUploadVacuum";
-            this.tsmUploadVacuum.Size = new System.Drawing.Size(148, 22);
+            this.tsmUploadVacuum.Size = new System.Drawing.Size(180, 22);
             this.tsmUploadVacuum.Text = "破真空";
             this.tsmUploadVacuum.Click += new System.EventHandler(this.TsmUploadVacuum_Click);
             // 
             // tsmCancelUploadVacuum
             // 
+            this.tsmCancelUploadVacuum.Enabled = false;
             this.tsmCancelUploadVacuum.Name = "tsmCancelUploadVacuum";
-            this.tsmCancelUploadVacuum.Size = new System.Drawing.Size(148, 22);
+            this.tsmCancelUploadVacuum.Size = new System.Drawing.Size(180, 22);
             this.tsmCancelUploadVacuum.Text = "取消破真空";
             this.tsmCancelUploadVacuum.Visible = false;
             this.tsmCancelUploadVacuum.Click += new System.EventHandler(this.TsmCancelUploadVacuum_Click);
@@ -206,14 +210,14 @@
             // tsmStopBaking
             // 
             this.tsmStopBaking.Name = "tsmStopBaking";
-            this.tsmStopBaking.Size = new System.Drawing.Size(148, 22);
+            this.tsmStopBaking.Size = new System.Drawing.Size(180, 22);
             this.tsmStopBaking.Text = "停止";
             this.tsmStopBaking.Click += new System.EventHandler(this.TsmStopBaking_Click);
             // 
             // tsmClearRunTime
             // 
             this.tsmClearRunTime.Name = "tsmClearRunTime";
-            this.tsmClearRunTime.Size = new System.Drawing.Size(148, 22);
+            this.tsmClearRunTime.Size = new System.Drawing.Size(180, 22);
             this.tsmClearRunTime.Text = "运行时间清零";
             this.tsmClearRunTime.Visible = false;
             this.tsmClearRunTime.Click += new System.EventHandler(this.TsmClearRunTime_Click);
@@ -224,7 +228,7 @@
             this.tsmWatContentTestOK,
             this.tsmWatContentTestNG});
             this.tsmWatContentResult.Name = "tsmWatContentResult";
-            this.tsmWatContentResult.Size = new System.Drawing.Size(148, 22);
+            this.tsmWatContentResult.Size = new System.Drawing.Size(180, 22);
             this.tsmWatContentResult.Text = "水分测试结果";
             // 
             // tsmWatContentTestOK

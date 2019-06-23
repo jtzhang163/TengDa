@@ -185,6 +185,7 @@ namespace Anchitech.Baking
             }
         }
 
+        [Browsable(false)]
         public Station FromStation
         {
             get
@@ -337,8 +338,11 @@ namespace Anchitech.Baking
             }
         }
 
+        [Browsable(false)]
         public string RobotValue1 { get { return RobotValues.Split(',')[0]; } }
+        [Browsable(false)]
         public string RobotValue2 { get { return RobotValues.Split(',')[1]; } }
+        [Browsable(false)]
         public string RobotValue3 { get { return RobotValues.Split(',')[2]; } }
 
         public FloorStatus PreFloorStatus;
@@ -361,19 +365,15 @@ namespace Anchitech.Baking
                         this.Clamp.OvenStationId = this.Id;
                         this.Clamp.InOvenTime = DateTime.Now;
                     }
-                    else if (value == FloorStatus.烘烤)
+                    else if (value == FloorStatus.烘烤 && floorStatus == FloorStatus.待烤)
                     {
-                        var floor = this.GetFloor();
-
                         this.Clamp.BakingStartTime = DateTime.Now;
-
                     }
                     else if (value == FloorStatus.待出)
                     {
                         this.Clamp.BakingStopTime = DateTime.Now;
                     }
-
-                    if (value == FloorStatus.无盘 && floorStatus == FloorStatus.待出)
+                    else if (value == FloorStatus.无盘 && floorStatus == FloorStatus.待出)
                     {
                         this.Clamp.OutOvenTime = DateTime.Now;
                         this.Clamp.IsFinished = true; 

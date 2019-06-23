@@ -38,13 +38,8 @@ namespace Anchitech.Baking.Controls
             else
             {
                 this.lbFromStation.Text = transfer.Station.FromStation.Name;
-            }
-            
+            }    
         }
 
-        private void TsmGetSampleFinished_Click(object sender, EventArgs e)
-        {
-            Current.Transfer.Station.SampleStatus = SampleStatus.待结果;
-        }
     }
 }

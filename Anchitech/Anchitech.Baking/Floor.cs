@@ -62,6 +62,7 @@ namespace Anchitech.Baking
         /// <summary>
         /// Math.Log10(0)会溢出报错
         /// </summary>
+        [Browsable(false)]
         public float Vacuum4Show
         {
             get

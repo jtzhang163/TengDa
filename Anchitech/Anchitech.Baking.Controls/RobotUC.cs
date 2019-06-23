@@ -59,7 +59,7 @@ namespace Anchitech.Baking.Controls
                 }
                 else if (robot.IsMoving && TengDa.WF.Current.IsTerminalInitFinished)
                 {
-                    this.lbInfo.Text = Current.Robot.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动", robot.MovingDirSign) : string.Format("移动{0}", robot.MovingDirSign);
+                    this.lbInfo.Text = Current.Robot.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动中", robot.MovingDirSign) : string.Format("移动中{0}", robot.MovingDirSign);
                     this.lbInfo.ForeColor = Color.Blue;
                 }
                 else if (robot.IsMoving)

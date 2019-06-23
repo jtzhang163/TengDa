@@ -167,30 +167,30 @@ namespace Anchitech.Baking.Controls
                 && Current.runStstus == RunStatus.运行
                 && oven.IsAlive
                 && floor.DoorStatus != DoorStatus.关闭;
-            this.tsmLoadVacuum.Enabled =
-                floor.IsNetControlOpen
-                && Current.runStstus == RunStatus.运行
-                && oven.IsAlive
-                && floor.DoorStatus == DoorStatus.关闭
-                && !floor.VacuumIsLoading
-                && !floor.IsVacuum;
-            this.tsmCancelLoadVacuum.Enabled =
-                floor.IsNetControlOpen
-                && Current.runStstus == RunStatus.运行
-                && oven.IsAlive
-                && floor.VacuumIsLoading;
-            this.tsmUploadVacuum.Enabled =
-                floor.IsNetControlOpen
-                && Current.runStstus == RunStatus.运行
-                && oven.IsAlive
-                && !floor.IsBaking
-                && !floor.VacuumIsUploading
-                && floor.IsVacuum;
-            this.tsmCancelUploadVacuum.Enabled =
-                floor.IsNetControlOpen
-                && Current.runStstus == RunStatus.运行
-                && oven.IsAlive
-                && floor.VacuumIsUploading;
+            //this.tsmLoadVacuum.Enabled =
+            //    floor.IsNetControlOpen
+            //    && Current.runStstus == RunStatus.运行
+            //    && oven.IsAlive
+            //    && floor.DoorStatus == DoorStatus.关闭
+            //    && !floor.VacuumIsLoading
+            //    && !floor.IsVacuum;
+            //this.tsmCancelLoadVacuum.Enabled =
+            //    floor.IsNetControlOpen
+            //    && Current.runStstus == RunStatus.运行
+            //    && oven.IsAlive
+            //    && floor.VacuumIsLoading;
+            //this.tsmUploadVacuum.Enabled =
+            //    floor.IsNetControlOpen
+            //    && Current.runStstus == RunStatus.运行
+            //    && oven.IsAlive
+            //    && !floor.IsBaking
+            //    && !floor.VacuumIsUploading
+            //    && floor.IsVacuum;
+            //this.tsmCancelUploadVacuum.Enabled =
+            //    floor.IsNetControlOpen
+            //    && Current.runStstus == RunStatus.运行
+            //    && oven.IsAlive
+            //    && floor.VacuumIsUploading;
             this.tsmClearRunTime.Enabled = false;
             this.tsmStartBaking.Enabled =
                 floor.IsNetControlOpen
