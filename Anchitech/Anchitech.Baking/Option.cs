@@ -1465,10 +1465,10 @@ namespace Anchitech.Baking
 
         //private string unloadVacuumStrs = string.Empty;
         ///// <summary>
-        ///// 破真空指令
+        ///// 泄真空指令
         ///// </summary>
-        //[Description("破真空指令")]
-        //[DisplayName("破真空指令")]
+        //[Description("泄真空指令")]
+        //[DisplayName("泄真空指令")]
         //[Category("烤箱")]
         //public string UnloadVacuumStrs
         //{
@@ -2317,9 +2317,9 @@ namespace Anchitech.Baking
 
         private string ovenUploadVacuumAddrVals = string.Empty;
         /// <summary>
-        /// 烤箱破真空地址和值
+        /// 烤箱泄真空地址和值
         /// </summary>
-        [DisplayName("烤箱破真空地址和值")]
+        [DisplayName("烤箱泄真空地址和值")]
         [Category("烤箱")]
         public string OvenUploadVacuumAddrVals
         {
@@ -2344,9 +2344,9 @@ namespace Anchitech.Baking
 
         private string ovenStopUploadVacuumAddrVals = string.Empty;
         /// <summary>
-        /// 烤箱停止破真空地址和值
+        /// 烤箱停止泄真空地址和值
         /// </summary>
-        [DisplayName("烤箱停止破真空地址和值")]
+        [DisplayName("烤箱停止泄真空地址和值")]
         [Category("烤箱")]
         public string OvenStopUploadVacuumAddrVals
         {
@@ -2373,7 +2373,7 @@ namespace Anchitech.Baking
         /// 烤箱真空度阈值
         /// </summary>
         [DisplayName("烤箱真空度阈值")]
-        [Description("烤箱真空度阈值: 大于该值时判断为破真空完成，可开门")]
+        [Description("烤箱真空度阈值: 大于该值时判断为泄真空完成，可开门")]
         [Category("烤箱")]
         public float VacuumStandard
         {

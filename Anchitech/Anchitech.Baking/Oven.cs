@@ -1171,7 +1171,7 @@ namespace Anchitech.Baking
         }
 
         /// <summary>
-        /// 破真空
+        /// 泄真空
         /// </summary>
         /// <param name="j">炉腔序号</param>
         /// <returns></returns>
@@ -1186,13 +1186,13 @@ namespace Anchitech.Baking
 
             if (!this.Floors[j].IsNetControlOpen)
             {
-                Tip.Alert(this.Floors[j].Name + "网控未开启，无法远程破真空 ");
+                Tip.Alert(this.Floors[j].Name + "网控未开启，无法远程泄真空 ");
                 return;
             }
 
             if (this.Floors[j].IsBaking)
             {
-                Tip.Alert(this.Floors[j].Name + "运行未完成，无法远程破真空 ");
+                Tip.Alert(this.Floors[j].Name + "运行未完成，无法远程泄真空 ");
                 return;
             }
 
@@ -1224,7 +1224,7 @@ namespace Anchitech.Baking
         }
 
         /// <summary>
-        /// 取消破真空
+        /// 取消泄真空
         /// </summary>
         /// <param name="j">炉腔序号</param>
         /// <returns></returns>
@@ -1239,13 +1239,13 @@ namespace Anchitech.Baking
 
             if (!this.Floors[j].IsNetControlOpen)
             {
-                Tip.Alert(this.Floors[j].Name + "网控未开启，无法远程取消破真空 ");
+                Tip.Alert(this.Floors[j].Name + "网控未开启，无法远程取消泄真空 ");
                 return;
             }
 
             if (this.Floors[j].IsBaking)
             {
-                Tip.Alert(this.Floors[j].Name + "运行未完成，无法远程取消破真空 ");
+                Tip.Alert(this.Floors[j].Name + "运行未完成，无法远程取消泄真空 ");
                 return;
             }
 

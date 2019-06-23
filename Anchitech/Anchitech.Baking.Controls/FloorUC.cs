@@ -252,13 +252,13 @@ namespace Anchitech.Baking.Controls
 
         private void TsmCancelLoadVacuum_Click(object sender, EventArgs e)
         {
-            floor.AddLog("手动取消破真空");
+            floor.AddLog("手动取消泄真空");
             oven.CancelLoadVacuum(oven.Floors.IndexOf(floor));
         }
 
         private void TsmUploadVacuum_Click(object sender, EventArgs e)
         {
-            floor.AddLog("手动破真空");
+            floor.AddLog("手动泄真空");
             oven.UploadVacuum(oven.Floors.IndexOf(floor));
         }
 

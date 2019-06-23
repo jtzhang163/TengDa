@@ -101,7 +101,7 @@ namespace Anchitech.Baking
             //            }
             //            else
             //            {
-            //                AddLog("破真空完成");
+            //                AddLog("泄真空完成");
             //            }
             //        }
             //    }
@@ -279,7 +279,7 @@ namespace Anchitech.Baking
         public bool VacuumIsLoading = false;
 
         /// <summary>
-        /// 正在破真空
+        /// 正在泄真空
         /// </summary>
         public bool VacuumIsUploading = false;
 

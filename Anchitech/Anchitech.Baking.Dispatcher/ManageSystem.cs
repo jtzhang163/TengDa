@@ -1459,7 +1459,7 @@ namespace Anchitech.Baking.Dispatcher
                                 AddTips(tip);
                                 StationLog.Add(new List<StationLog>() { new StationLog() { StationId = station.Id, Message = tip } }, out msg);
 
-                                //烘烤完成直接破真空                         
+                                //烘烤完成直接泄真空                         
                                 if (station.FloorStatus == FloorStatus.待出 && floor.IsVacuum && floor.RunRemainMinutes <= 1)
                                 {
                                     Current.ovens[i].UploadVacuum(j);
@@ -1814,7 +1814,7 @@ namespace Anchitech.Baking.Dispatcher
                         }
                     }
 
-                    //测水分出炉前破真空
+                    //测水分出炉前泄真空
                     var floors1 = Floor.FloorList.Where(f => f.IsAlive && f.IsVacuum && !f.Stations[0].IsOpenDoorIntervene && f.Stations.Count(s => s.FloorStatus == FloorStatus.待出) == 2).OrderBy(f => f.Stations[0].GetPutTime);
                     if (floors1.Count() > 0)
                     {
@@ -1827,7 +1827,7 @@ namespace Anchitech.Baking.Dispatcher
                         }
                     }
 
-                    //测试OK出炉前破真空
+                    //测试OK出炉前泄真空
                     var floors2 = Floor.FloorList.Where(f => f.IsAlive && f.IsVacuum && !f.Stations[0].IsOpenDoorIntervene && f.Stations.Count(s => s.FloorStatus == FloorStatus.待出) > 0 && f.Stations.Count(s => s.SampleStatus == SampleStatus.水分OK) > 0).OrderBy(f => f.Stations[0].GetPutTime);
                     if (floors2.Count() > 0)
                     {

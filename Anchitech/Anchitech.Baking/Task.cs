@@ -618,6 +618,11 @@ namespace Anchitech.Baking
                                 Current.Task.ToStation.ClampId = Current.Task.ClampId;
                             }
 
+                            if (!TaskLog.Add(out msg))//记录
+                            {
+                                Error.Alert("保存搬运记录失败：" + msg);
+                            }
+
                             Current.Task.Status = TaskStatus.完成;
 
                             // Current.Robot.ClampId = -1;
@@ -635,7 +640,6 @@ namespace Anchitech.Baking
                                 Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
                             }
 
-                            Current.Task.Status = TaskStatus.完成;
                         }
                     }
                 }
@@ -758,6 +762,11 @@ namespace Anchitech.Baking
                             else
                             {
                                 Current.Task.ToStation.ClampId = Current.Task.ClampId;
+                            }
+
+                            if (!TaskLog.Add(out msg))//记录
+                            {
+                                Error.Alert("保存搬运记录失败：" + msg);
                             }
 
                             Current.Task.Status = TaskStatus.完成;

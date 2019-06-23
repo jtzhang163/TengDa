@@ -63,6 +63,16 @@ namespace Anchitech.Baking.Controls.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Continue_Green {
+            get {
+                object obj = ResourceManager.GetObject("Continue_Green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Gray_Round {
             get {
                 object obj = ResourceManager.GetObject("Gray_Round", resourceCulture);
@@ -86,6 +96,16 @@ namespace Anchitech.Baking.Controls.Properties {
         internal static System.Drawing.Bitmap Red_Round {
             get {
                 object obj = ResourceManager.GetObject("Red_Round", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Stop_Red {
+            get {
+                object obj = ResourceManager.GetObject("Stop_Red", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
