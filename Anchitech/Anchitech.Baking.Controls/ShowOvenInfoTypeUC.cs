@@ -15,6 +15,12 @@ namespace Anchitech.Baking.Controls
         public ShowOvenInfoTypeUC()
         {
             InitializeComponent();
+            this.cbShowType.SelectedIndex = 0;
+        }
+
+        private void CbShowType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Current.option.FloorShowInfoType = this.cbShowType.SelectedItem.ToString();
         }
     }
 }

@@ -3590,13 +3590,6 @@ namespace Anchitech.Baking.Dispatcher
             Clamp.Add("6666", out string msg);
         }
 
-        private void cbDisplayOvenCode_CheckedChanged(object sender, EventArgs e)
-        {
-            if (TengDa.WF.Current.IsRunning)
-            {
-                Current.option.IsDisplayOvenCode = cbDisplayOvenCode.Checked;
-            }
-        }
 
         /// <summary>
         /// 键盘按下空格键急停机器人

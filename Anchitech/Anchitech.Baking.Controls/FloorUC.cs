@@ -104,7 +104,7 @@ namespace Anchitech.Baking.Controls
                 this.lbInfoTop.BackColor = Color.Transparent;
             }
 
-            if (!Current.option.IsDisplayOvenCode)
+            if (Current.option.FloorShowInfoType == "默认信息")
             {
                 lbStatus.Text =
                     string.Format("{0} {1} {2}/{3} {4}",
@@ -117,12 +117,25 @@ namespace Anchitech.Baking.Controls
                     //oven.ClampOri == ClampOri.A ? floor.Stations[0].RobotGetCode : floor.Stations[1].RobotGetCode
                     );
             }
-            else
+            else if (Current.option.FloorShowInfoType == "开始烘烤时间")
+            {
+                var startBakingTime = "";
+                if (floor.Stations[0].Clamp.BakingStartTime > Common.DefaultTime)
+                {
+                    startBakingTime = floor.Stations[0].Clamp.BakingStartTime.ToString("yyyy-MM-dd HH:mm");
+                }
+                else if (floor.Stations[1].Clamp.BakingStartTime > Common.DefaultTime)
+                {
+                    startBakingTime = floor.Stations[1].Clamp.BakingStartTime.ToString("yyyy-MM-dd HH:mm");
+                }
+                lbStatus.Text = startBakingTime;
+            }
+            else if(Current.option.FloorShowInfoType == "夹具条码")
             {
                 lbStatus.Text =
                     string.Format("{0} {1}",
-                    (oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadRight(8),
-                    (oven.ClampOri == ClampOri.B ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadLeft(8)
+                    (oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadRight(6),
+                    (oven.ClampOri == ClampOri.A ? floor.Stations[1].Clamp.Code : floor.Stations[0].Clamp.Code).PadLeft(6)
                     );
             }
 

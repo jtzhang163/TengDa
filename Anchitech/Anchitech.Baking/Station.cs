@@ -788,7 +788,7 @@ namespace Anchitech.Baking
         {
             get
             {
-                return StationList.Where(s => s.IsAlive && !s.IsOpenDoorIntervene && s.CanOpenDoor).ToList();
+                return StationList.Where(s => s.IsAlive && /*!s.IsOpenDoorIntervene &&*/ s.CanOpenDoor).ToList();
             }
         }
 

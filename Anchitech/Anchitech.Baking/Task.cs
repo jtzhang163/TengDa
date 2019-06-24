@@ -570,7 +570,7 @@ namespace Anchitech.Baking
 
                         if (Current.Robot.IsReceived())
                         {
-                            Current.Robot.IsMoving = true;
+                            //Current.Robot.IsMoving = true;
                         }
                     }
                     else if (Current.Task.Status == TaskStatus.取放中 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
@@ -718,7 +718,7 @@ namespace Anchitech.Baking
 
                         if (Current.Robot.IsReceived())
                         {
-                            Current.Robot.IsMoving = true;
+                            //Current.Robot.IsMoving = true;
                         }
                     }
                     else if (Current.Task.Status == TaskStatus.取放中 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)

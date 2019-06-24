@@ -2460,7 +2460,7 @@ namespace Anchitech.Baking
             "%01#RDD0510005100**"
         };
 
-
+        public string FloorShowInfoType { get; set; }
 
 
         //private string xxxXXXXXXXXXXXX = string.Empty;
