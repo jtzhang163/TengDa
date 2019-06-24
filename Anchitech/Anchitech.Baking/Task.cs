@@ -440,7 +440,7 @@ namespace Anchitech.Baking
                         //水分NG烤箱空位要回炉，无法上料
                         if (task.FromType == GetPutType.上料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
                         {
-                            toStations = toStations.Where(s => s.GetLabStation().SampleStatus != SampleStatus.水分NG).ToList();
+                            toStations = toStations.Where(s => s.GetLabStation().SampleStatus != SampleStatus.水分NG && s.GetLabStation().SampleStatus != SampleStatus.水分OK).ToList();
                         }
 
                         ////测试水分出烤箱前逻辑
@@ -633,11 +633,14 @@ namespace Anchitech.Baking
                             }
 
 
+
                             //入炉后逻辑
                             //修改工位状态
                             if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具)
                             {
                                 Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
+                                Current.Task.ToStation.Clamp.InOvenTime = DateTime.Now;
+                                Current.Task.ToStation.Clamp.OvenStationId = Current.Task.ToStation.Id;
                             }
 
                         }
@@ -784,6 +787,8 @@ namespace Anchitech.Baking
                             if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具)
                             {
                                 Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
+                                Current.Task.ToStation.Clamp.InOvenTime = DateTime.Now;
+                                Current.Task.ToStation.Clamp.OvenStationId = Current.Task.ToStation.Id;
                             }
                             
                         }

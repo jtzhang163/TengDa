@@ -26,7 +26,7 @@ namespace Anchitech.Baking.Controls
 
             this.lbGetStatus.Text = "";
             this.lbSetStatus.Text = "";
-            this.btnSetParam.Enabled = false;
+            this.btnSetDefaultValue.Enabled = false;
 
             for (int i = 0; i < ovenParamUCs.Length; i++)
             {
@@ -53,27 +53,28 @@ namespace Anchitech.Baking.Controls
 
                 for (int i = 0; i < this.ovenParamUCs.Length; i++)
                 {
+                    var ii = i;
                     var addr = 0;
                     var j = oven.Floors.IndexOf(this.floor);
                     if (j == 0)
                     {
-                        addr = this.ovenParamUCs[i].ovenParam.Floor1Addr;
+                        addr = this.ovenParamUCs[ii].ovenParam.Floor1Addr;
                     }
                     else if (j == 1)
                     {
-                        addr = this.ovenParamUCs[i].ovenParam.Floor2Addr;
+                        addr = this.ovenParamUCs[ii].ovenParam.Floor2Addr;
                     }
                     else if (j == 2)
                     {
-                        addr = this.ovenParamUCs[i].ovenParam.Floor3Addr;
+                        addr = this.ovenParamUCs[ii].ovenParam.Floor3Addr;
                     }
 
                     if (oven.GetParam(addr, out int val, out msg))
                     {
                         this.BeginInvoke(new MethodInvoker(() =>
                         {
-                            this.ovenParamUCs[i].SetOldValue(val);
-                            this.ovenParamUCs[i].SetNewValue(val);
+                            this.ovenParamUCs[ii].SetOldValue(val);
+                            this.ovenParamUCs[ii].SetNewValue(val);
                         }));
                     }
                     else
@@ -145,7 +146,7 @@ namespace Anchitech.Baking.Controls
                         addr = this.ovenParamUCs[i].ovenParam.Floor3Addr;
                     }
 
-                    if(this.ovenParamUCs[i].GetNewValue() == this.ovenParamUCs[i].GetOldValue())
+                    if (this.ovenParamUCs[i].GetNewValue() == this.ovenParamUCs[i].GetOldValue())
                     {
                         continue;
                     }
@@ -191,6 +192,26 @@ namespace Anchitech.Baking.Controls
 
             });
             t.Start();
+        }
+
+        private void BtnGetDefaultValue_Click(object sender, EventArgs e)
+        {
+            this.btnGetDefaultValue.Enabled = false;
+            for (int i = 0; i < this.ovenParamUCs.Length; i++)
+            {
+                this.ovenParamUCs[i].SetNewValue(this.ovenParamUCs[i].ovenParam.DefaultValue);
+            }
+            this.btnGetDefaultValue.Enabled = true;
+        }
+
+        private void BtnSetDefaultValue_Click(object sender, EventArgs e)
+        {
+            this.btnSetDefaultValue.Enabled = false;
+            for (int i = 0; i < this.ovenParamUCs.Length; i++)
+            {
+                this.ovenParamUCs[i].ovenParam.DefaultValue = this.ovenParamUCs[i].GetNewValue();
+            }
+            this.btnSetDefaultValue.Enabled = true;
         }
     }
 }

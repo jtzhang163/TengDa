@@ -279,7 +279,7 @@ namespace Anchitech.Baking
         {
             get
             {
-                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.暂存台)
+                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.暂存台 || this.GetPutType == GetPutType.下料机)
                 {
                     doorStatus = DoorStatus.打开;
                 }
@@ -360,13 +360,9 @@ namespace Anchitech.Baking
 
                 if (this.GetPutType == GetPutType.烤箱 && floorStatus != value)
                 {
-                    if (value == FloorStatus.待烤)
+                    if (value == FloorStatus.烘烤 && floorStatus == FloorStatus.待烤)
                     {
                         this.Clamp.OvenStationId = this.Id;
-                        this.Clamp.InOvenTime = DateTime.Now;
-                    }
-                    else if (value == FloorStatus.烘烤 && floorStatus == FloorStatus.待烤)
-                    {
                         this.Clamp.BakingStartTime = DateTime.Now;
                     }
                     else if (value == FloorStatus.待出)

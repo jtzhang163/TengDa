@@ -153,6 +153,9 @@ namespace Anchitech.Baking.Controls
 
         private void CmsFloor_Opening(object sender, CancelEventArgs e)
         {
+            this.tsmRemoteControl.Enabled = oven.IsAlive;
+            this.tsmWatContentResult.Enabled = oven.IsAlive;
+            this.tsmParamSetting.Enabled = oven.IsAlive;
 
             this.tsmOvenOpenDoor.Enabled =
                 floor.IsNetControlOpen
@@ -383,6 +386,11 @@ namespace Anchitech.Baking.Controls
         {
             var ovenParamSettingForm = new ParamSettingForm(this.floor);
             ovenParamSettingForm.ShowDialog();
+        }
+
+        private void TsmFloorEnabled_Click(object sender, EventArgs e)
+        {
+            this.floor.IsEnable = !this.floor.IsEnable;
         }
     }
 }

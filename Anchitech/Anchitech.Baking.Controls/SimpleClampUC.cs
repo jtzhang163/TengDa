@@ -25,7 +25,7 @@ namespace Anchitech.Baking.Controls
         public void Update(Station station)
         {
 
-            this.tlpClamp.BackColor = station.IsEnable ? Color.Transparent : Color.LightGray;
+            this.BackColor = station.IsEnable ? Color.Transparent : Color.LightGray;
 
             this.lbClampCode.Text = station.Clamp.Code;
 

@@ -96,6 +96,15 @@ namespace Anchitech.Baking
             return batteries[0];
         }
 
+        public static Battery GetBattery(string code)
+        {
+            var msg = string.Empty;
+            var batteries = GetList(string.Format("SELECT * FROM [dbo].[{0}] WHERE [Code] = '{1}'", TableName, code), out msg);
+            if (batteries.Count < 1)
+                return new Battery();
+            return batteries[0];
+        }
+
         public static List<Battery> GetList(string sql, out string msg)
         {
             List<Battery> list = new List<Battery>();
@@ -157,6 +166,17 @@ namespace Anchitech.Baking
 
         public static int Add(Battery addBattery, out string msg)
         {
+            msg = "";
+
+            if (!addBattery.Code.Contains("0000000000"))
+            {
+                var addedBattery = GetBattery(addBattery.Code);
+                if (addedBattery.Id > 0)
+                {
+                    return addedBattery.Id;
+                }
+            }
+
             return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [FeederId], [Location], [ScanTime]) VALUES ('{1}', {2}, {3}, '{4}', '{5}')", TableName, addBattery.Code, addBattery.ClampId, addBattery.FeederId, addBattery.Location, DateTime.Now), out msg);
         }
 

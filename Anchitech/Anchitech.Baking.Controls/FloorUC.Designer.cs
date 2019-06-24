@@ -50,6 +50,7 @@
             this.tsmWatContentTestOK = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmWatContentTestNG = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmParamSetting = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmFloorEnabled = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpFloor.SuspendLayout();
             this.cmsFloor.SuspendLayout();
             this.SuspendLayout();
@@ -126,9 +127,10 @@
             this.cmsFloor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmRemoteControl,
             this.tsmWatContentResult,
-            this.tsmParamSetting});
+            this.tsmParamSetting,
+            this.tsmFloorEnabled});
             this.cmsFloor.Name = "cmsInOutOven";
-            this.cmsFloor.Size = new System.Drawing.Size(181, 92);
+            this.cmsFloor.Size = new System.Drawing.Size(181, 114);
             this.cmsFloor.Opening += new System.ComponentModel.CancelEventHandler(this.CmsFloor_Opening);
             // 
             // tsmRemoteControl
@@ -239,14 +241,14 @@
             // tsmWatContentTestOK
             // 
             this.tsmWatContentTestOK.Name = "tsmWatContentTestOK";
-            this.tsmWatContentTestOK.Size = new System.Drawing.Size(180, 22);
+            this.tsmWatContentTestOK.Size = new System.Drawing.Size(119, 22);
             this.tsmWatContentTestOK.Text = "结果OK";
             this.tsmWatContentTestOK.Click += new System.EventHandler(this.TsmWatContentTestOK_Click);
             // 
             // tsmWatContentTestNG
             // 
             this.tsmWatContentTestNG.Name = "tsmWatContentTestNG";
-            this.tsmWatContentTestNG.Size = new System.Drawing.Size(180, 22);
+            this.tsmWatContentTestNG.Size = new System.Drawing.Size(119, 22);
             this.tsmWatContentTestNG.Text = "结果NG";
             this.tsmWatContentTestNG.Click += new System.EventHandler(this.TsmWatContentTestNG_Click);
             // 
@@ -256,6 +258,13 @@
             this.tsmParamSetting.Size = new System.Drawing.Size(180, 22);
             this.tsmParamSetting.Text = "参数设置...";
             this.tsmParamSetting.Click += new System.EventHandler(this.TsmParamSetting_Click);
+            // 
+            // tsmFloorEnabled
+            // 
+            this.tsmFloorEnabled.Name = "tsmFloorEnabled";
+            this.tsmFloorEnabled.Size = new System.Drawing.Size(180, 22);
+            this.tsmFloorEnabled.Text = "启用/禁用";
+            this.tsmFloorEnabled.Click += new System.EventHandler(this.TsmFloorEnabled_Click);
             // 
             // FloorUC
             // 
@@ -293,5 +302,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmWatContentTestOK;
         private System.Windows.Forms.ToolStripMenuItem tsmWatContentTestNG;
         private System.Windows.Forms.ToolStripMenuItem tsmParamSetting;
+        private System.Windows.Forms.ToolStripMenuItem tsmFloorEnabled;
     }
 }

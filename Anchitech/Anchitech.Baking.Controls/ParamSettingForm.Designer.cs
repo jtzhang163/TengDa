@@ -53,8 +53,10 @@
             this.ovenParamUC011 = new Anchitech.Baking.Controls.OvenParamUC();
             this.ovenParamUC001 = new Anchitech.Baking.Controls.OvenParamUC();
             this.btnGetParam = new System.Windows.Forms.Button();
-            this.btnSetParam = new System.Windows.Forms.Button();
+            this.btnSetDefaultValue = new System.Windows.Forms.Button();
             this.lbGetStatus = new System.Windows.Forms.Label();
+            this.btnGetDefaultValue = new System.Windows.Forms.Button();
+            this.btnSetParam = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tlpParamList.SuspendLayout();
             this.SuspendLayout();
@@ -66,11 +68,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.lbSetStatus, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnSetParam, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tlpParamList, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnGetParam, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnSetParam, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lbGetStatus, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnSetDefaultValue, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lbGetStatus, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lbSetStatus, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnGetDefaultValue, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -85,9 +89,9 @@
             // 
             this.lbSetStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbSetStatus.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.lbSetStatus, 3);
+            this.tableLayoutPanel1.SetColumnSpan(this.lbSetStatus, 2);
             this.lbSetStatus.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbSetStatus.Location = new System.Drawing.Point(203, 419);
+            this.lbSetStatus.Location = new System.Drawing.Point(403, 419);
             this.lbSetStatus.Name = "lbSetStatus";
             this.lbSetStatus.Size = new System.Drawing.Size(89, 12);
             this.lbSetStatus.TabIndex = 4;
@@ -287,28 +291,50 @@
             this.btnGetParam.UseVisualStyleBackColor = true;
             this.btnGetParam.Click += new System.EventHandler(this.BtnGetParam_Click);
             // 
+            // btnSetDefaultValue
+            // 
+            this.btnSetDefaultValue.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSetDefaultValue.Location = new System.Drawing.Point(311, 413);
+            this.btnSetDefaultValue.Name = "btnSetDefaultValue";
+            this.btnSetDefaultValue.Size = new System.Drawing.Size(86, 23);
+            this.btnSetDefaultValue.TabIndex = 2;
+            this.btnSetDefaultValue.Text = "设置为默认值";
+            this.btnSetDefaultValue.UseVisualStyleBackColor = true;
+            this.btnSetDefaultValue.Click += new System.EventHandler(this.BtnSetDefaultValue_Click);
+            // 
+            // lbGetStatus
+            // 
+            this.lbGetStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbGetStatus.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.lbGetStatus, 2);
+            this.lbGetStatus.ForeColor = System.Drawing.Color.LimeGreen;
+            this.lbGetStatus.Location = new System.Drawing.Point(403, 19);
+            this.lbGetStatus.Name = "lbGetStatus";
+            this.lbGetStatus.Size = new System.Drawing.Size(89, 12);
+            this.lbGetStatus.TabIndex = 3;
+            this.lbGetStatus.Text = "获取设备值状态";
+            // 
+            // btnGetDefaultValue
+            // 
+            this.btnGetDefaultValue.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnGetDefaultValue.Location = new System.Drawing.Point(311, 13);
+            this.btnGetDefaultValue.Name = "btnGetDefaultValue";
+            this.btnGetDefaultValue.Size = new System.Drawing.Size(86, 23);
+            this.btnGetDefaultValue.TabIndex = 5;
+            this.btnGetDefaultValue.Text = "加载默认值";
+            this.btnGetDefaultValue.UseVisualStyleBackColor = true;
+            this.btnGetDefaultValue.Click += new System.EventHandler(this.BtnGetDefaultValue_Click);
+            // 
             // btnSetParam
             // 
             this.btnSetParam.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnSetParam.Location = new System.Drawing.Point(111, 413);
             this.btnSetParam.Name = "btnSetParam";
             this.btnSetParam.Size = new System.Drawing.Size(86, 23);
-            this.btnSetParam.TabIndex = 2;
+            this.btnSetParam.TabIndex = 6;
             this.btnSetParam.Text = "更新到设备";
             this.btnSetParam.UseVisualStyleBackColor = true;
             this.btnSetParam.Click += new System.EventHandler(this.BtnSetParam_Click);
-            // 
-            // lbGetStatus
-            // 
-            this.lbGetStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbGetStatus.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.lbGetStatus, 3);
-            this.lbGetStatus.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbGetStatus.Location = new System.Drawing.Point(203, 19);
-            this.lbGetStatus.Name = "lbGetStatus";
-            this.lbGetStatus.Size = new System.Drawing.Size(89, 12);
-            this.lbGetStatus.TabIndex = 3;
-            this.lbGetStatus.Text = "获取设备值状态";
             // 
             // ParamSettingForm
             // 
@@ -354,8 +380,10 @@
         private OvenParamUC ovenParamUC010;
         private OvenParamUC ovenParamUC020;
         private System.Windows.Forms.Button btnGetParam;
-        private System.Windows.Forms.Button btnSetParam;
+        private System.Windows.Forms.Button btnSetDefaultValue;
         private System.Windows.Forms.Label lbGetStatus;
         private System.Windows.Forms.Label lbSetStatus;
+        private System.Windows.Forms.Button btnGetDefaultValue;
+        private System.Windows.Forms.Button btnSetParam;
     }
 }

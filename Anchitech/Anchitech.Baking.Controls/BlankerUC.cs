@@ -75,8 +75,8 @@ namespace Anchitech.Baking.Controls
             //this.lbFromStationName1.Text = blanker.Stations[0].FromStation.Name;
             //this.lbFromStationName2.Text = blanker.Stations[1].FromStation.Name;
 
-            this.simpleClampUC2.Update(blanker.Stations[0]);
-            this.simpleClampUC1.Update(blanker.Stations[1]);
+            this.simpleClampUC1.Update(blanker.Stations[0]);
+            this.simpleClampUC2.Update(blanker.Stations[1]);
         }
     }
 }

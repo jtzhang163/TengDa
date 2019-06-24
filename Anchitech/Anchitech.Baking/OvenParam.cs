@@ -34,6 +34,20 @@ namespace Anchitech.Baking
         public int Floor2Addr { get; set; }
 
         public int Floor3Addr { get; set; }
+
+        private int defaultValue = -1;
+        public int DefaultValue
+        {
+            get { return defaultValue; }
+            set
+            {
+                if (defaultValue != value)
+                {
+                    UpdateDbField("DefaultValue", value);
+                }
+                defaultValue = value;
+            }
+        }
         #endregion
 
         #region 列表
@@ -116,12 +130,13 @@ namespace Anchitech.Baking
 
         protected void InitFields(DataRow rowInfo)
         {
-            this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
             this.Content = rowInfo["Content"].ToString();
             this.Unit = rowInfo["Unit"].ToString();
             this.Floor1Addr = TengDa._Convert.StrToInt(rowInfo["Floor1Addr"].ToString(), -1);
             this.Floor2Addr = TengDa._Convert.StrToInt(rowInfo["Floor2Addr"].ToString(), -1);
             this.Floor3Addr = TengDa._Convert.StrToInt(rowInfo["Floor3Addr"].ToString(), -1);
+            this.defaultValue = TengDa._Convert.StrToInt(rowInfo["DefaultValue"].ToString(), -1);
+            this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
         }
         #endregion
 

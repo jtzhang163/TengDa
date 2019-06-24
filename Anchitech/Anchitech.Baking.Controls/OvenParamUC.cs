@@ -46,7 +46,7 @@ namespace Anchitech.Baking.Controls
 
         private void TbNewValue_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar))
+            if (e.KeyChar != '\b' && !Char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
