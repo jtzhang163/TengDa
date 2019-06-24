@@ -832,11 +832,11 @@ namespace Anchitech.Baking.Dispatcher
             }
             else if (pictureBox.Name.Contains("TaskFuWei"))
             {
-                if (Current.Task.Status == TaskStatus.完成)
-                {
-                    Tip.Alert("尚未生成任务！");
-                    return;
-                }
+                //if (Current.Task.Status == TaskStatus.完成)
+                //{
+                //    Tip.Alert("尚未生成任务！");
+                //    return;
+                //}
 
                 if (Current.runStstus == RunStatus.运行)
                 {

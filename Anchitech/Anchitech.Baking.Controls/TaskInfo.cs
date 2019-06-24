@@ -39,11 +39,19 @@ namespace Anchitech.Baking.Controls
                     state[i].ForeColor = Color.Green;
                 }
             }
+
             lbTaskName.Text = Current.Task.TaskName;
-            lbFromStation.Text = Current.Task.FromStationName;
+
+            if (Current.Task.FromStationId < 1 && Current.Task.NextFromStationId > 0)
+            {
+                lbFromStation.Text = Station.StationList.FirstOrDefault(o => o.Id == Current.Task.NextFromStationId).Name;
+            }
+            else
+            {
+                lbFromStation.Text = Current.Task.FromStationName;
+            }
+
             lbToStation.Text = Current.Task.ToStationName;
-
-
         }
     }
 }

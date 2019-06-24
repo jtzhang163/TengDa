@@ -12,9 +12,19 @@ namespace Anchitech.Baking.Controls
 {
     public partial class TorVUC : UserControl
     {
+
         public TorVUC()
         {
             InitializeComponent();
+        }
+        public void Init(string subject)
+        {    
+            this.lbSubject.Text = subject;
+        }
+
+        public void UpdateValue(float val)
+        {
+            this.lbValue.Text = val.ToString();
         }
     }
 }

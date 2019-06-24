@@ -12,206 +12,39 @@ using TengDa;
 
 namespace Anchitech.Baking.Controls
 {
-    public partial class ParamSettingForm : Form
+    public partial class ShowTandVForm : Form
     {
         private Floor floor;
-        private OvenParamUC[] ovenParamUCs = new OvenParamUC[20];
-        public ParamSettingForm(Floor floor)
+        private TorVUC[] showTempers = new TorVUC[48];
+        public ShowTandVForm(Floor floor)
         {
             InitializeComponent();
 
             this.floor = floor;
 
-            this.Text = this.floor.Name + " 参数设置";
+            this.Text = this.floor.Name + " 温度真空显示";
 
-            this.lbGetStatus.Text = "";
-            this.lbSetStatus.Text = "";
-            this.btnSetDefaultValue.Enabled = false;
+            this.showVacuum.Init("真空度(Pa)：");
 
-            for (int i = 0; i < ovenParamUCs.Length; i++)
+            for (int i = 0; i < Option.TemperaturePointCount; i++)
             {
-                ovenParamUCs[i] = (OvenParamUC)(this.Controls.Find(string.Format("ovenParamUC{0}", (i + 1).ToString("D3")), true)[0]);
-                ovenParamUCs[i].Init(OvenParam.OvenParamList[i]);
+                showTempers[i] = (TorVUC)(this.Controls.Find(string.Format("showTemper01{0}", (i + 1).ToString("D2")), true)[0]);
+                showTempers[i].Init("左" + Current.option.TemperNames[i] + "(℃):");
+                showTempers[i + 24] = (TorVUC)(this.Controls.Find(string.Format("showTemper02{0}", (i + 1).ToString("D2")), true)[0]);
+                showTempers[i + 24].Init("右" + Current.option.TemperNames[i] + "(℃):");
             }
+            BtnFreshUI_Click(null, null);
         }
 
-        private void BtnGetParam_Click(object sender, EventArgs e)
+        private void BtnFreshUI_Click(object sender, EventArgs e)
         {
-            Thread t = new Thread(() =>
+            for (int i = 0; i < Option.TemperaturePointCount; i++)
             {
-                this.BeginInvoke(new MethodInvoker(() =>
-                {
-                    this.btnGetParam.Enabled = false;
-                    this.lbGetStatus.Text = "获取设备参数...";
-                }));
-                Thread.Sleep(1000);
-
-                var isSuccess = true;
-                var msg = "";
-
-                var oven = this.floor.GetOven();
-
-                for (int i = 0; i < this.ovenParamUCs.Length; i++)
-                {
-                    var ii = i;
-                    var addr = 0;
-                    var j = oven.Floors.IndexOf(this.floor);
-                    if (j == 0)
-                    {
-                        addr = this.ovenParamUCs[ii].ovenParam.Floor1Addr;
-                    }
-                    else if (j == 1)
-                    {
-                        addr = this.ovenParamUCs[ii].ovenParam.Floor2Addr;
-                    }
-                    else if (j == 2)
-                    {
-                        addr = this.ovenParamUCs[ii].ovenParam.Floor3Addr;
-                    }
-
-                    if (oven.GetParam(addr, out int val, out msg))
-                    {
-                        this.BeginInvoke(new MethodInvoker(() =>
-                        {
-                            this.ovenParamUCs[ii].SetOldValue(val);
-                            this.ovenParamUCs[ii].SetNewValue(val);
-                        }));
-                    }
-                    else
-                    {
-                        isSuccess = false;
-                        break;
-                    }
-                }
-
-                if (isSuccess)
-                {
-                    this.BeginInvoke(new MethodInvoker(() =>
-                    {
-                        this.lbGetStatus.ForeColor = Color.LimeGreen;
-                        this.lbGetStatus.Text = "成功获取完设备参数";
-                        this.btnSetParam.Enabled = true;
-                    }));
-                    Thread.Sleep(1000);
-                    this.BeginInvoke(new MethodInvoker(() => { this.lbGetStatus.Text = ""; }));
-                }
-                else
-                {
-                    this.BeginInvoke(new MethodInvoker(() =>
-                    {
-                        this.lbGetStatus.Text = msg;
-                        this.lbGetStatus.ForeColor = Color.Red;
-                    }));
-                }
-
-                this.BeginInvoke(new MethodInvoker(() =>
-                {
-                    this.btnGetParam.Enabled = true;
-                }));
-
-            });
-            t.Start();
-        }
-
-        private void BtnSetParam_Click(object sender, EventArgs e)
-        {
-            Thread t = new Thread(() =>
-            {
-                this.BeginInvoke(new MethodInvoker(() =>
-                {
-                    this.btnSetParam.Enabled = false;
-                    this.lbSetStatus.Text = "更新设备参数...";
-                }));
-                Thread.Sleep(1000);
-
-                var isSuccess = true;
-                var msg = "";
-
-                var oven = this.floor.GetOven();
-
-                for (int i = 0; i < this.ovenParamUCs.Length; i++)
-                {
-                    var addr = 0;
-                    var j = oven.Floors.IndexOf(this.floor);
-                    if (j == 0)
-                    {
-                        addr = this.ovenParamUCs[i].ovenParam.Floor1Addr;
-                    }
-                    else if (j == 1)
-                    {
-                        addr = this.ovenParamUCs[i].ovenParam.Floor2Addr;
-                    }
-                    else if (j == 2)
-                    {
-                        addr = this.ovenParamUCs[i].ovenParam.Floor3Addr;
-                    }
-
-                    if (this.ovenParamUCs[i].GetNewValue() == this.ovenParamUCs[i].GetOldValue())
-                    {
-                        continue;
-                    }
-
-                    if (this.ovenParamUCs[i].GetNewValue() < 0)
-                    {
-                        isSuccess = false;
-                        msg = "输入参数有误";
-                        break;
-                    }
-
-                    if (!oven.SetParam(addr, this.ovenParamUCs[i].GetNewValue(), out msg))
-                    {
-                        isSuccess = false;
-                        break;
-                    }
-                }
-
-                if (isSuccess)
-                {
-                    this.BeginInvoke(new MethodInvoker(() =>
-                    {
-                        this.lbSetStatus.ForeColor = Color.LimeGreen;
-                        this.lbSetStatus.Text = "成功更新完设备参数";
-                        this.btnSetParam.Enabled = true;
-                    }));
-                    Thread.Sleep(1000);
-                    this.BeginInvoke(new MethodInvoker(() => { this.lbSetStatus.Text = ""; }));
-                }
-                else
-                {
-                    this.BeginInvoke(new MethodInvoker(() =>
-                    {
-                        this.lbSetStatus.Text = msg;
-                        this.lbSetStatus.ForeColor = Color.Red;
-                    }));
-                }
-
-                this.BeginInvoke(new MethodInvoker(() =>
-                {
-                    this.btnSetParam.Enabled = true;
-                }));
-
-            });
-            t.Start();
-        }
-
-        private void BtnGetDefaultValue_Click(object sender, EventArgs e)
-        {
-            this.btnGetDefaultValue.Enabled = false;
-            for (int i = 0; i < this.ovenParamUCs.Length; i++)
-            {
-                this.ovenParamUCs[i].SetNewValue(this.ovenParamUCs[i].ovenParam.DefaultValue);
+                showTempers[i].UpdateValue(this.floor.Stations[0].Temperatures[i]);
+                showTempers[i + 24].UpdateValue(this.floor.Stations[1].Temperatures[i]);
             }
-            this.btnGetDefaultValue.Enabled = true;
-        }
 
-        private void BtnSetDefaultValue_Click(object sender, EventArgs e)
-        {
-            this.btnSetDefaultValue.Enabled = false;
-            for (int i = 0; i < this.ovenParamUCs.Length; i++)
-            {
-                this.ovenParamUCs[i].ovenParam.DefaultValue = this.ovenParamUCs[i].GetNewValue();
-            }
-            this.btnSetDefaultValue.Enabled = true;
+            this.showVacuum.UpdateValue(floor.Vacuum);
         }
     }
 }

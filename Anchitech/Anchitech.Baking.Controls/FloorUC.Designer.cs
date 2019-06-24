@@ -50,6 +50,7 @@
             this.tsmWatContentTestOK = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmWatContentTestNG = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmParamSetting = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmShowTandV = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFloorEnabled = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpFloor.SuspendLayout();
             this.cmsFloor.SuspendLayout();
@@ -128,9 +129,10 @@
             this.tsmRemoteControl,
             this.tsmWatContentResult,
             this.tsmParamSetting,
+            this.tsmShowTandV,
             this.tsmFloorEnabled});
             this.cmsFloor.Name = "cmsInOutOven";
-            this.cmsFloor.Size = new System.Drawing.Size(181, 114);
+            this.cmsFloor.Size = new System.Drawing.Size(181, 136);
             this.cmsFloor.Opening += new System.ComponentModel.CancelEventHandler(this.CmsFloor_Opening);
             // 
             // tsmRemoteControl
@@ -155,6 +157,7 @@
             this.tsmAlarmReset.Name = "tsmAlarmReset";
             this.tsmAlarmReset.Size = new System.Drawing.Size(148, 22);
             this.tsmAlarmReset.Text = "报警复位";
+            this.tsmAlarmReset.Visible = false;
             this.tsmAlarmReset.Click += new System.EventHandler(this.TsmAlarmReset_Click);
             // 
             // tsmOvenOpenDoor
@@ -259,6 +262,13 @@
             this.tsmParamSetting.Text = "参数设置...";
             this.tsmParamSetting.Click += new System.EventHandler(this.TsmParamSetting_Click);
             // 
+            // tsmShowTandV
+            // 
+            this.tsmShowTandV.Name = "tsmShowTandV";
+            this.tsmShowTandV.Size = new System.Drawing.Size(180, 22);
+            this.tsmShowTandV.Text = "查看温度真空...";
+            this.tsmShowTandV.Click += new System.EventHandler(this.TsmShowTandV_Click);
+            // 
             // tsmFloorEnabled
             // 
             this.tsmFloorEnabled.Name = "tsmFloorEnabled";
@@ -303,5 +313,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmWatContentTestNG;
         private System.Windows.Forms.ToolStripMenuItem tsmParamSetting;
         private System.Windows.Forms.ToolStripMenuItem tsmFloorEnabled;
+        private System.Windows.Forms.ToolStripMenuItem tsmShowTandV;
     }
 }

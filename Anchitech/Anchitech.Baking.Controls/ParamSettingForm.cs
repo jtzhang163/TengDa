@@ -26,7 +26,7 @@ namespace Anchitech.Baking.Controls
 
             this.lbGetStatus.Text = "";
             this.lbSetStatus.Text = "";
-            this.btnSetDefaultValue.Enabled = false;
+            this.btnSetParam.Enabled = false;
 
             for (int i = 0; i < ovenParamUCs.Length; i++)
             {

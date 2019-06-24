@@ -66,6 +66,12 @@
     <Compile Include="OvenParamUC.Designer.cs">
       <DependentUpon>OvenParamUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShowTandVForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowTandVForm.Designer.cs">
+      <DependentUpon>ShowTandVForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ParamSettingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,12 @@
     </Compile>
     <Compile Include="RobotUC.Designer.cs">
       <DependentUpon>RobotUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TorVUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TorVUC.Designer.cs">
+      <DependentUpon>TorVUC.cs</DependentUpon>
     </Compile>
     <Compile Include="TransferUC.cs">
       <SubType>UserControl</SubType>
@@ -153,6 +165,9 @@
     <EmbeddedResource Include="OvenParamUC.resx">
       <DependentUpon>OvenParamUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ShowTandVForm.resx">
+      <DependentUpon>ShowTandVForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ParamSettingForm.resx">
       <DependentUpon>ParamSettingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -163,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RobotUC.resx">
       <DependentUpon>RobotUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TorVUC.resx">
+      <DependentUpon>TorVUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TransferUC.resx">
       <DependentUpon>TransferUC.cs</DependentUpon>

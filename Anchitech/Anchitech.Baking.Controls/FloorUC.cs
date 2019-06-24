@@ -156,6 +156,7 @@ namespace Anchitech.Baking.Controls
             this.tsmRemoteControl.Enabled = oven.IsAlive;
             this.tsmWatContentResult.Enabled = oven.IsAlive;
             this.tsmParamSetting.Enabled = oven.IsAlive;
+            this.tsmShowTandV.Enabled = oven.IsAlive;
 
             this.tsmOvenOpenDoor.Enabled =
                 floor.IsNetControlOpen
@@ -233,7 +234,7 @@ namespace Anchitech.Baking.Controls
 
             if (floor.Stations.Count(s => s.Id == Current.Task.ToStationId) > 0 && Current.Task.Status != TaskStatus.完成)
             {
-                Tip.Alert(Current.Task.FromStationName + "正在放盘，无法关门！");
+                Tip.Alert(Current.Task.ToStationName + "正在放盘，无法关门！");
                 return;
             }
 
@@ -391,6 +392,12 @@ namespace Anchitech.Baking.Controls
         private void TsmFloorEnabled_Click(object sender, EventArgs e)
         {
             this.floor.IsEnable = !this.floor.IsEnable;
+        }
+
+        private void TsmShowTandV_Click(object sender, EventArgs e)
+        {
+            var showTandVForm = new ShowTandVForm(this.floor);
+            showTandVForm.ShowDialog();
         }
     }
 }
