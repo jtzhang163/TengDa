@@ -67,11 +67,11 @@ namespace Anchitech.Baking.Controls
                 {
                     if (ss[x].FloorStatus == FloorStatus.待出)
                     {
-                        strs[x] = ss[x].SampleStatus == SampleStatus.待结果 ? "待测" : ss[x].SampleStatus == SampleStatus.水分OK ? "水分OK" : ss[x].SampleStatus == SampleStatus.水分NG ? "水分NG" : "未知";
+                        strs[x] = ss[x].SampleStatus == SampleStatus.待结果 ? "待测" : ss[x].SampleStatus == SampleStatus.水分OK ? "OK" : ss[x].SampleStatus == SampleStatus.水分NG ? "NG" : "未知";
                     }
                     else if (ss[x].FloorStatus == FloorStatus.待烤 && ss[x].SampleStatus == SampleStatus.水分NG)
                     {
-                        strs[x] = "水分NG";
+                        strs[x] = "NG";
                     }
                     else
                     {
@@ -137,6 +137,26 @@ namespace Anchitech.Baking.Controls
                     (oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadRight(6),
                     (oven.ClampOri == ClampOri.A ? floor.Stations[1].Clamp.Code : floor.Stations[0].Clamp.Code).PadLeft(6)
                     );
+            }
+            else if (Current.option.FloorShowInfoType == "批次号")
+            {
+                var batchNumber1 = "";
+                var batchNumber2 = "";
+                Station s1 = oven.ClampOri == ClampOri.A ? floor.Stations[0]: floor.Stations[1];
+                Station s2 = oven.ClampOri == ClampOri.A ? floor.Stations[1]: floor.Stations[0];
+
+
+                if (s1.Clamp.Batteries.Count > 0 && s1.Clamp.Batteries[0].Code.Length > 12)
+                {
+                    batchNumber1 = s1.Clamp.Batteries[0].Code.Substring(8, 4);
+                }
+
+                if (s2.Clamp.Batteries.Count > 0 && s2.Clamp.Batteries[0].Code.Length > 12)
+                {
+                    batchNumber2 = s2.Clamp.Batteries[0].Code.Substring(8, 4);
+                }
+
+                lbStatus.Text = batchNumber1.PadLeft(4) + "  " + batchNumber2.PadLeft(4);
             }
 
 
@@ -208,7 +228,7 @@ namespace Anchitech.Baking.Controls
             //    && Current.runStstus == RunStatus.运行
             //    && oven.IsAlive
             //    && floor.VacuumIsUploading;
-            this.tsmClearRunTime.Enabled = false;
+            this.tsmOpenNetControl.Enabled = !floor.IsNetControlOpen;
             this.tsmStartBaking.Enabled =
                 floor.IsNetControlOpen
                 && Current.runStstus == RunStatus.运行
@@ -295,6 +315,12 @@ namespace Anchitech.Baking.Controls
         {
             floor.AddLog("手动运行时间清零");
             oven.ClearRunTime(oven.Floors.IndexOf(floor));
+        }
+
+        private void TsmOpenNetControl_Click(object sender, EventArgs e)
+        {
+            floor.AddLog("手动打开网控");
+            oven.OpenNetControl(oven.Floors.IndexOf(floor));
         }
 
         private void TsmWatContentTestOK_Click(object sender, EventArgs e)
@@ -412,5 +438,6 @@ namespace Anchitech.Baking.Controls
             var showTandVForm = new ShowTandVForm(this.floor);
             showTandVForm.ShowDialog();
         }
+
     }
 }

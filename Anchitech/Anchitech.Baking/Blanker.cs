@@ -539,6 +539,16 @@ namespace Anchitech.Baking
             this.toCancelRasterInductive = true;
         }
 
+        public bool SetGetClampFinish(int j)
+        {
+            var cmd = j == 0 ? "%01#WCSR030A1**" : "%01#WCSR030B1**";
+            var ret = this.Plc.GetInfo(cmd, out string output, out string msg);
+
+            LogHelper.WriteInfo(cmd + string.Format("发送取完夹具信号到{0}，", this.Plc.Name) + ret);
+
+            return ret;
+        }
+
         public bool SetPutClampFinish(int j)
         {
             var ret = this.Plc.GetInfo(string.Format("%01#WCSR030{0}1**", 8 + j), out string output, out string msg);

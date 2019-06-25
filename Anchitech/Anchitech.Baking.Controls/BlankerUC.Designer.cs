@@ -28,20 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BlankerUC));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.pbTriLamp = new System.Windows.Forms.PictureBox();
             this.lbName = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.simpleClampUC1 = new Anchitech.Baking.Controls.SimpleClampUC();
             this.lbStationName1 = new System.Windows.Forms.Label();
             this.lbStationName2 = new System.Windows.Forms.Label();
+            this.cmsBlanker = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmPutFinished2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPutFinished1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.simpleClampUC1 = new Anchitech.Baking.Controls.SimpleClampUC();
             this.simpleClampUC2 = new Anchitech.Baking.Controls.SimpleClampUC();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTriLamp)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
+            this.cmsBlanker.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -119,15 +124,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(135, 237);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
-            // simpleClampUC1
-            // 
-            this.simpleClampUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.simpleClampUC1.Location = new System.Drawing.Point(2, 141);
-            this.simpleClampUC1.Margin = new System.Windows.Forms.Padding(0);
-            this.simpleClampUC1.Name = "simpleClampUC1";
-            this.simpleClampUC1.Size = new System.Drawing.Size(131, 94);
-            this.simpleClampUC1.TabIndex = 18;
-            // 
             // lbStationName1
             // 
             this.lbStationName1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -152,6 +148,38 @@
             this.lbStationName2.Text = "17#下料位";
             this.lbStationName2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // cmsBlanker
+            // 
+            this.cmsBlanker.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmPutFinished2,
+            this.tsmPutFinished1});
+            this.cmsBlanker.Name = "cmsInOutOven";
+            this.cmsBlanker.Size = new System.Drawing.Size(181, 70);
+            this.cmsBlanker.Opening += new System.ComponentModel.CancelEventHandler(this.CmsBlanker_Opening);
+            // 
+            // tsmPutFinished2
+            // 
+            this.tsmPutFinished2.Name = "tsmPutFinished2";
+            this.tsmPutFinished2.Size = new System.Drawing.Size(180, 22);
+            this.tsmPutFinished2.Text = "工位2放盘完成";
+            this.tsmPutFinished2.Click += new System.EventHandler(this.TsmPutFinished_Click);
+            // 
+            // tsmPutFinished1
+            // 
+            this.tsmPutFinished1.Name = "tsmPutFinished1";
+            this.tsmPutFinished1.Size = new System.Drawing.Size(180, 22);
+            this.tsmPutFinished1.Text = "工位1放盘完成";
+            this.tsmPutFinished1.Click += new System.EventHandler(this.TsmPutFinished_Click);
+            // 
+            // simpleClampUC1
+            // 
+            this.simpleClampUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.simpleClampUC1.Location = new System.Drawing.Point(2, 141);
+            this.simpleClampUC1.Margin = new System.Windows.Forms.Padding(0);
+            this.simpleClampUC1.Name = "simpleClampUC1";
+            this.simpleClampUC1.Size = new System.Drawing.Size(131, 94);
+            this.simpleClampUC1.TabIndex = 18;
+            // 
             // simpleClampUC2
             // 
             this.simpleClampUC2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -166,6 +194,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.ContextMenuStrip = this.cmsBlanker;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "BlankerUC";
             this.Size = new System.Drawing.Size(141, 268);
@@ -173,6 +202,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbTriLamp)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.cmsBlanker.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -188,5 +218,8 @@
         private System.Windows.Forms.Label lbStationName1;
         private System.Windows.Forms.Label lbStationName2;
         private SimpleClampUC simpleClampUC2;
+        private System.Windows.Forms.ContextMenuStrip cmsBlanker;
+        private System.Windows.Forms.ToolStripMenuItem tsmPutFinished2;
+        private System.Windows.Forms.ToolStripMenuItem tsmPutFinished1;
     }
 }

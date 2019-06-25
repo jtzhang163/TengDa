@@ -592,6 +592,12 @@ namespace Anchitech.Baking
                                 Current.Blanker.SetPutClampFinish(j);
                             }
 
+                            if (Current.Task.FromStation.GetPutType == GetPutType.下料机)
+                            {
+                                var j = Current.Blanker.Stations.IndexOf(Current.Task.FromStation);
+                                Current.Blanker.SetGetClampFinish(j);
+                            }
+
                             Current.Robot.IsMoving = false;
                             Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                             Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
@@ -734,10 +740,16 @@ namespace Anchitech.Baking
                                 Current.Feeder.SetPutClampFinish(j);
                             }
 
-                            if (Current.Task.ToStation.GetPutType == GetPutType.下料机)
+                            //if (Current.Task.ToStation.GetPutType == GetPutType.下料机)
+                            //{
+                            //    var j = Current.Blanker.Stations.IndexOf(Current.Task.ToStation);
+                            //    Current.Blanker.SetPutClampFinish(j);
+                            //}
+
+                            if (Current.Task.FromStation.GetPutType == GetPutType.下料机)
                             {
-                                var j = Current.Blanker.Stations.IndexOf(Current.Task.ToStation);
-                                Current.Blanker.SetPutClampFinish(j);
+                                var j = Current.Blanker.Stations.IndexOf(Current.Task.FromStation);
+                                Current.Blanker.SetGetClampFinish(j);
                             }
 
                             Current.Robot.IsMoving = false;         

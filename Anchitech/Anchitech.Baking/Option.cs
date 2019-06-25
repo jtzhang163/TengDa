@@ -2460,6 +2460,13 @@ namespace Anchitech.Baking
             "%01#RDD0510005100**"
         };
 
+        public string[] OpenNetControlStrs = new string[3]
+        {
+            "%01#WCP1R060B1**",
+            "%01#WCP1R061B1**",
+            "%01#WCP1R062B1**"
+        };
+
         public string FloorShowInfoType { get; set; }
 
 

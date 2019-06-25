@@ -30,6 +30,9 @@ namespace Anchitech.Baking.Controls
 
             this.simpleClampUC2.Init(blanker.Stations[0]);
             this.simpleClampUC1.Init(blanker.Stations[1]);
+
+            this.tsmPutFinished1.Text = blanker.Stations[0].Name + "放盘完成";
+            this.tsmPutFinished2.Text = blanker.Stations[1].Name + "放盘完成";
         }
 
         public void Update(Blanker blanker)
@@ -77,6 +80,24 @@ namespace Anchitech.Baking.Controls
 
             this.simpleClampUC1.Update(blanker.Stations[0]);
             this.simpleClampUC2.Update(blanker.Stations[1]);
+        }
+
+        private void CmsBlanker_Opening(object sender, CancelEventArgs e)
+        {
+            this.tsmPutFinished1.Enabled = Current.Blanker.IsAlive && Current.Blanker.Stations[0].ClampStatus == ClampStatus.满夹具;
+            this.tsmPutFinished2.Enabled = Current.Blanker.IsAlive && Current.Blanker.Stations[1].ClampStatus == ClampStatus.满夹具;
+        }
+
+        private void TsmPutFinished_Click(object sender, EventArgs e)
+        {
+            if ((sender as ToolStripMenuItem).Name == "tsmPutFinished1")
+            {
+                Current.Blanker.SetPutClampFinish(0);
+            }
+            else
+            {
+                Current.Blanker.SetPutClampFinish(1);
+            }
         }
     }
 }
