@@ -33,14 +33,13 @@ namespace Anchitech.Baking.Controls
                 ovenParamUCs[i] = (OvenParamUC)(this.Controls.Find(string.Format("ovenParamUC{0}", (i + 1).ToString("D3")), true)[0]);
                 ovenParamUCs[i].Init(OvenParam.OvenParamList[i]);
             }
+
         }
 
         private void BtnGetParam_Click(object sender, EventArgs e)
         {
             try
             {
-
-
                 Thread t = new Thread(() =>
                 {
                     this.BeginInvoke(new MethodInvoker(() =>

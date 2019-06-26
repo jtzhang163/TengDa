@@ -419,7 +419,6 @@ namespace Anchitech.Baking
                             && s.SampleStatus == task.FromSampleStatus
                             && s.SampleInfo == task.FromSampleInfo)
                             .OrderBy(s => s.Priority)
-                            .OrderBy(s => s.GetPutTime)
                             .ToList();
                         List<Station> toStations = Station.CanGetPutStationList
                             .Where(s => s.ClampOri == task.ClampOri
@@ -427,7 +426,6 @@ namespace Anchitech.Baking
                             && s.Status == StationStatus.可放
                             && s.SampleStatus == task.ToSampleStatus)
                             .OrderBy(s => s.Priority)
-                            .OrderBy(s => s.GetPutTime)
                             .ToList();
 
                         //入炉前逻辑

@@ -257,7 +257,14 @@ namespace Anchitech.Baking
 
         public bool GetInfo()
         {
-            return true;
+            if (!this.Plc.IsPingSuccess)
+            {
+                this.Plc.IsAlive = false;
+                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
+                return false;
+            }
+            this.Plc.IsAlive = true;
+            return true;      
         }
 
         /// <summary>

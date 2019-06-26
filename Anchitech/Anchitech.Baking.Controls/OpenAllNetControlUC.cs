@@ -22,7 +22,7 @@ namespace Anchitech.Baking.Controls
 
         private void BtnOpenAllNetControl_Click(object sender, EventArgs e)
         {
-            Current.ovens.ForEach(o =>
+            Current.ovens.Where(o => o.IsAlive).ToList().ForEach(o =>
             {
                 o.Floors.ForEach(f =>
                 {

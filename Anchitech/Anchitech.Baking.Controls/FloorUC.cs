@@ -148,15 +148,15 @@ namespace Anchitech.Baking.Controls
 
                 if (s1.Clamp.Batteries.Count > 0 && s1.Clamp.Batteries[0].Code.Length > 12)
                 {
-                    batchNumber1 = s1.Clamp.Batteries[0].Code.Substring(8, 4);
+                    batchNumber1 = s1.Clamp.Batteries[0].Code.Substring(8, 5);
                 }
 
                 if (s2.Clamp.Batteries.Count > 0 && s2.Clamp.Batteries[0].Code.Length > 12)
                 {
-                    batchNumber2 = s2.Clamp.Batteries[0].Code.Substring(8, 4);
+                    batchNumber2 = s2.Clamp.Batteries[0].Code.Substring(8, 5);
                 }
 
-                lbStatus.Text = batchNumber1.PadLeft(4) + "  " + batchNumber2.PadLeft(4);
+                lbStatus.Text = batchNumber1.PadLeft(5) + "  " + batchNumber2.PadLeft(5);
             }
 
 

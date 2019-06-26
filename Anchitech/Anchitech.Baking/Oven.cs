@@ -331,38 +331,6 @@ namespace Anchitech.Baking
                         }
                         #endregion
 
-                        #region 获取网控状态、三色灯
-                        output = string.Empty;
-                        if (!this.Plc.GetInfo(false, "%01#RCP6R060BR061BR062BY014BY014AY0149**", out output, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
-
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RCP6R060BR061BR062BY014BY014AY0149**", output));
-                            return false;
-                        }
-
-                        for (int j = 0; j < this.Floors.Count; j++)
-                        {
-                            this.Floors[j].IsNetControlOpen = output.Substring(6 + j, 1) == "1";
-                        }
-
-                        TriLamp triLamp = TriLamp.Unknown;
-                        for (int x = 0; x < 3; x++)
-                        { 
-                            if (output.Substring(9 + x, 1) == "1")
-                            {
-                                triLamp = x == 0 ? TriLamp.Green : x == 1 ? TriLamp.Yellow : TriLamp.Red;
-                            }         
-                        }
-                        this.TriLamp = triLamp;
-
-                        #endregion
-
                         #region 获取已运行时间
                         for (int j = 0; j < this.Floors.Count; j++)
                         {
@@ -602,6 +570,37 @@ namespace Anchitech.Baking
                     Thread.Sleep(100);
                     #endregion
 
+                    #region 获取网控状态、三色灯
+                    output = string.Empty;
+                    if (!this.Plc.GetInfo(false, "%01#RCP6R060BR061BR062BY014BY014AY0149**", out output, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    if (output.Substring(3, 1) != "$")
+                    {
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RCP6R060BR061BR062BY014BY014AY0149**", output));
+                        return false;
+                    }
+
+                    for (int j = 0; j < this.Floors.Count; j++)
+                    {
+                        this.Floors[j].IsNetControlOpen = output.Substring(6 + j, 1) == "1";
+                    }
+
+                    TriLamp triLamp = TriLamp.Unknown;
+                    for (int x = 0; x < 3; x++)
+                    {
+                        if (output.Substring(9 + x, 1) == "1")
+                        {
+                            triLamp = x == 0 ? TriLamp.Green : x == 1 ? TriLamp.Yellow : TriLamp.Red;
+                        }
+                    }
+                    this.TriLamp = triLamp;
+
+                    #endregion
 
                     #region 获取门状态
 

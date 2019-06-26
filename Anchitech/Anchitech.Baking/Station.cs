@@ -360,7 +360,7 @@ namespace Anchitech.Baking
 
                 if (this.GetPutType == GetPutType.烤箱 && floorStatus != value)
                 {
-                    if (value == FloorStatus.烘烤 && floorStatus == FloorStatus.待烤)
+                    if (value == FloorStatus.烘烤)
                     {
                         this.Clamp.OvenStationId = this.Id;
                         this.Clamp.BakingStartTime = DateTime.Now;
@@ -646,6 +646,10 @@ namespace Anchitech.Baking
         {
             get
             {
+                if (this.GetPutType == GetPutType.下料机 || this.GetPutType == GetPutType.缓存架)
+                {
+                    sampleStatus = SampleStatus.未知;
+                }
                 return sampleStatus;
             }
             set
@@ -666,7 +670,14 @@ namespace Anchitech.Baking
         {
             get
             {
-                return this.Clamp.SampleInfo;
+                if (this.GetPutType == GetPutType.下料机 || this.GetPutType == GetPutType.缓存架)
+                {
+                    return SampleInfo.未知;
+                }
+                else
+                {
+                    return this.Clamp.SampleInfo;
+                }
             }
             set
             {

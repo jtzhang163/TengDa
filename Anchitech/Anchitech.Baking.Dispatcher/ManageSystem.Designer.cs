@@ -150,6 +150,7 @@
             this.transferUC1 = new Anchitech.Baking.Controls.TransferUC();
             this.tableLayoutPanel45 = new System.Windows.Forms.TableLayoutPanel();
             this.feederUC1 = new Anchitech.Baking.Controls.FeederUC();
+            this.showOvenInfoTypeUC1 = new Anchitech.Baking.Controls.ShowOvenInfoTypeUC();
             this.blankerUC1 = new Anchitech.Baking.Controls.BlankerUC();
             this.tabContentTemperCurve = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
@@ -327,7 +328,7 @@
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
             this.yieldDisplay = new Anchitech.Baking.Controls.YieldDisplay();
             this.machinesStatusUC1 = new Anchitech.Baking.Controls.MachinesStatusUC();
-            this.showOvenInfoTypeUC1 = new Anchitech.Baking.Controls.ShowOvenInfoTypeUC();
+            this.openAllNetControlUC1 = new Anchitech.Baking.Controls.OpenAllNetControlUC();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -1737,6 +1738,14 @@
             this.feederUC1.Name = "feederUC1";
             this.feederUC1.Size = new System.Drawing.Size(176, 161);
             this.feederUC1.TabIndex = 1;
+            // 
+            // showOvenInfoTypeUC1
+            // 
+            this.showOvenInfoTypeUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.showOvenInfoTypeUC1.Location = new System.Drawing.Point(3, 192);
+            this.showOvenInfoTypeUC1.Name = "showOvenInfoTypeUC1";
+            this.showOvenInfoTypeUC1.Size = new System.Drawing.Size(266, 27);
+            this.showOvenInfoTypeUC1.TabIndex = 2;
             // 
             // blankerUC1
             // 
@@ -4024,6 +4033,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tabMain, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbRunStatus, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbTaskMode, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.openAllNetControlUC1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -4147,13 +4157,14 @@
             this.machinesStatusUC1.Size = new System.Drawing.Size(270, 416);
             this.machinesStatusUC1.TabIndex = 16;
             // 
-            // showOvenInfoTypeUC1
+            // openAllNetControlUC1
             // 
-            this.showOvenInfoTypeUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.showOvenInfoTypeUC1.Location = new System.Drawing.Point(3, 192);
-            this.showOvenInfoTypeUC1.Name = "showOvenInfoTypeUC1";
-            this.showOvenInfoTypeUC1.Size = new System.Drawing.Size(266, 27);
-            this.showOvenInfoTypeUC1.TabIndex = 2;
+            this.openAllNetControlUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.openAllNetControlUC1.Location = new System.Drawing.Point(477, 46);
+            this.openAllNetControlUC1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.openAllNetControlUC1.Name = "openAllNetControlUC1";
+            this.openAllNetControlUC1.Size = new System.Drawing.Size(125, 28);
+            this.openAllNetControlUC1.TabIndex = 11;
             // 
             // ManageSystem
             // 
@@ -4591,5 +4602,6 @@
         private Controls.RobotUC robotUC1;
         private Controls.MachinesStatusUC machinesStatusUC1;
         private Controls.ShowOvenInfoTypeUC showOvenInfoTypeUC1;
+        private Controls.OpenAllNetControlUC openAllNetControlUC1;
     }
 }

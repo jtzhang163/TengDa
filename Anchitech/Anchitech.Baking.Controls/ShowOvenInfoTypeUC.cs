@@ -20,7 +20,10 @@ namespace Anchitech.Baking.Controls
 
         private void CbShowType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Current.option.FloorShowInfoType = this.cbShowType.SelectedItem.ToString();
+            if (TengDa.WF.Current.IsRunning)
+            {
+                Current.option.FloorShowInfoType = this.cbShowType.SelectedItem.ToString();
+            }
         }
     }
 }
