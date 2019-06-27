@@ -2467,7 +2467,7 @@ namespace Anchitech.Baking
             "%01#WCP1R062B1**"
         };
 
-        public string FloorShowInfoType { get; set; }
+        public string FloorShowInfoType { get; set; } = "默认信息";
 
 
         //private string xxxXXXXXXXXXXXX = string.Empty;

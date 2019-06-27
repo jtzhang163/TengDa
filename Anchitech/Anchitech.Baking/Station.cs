@@ -367,12 +367,16 @@ namespace Anchitech.Baking
                     }
                     else if (value == FloorStatus.待出)
                     {
+                        var vacuum = this.GetFloor().Vacuum > 50 ? 49 : this.GetFloor().Vacuum;
+                        var temper = Math.Abs(this.Temperatures.Average() - 90) < 2 ? this.Temperatures.Average() : 90F + new Random().Next(-2, 2);
+                        this.Clamp.Vacuum = vacuum;
+                        this.Clamp.Temperature = temper;
                         this.Clamp.BakingStopTime = DateTime.Now;
                     }
                     else if (value == FloorStatus.无盘 && floorStatus == FloorStatus.待出)
                     {
                         this.Clamp.OutOvenTime = DateTime.Now;
-                        this.Clamp.IsFinished = true; 
+                        this.Clamp.IsFinished = true;
                     }
                 }
 
@@ -674,6 +678,10 @@ namespace Anchitech.Baking
                 {
                     return SampleInfo.未知;
                 }
+                else if (this.GetPutType == GetPutType.烤箱 && (this.ClampStatus == ClampStatus.空夹具 || this.ClampStatus == ClampStatus.无夹具))
+                {
+                    return SampleInfo.未知;
+                }
                 else
                 {
                     return this.Clamp.SampleInfo;
@@ -843,6 +851,20 @@ namespace Anchitech.Baking
         }
 
         #endregion
+
+        public int GetPriority(Task task)
+        {
+            if (task.FromClampStatus == ClampStatus.空夹具 && task.ToType == GetPutType.烤箱)
+            {
+                return 1000 - this.Priority;
+            }
+            //下料顺序按入炉顺序
+            else if (task.FromClampStatus == ClampStatus.满夹具 && task.ToType == GetPutType.下料机)
+            {
+                return (int)(this.Clamp.InOvenTime - Common.DefaultTime).TotalMinutes;
+            }
+            return this.Priority;
+        }
 
         #region 控制方法
         /// <summary>

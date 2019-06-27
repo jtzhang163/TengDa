@@ -391,7 +391,7 @@ namespace Anchitech.Baking
                 //List<Station> stations = Station.StationList.Where(s => s.IsAlive && s.GetPutType == GetPutType.烤箱 && s.FloorStatus == FloorStatus.无盘).ToList();
                 //Task.TaskList.Where(t => t.FromClampStatus == ClampStatus.空夹具 && t.ToType == GetPutType.烤箱).ToList().
                 //    ForEach(t => t.IsEnable = stations.Count > 1);
-            
+
 
 
                 if (Current.Task.Status == TaskStatus.完成)
@@ -418,14 +418,16 @@ namespace Anchitech.Baking
                             && s.Status == StationStatus.可取
                             && s.SampleStatus == task.FromSampleStatus
                             && s.SampleInfo == task.FromSampleInfo)
-                            .OrderBy(s => s.Priority)
+                            .OrderBy(s => s.GetPutTime)
+                            .OrderBy(s => s.GetPriority(task))
                             .ToList();
                         List<Station> toStations = Station.CanGetPutStationList
                             .Where(s => s.ClampOri == task.ClampOri
                             && s.GetPutType == task.ToType && s.ClampStatus == task.ToClampStatus
                             && s.Status == StationStatus.可放
                             && s.SampleStatus == task.ToSampleStatus)
-                            .OrderBy(s => s.Priority)
+                            .OrderBy(s => s.GetPutTime)
+                            .OrderBy(s => s.GetPriority(task))
                             .ToList();
 
                         //入炉前逻辑
@@ -750,7 +752,7 @@ namespace Anchitech.Baking
                                 Current.Blanker.SetGetClampFinish(j);
                             }
 
-                            Current.Robot.IsMoving = false;         
+                            Current.Robot.IsMoving = false;
                             Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                             Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
                             Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
@@ -800,7 +802,7 @@ namespace Anchitech.Baking
                                 Current.Task.ToStation.Clamp.InOvenTime = DateTime.Now;
                                 Current.Task.ToStation.Clamp.OvenStationId = Current.Task.ToStation.Id;
                             }
-                            
+
                         }
                     }
                 }
