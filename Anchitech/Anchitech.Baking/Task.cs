@@ -548,7 +548,6 @@ namespace Anchitech.Baking
 
                         if (!Current.Robot.IsAlreadySendCmd)
                         {
-                            LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送前。。"));
 
                             if (Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation))
                             {
@@ -560,10 +559,7 @@ namespace Anchitech.Baking
                                     var j = Current.Feeder.Stations.IndexOf(Current.Task.FromStation);
                                     Current.Feeder.SetGetClampFinish(j);
                                 }
-
                             }
-
-                            LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送后。。"));
 
                             Current.Robot.IsAlreadySendCmd = true;
                         }
@@ -577,7 +573,7 @@ namespace Anchitech.Baking
                     {
                         Current.Robot.ClampStatus = Current.Task.FromClampStatus;
                         Current.Robot.ClampId = Current.Task.ClampId;
-                        if (Current.Robot.IsFinished())
+                        if (Current.option.TaskIsFinished || Current.Robot.IsFinished())
                         {
 
                             if (Current.Task.ToStation.GetPutType == GetPutType.上料机)
@@ -629,6 +625,7 @@ namespace Anchitech.Baking
                                 Error.Alert("保存搬运记录失败：" + msg);
                             }
 
+                            Current.option.TaskIsFinished = false;
                             Current.Task.Status = TaskStatus.完成;
 
                             // Current.Robot.ClampId = -1;
@@ -701,7 +698,6 @@ namespace Anchitech.Baking
 
                         if (!Current.Robot.IsAlreadySendCmd)
                         {
-                            LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送前。。"));
 
                             if (Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation))
                             {
@@ -717,8 +713,6 @@ namespace Anchitech.Baking
 
                             }
 
-                            LogHelper.WriteInfo(string.Format("Current.Robot.Move 发送后。。"));
-
                             Current.Robot.IsAlreadySendCmd = true;
                         }
 
@@ -731,9 +725,9 @@ namespace Anchitech.Baking
                     {
                         Current.Robot.ClampStatus = Current.Task.FromClampStatus;
                         Current.Robot.ClampId = Current.Task.ClampId;
-                        if (Current.Robot.IsFinished())
+                        if (Current.option.TaskIsFinished || Current.Robot.IsFinished())
                         {
-
+                            
                             if (Current.Task.ToStation.GetPutType == GetPutType.上料机)
                             {
                                 var j = Current.Feeder.Stations.IndexOf(Current.Task.ToStation);
@@ -784,6 +778,7 @@ namespace Anchitech.Baking
                                 Error.Alert("保存搬运记录失败：" + msg);
                             }
 
+                            Current.option.TaskIsFinished = false;
                             Current.Task.Status = TaskStatus.完成;
 
                             // Current.Robot.ClampId = -1;

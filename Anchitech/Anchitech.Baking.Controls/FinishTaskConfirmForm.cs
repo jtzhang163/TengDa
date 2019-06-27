@@ -27,7 +27,7 @@ namespace Anchitech.Baking.Controls
             }
             else
             {
-                
+                TengDa.Error.Alert("密码错误！");
             }
         }
     }

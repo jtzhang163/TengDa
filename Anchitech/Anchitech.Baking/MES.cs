@@ -275,7 +275,7 @@ namespace Anchitech.Baking
                             var result = wsProxy.UploadBakingData(info);
                             if (result.ResultCode == 0)
                             {
-                                LogHelper.WriteInfo(string.Format("上传mes成功，参数：{0}", info));
+                                //LogHelper.WriteInfo(string.Format("上传mes成功，参数：{0}", info));
                             }
                             else
                             {
@@ -330,7 +330,7 @@ namespace Anchitech.Baking
                 var result = wsProxy.UploadMultiMachStateListInfo(info);
                 if (result.ResultCode == 0)
                 {
-                    LogHelper.WriteInfo(string.Format("上传mes成功，参数：{0}", info));
+                    //LogHelper.WriteInfo(string.Format("上传mes成功，参数：{0}", info));
                 }
                 else
                 {

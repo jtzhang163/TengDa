@@ -2397,8 +2397,8 @@ namespace Anchitech.Baking
 
         public bool IsDisplayOvenCode { get; set; }
 
-        public string[,] GetTemStrs = new string[3, 2] 
-        { 
+        public string[,] GetTemStrs = new string[3, 2]
+        {
             { "%01#RDD0005100074**", "%01#RDD0011100134**" },
                { "%01#RDD0017100194**", "%01#RDD0023100254**" },
                  { "%01#RDD0029100314**", "%01#RDD0035100374**" },
@@ -2468,6 +2468,8 @@ namespace Anchitech.Baking
         };
 
         public string FloorShowInfoType { get; set; } = "默认信息";
+
+        public bool TaskIsFinished { get; set; } = false;
 
 
         //private string xxxXXXXXXXXXXXX = string.Empty;

@@ -82,6 +82,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FinishTaskConfirmForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "取放盘结束确认";
             this.ResumeLayout(false);
             this.PerformLayout();

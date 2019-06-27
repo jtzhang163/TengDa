@@ -115,6 +115,7 @@ namespace Anchitech.Baking.Controls
         {
             this.tsmManuGetStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.Robot.IsAlive && Current.Task.NextFromStationId < 1 && Current.Task.NextToStationId < 1 && Current.Task.Status == TaskStatus.完成;
             this.tsmManuPutStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.Robot.IsAlive && Current.Task.NextFromStationId > 0 && Current.Task.NextToStationId < 1 && Current.Task.Status == TaskStatus.完成;
+            this.tsmTaskIsFinish.Enabled = Current.Robot.IsAlive && Current.Task.Status != TaskStatus.完成 && Current.Task.Status != TaskStatus.就绪;
         }
 
         private void tsmManuStation_DropDownOpening(object sender, EventArgs e)
@@ -414,5 +415,9 @@ namespace Anchitech.Baking.Controls
 
         }
 
+        private void TsmTaskIsFinish_Click(object sender, EventArgs e)
+        {
+            new FinishTaskConfirmForm().ShowDialog();
+        }
     }
 }
