@@ -218,6 +218,27 @@ namespace Anchitech.Baking
             }
         }
 
+        private DateTime outOvenTime = TengDa.Common.DefaultTime;
+        /// <summary>
+        /// 出烤箱时间
+        /// </summary>
+        [ReadOnly(true), DisplayName("出烤箱时间")]
+        public DateTime OutOvenTime
+        {
+            get
+            {
+                return outOvenTime;
+            }
+            set
+            {
+                if (outOvenTime != value)
+                {
+                    UpdateDbField("OutOvenTime", value);
+                }
+                outOvenTime = value;
+            }
+        }
+
 
         public TriLamp triLamp = TriLamp.Unknown;
         [ReadOnly(true), DisplayName("三色灯")]
@@ -464,6 +485,7 @@ namespace Anchitech.Baking
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
             this.isTestWaterContent = Convert.ToBoolean(rowInfo["IsTestWaterContent"]);
             this.ngTimes = TengDa._Convert.StrToInt(rowInfo["NgTimes"].ToString(), 0);
+            this.outOvenTime = TengDa._Convert.StrToDateTime(rowInfo["OutOvenTime"].ToString(), Common.DefaultTime);
             for (int i = 0; i < Option.TemperaturePointCount; i++)
             {
                 this.sampledDatas[i] = new List<float>();

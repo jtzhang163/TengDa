@@ -68,6 +68,7 @@
             this.cbShowType.Items.AddRange(new object[] {
             "默认信息",
             "开始烘烤时间",
+            "出烤箱时间",
             "批次号",
             "夹具条码"});
             this.cbShowType.Location = new System.Drawing.Point(117, 3);

@@ -635,8 +635,6 @@ namespace Anchitech.Baking
                                 // Current.Task.FromStation.ClampId = -1;
                             }
 
-
-
                             //入炉后逻辑
                             //修改工位状态
                             if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具)
@@ -646,8 +644,13 @@ namespace Anchitech.Baking
                                 Current.Task.ToStation.Clamp.OvenStationId = Current.Task.ToStation.Id;
                             }
 
-                            Current.option.CurrentWorkNum++;
+                            if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
+                            {
+                                Current.Task.FromStation.GetFloor().OutOvenTime = DateTime.Now;
+                            }
+
                             Current.option.CurrentWorkNum %= 100000;
+                            Current.option.CurrentWorkNum++;
                         }
                     }
                 }
@@ -800,8 +803,13 @@ namespace Anchitech.Baking
                                 Current.Task.ToStation.Clamp.OvenStationId = Current.Task.ToStation.Id;
                             }
 
-                            Current.option.CurrentWorkNum++;
+                            if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
+                            {
+                                Current.Task.FromStation.GetFloor().OutOvenTime = DateTime.Now;
+                            }
+
                             Current.option.CurrentWorkNum %= 100000;
+                            Current.option.CurrentWorkNum++;
                         }
                     }
                 }
@@ -1110,7 +1118,7 @@ namespace Anchitech.Baking
                     return "手动任务" + string.Format("[{0}]", Current.option.CurrentWorkNum);
                 }
                 var task = Task.TaskList.FirstOrDefault(t => t.Id == this.TaskId);
-                return task == null ? "尚未生成任务" : task.Description + string.Format("[{0}]", Current.option.CurrentWorkNum);
+                return (task == null ? "尚未生成任务" : task.Description) + string.Format("[{0}]", Current.option.CurrentWorkNum);
             }
         }
 

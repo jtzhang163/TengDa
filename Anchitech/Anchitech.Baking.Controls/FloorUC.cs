@@ -130,7 +130,11 @@ namespace Anchitech.Baking.Controls
                 }
                 lbStatus.Text = startBakingTime;
             }
-            else if(Current.option.FloorShowInfoType == "夹具条码")
+            else if (Current.option.FloorShowInfoType == "出烤箱时间")
+            {
+                lbStatus.Text = floor.OutOvenTime > TengDa.Common.DefaultTime ? floor.OutOvenTime.ToString("yyyy-MM-dd HH:mm:ss") : "";
+            }
+            else if (Current.option.FloorShowInfoType == "夹具条码")
             {
                 lbStatus.Text =
                     string.Format("{0} {1}",
@@ -142,8 +146,8 @@ namespace Anchitech.Baking.Controls
             {
                 var batchNumber1 = "";
                 var batchNumber2 = "";
-                Station s1 = oven.ClampOri == ClampOri.A ? floor.Stations[0]: floor.Stations[1];
-                Station s2 = oven.ClampOri == ClampOri.A ? floor.Stations[1]: floor.Stations[0];
+                Station s1 = oven.ClampOri == ClampOri.A ? floor.Stations[0] : floor.Stations[1];
+                Station s2 = oven.ClampOri == ClampOri.A ? floor.Stations[1] : floor.Stations[0];
 
 
                 if (s1.Clamp.Batteries.Count > 0 && s1.Clamp.Batteries[0].Code.Length > 12)
