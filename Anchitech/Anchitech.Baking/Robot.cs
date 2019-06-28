@@ -278,8 +278,8 @@ namespace Anchitech.Baking
                 return false;
             }
 
-            string cmd = string.Format("<Sensor><WORKNUM>0</WORKNUM><N1>{0}</N1><N2>{1}</N2><N3>{2}</N3><N4>{3}</N4><N5>{4}</N5><N6>{5}</N6><CMD>1</CMD></Sensor>",
-                fromStation.RobotValue1, fromStation.RobotValue2, fromStation.RobotValue3, toStation.RobotValue1, toStation.RobotValue2, toStation.RobotValue3);
+            string cmd = string.Format("<Sensor><WORKNUM>{6}</WORKNUM><N1>{0}</N1><N2>{1}</N2><N3>{2}</N3><N4>{3}</N4><N5>{4}</N5><N6>{5}</N6><CMD>1</CMD></Sensor>",
+                fromStation.RobotValue1, fromStation.RobotValue2, fromStation.RobotValue3, toStation.RobotValue1, toStation.RobotValue2, toStation.RobotValue3,Current.option.CurrentWorkNum);
 
             LogHelper.WriteInfo(string.Format("给机器人发送取放盘指令------：{0}", cmd));
 

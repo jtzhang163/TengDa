@@ -2471,6 +2471,32 @@ namespace Anchitech.Baking
 
         public bool TaskIsFinished { get; set; } = false;
 
+        private int currentWorkNum = 0;
+
+        /// <summary>
+        /// 库卡机器人当前任务编号
+        /// </summary>
+        [Browsable(false)]
+        public int CurrentWorkNum
+        {
+            get
+            {
+                if (currentWorkNum == 0)
+                {
+                    currentWorkNum = _Convert.StrToInt(TengDa.WF.Option.GetOption("CurrentWorkNum"), 1);
+                }
+                return currentWorkNum;
+            }
+            set
+            {
+                if (value != currentWorkNum)
+                {
+                    TengDa.WF.Option.SetOption("CurrentWorkNum", value.ToString());
+                    currentWorkNum = value;
+                }
+            }
+        }
+
 
         //private string xxxXXXXXXXXXXXX = string.Empty;
         ///// <summary>

@@ -249,6 +249,7 @@ namespace Anchitech.Baking
                 var station = Station.StationList.FirstOrDefault(s => s.Id == clamp.OvenStationId);
                 if (station.GetPutType != GetPutType.烤箱)
                 {
+                    clamp.IsUploaded = true;
                     LogHelper.WriteError(string.Format("异常,ID为{0}的夹具所属烤箱工位为：", clamp.Id, station.Name));
                     break;
                 }
@@ -257,8 +258,9 @@ namespace Anchitech.Baking
                 try
                 {
                     var allIsPass = true;
-                    clamp.Batteries.ForEach(battery =>
+                    for (int x = 0; x < clamp.Batteries.Count; x++)
                     {
+                        var battery = clamp.Batteries[x];
                         if (!battery.Code.Contains("0000000000"))//样品电池数据不上传
                         {
                             var data = new BakingMesData()
@@ -283,11 +285,12 @@ namespace Anchitech.Baking
                                 LogHelper.WriteError(string.Format("上传mes失败，参数：{0} 原因：{1}", info, result.ResultMsg));
                             }
                         }
-                    });
+                    }
 
                     if (allIsPass)
                     {
                         clamp.IsUploaded = true;
+                        LogHelper.WriteInfo(string.Format("上传mes成功，clamp.Id：{0}", clamp.Id));
                     }
                     //{"Barcode":"36ANCCB23140160N18E01C18E04H1000784","MachineCode":"BK02-04-01","TrayNo":"","StartTime":"2019\/6\/21 14:19:12","EndTime":"2019\/6\/21 14:19:12","Temperature":92.3,"Vacuum":12.3}
                 }

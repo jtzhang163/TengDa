@@ -646,6 +646,8 @@ namespace Anchitech.Baking
                                 Current.Task.ToStation.Clamp.OvenStationId = Current.Task.ToStation.Id;
                             }
 
+                            Current.option.CurrentWorkNum++;
+                            Current.option.CurrentWorkNum %= 100000;
                         }
                     }
                 }
@@ -727,7 +729,7 @@ namespace Anchitech.Baking
                         Current.Robot.ClampId = Current.Task.ClampId;
                         if (Current.option.TaskIsFinished || Current.Robot.IsFinished())
                         {
-                            
+
                             if (Current.Task.ToStation.GetPutType == GetPutType.上料机)
                             {
                                 var j = Current.Feeder.Stations.IndexOf(Current.Task.ToStation);
@@ -798,6 +800,8 @@ namespace Anchitech.Baking
                                 Current.Task.ToStation.Clamp.OvenStationId = Current.Task.ToStation.Id;
                             }
 
+                            Current.option.CurrentWorkNum++;
+                            Current.option.CurrentWorkNum %= 100000;
                         }
                     }
                 }
@@ -1103,10 +1107,10 @@ namespace Anchitech.Baking
             {
                 if (Current.TaskMode == TaskMode.手动任务)
                 {
-                    return "手动任务";
+                    return "手动任务" + string.Format("[{0}]", Current.option.CurrentWorkNum);
                 }
                 var task = Task.TaskList.FirstOrDefault(t => t.Id == this.TaskId);
-                return task == null ? "尚未生成任务" : task.Description;
+                return task == null ? "尚未生成任务" : task.Description + string.Format("[{0}]", Current.option.CurrentWorkNum);
             }
         }
 

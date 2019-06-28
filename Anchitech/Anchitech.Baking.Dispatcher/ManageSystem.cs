@@ -1969,7 +1969,7 @@ namespace Anchitech.Baking.Dispatcher
                 string msg = string.Empty;
                 if (clamps.Count < 1)
                 {
-                    clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsUploaded] = 'false' AND [IsFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
+                    clamps = Clamp.GetList(string.Format("SELECT TOP 3 * FROM [dbo].[{0}] WHERE [IsUploaded] = 'false' AND [IsFinished] = 'true' ORDER BY [Id] DESC", Clamp.TableName), out msg);
                     if (!string.IsNullOrEmpty(msg))
                     {
                         Error.Alert(msg);
