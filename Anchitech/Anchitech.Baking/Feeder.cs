@@ -622,18 +622,23 @@ namespace Anchitech.Baking
 
         public bool SetGetClampFinish(int j)
         {
+
+            LogHelper.WriteInfo(string.Format("******准备发送取完夹具信号到{0}，j = {1}", this.Plc.Name, j));
+
             var ret = this.Plc.GetInfo(string.Format("%01#WCSR{0:D4}0**", 212 - j), out string output, out string msg);
 
-            LogHelper.WriteInfo(string.Format("%01#WCSR{0:D4}0**", 212 - j) + string.Format("发送取完夹具信号到{0}，", this.Plc.Name) + ret);
+            LogHelper.WriteInfo(string.Format("%01#WCSR{0:D4}0**", 212 - j) + string.Format("######发送取完夹具信号到{0}，", this.Plc.Name) + ret);
 
             return ret;
         }
 
         public bool SetPutClampFinish(int j)
         {
+            LogHelper.WriteInfo(string.Format("******准备发送放完夹具信号到{0}，j = {1}", this.Plc.Name, j));
+
             var ret = this.Plc.GetInfo(string.Format("%01#WCSY000{0}1**", 3 + j), out string output, out string msg);
 
-            LogHelper.WriteInfo(string.Format("%01#WCSY000{0}1**", 3 + j) + string.Format("发送放完夹具信号到{0}，", this.Plc.Name) + ret);
+            LogHelper.WriteInfo(string.Format("%01#WCSY000{0}1**", 3 + j) + string.Format("######发送放完夹具信号到{0}，", this.Plc.Name) + ret);
 
             return ret;
         }

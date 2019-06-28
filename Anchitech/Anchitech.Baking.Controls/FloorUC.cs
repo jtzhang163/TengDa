@@ -132,7 +132,7 @@ namespace Anchitech.Baking.Controls
             }
             else if (Current.option.FloorShowInfoType == "出烤箱时间")
             {
-                lbStatus.Text = floor.OutOvenTime > TengDa.Common.DefaultTime ? floor.OutOvenTime.ToString("yyyy-MM-dd HH:mm:ss") : "";
+                lbStatus.Text = floor.OutOvenTime > TengDa.Common.DefaultTime ? floor.OutOvenTime.ToString("yyyy-MM-dd HH:mm") : "";
             }
             else if (Current.option.FloorShowInfoType == "夹具条码")
             {

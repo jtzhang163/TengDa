@@ -35,6 +35,7 @@ namespace Anchitech.Baking
         /// 夹具方向
         /// </summary>
         [DisplayName("夹具方向")]
+        [ReadOnly(true)]
         public ClampOri ClampOri
         {
             get { return clampOri; }
@@ -53,6 +54,7 @@ namespace Anchitech.Baking
         /// 取盘工位类型
         /// </summary>
         [DisplayName("取盘工位类型")]
+        [ReadOnly(true)]
         public GetPutType FromType
         {
             get { return fromType; }
@@ -71,6 +73,7 @@ namespace Anchitech.Baking
         /// 取盘夹具状态
         /// </summary>
         [DisplayName("取盘夹具状态")]
+        [ReadOnly(true)]
         public ClampStatus FromClampStatus
         {
             get { return fromClampStatus; }
@@ -89,6 +92,7 @@ namespace Anchitech.Baking
         /// 放盘工位类型
         /// </summary>
         [DisplayName("放盘工位类型")]
+        [ReadOnly(true)]
         public GetPutType ToType
         {
             get { return toType; }
@@ -126,6 +130,7 @@ namespace Anchitech.Baking
         /// 取盘样品状态
         /// </summary>
         [DisplayName("取盘样品状态")]
+        [ReadOnly(true)]
         public SampleStatus FromSampleStatus
         {
             get { return fromSampleStatus; }
@@ -144,6 +149,7 @@ namespace Anchitech.Baking
         /// 放盘样品状态
         /// </summary>
         [DisplayName("放盘样品状态")]
+        [ReadOnly(true)]
         public SampleStatus ToSampleStatus
         {
             get { return toSampleStatus; }
@@ -162,6 +168,7 @@ namespace Anchitech.Baking
         /// 取盘夹具样品信息
         /// </summary>
         [DisplayName("取盘夹具样品信息")]
+        [ReadOnly(true)]
         public SampleInfo FromSampleInfo
         {
             get { return fromSampleInfo; }
@@ -198,6 +205,7 @@ namespace Anchitech.Baking
         /// 任务循环次序
         /// </summary>
         [DisplayName("任务循环次序")]
+        [ReadOnly(true)]
         public int CycleOrder
         {
             get { return cycleOrder; }
@@ -585,7 +593,9 @@ namespace Anchitech.Baking
                             if (Current.Task.ToStation.GetPutType == GetPutType.下料机)
                             {
                                 var j = Current.Blanker.Stations.IndexOf(Current.Task.ToStation);
+                                LogHelper.WriteInfo("@@@@@@@@@@@@@@@@ Current.Blanker.SetPutClampFinish 之前");
                                 Current.Blanker.SetPutClampFinish(j);
+                                LogHelper.WriteInfo("$$$$$$$$$$$$$$$$ Current.Blanker.SetPutClampFinish 之后");
                             }
 
                             if (Current.Task.FromStation.GetPutType == GetPutType.下料机)
