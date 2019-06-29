@@ -208,6 +208,12 @@ namespace Anchitech.Baking
         /// </summary>
         private int[] EmptyClampCount = new int[] { 0, 0, 0 };
 
+
+        /// <summary>
+        /// 接收到的满夹具信号计数，防止上料机偶尔返回的异常数据导致生成错误任务
+        /// </summary>
+        private int[] FillClampCount = new int[] { 0, 0, 0 };
+
         public void CacheBatteryIn(Battery battery)
         {
             var c = CacheBatteries;
@@ -482,11 +488,17 @@ namespace Anchitech.Baking
                                 this.Stations[j].Status = StationStatus.可放;
                                 break;
                             case 2:
-
                                 if(output.Substring(6 + j, 1) == "1")
                                 {
-                                    this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                                    this.Stations[j].Status = StationStatus.可取;
+                                    this.FillClampCount[j]++;
+                                    if(Battery.GetCountByClampId(this.Stations[j].ClampId, out msg) >= 52)
+                                    {
+                                        this.Stations[j].Status = StationStatus.可取;
+                                    }
+                                    else
+                                    {
+                                        this.Stations[j].Status = StationStatus.工作中;
+                                    }
                                 }
                                 else
                                 {
@@ -517,6 +529,19 @@ namespace Anchitech.Baking
                         else
                         {
                             EmptyClampCount[j] = 0;
+                        }
+
+                        if (iOut[j] == 2 && output.Substring(6 + j, 1) == "1")
+                        {
+                            if (FillClampCount[j] > 2)
+                            {
+                                this.Stations[j].ClampStatus = ClampStatus.满夹具;
+                                FillClampCount[j] = 3;
+                            }
+                        }
+                        else
+                        {
+                            FillClampCount[j] = 0;
                         }
 
                         if (output.Substring(9 + j, 1) == "1")

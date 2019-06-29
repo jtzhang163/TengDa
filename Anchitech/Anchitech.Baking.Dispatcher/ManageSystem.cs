@@ -1984,10 +1984,9 @@ namespace Anchitech.Baking.Dispatcher
 
                 this.BeginInvoke(new MethodInvoker(() =>
                 {
-                    this.machinesStatusUC1.SetStatusInfo(Current.mes, clamps[0].Code + "..上传烘烤数据");
+                    this.machinesStatusUC1.SetStatusInfo(Current.mes, "上传烘烤数据ID:" + clamps[0].Id);
                 }));
                 MES.UploadBatteryInfo(clamps);
-
             }
             catch (Exception ex)
             {

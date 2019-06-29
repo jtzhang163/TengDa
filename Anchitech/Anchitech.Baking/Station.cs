@@ -682,6 +682,10 @@ namespace Anchitech.Baking
                 {
                     return SampleInfo.未知;
                 }
+                else if (this.GetPutType == GetPutType.上料机 && this.ClampStatus == ClampStatus.无夹具)
+                {
+                    return SampleInfo.未知;
+                }
                 else
                 {
                     return this.Clamp.SampleInfo;

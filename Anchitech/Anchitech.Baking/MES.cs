@@ -268,7 +268,7 @@ namespace Anchitech.Baking
                                 Barcode = battery.Code,
                                 TrayNo = clamp.CompleteCode,
                                 StartTime = clamp.BakingStartTime.ToString("yyyy/MM/dd HH:mm:ss"),
-                                EndTime = clamp.BakingStartTime.ToString("yyyy/MM/dd HH:mm:ss"),
+                                EndTime = clamp.BakingStopTime.ToString("yyyy/MM/dd HH:mm:ss"),
                                 Temperature = clamp.Temperature,
                                 Vacuum = clamp.Vacuum,
                                 MachineCode = station.Number
@@ -281,7 +281,10 @@ namespace Anchitech.Baking
                             }
                             else
                             {
-                                allIsPass = false;
+                                if (!result.ResultMsg.Contains("长度不是35或24"))
+                                {
+                                    allIsPass = false;
+                                }
                                 LogHelper.WriteError(string.Format("上传mes失败，参数：{0} 原因：{1}", info, result.ResultMsg));
                             }
                         }
