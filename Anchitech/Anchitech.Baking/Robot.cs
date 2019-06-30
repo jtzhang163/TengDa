@@ -297,21 +297,23 @@ namespace Anchitech.Baking
 
         public bool IsReceived()
         {
-            this.Plc.GetInfoNoWrite(out string output);
-            if (output.Contains("REC"))
+            var recevieData = this.Plc.GetReceiveData();
+            if (recevieData.Contains("REC"))
             {
-
+                LogHelper.WriteInfo(string.Format("收到机器人REC指令------：{0}", recevieData));
+                this.Plc.ClearReceiveData();
+                return true;
             }
-            LogHelper.WriteInfo(string.Format("收到机器人REC指令------：{0}", output));
-            return true;
+            return false;
         }
 
         public bool IsFinished()
         {
-            this.Plc.GetInfoNoWrite(out string output);
-            if (output.Contains("FINISH"))
+            var recevieData = this.Plc.GetReceiveData();
+            if (recevieData.Contains("FINISH"))
             {
-                LogHelper.WriteInfo(string.Format("收到机器人FINISH指令------：{0}", output));
+                LogHelper.WriteInfo(string.Format("收到机器人FINISH指令------：{0}", recevieData));
+                this.Plc.ClearReceiveData();
                 return true;
             }
             return false;

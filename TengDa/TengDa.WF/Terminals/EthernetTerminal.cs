@@ -477,6 +477,41 @@ namespace TengDa.WF.Terminals
             }
         }
 
+        #region 解决异步数据传输问题
+
+        private string ReceiveData = string.Empty;
+
+        public string GetReceiveData()
+        {
+            return ReceiveData;
+        }
+
+        public void ClearReceiveData()
+        {
+            ReceiveData = string.Empty;
+        }
+
+        public void StartListenReceiveData()
+        {
+            Thread t = new Thread(()=> {
+                while (true)
+                {
+                    if (Socket != null)
+                    {
+                        Byte[] Data = new Byte[1024];
+                        try
+                        {
+                            Socket.Receive(Data);
+                            ReceiveData = Encoding.ASCII.GetString(Data).Trim('\0').Trim('\r');
+                        }
+                        catch { }
+                    }
+                }
+            });
+            t.Start();
+        }
+
+        #endregion
 
         public void GetInfoNoWrite(out string output)
         {

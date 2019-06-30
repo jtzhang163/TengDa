@@ -939,6 +939,9 @@ namespace Anchitech.Baking.Dispatcher
                     Error.Alert(string.Format("打开机器人连接失败，原因：{0}", msg));
                     return false;
                 }
+
+                Current.Robot.Plc.StartListenReceiveData();
+
                 this.machinesStatusUC1.SetStatusInfo(Current.Robot, "连接成功");
                 this.machinesStatusUC1.SetLampColor(Current.Robot, Color.Green);
             }
@@ -3586,7 +3589,8 @@ namespace Anchitech.Baking.Dispatcher
 
         private void btnDebug_Click(object sende, EventArgs e)
         {
-            Clamp.Add("6666", out string msg);
+            Current.Robot.Plc.GetInfoNoWrite(out string msg);
+            Console.WriteLine(msg);
         }
 
 

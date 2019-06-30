@@ -583,7 +583,7 @@ namespace Anchitech.Baking
                         Current.Robot.ClampId = Current.Task.ClampId;
                         if (Current.option.TaskIsFinished || Current.Robot.IsFinished())
                         {
-
+                            LogHelper.WriteInfo("FINISH...");
                             if (Current.Task.ToStation.GetPutType == GetPutType.上料机)
                             {
                                 var j = Current.Feeder.Stations.IndexOf(Current.Task.ToStation);
@@ -742,7 +742,7 @@ namespace Anchitech.Baking
                         Current.Robot.ClampId = Current.Task.ClampId;
                         if (Current.option.TaskIsFinished || Current.Robot.IsFinished())
                         {
-
+                            LogHelper.WriteInfo("FINISH...");
                             if (Current.Task.ToStation.GetPutType == GetPutType.上料机)
                             {
                                 var j = Current.Feeder.Stations.IndexOf(Current.Task.ToStation);
