@@ -24,6 +24,7 @@ namespace Anchitech.Baking
             {
                 if (taskMode != value)
                 {
+                    LogHelper.WriteInfo(string.Format("**********************当前任务模式 {0} ——>{1} **********************", taskMode, value));
                     ChangeModeTime = DateTime.Now;
                 }
                 taskMode = value;
