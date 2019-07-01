@@ -24,6 +24,7 @@ namespace Anchitech.Baking.Controls
             {
                 Current.option.TaskIsFinished = true;
                 Tip.Alert("确认任务结束OK！");
+                Operation.Add("手动确认任务结束");
             }
             else
             {

@@ -491,14 +491,7 @@ namespace Anchitech.Baking
                                 if(output.Substring(6 + j, 1) == "1")
                                 {
                                     this.FillClampCount[j]++;
-                                    if(Battery.GetCountByClampId(this.Stations[j].ClampId, out msg) >= 52)
-                                    {
-                                        this.Stations[j].Status = StationStatus.可取;
-                                    }
-                                    else
-                                    {
-                                        this.Stations[j].Status = StationStatus.工作中;
-                                    }
+                                    this.Stations[j].Status = StationStatus.可取;
                                 }
                                 else
                                 {

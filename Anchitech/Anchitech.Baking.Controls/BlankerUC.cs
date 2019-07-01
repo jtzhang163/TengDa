@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TengDa;
+using TengDa.WF;
 
 namespace Anchitech.Baking.Controls
 {
@@ -92,10 +93,12 @@ namespace Anchitech.Baking.Controls
         {
             if ((sender as ToolStripMenuItem).Name == "tsmPutFinished1")
             {
+                Operation.Add(string.Format("手动点击{0}放盘完成", Current.Blanker.Stations[0].Name));
                 Current.Blanker.SetPutClampFinish(0);
             }
             else
             {
+                Operation.Add(string.Format("手动点击{0}放盘完成", Current.Blanker.Stations[1].Name));
                 Current.Blanker.SetPutClampFinish(1);
             }
         }

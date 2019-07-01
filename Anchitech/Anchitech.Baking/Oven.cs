@@ -1108,7 +1108,7 @@ namespace Anchitech.Baking
                 return;
             }
 
-            if (!this.Floors[j].IsNetControlOpen)
+            if (!this.Floors[j].IsNetControlOpen && Current.TaskMode == TaskMode.手动任务)
             {
                 Tip.Alert(this.Floors[j].Name + "网控未开启，无法远程开门 ");
                 return;

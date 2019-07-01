@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TengDa.WF;
 
 namespace Anchitech.Baking.Controls
 {
@@ -22,6 +23,7 @@ namespace Anchitech.Baking.Controls
 
         private void BtnOpenAllNetControl_Click(object sender, EventArgs e)
         {
+            Operation.Add("点击打开全部网控");
             Current.ovens.Where(o => o.IsAlive).ToList().ForEach(o =>
             {
                 o.Floors.ForEach(f =>

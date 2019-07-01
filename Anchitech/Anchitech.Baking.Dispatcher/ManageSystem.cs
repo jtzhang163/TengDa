@@ -826,6 +826,7 @@ namespace Anchitech.Baking.Dispatcher
 
                 TaskReset();
                 Current.TaskMode = Current.TaskMode == TaskMode.自动任务 ? TaskMode.手动任务 : TaskMode.自动任务;
+                Operation.Add("切换为 " + Current.TaskMode);
                 lbAuto.Text = Current.TaskMode == TaskMode.自动任务 ? "切换手动" : "切换自动";
                 Tip.Alert(string.Format("成功切换为{0}！", Current.TaskMode));
                 CurrentTask.ToSwitchManuTaskMode = false;
@@ -844,6 +845,7 @@ namespace Anchitech.Baking.Dispatcher
                     return;
                 }
                 TaskReset();
+                Operation.Add("任务复位成功！");
                 Tip.Alert("任务复位成功！");
             }
         }
@@ -1504,6 +1506,12 @@ namespace Anchitech.Baking.Dispatcher
                                     break;
                             }
 
+                        }
+
+                        //自动状态下网控强制打开
+                        if (Current.TaskMode == TaskMode.自动任务 && !floor.IsNetControlOpen && floor.IsEnable)
+                        {
+                            Current.ovens[i].OpenNetControl(j);
                         }
                     }
                 }
