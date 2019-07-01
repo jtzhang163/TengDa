@@ -1889,11 +1889,11 @@ namespace Anchitech.Baking.Dispatcher
                     {
                         Station station = Current.Blanker.Stations[j];
 
-                        //无任务默认关门
-                        if (station.DoorStatus == DoorStatus.打开 && station.Id != Current.Task.FromStationId && station.Id != Current.Task.ToStationId && station.IsAlive)
-                        {
-                            station.CloseDoor();
-                        }
+                        ////无任务默认关门
+                        //if (station.DoorStatus == DoorStatus.打开 && station.Id != Current.Task.FromStationId && station.Id != Current.Task.ToStationId && station.IsAlive)
+                        //{
+                        //    station.CloseDoor();
+                        //}
 
                         ////从某一炉子取完盘后，立即关门，无需等到整个任务结束
                         //if (station.DoorStatus == DoorStatus.打开 && station.Id == Current.Task.FromStationId && station.IsAlive

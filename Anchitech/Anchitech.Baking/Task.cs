@@ -554,9 +554,8 @@ namespace Anchitech.Baking
                     else if (Current.Task.Status == TaskStatus.可取放 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
                     {
 
-                        if (!Current.Robot.IsAlreadySendCmd)
+                        if (!Current.Robot.IsAlreadySendCmd && Current.Task.FromStation.DoorStatus == DoorStatus.打开 && Current.Task.ToStation.DoorStatus == DoorStatus.打开)
                         {
-
                             if (Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation))
                             {
                                 Current.Robot.IsMoving = true;

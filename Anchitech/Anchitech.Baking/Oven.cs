@@ -673,34 +673,6 @@ namespace Anchitech.Baking
 
                     #endregion
 
-                    #region 获取门控制指令信息
-                    output = string.Empty;
-                    if (!this.Plc.GetInfo(false, "%01#RCP6R0901R0911R0921R0902R0912R0922**", out output, out msg))
-                    {
-                        Error.Alert(msg);
-                        this.Plc.IsAlive = false;
-                        return false;
-                    }
-
-                    if (output.Substring(3, 1) != "$")
-                    {
-                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RCP6R0010R0110R0210R0012R0112R0212**", output));
-                        return false;
-                    }
-
-                    for (int j = 0; j < this.Floors.Count; j++)
-                    {
-                        if (output.Substring(6 + j, 1) == "1")
-                        {
-                            this.Floors[j].DoorIsOpenning = true;
-                        }
-                        if (output.Substring(9 + j, 1) == "1")
-                        {
-                            this.Floors[j].DoorIsClosing = true;
-                        }
-                    }
-                    #endregion
-
                     #region 获取真空控制指令信息
                     //output = string.Empty;
                     //if (!this.Plc.GetInfo(false, "%01#RCP6R0608R0618R0628R0609R0619R0629**", out output, out msg))
@@ -726,20 +698,6 @@ namespace Anchitech.Baking
                     #region 写指令 控制开关门、启动运行、抽卸真空、打开网控
                     for (int j = 0; j < this.Floors.Count; j++)
                     {
-
-                        if (this.Floors[j].DoorIsOpenning && this.Floors[j].DoorStatusNotFinal != DoorStatus.打开)
-                        {
-                            this.Floors[j].DoorStatus = DoorStatus.正在打开;
-                        }
-                        else if (this.Floors[j].DoorIsClosing && this.Floors[j].DoorStatusNotFinal != DoorStatus.关闭)
-                        {
-                            this.Floors[j].DoorStatus = DoorStatus.正在关闭;
-                        }
-                        else
-                        {
-                            this.Floors[j].DoorStatus = this.Floors[j].DoorStatusNotFinal;
-                        }
-
                         #region 控制开门
                         if (this.Floors[j].DoorStatus == DoorStatus.打开)
                         {
@@ -995,6 +953,50 @@ namespace Anchitech.Baking
                     }
                     #endregion
 
+                    #region 获取门控制指令信息
+                    output = string.Empty;
+                    if (!this.Plc.GetInfo(false, "%01#RCP6R0901R0911R0921R0902R0912R0922**", out output, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    if (output.Substring(3, 1) != "$")
+                    {
+                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RCP6R0010R0110R0210R0012R0112R0212**", output));
+                        return false;
+                    }
+
+                    for (int j = 0; j < this.Floors.Count; j++)
+                    {
+                        if (output.Substring(6 + j, 1) == "1")
+                        {
+                            this.Floors[j].DoorIsOpenning = true;
+                        }
+                        if (output.Substring(9 + j, 1) == "1")
+                        {
+                            this.Floors[j].DoorIsClosing = true;
+                        }
+                    }
+                    #endregion
+
+                    for (int j = 0; j < this.Floors.Count; j++)
+                    {
+                        if (this.Floors[j].DoorIsOpenning && this.Floors[j].DoorStatusNotFinal != DoorStatus.打开)
+                        {
+                            this.Floors[j].DoorStatus = DoorStatus.正在打开;
+                        }
+                        else if (this.Floors[j].DoorIsClosing && this.Floors[j].DoorStatusNotFinal != DoorStatus.关闭)
+                        {
+                            this.Floors[j].DoorStatus = DoorStatus.正在关闭;
+                        }
+                        else
+                        {
+                            this.Floors[j].DoorStatus = this.Floors[j].DoorStatusNotFinal;
+                        }
+                    }
+
                     //#region 参数设置
 
                     //for (int x = 0; x < this.ControlCommands.Count; x++)
@@ -1140,8 +1142,16 @@ namespace Anchitech.Baking
             //    return;
             //}
 
+            if (this.Floors[j].DoorIsClosing)
+            {
+                Tip.Alert(this.Floors[j].Name + "正在关门,此刻不能开门");
+                return;
+            }
+
             if (!this.Floors[j].DoorIsOpenning)
             {
+                this.Floors[j].DoorStatus = DoorStatus.正在打开;
+                this.Floors[j].DoorIsOpenning = true;
                 this.Floors[j].toOpenDoor = true;
             }
         }
@@ -1174,8 +1184,21 @@ namespace Anchitech.Baking
             //    return;
             //}
 
+            if (this.Floors[j].DoorIsOpenning)
+            {
+                Tip.Alert(this.Floors[j].Name + "正在开门,此刻不能关门");
+                return;
+            }
+
             if (!this.Floors[j].DoorIsClosing)
             {
+                if (this.Floors[j].Stations.Count(s => s.Id == Current.Task.FromStationId) + this.Floors[j].Stations.Count(s => s.Id == Current.Task.ToStationId) > 0)
+                {
+                    Tip.Alert(this.Floors[j].Name + "有取放任务，无法远程关门 ");
+                    return;
+                }
+                this.Floors[j].DoorStatus = DoorStatus.正在关闭;
+                this.Floors[j].DoorIsClosing = true;
                 this.Floors[j].toCloseDoor = true;
             }
         }
