@@ -21,7 +21,7 @@ namespace BYD.Scan
 
         public static List<Yield> Yields = new List<Yield>();
 
-        public static List<Line> lines = null;
+        private static List<Line> lines = null;
         public static List<Line> Lines
         {
             get

@@ -249,7 +249,7 @@ namespace BYD.Scan.Dispatcher
         private void InitTerminal()
         {
             Console.WriteLine(Current.Lines[0].ChildLines[1].AutoScaner.Name);
-             
+
             Current.Yields = Yield.YieldList;
 
             cbAlarmFloors.Items.Add("All");
@@ -271,6 +271,7 @@ namespace BYD.Scan.Dispatcher
             }
 
             this.machinesStatusUC1.Init();
+            this.globalViewUC1.Init();
         }
 
         private void ManageSystem_FormClosing(object sender, FormClosingEventArgs e)
@@ -630,27 +631,26 @@ namespace BYD.Scan.Dispatcher
         private bool PlcConnect()
         {
             string msg = string.Empty;
-            
 
-            //for (int i = 0; i < OvenCount; i++)
-            //{
-            //    if (Current.ovens[i].IsEnable)
-            //    {
-            //        if (!Current.ovens[i].Plc.IsPingSuccess)
-            //        {
-            //            Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.ovens[i].Plc.Name, Current.ovens[i].Plc.IP));
-            //            return false;
-            //        }
+            for (int i = 0; i < LineCount; i++)
+            {
+                if (Current.Lines[i].Touchscreen.IsEnable)
+                {
+                    if (!Current.Lines[i].Touchscreen.IsPingSuccess)
+                    {
+                        Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.Lines[i].Touchscreen.Name, Current.Lines[i].Touchscreen.IP));
+                        return false;
+                    }
 
-            //        if (!Current.ovens[i].Plc.TcpConnect(out msg))
-            //        {
-            //            Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.ovens[i].Name, msg));
-            //            return false;
-            //        }
-            //        this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "连接成功");
-            //        this.machinesStatusUC1.SetLampColor(Current.ovens[i], Color.Green);
-            //    }
-            //}
+                    if (!Current.Lines[i].Touchscreen.TcpConnect(out msg))
+                    {
+                        Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.Lines[i].Name, msg));
+                        return false;
+                    }
+                    this.machinesStatusUC1.SetStatusInfo(Current.Lines[i].Touchscreen, "连接成功");
+                    this.machinesStatusUC1.SetLampColor(Current.Lines[i].Touchscreen, Color.Green);
+                }
+            }
 
             return true;
         }

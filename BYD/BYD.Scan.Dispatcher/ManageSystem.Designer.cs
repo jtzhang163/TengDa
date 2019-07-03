@@ -115,7 +115,7 @@
             this.cbMesRem = new System.Windows.Forms.CheckBox();
             this.tabContentPageMain = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.yieldDisplay = new BYD.Scan.Controls.YieldDisplay();
+            this.globalViewUC1 = new BYD.Scan.Controls.GlobalViewUC();
             this.tabContentPageTips = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -168,7 +168,7 @@
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
             this.label37 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.userDisplay = new TengDa.WF.Controls.UserDisplay();
+            this.yieldDisplay = new BYD.Scan.Controls.YieldDisplay();
             this.lbRunStatus = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -178,6 +178,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.lbTime = new System.Windows.Forms.Label();
+            this.userDisplay = new TengDa.WF.Controls.UserDisplay();
             this.machinesStatusUC1 = new BYD.Scan.Controls.MachinesStatusUC();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
@@ -1207,28 +1208,28 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Controls.Add(this.yieldDisplay, 0, 2);
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Controls.Add(this.globalViewUC1, 1, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 136F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1036, 572);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
-            // yieldDisplay
+            // globalViewUC1
             // 
-            this.yieldDisplay.Location = new System.Drawing.Point(15, 436);
-            this.yieldDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.yieldDisplay.Name = "yieldDisplay";
-            this.yieldDisplay.Size = new System.Drawing.Size(270, 87);
-            this.yieldDisplay.TabIndex = 14;
-            this.yieldDisplay.btnYieldClearClick += new BYD.Scan.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
+            this.globalViewUC1.BackColor = System.Drawing.Color.Transparent;
+            this.globalViewUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.globalViewUC1.Location = new System.Drawing.Point(23, 23);
+            this.globalViewUC1.Name = "globalViewUC1";
+            this.globalViewUC1.Size = new System.Drawing.Size(990, 526);
+            this.globalViewUC1.TabIndex = 15;
             // 
             // tabContentPageTips
             // 
@@ -1303,6 +1304,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.6142F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.Controls.Add(this.btnDebug, 0, 4);
+            this.tableLayoutPanel3.Controls.Add(this.yieldDisplay, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -1966,14 +1968,14 @@
             this.panel8.Size = new System.Drawing.Size(1, 578);
             this.panel8.TabIndex = 0;
             // 
-            // userDisplay
+            // yieldDisplay
             // 
-            this.userDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userDisplay.Location = new System.Drawing.Point(15, 496);
-            this.userDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.userDisplay.Name = "userDisplay";
-            this.userDisplay.Size = new System.Drawing.Size(270, 77);
-            this.userDisplay.TabIndex = 13;
+            this.yieldDisplay.Location = new System.Drawing.Point(15, 28);
+            this.yieldDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.yieldDisplay.Name = "yieldDisplay";
+            this.yieldDisplay.Size = new System.Drawing.Size(270, 87);
+            this.yieldDisplay.TabIndex = 14;
+            this.yieldDisplay.btnYieldClearClick += new BYD.Scan.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
             // 
             // lbRunStatus
             // 
@@ -2013,7 +2015,7 @@
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 380F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 586F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 490F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
             this.tableLayoutPanel1.Controls.Add(this.tabMain, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbRunStatus, 3, 0);
@@ -2111,6 +2113,15 @@
             this.lbTime.TabIndex = 15;
             this.lbTime.Text = "当前时间";
             this.lbTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // userDisplay
+            // 
+            this.userDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userDisplay.Location = new System.Drawing.Point(15, 496);
+            this.userDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.userDisplay.Name = "userDisplay";
+            this.userDisplay.Size = new System.Drawing.Size(270, 77);
+            this.userDisplay.TabIndex = 13;
             // 
             // machinesStatusUC1
             // 
@@ -2373,5 +2384,6 @@
         private System.Windows.Forms.TabPage tabContentPageMain;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label lbTaskMode;
+        private Controls.GlobalViewUC globalViewUC1;
     }
 }

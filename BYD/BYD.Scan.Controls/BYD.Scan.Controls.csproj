@@ -42,6 +42,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalViewUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GlobalViewUC.Designer.cs">
+      <DependentUpon>GlobalViewUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LineChildUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LineChildUC.Designer.cs">
+      <DependentUpon>LineChildUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LineUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LineUC.Designer.cs">
+      <DependentUpon>LineUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="MachinesStatusUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -59,6 +77,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ScanerUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ScanerUC.Designer.cs">
+      <DependentUpon>ScanerUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TouchscreenUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TouchscreenUC.Designer.cs">
+      <DependentUpon>TouchscreenUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="YieldDisplay.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -69,6 +99,15 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="GlobalViewUC.resx">
+      <DependentUpon>GlobalViewUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LineChildUC.resx">
+      <DependentUpon>LineChildUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LineUC.resx">
+      <DependentUpon>LineUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachinesStatusUC.resx">
       <DependentUpon>MachinesStatusUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -79,6 +118,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScanerUC.resx">
+      <DependentUpon>ScanerUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TouchscreenUC.resx">
+      <DependentUpon>TouchscreenUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="YieldDisplay.resx">
       <DependentUpon>YieldDisplay.cs</DependentUpon>
