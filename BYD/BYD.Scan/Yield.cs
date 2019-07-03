@@ -256,4 +256,13 @@ namespace BYD.Scan
         }
         #endregion
     }
+
+    public enum ClampOri
+    {
+        未知,
+        A,
+        B,
+        C,
+        D
+    }
 }

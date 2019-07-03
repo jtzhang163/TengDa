@@ -25,22 +25,6 @@ namespace BYD.Scan
             }
         }
 
-        private static int clampScanerTimeout = -1;
-        /// <summary>
-        /// 扫码超时时间
-        /// </summary>
-        private static int ClampScanerTimeout
-        {
-            get
-            {
-                if (clampScanerTimeout < 0)
-                {
-                    clampScanerTimeout = TengDa._Convert.StrToInt(ConfigurationManager.AppSettings["ClampScanerTimeout"], -1);
-                }
-                return clampScanerTimeout;
-            }
-        }
-
         [ReadOnly(true)]
         [DisplayName("准备就绪")]
         public bool IsReady { get; set; } = false;
@@ -51,6 +35,14 @@ namespace BYD.Scan
         [ReadOnly(true)]
         [DisplayName("可扫码")]
         public bool CanScan { get; set; } = false;
+
+        [ReadOnly(true)]
+        [DisplayName("所在拉线Id")]
+        public int LineId { get; private set; }
+
+        [ReadOnly(true)]
+        [DisplayName("是否为自动扫码枪")]
+        public bool IsAuto { get; private set; }
         #endregion
 
         #region 扫码枪列表
@@ -138,6 +130,8 @@ namespace BYD.Scan
             this.port = TengDa._Convert.StrToInt(rowInfo["Port"].ToString(), -1);
             this.number = rowInfo["Number"].ToString();
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
+            this.LineId = TengDa._Convert.StrToInt(rowInfo["LineId"].ToString(), -1);
+            this.IsAuto = Convert.ToBoolean(rowInfo["IsAuto"]);
         }
         #endregion
 

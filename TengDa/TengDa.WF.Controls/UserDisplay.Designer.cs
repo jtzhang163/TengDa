@@ -43,7 +43,7 @@
             this.gbUser.BackColor = System.Drawing.SystemColors.Control;
             this.gbUser.Controls.Add(this.tableLayoutPanel20);
             this.gbUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbUser.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.gbUser.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.gbUser.Location = new System.Drawing.Point(0, 0);
             this.gbUser.Name = "gbUser";
             this.gbUser.Size = new System.Drawing.Size(288, 115);
@@ -61,23 +61,24 @@
             this.tableLayoutPanel20.Controls.Add(this.lbUserName, 1, 0);
             this.tableLayoutPanel20.Controls.Add(this.lbUserGroupName, 1, 1);
             this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel20.Location = new System.Drawing.Point(3, 19);
+            this.tableLayoutPanel20.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel20.Name = "tableLayoutPanel20";
             this.tableLayoutPanel20.RowCount = 2;
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel20.Size = new System.Drawing.Size(282, 93);
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(282, 95);
             this.tableLayoutPanel20.TabIndex = 7;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(25, 49);
+            this.label5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Location = new System.Drawing.Point(25, 50);
             this.label5.Margin = new System.Windows.Forms.Padding(25, 3, 3, 3);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 41);
+            this.label5.Size = new System.Drawing.Size(76, 42);
             this.label5.TabIndex = 5;
             this.label5.Text = "用户组别：";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -86,10 +87,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(25, 3);
             this.label2.Margin = new System.Windows.Forms.Padding(25, 3, 3, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 40);
+            this.label2.Size = new System.Drawing.Size(76, 41);
             this.label2.TabIndex = 3;
             this.label2.Text = "当前用户：";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -102,7 +104,7 @@
             this.lbUserName.ForeColor = System.Drawing.Color.Green;
             this.lbUserName.Location = new System.Drawing.Point(107, 0);
             this.lbUserName.Name = "lbUserName";
-            this.lbUserName.Size = new System.Drawing.Size(172, 46);
+            this.lbUserName.Size = new System.Drawing.Size(172, 47);
             this.lbUserName.TabIndex = 4;
             this.lbUserName.Text = "XXXXXXXX";
             this.lbUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -113,9 +115,9 @@
             this.lbUserGroupName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbUserGroupName.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbUserGroupName.ForeColor = System.Drawing.Color.Green;
-            this.lbUserGroupName.Location = new System.Drawing.Point(107, 46);
+            this.lbUserGroupName.Location = new System.Drawing.Point(107, 47);
             this.lbUserGroupName.Name = "lbUserGroupName";
-            this.lbUserGroupName.Size = new System.Drawing.Size(172, 47);
+            this.lbUserGroupName.Size = new System.Drawing.Size(172, 48);
             this.lbUserGroupName.TabIndex = 6;
             this.lbUserGroupName.Text = "XXXXXXXX";
             this.lbUserGroupName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

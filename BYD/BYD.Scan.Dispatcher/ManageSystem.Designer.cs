@@ -28,18 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSystem));
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabMainUser = new System.Windows.Forms.TabPage();
@@ -59,12 +53,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.pbUserLogin = new System.Windows.Forms.PictureBox();
             this.tabMainOperate = new System.Windows.Forms.TabPage();
-            this.panelTaskReset = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.pictureBoxTaskFuWei = new System.Windows.Forms.PictureBox();
-            this.panelSwitchAuto = new System.Windows.Forms.Panel();
-            this.lbAuto = new System.Windows.Forms.Label();
-            this.pictureBoxAuto = new System.Windows.Forms.PictureBox();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panelReset = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -73,7 +61,6 @@
             this.panelStop = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBoxStop = new System.Windows.Forms.PictureBox();
-            this.splitter1 = new System.Windows.Forms.Splitter();
             this.panelStart = new System.Windows.Forms.Panel();
             this.pictureBoxStart = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -127,147 +114,15 @@
             this.label45 = new System.Windows.Forms.Label();
             this.cbMesRem = new System.Windows.Forms.CheckBox();
             this.tabContentPageMain = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel41 = new System.Windows.Forms.TableLayoutPanel();
-            this.taskInfo1 = new BYD.Scan.Controls.TaskInfo();
-            this.panelRobot = new System.Windows.Forms.Panel();
-            this.robotUC1 = new BYD.Scan.Controls.RobotUC();
-            this.tableLayoutPanel42 = new System.Windows.Forms.TableLayoutPanel();
-            this.ovenUC05 = new BYD.Scan.Controls.OvenUC();
-            this.ovenUC06 = new BYD.Scan.Controls.OvenUC();
-            this.ovenUC07 = new BYD.Scan.Controls.OvenUC();
-            this.ovenUC08 = new BYD.Scan.Controls.OvenUC();
-            this.ovenUC09 = new BYD.Scan.Controls.OvenUC();
-            this.ovenUC10 = new BYD.Scan.Controls.OvenUC();
-            this.ovenUC11 = new BYD.Scan.Controls.OvenUC();
-            this.ovenUC12 = new BYD.Scan.Controls.OvenUC();
-            this.tableLayoutPanel43 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel44 = new System.Windows.Forms.TableLayoutPanel();
-            this.ovenUC02 = new BYD.Scan.Controls.OvenUC();
-            this.ovenUC01 = new BYD.Scan.Controls.OvenUC();
-            this.ovenUC04 = new BYD.Scan.Controls.OvenUC();
-            this.ovenUC03 = new BYD.Scan.Controls.OvenUC();
-            this.cacherUC1 = new BYD.Scan.Controls.CacherUC();
-            this.transferUC1 = new BYD.Scan.Controls.TransferUC();
-            this.tableLayoutPanel45 = new System.Windows.Forms.TableLayoutPanel();
-            this.feederUC1 = new BYD.Scan.Controls.FeederUC();
-            this.showOvenInfoTypeUC1 = new BYD.Scan.Controls.ShowOvenInfoTypeUC();
-            this.blankerUC1 = new BYD.Scan.Controls.BlankerUC();
-            this.tabContentTemperCurve = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
-            this.pCurve = new TengDa.WF.Controls.DoubleBufferPanel();
-            this.label81 = new System.Windows.Forms.Label();
-            this.label80 = new System.Windows.Forms.Label();
-            this.label79 = new System.Windows.Forms.Label();
-            this.label78 = new System.Windows.Forms.Label();
-            this.label77 = new System.Windows.Forms.Label();
-            this.label76 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel32 = new System.Windows.Forms.TableLayoutPanel();
-            this.cbCurveSelectedStation = new System.Windows.Forms.ComboBox();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.cbCurveSelectedFloor = new System.Windows.Forms.ComboBox();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.cbCurveSelectedOven = new System.Windows.Forms.ComboBox();
-            this.cbTemperAll = new System.Windows.Forms.CheckBox();
-            this.tableLayoutPanel31 = new System.Windows.Forms.TableLayoutPanel();
-            this.cbVacuumIndex01 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex04 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex20 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex24 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex12 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex16 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex08 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex01 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex02 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex03 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex05 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex06 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex07 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex10 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex11 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex13 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex14 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex15 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex17 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex18 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex19 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex21 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex22 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex23 = new System.Windows.Forms.CheckBox();
-            this.cbTemperIndex09 = new System.Windows.Forms.CheckBox();
-            this.tabContentPageTVQuery = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
-            this.dgvTV = new System.Windows.Forms.DataGridView();
-            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
-            this.label29 = new System.Windows.Forms.Label();
-            this.tbNumTV = new System.Windows.Forms.TextBox();
-            this.btnExportTV = new System.Windows.Forms.Button();
-            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnQueryTV = new System.Windows.Forms.Button();
-            this.dtpStop = new System.Windows.Forms.DateTimePicker();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.dtpStart = new System.Windows.Forms.DateTimePicker();
-            this.cbStations = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cbCount = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.yieldDisplay = new BYD.Scan.Controls.YieldDisplay();
             this.tabContentPageTips = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbTips = new System.Windows.Forms.TextBox();
             this.tabContentPageManuTest = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.gbBatteryScanerTest = new System.Windows.Forms.GroupBox();
-            this.btnBatteryScanNgBackToFeeder = new System.Windows.Forms.Button();
-            this.label62 = new System.Windows.Forms.Label();
-            this.btnBatteryScanOkBackToFeeder = new System.Windows.Forms.Button();
-            this.cbBatteryScaner = new System.Windows.Forms.ComboBox();
-            this.btnBatteryScanStart = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label66 = new System.Windows.Forms.Label();
-            this.btnWaterContVerify = new System.Windows.Forms.Button();
-            this.tbWaterContent = new System.Windows.Forms.TextBox();
-            this.label65 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.cbSampleSelectedFloor = new System.Windows.Forms.ComboBox();
-            this.cbSampleSelectedOven = new System.Windows.Forms.ComboBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnClampScanNgBackToFeeder = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnClampScanOkBackToFeeder = new System.Windows.Forms.Button();
-            this.cbClampScaner = new System.Windows.Forms.ComboBox();
-            this.btnClampScanStart = new System.Windows.Forms.Button();
             this.btnDebug = new System.Windows.Forms.Button();
-            this.tabContentTaskLog = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
-            this.dgvTaskLog = new System.Windows.Forms.DataGridView();
-            this.tableLayoutPanel29 = new System.Windows.Forms.TableLayoutPanel();
-            this.tbTaskCount = new System.Windows.Forms.TextBox();
-            this.label54 = new System.Windows.Forms.Label();
-            this.btnExportTaskLog = new System.Windows.Forms.Button();
-            this.tableLayoutPanel30 = new System.Windows.Forms.TableLayoutPanel();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.dtpTaskStop = new System.Windows.Forms.DateTimePicker();
-            this.dtpTaskStart = new System.Windows.Forms.DateTimePicker();
-            this.btnQueryTaskLog = new System.Windows.Forms.Button();
             this.tabContentPageAlarmLog = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvAlarm = new System.Windows.Forms.DataGridView();
@@ -313,9 +168,7 @@
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
             this.label37 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.cmsBlanker = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmCancelRasterInductive = new System.Windows.Forms.ToolStripMenuItem();
+            this.userDisplay = new TengDa.WF.Controls.UserDisplay();
             this.lbRunStatus = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -325,10 +178,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.lbTime = new System.Windows.Forms.Label();
-            this.userDisplay = new TengDa.WF.Controls.UserDisplay();
-            this.yieldDisplay = new BYD.Scan.Controls.YieldDisplay();
             this.machinesStatusUC1 = new BYD.Scan.Controls.MachinesStatusUC();
-            this.openAllNetControlUC1 = new BYD.Scan.Controls.OpenAllNetControlUC();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -340,10 +190,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserLogin)).BeginInit();
             this.tabMainOperate.SuspendLayout();
-            this.panelTaskReset.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTaskFuWei)).BeginInit();
-            this.panelSwitchAuto.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAuto)).BeginInit();
             this.panelReset.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReset)).BeginInit();
             this.panelStop.SuspendLayout();
@@ -361,35 +207,12 @@
             this.gbMesLogin.SuspendLayout();
             this.panel3333.SuspendLayout();
             this.tabContentPageMain.SuspendLayout();
-            this.tableLayoutPanel41.SuspendLayout();
-            this.panelRobot.SuspendLayout();
-            this.tableLayoutPanel42.SuspendLayout();
-            this.tableLayoutPanel43.SuspendLayout();
-            this.tableLayoutPanel44.SuspendLayout();
-            this.tableLayoutPanel45.SuspendLayout();
-            this.tabContentTemperCurve.SuspendLayout();
-            this.tableLayoutPanel18.SuspendLayout();
-            this.pCurve.SuspendLayout();
-            this.tableLayoutPanel32.SuspendLayout();
-            this.tableLayoutPanel31.SuspendLayout();
-            this.tabContentPageTVQuery.SuspendLayout();
-            this.tableLayoutPanel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTV)).BeginInit();
-            this.tableLayoutPanel12.SuspendLayout();
-            this.tableLayoutPanel13.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.tabContentPageTips.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabContentPageManuTest.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.gbBatteryScanerTest.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.tabContentTaskLog.SuspendLayout();
-            this.tableLayoutPanel22.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTaskLog)).BeginInit();
-            this.tableLayoutPanel29.SuspendLayout();
-            this.tableLayoutPanel30.SuspendLayout();
             this.tabContentPageAlarmLog.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlarm)).BeginInit();
@@ -414,7 +237,6 @@
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             this.tableLayoutPanel24.SuspendLayout();
-            this.cmsBlanker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -436,7 +258,7 @@
             this.tabMain.Margin = new System.Windows.Forms.Padding(15, 3, 0, 3);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(452, 115);
+            this.tabMain.Size = new System.Drawing.Size(365, 115);
             this.tabMain.TabIndex = 7;
             // 
             // tabMainUser
@@ -452,7 +274,7 @@
             this.tabMainUser.Location = new System.Drawing.Point(4, 22);
             this.tabMainUser.Name = "tabMainUser";
             this.tabMainUser.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMainUser.Size = new System.Drawing.Size(444, 89);
+            this.tabMainUser.Size = new System.Drawing.Size(357, 89);
             this.tabMainUser.TabIndex = 1;
             this.tabMainUser.Text = "用户";
             // 
@@ -621,96 +443,21 @@
             // tabMainOperate
             // 
             this.tabMainOperate.BackColor = System.Drawing.SystemColors.Window;
-            this.tabMainOperate.Controls.Add(this.panelTaskReset);
-            this.tabMainOperate.Controls.Add(this.panelSwitchAuto);
             this.tabMainOperate.Controls.Add(this.splitter3);
             this.tabMainOperate.Controls.Add(this.panelReset);
             this.tabMainOperate.Controls.Add(this.splitter2);
             this.tabMainOperate.Controls.Add(this.panelStop);
-            this.tabMainOperate.Controls.Add(this.splitter1);
             this.tabMainOperate.Controls.Add(this.panelStart);
             this.tabMainOperate.Location = new System.Drawing.Point(4, 22);
             this.tabMainOperate.Name = "tabMainOperate";
             this.tabMainOperate.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMainOperate.Size = new System.Drawing.Size(444, 89);
+            this.tabMainOperate.Size = new System.Drawing.Size(357, 89);
             this.tabMainOperate.TabIndex = 0;
             this.tabMainOperate.Text = "操作";
             // 
-            // panelTaskReset
-            // 
-            this.panelTaskReset.Controls.Add(this.label7);
-            this.panelTaskReset.Controls.Add(this.pictureBoxTaskFuWei);
-            this.panelTaskReset.Cursor = System.Windows.Forms.Cursors.Default;
-            this.panelTaskReset.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelTaskReset.Location = new System.Drawing.Point(355, 3);
-            this.panelTaskReset.Name = "panelTaskReset";
-            this.panelTaskReset.Size = new System.Drawing.Size(93, 83);
-            this.panelTaskReset.TabIndex = 8;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Cursor = System.Windows.Forms.Cursors.Default;
-            this.label7.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(10, 60);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 16);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "任务复位";
-            // 
-            // pictureBoxTaskFuWei
-            // 
-            this.pictureBoxTaskFuWei.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBoxTaskFuWei.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxTaskFuWei.Image = global::BYD.Scan.Dispatcher.Properties.Resources.Reset_green;
-            this.pictureBoxTaskFuWei.Location = new System.Drawing.Point(22, 6);
-            this.pictureBoxTaskFuWei.Name = "pictureBoxTaskFuWei";
-            this.pictureBoxTaskFuWei.Size = new System.Drawing.Size(51, 50);
-            this.pictureBoxTaskFuWei.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxTaskFuWei.TabIndex = 3;
-            this.pictureBoxTaskFuWei.TabStop = false;
-            this.pictureBoxTaskFuWei.Click += new System.EventHandler(this.pictureBox_Click);
-            // 
-            // panelSwitchAuto
-            // 
-            this.panelSwitchAuto.Controls.Add(this.lbAuto);
-            this.panelSwitchAuto.Controls.Add(this.pictureBoxAuto);
-            this.panelSwitchAuto.Cursor = System.Windows.Forms.Cursors.Default;
-            this.panelSwitchAuto.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelSwitchAuto.Location = new System.Drawing.Point(267, 3);
-            this.panelSwitchAuto.Name = "panelSwitchAuto";
-            this.panelSwitchAuto.Size = new System.Drawing.Size(88, 83);
-            this.panelSwitchAuto.TabIndex = 7;
-            // 
-            // lbAuto
-            // 
-            this.lbAuto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbAuto.AutoSize = true;
-            this.lbAuto.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lbAuto.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbAuto.Location = new System.Drawing.Point(10, 60);
-            this.lbAuto.Name = "lbAuto";
-            this.lbAuto.Size = new System.Drawing.Size(72, 16);
-            this.lbAuto.TabIndex = 4;
-            this.lbAuto.Text = "切换自动";
-            // 
-            // pictureBoxAuto
-            // 
-            this.pictureBoxAuto.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBoxAuto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxAuto.Image = global::BYD.Scan.Dispatcher.Properties.Resources.Switch_green;
-            this.pictureBoxAuto.Location = new System.Drawing.Point(20, 6);
-            this.pictureBoxAuto.Name = "pictureBoxAuto";
-            this.pictureBoxAuto.Size = new System.Drawing.Size(51, 50);
-            this.pictureBoxAuto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxAuto.TabIndex = 3;
-            this.pictureBoxAuto.TabStop = false;
-            this.pictureBoxAuto.Click += new System.EventHandler(this.pictureBox_Click);
-            // 
             // splitter3
             // 
-            this.splitter3.Location = new System.Drawing.Point(264, 3);
+            this.splitter3.Location = new System.Drawing.Point(357, 3);
             this.splitter3.Name = "splitter3";
             this.splitter3.Size = new System.Drawing.Size(3, 83);
             this.splitter3.TabIndex = 5;
@@ -722,9 +469,9 @@
             this.panelReset.Controls.Add(this.pictureBoxReset);
             this.panelReset.Cursor = System.Windows.Forms.Cursors.Default;
             this.panelReset.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelReset.Location = new System.Drawing.Point(179, 3);
+            this.panelReset.Location = new System.Drawing.Point(236, 3);
             this.panelReset.Name = "panelReset";
-            this.panelReset.Size = new System.Drawing.Size(85, 83);
+            this.panelReset.Size = new System.Drawing.Size(121, 83);
             this.panelReset.TabIndex = 4;
             // 
             // label6
@@ -733,7 +480,7 @@
             this.label6.AutoSize = true;
             this.label6.Cursor = System.Windows.Forms.Cursors.Default;
             this.label6.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(22, 60);
+            this.label6.Location = new System.Drawing.Point(40, 60);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 16);
             this.label6.TabIndex = 3;
@@ -744,7 +491,7 @@
             this.pictureBoxReset.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBoxReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxReset.Image = global::BYD.Scan.Dispatcher.Properties.Resources.Reset_Lime;
-            this.pictureBoxReset.Location = new System.Drawing.Point(16, 6);
+            this.pictureBoxReset.Location = new System.Drawing.Point(34, 6);
             this.pictureBoxReset.Name = "pictureBoxReset";
             this.pictureBoxReset.Size = new System.Drawing.Size(51, 50);
             this.pictureBoxReset.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -754,7 +501,7 @@
             // 
             // splitter2
             // 
-            this.splitter2.Location = new System.Drawing.Point(176, 3);
+            this.splitter2.Location = new System.Drawing.Point(233, 3);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(3, 83);
             this.splitter2.TabIndex = 3;
@@ -766,9 +513,9 @@
             this.panelStop.Controls.Add(this.pictureBoxStop);
             this.panelStop.Cursor = System.Windows.Forms.Cursors.Default;
             this.panelStop.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelStop.Location = new System.Drawing.Point(91, 3);
+            this.panelStop.Location = new System.Drawing.Point(120, 3);
             this.panelStop.Name = "panelStop";
-            this.panelStop.Size = new System.Drawing.Size(85, 83);
+            this.panelStop.Size = new System.Drawing.Size(113, 83);
             this.panelStop.TabIndex = 2;
             // 
             // label4
@@ -777,7 +524,7 @@
             this.label4.AutoSize = true;
             this.label4.Cursor = System.Windows.Forms.Cursors.Default;
             this.label4.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(22, 60);
+            this.label4.Location = new System.Drawing.Point(36, 60);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 16);
             this.label4.TabIndex = 2;
@@ -789,21 +536,13 @@
             this.pictureBoxStop.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxStop.Image = global::BYD.Scan.Dispatcher.Properties.Resources.Stop_Red;
             this.pictureBoxStop.InitialImage = null;
-            this.pictureBoxStop.Location = new System.Drawing.Point(16, 6);
+            this.pictureBoxStop.Location = new System.Drawing.Point(30, 6);
             this.pictureBoxStop.Name = "pictureBoxStop";
             this.pictureBoxStop.Size = new System.Drawing.Size(51, 50);
             this.pictureBoxStop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxStop.TabIndex = 1;
             this.pictureBoxStop.TabStop = false;
             this.pictureBoxStop.Click += new System.EventHandler(this.pictureBox_Click);
-            // 
-            // splitter1
-            // 
-            this.splitter1.Location = new System.Drawing.Point(88, 3);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 83);
-            this.splitter1.TabIndex = 1;
-            this.splitter1.TabStop = false;
             // 
             // panelStart
             // 
@@ -813,7 +552,7 @@
             this.panelStart.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelStart.Location = new System.Drawing.Point(3, 3);
             this.panelStart.Name = "panelStart";
-            this.panelStart.Size = new System.Drawing.Size(85, 83);
+            this.panelStart.Size = new System.Drawing.Size(117, 83);
             this.panelStart.TabIndex = 0;
             // 
             // pictureBoxStart
@@ -821,7 +560,7 @@
             this.pictureBoxStart.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBoxStart.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxStart.Image = global::BYD.Scan.Dispatcher.Properties.Resources.Start_Green;
-            this.pictureBoxStart.Location = new System.Drawing.Point(16, 6);
+            this.pictureBoxStart.Location = new System.Drawing.Point(32, 6);
             this.pictureBoxStart.Name = "pictureBoxStart";
             this.pictureBoxStart.Size = new System.Drawing.Size(51, 50);
             this.pictureBoxStart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -835,7 +574,7 @@
             this.label3.AutoSize = true;
             this.label3.Cursor = System.Windows.Forms.Cursors.Default;
             this.label3.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(22, 60);
+            this.label3.Location = new System.Drawing.Point(38, 60);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 16);
             this.label3.TabIndex = 1;
@@ -852,11 +591,8 @@
             // 
             this.tabContent.Controls.Add(this.tabContentPageUser);
             this.tabContent.Controls.Add(this.tabContentPageMain);
-            this.tabContent.Controls.Add(this.tabContentTemperCurve);
-            this.tabContent.Controls.Add(this.tabContentPageTVQuery);
             this.tabContent.Controls.Add(this.tabContentPageTips);
             this.tabContent.Controls.Add(this.tabContentPageManuTest);
-            this.tabContent.Controls.Add(this.tabContentTaskLog);
             this.tabContent.Controls.Add(this.tabContentPageAlarmLog);
             this.tabContent.Controls.Add(this.tabContentPageQuery);
             this.tabContent.Controls.Add(this.tabContentPageOperation);
@@ -1459,1351 +1195,40 @@
             // 
             // tabContentPageMain
             // 
-            this.tabContentPageMain.Controls.Add(this.tableLayoutPanel41);
+            this.tabContentPageMain.Controls.Add(this.tableLayoutPanel4);
             this.tabContentPageMain.Location = new System.Drawing.Point(4, 22);
             this.tabContentPageMain.Name = "tabContentPageMain";
             this.tabContentPageMain.Padding = new System.Windows.Forms.Padding(3);
             this.tabContentPageMain.Size = new System.Drawing.Size(1042, 578);
-            this.tabContentPageMain.TabIndex = 11;
+            this.tabContentPageMain.TabIndex = 12;
             this.tabContentPageMain.Text = "主界面";
             this.tabContentPageMain.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel41
-            // 
-            this.tableLayoutPanel41.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.tableLayoutPanel41.ColumnCount = 1;
-            this.tableLayoutPanel41.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 93F));
-            this.tableLayoutPanel41.Controls.Add(this.taskInfo1, 0, 3);
-            this.tableLayoutPanel41.Controls.Add(this.panelRobot, 0, 1);
-            this.tableLayoutPanel41.Controls.Add(this.tableLayoutPanel42, 0, 0);
-            this.tableLayoutPanel41.Controls.Add(this.tableLayoutPanel43, 0, 2);
-            this.tableLayoutPanel41.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel41.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel41.Name = "tableLayoutPanel41";
-            this.tableLayoutPanel41.RowCount = 4;
-            this.tableLayoutPanel41.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel41.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel41.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel41.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel41.Size = new System.Drawing.Size(1036, 572);
-            this.tableLayoutPanel41.TabIndex = 0;
-            // 
-            // taskInfo1
-            // 
-            this.taskInfo1.BackColor = System.Drawing.SystemColors.Control;
-            this.taskInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.taskInfo1.Location = new System.Drawing.Point(2, 550);
-            this.taskInfo1.Margin = new System.Windows.Forms.Padding(2, 8, 2, 3);
-            this.taskInfo1.Name = "taskInfo1";
-            this.taskInfo1.Size = new System.Drawing.Size(1032, 19);
-            this.taskInfo1.TabIndex = 4;
-            // 
-            // panelRobot
-            // 
-            this.panelRobot.BackgroundImage = global::BYD.Scan.Dispatcher.Properties.Resources.Robot_Track_Lime;
-            this.panelRobot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelRobot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelRobot.Controls.Add(this.robotUC1);
-            this.panelRobot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRobot.Location = new System.Drawing.Point(10, 244);
-            this.panelRobot.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.panelRobot.Name = "panelRobot";
-            this.panelRobot.Padding = new System.Windows.Forms.Padding(450, 3, 3, 3);
-            this.panelRobot.Size = new System.Drawing.Size(1016, 54);
-            this.panelRobot.TabIndex = 0;
-            // 
-            // robotUC1
-            // 
-            this.robotUC1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.robotUC1.Location = new System.Drawing.Point(450, 3);
-            this.robotUC1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
-            this.robotUC1.Name = "robotUC1";
-            this.robotUC1.Size = new System.Drawing.Size(80, 46);
-            this.robotUC1.TabIndex = 0;
-            // 
-            // tableLayoutPanel42
-            // 
-            this.tableLayoutPanel42.ColumnCount = 8;
-            this.tableLayoutPanel42.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel42.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel42.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel42.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel42.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel42.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel42.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel42.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel42.Controls.Add(this.ovenUC05, 7, 0);
-            this.tableLayoutPanel42.Controls.Add(this.ovenUC06, 6, 0);
-            this.tableLayoutPanel42.Controls.Add(this.ovenUC07, 5, 0);
-            this.tableLayoutPanel42.Controls.Add(this.ovenUC08, 4, 0);
-            this.tableLayoutPanel42.Controls.Add(this.ovenUC09, 3, 0);
-            this.tableLayoutPanel42.Controls.Add(this.ovenUC10, 2, 0);
-            this.tableLayoutPanel42.Controls.Add(this.ovenUC11, 1, 0);
-            this.tableLayoutPanel42.Controls.Add(this.ovenUC12, 0, 0);
-            this.tableLayoutPanel42.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel42.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel42.Name = "tableLayoutPanel42";
-            this.tableLayoutPanel42.RowCount = 1;
-            this.tableLayoutPanel42.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel42.Size = new System.Drawing.Size(1030, 235);
-            this.tableLayoutPanel42.TabIndex = 1;
-            // 
-            // ovenUC05
-            // 
-            this.ovenUC05.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC05.Location = new System.Drawing.Point(899, 3);
-            this.ovenUC05.Name = "ovenUC05";
-            this.ovenUC05.OvenIndex = 5;
-            this.ovenUC05.Size = new System.Drawing.Size(128, 229);
-            this.ovenUC05.TabIndex = 7;
-            // 
-            // ovenUC06
-            // 
-            this.ovenUC06.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC06.Location = new System.Drawing.Point(771, 3);
-            this.ovenUC06.Name = "ovenUC06";
-            this.ovenUC06.OvenIndex = 6;
-            this.ovenUC06.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC06.TabIndex = 6;
-            // 
-            // ovenUC07
-            // 
-            this.ovenUC07.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC07.Location = new System.Drawing.Point(643, 3);
-            this.ovenUC07.Name = "ovenUC07";
-            this.ovenUC07.OvenIndex = 7;
-            this.ovenUC07.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC07.TabIndex = 5;
-            // 
-            // ovenUC08
-            // 
-            this.ovenUC08.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC08.Location = new System.Drawing.Point(515, 3);
-            this.ovenUC08.Name = "ovenUC08";
-            this.ovenUC08.OvenIndex = 8;
-            this.ovenUC08.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC08.TabIndex = 4;
-            // 
-            // ovenUC09
-            // 
-            this.ovenUC09.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC09.Location = new System.Drawing.Point(387, 3);
-            this.ovenUC09.Name = "ovenUC09";
-            this.ovenUC09.OvenIndex = 9;
-            this.ovenUC09.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC09.TabIndex = 3;
-            // 
-            // ovenUC10
-            // 
-            this.ovenUC10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC10.Location = new System.Drawing.Point(259, 3);
-            this.ovenUC10.Name = "ovenUC10";
-            this.ovenUC10.OvenIndex = 10;
-            this.ovenUC10.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC10.TabIndex = 2;
-            // 
-            // ovenUC11
-            // 
-            this.ovenUC11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC11.Location = new System.Drawing.Point(131, 3);
-            this.ovenUC11.Name = "ovenUC11";
-            this.ovenUC11.OvenIndex = 11;
-            this.ovenUC11.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC11.TabIndex = 1;
-            // 
-            // ovenUC12
-            // 
-            this.ovenUC12.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC12.Location = new System.Drawing.Point(3, 3);
-            this.ovenUC12.Name = "ovenUC12";
-            this.ovenUC12.OvenIndex = 12;
-            this.ovenUC12.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC12.TabIndex = 0;
-            // 
-            // tableLayoutPanel43
-            // 
-            this.tableLayoutPanel43.ColumnCount = 5;
-            this.tableLayoutPanel43.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29F));
-            this.tableLayoutPanel43.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel43.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
-            this.tableLayoutPanel43.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
-            this.tableLayoutPanel43.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
-            this.tableLayoutPanel43.Controls.Add(this.tableLayoutPanel44, 1, 0);
-            this.tableLayoutPanel43.Controls.Add(this.cacherUC1, 2, 0);
-            this.tableLayoutPanel43.Controls.Add(this.transferUC1, 3, 0);
-            this.tableLayoutPanel43.Controls.Add(this.tableLayoutPanel45, 0, 0);
-            this.tableLayoutPanel43.Controls.Add(this.blankerUC1, 4, 0);
-            this.tableLayoutPanel43.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel43.Location = new System.Drawing.Point(3, 304);
-            this.tableLayoutPanel43.Name = "tableLayoutPanel43";
-            this.tableLayoutPanel43.RowCount = 1;
-            this.tableLayoutPanel43.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel43.Size = new System.Drawing.Size(1030, 235);
-            this.tableLayoutPanel43.TabIndex = 2;
-            // 
-            // tableLayoutPanel44
-            // 
-            this.tableLayoutPanel44.ColumnCount = 4;
-            this.tableLayoutPanel44.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel44.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel44.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel44.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel44.Controls.Add(this.ovenUC02, 0, 0);
-            this.tableLayoutPanel44.Controls.Add(this.ovenUC01, 0, 0);
-            this.tableLayoutPanel44.Controls.Add(this.ovenUC04, 0, 0);
-            this.tableLayoutPanel44.Controls.Add(this.ovenUC03, 0, 0);
-            this.tableLayoutPanel44.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel44.Location = new System.Drawing.Point(298, 0);
-            this.tableLayoutPanel44.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel44.Name = "tableLayoutPanel44";
-            this.tableLayoutPanel44.RowCount = 1;
-            this.tableLayoutPanel44.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel44.Size = new System.Drawing.Size(515, 235);
-            this.tableLayoutPanel44.TabIndex = 0;
-            // 
-            // ovenUC02
-            // 
-            this.ovenUC02.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ovenUC02.Location = new System.Drawing.Point(259, 3);
-            this.ovenUC02.Name = "ovenUC02";
-            this.ovenUC02.OvenIndex = 2;
-            this.ovenUC02.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC02.TabIndex = 11;
-            // 
-            // ovenUC01
-            // 
-            this.ovenUC01.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ovenUC01.Location = new System.Drawing.Point(387, 3);
-            this.ovenUC01.Name = "ovenUC01";
-            this.ovenUC01.OvenIndex = 1;
-            this.ovenUC01.Size = new System.Drawing.Size(125, 229);
-            this.ovenUC01.TabIndex = 10;
-            // 
-            // ovenUC04
-            // 
-            this.ovenUC04.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ovenUC04.Location = new System.Drawing.Point(3, 3);
-            this.ovenUC04.Name = "ovenUC04";
-            this.ovenUC04.OvenIndex = 4;
-            this.ovenUC04.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC04.TabIndex = 9;
-            // 
-            // ovenUC03
-            // 
-            this.ovenUC03.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ovenUC03.Location = new System.Drawing.Point(131, 3);
-            this.ovenUC03.Name = "ovenUC03";
-            this.ovenUC03.OvenIndex = 3;
-            this.ovenUC03.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC03.TabIndex = 8;
-            // 
-            // cacherUC1
-            // 
-            this.cacherUC1.BackColor = System.Drawing.Color.Transparent;
-            this.cacherUC1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cacherUC1.Location = new System.Drawing.Point(816, 3);
-            this.cacherUC1.Name = "cacherUC1";
-            this.cacherUC1.Size = new System.Drawing.Size(66, 168);
-            this.cacherUC1.TabIndex = 2;
-            // 
-            // transferUC1
-            // 
-            this.transferUC1.BackColor = System.Drawing.Color.Transparent;
-            this.transferUC1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.transferUC1.Location = new System.Drawing.Point(888, 3);
-            this.transferUC1.Name = "transferUC1";
-            this.transferUC1.Size = new System.Drawing.Size(66, 103);
-            this.transferUC1.TabIndex = 3;
-            // 
-            // tableLayoutPanel45
-            // 
-            this.tableLayoutPanel45.ColumnCount = 2;
-            this.tableLayoutPanel45.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel45.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel45.Controls.Add(this.feederUC1, 0, 0);
-            this.tableLayoutPanel45.Controls.Add(this.showOvenInfoTypeUC1, 0, 1);
-            this.tableLayoutPanel45.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel45.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel45.Name = "tableLayoutPanel45";
-            this.tableLayoutPanel45.RowCount = 2;
-            this.tableLayoutPanel45.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel45.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel45.Size = new System.Drawing.Size(292, 229);
-            this.tableLayoutPanel45.TabIndex = 4;
-            // 
-            // feederUC1
-            // 
-            this.feederUC1.BackColor = System.Drawing.Color.Transparent;
-            this.feederUC1.Location = new System.Drawing.Point(3, 3);
-            this.feederUC1.Name = "feederUC1";
-            this.feederUC1.Size = new System.Drawing.Size(176, 161);
-            this.feederUC1.TabIndex = 1;
-            // 
-            // showOvenInfoTypeUC1
-            // 
-            this.showOvenInfoTypeUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.showOvenInfoTypeUC1.Location = new System.Drawing.Point(3, 192);
-            this.showOvenInfoTypeUC1.Name = "showOvenInfoTypeUC1";
-            this.showOvenInfoTypeUC1.Size = new System.Drawing.Size(266, 27);
-            this.showOvenInfoTypeUC1.TabIndex = 2;
-            // 
-            // blankerUC1
-            // 
-            this.blankerUC1.BackColor = System.Drawing.Color.White;
-            this.blankerUC1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.blankerUC1.Location = new System.Drawing.Point(960, 3);
-            this.blankerUC1.Name = "blankerUC1";
-            this.blankerUC1.Size = new System.Drawing.Size(67, 167);
-            this.blankerUC1.TabIndex = 3;
-            // 
-            // tabContentTemperCurve
-            // 
-            this.tabContentTemperCurve.Controls.Add(this.tableLayoutPanel18);
-            this.tabContentTemperCurve.Location = new System.Drawing.Point(4, 22);
-            this.tabContentTemperCurve.Margin = new System.Windows.Forms.Padding(0);
-            this.tabContentTemperCurve.Name = "tabContentTemperCurve";
-            this.tabContentTemperCurve.Size = new System.Drawing.Size(1042, 578);
-            this.tabContentTemperCurve.TabIndex = 7;
-            this.tabContentTemperCurve.Text = "温度真空曲线";
-            this.tabContentTemperCurve.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel18
-            // 
-            this.tableLayoutPanel18.BackColor = System.Drawing.SystemColors.Window;
-            this.tableLayoutPanel18.ColumnCount = 3;
-            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel18.Controls.Add(this.pCurve, 1, 1);
-            this.tableLayoutPanel18.Controls.Add(this.label31, 0, 1);
-            this.tableLayoutPanel18.Controls.Add(this.tableLayoutPanel32, 1, 2);
-            this.tableLayoutPanel18.Controls.Add(this.tableLayoutPanel31, 1, 3);
-            this.tableLayoutPanel18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel18.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel18.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel18.Name = "tableLayoutPanel18";
-            this.tableLayoutPanel18.RowCount = 4;
-            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 400F));
-            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel18.Size = new System.Drawing.Size(1042, 578);
-            this.tableLayoutPanel18.TabIndex = 0;
-            // 
-            // pCurve
-            // 
-            this.pCurve.BackColor = System.Drawing.Color.Black;
-            this.pCurve.Controls.Add(this.label81);
-            this.pCurve.Controls.Add(this.label80);
-            this.pCurve.Controls.Add(this.label79);
-            this.pCurve.Controls.Add(this.label78);
-            this.pCurve.Controls.Add(this.label77);
-            this.pCurve.Controls.Add(this.label76);
-            this.pCurve.Controls.Add(this.label61);
-            this.pCurve.Controls.Add(this.label60);
-            this.pCurve.Controls.Add(this.label58);
-            this.pCurve.Controls.Add(this.label59);
-            this.pCurve.Controls.Add(this.label46);
-            this.pCurve.Controls.Add(this.label44);
-            this.pCurve.Controls.Add(this.label43);
-            this.pCurve.Controls.Add(this.label42);
-            this.pCurve.Controls.Add(this.label40);
-            this.pCurve.Controls.Add(this.label38);
-            this.pCurve.Controls.Add(this.label34);
-            this.pCurve.Controls.Add(this.label33);
-            this.pCurve.Controls.Add(this.label32);
-            this.pCurve.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pCurve.Location = new System.Drawing.Point(40, 20);
-            this.pCurve.Margin = new System.Windows.Forms.Padding(0);
-            this.pCurve.Name = "pCurve";
-            this.pCurve.Size = new System.Drawing.Size(962, 400);
-            this.pCurve.TabIndex = 4;
-            this.pCurve.Paint += new System.Windows.Forms.PaintEventHandler(this.pCurve_Paint);
-            // 
-            // label81
-            // 
-            this.label81.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label81.AutoSize = true;
-            this.label81.BackColor = System.Drawing.Color.Transparent;
-            this.label81.ForeColor = System.Drawing.Color.Lime;
-            this.label81.Location = new System.Drawing.Point(935, 313);
-            this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(23, 12);
-            this.label81.TabIndex = 21;
-            this.label81.Text = "1Pa";
-            // 
-            // label80
-            // 
-            this.label80.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label80.AutoSize = true;
-            this.label80.BackColor = System.Drawing.Color.Transparent;
-            this.label80.ForeColor = System.Drawing.Color.Lime;
-            this.label80.Location = new System.Drawing.Point(929, 273);
-            this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(29, 12);
-            this.label80.TabIndex = 20;
-            this.label80.Text = "10Pa";
-            // 
-            // label79
-            // 
-            this.label79.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label79.AutoSize = true;
-            this.label79.BackColor = System.Drawing.Color.Transparent;
-            this.label79.ForeColor = System.Drawing.Color.Lime;
-            this.label79.Location = new System.Drawing.Point(923, 233);
-            this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(35, 12);
-            this.label79.TabIndex = 19;
-            this.label79.Text = "100Pa";
-            // 
-            // label78
-            // 
-            this.label78.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label78.AutoSize = true;
-            this.label78.BackColor = System.Drawing.Color.Transparent;
-            this.label78.ForeColor = System.Drawing.Color.Lime;
-            this.label78.Location = new System.Drawing.Point(917, 193);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(41, 12);
-            this.label78.TabIndex = 18;
-            this.label78.Text = "1000Pa";
-            // 
-            // label77
-            // 
-            this.label77.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label77.AutoSize = true;
-            this.label77.BackColor = System.Drawing.Color.Transparent;
-            this.label77.ForeColor = System.Drawing.Color.Lime;
-            this.label77.Location = new System.Drawing.Point(911, 153);
-            this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(47, 12);
-            this.label77.TabIndex = 17;
-            this.label77.Text = "10000Pa";
-            // 
-            // label76
-            // 
-            this.label76.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label76.AutoSize = true;
-            this.label76.BackColor = System.Drawing.Color.Transparent;
-            this.label76.ForeColor = System.Drawing.Color.Lime;
-            this.label76.Location = new System.Drawing.Point(905, 113);
-            this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(53, 12);
-            this.label76.TabIndex = 16;
-            this.label76.Text = "100000Pa";
-            // 
-            // label61
-            // 
-            this.label61.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label61.AutoSize = true;
-            this.label61.BackColor = System.Drawing.Color.Transparent;
-            this.label61.ForeColor = System.Drawing.Color.Lime;
-            this.label61.Location = new System.Drawing.Point(3, 115);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(29, 12);
-            this.label61.TabIndex = 13;
-            this.label61.Text = "70℃";
-            // 
-            // label60
-            // 
-            this.label60.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label60.AutoSize = true;
-            this.label60.BackColor = System.Drawing.Color.Transparent;
-            this.label60.ForeColor = System.Drawing.Color.Lime;
-            this.label60.Location = new System.Drawing.Point(3, 155);
-            this.label60.Margin = new System.Windows.Forms.Padding(0);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(29, 12);
-            this.label60.TabIndex = 12;
-            this.label60.Text = "60℃";
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.BackColor = System.Drawing.Color.Transparent;
-            this.label58.ForeColor = System.Drawing.Color.Lime;
-            this.label58.Location = new System.Drawing.Point(3, 235);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(29, 12);
-            this.label58.TabIndex = 11;
-            this.label58.Text = "40℃";
-            // 
-            // label59
-            // 
-            this.label59.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label59.AutoSize = true;
-            this.label59.BackColor = System.Drawing.Color.Transparent;
-            this.label59.ForeColor = System.Drawing.Color.Lime;
-            this.label59.Location = new System.Drawing.Point(3, 195);
-            this.label59.Margin = new System.Windows.Forms.Padding(0);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(29, 12);
-            this.label59.TabIndex = 10;
-            this.label59.Text = "50℃";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.BackColor = System.Drawing.Color.Transparent;
-            this.label46.ForeColor = System.Drawing.Color.Lime;
-            this.label46.Location = new System.Drawing.Point(3, 355);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(29, 12);
-            this.label46.TabIndex = 8;
-            this.label46.Text = "10℃";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.BackColor = System.Drawing.Color.Transparent;
-            this.label44.ForeColor = System.Drawing.Color.Lime;
-            this.label44.Location = new System.Drawing.Point(3, 315);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(29, 12);
-            this.label44.TabIndex = 7;
-            this.label44.Text = "20℃";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.BackColor = System.Drawing.Color.Transparent;
-            this.label43.ForeColor = System.Drawing.Color.Lime;
-            this.label43.Location = new System.Drawing.Point(3, 75);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(29, 12);
-            this.label43.TabIndex = 6;
-            this.label43.Text = "80℃";
-            // 
-            // label42
-            // 
-            this.label42.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label42.AutoSize = true;
-            this.label42.ForeColor = System.Drawing.Color.Lime;
-            this.label42.Location = new System.Drawing.Point(146, 386);
-            this.label42.Margin = new System.Windows.Forms.Padding(3, 0, 600, 0);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(35, 12);
-            this.label42.TabIndex = 5;
-            this.label42.Text = "40min";
-            // 
-            // label40
-            // 
-            this.label40.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label40.AutoSize = true;
-            this.label40.ForeColor = System.Drawing.Color.Lime;
-            this.label40.Location = new System.Drawing.Point(346, 386);
-            this.label40.Margin = new System.Windows.Forms.Padding(3, 0, 600, 0);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(35, 12);
-            this.label40.TabIndex = 4;
-            this.label40.Text = "30min";
-            // 
-            // label38
-            // 
-            this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label38.AutoSize = true;
-            this.label38.ForeColor = System.Drawing.Color.Lime;
-            this.label38.Location = new System.Drawing.Point(546, 386);
-            this.label38.Margin = new System.Windows.Forms.Padding(3, 0, 400, 0);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(35, 12);
-            this.label38.TabIndex = 3;
-            this.label38.Text = "20min";
-            // 
-            // label34
-            // 
-            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label34.AutoSize = true;
-            this.label34.ForeColor = System.Drawing.Color.Lime;
-            this.label34.Location = new System.Drawing.Point(746, 386);
-            this.label34.Margin = new System.Windows.Forms.Padding(3, 0, 200, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(35, 12);
-            this.label34.TabIndex = 2;
-            this.label34.Text = "10min";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.BackColor = System.Drawing.Color.Transparent;
-            this.label33.ForeColor = System.Drawing.Color.Lime;
-            this.label33.Location = new System.Drawing.Point(3, 275);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(29, 12);
-            this.label33.TabIndex = 1;
-            this.label33.Text = "30℃";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.ForeColor = System.Drawing.Color.Lime;
-            this.label32.Location = new System.Drawing.Point(3, 35);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(29, 12);
-            this.label32.TabIndex = 0;
-            this.label32.Text = "90℃";
-            // 
-            // label31
-            // 
-            this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label31.Font = new System.Drawing.Font("黑体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label31.Location = new System.Drawing.Point(0, 20);
-            this.label31.Margin = new System.Windows.Forms.Padding(0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(40, 400);
-            this.label31.TabIndex = 3;
-            this.label31.Text = "实时温度曲线";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tableLayoutPanel32
-            // 
-            this.tableLayoutPanel32.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.tableLayoutPanel32.ColumnCount = 8;
-            this.tableLayoutPanel32.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.8769F));
-            this.tableLayoutPanel32.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.660132F));
-            this.tableLayoutPanel32.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.86056F));
-            this.tableLayoutPanel32.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.660132F));
-            this.tableLayoutPanel32.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.86056F));
-            this.tableLayoutPanel32.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.660132F));
-            this.tableLayoutPanel32.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.86056F));
-            this.tableLayoutPanel32.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.56102F));
-            this.tableLayoutPanel32.Controls.Add(this.cbCurveSelectedStation, 6, 0);
-            this.tableLayoutPanel32.Controls.Add(this.label67, 5, 0);
-            this.tableLayoutPanel32.Controls.Add(this.label51, 0, 0);
-            this.tableLayoutPanel32.Controls.Add(this.cbCurveSelectedFloor, 4, 0);
-            this.tableLayoutPanel32.Controls.Add(this.label52, 1, 0);
-            this.tableLayoutPanel32.Controls.Add(this.label53, 3, 0);
-            this.tableLayoutPanel32.Controls.Add(this.cbCurveSelectedOven, 2, 0);
-            this.tableLayoutPanel32.Controls.Add(this.cbTemperAll, 7, 0);
-            this.tableLayoutPanel32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel32.Location = new System.Drawing.Point(40, 420);
-            this.tableLayoutPanel32.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel32.Name = "tableLayoutPanel32";
-            this.tableLayoutPanel32.RowCount = 1;
-            this.tableLayoutPanel32.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel32.Size = new System.Drawing.Size(962, 31);
-            this.tableLayoutPanel32.TabIndex = 11;
-            // 
-            // cbCurveSelectedStation
-            // 
-            this.cbCurveSelectedStation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbCurveSelectedStation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCurveSelectedStation.FormattingEnabled = true;
-            this.cbCurveSelectedStation.Location = new System.Drawing.Point(575, 5);
-            this.cbCurveSelectedStation.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.cbCurveSelectedStation.Name = "cbCurveSelectedStation";
-            this.cbCurveSelectedStation.Size = new System.Drawing.Size(120, 20);
-            this.cbCurveSelectedStation.TabIndex = 55;
-            this.cbCurveSelectedStation.SelectedIndexChanged += new System.EventHandler(this.cbCurveSelected_SelectedIndexChanged);
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label67.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label67.Location = new System.Drawing.Point(511, 0);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(58, 31);
-            this.label67.TabIndex = 55;
-            this.label67.Text = "工位:";
-            this.label67.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label51.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label51.Location = new System.Drawing.Point(3, 0);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(108, 31);
-            this.label51.TabIndex = 0;
-            this.label51.Text = "选择烤箱工位";
-            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cbCurveSelectedFloor
-            // 
-            this.cbCurveSelectedFloor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbCurveSelectedFloor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCurveSelectedFloor.FormattingEnabled = true;
-            this.cbCurveSelectedFloor.Location = new System.Drawing.Point(378, 5);
-            this.cbCurveSelectedFloor.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.cbCurveSelectedFloor.Name = "cbCurveSelectedFloor";
-            this.cbCurveSelectedFloor.Size = new System.Drawing.Size(120, 20);
-            this.cbCurveSelectedFloor.TabIndex = 5;
-            this.cbCurveSelectedFloor.SelectedIndexChanged += new System.EventHandler(this.cbCurveSelected_SelectedIndexChanged);
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label52.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label52.Location = new System.Drawing.Point(117, 0);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(58, 31);
-            this.label52.TabIndex = 1;
-            this.label52.Text = "烤箱:";
-            this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label53.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label53.Location = new System.Drawing.Point(314, 0);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(58, 31);
-            this.label53.TabIndex = 2;
-            this.label53.Text = "炉层:";
-            this.label53.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cbCurveSelectedOven
-            // 
-            this.cbCurveSelectedOven.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbCurveSelectedOven.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCurveSelectedOven.FormattingEnabled = true;
-            this.cbCurveSelectedOven.Location = new System.Drawing.Point(181, 5);
-            this.cbCurveSelectedOven.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.cbCurveSelectedOven.Name = "cbCurveSelectedOven";
-            this.cbCurveSelectedOven.Size = new System.Drawing.Size(120, 20);
-            this.cbCurveSelectedOven.TabIndex = 4;
-            this.cbCurveSelectedOven.SelectedIndexChanged += new System.EventHandler(this.cbCurveSelected_SelectedIndexChanged);
-            // 
-            // cbTemperAll
-            // 
-            this.cbTemperAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbTemperAll.AutoSize = true;
-            this.cbTemperAll.Location = new System.Drawing.Point(887, 3);
-            this.cbTemperAll.Name = "cbTemperAll";
-            this.cbTemperAll.Size = new System.Drawing.Size(72, 25);
-            this.cbTemperAll.TabIndex = 7;
-            this.cbTemperAll.Text = "温度全选";
-            this.cbTemperAll.UseVisualStyleBackColor = true;
-            this.cbTemperAll.CheckedChanged += new System.EventHandler(this.cbTemperAll_CheckedChanged);
-            // 
-            // tableLayoutPanel31
-            // 
-            this.tableLayoutPanel31.BackColor = System.Drawing.SystemColors.Control;
-            this.tableLayoutPanel31.ColumnCount = 7;
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
-            this.tableLayoutPanel31.Controls.Add(this.cbVacuumIndex01, 6, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex04, 0, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex20, 0, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex24, 0, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex12, 0, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex16, 0, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex08, 0, 3);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex01, 0, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex02, 0, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex03, 0, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex05, 1, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex06, 1, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex07, 1, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex10, 2, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex11, 2, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex13, 3, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex14, 3, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex15, 3, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex17, 4, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex18, 4, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex19, 4, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex21, 5, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex22, 5, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex23, 5, 2);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex09, 2, 0);
-            this.tableLayoutPanel31.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel31.Location = new System.Drawing.Point(40, 461);
-            this.tableLayoutPanel31.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.tableLayoutPanel31.Name = "tableLayoutPanel31";
-            this.tableLayoutPanel31.RowCount = 4;
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel31.Size = new System.Drawing.Size(962, 107);
-            this.tableLayoutPanel31.TabIndex = 10;
-            // 
-            // cbVacuumIndex01
-            // 
-            this.cbVacuumIndex01.AutoSize = true;
-            this.cbVacuumIndex01.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbVacuumIndex01.ForeColor = System.Drawing.Color.Violet;
-            this.cbVacuumIndex01.Location = new System.Drawing.Point(822, 0);
-            this.cbVacuumIndex01.Margin = new System.Windows.Forms.Padding(0);
-            this.cbVacuumIndex01.Name = "cbVacuumIndex01";
-            this.tableLayoutPanel31.SetRowSpan(this.cbVacuumIndex01, 4);
-            this.cbVacuumIndex01.Size = new System.Drawing.Size(140, 107);
-            this.cbVacuumIndex01.TabIndex = 16;
-            this.cbVacuumIndex01.Text = "真空度:100000Pa";
-            this.cbVacuumIndex01.UseVisualStyleBackColor = true;
-            // 
-            // cbTemperIndex04
-            // 
-            this.cbTemperIndex04.AutoSize = true;
-            this.cbTemperIndex04.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex04.Location = new System.Drawing.Point(0, 78);
-            this.cbTemperIndex04.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex04.Name = "cbTemperIndex04";
-            this.cbTemperIndex04.Size = new System.Drawing.Size(137, 29);
-            this.cbTemperIndex04.TabIndex = 79;
-            this.cbTemperIndex04.Text = "主控01:000℃";
-            this.cbTemperIndex04.UseVisualStyleBackColor = true;
-            this.cbTemperIndex04.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex20
-            // 
-            this.cbTemperIndex20.AutoSize = true;
-            this.cbTemperIndex20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex20.Location = new System.Drawing.Point(548, 78);
-            this.cbTemperIndex20.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex20.Name = "cbTemperIndex20";
-            this.cbTemperIndex20.Size = new System.Drawing.Size(137, 29);
-            this.cbTemperIndex20.TabIndex = 78;
-            this.cbTemperIndex20.Text = "主控01:000℃";
-            this.cbTemperIndex20.UseVisualStyleBackColor = true;
-            this.cbTemperIndex20.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex24
-            // 
-            this.cbTemperIndex24.AutoSize = true;
-            this.cbTemperIndex24.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex24.Location = new System.Drawing.Point(685, 78);
-            this.cbTemperIndex24.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex24.Name = "cbTemperIndex24";
-            this.cbTemperIndex24.Size = new System.Drawing.Size(137, 29);
-            this.cbTemperIndex24.TabIndex = 75;
-            this.cbTemperIndex24.Text = "主控01:000℃";
-            this.cbTemperIndex24.UseVisualStyleBackColor = true;
-            this.cbTemperIndex24.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex12
-            // 
-            this.cbTemperIndex12.AutoSize = true;
-            this.cbTemperIndex12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex12.Location = new System.Drawing.Point(274, 78);
-            this.cbTemperIndex12.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex12.Name = "cbTemperIndex12";
-            this.cbTemperIndex12.Size = new System.Drawing.Size(137, 29);
-            this.cbTemperIndex12.TabIndex = 74;
-            this.cbTemperIndex12.Text = "主控01:000℃";
-            this.cbTemperIndex12.UseVisualStyleBackColor = true;
-            this.cbTemperIndex12.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex16
-            // 
-            this.cbTemperIndex16.AutoSize = true;
-            this.cbTemperIndex16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex16.Location = new System.Drawing.Point(411, 78);
-            this.cbTemperIndex16.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex16.Name = "cbTemperIndex16";
-            this.cbTemperIndex16.Size = new System.Drawing.Size(137, 29);
-            this.cbTemperIndex16.TabIndex = 71;
-            this.cbTemperIndex16.Text = "主控01:000℃";
-            this.cbTemperIndex16.UseVisualStyleBackColor = true;
-            this.cbTemperIndex16.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex08
-            // 
-            this.cbTemperIndex08.AutoSize = true;
-            this.cbTemperIndex08.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex08.Location = new System.Drawing.Point(137, 78);
-            this.cbTemperIndex08.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex08.Name = "cbTemperIndex08";
-            this.cbTemperIndex08.Size = new System.Drawing.Size(137, 29);
-            this.cbTemperIndex08.TabIndex = 64;
-            this.cbTemperIndex08.Text = "主控01:000℃";
-            this.cbTemperIndex08.UseVisualStyleBackColor = true;
-            this.cbTemperIndex08.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex01
-            // 
-            this.cbTemperIndex01.AutoSize = true;
-            this.cbTemperIndex01.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex01.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cbTemperIndex01.Location = new System.Drawing.Point(0, 0);
-            this.cbTemperIndex01.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex01.Name = "cbTemperIndex01";
-            this.cbTemperIndex01.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex01.TabIndex = 8;
-            this.cbTemperIndex01.Text = "主控01:000℃";
-            this.cbTemperIndex01.UseVisualStyleBackColor = true;
-            this.cbTemperIndex01.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex02
-            // 
-            this.cbTemperIndex02.AutoSize = true;
-            this.cbTemperIndex02.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex02.ForeColor = System.Drawing.Color.Fuchsia;
-            this.cbTemperIndex02.Location = new System.Drawing.Point(0, 26);
-            this.cbTemperIndex02.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex02.Name = "cbTemperIndex02";
-            this.cbTemperIndex02.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex02.TabIndex = 9;
-            this.cbTemperIndex02.Text = "主控01:000℃";
-            this.cbTemperIndex02.UseVisualStyleBackColor = true;
-            this.cbTemperIndex02.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex03
-            // 
-            this.cbTemperIndex03.AutoSize = true;
-            this.cbTemperIndex03.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex03.Location = new System.Drawing.Point(0, 52);
-            this.cbTemperIndex03.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex03.Name = "cbTemperIndex03";
-            this.cbTemperIndex03.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex03.TabIndex = 10;
-            this.cbTemperIndex03.Text = "主控01:000℃";
-            this.cbTemperIndex03.UseVisualStyleBackColor = true;
-            this.cbTemperIndex03.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex05
-            // 
-            this.cbTemperIndex05.AutoSize = true;
-            this.cbTemperIndex05.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex05.Location = new System.Drawing.Point(137, 0);
-            this.cbTemperIndex05.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex05.Name = "cbTemperIndex05";
-            this.cbTemperIndex05.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex05.TabIndex = 54;
-            this.cbTemperIndex05.Text = "主控01:000℃";
-            this.cbTemperIndex05.UseVisualStyleBackColor = true;
-            this.cbTemperIndex05.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex06
-            // 
-            this.cbTemperIndex06.AutoSize = true;
-            this.cbTemperIndex06.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex06.Location = new System.Drawing.Point(137, 26);
-            this.cbTemperIndex06.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex06.Name = "cbTemperIndex06";
-            this.cbTemperIndex06.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex06.TabIndex = 13;
-            this.cbTemperIndex06.Text = "主控01:000℃";
-            this.cbTemperIndex06.UseVisualStyleBackColor = true;
-            this.cbTemperIndex06.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex07
-            // 
-            this.cbTemperIndex07.AutoSize = true;
-            this.cbTemperIndex07.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex07.Location = new System.Drawing.Point(137, 52);
-            this.cbTemperIndex07.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex07.Name = "cbTemperIndex07";
-            this.cbTemperIndex07.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex07.TabIndex = 14;
-            this.cbTemperIndex07.Text = "主控01:000℃";
-            this.cbTemperIndex07.UseVisualStyleBackColor = true;
-            this.cbTemperIndex07.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex10
-            // 
-            this.cbTemperIndex10.AutoSize = true;
-            this.cbTemperIndex10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex10.Location = new System.Drawing.Point(274, 26);
-            this.cbTemperIndex10.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex10.Name = "cbTemperIndex10";
-            this.cbTemperIndex10.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex10.TabIndex = 55;
-            this.cbTemperIndex10.Text = "主控01:000℃";
-            this.cbTemperIndex10.UseVisualStyleBackColor = true;
-            this.cbTemperIndex10.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex11
-            // 
-            this.cbTemperIndex11.AutoSize = true;
-            this.cbTemperIndex11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex11.Location = new System.Drawing.Point(274, 52);
-            this.cbTemperIndex11.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex11.Name = "cbTemperIndex11";
-            this.cbTemperIndex11.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex11.TabIndex = 11;
-            this.cbTemperIndex11.Text = "主控01:000℃";
-            this.cbTemperIndex11.UseVisualStyleBackColor = true;
-            this.cbTemperIndex11.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex13
-            // 
-            this.cbTemperIndex13.AutoSize = true;
-            this.cbTemperIndex13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex13.Location = new System.Drawing.Point(411, 0);
-            this.cbTemperIndex13.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex13.Name = "cbTemperIndex13";
-            this.cbTemperIndex13.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex13.TabIndex = 57;
-            this.cbTemperIndex13.Text = "主控01:000℃";
-            this.cbTemperIndex13.UseVisualStyleBackColor = true;
-            this.cbTemperIndex13.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex14
-            // 
-            this.cbTemperIndex14.AutoSize = true;
-            this.cbTemperIndex14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex14.Location = new System.Drawing.Point(411, 26);
-            this.cbTemperIndex14.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex14.Name = "cbTemperIndex14";
-            this.cbTemperIndex14.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex14.TabIndex = 58;
-            this.cbTemperIndex14.Text = "主控01:000℃";
-            this.cbTemperIndex14.UseVisualStyleBackColor = true;
-            this.cbTemperIndex14.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex15
-            // 
-            this.cbTemperIndex15.AutoSize = true;
-            this.cbTemperIndex15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex15.Location = new System.Drawing.Point(411, 52);
-            this.cbTemperIndex15.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex15.Name = "cbTemperIndex15";
-            this.cbTemperIndex15.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex15.TabIndex = 59;
-            this.cbTemperIndex15.Text = "主控01:000℃";
-            this.cbTemperIndex15.UseVisualStyleBackColor = true;
-            this.cbTemperIndex15.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex17
-            // 
-            this.cbTemperIndex17.AutoSize = true;
-            this.cbTemperIndex17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex17.Location = new System.Drawing.Point(548, 0);
-            this.cbTemperIndex17.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex17.Name = "cbTemperIndex17";
-            this.cbTemperIndex17.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex17.TabIndex = 60;
-            this.cbTemperIndex17.Text = "主控01:000℃";
-            this.cbTemperIndex17.UseVisualStyleBackColor = true;
-            this.cbTemperIndex17.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex18
-            // 
-            this.cbTemperIndex18.AutoSize = true;
-            this.cbTemperIndex18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex18.Location = new System.Drawing.Point(548, 26);
-            this.cbTemperIndex18.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex18.Name = "cbTemperIndex18";
-            this.cbTemperIndex18.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex18.TabIndex = 62;
-            this.cbTemperIndex18.Text = "主控01:000℃";
-            this.cbTemperIndex18.UseVisualStyleBackColor = true;
-            this.cbTemperIndex18.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex19
-            // 
-            this.cbTemperIndex19.AutoSize = true;
-            this.cbTemperIndex19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex19.Location = new System.Drawing.Point(548, 52);
-            this.cbTemperIndex19.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex19.Name = "cbTemperIndex19";
-            this.cbTemperIndex19.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex19.TabIndex = 63;
-            this.cbTemperIndex19.Text = "主控01:000℃";
-            this.cbTemperIndex19.UseVisualStyleBackColor = true;
-            this.cbTemperIndex19.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex21
-            // 
-            this.cbTemperIndex21.AutoSize = true;
-            this.cbTemperIndex21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex21.Location = new System.Drawing.Point(685, 0);
-            this.cbTemperIndex21.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex21.Name = "cbTemperIndex21";
-            this.cbTemperIndex21.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex21.TabIndex = 56;
-            this.cbTemperIndex21.Text = "主控01:000℃";
-            this.cbTemperIndex21.UseVisualStyleBackColor = true;
-            this.cbTemperIndex21.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex22
-            // 
-            this.cbTemperIndex22.AutoSize = true;
-            this.cbTemperIndex22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex22.Location = new System.Drawing.Point(685, 26);
-            this.cbTemperIndex22.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex22.Name = "cbTemperIndex22";
-            this.cbTemperIndex22.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex22.TabIndex = 67;
-            this.cbTemperIndex22.Text = "主控01:000℃";
-            this.cbTemperIndex22.UseVisualStyleBackColor = true;
-            this.cbTemperIndex22.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex23
-            // 
-            this.cbTemperIndex23.AutoSize = true;
-            this.cbTemperIndex23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex23.Location = new System.Drawing.Point(685, 52);
-            this.cbTemperIndex23.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex23.Name = "cbTemperIndex23";
-            this.cbTemperIndex23.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex23.TabIndex = 65;
-            this.cbTemperIndex23.Text = "主控01:000℃";
-            this.cbTemperIndex23.UseVisualStyleBackColor = true;
-            this.cbTemperIndex23.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // cbTemperIndex09
-            // 
-            this.cbTemperIndex09.AutoSize = true;
-            this.cbTemperIndex09.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex09.Location = new System.Drawing.Point(274, 0);
-            this.cbTemperIndex09.Margin = new System.Windows.Forms.Padding(0);
-            this.cbTemperIndex09.Name = "cbTemperIndex09";
-            this.cbTemperIndex09.Size = new System.Drawing.Size(137, 26);
-            this.cbTemperIndex09.TabIndex = 76;
-            this.cbTemperIndex09.Text = "主控01:000℃";
-            this.cbTemperIndex09.UseVisualStyleBackColor = true;
-            this.cbTemperIndex09.CheckedChanged += new System.EventHandler(this.cbTemperIndex_CheckedChanged);
-            // 
-            // tabContentPageTVQuery
-            // 
-            this.tabContentPageTVQuery.Controls.Add(this.tableLayoutPanel11);
-            this.tabContentPageTVQuery.Location = new System.Drawing.Point(4, 22);
-            this.tabContentPageTVQuery.Name = "tabContentPageTVQuery";
-            this.tabContentPageTVQuery.Size = new System.Drawing.Size(1042, 578);
-            this.tabContentPageTVQuery.TabIndex = 4;
-            this.tabContentPageTVQuery.Text = "温度真空查询";
-            this.tabContentPageTVQuery.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel11
-            // 
-            this.tableLayoutPanel11.ColumnCount = 3;
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel11.Controls.Add(this.dgvTV, 1, 1);
-            this.tableLayoutPanel11.Controls.Add(this.tableLayoutPanel12, 1, 2);
-            this.tableLayoutPanel11.Controls.Add(this.tableLayoutPanel13, 1, 0);
-            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
-            this.tableLayoutPanel11.RowCount = 3;
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(1042, 578);
-            this.tableLayoutPanel11.TabIndex = 20;
-            // 
-            // dgvTV
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvTV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTV.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvTV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvTV.Location = new System.Drawing.Point(52, 57);
-            this.dgvTV.Margin = new System.Windows.Forms.Padding(0);
-            this.dgvTV.Name = "dgvTV";
-            this.dgvTV.RowTemplate.Height = 23;
-            this.dgvTV.Size = new System.Drawing.Size(937, 462);
-            this.dgvTV.TabIndex = 14;
-            // 
-            // tableLayoutPanel12
-            // 
-            this.tableLayoutPanel12.ColumnCount = 3;
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tableLayoutPanel12.Controls.Add(this.label29, 0, 0);
-            this.tableLayoutPanel12.Controls.Add(this.tbNumTV, 1, 0);
-            this.tableLayoutPanel12.Controls.Add(this.btnExportTV, 2, 0);
-            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(55, 522);
-            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
-            this.tableLayoutPanel12.RowCount = 1;
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(931, 53);
-            this.tableLayoutPanel12.TabIndex = 18;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label29.Location = new System.Drawing.Point(3, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(59, 53);
-            this.label29.TabIndex = 15;
-            this.label29.Text = "总计：";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tbNumTV
-            // 
-            this.tbNumTV.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbNumTV.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbNumTV.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbNumTV.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbNumTV.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.tbNumTV.Location = new System.Drawing.Point(68, 19);
-            this.tbNumTV.Name = "tbNumTV";
-            this.tbNumTV.Size = new System.Drawing.Size(76, 14);
-            this.tbNumTV.TabIndex = 16;
-            this.tbNumTV.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnExportTV
-            // 
-            this.btnExportTV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnExportTV.Location = new System.Drawing.Point(822, 13);
-            this.btnExportTV.Margin = new System.Windows.Forms.Padding(13);
-            this.btnExportTV.Name = "btnExportTV";
-            this.btnExportTV.Size = new System.Drawing.Size(96, 27);
-            this.btnExportTV.TabIndex = 17;
-            this.btnExportTV.Text = "导出(&E)";
-            this.btnExportTV.UseVisualStyleBackColor = true;
-            this.btnExportTV.Click += new System.EventHandler(this.btnExportTV_Click);
-            // 
-            // tableLayoutPanel13
-            // 
-            this.tableLayoutPanel13.ColumnCount = 9;
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.Controls.Add(this.btnQueryTV, 8, 0);
-            this.tableLayoutPanel13.Controls.Add(this.dtpStop, 5, 0);
-            this.tableLayoutPanel13.Controls.Add(this.label30, 4, 0);
-            this.tableLayoutPanel13.Controls.Add(this.label36, 0, 0);
-            this.tableLayoutPanel13.Controls.Add(this.label35, 2, 0);
-            this.tableLayoutPanel13.Controls.Add(this.dtpStart, 3, 0);
-            this.tableLayoutPanel13.Controls.Add(this.cbStations, 1, 0);
-            this.tableLayoutPanel13.Controls.Add(this.label5, 6, 0);
-            this.tableLayoutPanel13.Controls.Add(this.cbCount, 7, 0);
-            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(55, 3);
-            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
-            this.tableLayoutPanel13.RowCount = 1;
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(931, 51);
-            this.tableLayoutPanel13.TabIndex = 19;
-            // 
-            // btnQueryTV
-            // 
-            this.btnQueryTV.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnQueryTV.Location = new System.Drawing.Point(827, 13);
-            this.btnQueryTV.Margin = new System.Windows.Forms.Padding(13);
-            this.btnQueryTV.Name = "btnQueryTV";
-            this.btnQueryTV.Size = new System.Drawing.Size(91, 25);
-            this.btnQueryTV.TabIndex = 9;
-            this.btnQueryTV.Text = "查询(&Q)";
-            this.btnQueryTV.UseVisualStyleBackColor = true;
-            this.btnQueryTV.Click += new System.EventHandler(this.btnQueryTV_Click);
-            // 
-            // dtpStop
-            // 
-            this.dtpStop.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.dtpStop.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dtpStop.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpStop.Location = new System.Drawing.Point(502, 15);
-            this.dtpStop.Margin = new System.Windows.Forms.Padding(0);
-            this.dtpStop.Name = "dtpStop";
-            this.dtpStop.Size = new System.Drawing.Size(151, 21);
-            this.dtpStop.TabIndex = 11;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label30.Location = new System.Drawing.Point(430, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(69, 51);
-            this.label30.TabIndex = 13;
-            this.label30.Text = "截止时间：";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label36.Location = new System.Drawing.Point(3, 0);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(65, 51);
-            this.label36.TabIndex = 18;
-            this.label36.Text = "烤箱工位：";
-            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label35.Location = new System.Drawing.Point(185, 0);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(69, 51);
-            this.label35.TabIndex = 12;
-            this.label35.Text = "起始时间：";
-            this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // dtpStart
-            // 
-            this.dtpStart.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.dtpStart.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpStart.Location = new System.Drawing.Point(257, 15);
-            this.dtpStart.Margin = new System.Windows.Forms.Padding(0);
-            this.dtpStart.Name = "dtpStart";
-            this.dtpStart.Size = new System.Drawing.Size(151, 21);
-            this.dtpStart.TabIndex = 10;
-            // 
-            // cbStations
-            // 
-            this.cbStations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbStations.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbStations.FormattingEnabled = true;
-            this.cbStations.Location = new System.Drawing.Point(71, 15);
-            this.cbStations.Margin = new System.Windows.Forms.Padding(0);
-            this.cbStations.Name = "cbStations";
-            this.cbStations.Size = new System.Drawing.Size(111, 20);
-            this.cbStations.TabIndex = 19;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(675, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 51);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "个数：";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cbCount
-            // 
-            this.cbCount.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cbCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCount.FormattingEnabled = true;
-            this.cbCount.Items.AddRange(new object[] {
-            "500",
-            "1000",
-            "2000"});
-            this.cbCount.Location = new System.Drawing.Point(725, 15);
-            this.cbCount.Name = "cbCount";
-            this.cbCount.Size = new System.Drawing.Size(74, 20);
-            this.cbCount.TabIndex = 21;
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Controls.Add(this.yieldDisplay, 0, 2);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 3;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 136F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1036, 572);
+            this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // yieldDisplay
+            // 
+            this.yieldDisplay.Location = new System.Drawing.Point(15, 436);
+            this.yieldDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.yieldDisplay.Name = "yieldDisplay";
+            this.yieldDisplay.Size = new System.Drawing.Size(270, 87);
+            this.yieldDisplay.TabIndex = 14;
+            this.yieldDisplay.btnYieldClearClick += new BYD.Scan.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
             // 
             // tabContentPageTips
             // 
@@ -2877,9 +1302,6 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.98848F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.6142F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.Controls.Add(this.gbBatteryScanerTest, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.groupBox2, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.groupBox3, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.btnDebug, 0, 4);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
@@ -2893,232 +1315,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1042, 578);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
-            // gbBatteryScanerTest
-            // 
-            this.gbBatteryScanerTest.BackColor = System.Drawing.SystemColors.Control;
-            this.gbBatteryScanerTest.Controls.Add(this.btnBatteryScanNgBackToFeeder);
-            this.gbBatteryScanerTest.Controls.Add(this.label62);
-            this.gbBatteryScanerTest.Controls.Add(this.btnBatteryScanOkBackToFeeder);
-            this.gbBatteryScanerTest.Controls.Add(this.cbBatteryScaner);
-            this.gbBatteryScanerTest.Controls.Add(this.btnBatteryScanStart);
-            this.gbBatteryScanerTest.Location = new System.Drawing.Point(30, 48);
-            this.gbBatteryScanerTest.Margin = new System.Windows.Forms.Padding(30, 20, 30, 20);
-            this.gbBatteryScanerTest.Name = "gbBatteryScanerTest";
-            this.gbBatteryScanerTest.Padding = new System.Windows.Forms.Padding(30);
-            this.gbBatteryScanerTest.Size = new System.Drawing.Size(315, 115);
-            this.gbBatteryScanerTest.TabIndex = 2;
-            this.gbBatteryScanerTest.TabStop = false;
-            this.gbBatteryScanerTest.Text = "电池扫码枪手动调试";
-            // 
-            // btnBatteryScanNgBackToFeeder
-            // 
-            this.btnBatteryScanNgBackToFeeder.Location = new System.Drawing.Point(228, 72);
-            this.btnBatteryScanNgBackToFeeder.Name = "btnBatteryScanNgBackToFeeder";
-            this.btnBatteryScanNgBackToFeeder.Size = new System.Drawing.Size(41, 23);
-            this.btnBatteryScanNgBackToFeeder.TabIndex = 6;
-            this.btnBatteryScanNgBackToFeeder.Text = "NG";
-            this.btnBatteryScanNgBackToFeeder.UseVisualStyleBackColor = true;
-            this.btnBatteryScanNgBackToFeeder.Click += new System.EventHandler(this.btnBatteryScanNgBackToFeeder_Click);
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(58, 77);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(101, 12);
-            this.label62.TabIndex = 5;
-            this.label62.Text = "结果反馈上料机：";
-            // 
-            // btnBatteryScanOkBackToFeeder
-            // 
-            this.btnBatteryScanOkBackToFeeder.Location = new System.Drawing.Point(167, 72);
-            this.btnBatteryScanOkBackToFeeder.Name = "btnBatteryScanOkBackToFeeder";
-            this.btnBatteryScanOkBackToFeeder.Size = new System.Drawing.Size(41, 23);
-            this.btnBatteryScanOkBackToFeeder.TabIndex = 4;
-            this.btnBatteryScanOkBackToFeeder.Text = "OK";
-            this.btnBatteryScanOkBackToFeeder.UseVisualStyleBackColor = true;
-            this.btnBatteryScanOkBackToFeeder.Click += new System.EventHandler(this.btnBatteryScanOkBackToFeeder_Click);
-            // 
-            // cbBatteryScaner
-            // 
-            this.cbBatteryScaner.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBatteryScaner.FormattingEnabled = true;
-            this.cbBatteryScaner.Location = new System.Drawing.Point(58, 32);
-            this.cbBatteryScaner.Name = "cbBatteryScaner";
-            this.cbBatteryScaner.Size = new System.Drawing.Size(102, 20);
-            this.cbBatteryScaner.TabIndex = 3;
-            // 
-            // btnBatteryScanStart
-            // 
-            this.btnBatteryScanStart.Location = new System.Drawing.Point(194, 31);
-            this.btnBatteryScanStart.Name = "btnBatteryScanStart";
-            this.btnBatteryScanStart.Size = new System.Drawing.Size(75, 23);
-            this.btnBatteryScanStart.TabIndex = 0;
-            this.btnBatteryScanStart.Text = "扫码";
-            this.btnBatteryScanStart.UseVisualStyleBackColor = true;
-            this.btnBatteryScanStart.Click += new System.EventHandler(this.btnBatteryScanStart_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label66);
-            this.groupBox2.Controls.Add(this.btnWaterContVerify);
-            this.groupBox2.Controls.Add(this.tbWaterContent);
-            this.groupBox2.Controls.Add(this.label65);
-            this.groupBox2.Controls.Add(this.label64);
-            this.groupBox2.Controls.Add(this.label63);
-            this.groupBox2.Controls.Add(this.cbSampleSelectedFloor);
-            this.groupBox2.Controls.Add(this.cbSampleSelectedOven);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(30, 343);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(30, 10, 30, 10);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(315, 119);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "水分测试结果输入";
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(167, 84);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(23, 12);
-            this.label66.TabIndex = 15;
-            this.label66.Text = "PPM";
-            // 
-            // btnWaterContVerify
-            // 
-            this.btnWaterContVerify.BackColor = System.Drawing.Color.Green;
-            this.btnWaterContVerify.ForeColor = System.Drawing.Color.White;
-            this.btnWaterContVerify.Location = new System.Drawing.Point(213, 68);
-            this.btnWaterContVerify.Name = "btnWaterContVerify";
-            this.btnWaterContVerify.Size = new System.Drawing.Size(82, 39);
-            this.btnWaterContVerify.TabIndex = 14;
-            this.btnWaterContVerify.Text = "确 认";
-            this.btnWaterContVerify.UseVisualStyleBackColor = false;
-            this.btnWaterContVerify.Click += new System.EventHandler(this.btnWaterContVerify_Click);
-            // 
-            // tbWaterContent
-            // 
-            this.tbWaterContent.BackColor = System.Drawing.SystemColors.Control;
-            this.tbWaterContent.Location = new System.Drawing.Point(88, 80);
-            this.tbWaterContent.Name = "tbWaterContent";
-            this.tbWaterContent.Size = new System.Drawing.Size(68, 21);
-            this.tbWaterContent.TabIndex = 13;
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(42, 84);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(41, 12);
-            this.label65.TabIndex = 12;
-            this.label65.Text = "水分：";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(166, 34);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(41, 12);
-            this.label64.TabIndex = 11;
-            this.label64.Text = "炉层：";
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(40, 34);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(41, 12);
-            this.label63.TabIndex = 10;
-            this.label63.Text = "烤箱：";
-            // 
-            // cbSampleSelectedFloor
-            // 
-            this.cbSampleSelectedFloor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSampleSelectedFloor.FormattingEnabled = true;
-            this.cbSampleSelectedFloor.Location = new System.Drawing.Point(213, 31);
-            this.cbSampleSelectedFloor.Name = "cbSampleSelectedFloor";
-            this.cbSampleSelectedFloor.Size = new System.Drawing.Size(82, 20);
-            this.cbSampleSelectedFloor.TabIndex = 9;
-            this.cbSampleSelectedFloor.SelectedIndexChanged += new System.EventHandler(this.cbSampleSelected_SelectedIndexChanged);
-            // 
-            // cbSampleSelectedOven
-            // 
-            this.cbSampleSelectedOven.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSampleSelectedOven.FormattingEnabled = true;
-            this.cbSampleSelectedOven.Location = new System.Drawing.Point(88, 31);
-            this.cbSampleSelectedOven.Name = "cbSampleSelectedOven";
-            this.cbSampleSelectedOven.Size = new System.Drawing.Size(68, 20);
-            this.cbSampleSelectedOven.TabIndex = 8;
-            this.cbSampleSelectedOven.SelectedIndexChanged += new System.EventHandler(this.cbSampleSelected_SelectedIndexChanged);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox3.Controls.Add(this.btnClampScanNgBackToFeeder);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.btnClampScanOkBackToFeeder);
-            this.groupBox3.Controls.Add(this.cbClampScaner);
-            this.groupBox3.Controls.Add(this.btnClampScanStart);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(30, 203);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(30, 20, 30, 20);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(30);
-            this.groupBox3.Size = new System.Drawing.Size(315, 110);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "夹具扫码枪手动调试";
-            // 
-            // btnClampScanNgBackToFeeder
-            // 
-            this.btnClampScanNgBackToFeeder.Location = new System.Drawing.Point(228, 72);
-            this.btnClampScanNgBackToFeeder.Name = "btnClampScanNgBackToFeeder";
-            this.btnClampScanNgBackToFeeder.Size = new System.Drawing.Size(41, 23);
-            this.btnClampScanNgBackToFeeder.TabIndex = 6;
-            this.btnClampScanNgBackToFeeder.Text = "NG";
-            this.btnClampScanNgBackToFeeder.UseVisualStyleBackColor = true;
-            this.btnClampScanNgBackToFeeder.Click += new System.EventHandler(this.btnClampScanNgBackToFeeder_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(58, 77);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 12);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "结果反馈上料机：";
-            // 
-            // btnClampScanOkBackToFeeder
-            // 
-            this.btnClampScanOkBackToFeeder.Location = new System.Drawing.Point(167, 72);
-            this.btnClampScanOkBackToFeeder.Name = "btnClampScanOkBackToFeeder";
-            this.btnClampScanOkBackToFeeder.Size = new System.Drawing.Size(41, 23);
-            this.btnClampScanOkBackToFeeder.TabIndex = 4;
-            this.btnClampScanOkBackToFeeder.Text = "OK";
-            this.btnClampScanOkBackToFeeder.UseVisualStyleBackColor = true;
-            this.btnClampScanOkBackToFeeder.Click += new System.EventHandler(this.btnClampScanOkBackToFeeder_Click);
-            // 
-            // cbClampScaner
-            // 
-            this.cbClampScaner.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbClampScaner.FormattingEnabled = true;
-            this.cbClampScaner.Location = new System.Drawing.Point(58, 32);
-            this.cbClampScaner.Name = "cbClampScaner";
-            this.cbClampScaner.Size = new System.Drawing.Size(102, 20);
-            this.cbClampScaner.TabIndex = 3;
-            // 
-            // btnClampScanStart
-            // 
-            this.btnClampScanStart.Location = new System.Drawing.Point(194, 31);
-            this.btnClampScanStart.Name = "btnClampScanStart";
-            this.btnClampScanStart.Size = new System.Drawing.Size(75, 23);
-            this.btnClampScanStart.TabIndex = 0;
-            this.btnClampScanStart.Text = "扫码";
-            this.btnClampScanStart.UseVisualStyleBackColor = true;
-            this.btnClampScanStart.Click += new System.EventHandler(this.btnClampScanStart_Click);
-            // 
             // btnDebug
             // 
             this.btnDebug.Location = new System.Drawing.Point(20, 492);
@@ -3129,202 +1325,6 @@
             this.btnDebug.Text = "调试";
             this.btnDebug.UseVisualStyleBackColor = true;
             this.btnDebug.Click += new System.EventHandler(this.btnDebug_Click);
-            // 
-            // tabContentTaskLog
-            // 
-            this.tabContentTaskLog.Controls.Add(this.tableLayoutPanel22);
-            this.tabContentTaskLog.Location = new System.Drawing.Point(4, 22);
-            this.tabContentTaskLog.Name = "tabContentTaskLog";
-            this.tabContentTaskLog.Size = new System.Drawing.Size(1042, 578);
-            this.tabContentTaskLog.TabIndex = 9;
-            this.tabContentTaskLog.Text = "搬运记录";
-            this.tabContentTaskLog.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel22
-            // 
-            this.tableLayoutPanel22.ColumnCount = 3;
-            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel22.Controls.Add(this.dgvTaskLog, 1, 1);
-            this.tableLayoutPanel22.Controls.Add(this.tableLayoutPanel29, 1, 2);
-            this.tableLayoutPanel22.Controls.Add(this.tableLayoutPanel30, 1, 0);
-            this.tableLayoutPanel22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel22.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel22.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel22.Name = "tableLayoutPanel22";
-            this.tableLayoutPanel22.RowCount = 3;
-            this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel22.Size = new System.Drawing.Size(1042, 578);
-            this.tableLayoutPanel22.TabIndex = 10;
-            // 
-            // dgvTaskLog
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTaskLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvTaskLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTaskLog.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvTaskLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvTaskLog.Location = new System.Drawing.Point(52, 57);
-            this.dgvTaskLog.Margin = new System.Windows.Forms.Padding(0);
-            this.dgvTaskLog.Name = "dgvTaskLog";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTaskLog.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvTaskLog.RowTemplate.Height = 23;
-            this.dgvTaskLog.Size = new System.Drawing.Size(937, 462);
-            this.dgvTaskLog.TabIndex = 5;
-            // 
-            // tableLayoutPanel29
-            // 
-            this.tableLayoutPanel29.ColumnCount = 3;
-            this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
-            this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tableLayoutPanel29.Controls.Add(this.tbTaskCount, 1, 0);
-            this.tableLayoutPanel29.Controls.Add(this.label54, 0, 0);
-            this.tableLayoutPanel29.Controls.Add(this.btnExportTaskLog, 2, 0);
-            this.tableLayoutPanel29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel29.Location = new System.Drawing.Point(55, 522);
-            this.tableLayoutPanel29.Name = "tableLayoutPanel29";
-            this.tableLayoutPanel29.RowCount = 1;
-            this.tableLayoutPanel29.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel29.Size = new System.Drawing.Size(931, 53);
-            this.tableLayoutPanel29.TabIndex = 9;
-            // 
-            // tbTaskCount
-            // 
-            this.tbTaskCount.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbTaskCount.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbTaskCount.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbTaskCount.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbTaskCount.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.tbTaskCount.Location = new System.Drawing.Point(68, 19);
-            this.tbTaskCount.Name = "tbTaskCount";
-            this.tbTaskCount.Size = new System.Drawing.Size(76, 14);
-            this.tbTaskCount.TabIndex = 7;
-            this.tbTaskCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label54.Location = new System.Drawing.Point(3, 0);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(59, 53);
-            this.label54.TabIndex = 6;
-            this.label54.Text = "总计：";
-            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnExportTaskLog
-            // 
-            this.btnExportTaskLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnExportTaskLog.Location = new System.Drawing.Point(822, 13);
-            this.btnExportTaskLog.Margin = new System.Windows.Forms.Padding(13);
-            this.btnExportTaskLog.Name = "btnExportTaskLog";
-            this.btnExportTaskLog.Size = new System.Drawing.Size(96, 27);
-            this.btnExportTaskLog.TabIndex = 8;
-            this.btnExportTaskLog.Text = "导出(&E)";
-            this.btnExportTaskLog.UseVisualStyleBackColor = true;
-            this.btnExportTaskLog.Click += new System.EventHandler(this.btnExportTaskLog_Click);
-            // 
-            // tableLayoutPanel30
-            // 
-            this.tableLayoutPanel30.ColumnCount = 5;
-            this.tableLayoutPanel30.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
-            this.tableLayoutPanel30.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 181F));
-            this.tableLayoutPanel30.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
-            this.tableLayoutPanel30.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel30.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 123F));
-            this.tableLayoutPanel30.Controls.Add(this.label55, 2, 0);
-            this.tableLayoutPanel30.Controls.Add(this.label56, 0, 0);
-            this.tableLayoutPanel30.Controls.Add(this.dtpTaskStop, 3, 0);
-            this.tableLayoutPanel30.Controls.Add(this.dtpTaskStart, 1, 0);
-            this.tableLayoutPanel30.Controls.Add(this.btnQueryTaskLog, 4, 0);
-            this.tableLayoutPanel30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel30.Location = new System.Drawing.Point(55, 3);
-            this.tableLayoutPanel30.Name = "tableLayoutPanel30";
-            this.tableLayoutPanel30.RowCount = 1;
-            this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel30.Size = new System.Drawing.Size(931, 51);
-            this.tableLayoutPanel30.TabIndex = 10;
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label55.Location = new System.Drawing.Point(252, 0);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(65, 51);
-            this.label55.TabIndex = 4;
-            this.label55.Text = "截止时间：";
-            this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label56.Location = new System.Drawing.Point(0, 0);
-            this.label56.Margin = new System.Windows.Forms.Padding(0);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(68, 51);
-            this.label56.TabIndex = 3;
-            this.label56.Text = "起始时间：";
-            this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // dtpTaskStop
-            // 
-            this.dtpTaskStop.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.dtpTaskStop.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dtpTaskStop.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTaskStop.Location = new System.Drawing.Point(335, 15);
-            this.dtpTaskStop.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.dtpTaskStop.Name = "dtpTaskStop";
-            this.dtpTaskStop.Size = new System.Drawing.Size(151, 21);
-            this.dtpTaskStop.TabIndex = 2;
-            // 
-            // dtpTaskStart
-            // 
-            this.dtpTaskStart.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.dtpTaskStart.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dtpTaskStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTaskStart.Location = new System.Drawing.Point(83, 15);
-            this.dtpTaskStart.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.dtpTaskStart.Name = "dtpTaskStart";
-            this.dtpTaskStart.Size = new System.Drawing.Size(151, 21);
-            this.dtpTaskStart.TabIndex = 1;
-            // 
-            // btnQueryTaskLog
-            // 
-            this.btnQueryTaskLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnQueryTaskLog.Location = new System.Drawing.Point(821, 13);
-            this.btnQueryTaskLog.Margin = new System.Windows.Forms.Padding(13);
-            this.btnQueryTaskLog.Name = "btnQueryTaskLog";
-            this.btnQueryTaskLog.Size = new System.Drawing.Size(97, 25);
-            this.btnQueryTaskLog.TabIndex = 0;
-            this.btnQueryTaskLog.Text = "查询(&Q)";
-            this.btnQueryTaskLog.UseVisualStyleBackColor = true;
-            this.btnQueryTaskLog.Click += new System.EventHandler(this.btnQueryTaskLog_Click);
             // 
             // tabContentPageAlarmLog
             // 
@@ -3358,23 +1358,23 @@
             // 
             // dgvAlarm
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlarm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlarm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAlarm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAlarm.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAlarm.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAlarm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAlarm.Location = new System.Drawing.Point(52, 57);
             this.dgvAlarm.Margin = new System.Windows.Forms.Padding(0);
@@ -3571,23 +1571,23 @@
             // 
             // dgViewBattery
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgViewBattery.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgViewBattery.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgViewBattery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewBattery.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewBattery.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgViewBattery.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgViewBattery.Location = new System.Drawing.Point(52, 57);
             this.dgViewBattery.Margin = new System.Windows.Forms.Padding(0);
@@ -3758,23 +1758,23 @@
             // 
             // dgViewOper
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgViewOper.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgViewOper.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgViewOper.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewOper.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewOper.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgViewOper.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgViewOper.Location = new System.Drawing.Point(52, 57);
             this.dgViewOper.Margin = new System.Windows.Forms.Padding(0);
@@ -3966,29 +1966,14 @@
             this.panel8.Size = new System.Drawing.Size(1, 578);
             this.panel8.TabIndex = 0;
             // 
-            // cmsBlanker
+            // userDisplay
             // 
-            this.cmsBlanker.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.cmsBlanker.Name = "cmsInOutOven";
-            this.cmsBlanker.Size = new System.Drawing.Size(125, 26);
-            this.cmsBlanker.Opening += new System.ComponentModel.CancelEventHandler(this.cmsBlanker_Opening);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmCancelRasterInductive});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
-            this.toolStripMenuItem1.Text = "远程控制";
-            // 
-            // tsmCancelRasterInductive
-            // 
-            this.tsmCancelRasterInductive.Image = global::BYD.Scan.Dispatcher.Properties.Resources.Reset_green;
-            this.tsmCancelRasterInductive.Name = "tsmCancelRasterInductive";
-            this.tsmCancelRasterInductive.Size = new System.Drawing.Size(148, 22);
-            this.tsmCancelRasterInductive.Text = "光栅报警复位";
-            this.tsmCancelRasterInductive.Click += new System.EventHandler(this.TsmCancelRasterInductive_Click);
+            this.userDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userDisplay.Location = new System.Drawing.Point(15, 496);
+            this.userDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.userDisplay.Name = "userDisplay";
+            this.userDisplay.Size = new System.Drawing.Size(270, 77);
+            this.userDisplay.TabIndex = 13;
             // 
             // lbRunStatus
             // 
@@ -4026,14 +2011,13 @@
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
             this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 467F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 380F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 586F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
             this.tableLayoutPanel1.Controls.Add(this.tabMain, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbRunStatus, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbTaskMode, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.openAllNetControlUC1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -4098,18 +2082,17 @@
             // 
             this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Controls.Add(this.lbTime, 0, 3);
-            this.tableLayoutPanel6.Controls.Add(this.userDisplay, 0, 2);
-            this.tableLayoutPanel6.Controls.Add(this.yieldDisplay, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.lbTime, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.userDisplay, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.machinesStatusUC1, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 4;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73.35703F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.27531F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.36767F));
+            this.tableLayoutPanel6.RowCount = 3;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.58282F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.41718F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(300, 604);
             this.tableLayoutPanel6.TabIndex = 13;
             // 
@@ -4129,42 +2112,14 @@
             this.lbTime.Text = "当前时间";
             this.lbTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // userDisplay
-            // 
-            this.userDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userDisplay.Location = new System.Drawing.Point(15, 508);
-            this.userDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.userDisplay.Name = "userDisplay";
-            this.userDisplay.Size = new System.Drawing.Size(270, 65);
-            this.userDisplay.TabIndex = 13;
-            // 
-            // yieldDisplay
-            // 
-            this.yieldDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.yieldDisplay.Location = new System.Drawing.Point(15, 421);
-            this.yieldDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.yieldDisplay.Name = "yieldDisplay";
-            this.yieldDisplay.Size = new System.Drawing.Size(270, 87);
-            this.yieldDisplay.TabIndex = 14;
-            this.yieldDisplay.btnYieldClearClick += new BYD.Scan.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
-            // 
             // machinesStatusUC1
             // 
             this.machinesStatusUC1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.machinesStatusUC1.Location = new System.Drawing.Point(15, 5);
             this.machinesStatusUC1.Margin = new System.Windows.Forms.Padding(15, 5, 15, 0);
             this.machinesStatusUC1.Name = "machinesStatusUC1";
-            this.machinesStatusUC1.Size = new System.Drawing.Size(270, 416);
+            this.machinesStatusUC1.Size = new System.Drawing.Size(270, 491);
             this.machinesStatusUC1.TabIndex = 16;
-            // 
-            // openAllNetControlUC1
-            // 
-            this.openAllNetControlUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.openAllNetControlUC1.Location = new System.Drawing.Point(477, 46);
-            this.openAllNetControlUC1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.openAllNetControlUC1.Name = "openAllNetControlUC1";
-            this.openAllNetControlUC1.Size = new System.Drawing.Size(125, 28);
-            this.openAllNetControlUC1.TabIndex = 11;
             // 
             // ManageSystem
             // 
@@ -4180,7 +2135,6 @@
             this.Text = "XXXXXXXXXX";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageSystem_FormClosing);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ManageSystem_KeyPress);
             this.tabMain.ResumeLayout(false);
             this.tabMainUser.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -4196,12 +2150,6 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserLogin)).EndInit();
             this.tabMainOperate.ResumeLayout(false);
-            this.panelTaskReset.ResumeLayout(false);
-            this.panelTaskReset.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTaskFuWei)).EndInit();
-            this.panelSwitchAuto.ResumeLayout(false);
-            this.panelSwitchAuto.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAuto)).EndInit();
             this.panelReset.ResumeLayout(false);
             this.panelReset.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReset)).EndInit();
@@ -4227,46 +2175,13 @@
             this.panel3333.ResumeLayout(false);
             this.panel3333.PerformLayout();
             this.tabContentPageMain.ResumeLayout(false);
-            this.tableLayoutPanel41.ResumeLayout(false);
-            this.panelRobot.ResumeLayout(false);
-            this.tableLayoutPanel42.ResumeLayout(false);
-            this.tableLayoutPanel43.ResumeLayout(false);
-            this.tableLayoutPanel44.ResumeLayout(false);
-            this.tableLayoutPanel45.ResumeLayout(false);
-            this.tabContentTemperCurve.ResumeLayout(false);
-            this.tableLayoutPanel18.ResumeLayout(false);
-            this.pCurve.ResumeLayout(false);
-            this.pCurve.PerformLayout();
-            this.tableLayoutPanel32.ResumeLayout(false);
-            this.tableLayoutPanel32.PerformLayout();
-            this.tableLayoutPanel31.ResumeLayout(false);
-            this.tableLayoutPanel31.PerformLayout();
-            this.tabContentPageTVQuery.ResumeLayout(false);
-            this.tableLayoutPanel11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTV)).EndInit();
-            this.tableLayoutPanel12.ResumeLayout(false);
-            this.tableLayoutPanel12.PerformLayout();
-            this.tableLayoutPanel13.ResumeLayout(false);
-            this.tableLayoutPanel13.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
             this.tabContentPageTips.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabContentPageManuTest.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.gbBatteryScanerTest.ResumeLayout(false);
-            this.gbBatteryScanerTest.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.tabContentTaskLog.ResumeLayout(false);
-            this.tableLayoutPanel22.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTaskLog)).EndInit();
-            this.tableLayoutPanel29.ResumeLayout(false);
-            this.tableLayoutPanel29.PerformLayout();
-            this.tableLayoutPanel30.ResumeLayout(false);
-            this.tableLayoutPanel30.PerformLayout();
             this.tabContentPageAlarmLog.ResumeLayout(false);
             this.tableLayoutPanel15.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlarm)).EndInit();
@@ -4297,7 +2212,6 @@
             this.splitContainer4.ResumeLayout(false);
             this.tableLayoutPanel24.ResumeLayout(false);
             this.tableLayoutPanel24.PerformLayout();
-            this.cmsBlanker.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -4327,7 +2241,6 @@
         private System.Windows.Forms.Panel panelReset;
         private System.Windows.Forms.Splitter splitter2;
         private System.Windows.Forms.Panel panelStop;
-        private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Panel panelStart;
         private System.Windows.Forms.PictureBox pictureBoxStart;
         private System.Windows.Forms.PictureBox pictureBoxStop;
@@ -4400,18 +2313,6 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.TabPage tabContentPageTVQuery;
-        private System.Windows.Forms.Button btnExportTV;
-        private System.Windows.Forms.TextBox tbNumTV;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.DataGridView dgvTV;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.DateTimePicker dtpStop;
-        private System.Windows.Forms.DateTimePicker dtpStart;
-        private System.Windows.Forms.Button btnQueryTV;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.ComboBox cbStations;
         private System.Windows.Forms.TabPage tabContentPageSettings;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.TreeView tvSettings;
@@ -4434,9 +2335,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
         private System.Windows.Forms.TabPage tabContentPageAlarmLog;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
         private System.Windows.Forms.DataGridView dgvAlarm;
@@ -4461,147 +2359,19 @@
         private System.Windows.Forms.TableLayoutPanel gbReg;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.TableLayoutPanel gbMesLogin;
-        private System.Windows.Forms.TabPage tabContentTemperCurve;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel18;
-        private System.Windows.Forms.Label label31;
-        private TengDa.WF.Controls.DoubleBufferPanel pCurve;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.CheckBox cbTemperIndex07;
-        private System.Windows.Forms.CheckBox cbTemperIndex06;
-        private System.Windows.Forms.CheckBox cbTemperIndex11;
-        private System.Windows.Forms.CheckBox cbTemperIndex03;
-        private System.Windows.Forms.CheckBox cbTemperIndex02;
-        private System.Windows.Forms.CheckBox cbTemperIndex01;
         private System.Windows.Forms.TabPage tabContentPageTips;
-        private System.Windows.Forms.Panel panelSwitchAuto;
-        private System.Windows.Forms.Label lbAuto;
-        private System.Windows.Forms.PictureBox pictureBoxAuto;
-        private System.Windows.Forms.Label lbTaskMode;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox tbTips;
-        private System.Windows.Forms.TabPage tabContentTaskLog;
-        private System.Windows.Forms.Panel panelTaskReset;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.PictureBox pictureBoxTaskFuWei;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel22;
-        private System.Windows.Forms.DataGridView dgvTaskLog;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel29;
-        private System.Windows.Forms.TextBox tbTaskCount;
-        private System.Windows.Forms.Label label54;
-        private System.Windows.Forms.Button btnExportTaskLog;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel30;
-        private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.Label label56;
-        private System.Windows.Forms.DateTimePicker dtpTaskStop;
-        private System.Windows.Forms.DateTimePicker dtpTaskStart;
-        private System.Windows.Forms.Button btnQueryTaskLog;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel31;
-        private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.ComboBox cbCurveSelectedFloor;
-        private System.Windows.Forms.ComboBox cbCurveSelectedOven;
-        private System.Windows.Forms.Label label59;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel32;
-        private System.Windows.Forms.CheckBox cbTemperAll;
-        private System.Windows.Forms.CheckBox cbTemperIndex05;
-        private System.Windows.Forms.Label label58;
-        private System.Windows.Forms.Label label61;
-        private System.Windows.Forms.Label label60;
         private TengDa.WF.Controls.UserDisplay userDisplay;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TabPage tabContentPageManuTest;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.GroupBox gbBatteryScanerTest;
-        private System.Windows.Forms.Label label62;
-        private System.Windows.Forms.Button btnBatteryScanOkBackToFeeder;
-        private System.Windows.Forms.ComboBox cbBatteryScaner;
-        private System.Windows.Forms.Button btnBatteryScanStart;
-        private System.Windows.Forms.Button btnBatteryScanNgBackToFeeder;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox cbSampleSelectedFloor;
-        private System.Windows.Forms.ComboBox cbSampleSelectedOven;
-        private System.Windows.Forms.Label label64;
-        private System.Windows.Forms.Label label63;
-        private System.Windows.Forms.Button btnWaterContVerify;
-        private System.Windows.Forms.TextBox tbWaterContent;
-        private System.Windows.Forms.Label label65;
-        private System.Windows.Forms.Label label66;
         private Controls.YieldDisplay yieldDisplay;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btnClampScanNgBackToFeeder;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnClampScanOkBackToFeeder;
-        private System.Windows.Forms.ComboBox cbClampScaner;
-        private System.Windows.Forms.Button btnClampScanStart;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cbCount;
         private System.Windows.Forms.Button btnDebug;
         private System.Windows.Forms.Label lbTime;
-        private System.Windows.Forms.ComboBox cbCurveSelectedStation;
-        private System.Windows.Forms.Label label67;
-        private System.Windows.Forms.CheckBox cbTemperIndex04;
-        private System.Windows.Forms.CheckBox cbTemperIndex20;
-        private System.Windows.Forms.CheckBox cbTemperIndex24;
-        private System.Windows.Forms.CheckBox cbTemperIndex12;
-        private System.Windows.Forms.CheckBox cbTemperIndex16;
-        private System.Windows.Forms.CheckBox cbTemperIndex08;
-        private System.Windows.Forms.CheckBox cbTemperIndex10;
-        private System.Windows.Forms.CheckBox cbTemperIndex13;
-        private System.Windows.Forms.CheckBox cbTemperIndex14;
-        private System.Windows.Forms.CheckBox cbTemperIndex15;
-        private System.Windows.Forms.CheckBox cbTemperIndex17;
-        private System.Windows.Forms.CheckBox cbTemperIndex18;
-        private System.Windows.Forms.CheckBox cbTemperIndex19;
-        private System.Windows.Forms.CheckBox cbTemperIndex21;
-        private System.Windows.Forms.CheckBox cbTemperIndex22;
-        private System.Windows.Forms.CheckBox cbTemperIndex23;
-        private System.Windows.Forms.CheckBox cbTemperIndex09;
-        private System.Windows.Forms.ContextMenuStrip cmsBlanker;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem tsmCancelRasterInductive;
-        private System.Windows.Forms.CheckBox cbVacuumIndex01;
-        private System.Windows.Forms.Label label81;
-        private System.Windows.Forms.Label label80;
-        private System.Windows.Forms.Label label79;
-        private System.Windows.Forms.Label label78;
-        private System.Windows.Forms.Label label77;
-        private System.Windows.Forms.Label label76;
-        private System.Windows.Forms.TabPage tabContentPageMain;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel41;
-        private System.Windows.Forms.Panel panelRobot;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel42;
-        private Controls.OvenUC ovenUC12;
-        private Controls.OvenUC ovenUC05;
-        private Controls.OvenUC ovenUC06;
-        private Controls.OvenUC ovenUC07;
-        private Controls.OvenUC ovenUC08;
-        private Controls.OvenUC ovenUC09;
-        private Controls.OvenUC ovenUC10;
-        private Controls.OvenUC ovenUC11;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel43;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel44;
-        private Controls.OvenUC ovenUC02;
-        private Controls.OvenUC ovenUC01;
-        private Controls.OvenUC ovenUC04;
-        private Controls.OvenUC ovenUC03;
-        private Controls.FeederUC feederUC1;
-        private Controls.CacherUC cacherUC1;
-        private Controls.TransferUC transferUC1;
-        private Controls.BlankerUC blankerUC1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel45;
-        private Controls.TaskInfo taskInfo1;
-        private Controls.RobotUC robotUC1;
         private Controls.MachinesStatusUC machinesStatusUC1;
-        private Controls.ShowOvenInfoTypeUC showOvenInfoTypeUC1;
-        private Controls.OpenAllNetControlUC openAllNetControlUC1;
+        private System.Windows.Forms.TabPage tabContentPageMain;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Label lbTaskMode;
     }
 }

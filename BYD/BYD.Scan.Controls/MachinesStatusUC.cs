@@ -19,14 +19,37 @@ namespace BYD.Scan.Controls
 
         public void Init()
         {
-            this.machineIndexs.Add(new MachineIndex { Machine = Current.Feeder, MsUC = this.machineStatusUC1 });
-            this.machineIndexs.Add(new MachineIndex { Machine = Current.ClampScaner, MsUC = this.machineStatusUC2 });
-            this.machineIndexs.Add(new MachineIndex { Machine = Current.BatteryScaner, MsUC = this.machineStatusUC3 });
-            this.machineIndexs.Add(new MachineIndex { Machine = Current.Robot, MsUC = this.machineStatusUC4 });
-            int machineindex = 5;
-            Current.ovens.ForEach(o => { this.machineIndexs.Add(new MachineIndex { Machine = o, MsUC = (MachineStatusUC)(this.Controls.Find(string.Format("machineStatusUC{0}", machineindex++), true)[0]) }); });
-            this.machineIndexs.Add(new MachineIndex { Machine = Current.Blanker, MsUC = this.machineStatusUC17 });
-            this.machineIndexs.Add(new MachineIndex { Machine = Current.mes, MsUC = this.machineStatusUC18 });
+            int machineindex = 1;
+            Current.Lines.ForEach(o1 =>
+            {
+                this.machineIndexs.Add(new MachineIndex
+                {
+                    Machine = o1.Touchscreen,
+                    MsUC = (MachineStatusUC)(this.Controls.Find(string.Format("machineStatusUC{0}", machineindex++), true)[0])
+                });
+                o1.ChildLines.ForEach(o2 =>
+                {
+
+                    this.machineIndexs.Add(new MachineIndex
+                    {
+                        Machine = o2.AutoScaner,
+                        MsUC = (MachineStatusUC)(this.Controls.Find(string.Format("machineStatusUC{0}", machineindex++), true)[0])
+                    });
+
+                    this.machineIndexs.Add(new MachineIndex
+                    {
+                        Machine = o2.ManuScaner,
+                        MsUC = (MachineStatusUC)(this.Controls.Find(string.Format("machineStatusUC{0}", machineindex++), true)[0])
+                    });
+                });
+            });
+
+            this.machineIndexs.Add(new MachineIndex
+            {
+                Machine = Current.mes,
+                MsUC = (MachineStatusUC)(this.Controls.Find(string.Format("machineStatusUC{0}", machineindex++), true)[0])
+            });
+
             this.machineIndexs.ForEach(o => o.MsUC.Init(o.Machine));
         }
 

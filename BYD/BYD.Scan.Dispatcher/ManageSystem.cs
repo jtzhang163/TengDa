@@ -103,11 +103,10 @@ namespace BYD.Scan.Dispatcher
 
         private void InitControls()
         {
-            cbCount.SelectedIndex = 1;
             lbTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             this.Text = string.Format("{0} {1}   {2}", Current.option.AppName, Version.AssemblyVersion, new Version().VersionTime.ToString("yyyy/M/d"));
             Current.runStstus = RunStatus.闲置;
-            Current.TaskMode = TaskMode.手动任务;
+            //Current.TaskMode = TaskMode.手动任务;
 
             yieldDisplay.SetYieldType();
             yieldDisplay.SetClearYieldTime(_Convert.StrToDateTime(Current.option.ClearYieldTime, Common.DefaultTime));
@@ -121,25 +120,12 @@ namespace BYD.Scan.Dispatcher
 
             #region 烤箱相关控件数组
 
-            for (int i = 0; i < OvenCount; i++)
-            {
-                ovenUCs[i] = (OvenUC)(this.Controls.Find(string.Format("ovenUC{0}", (i + 1).ToString("D2")), true)[0]);
-            }
+            //for (int i = 0; i < OvenCount; i++)
+            //{
+            //    ovenUCs[i] = (OvenUC)(this.Controls.Find(string.Format("ovenUC{0}", (i + 1).ToString("D2")), true)[0]);
+            //}
 
             #endregion
-
-
-            for (int i = 0; i < Option.TemperaturePointCount; i++)
-            {
-                cbTemperIndex[i] = (CheckBox)(this.Controls.Find(string.Format("cbTemperIndex{0}", (i + 1).ToString("D2")), true)[0]);
-                cbTemperIndex[i].ForeColor = Current.option.CurveColors[i];
-            }
-
-            for (int i = 0; i < Option.VacuumPointCount; i++)
-            {
-                cbVacuumIndex[i] = (CheckBox)(this.Controls.Find(string.Format("cbVacuumIndex{0}", (i + 1).ToString("D2")), true)[0]);
-                cbVacuumIndex[i].ForeColor = Color.Violet;
-            }
         }
 
         private void InitSettingsTreeView()
@@ -148,238 +134,141 @@ namespace BYD.Scan.Dispatcher
 
             TreeNode tnConfig = new TreeNode("配置");
 
-            List<TreeNode> tnOvens = new List<TreeNode>();
-            for (int i = 0; i < OvenCount; i++)
-            {
-                List<TreeNode> tnFloors = new List<TreeNode>();
-                TreeNode tnOvenPlc = new TreeNode("PLC");
-                tnFloors.Add(tnOvenPlc);
-                for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
-                {
-                    TreeNode tnFloor = new TreeNode(string.Format("{0}:{1}", Current.ovens[i].Floors[j].Id, Current.ovens[i].Floors[j].Name));
-                    tnFloors.Add(tnFloor);
-                }
+            //List<TreeNode> tnOvens = new List<TreeNode>();
+            //for (int i = 0; i < OvenCount; i++)
+            //{
+            //    List<TreeNode> tnFloors = new List<TreeNode>();
+            //    TreeNode tnOvenPlc = new TreeNode("PLC");
+            //    tnFloors.Add(tnOvenPlc);
+            //    for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
+            //    {
+            //        TreeNode tnFloor = new TreeNode(string.Format("{0}:{1}", Current.ovens[i].Floors[j].Id, Current.ovens[i].Floors[j].Name));
+            //        tnFloors.Add(tnFloor);
+            //    }
 
-                TreeNode tnOven = new TreeNode(string.Format("{0}:{1}", Current.ovens[i].Id, Current.ovens[i].Name), tnFloors.ToArray());
-                tnOvens.Add(tnOven);
-            }
+            //    TreeNode tnOven = new TreeNode(string.Format("{0}:{1}", Current.ovens[i].Id, Current.ovens[i].Name), tnFloors.ToArray());
+            //    tnOvens.Add(tnOven);
+            //}
 
-            TreeNode tnOvenList = new TreeNode("烤箱", tnOvens.ToArray());
+            //TreeNode tnOvenList = new TreeNode("烤箱", tnOvens.ToArray());
 
-            List<TreeNode> tnFeeders = new List<TreeNode>();
-            foreach (Feeder feeder in Feeder.FeederList)
-            {
-                tnFeeders.Add(new TreeNode(string.Format("{0}:{1}", feeder.Id, feeder.Name), new TreeNode[] { new TreeNode("PLC") }));
-            }
-            TreeNode tnFeederList = new TreeNode("上料机", tnFeeders.ToArray());
+            //List<TreeNode> tnFeeders = new List<TreeNode>();
+            //foreach (Feeder feeder in Feeder.FeederList)
+            //{
+            //    tnFeeders.Add(new TreeNode(string.Format("{0}:{1}", feeder.Id, feeder.Name), new TreeNode[] { new TreeNode("PLC") }));
+            //}
+            //TreeNode tnFeederList = new TreeNode("上料机", tnFeeders.ToArray());
 
-            List<TreeNode> tnBlankers = new List<TreeNode>();
-            foreach (Blanker blanker in Blanker.BlankerList)
-            {
-                tnBlankers.Add(new TreeNode(string.Format("{0}:{1}", blanker.Id, blanker.Name), new TreeNode[] { new TreeNode("PLC") }));
-            }
-            TreeNode tnBlankerList = new TreeNode("下料机", tnBlankers.ToArray());
+            //List<TreeNode> tnBlankers = new List<TreeNode>();
+            //foreach (Blanker blanker in Blanker.BlankerList)
+            //{
+            //    tnBlankers.Add(new TreeNode(string.Format("{0}:{1}", blanker.Id, blanker.Name), new TreeNode[] { new TreeNode("PLC") }));
+            //}
+            //TreeNode tnBlankerList = new TreeNode("下料机", tnBlankers.ToArray());
 
-            List<TreeNode> tnScaners = new List<TreeNode>();
-            foreach (Scaner scaner in Scaner.ScanerList)
-            {
-                tnScaners.Add(new TreeNode(string.Format("{0}:{1}", scaner.Id, scaner.Name)));
-            }
-            TreeNode tnScanerList = new TreeNode("扫码枪", tnScaners.ToArray());
+            //List<TreeNode> tnScaners = new List<TreeNode>();
+            //foreach (Scaner scaner in Scaner.ScanerList)
+            //{
+            //    tnScaners.Add(new TreeNode(string.Format("{0}:{1}", scaner.Id, scaner.Name)));
+            //}
+            //TreeNode tnScanerList = new TreeNode("扫码枪", tnScaners.ToArray());
 
-            TreeNode tnCache = new TreeNode("缓存架");
+            //TreeNode tnCache = new TreeNode("缓存架");
 
-            TreeNode tnRotater = new TreeNode("转移台");
+            //TreeNode tnRotater = new TreeNode("转移台");
 
-            List<TreeNode> tnStations = new List<TreeNode>();
+            //List<TreeNode> tnStations = new List<TreeNode>();
 
-            var stationList = new List<Station>();
-            Current.Feeder.Stations.ForEach(s => stationList.Add(s));
-            Current.Blanker.Stations.ForEach(s => stationList.Add(s));
-            Current.ovens.ForEach(o => o.Floors.ForEach(f => f.Stations.ForEach(s => stationList.Add(s))));
-            Current.Cacher.Stations.ForEach(s => stationList.Add(s));
-            stationList.Add(Current.Transfer.Station);
+            //var stationList = new List<Station>();
+            //Current.Feeder.Stations.ForEach(s => stationList.Add(s));
+            //Current.Blanker.Stations.ForEach(s => stationList.Add(s));
+            //Current.ovens.ForEach(o => o.Floors.ForEach(f => f.Stations.ForEach(s => stationList.Add(s))));
+            //Current.Cacher.Stations.ForEach(s => stationList.Add(s));
+            //stationList.Add(Current.Transfer.Station);
 
-            foreach (Station station in stationList)
-            {
-                List<TreeNode> tnClamps = new List<TreeNode>();
-                if (station.Clamp.Id > 0)
-                {
-                    List<TreeNode> tnBatteries = new List<TreeNode>();
-                    var batteries = station.Clamp.Batteries;
-                    foreach (var b in batteries)
-                    {
-                        tnBatteries.Add(new TreeNode(string.Format("{0}:{1}(电芯)", b.Id, b.Code)));
-                    }
-                    tnClamps.Add(new TreeNode(string.Format("{0}:{1}(夹具)", station.Clamp.Id, station.Clamp.Code), tnBatteries.ToArray()));
-                }
-                tnStations.Add(new TreeNode(string.Format("{0}:{1}", station.Id, station.Name), tnClamps.ToArray()));
-            }
-            TreeNode tnStationList = new TreeNode("工位列表", tnStations.ToArray());
+            //foreach (Station station in stationList)
+            //{
+            //    List<TreeNode> tnClamps = new List<TreeNode>();
+            //    if (station.Clamp.Id > 0)
+            //    {
+            //        List<TreeNode> tnBatteries = new List<TreeNode>();
+            //        var batteries = station.Clamp.Batteries;
+            //        foreach (var b in batteries)
+            //        {
+            //            tnBatteries.Add(new TreeNode(string.Format("{0}:{1}(电芯)", b.Id, b.Code)));
+            //        }
+            //        tnClamps.Add(new TreeNode(string.Format("{0}:{1}(夹具)", station.Clamp.Id, station.Clamp.Code), tnBatteries.ToArray()));
+            //    }
+            //    tnStations.Add(new TreeNode(string.Format("{0}:{1}", station.Id, station.Name), tnClamps.ToArray()));
+            //}
+            //TreeNode tnStationList = new TreeNode("工位列表", tnStations.ToArray());
 
 
-            List<TreeNode> tnTasks = new List<TreeNode>();
-            foreach (Task task in Task.TaskList)
-            {
-                tnTasks.Add(new TreeNode(string.Format("{0}:{1}", task.Id, task.Description)));
-            }
+            //List<TreeNode> tnTasks = new List<TreeNode>();
+            //foreach (Task task in Task.TaskList)
+            //{
+            //    tnTasks.Add(new TreeNode(string.Format("{0}:{1}", task.Id, task.Description)));
+            //}
 
-            TreeNode tnTaskList = new TreeNode("全部任务列表", tnTasks.ToArray());
+            //TreeNode tnTaskList = new TreeNode("全部任务列表", tnTasks.ToArray());
 
-            List<TreeNode> tnEnabledTasks = new List<TreeNode>();
-            foreach (Task task in Task.CanGetPutTaskList)
-            {
-                tnEnabledTasks.Add(new TreeNode(string.Format("{0}:{1}", task.Id, task.Description)));
-            }
+            //List<TreeNode> tnEnabledTasks = new List<TreeNode>();
+            //foreach (Task task in Task.CanGetPutTaskList)
+            //{
+            //    tnEnabledTasks.Add(new TreeNode(string.Format("{0}:{1}", task.Id, task.Description)));
+            //}
 
-            TreeNode tnEnabledTaskList = new TreeNode("有效任务排序", tnEnabledTasks.ToArray());
+            //TreeNode tnEnabledTaskList = new TreeNode("有效任务排序", tnEnabledTasks.ToArray());
 
-            List<TreeNode> tnRobotNodes = new List<TreeNode>();
+            //List<TreeNode> tnRobotNodes = new List<TreeNode>();
 
-            List<TreeNode> tnRobotClamps = new List<TreeNode>();
-            if (Current.Robot.Clamp.Id > 0)
-            {
-                List<TreeNode> tnBatteries = new List<TreeNode>();
-                var batteries = Current.Robot.Clamp.Batteries;
-                foreach (var b in batteries)
-                {
-                    tnBatteries.Add(new TreeNode(string.Format("{0}:{1}(电芯)", b.Id, b.Code)));
-                }
-                tnRobotClamps.Add(new TreeNode(string.Format("{0}:{1}(夹具)", Current.Robot.Clamp.Id, Current.Robot.Clamp.Code), tnBatteries.ToArray()));
-            }
+            //List<TreeNode> tnRobotClamps = new List<TreeNode>();
+            //if (Current.Robot.Clamp.Id > 0)
+            //{
+            //    List<TreeNode> tnBatteries = new List<TreeNode>();
+            //    var batteries = Current.Robot.Clamp.Batteries;
+            //    foreach (var b in batteries)
+            //    {
+            //        tnBatteries.Add(new TreeNode(string.Format("{0}:{1}(电芯)", b.Id, b.Code)));
+            //    }
+            //    tnRobotClamps.Add(new TreeNode(string.Format("{0}:{1}(夹具)", Current.Robot.Clamp.Id, Current.Robot.Clamp.Code), tnBatteries.ToArray()));
+            //}
 
-            tnRobotNodes.Add(new TreeNode("PLC"));
-            tnRobotNodes.AddRange(tnRobotClamps);
-            TreeNode tnRobot = new TreeNode("机器人", tnRobotNodes.ToArray());
+            //tnRobotNodes.Add(new TreeNode("PLC"));
+            //tnRobotNodes.AddRange(tnRobotClamps);
+            //TreeNode tnRobot = new TreeNode("机器人", tnRobotNodes.ToArray());
 
-            TreeNode tnMES = new TreeNode("MES");
+            //TreeNode tnMES = new TreeNode("MES");
 
-            TreeNode tnCurrentTask = new TreeNode("当前任务");
+            //TreeNode tnCurrentTask = new TreeNode("当前任务");
 
-            tvSettings.Nodes.AddRange(new TreeNode[] { tnCurrentTask, tnConfig, tnOvenList, tnFeederList, tnBlankerList, tnScanerList, tnCache, tnRotater, tnStationList, tnTaskList, tnEnabledTaskList, tnRobot, tnMES });
+            //tvSettings.Nodes.AddRange(new TreeNode[] { tnCurrentTask, tnConfig, tnOvenList, tnFeederList, tnBlankerList, tnScanerList, tnCache, tnRotater, tnStationList, tnTaskList, tnEnabledTaskList, tnRobot, tnMES });
+
         }
 
         private void InitTerminal()
         {
-            Current.ovens = Oven.OvenList;
+            Console.WriteLine(Current.Lines[0].ChildLines[1].AutoScaner.Name);
+             
             Current.Yields = Yield.YieldList;
-            cbStations.Items.Add("All");
+
             cbAlarmFloors.Items.Add("All");
 
-            for (int i = 0; i < OvenCount; i++)
+            for (int i = 0; i < LineCount; i++)
             {
-                this.ovenUCs[i].Init(Current.ovens[i]);
+                //this.ovenUCs[i].Init(Current.ovens[i]);
 
-                cbAlarmFloors.Items.Add(Current.ovens[i].Name);
+                //cbAlarmFloors.Items.Add(Current.ovens[i].Name);
 
-                ///查询温度真空时下拉列表数据            
-                for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
-                {
-                    Current.ovens[i].Floors[j].Stations.ForEach(s => cbStations.Items.Add(s.Name));
-                    cbAlarmFloors.Items.Add(Current.ovens[i].Floors[j].Name);
-                }
-                cbStations.SelectedIndex = 0;
-                cbAlarmFloors.SelectedIndex = 0;
+                /////查询温度真空时下拉列表数据            
+                //for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
+                //{
+                //    Current.ovens[i].Floors[j].Stations.ForEach(s => cbStations.Items.Add(s.Name));
+                //    cbAlarmFloors.Items.Add(Current.ovens[i].Floors[j].Name);
+                //}
+                //cbStations.SelectedIndex = 0;
+                //cbAlarmFloors.SelectedIndex = 0;
             }
-
-            this.feederUC1.Init(Current.Feeder);
-
-            //for (int i = 0; i < 1; i++)
-            //{
-            //    lbFeederNameN[i].Text = Current.Feeder.Name;
-            //    cbFeederIsEnable[i].Checked = Current.Feeder.IsEnable;
-
-            //    for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
-            //    {
-            //        lbScanerNameN[i][j].Text = Current.Feeder.Scaners[j].Name;
-            //        pbScanerLamp[i][j].Image = Properties.Resources.Gray_Round;
-            //        cbScanerIsEnable[i][j].Checked = Current.Feeder.Scaners[j].IsEnable;
-            //    }
-            //}
-
-            this.blankerUC1.Init(Current.Blanker);
-
-            this.robotUC1.Init(Current.Robot);
-
-            this.transferUC1.Init(Current.Transfer);
-
-            this.cacherUC1.Init(Current.Cacher);
-
-            bool isAll = true;
-            for (int k = 0; k < Option.TemperaturePointCount; k++)
-            {
-                if (Array.IndexOf(Current.option.CurveIndexs.Split(','), k.ToString()) > -1)
-                {
-                    cbTemperIndex[k].Checked = true;
-                }
-                else
-                {
-                    cbTemperIndex[k].Checked = false;
-                    isAll = false;
-                }
-            }
-            cbTemperAll.Checked = isAll;
-
-            for (int k = 0; k < Option.VacuumPointCount; k++)
-            {
-                cbVacuumIndex[k].Checked = true;
-            }
-
-            //温度曲线显示工位初始化
-
-            Station curveStation = Station.StationList.Where(s => s.Id == Current.option.CurveStationId).FirstOrDefault();
-            Floor curveFloor = Floor.FloorList.First(f => f.Stations.Contains(curveStation));
-            Oven curveOven = Oven.OvenList.First(o => o.Floors.Contains(curveFloor));
-
-            int ii = Current.ovens.IndexOf(curveOven);
-            int jj = curveOven.Floors.IndexOf(curveFloor);
-            int kk = curveFloor.Stations.IndexOf(curveStation);
-
-            Current.ovens.ForEach(o =>
-            {
-                cbCurveSelectedOven.Items.Add(o.Name);
-            });
-            cbCurveSelectedOven.SelectedIndex = ii;
-
-            curveOven.Floors.ForEach(f =>
-            {
-                cbCurveSelectedFloor.Items.Add(f.Name);
-            });
-            cbCurveSelectedFloor.SelectedIndex = jj;
-
-            curveFloor.Stations.ForEach(s =>
-            {
-                cbCurveSelectedStation.Items.Add(s.Name);
-            });
-            cbCurveSelectedStation.SelectedIndex = kk;
-
-
-            //水分手动上传选择炉层初始化
-
-            Floor sampleFloor = Floor.FloorList.Where(f => f.Id == Current.option.SampleFloorId).FirstOrDefault();
-            Oven sampleOven = Oven.OvenList.First(o => o.Floors.Contains(sampleFloor));
-
-            int iii = Current.ovens.IndexOf(sampleOven);
-            int jjj = sampleOven.Floors.IndexOf(sampleFloor);
-
-            Current.ovens.ForEach(o =>
-            {
-                cbSampleSelectedOven.Items.Add(o.Name);
-            });
-            cbSampleSelectedOven.SelectedIndex = iii;
-
-            sampleOven.Floors.ForEach(f =>
-            {
-                cbSampleSelectedFloor.Items.Add(f.Name);
-            });
-            cbSampleSelectedFloor.SelectedIndex = jjj;
-
-            cbBatteryScaner.Items.Add(Current.BatteryScaner.Name);
-            cbClampScaner.Items.Add(Current.ClampScaner.Name);
-
-            cbBatteryScaner.SelectedIndex = 0;
-            cbClampScaner.SelectedIndex = 0;
-
 
             this.machinesStatusUC1.Init();
         }
@@ -465,56 +354,56 @@ namespace BYD.Scan.Dispatcher
         private void RefreshUI()
         {
 
-            if (Current.ovens.Count(o => o.IsAlive && !o.AlreadyGetAllInfo) > 0)
-            {
-                TengDa.WF.Current.IsTerminalInitFinished = false;
-            }
-            else
-            {
-                TengDa.WF.Current.IsTerminalInitFinished = true;
-            }
+            //if (Current.ovens.Count(o => o.IsAlive && !o.AlreadyGetAllInfo) > 0)
+            //{
+            //    TengDa.WF.Current.IsTerminalInitFinished = false;
+            //}
+            //else
+            //{
+            //    TengDa.WF.Current.IsTerminalInitFinished = true;
+            //}
 
             #region 烤箱
 
-            for (int i = 0; i < OvenCount; i++)
+            for (int i = 0; i < LineCount; i++)
             {
-                Oven oven = Current.ovens[i];
+                //Oven oven = Current.ovens[i];
 
-                this.ovenUCs[i].UpdateUI();
+                //this.ovenUCs[i].UpdateUI();
 
-                if (oven.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(oven) == "未连接") { this.machinesStatusUC1.SetStatusInfo(oven, "连接成功"); } }
-                else { this.machinesStatusUC1.SetStatusInfo(oven, "未连接"); }
+                ////if (oven.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(oven) == "未连接") { this.machinesStatusUC1.SetStatusInfo(oven, "连接成功"); } }
+                ////else { this.machinesStatusUC1.SetStatusInfo(oven, "未连接"); }
 
-                for (int j = 0; j < OvenFloorCount; j++)
-                {
-                    oven.Floors[j].Stations.ForEach(s =>
-                    {
-                        if (s.Id == Current.option.CurveStationId)
-                        {
-                            for (int k = 0; k < Option.TemperaturePointCount; k++)
-                            {
-                                cbTemperIndex[k].Text = string.Format("{0}:{1}℃", Current.option.TemperNames[k], s.Temperatures[k].ToString("#0.0").PadLeft(5));
-                            }
-                            for (int k = 0; k < Option.VacuumPointCount; k++)
-                            {
-                                cbVacuumIndex[k].Text = string.Format("{0}:{1}Pa", "真空度", s.GetFloor().Vacuum.ToString());
-                            }
-                        }
-                    });
+                //for (int j = 0; j < OvenFloorCount; j++)
+                //{
+                //    oven.Floors[j].Stations.ForEach(s =>
+                //    {
+                //        if (s.Id == Current.option.CurveStationId)
+                //        {
+                //            for (int k = 0; k < Option.TemperaturePointCount; k++)
+                //            {
+                //                cbTemperIndex[k].Text = string.Format("{0}:{1}℃", Current.option.TemperNames[k], s.Temperatures[k].ToString("#0.0").PadLeft(5));
+                //            }
+                //            for (int k = 0; k < Option.VacuumPointCount; k++)
+                //            {
+                //                cbVacuumIndex[k].Text = string.Format("{0}:{1}Pa", "真空度", s.GetFloor().Vacuum.ToString());
+                //            }
+                //        }
+                //    });
 
-                    var floor = oven.Floors[j];
+                //    var floor = oven.Floors[j];
 
-                    if (floor.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId) > 0)
-                    {
-                        this.ovenUCs[i].Invalidate(j);
-                    }
+                //    if (floor.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId) > 0)
+                //    {
+                //        this.ovenUCs[i].Invalidate(j);
+                //    }
 
-                    if (floor.PreIsAlive != floor.IsAlive)
-                    {
-                        this.ovenUCs[i].Invalidate(j);
-                    }
+                //    if (floor.PreIsAlive != floor.IsAlive)
+                //    {
+                //        this.ovenUCs[i].Invalidate(j);
+                //    }
 
-                }
+                //}
 
             }
 
@@ -522,10 +411,10 @@ namespace BYD.Scan.Dispatcher
 
             #region 上料机、扫码枪
 
-            this.feederUC1.Update(Current.Feeder);
+           // this.feederUC1.Update(Current.Feeder);
 
-            if (Current.Feeder.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Feeder) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "连接成功"); } }
-            else { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "未连接"); }
+            //if (Current.Feeder.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Feeder) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "连接成功"); } }
+            //else { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "未连接"); }
 
             //    for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
             //    {
@@ -557,42 +446,42 @@ namespace BYD.Scan.Dispatcher
 
             #region 下料机、缓存架、转移台
 
-            this.blankerUC1.Update(Current.Blanker);
+           // this.blankerUC1.Update(Current.Blanker);
 
-            if (Current.Blanker.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Blanker) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "连接成功"); } }
-            else { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "未连接"); }
+            //if (Current.Blanker.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Blanker) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "连接成功"); } }
+            //else { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "未连接"); }
 
 
-            this.cacherUC1.Update(Current.Cacher);
+           // this.cacherUC1.Update(Current.Cacher);
 
-            this.transferUC1.Update(Current.Transfer);
+           // this.transferUC1.Update(Current.Transfer);
 
             #endregion
 
             #region MES
 
-            if (Current.runStstus != RunStatus.闲置 && Current.mes.IsAlive)
-            {
-                if (this.machinesStatusUC1.GetStatusInfo(Current.mes) == "未连接")
-                {
-                    this.machinesStatusUC1.SetStatusInfo(Current.mes, "连接成功");
-                }
-                this.machinesStatusUC1.SetLampColor(Current.mes, Color.Green);
-            }
-            else
-            {
-                this.machinesStatusUC1.SetStatusInfo(Current.mes, "未连接");
-                this.machinesStatusUC1.SetLampColor(Current.mes, Color.Gray);
-            }
+            //if (Current.runStstus != RunStatus.闲置 && Current.mes.IsAlive)
+            //{
+            //    if (this.machinesStatusUC1.GetStatusInfo(Current.mes) == "未连接")
+            //    {
+            //        this.machinesStatusUC1.SetStatusInfo(Current.mes, "连接成功");
+            //    }
+            //    this.machinesStatusUC1.SetLampColor(Current.mes, Color.Green);
+            //}
+            //else
+            //{
+            //    this.machinesStatusUC1.SetStatusInfo(Current.mes, "未连接");
+            //    this.machinesStatusUC1.SetLampColor(Current.mes, Color.Gray);
+            //}
 
             #endregion
 
             #region 机器人
 
-            this.robotUC1.Update(Current.Robot);
+           // this.robotUC1.Update(Current.Robot);
 
-            if (Current.Robot.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Robot) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "连接成功"); } }
-            else { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "未连接"); }
+            //if (Current.Robot.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Robot) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "连接成功"); } }
+            //else { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "未连接"); }
 
             //this.panelRobot.Padding = new Padding(Current.Robot.Position + 3, 3, 0, 3);
 
@@ -602,7 +491,7 @@ namespace BYD.Scan.Dispatcher
 
             lbTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             lbRunStatus.Text = Current.runStstus.ToString();
-            lbAuto.Text = Current.TaskMode == TaskMode.自动任务 ? "切换手动" : "切换自动";
+            //lbAuto.Text = Current.TaskMode == TaskMode.自动任务 ? "切换手动" : "切换自动";
 
             switch (Current.runStstus)
             {
@@ -612,16 +501,16 @@ namespace BYD.Scan.Dispatcher
                 case RunStatus.异常: lbRunStatus.ForeColor = Color.Red; break;
             }
 
-            if (!TengDa.WF.Current.IsTerminalInitFinished && Current.runStstus == RunStatus.运行)
-            {
-                lbTaskMode.Text = "初始化烤箱信息...";
-                lbTaskMode.ForeColor = Color.Red;
-            }
-            else
-            {
-                lbTaskMode.Text = Current.TaskMode.ToString();
-                lbTaskMode.ForeColor = Current.TaskMode == TaskMode.自动任务 ? Color.Lime : Color.Gray;
-            }
+            //if (!TengDa.WF.Current.IsTerminalInitFinished && Current.runStstus == RunStatus.运行)
+            //{
+            //    lbTaskMode.Text = "初始化烤箱信息...";
+            //    lbTaskMode.ForeColor = Color.Red;
+            //}
+            //else
+            //{
+            //    lbTaskMode.Text = Current.TaskMode.ToString();
+            //    lbTaskMode.ForeColor = Current.TaskMode == TaskMode.自动任务 ? Color.Lime : Color.Gray;
+            //}
 
             yieldDisplay.YieldUpdate();
 
@@ -634,7 +523,7 @@ namespace BYD.Scan.Dispatcher
             }
 
             // this.lbTaskStatus.Text = Current.Task.Status.ToString();
-            this.taskInfo1.UpdateInfo();
+            //this.taskInfo1.UpdateInfo();
             #endregion
 
         }
@@ -643,13 +532,7 @@ namespace BYD.Scan.Dispatcher
 
         #region 控件数组
 
-        private const int OvenCount = 12;
-        private const int OvenFloorCount = 3;
-
-        private OvenUC[] ovenUCs = new OvenUC[OvenCount];
-
-        private CheckBox[] cbTemperIndex = new CheckBox[Option.TemperaturePointCount];
-        private CheckBox[] cbVacuumIndex = new CheckBox[Option.VacuumPointCount];
+        private const int LineCount = 12;
 
         #endregion
 
@@ -729,7 +612,7 @@ namespace BYD.Scan.Dispatcher
                     {
                         this.machinesStatusUC1.SetCheckBoxEnabled(true);
                         isFirstStart = true;
-                        Current.TaskMode = TaskMode.手动任务;
+                        //Current.TaskMode = TaskMode.手动任务;
                         Current.runStstus = RunStatus.闲置;
                         Tip.Alert("复位成功！");
                         Operation.Add("复位");
@@ -741,212 +624,33 @@ namespace BYD.Scan.Dispatcher
                     Tip.Alert("请先停止！");
                 }
             }
-            else if (pictureBox.Name.Contains("Auto"))
-            {
-                if (Current.runStstus == RunStatus.闲置)
-                {
-                    Tip.Alert("请先启动！");
-                    return;
-                }
-
-                if (Current.runStstus == RunStatus.运行)
-                {
-                    Tip.Alert("请先停止！");
-                    return;
-                }
-
-                if (!TengDa.WF.Current.IsTerminalInitFinished)
-                {
-                    Tip.Alert("烤箱信息初始化尚未完成，请稍后！");
-                    return;
-                }
-
-                if (Current.TaskMode == TaskMode.手动任务 && Current.Task.Status != TaskStatus.完成)
-                {   
-                    Tip.Alert("当前手动任务尚未完成，无法切换为自动任务！若要强制切换，请先点击任务复位。");
-                    return;
-                }
-
-
-                if (Current.TaskMode == TaskMode.手动任务)
-                {
-                    for (int i = 0; i < OvenCount; i++)
-                    {
-                        for (int j = 0; j < OvenFloorCount; j++)
-                        {
-                            if (Current.ovens[i].Floors[j].IsAlive && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.打开)
-                            {
-                                Tip.Alert(Current.ovens[i].Floors[j].Name + "门尚未关闭，请手动关闭后再切换自动");
-                                return;
-                            }
-                        }
-                    }
-                    if (Current.Robot.IsAlive)
-                    {
-                        //if (!Current.Robot.IsExecuting)
-                        //{
-                        //    Tip.Alert("机器人尚未成功启动，不能切换自动");
-                        //    return;
-                        //}
-
-                        if (Current.Robot.ClampStatus != ClampStatus.无夹具)
-                        {
-                            Tip.Alert("机器人负载有夹具，不能切换自动");
-                            return;
-                        }
-                    }
-                }
-
-                   
-
-                if (Current.TaskMode == TaskMode.自动任务 && Current.Task.Status != TaskStatus.完成)
-                {
-                 
-                    Tip.Alert("当前任务完成后会切换至手动任务。若要立即切换，请点击任务复位");
-                    CurrentTask.ToSwitchManuTaskMode = true;
-                    return;
-                }
-
-                //Station dangerousStation = null;
-                //int dangerousDoorCount = 0;
-                //Current.feeders.ForEach(f => f.Stations.ForEach(s =>
-                //{
-                //    if (s.Status == StationStatus.可取 && s.DoorStatus != DoorStatus.关闭)
-                //    {
-                //        dangerousStation = s;
-                //        dangerousDoorCount++;
-                //    }
-                //}));
-
-                //if (Current.TaskMode == TaskMode.手动任务 && dangerousDoorCount > 0)
-                //{
-                //    Tip.Alert(string.Format("请先关闭{0}的门！", dangerousStation.Name));
-                //    return;
-                //}
-
-                TaskReset();
-                Current.TaskMode = Current.TaskMode == TaskMode.自动任务 ? TaskMode.手动任务 : TaskMode.自动任务;
-                Operation.Add("切换为 " + Current.TaskMode);
-                lbAuto.Text = Current.TaskMode == TaskMode.自动任务 ? "切换手动" : "切换自动";
-                Tip.Alert(string.Format("成功切换为{0}！", Current.TaskMode));
-                CurrentTask.ToSwitchManuTaskMode = false;
-            }
-            else if (pictureBox.Name.Contains("TaskFuWei"))
-            {
-                //if (Current.Task.Status == TaskStatus.完成)
-                //{
-                //    Tip.Alert("尚未生成任务！");
-                //    return;
-                //}
-
-                if (Current.runStstus == RunStatus.运行)
-                {
-                    Tip.Alert("请先停止！");
-                    return;
-                }
-                TaskReset();
-                Operation.Add("任务复位成功！");
-                Tip.Alert("任务复位成功！");
-            }
         }
 
-        /// <summary>
-        /// 复位成功
-        /// </summary>
-        private void TaskReset()
-        {
-            Current.Task.NextFromStationId = -1;
-            Current.Task.NextToStationId = -1;
-            Current.Task.FromStationId = -1;
-            Current.Task.ToStationId = -1;
-            Current.Task.TaskId = -1;
-            Current.Task.StartTime = TengDa.Common.DefaultTime;
-            Current.Task.FromClampStatus = ClampStatus.未知;
-            Current.Task.Status = TaskStatus.完成;
-            Current.Robot.IsMoving = false;
-            Current.Robot.IsAlreadySendCmd = false;
-        }
 
         private bool PlcConnect()
         {
             string msg = string.Empty;
-
-            if (Current.Feeder.IsEnable)
-            {
-                if (!Current.Feeder.Plc.IsPingSuccess)
-                {
-                    Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.Feeder.Plc.Name, Current.Feeder.Plc.IP));
-                    return false;
-                }
-
-                if (!Current.Feeder.Plc.TcpConnect(out msg))
-                {
-                    Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.Feeder.Name, msg));
-                    return false;
-                }
-                this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "连接成功");
-                this.machinesStatusUC1.SetLampColor(Current.Feeder, Color.Green);
-            }
             
 
-            for (int i = 0; i < OvenCount; i++)
-            {
-                if (Current.ovens[i].IsEnable)
-                {
-                    if (!Current.ovens[i].Plc.IsPingSuccess)
-                    {
-                        Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.ovens[i].Plc.Name, Current.ovens[i].Plc.IP));
-                        return false;
-                    }
+            //for (int i = 0; i < OvenCount; i++)
+            //{
+            //    if (Current.ovens[i].IsEnable)
+            //    {
+            //        if (!Current.ovens[i].Plc.IsPingSuccess)
+            //        {
+            //            Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.ovens[i].Plc.Name, Current.ovens[i].Plc.IP));
+            //            return false;
+            //        }
 
-                    if (!Current.ovens[i].Plc.TcpConnect(out msg))
-                    {
-                        Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.ovens[i].Name, msg));
-                        return false;
-                    }
-                    this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "连接成功");
-                    this.machinesStatusUC1.SetLampColor(Current.ovens[i], Color.Green);
-                }
-            }
-
-
-            if (Current.Blanker.IsEnable)
-            {
-                if (!Current.Blanker.Plc.IsPingSuccess)
-                {
-                    Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.Blanker.Plc.Name, Current.Blanker.Plc.IP));
-                    return false;
-                }
-
-                if (!Current.Blanker.Plc.TcpConnect(out msg))
-                {
-                    Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.Blanker.Name, msg));
-                    return false;
-                }
-                this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "连接成功");
-                this.machinesStatusUC1.SetLampColor(Current.Blanker, Color.Green);
-            }
-            
-
-            if (Current.Robot.IsEnable)
-            {
-                if (!Current.Robot.Plc.IsPingSuccess)
-                {
-                    Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.Robot.Plc.Name, Current.Robot.Plc.IP));
-                    return false;
-                }
-
-                if (!Current.Robot.Plc.TcpConnect(out msg))
-                {
-                    Error.Alert(string.Format("打开机器人连接失败，原因：{0}", msg));
-                    return false;
-                }
-
-                Current.Robot.Plc.StartListenReceiveData();
-
-                this.machinesStatusUC1.SetStatusInfo(Current.Robot, "连接成功");
-                this.machinesStatusUC1.SetLampColor(Current.Robot, Color.Green);
-            }
+            //        if (!Current.ovens[i].Plc.TcpConnect(out msg))
+            //        {
+            //            Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.ovens[i].Name, msg));
+            //            return false;
+            //        }
+            //        this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "连接成功");
+            //        this.machinesStatusUC1.SetLampColor(Current.ovens[i], Color.Green);
+            //    }
+            //}
 
             return true;
         }
@@ -957,80 +661,31 @@ namespace BYD.Scan.Dispatcher
         private bool PlcDisConnect()
         {
             string msg = string.Empty;
+      
+            //for (int i = 0; i < OvenCount; i++)
+            //{
+            //    if (Current.ovens[i].IsEnable)
+            //    {
+            //        if (!Current.ovens[i].Plc.TcpDisConnect(out msg))
+            //        {
+            //            Error.Alert(msg);
+            //            return false;
+            //        }
+            //        this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "未连接");
+            //        this.machinesStatusUC1.SetLampColor(Current.ovens[i], Color.Gray);
+            //    }
 
-            if (Current.Feeder.IsEnable)
-            {
-                if (!Current.Feeder.Plc.TcpDisConnect(out msg))
-                {
-                    Error.Alert(msg);
-                    return false;
-                }
-                this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "未连接");
-                this.machinesStatusUC1.SetLampColor(Current.Feeder, Color.Gray);
-            }
+            //    //防止长时间未连接导致烤箱信息与实际不符
+            //    Current.ovens[i].AlreadyGetAllInfo = false;
+            //    Current.ovens[i].getInfoNum = 0;
 
-            Current.Feeder.PreAlarmStr = string.Empty;
-            
-
-            for (int i = 0; i < OvenCount; i++)
-            {
-                if (Current.ovens[i].IsEnable)
-                {
-                    if (!Current.ovens[i].Plc.TcpDisConnect(out msg))
-                    {
-                        Error.Alert(msg);
-                        return false;
-                    }
-                    this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "未连接");
-                    this.machinesStatusUC1.SetLampColor(Current.ovens[i], Color.Gray);
-                }
-
-                //防止长时间未连接导致烤箱信息与实际不符
-                Current.ovens[i].AlreadyGetAllInfo = false;
-                Current.ovens[i].getInfoNum = 0;
-
-                Current.ovens[i].PreAlarmStr = string.Empty;
-                for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
-                {
-                    Current.ovens[i].Floors[j].DoorStatus = DoorStatus.未知;
-                    Current.ovens[i].Floors[j].PreAlarmStr = string.Empty;
-                }
-            }
-
-
-
-            if (Current.Blanker.IsEnable)
-            {
-                if (!Current.Blanker.Plc.TcpDisConnect(out msg))
-                {
-                    Error.Alert(msg);
-                    return false;
-                }
-                this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "未连接");
-                this.machinesStatusUC1.SetLampColor(Current.Blanker, Color.Gray);
-            }
-
-            Current.Blanker.PreAlarmStr = string.Empty;
-            
-
-            if (Current.Robot.IsEnable)
-            {
-                //if (Current.Robot.IsStartting && !Current.Robot.IsPausing)
-                //{
-                //    Current.Robot.Pause(out msg);
-                //}
-
-                if (!Current.Robot.Plc.TcpDisConnect(out msg))
-                {
-                    Error.Alert(msg);
-                    return false;
-                }
-                this.machinesStatusUC1.SetStatusInfo(Current.Robot, "未连接");
-                this.machinesStatusUC1.SetLampColor(Current.Robot, Color.Gray);
-            }
-
-            Current.Transfer.IsAlive = false;
-            Current.Cacher.IsAlive = false;
+            //    Current.ovens[i].PreAlarmStr = string.Empty;
+            //    for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
+            //    {
+            //        Current.ovens[i].Floors[j].DoorStatus = DoorStatus.未知;
+            //        Current.ovens[i].Floors[j].PreAlarmStr = string.Empty;
+            //    }
+            //}
 
             return true;
         }
@@ -1076,42 +731,42 @@ namespace BYD.Scan.Dispatcher
         {
             string msg = string.Empty;
 
-            if (Current.BatteryScaner.IsEnable)
-            {
-                if (!Current.BatteryScaner.IsPingSuccess)
-                {
+            //if (Current.BatteryScaner.IsEnable)
+            //{
+            //    if (!Current.BatteryScaner.IsPingSuccess)
+            //    {
 
-                    Error.Alert(string.Format("无法连接到{0}：{1}", Current.BatteryScaner.Name, Current.BatteryScaner.IP));
-                    return false;
-                }
+            //        Error.Alert(string.Format("无法连接到{0}：{1}", Current.BatteryScaner.Name, Current.BatteryScaner.IP));
+            //        return false;
+            //    }
 
-                if (!Current.BatteryScaner.TcpConnect(out msg))
-                {
-                    Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.BatteryScaner.Name, msg));
-                    return false;
-                }
-                this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "连接成功");
-                this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Green);
-            }
+            //    if (!Current.BatteryScaner.TcpConnect(out msg))
+            //    {
+            //        Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.BatteryScaner.Name, msg));
+            //        return false;
+            //    }
+            //    this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "连接成功");
+            //    this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Green);
+            //}
 
-            if (Current.ClampScaner.IsEnable)
-            {
-                if (!Current.ClampScaner.IsPingSuccess)
-                {
+            //if (Current.ClampScaner.IsEnable)
+            //{
+            //    if (!Current.ClampScaner.IsPingSuccess)
+            //    {
 
-                    Error.Alert(string.Format("无法连接到{0}：{1}", Current.ClampScaner.Name, Current.ClampScaner.IP));
-                    return false;
-                }
+            //        Error.Alert(string.Format("无法连接到{0}：{1}", Current.ClampScaner.Name, Current.ClampScaner.IP));
+            //        return false;
+            //    }
 
-                if (!Current.ClampScaner.TcpConnect(out msg))
-                {
-                    Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.ClampScaner.Name, msg));
-                    return false;
-                }
+            //    if (!Current.ClampScaner.TcpConnect(out msg))
+            //    {
+            //        Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.ClampScaner.Name, msg));
+            //        return false;
+            //    }
 
-                this.machinesStatusUC1.SetStatusInfo(Current.ClampScaner, "连接成功");
-                this.machinesStatusUC1.SetLampColor(Current.ClampScaner, Color.Green);
-            }
+            //    this.machinesStatusUC1.SetStatusInfo(Current.ClampScaner, "连接成功");
+            //    this.machinesStatusUC1.SetLampColor(Current.ClampScaner, Color.Green);
+            //}
 
             return true;
         }
@@ -1120,41 +775,23 @@ namespace BYD.Scan.Dispatcher
         {
             string msg = string.Empty;
 
-            if (Current.BatteryScaner.IsEnable)
-            {
-                if (Current.BatteryScaner.IsAlive)
-                {
-                    Current.BatteryScaner.StopClampScan();
-                }
+            //if (Current.BatteryScaner.IsEnable)
+            //{
+            //    if (Current.BatteryScaner.IsAlive)
+            //    {
+            //        Current.BatteryScaner.StopClampScan();
+            //    }
 
-                if (!Current.BatteryScaner.TcpDisConnect(out msg))
-                {
-                    Error.Alert(msg);
-                    return false;
-                }
+            //    if (!Current.BatteryScaner.TcpDisConnect(out msg))
+            //    {
+            //        Error.Alert(msg);
+            //        return false;
+            //    }
 
-                this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "未连接");
-                this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Gray);
-            }
+            //    this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "未连接");
+            //    this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Gray);
+            //}
 
-            if (Current.ClampScaner.IsEnable)
-            {
-                if (Current.ClampScaner.IsAlive)
-                {
-                    Current.ClampScaner.StopClampScan();
-                }
-                    
-                if (!Current.ClampScaner.TcpDisConnect(out msg))
-                {
-                    Error.Alert(msg);
-                    return false;
-                }
-
-                this.machinesStatusUC1.SetStatusInfo(Current.ClampScaner, "未连接");
-                this.machinesStatusUC1.SetLampColor(Current.ClampScaner, Color.Gray);
-            }
-
-            
             return true;
         }
 
@@ -1164,13 +801,7 @@ namespace BYD.Scan.Dispatcher
 
         delegate void UpdateUI1PDelegate(string text);
 
-        System.Timers.Timer[] timerOvenRuns = new System.Timers.Timer[OvenCount] { null, null, null, null, null, null, null, null, null, null, null, null };
-
-        System.Timers.Timer[] timerFeederRuns = new System.Timers.Timer[1] { null };
-
-        System.Timers.Timer[] timerBlankerRuns = new System.Timers.Timer[1] { null };
-
-        System.Timers.Timer timerRobotRun = null;
+        System.Timers.Timer[] timerOvenRuns = new System.Timers.Timer[LineCount] { null, null, null, null, null, null, null, null, null, null, null, null };
 
         System.Timers.Timer timerRun = null;
 
@@ -1182,47 +813,13 @@ namespace BYD.Scan.Dispatcher
         /// <returns></returns>
         public bool CheckStart(out string msg)
         {
-            for (int i = 0; i < OvenCount; i++)
+            for (int i = 0; i < LineCount; i++)
             {
-                if (Current.ovens[i].IsEnable && !Current.ovens[i].Plc.IsAlive)
-                {
-                    msg = Current.ovens[i].Name + " 启动异常！";
-                    return false;
-                }
-            }
-
-
-            if (Current.Feeder.IsEnable && !Current.Feeder.Plc.IsAlive)
-            {
-                msg = Current.Feeder.Name + " 启动异常！";
-                return false;
-            }
-
-
-            if (Current.ClampScaner.IsEnable && !Current.ClampScaner.IsAlive)
-            {
-                msg = Current.ClampScaner.Name + " 启动异常！";
-                return false;
-            }
-
-            if (Current.BatteryScaner.IsEnable && !Current.BatteryScaner.IsAlive)
-            {
-                msg = Current.BatteryScaner.Name + " 启动异常！";
-                return false;
-            }
-
-
-            if (Current.Blanker.IsEnable && !Current.Blanker.Plc.IsAlive)
-            {
-                msg = Current.Blanker.Name + " 启动异常！";
-                return false;
-            }
-            
-
-            if (Current.Robot.IsEnable && !Current.Robot.Plc.IsAlive)
-            {
-                msg = Current.Robot.Name + " 启动异常！";
-                return false;
+                //if (Current.ovens[i].IsEnable && !Current.ovens[i].Plc.IsAlive)
+                //{
+                //    msg = Current.ovens[i].Name + " 启动异常！";
+                //    return false;
+                //}
             }
 
             if (Current.mes.IsEnable && !Current.mes.IsPingSuccess)
@@ -1239,7 +836,7 @@ namespace BYD.Scan.Dispatcher
 
             if (isFirstStart)
             {
-                for (int i = 0; i < OvenCount; i++)
+                for (int i = 0; i < LineCount; i++)
                 {
                     int index = i;//如果直接用i, 则完成循环后 i一直 = OvenCount
                     timerOvenRuns[i] = new System.Timers.Timer();
@@ -1254,45 +851,6 @@ namespace BYD.Scan.Dispatcher
                     timerOvenRuns[i].Start();
                 }
 
-                for (int i = 0; i < 1; i++)
-                {
-                    int index = i;//如果直接用i, 则完成循环后 i一直 = OvenCount
-                    timerFeederRuns[i] = new System.Timers.Timer();
-                    timerFeederRuns[i].Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000) / 3;
-                    timerFeederRuns[i].Elapsed += delegate
-                    {
-                        Thread listen = new Thread(new ParameterizedThreadStart(FeederRunInvokeFunc));
-                        listen.IsBackground = true;
-                        listen.Start(index);
-                    };
-                    Thread.Sleep(200);
-                    timerFeederRuns[i].Start();
-                }
-
-
-                timerBlankerRuns[0] = new System.Timers.Timer();
-                timerBlankerRuns[0].Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000);
-                timerBlankerRuns[0].Elapsed += delegate
-                {
-                    Thread listen = new Thread(new ParameterizedThreadStart(BlankerRunInvokeFunc));
-                    listen.IsBackground = true;
-                    listen.Start(0);
-                };
-                Thread.Sleep(200);
-                timerBlankerRuns[0].Start();
-                
-
-                timerRobotRun = new System.Timers.Timer();
-                timerRobotRun.Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000);
-                timerRobotRun.Elapsed += delegate
-                {
-                    Thread listen = new Thread(new ThreadStart(RobotRunInvokeFunc));
-                    listen.IsBackground = true;
-                    listen.Start();
-                };
-                Thread.Sleep(200);
-                timerRobotRun.Start();
-
                 timerRun = new System.Timers.Timer();
                 timerRun.Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000);
                 timerRun.Elapsed += delegate
@@ -1303,25 +861,6 @@ namespace BYD.Scan.Dispatcher
                 };
                 Thread.Sleep(200);
                 timerRun.Start();
-
-                this.timerTask = new System.Timers.Timer();
-                this.timerTask.Interval = Current.option.TaskInterval;
-                this.timerTask.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Task);
-                this.timerTask.AutoReset = true;
-                this.timerTask.Start();
-
-                this.timerRecordTV = new System.Timers.Timer();
-                this.timerRecordTV.Interval = TengDa._Convert.StrToInt(Current.option.RecordTVInterval, 60000);
-                this.timerRecordTV.Elapsed += new System.Timers.ElapsedEventHandler(Timer_RecordTV);
-                this.timerRecordTV.AutoReset = true;
-                this.timerRecordTV.Start();
-
-                this.timerPaintCurve = new System.Timers.Timer();
-                this.timerPaintCurve.Interval = Current.option.PaintCurveInterval;
-                this.timerPaintCurve.Elapsed += new System.Timers.ElapsedEventHandler(Timer_PaintCurve);
-                this.timerPaintCurve.AutoReset = true;
-                this.timerPaintCurve.Start();
-
 
                 this.timerUploadMes = new System.Timers.Timer();
                 this.timerUploadMes.Interval = TengDa._Convert.StrToInt(Current.option.UploadMesInterval, 60) * 1000;
@@ -1340,7 +879,7 @@ namespace BYD.Scan.Dispatcher
 
         private void TimersDispose()
         {
-            for (int i = 0; i < OvenCount; i++)
+            for (int i = 0; i < LineCount; i++)
             {
                 if (timerOvenRuns[i] != null)
                 {
@@ -1348,52 +887,6 @@ namespace BYD.Scan.Dispatcher
                     timerOvenRuns[i].Close();
                     timerOvenRuns[i].Dispose();
                 }
-            }
-
-            for (int i = 0; i < 1; i++)
-            {
-                if (timerFeederRuns[i] != null)
-                {
-                    timerFeederRuns[i].Stop();
-                    timerFeederRuns[i].Close();
-                    timerFeederRuns[i].Dispose();
-                }
-            }
-
-            if (timerBlankerRuns[0] != null)
-            {
-                timerBlankerRuns[0].Stop();
-                timerBlankerRuns[0].Close();
-                timerBlankerRuns[0].Dispose();
-            }
-            
-
-            if (timerRobotRun != null)
-            {
-                timerRobotRun.Stop();
-                timerRobotRun.Close();
-                timerRobotRun.Dispose();
-            }
-
-            if (timerPaintCurve != null)
-            {
-                timerPaintCurve.Stop();
-                timerPaintCurve.Close();
-                timerPaintCurve.Dispose();
-            }
-
-            if (timerTask != null)
-            {
-                timerTask.Stop();
-                timerTask.Close();
-                timerTask.Dispose();
-            }
-
-            if (timerRecordTV != null)
-            {
-                timerRecordTV.Stop();
-                timerRecordTV.Close();
-                timerRecordTV.Dispose();
             }
 
             if (timerUploadMes != null)
@@ -1411,354 +904,30 @@ namespace BYD.Scan.Dispatcher
 
             int i = System.Convert.ToInt32(obj);
 
-            if (timerlock && Current.ovens[i].IsEnable)
-            {
+            //if (timerlock && Current.ovens[i].IsEnable)
+            //{
 
-                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "发送指令"); }));
-                if (Current.ovens[i].GetInfo())
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "获取信息成功"); }));
-                }
-                else
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "获取信息失败"); }));
-                }
+            //    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "发送指令"); }));
+            //    if (Current.ovens[i].GetInfo())
+            //    {
+            //        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "获取信息成功"); }));
+            //    }
+            //    else
+            //    {
+            //        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "获取信息失败"); }));
+            //    }
                 
 
-                if (Current.ovens[i].AlreadyGetAllInfo)
-                {
-                    for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
-                    {
-                        Floor floor = Current.ovens[i].Floors[j];
-                        for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
-                        {
-                            Station station = Current.ovens[i].Floors[j].Stations[k];
-                            if (floor.IsBaking)
-                            {
-                                station.FloorStatus = FloorStatus.烘烤;
-                            }
-                            else if (station.ClampStatus == ClampStatus.无夹具)
-                            {
-                                station.FloorStatus = FloorStatus.无盘;
-                            }
-                            else if (station.ClampStatus == ClampStatus.空夹具)
-                            {
-                                station.FloorStatus = FloorStatus.空盘;
-                            }
-                            else if (station.ClampStatus == ClampStatus.满夹具 && (station.PreFloorStatus == FloorStatus.无盘 || station.PreFloorStatus == FloorStatus.待烤 || station.PreFloorStatus == FloorStatus.未知))
-                            {
-                                station.FloorStatus = FloorStatus.待烤;
-                            }
-                            else if (station.ClampStatus == ClampStatus.满夹具 && (station.PreFloorStatus == FloorStatus.烘烤 || station.PreFloorStatus == FloorStatus.待出 || station.PreFloorStatus == FloorStatus.未知))
-                            {
-                                station.FloorStatus = FloorStatus.待出;
-                            }
-                            else
-                            {
-                                station.FloorStatus = FloorStatus.未知;
-                            }
+            //    if (Current.ovens[i].AlreadyGetAllInfo)
+            //    {
+            //        for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
+            //        {
 
-                            if (station.PreFloorStatus != station.FloorStatus)
-                            {
-                                string tip = string.Format("{0}:{1}-->{2}", station.Name, station.PreFloorStatus, station.FloorStatus);
-                                AddTips(tip);
-                                StationLog.Add(new List<StationLog>() { new StationLog() { StationId = station.Id, Message = tip } }, out msg);
-
-                                //烘烤完成直接泄真空                         
-                                if (station.FloorStatus == FloorStatus.待出 && floor.IsVacuum && floor.RunRemainMinutes <= 1)
-                                {
-                                    Current.ovens[i].UploadVacuum(j);
-                                }
-                                this.ovenUCs[i].Invalidate(j);
-                              
-                            }
-                            else if (station.ClampStatus == ClampStatus.异常)
-                            {
-                                this.ovenUCs[i].Invalidate(j);                            
-                            }
-
-                            station.PreFloorStatus = station.FloorStatus;
-
-                            switch (station.FloorStatus)
-                            {
-                                case FloorStatus.无盘:
-                                    station.Status = StationStatus.可放;
-                                    break;
-                                case FloorStatus.空盘:
-                                    station.Status = StationStatus.可取;
-                                    break;
-                                case FloorStatus.待出:
-                                    if (floor.RunRemainMinutes <= 0)
-                                    {
-                                        station.Status = StationStatus.可取;
-                                    }
-                                    else
-                                    {
-                                        station.Status = StationStatus.工作中;
-                                    }                                   
-                                    break;
-                                case FloorStatus.待烤:
-                                case FloorStatus.烘烤:
-                                    station.Status = StationStatus.工作中;
-                                    break;
-                                default:
-                                    station.Status = StationStatus.不可用;
-                                    break;
-                            }
-
-                        }
-
-                        //自动状态下网控强制打开
-                        if (Current.TaskMode == TaskMode.自动任务 && !floor.IsNetControlOpen && floor.IsEnable)
-                        {
-                            Current.ovens[i].OpenNetControl(j);
-                        }
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
         }
 
-        private void FeederRunInvokeFunc(object obj)
-        {
-
-            string msg = string.Empty;
-
-            int i = System.Convert.ToInt32(obj);
-
-            if (timerlock && Current.Feeder.IsEnable)
-            {
-                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "发送指令"); }));
-                if (Current.Feeder.GetInfo())
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "获取信息成功"); }));
-                }
-                else
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "获取信息失败"); }));
-                }
-
-                if (Current.Feeder.AlreadyGetAllInfo)
-                {
-                    #region 夹具扫码逻辑
-                    if (Current.ClampScaner.IsEnable && Current.ClampScaner.CanScan)
-                    {
-                        Current.Feeder.Stations.ForEach(s =>
-                        {
-                            if (s.IsClampScanReady)
-                            {
-                                string code = string.Empty;
-                                ScanResult result = Current.ClampScaner.StartClampScan(out code, out msg);
-                                if (result == ScanResult.OK)
-                                {
-                                    //this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][2].Text = "+" + code; }));                           
-                                    s.Clamp.Code = code;
-                                    s.Clamp.ScanTime = DateTime.Now;
-
-                                    if (!Current.Feeder.SetScanClampResult(ScanResult.OK, out msg))
-                                    {
-                                        Error.Alert(msg);
-                                    }
-                                }
-                                else if (result == ScanResult.NG || result == ScanResult.Timeout)
-                                {
-                                    //this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][2].Text = "扫码NG"; }));
-                                    if (!Current.Feeder.SetScanClampResult(ScanResult.NG, out msg))
-                                    {
-                                        Error.Alert(msg);
-                                    }
-                                }
-                                else if (!string.IsNullOrEmpty(msg))
-                                {
-                                    Error.Alert(msg);
-                                }
-
-                            }
-                        });
-                    }
-                    #endregion
-
-                    #region 电池扫码逻辑
-
-                    Current.Feeder.CurrentBatteryCount = Battery.GetCountByClampId(Current.Feeder.CurrentPutClampId, out msg);  
-
-                    var batteryScanResult = ScanResult.Unknown;
-
-                    var isScanFlag = false;//是否执行了扫码
-
-                    if (Current.BatteryScaner.IsEnable && Current.BatteryScaner.CanScan)
-                    {
-
-                        string codes = string.Empty;
-                        ScanResult result = Current.BatteryScaner.StartBatteryScan(out codes, out msg);
-
-                        isScanFlag = true;
-
-                        if (result == ScanResult.OK)
-                        {
-                            this.BeginInvoke(new MethodInvoker(() =>
-                            {
-                                this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "+" + codes);
-                                this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, SystemColors.Control);
-                                this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, Color.Green);
-                            }));
-
-                            Thread t = new Thread(() => {
-                                Thread.Sleep(1000);
-                                this.BeginInvoke(new MethodInvoker(() =>
-                                {
-                                    this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Green);
-                                    this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, SystemColors.Control);
-                                }));
-                            });
-                            t.Start();
-
-                            foreach (var code in codes.Split(';'))
-                            {
-                                //
-                                if (code.Contains("0000000000"))
-                                {
-                                    Station.StationList.First(o=>o.Id == Current.Feeder.CurrentPutStationId).SampleInfo = SampleInfo.有样品;
-                                }
-
-                                int id = Battery.Add(new Battery(code, Current.Feeder.Id, Current.Feeder.CurrentPutClampId), out msg);
-                                if (id < 1)
-                                {
-                                    Error.Alert(msg);
-                                }
-                            }
-                            batteryScanResult = ScanResult.OK;
-                        }
-                        else
-                        {
-                            //再扫一次
-                            result = Current.BatteryScaner.StartBatteryScan(out codes, out msg);
-                            if (result == ScanResult.OK)
-                            {
-                                this.BeginInvoke(new MethodInvoker(() => 
-                                {
-                                    this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "+" + codes);
-                                    this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, SystemColors.Control);
-                                    this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, Color.Green);
-                                }));
-
-                                Thread t = new Thread(() => {
-                                    Thread.Sleep(1000);
-                                    this.BeginInvoke(new MethodInvoker(() =>
-                                    {
-                                        this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Green);
-                                        this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, SystemColors.Control);
-                                    }));
-                                });
-                                t.Start();
-
-                                foreach (var code in codes.Split(';'))
-                                {
-                                    int id = Battery.Add(new Battery(code, Current.Feeder.Id, Current.Feeder.CurrentPutClampId), out msg);
-                                    if (id < 1)
-                                    {
-                                        Error.Alert(msg);
-                                    }
-                                }
-
-                                batteryScanResult = ScanResult.OK;
-                            }
-                            else
-                            {
-                                this.BeginInvoke(new MethodInvoker(() =>
-                                {
-                                    this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "扫码NG");
-                                    this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Red);
-                                }));
-
-                                batteryScanResult = ScanResult.NG;
-                            }
-                        }
-
-                        Current.Feeder.CurrentBatteryCount = Battery.GetCountByClampId(Current.Feeder.CurrentPutClampId, out msg);
-
-                        Current.BatteryScaner.CanScan = false;
-                    }
-                    
-
-                    if (isScanFlag)
-                    {
-                        if (!Current.Feeder.SetScanBatteryResult(batteryScanResult, out msg))
-                        {
-                            Error.Alert(msg);
-                        }
-                    }
-
-                    #endregion
-
-                    #region 绘制夹具中电池个数图示
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (Current.Feeder.Stations[j].Id == Current.Feeder.CurrentPutStationId)
-                        {
-                            if (Current.Feeder.PreCurrentBatteryCount != Current.Feeder.CurrentBatteryCount)
-                            {
-                                this.feederUC1.Invalidate(j);
-                                //  this.tlpFeederStationClamp[i][j].Invalidate();
-                            }
-                        }
-
-                        if (Current.Feeder.Stations[j].PreIsAlive != Current.Feeder.Stations[j].IsAlive)
-                        {
-                            this.feederUC1.Invalidate(j);
-                            // this.tlpFeederStationClamp[i][j].Invalidate();
-                        }
-                        Current.Feeder.Stations[j].PreIsAlive = Current.Feeder.Stations[j].IsAlive;
-                    }
-                    Current.Feeder.PreCurrentBatteryCount = Current.Feeder.CurrentBatteryCount;
-                    #endregion
-                }
-            }
-        }
-
-        private void BlankerRunInvokeFunc(object obj)
-        {
-
-            string msg = string.Empty;
-
-            int i = System.Convert.ToInt32(obj);
-
-
-            if (timerlock && Current.Blanker.IsEnable)
-            {
-                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "发送指令"); }));
-                if (Current.Blanker.GetInfo())
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "获取信息成功"); }));
-                }
-                else
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "获取信息失败"); }));
-                }
-            }
-        }
-
-        private void RobotRunInvokeFunc()
-        {
-            string msg = string.Empty;
-            if (timerlock && Current.Robot.IsEnable)
-            {
-                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "发送指令"); }));
-                if (Current.Robot.GetInfo())
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "获取信息成功"); }));
-                }
-                else
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "获取信息失败"); }));
-                }
-
-                if (Current.Robot.AlreadyGetAllInfo)
-                {
-
-
-                }
-            }
-        }
         /// <summary>
         /// 总体运行逻辑
         /// </summary>
@@ -1771,191 +940,35 @@ namespace BYD.Scan.Dispatcher
 
             if (timerlock && Math.Abs((DateTime.Now - Current.ChangeModeTime).Seconds) > 3)
             {
-                if (Current.TaskMode == TaskMode.自动任务)
-                {
-                    //待烤层关门启动
-                    for (int i = 0; i < OvenCount; i++)
-                    {
-                        for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
-                        {
-                            Floor floor = Current.ovens[i].Floors[j];
 
-                            //无任务默认关门
-                            if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) == 0
-                                && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) == 0
-                                && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
-                            {
-                                Current.ovens[i].CloseDoor(j);
-                            }
+                ////无论手动还是自动任务模式都会执行
+                //for (int i = 0; i < OvenCount; i++)
+                //{
+                //    for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
+                //    {
+                //        Floor floor = Current.ovens[i].Floors[j];
 
-                            ////从某一炉子取完盘后，立即关门，无需等到整个任务结束
-                            //if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
-                            //    && Current.Robot.IsAlive && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
-                            //{
-                            //    Current.ovens[i].CloseDoor(j);
-                            //}
+                //        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤) == 2)
+                //        {
+                //            floor.Stations.ForEach(s =>
+                //            {
+                //                s.SampleStatus = SampleStatus.待结果;
+                //            });
+                //        }
 
-                            //开始烘烤
-                            if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤) == floor.Stations.Count)
-                            {
-                                if (floor.Stations[0].IsAlive && floor.Stations[1].IsAlive && floor.DoorStatus == DoorStatus.关闭)
-                                {
-                                    // Current.ovens[i].ClearRunTime(j);
-                                    Current.ovens[i].StartBaking(j);
-                                }
-                            }
-
-                            ////水分NG回炉的重新开始烘烤
-                            //if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待烤 && s.SampleStatus == SampleStatus.测试NG) == 1 && floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleStatus == SampleStatus.测试NG) == 1)
-                            //{
-                            //    if (floor.Stations[0].IsAlive && floor.Stations[1].IsAlive && floor.DoorStatus == DoorStatus.关闭)
-                            //    {
-                            //        //if (floor.NgTimes < 2)
-                            //        //{
-                            //        //Current.ovens[i].ClearRunTime(j);
-                            //        Current.ovens[i].StartBaking(j);
-                            //        //}
-                            //        //else
-                            //        //{
-                            //        //    //水分测试两次NG，禁用炉腔
-                            //        //    floor.IsEnable = false;
-                            //        //}
-                            //    }
-                            //}
-                        }
-                    }
-
-                    //测水分出炉前泄真空
-                    var floors1 = Floor.FloorList.Where(f => f.IsAlive && f.IsVacuum && !f.Stations[0].IsOpenDoorIntervene && f.Stations.Count(s => s.FloorStatus == FloorStatus.待出) == 2).OrderBy(f => f.Stations[0].GetPutTime);
-                    if (floors1.Count() > 0)
-                    {
-                        var floor = floors1.First();
-                        if (floor.RunRemainMinutes <= 0)
-                        {
-                            var oven = floor.GetOven();
-                            var jj = oven.Floors.IndexOf(floor);
-                            oven.UploadVacuum(jj);
-                        }
-                    }
-
-                    //测试OK出炉前泄真空
-                    var floors2 = Floor.FloorList.Where(f => f.IsAlive && f.IsVacuum && !f.Stations[0].IsOpenDoorIntervene && f.Stations.Count(s => s.FloorStatus == FloorStatus.待出) > 0 && f.Stations.Count(s => s.SampleStatus == SampleStatus.水分OK) > 0).OrderBy(f => f.Stations[0].GetPutTime);
-                    if (floors2.Count() > 0)
-                    {
-                        var floor = floors2.First();
-                        if (floor.RunRemainMinutes <= 0)
-                        {
-                            var oven = floor.GetOven();
-                            var jj = oven.Floors.IndexOf(floor);
-                            oven.UploadVacuum(jj);
-                        }
-                    }
-
-
-                    //List<ClampOri> ClampOris = new List<ClampOri> { ClampOri.A, ClampOri.B };
-                    //foreach (ClampOri clampOri in ClampOris)
-                    //{
-                    //List<Station> baseStations = Station.StationList.Where(s =>
-                    //        s.ClampOri == clampOri
-                    //        && s.IsAlive
-                    //        && s.GetPutType == GetPutType.烤箱
-                    //        && s.FloorStatus == FloorStatus.待出).ToList();
-
-                    //if (baseStations.Count < 1 || baseStations.Where(s => s.DoorStatus == DoorStatus.打开).ToList().Count > 0)
-                    //{
-                    //    continue;
-                    //}
-
-                    //Station oStation = baseStations.Where(s => !s.IsOpenDoorIntervene).OrderBy(s => s.Priority).OrderBy(s => s.GetPutTime).OrderBy(s => s.OutPriority).FirstOrDefault();
-                    //if (oStation == null) continue;
-
-                    //Floor oFloor = oStation.GetFloor();
-                    //Oven oOven = oStation.GetOven();
-                    //int jj = oOven.Floors.IndexOf(oFloor);
-                    //if (oFloor.IsVacuum)
-                    //{
-                    //    oOven.UploadVacuum(jj);
-                    //}
-
-                    //if (oFloor.DoorStatus == DoorStatus.关闭 && !oFloor.IsVacuum)
-                    //{
-                    //    oOven.OpenDoor(jj);
-                    //}
-                    //}
-
-                    //下料台取消干涉
-
-                    for (int j = 0; j < Current.Blanker.Stations.Count; j++)
-                    {
-                        Station station = Current.Blanker.Stations[j];
-
-                        ////无任务默认关门
-                        //if (station.DoorStatus == DoorStatus.打开 && station.Id != Current.Task.FromStationId && station.Id != Current.Task.ToStationId && station.IsAlive)
-                        //{
-                        //    station.CloseDoor();
-                        //}
-
-                        ////从某一炉子取完盘后，立即关门，无需等到整个任务结束
-                        //if (station.DoorStatus == DoorStatus.打开 && station.Id == Current.Task.FromStationId && station.IsAlive
-                        //    && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
-                        //{
-                        //    station.CloseDoor();
-                        //}
-                    }
-                    
-                }
-
-                //无论手动还是自动任务模式都会执行
-                for (int i = 0; i < OvenCount; i++)
-                {
-                    for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
-                    {
-                        Floor floor = Current.ovens[i].Floors[j];
-
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤) == 2)
-                        {
-                            floor.Stations.ForEach(s =>
-                            {
-                                s.SampleStatus = SampleStatus.待结果;
-                            });
-                        }
-
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleInfo == SampleInfo.无样品) == 2)
-                        {
-                            floor.Stations.ForEach(s =>
-                            {
-                                s.SampleStatus = SampleStatus.水分OK;
-                            });
-                        }
-                    }
-                }
+                //        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleInfo == SampleInfo.无样品) == 2)
+                //        {
+                //            floor.Stations.ForEach(s =>
+                //            {
+                //                s.SampleStatus = SampleStatus.水分OK;
+                //            });
+                //        }
+                //    }
+                //}
             }
         }
 
 
-        #endregion
-
-        #region 机器人搬运主逻辑
-
-        System.Timers.Timer timerTask = null;
-        private void Timer_Task(object sender, ElapsedEventArgs e)
-        {
-            if (timerlock)
-            {
-                Task.Run();
-            }
-        }
-        #endregion
-
-        #region 定时将温度真空存入数据库
-        System.Timers.Timer timerRecordTV = null;
-        private void Timer_RecordTV(object sender, ElapsedEventArgs e)
-        {
-            if (timerlock)
-            {
-                TVD.Add();
-            }
-        }
         #endregion
 
         #region 定时将数据上传MES(设备信息和未上传成功的电芯信息)
@@ -1967,37 +980,23 @@ namespace BYD.Scan.Dispatcher
             if (timerlock && Current.mes.IsEnable)
             {
                 UploadMachineStatus();
-                UploadBatteryInfo(new List<Clamp>());
+                UploadBatteryInfo();
             }
         }
 
-        public void UploadBatteryInfo(object obj)
+        public void UploadBatteryInfo()
         {
             try
             {
                 Thread.Sleep(200);
-                List<Clamp> clamps = (List<Clamp>)obj;
-                string msg = string.Empty;
-                if (clamps.Count < 1)
-                {
-                    clamps = Clamp.GetList(string.Format("SELECT TOP 3 * FROM [dbo].[{0}] WHERE [IsUploaded] = 'false' AND [IsFinished] = 'true' ORDER BY [Id] DESC", Clamp.TableName), out msg);
-                    if (!string.IsNullOrEmpty(msg))
-                    {
-                        Error.Alert(msg);
-                        return;
-                    }
-                }
 
-                if (clamps.Count < 1)
-                {
-                    return;
-                }
 
                 this.BeginInvoke(new MethodInvoker(() =>
                 {
-                    this.machinesStatusUC1.SetStatusInfo(Current.mes, "上传烘烤数据ID:" + clamps[0].Id);
+                    this.machinesStatusUC1.SetStatusInfo(Current.mes, "上传烘烤数据ID:");
                 }));
-                MES.UploadBatteryInfo(clamps);
+
+                MES.UploadBatteryInfo();
             }
             catch (Exception ex)
             {
@@ -2613,88 +1612,6 @@ namespace BYD.Scan.Dispatcher
             t.Start();
         }
 
-        private void btnQueryTV_Click(object sender, EventArgs e)
-        {
-            var startTime = dtpStart.Value;
-            var stopTime = dtpStop.Value;
-            var count = cbCount.Text.Trim();
-            var selectStation = cbStations.Text.Trim();
-
-            Thread t = new Thread(() =>
-            {
-                string msg = string.Empty;
-                DataTable dt = null;
-                if (selectStation == "All")
-                {
-                    dt = Database.Query(string.Format("SELECT TOP {3} * FROM [dbo].[{0}.V_TV] WHERE [记录时间] BETWEEN '{1}' AND '{2}' ", Config.DbTableNamePre, startTime, stopTime, count), out msg);
-                }
-                else
-                {
-                    dt = Database.Query(string.Format("SELECT TOP {4} * FROM [dbo].[{0}.V_TV] WHERE [烤箱工位] = '{1}' AND [记录时间] BETWEEN '{2}' AND '{3}' ", Config.DbTableNamePre, selectStation, startTime, stopTime, count), out msg);
-                }
-
-                if (dt == null)
-                {
-                    Error.Alert(msg);
-                    return;
-                }
-                this.BeginInvoke(new MethodInvoker(() =>
-                {
-                    dgvTV.DataSource = dt;
-                    //设置显示列宽度
-                    dgvTV.Columns[0].Width = 110;
-                    for (int i = 1; i <= Option.TemperaturePointCount; i++)
-                    {
-                        dgvTV.Columns[i].Width = 65;
-                    }
-                    dgvTV.Columns[Option.TemperaturePointCount + 1].Width = 70;
-                    dgvTV.Columns[Option.TemperaturePointCount + 2].Width = 100;
-                    dgvTV.Columns[Option.TemperaturePointCount + 3].Width = 100;
-                    dgvTV.Columns[Option.TemperaturePointCount + 4].Width = 140;
-                    dgvTV.Columns[Option.TemperaturePointCount + 4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-                    tbNumTV.Text = dt.Rows.Count.ToString();
-                }));
-            });
-            t.Start();
-        }
-
-        private void btnExportTV_Click(object sender, EventArgs e)
-        {
-            DataTable dt = (DataTable)this.dgvTV.DataSource;
-            if (dt == null || dt.Rows.Count < 1)
-            {
-                Tip.Alert("尚无数据！");
-                return;
-            }
-
-            SaveFileDialog kk = new SaveFileDialog();
-            kk.Title = "保存EXECL文件";
-            kk.Filter = "EXECL文件(*.xlsx) |*.xlsx |所有文件(*.*) |*.*";
-            kk.FilterIndex = 1;
-
-            //默认文件名
-            kk.FileName = "Temperature and Vacuum" + dtpStart.Value.ToString("yyyyMMddHHmmss") + "-" + dtpStop.Value.ToString("yyyyMMddHHmmss");
-
-            if (kk.ShowDialog() == DialogResult.OK)
-            {
-                string FileName = kk.FileName;
-                if (File.Exists(FileName)) File.Delete(FileName);
-
-                try
-                {
-                    using (ExcelHelper excelHelper = new ExcelHelper(FileName))
-                    {
-                        int count = excelHelper.DataTableToExcel(dt, "Sheet1", true);
-                        if (count > 0) MessageBox.Show("导出成功！");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("导出Excel出现异常: \r\n" + ex.Message);
-                }
-            }
-        }
-
         private void btnAlarmQuery_Click(object sender, EventArgs e)
         {
             var startTime = dtpAlarmStart.Value;
@@ -2788,84 +1705,6 @@ namespace BYD.Scan.Dispatcher
             }
         }
 
-        private void btnQueryTaskLog_Click(object sender, EventArgs e)
-        {
-            var startTime = dtpTaskStart.Value;
-            var stopTime = dtpTaskStop.Value;
-
-            TimeSpan ts = startTime - stopTime;
-            int timeSpan = TengDa._Convert.StrToInt(Current.option.QueryTVTimeSpan, -1);
-            if (Math.Abs(ts.TotalDays) > timeSpan)
-            {
-                Tip.Alert("查询时间范围太大，请将时间范围设置在 " + timeSpan + " 天 之内！");
-                return;
-            }
-
-            Thread t = new Thread(() =>
-            {
-
-                string msg = string.Empty;
-
-                DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_TaskLog] WHERE [任务生成时间] BETWEEN '{1}' AND '{2}' ", Config.DbTableNamePre, startTime, stopTime), out msg);
-
-                if (dt == null)
-                {
-                    Error.Alert(msg);
-                    return;
-                }
-
-                this.BeginInvoke(new MethodInvoker(() =>
-                {
-                    dgvTaskLog.DataSource = dt;
-                    //设置显示列宽度
-
-                    dgvTaskLog.Columns[1].Width = 130;
-                    dgvTaskLog.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-                    dgvTaskLog.Columns[4].Width = 130;
-                    dgvTaskLog.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-                    tbTaskCount.Text = dt.Rows.Count.ToString();
-                }));
-            });
-            t.Start();
-        }
-
-        private void btnExportTaskLog_Click(object sender, EventArgs e)
-        {
-            DataTable dt = (DataTable)this.dgvTaskLog.DataSource;
-            if (dt == null || dt.Rows.Count < 1)
-            {
-                Tip.Alert("尚无数据！");
-                return;
-            }
-
-            SaveFileDialog kk = new SaveFileDialog();
-            kk.Title = "保存EXECL文件";
-            kk.Filter = "EXECL文件(*.xlsx) |*.xlsx |所有文件(*.*) |*.*";
-            kk.FilterIndex = 1;
-
-            //默认文件名
-            kk.FileName = "机器人搬运任务 " + dtpStart.Value.ToString("yyyyMMddHHmmss") + "-" + dtpStop.Value.ToString("yyyyMMddHHmmss");
-
-            if (kk.ShowDialog() == DialogResult.OK)
-            {
-                string FileName = kk.FileName;
-                if (File.Exists(FileName)) File.Delete(FileName);
-
-                try
-                {
-                    using (ExcelHelper excelHelper = new ExcelHelper(FileName))
-                    {
-                        int count = excelHelper.DataTableToExcel(dt, "Sheet1", true);
-                        if (count > 0) MessageBox.Show("导出成功！");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("导出Excel出现异常: \r\n" + ex.Message);
-                }
-            }
-        }
-
         private void tabContent_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabContent.SelectedTab.Text == "设置")
@@ -2876,513 +1715,221 @@ namespace BYD.Scan.Dispatcher
 
         private void tvSettings_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Action == TreeViewAction.ByMouse)
-            {
-                try
-                {
-                    if (TengDa.WF.Current.user.Id < 1)
-                    {
-                        Tip.Alert("请先登录！");
-                        return;
-                    }
+            //if (e.Action == TreeViewAction.ByMouse)
+            //{
+            //    try
+            //    {
+            //        if (TengDa.WF.Current.user.Id < 1)
+            //        {
+            //            Tip.Alert("请先登录！");
+            //            return;
+            //        }
 
-                    this.propertyGridSettings.Enabled = true;
-                    if (TengDa.WF.Current.user.Group.Level < 2)
-                    {
-                        this.propertyGridSettings.Enabled = false;
-                        Tip.Alert("当前用户权限不足！");
-                    }
-                    if (e.Node.Level == 0 && e.Node.Text == "配置")
-                    {
-                        if (TengDa.WF.Current.user.Group.Level < 3)
-                        {
-                            this.propertyGridSettings.Enabled = false;
-                            Tip.Alert("当前用户权限不足！");
-                        }
-                        this.propertyGridSettings.SelectedObject = Current.option;
-                    }
-                    else if (e.Node.Level == 0 && e.Node.Text == "当前任务")
-                    {
-                        this.propertyGridSettings.SelectedObject = Current.Task;
-                    }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "烤箱")
-                    {
-                        this.propertyGridSettings.SelectedObject = Current.ovens.First(o => o.Id.ToString() == e.Node.Text.Split(':')[0]);
-                    }
-                    else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "烤箱" && e.Node.Text == "PLC")
-                    {
-                        this.propertyGridSettings.SelectedObject = Current.ovens.First(o => o.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
-                    }
-                    else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "烤箱" && e.Node.Text.IndexOf("烤箱") > -1)
-                    {
-                        Oven oven = Current.ovens.First(o => o.Id.ToString() == e.Node.Parent.Text.Split(':')[0]);
-                        this.propertyGridSettings.SelectedObject = oven.Floors.First(f => f.Id.ToString() == e.Node.Text.Split(':')[0]);
-                    }
-                    else if (e.Node.Level == 0 && e.Node.Text == "MES")
-                    {
-                        this.propertyGridSettings.SelectedObject = Current.mes;
-                    }
-                    else if (e.Node.Level == 0 && e.Node.Text == "机器人")
-                    {
-                        this.propertyGridSettings.SelectedObject = Current.Robot;
-                    }
-                    else if (e.Node.Level == 0 && e.Node.Text == "缓存架")
-                    {
-                        this.propertyGridSettings.SelectedObject = Current.Cacher;
-                    }
-                    else if (e.Node.Level == 0 && e.Node.Text == "转移台")
-                    {
-                        this.propertyGridSettings.SelectedObject = Current.Transfer;
-                    }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "工位列表")
-                    {
-                        this.propertyGridSettings.SelectedObject = Station.StationList.First(s => s.Id.ToString() == e.Node.Text.Split(':')[0]);
-                    }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "扫码枪")
-                    {
-                        this.propertyGridSettings.SelectedObject = Scaner.ScanerList.First(s => s.Id.ToString() == e.Node.Text.Split(':')[0]);
-                    }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "全部任务列表")
-                    {
-                        if (TengDa.WF.Current.user.Group.Level < 3)
-                        {
-                            this.propertyGridSettings.Enabled = false;
-                            Tip.Alert("当前用户权限不足！");
-                        }
-                        this.propertyGridSettings.SelectedObject = Task.TaskList.First(t => t.Id.ToString() == e.Node.Text.Split(':')[0]);
-                    }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "有效任务排序")
-                    {
-                        if (TengDa.WF.Current.user.Group.Level < 3)
-                        {
-                            this.propertyGridSettings.Enabled = false;
-                            Tip.Alert("当前用户权限不足！");
-                        }
-                        this.propertyGridSettings.SelectedObject = Task.TaskList.First(t => t.Id.ToString() == e.Node.Text.Split(':')[0]);
-                    }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "上料机")
-                    {
-                        this.propertyGridSettings.SelectedObject = Current.Feeder;
-                        //this.propertyGridSettings.SelectedObject = Feeder.FeederList.First(f => f.Id.ToString() == e.Node.Text.Split(':')[0]);
-                    }
-                    else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "上料机" && e.Node.Text == "PLC")
-                    {
-                        this.propertyGridSettings.SelectedObject = Feeder.FeederList.First(f => f.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
-                    }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "下料机")
-                    {
-                        this.propertyGridSettings.SelectedObject = Blanker.BlankerList.First(b => b.Id.ToString() == e.Node.Text.Split(':')[0]);
-                    }
-                    else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "下料机" && e.Node.Text == "PLC")
-                    {
-                        this.propertyGridSettings.SelectedObject = Blanker.BlankerList.First(b => b.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
-                    }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人" && e.Node.Text == "PLC")
-                    {
-                        this.propertyGridSettings.SelectedObject = Current.Robot.Plc;
-                    }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人" && e.Node.Text.IndexOf("夹具") > -1)
-                    {
-                        this.propertyGridSettings.SelectedObject = Current.Robot.Clamp;
-                    }
-                    else if (e.Node.Level == 2 && e.Node.Text.IndexOf("夹具") > -1)
-                    {
-                        int stationId = _Convert.StrToInt(e.Node.Parent.Text.Split(':')[0], -1);
-                        Clamp clamp = Station.StationList.FirstOrDefault(s => s.Id == stationId).Clamp;
-                        if (clamp != null && clamp.Id == _Convert.StrToInt(e.Node.Text.Split(':')[0], -1))
-                        {
-                            this.propertyGridSettings.SelectedObject = clamp;
-                        }
-                    }
-                    else if (e.Node.Level == 3 && e.Node.Text.IndexOf("电芯") > -1)
-                    {
-                        int stationId = _Convert.StrToInt(e.Node.Parent.Parent.Text.Split(':')[0], -1);
-                        Clamp clamp = Station.StationList.FirstOrDefault(s => s.Id == stationId).Clamp;
-                        if (clamp.Id == _Convert.StrToInt(e.Node.Parent.Text.Split(':')[0], -1))
-                        {
-                            Battery battery = clamp.Batteries.FirstOrDefault(b => b.Id == _Convert.StrToInt(e.Node.Text.Split(':')[0], -1));
-                            if (battery != null)
-                            {
-                                this.propertyGridSettings.SelectedObject = battery;
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Error.Alert(ex);
-                }
-            }
+            //        this.propertyGridSettings.Enabled = true;
+            //        if (TengDa.WF.Current.user.Group.Level < 2)
+            //        {
+            //            this.propertyGridSettings.Enabled = false;
+            //            Tip.Alert("当前用户权限不足！");
+            //        }
+            //        if (e.Node.Level == 0 && e.Node.Text == "配置")
+            //        {
+            //            if (TengDa.WF.Current.user.Group.Level < 3)
+            //            {
+            //                this.propertyGridSettings.Enabled = false;
+            //                Tip.Alert("当前用户权限不足！");
+            //            }
+            //            this.propertyGridSettings.SelectedObject = Current.option;
+            //        }
+            //        else if (e.Node.Level == 0 && e.Node.Text == "当前任务")
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Current.Task;
+            //        }
+            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "烤箱")
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Current.ovens.First(o => o.Id.ToString() == e.Node.Text.Split(':')[0]);
+            //        }
+            //        else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "烤箱" && e.Node.Text == "PLC")
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Current.ovens.First(o => o.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
+            //        }
+            //        else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "烤箱" && e.Node.Text.IndexOf("烤箱") > -1)
+            //        {
+            //            Oven oven = Current.ovens.First(o => o.Id.ToString() == e.Node.Parent.Text.Split(':')[0]);
+            //            this.propertyGridSettings.SelectedObject = oven.Floors.First(f => f.Id.ToString() == e.Node.Text.Split(':')[0]);
+            //        }
+            //        else if (e.Node.Level == 0 && e.Node.Text == "MES")
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Current.mes;
+            //        }
+            //        else if (e.Node.Level == 0 && e.Node.Text == "机器人")
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Current.Robot;
+            //        }
+            //        else if (e.Node.Level == 0 && e.Node.Text == "缓存架")
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Current.Cacher;
+            //        }
+            //        else if (e.Node.Level == 0 && e.Node.Text == "转移台")
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Current.Transfer;
+            //        }
+            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "工位列表")
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Station.StationList.First(s => s.Id.ToString() == e.Node.Text.Split(':')[0]);
+            //        }
+            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "扫码枪")
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Scaner.ScanerList.First(s => s.Id.ToString() == e.Node.Text.Split(':')[0]);
+            //        }
+            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "全部任务列表")
+            //        {
+            //            if (TengDa.WF.Current.user.Group.Level < 3)
+            //            {
+            //                this.propertyGridSettings.Enabled = false;
+            //                Tip.Alert("当前用户权限不足！");
+            //            }
+            //            this.propertyGridSettings.SelectedObject = Task.TaskList.First(t => t.Id.ToString() == e.Node.Text.Split(':')[0]);
+            //        }
+            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "有效任务排序")
+            //        {
+            //            if (TengDa.WF.Current.user.Group.Level < 3)
+            //            {
+            //                this.propertyGridSettings.Enabled = false;
+            //                Tip.Alert("当前用户权限不足！");
+            //            }
+            //            this.propertyGridSettings.SelectedObject = Task.TaskList.First(t => t.Id.ToString() == e.Node.Text.Split(':')[0]);
+            //        }
+            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "上料机")
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Current.Feeder;
+            //            //this.propertyGridSettings.SelectedObject = Feeder.FeederList.First(f => f.Id.ToString() == e.Node.Text.Split(':')[0]);
+            //        }
+            //        else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "上料机" && e.Node.Text == "PLC")
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Feeder.FeederList.First(f => f.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
+            //        }
+            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "下料机")
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Blanker.BlankerList.First(b => b.Id.ToString() == e.Node.Text.Split(':')[0]);
+            //        }
+            //        else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "下料机" && e.Node.Text == "PLC")
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Blanker.BlankerList.First(b => b.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
+            //        }
+            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人" && e.Node.Text == "PLC")
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Current.Robot.Plc;
+            //        }
+            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人" && e.Node.Text.IndexOf("夹具") > -1)
+            //        {
+            //            this.propertyGridSettings.SelectedObject = Current.Robot.Clamp;
+            //        }
+            //        else if (e.Node.Level == 2 && e.Node.Text.IndexOf("夹具") > -1)
+            //        {
+            //            int stationId = _Convert.StrToInt(e.Node.Parent.Text.Split(':')[0], -1);
+            //            Clamp clamp = Station.StationList.FirstOrDefault(s => s.Id == stationId).Clamp;
+            //            if (clamp != null && clamp.Id == _Convert.StrToInt(e.Node.Text.Split(':')[0], -1))
+            //            {
+            //                this.propertyGridSettings.SelectedObject = clamp;
+            //            }
+            //        }
+            //        else if (e.Node.Level == 3 && e.Node.Text.IndexOf("电芯") > -1)
+            //        {
+            //            int stationId = _Convert.StrToInt(e.Node.Parent.Parent.Text.Split(':')[0], -1);
+            //            Clamp clamp = Station.StationList.FirstOrDefault(s => s.Id == stationId).Clamp;
+            //            if (clamp.Id == _Convert.StrToInt(e.Node.Parent.Text.Split(':')[0], -1))
+            //            {
+            //                Battery battery = clamp.Batteries.FirstOrDefault(b => b.Id == _Convert.StrToInt(e.Node.Text.Split(':')[0], -1));
+            //                if (battery != null)
+            //                {
+            //                    this.propertyGridSettings.SelectedObject = battery;
+            //                }
+            //            }
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Error.Alert(ex);
+            //    }
+            //}
         }
 
         private void propertyGridSettings_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
-            object o = this.propertyGridSettings.SelectedObject;
-            Type type = o.GetType();
+            //object o = this.propertyGridSettings.SelectedObject;
+            //Type type = o.GetType();
 
-            string settingsStr = string.Empty;
+            //string settingsStr = string.Empty;
 
-            if (type == typeof(Oven) || type == typeof(Floor) || type == typeof(Clamp) || type == typeof(Battery) || type == typeof(Scaner)
-                || type == typeof(Feeder) || type == typeof(Blanker) || type == typeof(PLC) || type == typeof(Station) || type == typeof(Task))
-            {
-                System.Reflection.PropertyInfo propertyInfoId = type.GetProperty("Id"); //获取指定名称的属性
-                int Id = (int)propertyInfoId.GetValue(o, null); //获取属性值
-                settingsStr = string.Format("将Id为 {0} 的 {1} 的 {2} 由 {3} 修改为 {4} ", Id, type.Name, e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
-
-                //用来写入参数值
-                if (type == typeof(Floor))
-                {
-                    var floor = (Floor)o;
-                    var oven = floor.GetOven();
-                    var j = oven.Floors.IndexOf(floor);
-                    var propertyName = ((PropertyGrid)s).SelectedGridItem.PropertyDescriptor.Name;
-
-                    string command = "";
-
-                    if (propertyName == "PreheatTimeSet")
-                    {
-                        command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.PreheatTimeSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
-                    }
-                    else if (propertyName == "BakingTimeSet")
-                    {
-                        command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.BakingTimeSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
-                    }
-                    else if (propertyName == "BreathingCycleSet")
-                    {
-                        command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.BreathingCycleSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
-                    }
-
-                    if (!string.IsNullOrEmpty(command))
-                    {
-                        oven.ControlCommands.Add(command);
-                    }
-
-                }
-
-            }
-            else if (type == typeof(Robot))
-            {
-                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Robot.Name);
-            }
-            else if (type == typeof(Transfer))
-            {
-                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Transfer.Name);
-            }
-            else if (type == typeof(Cacher))
-            {
-                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Cacher.Name);
-            }
-            else if (type == typeof(MES))
-            {
-                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.mes.Name);
-            }
-            else if (type == typeof(Option))
-            {
-                settingsStr = string.Format("将配置项的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
-            }
-            else if (type == typeof(CurrentTask))
-            {
-                settingsStr = string.Format("将当前任务的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
-            }
-
-            if (!string.IsNullOrEmpty(settingsStr))
-            {
-                Operation.Add(settingsStr);
-                Tip.Alert("成功" + settingsStr);
-            }
-        }
-
-        private void tsmOvenOpenDoor_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tsmOvenCloseDoor_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tsmStartBaking_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tsmStopBaking_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tlpBlanker_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
-        {
-            //tlpBlanker1
-            int i = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(10, 1), 0) - 1;
-
-            Graphics g = e.Graphics;
-            Rectangle r = e.CellBounds;
-            Brush brush = Brushes.White;
-
-            for (int j = 0; j < Current.Blanker.Stations.Count; j++)
-            {
-                if (e.Column == 2 - j - 1)
-                {
-                    if (!Current.Blanker.Stations[j].IsAlive)
-                    {
-                        brush = Brushes.LightGray;
-                    }
-                }
-            }
-            g.FillRectangle(brush, r);
-        }
-
-        private void tlpFeeder_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
-        {
-            //tlpFeeder1
-            //int i = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(9, 1), 0) - 1;
-
-            //Graphics g = e.Graphics;
-            //Rectangle r = e.CellBounds;
-            //Brush brush = Brushes.White;
-
-            //for (int j = 0; j < FeederStationCount; j++)
+            //if (type == typeof(Oven) || type == typeof(Floor) || type == typeof(Clamp) || type == typeof(Battery) || type == typeof(Scaner)
+            //    || type == typeof(Feeder) || type == typeof(Blanker) || type == typeof(PLC) || type == typeof(Station) || type == typeof(Task))
             //{
-            //    if (e.Column == FeederStationCount - j - 1 && i == 1 || e.Column == j && i == 0)
+            //    System.Reflection.PropertyInfo propertyInfoId = type.GetProperty("Id"); //获取指定名称的属性
+            //    int Id = (int)propertyInfoId.GetValue(o, null); //获取属性值
+            //    settingsStr = string.Format("将Id为 {0} 的 {1} 的 {2} 由 {3} 修改为 {4} ", Id, type.Name, e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+
+            //    //用来写入参数值
+            //    if (type == typeof(Floor))
             //    {
-            //        if (!Current.Feeder.Stations[j].IsAlive)
+            //        var floor = (Floor)o;
+            //        var oven = floor.GetOven();
+            //        var j = oven.Floors.IndexOf(floor);
+            //        var propertyName = ((PropertyGrid)s).SelectedGridItem.PropertyDescriptor.Name;
+
+            //        string command = "";
+
+            //        if (propertyName == "PreheatTimeSet")
             //        {
-            //            brush = Brushes.LightGray;
+            //            command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.PreheatTimeSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
             //        }
+            //        else if (propertyName == "BakingTimeSet")
+            //        {
+            //            command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.BakingTimeSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
+            //        }
+            //        else if (propertyName == "BreathingCycleSet")
+            //        {
+            //            command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.BreathingCycleSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
+            //        }
+
+            //        if (!string.IsNullOrEmpty(command))
+            //        {
+            //            oven.ControlCommands.Add(command);
+            //        }
+
             //    }
+
             //}
-            //g.FillRectangle(brush, r);
+            //else if (type == typeof(Robot))
+            //{
+            //    settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Robot.Name);
+            //}
+            //else if (type == typeof(Transfer))
+            //{
+            //    settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Transfer.Name);
+            //}
+            //else if (type == typeof(Cacher))
+            //{
+            //    settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Cacher.Name);
+            //}
+            //else if (type == typeof(MES))
+            //{
+            //    settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.mes.Name);
+            //}
+            //else if (type == typeof(Option))
+            //{
+            //    settingsStr = string.Format("将配置项的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+            //}
+            //else if (type == typeof(CurrentTask))
+            //{
+            //    settingsStr = string.Format("将当前任务的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+            //}
+
+            //if (!string.IsNullOrEmpty(settingsStr))
+            //{
+            //    Operation.Add(settingsStr);
+            //    Tip.Alert("成功" + settingsStr);
+            //}
         }
-
-
-        private string srcBlankerName = string.Empty;
-        private void cmsBlanker_Opening(object sender, CancelEventArgs e)
-        {
-            //tlpBlanker1
-            srcBlankerName = (sender as ContextMenuStrip).SourceControl.Name;
-            int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
-            this.tsmCancelRasterInductive.Enabled = Current.Blanker.IsAlive;
-        }
-
-        private void TsmCancelRasterInductive_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
-
-            int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
-            Current.Blanker.CancelRasterInductive();
-        }
-        #endregion
-
-        #region 绘制温度曲线
-
-        private int gridOffset = 0;//网格偏移
-        private const int gridSize = 4;//网格大小
-
-        private int gridOffsetLarge = 0;//网格偏移
-        private const int gridSizeLarge = 40;//网格大小
-
-        private Pen gridColor = new Pen(Color.FromArgb(0x33, 0x33, 0x33));//网格颜色
-
-        private Pen gridColorLarge = new Pen(Color.FromArgb(0x44, 0x44, 0x44));//大网格颜色
-
-        private void pCurve_Paint(object sender, PaintEventArgs e)
-        {
-            e.Graphics.FillRectangle(Brushes.Black, e.Graphics.ClipBounds);
-            // e.Graphics.FillRectangle(Brushes.White, e.Graphics.ClipBounds);
-            #region 绘制网格
-            for (int i = pCurve.ClientSize.Width - gridOffset; i >= 0; i -= gridSize)
-                e.Graphics.DrawLine(gridColor, i, 0, i, pCurve.ClientSize.Height);
-            for (int i = pCurve.ClientSize.Height; i >= 0; i -= gridSize)
-                e.Graphics.DrawLine(gridColor, 0, i, pCurve.ClientSize.Width, i);
-            #endregion
-
-            #region 绘制大网格
-            for (int i = pCurve.ClientSize.Width - gridOffsetLarge; i >= 0; i -= gridSizeLarge)
-                e.Graphics.DrawLine(gridColorLarge, i, 0, i, pCurve.ClientSize.Height);
-            for (int i = pCurve.ClientSize.Height; i >= 0; i -= gridSizeLarge)
-                e.Graphics.DrawLine(gridColorLarge, 0, i, pCurve.ClientSize.Width, i);
-            #endregion
-
-            #region 绘制曲线
-
-            Station station = Station.StationList.Where(s => s.Id == Current.option.CurveStationId).FirstOrDefault();
-            if (station == null) return;
-
-            Floor floor = Floor.FloorList.First(f => f.Stations.Contains(station));
-            Oven oven = Oven.OvenList.First(o => o.Floors.Contains(floor));
-            int jj = oven.Floors.IndexOf(floor);
-
-            if (oven.IsAlive)
-            {
-                for (int k = 0; k < Option.TemperaturePointCount; k++)
-                {
-                    if (Array.IndexOf(Current.option.CurveIndexs.Split(','), k.ToString()) > -1)
-                    {
-                        if (station.sampledDatas[k].Count <= 1) return; // 一个数据就不绘制了
-                        float A = station.sampledDatas[k][0];//station.sampledDatas[k][0] - 20
-                        for (int kk = 1; kk < station.sampledDatas[k].Count; kk++)
-                        {
-                            float B = station.sampledDatas[k][kk];//station.sampledDatas[k][kk] - 20
-                            e.Graphics.DrawLine(new Pen(Current.option.CurveColors[k]),
-                                new Point(pCurve.ClientSize.Width - station.sampledDatas[k].Count + kk - 1, pCurve.ClientSize.Height -
-                                    (int)(((double)A / 100) * pCurve.ClientSize.Height)),
-                                new Point(pCurve.ClientSize.Width - station.sampledDatas[k].Count + kk, pCurve.ClientSize.Height -
-                                    (int)(((double)B / 100) * pCurve.ClientSize.Height)));
-                            A = B;
-                        }
-                    }
-                }
-
-                for (int k = 0; k < Option.VacuumPointCount; k++)
-                {
-                    if (cbVacuumIndex[k].Checked)
-                    {
-                        if (station.sampledDatas[k + Option.TemperaturePointCount].Count <= 1) return; // 一个数据就不绘制了
-                        float A = station.sampledDatas[k + Option.TemperaturePointCount][0];//station.sampledDatas[k][0] - 20
-                        for (int kk = 1; kk < station.sampledDatas[k + Option.TemperaturePointCount].Count; kk++)
-                        {
-                            float B = station.sampledDatas[k + Option.TemperaturePointCount][kk];//station.sampledDatas[k][kk] - 20
-                            e.Graphics.DrawLine(new Pen(Color.Violet),
-                                new Point(pCurve.ClientSize.Width - station.sampledDatas[k + Option.TemperaturePointCount].Count + kk - 1, pCurve.ClientSize.Height -
-                                    (int)(((double)A / 100) * pCurve.ClientSize.Height)),
-                                new Point(pCurve.ClientSize.Width - station.sampledDatas[k + Option.TemperaturePointCount].Count + kk, pCurve.ClientSize.Height -
-                                    (int)(((double)B / 100) * pCurve.ClientSize.Height)));
-                            A = B;
-                        }
-                    }
-                }
-            }
-
-            #endregion
-        }
-
-        System.Timers.Timer timerPaintCurve = null;
-
-        private void Timer_PaintCurve(object sender, ElapsedEventArgs e)
-        {
-            if (timerlock)
-            {
-                for (int i = 0; i < Current.ovens.Count; i++)
-                {
-                    if (Current.ovens[i].IsAlive && Current.ovens[i].AlreadyGetAllInfo)
-                    {
-                        for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
-                        {
-                            for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
-                            {
-                                for (int m = 0; m < Option.TemperaturePointCount + 1; m++)
-                                {
-                                    while (Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].Count > 1500)
-                                        Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].RemoveAt(0);
-                                    if (m == Option.TemperaturePointCount)
-                                    {
-                                        Current.ovens[i].Floors[j].Stations[k].sampledDatas[Option.TemperaturePointCount].Add((float)(Math.Log10(Current.ovens[i].Floors[j].Stations[k].GetFloor().Vacuum4Show) * 10 + 20));
-                                    }
-                                    else
-                                    {
-                                        Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].Add(Current.ovens[i].Floors[j].Stations[k].Temperatures[m]);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                gridOffset = (gridOffset + 1) % gridSize;
-                pCurve.Invalidate();
-            }
-        }
-
-        private void cbTemperIndex_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!TengDa.WF.Current.IsRunning) return;
-
-            bool isAll = true;
-            StringBuilder sb = new StringBuilder();
-            for (int k = 0; k < Option.TemperaturePointCount; k++)
-            {
-                if (cbTemperIndex[k].Checked)
-                {
-                    sb.Append(k + ",");
-                }
-                else
-                {
-                    isAll = false;
-                }
-            }
-            cbTemperAll.CheckedChanged -= cbTemperAll_CheckedChanged;
-            cbTemperAll.Checked = isAll;
-            cbTemperAll.CheckedChanged += cbTemperAll_CheckedChanged;
-            Current.option.CurveIndexs = sb.ToString().TrimEnd(',');
-        }
-
-        private void cbTemperAll_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!TengDa.WF.Current.IsRunning) return;
-            for (int k = 0; k < Option.TemperaturePointCount; k++)
-            {
-                cbTemperIndex[k].CheckedChanged -= cbTemperIndex_CheckedChanged;
-                cbTemperIndex[k].Checked = (sender as CheckBox).Checked;
-                cbTemperIndex[k].CheckedChanged += cbTemperIndex_CheckedChanged;
-            }
-            cbTemperIndex_CheckedChanged(null, e);
-        }
-
-        private void cbCurveSelected_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!TengDa.WF.Current.IsRunning) return;
-            string cbSelectName = (sender as ComboBox).Name;
-            int ii = 0, jj = 0, kk = 0;
-
-            if (cbSelectName.Contains("Oven"))
-            {
-                ii = cbCurveSelectedOven.SelectedIndex;
-
-                cbCurveSelectedFloor.Items.Clear();
-                Current.ovens[ii].Floors.ForEach(f =>
-                {
-                    cbCurveSelectedFloor.Items.Add(f.Name);
-                });
-                jj = 0;
-                cbCurveSelectedFloor.SelectedIndex = jj;
-
-                cbCurveSelectedStation.Items.Clear();
-                Current.ovens[ii].Floors[jj].Stations.ForEach(s =>
-                {
-                    cbCurveSelectedStation.Items.Add(s.Name);
-                });
-                kk = 0;
-                cbCurveSelectedStation.SelectedIndex = kk;
-            }
-            else if (cbSelectName.Contains("Floor"))
-            {
-                ii = cbCurveSelectedOven.SelectedIndex;
-                jj = cbCurveSelectedFloor.SelectedIndex;
-
-                cbCurveSelectedStation.Items.Clear();
-                Current.ovens[ii].Floors[jj].Stations.ForEach(s =>
-                {
-                    cbCurveSelectedStation.Items.Add(s.Name);
-                });
-                kk = 0;
-                cbCurveSelectedStation.SelectedIndex = kk;
-            }
-            else if (cbSelectName.Contains("Station"))
-            {
-                ii = cbCurveSelectedOven.SelectedIndex;
-                jj = cbCurveSelectedFloor.SelectedIndex;
-                kk = cbCurveSelectedStation.SelectedIndex;
-            }
-
-            Current.option.CurveStationId = Current.ovens[ii].Floors[jj].Stations[kk].Id;
-        }
-
         #endregion
 
         #region 右键
@@ -3423,203 +1970,9 @@ namespace BYD.Scan.Dispatcher
 
         #endregion
 
-        #region 手动调试夹具扫码枪
-
-        private void btnClampScanStart_Click(object sender, EventArgs e)
-        {
-            string code = string.Empty;
-            string msg = string.Empty;
-            ScanResult scanResult = Current.ClampScaner.StartClampScan(out code, out msg);
-            if (scanResult == ScanResult.OK)
-            {
-                Tip.Alert(code);
-            }
-            else if (scanResult == ScanResult.NG)
-            {
-                Tip.Alert("扫码返回NG！");
-            }
-            else
-            {
-                Error.Alert(msg);
-            }
-        }
-
-        private void btnClampScanOkBackToFeeder_Click(object sender, EventArgs e)
-        {
-            string msg = string.Empty;
-            if (!Current.Feeder.SetScanClampResult(ScanResult.OK, out msg))
-            {
-                Error.Alert(msg);
-            }
-            else
-            {
-                Tip.Alert("OK");
-            }
-        }
-
-        private void btnClampScanNgBackToFeeder_Click(object sender, EventArgs e)
-        {
-            string msg = string.Empty;
-            if (!Current.Feeder.SetScanClampResult(ScanResult.NG, out msg))
-            {
-                Error.Alert(msg);
-            }
-            else
-            {
-                Tip.Alert("OK");
-            }
-        }
-
-        #endregion
-
-        #region 手动调试电池扫码枪
-
-        private void btnBatteryScanStart_Click(object sender, EventArgs e)
-        {
-            Thread t = new Thread(() =>{
-                string code = string.Empty;
-                string msg = string.Empty;
-                ScanResult scanResult = Current.BatteryScaner.StartBatteryScan(out code, out msg);
-                if (scanResult == ScanResult.OK)
-                {
-                    Tip.Alert(code);
-                }
-                else if (scanResult == ScanResult.NG)
-                {
-                    Tip.Alert("扫码返回NG！");
-                }
-                else
-                {
-                    Error.Alert(msg);
-                }
-            });
-
-            t.Start();
-        }
-
-        private void btnBatteryScanOkBackToFeeder_Click(object sender, EventArgs e)
-        {
-            int i = cbBatteryScaner.SelectedIndex / 2;
-            string msg = string.Empty;
-            if (!Current.Feeder.SetScanBatteryResult(ScanResult.OK, out msg))
-            {
-                Error.Alert(msg);
-            }
-            else
-            {
-                Tip.Alert("OK");
-            }
-        }
-
-        private void btnBatteryScanNgBackToFeeder_Click(object sender, EventArgs e)
-        {
-            int i = cbBatteryScaner.SelectedIndex / 2;
-            string msg = string.Empty;
-            if (!Current.Feeder.SetScanBatteryResult(ScanResult.NG, out msg))
-            {
-                Error.Alert(msg);
-            }
-            else
-            {
-                Tip.Alert("OK");
-            }
-        }
-
-        #endregion
-
-        #region 水含量手动输入
-
-        private void cbSampleSelected_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!TengDa.WF.Current.IsRunning) return;
-            string cbSelectName = (sender as ComboBox).Name;
-            int ii = 0, jj = 0;
-
-            if (cbSelectName.Contains("Oven"))
-            {
-                ii = cbSampleSelectedOven.SelectedIndex;
-
-                cbSampleSelectedFloor.Items.Clear();
-                Current.ovens[ii].Floors.ForEach(f =>
-                {
-                    cbSampleSelectedFloor.Items.Add(f.Name);
-                });
-                jj = 0;
-                cbSampleSelectedFloor.SelectedIndex = jj;
-            }
-            else if (cbSelectName.Contains("Floor"))
-            {
-                ii = cbSampleSelectedOven.SelectedIndex;
-                jj = cbSampleSelectedFloor.SelectedIndex;
-            }
-            Current.option.SampleFloorId = Current.ovens[ii].Floors[jj].Id;
-        }
-
-        private void btnWaterContVerify_Click(object sender, EventArgs e)
-        {
-            int i = cbSampleSelectedOven.SelectedIndex;
-            int j = cbSampleSelectedFloor.SelectedIndex;
-
-            //if (Current.ovens[i].Floors[j].Stations.Count(s => s.FloorStatus == FloorStatus.烘烤) > 0)
-            //{
-            //    Tip.Alert(Current.ovens[i].Floors[j].Name + "正在烘烤，不能输入水含量数据！");
-            //    return;
-            //}
-
-            float waterContent = TengDa._Convert.StrToFloat(tbWaterContent.Text.Trim(), 0);
-            if (waterContent > 0)
-            {
-                //    Current.ovens[i].Floors[j].Stations.ForEach(s => s.Clamp.WaterContent = waterContent);
-                //    Current.blankers.ForEach(b => b.Stations.ForEach(bs =>
-                //    {
-                //        Current.ovens[i].Floors[j].Stations.ForEach(fs =>
-                //{
-                //          if (bs.FromStationId == fs.Id && bs.ClampId > 0)
-                //          {
-                //              bs.Clamp.WaterContent = waterContent;
-                //          }
-                //      });
-                //    }));
-                Clamp.SetWaterCont(Current.ovens[i].Floors[j], waterContent);
-                Tip.Alert("水含量数据输入成功！");
-                if (timerlock && Current.mes.IsAlive)
-                {
-                    //UploadBatteriesInfo(new List<Clamp>());
-                }
-            }
-            else
-            {
-                Error.Alert("输入水含量数据格式错误！");
-            }
-        }
-
-        #endregion
-
         private void btnDebug_Click(object sende, EventArgs e)
         {
-            Current.Robot.Plc.GetInfoNoWrite(out string msg);
-            Console.WriteLine(msg);
+
         }
-
-
-        /// <summary>
-        /// 键盘按下空格键急停机器人
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ManageSystem_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar.ToString() == " ")
-            {
-                if (Current.Robot.IsAlive)
-                {
-                    if (Current.Robot.Stop(out string msg))
-                    {
-                        Tip.Alert("按下空格键急停大机器人成功！");
-                    }
-                }
-            }
-        }
-
     }
 }

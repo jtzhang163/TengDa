@@ -9,7 +9,10 @@ using TengDa.WF;
 
 namespace BYD.Scan
 {
-    public class OvenParam : Service
+    /// <summary>
+    /// 触摸屏
+    /// </summary>
+    public class Touchscreen : TengDa.WF.Terminals.EthernetTerminal
     {
         #region 属性字段
         private static string tableName = string.Empty;
@@ -19,44 +22,20 @@ namespace BYD.Scan
             {
                 if (string.IsNullOrEmpty(tableName))
                 {
-                    tableName = Config.DbTableNamePre + ".OvenParam";
+                    tableName = Config.DbTableNamePre + ".Touchscreens";
                 }
                 return tableName;
             }
         }
-
-        public string Content { get; set; }
-
-        public string Unit { get; set; }
-
-        public int Floor1Addr { get; set; }
-
-        public int Floor2Addr { get; set; }
-
-        public int Floor3Addr { get; set; }
-
-        private int defaultValue = -1;
-        public int DefaultValue
-        {
-            get { return defaultValue; }
-            set
-            {
-                if (defaultValue != value)
-                {
-                    UpdateDbField("DefaultValue", value);
-                }
-                defaultValue = value;
-            }
-        }
         #endregion
 
-        #region 列表
-        private static List<OvenParam> ovenParamList = new List<OvenParam>();
-        public static List<OvenParam> OvenParamList
+        #region 系统触摸屏列表
+        private static List<Touchscreen> touchscreenList = new List<Touchscreen>();
+        public static List<Touchscreen> TouchscreenList
         {
             get
             {
-                if (ovenParamList.Count < 1)
+                if (touchscreenList.Count < 1)
                 {
                     string msg = string.Empty;
 
@@ -72,23 +51,23 @@ namespace BYD.Scan
 
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            OvenParam ovenParam = new OvenParam();
-                            ovenParam.InitFields(dt.Rows[i]);
-                            ovenParamList.Add(ovenParam);
+                            Touchscreen touchscreen = new Touchscreen();
+                            touchscreen.InitFields(dt.Rows[i]);
+                            touchscreenList.Add(touchscreen);
                         }
                     }
 
                 }
 
-                return ovenParamList;
+                return touchscreenList;
             }
         }
         #endregion
 
         #region 构造方法
-        public OvenParam() : this(-1) { }
+        public Touchscreen() : this(-1) { }
 
-        public OvenParam(int id)
+        public Touchscreen(int id)
         {
             if (id < 0)
             {
@@ -130,13 +109,13 @@ namespace BYD.Scan
 
         protected void InitFields(DataRow rowInfo)
         {
-            this.Content = rowInfo["Content"].ToString();
-            this.Unit = rowInfo["Unit"].ToString();
-            this.Floor1Addr = TengDa._Convert.StrToInt(rowInfo["Floor1Addr"].ToString(), -1);
-            this.Floor2Addr = TengDa._Convert.StrToInt(rowInfo["Floor2Addr"].ToString(), -1);
-            this.Floor3Addr = TengDa._Convert.StrToInt(rowInfo["Floor3Addr"].ToString(), -1);
-            this.defaultValue = TengDa._Convert.StrToInt(rowInfo["DefaultValue"].ToString(), -1);
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
+            this.name = rowInfo["Name"].ToString();
+            this.company = rowInfo["Company"].ToString();
+            this.model = rowInfo["Model"].ToString();
+            this.ip = rowInfo["IP"].ToString();
+            this.port = TengDa._Convert.StrToInt(rowInfo["Port"].ToString(), -1);
+            this.number = rowInfo["Number"].ToString();
         }
         #endregion
 

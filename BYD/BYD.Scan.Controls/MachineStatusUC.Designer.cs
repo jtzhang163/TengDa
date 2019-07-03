@@ -42,9 +42,9 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 18F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.Controls.Add(this.pbLamp, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbMachineName, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.cbIsEnable, 0, 0);
@@ -61,10 +61,10 @@
             // 
             this.pbLamp.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbLamp.Image")));
-            this.pbLamp.Location = new System.Drawing.Point(109, 8);
+            this.pbLamp.Location = new System.Drawing.Point(183, 8);
             this.pbLamp.Margin = new System.Windows.Forms.Padding(0);
             this.pbLamp.Name = "pbLamp";
-            this.pbLamp.Size = new System.Drawing.Size(17, 13);
+            this.pbLamp.Size = new System.Drawing.Size(13, 13);
             this.pbLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbLamp.TabIndex = 24;
             this.pbLamp.TabStop = false;
@@ -76,7 +76,7 @@
             this.lbMachineName.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbMachineName.Location = new System.Drawing.Point(21, 0);
             this.lbMachineName.Name = "lbMachineName";
-            this.lbMachineName.Size = new System.Drawing.Size(85, 30);
+            this.lbMachineName.Size = new System.Drawing.Size(159, 30);
             this.lbMachineName.TabIndex = 23;
             this.lbMachineName.Text = "XXXXX";
             this.lbMachineName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -100,11 +100,11 @@
             this.tbStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbStatus.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbStatus.ForeColor = System.Drawing.Color.Green;
-            this.tbStatus.Location = new System.Drawing.Point(134, 7);
+            this.tbStatus.Location = new System.Drawing.Point(208, 7);
             this.tbStatus.Margin = new System.Windows.Forms.Padding(0);
             this.tbStatus.Name = "tbStatus";
             this.tbStatus.ReadOnly = true;
-            this.tbStatus.Size = new System.Drawing.Size(184, 16);
+            this.tbStatus.Size = new System.Drawing.Size(110, 16);
             this.tbStatus.TabIndex = 25;
             this.tbStatus.Text = "未连接";
             // 
