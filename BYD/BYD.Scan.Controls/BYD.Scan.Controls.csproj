@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CCB49E67-7F01-4304-89BB-3FFC367D4458}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>BYD.Scan.Controls</RootNamespace>
+    <AssemblyName>BYD.Scan.Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BlankerUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BlankerUC.Designer.cs">
+      <DependentUpon>BlankerUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FinishTaskConfirmForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FinishTaskConfirmForm.Designer.cs">
+      <DependentUpon>FinishTaskConfirmForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MachinesStatusUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MachinesStatusUC.Designer.cs">
+      <DependentUpon>MachinesStatusUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MachineStatusUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MachineStatusUC.Designer.cs">
+      <DependentUpon>MachineStatusUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpenAllNetControlUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OpenAllNetControlUC.Designer.cs">
+      <DependentUpon>OpenAllNetControlUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OvenParamUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OvenParamUC.Designer.cs">
+      <DependentUpon>OvenParamUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowOvenInfoTypeUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ShowOvenInfoTypeUC.Designer.cs">
+      <DependentUpon>ShowOvenInfoTypeUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowTandVForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowTandVForm.Designer.cs">
+      <DependentUpon>ShowTandVForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParamSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ParamSettingForm.Designer.cs">
+      <DependentUpon>ParamSettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RobotUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RobotUC.Designer.cs">
+      <DependentUpon>RobotUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TorVUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TorVUC.Designer.cs">
+      <DependentUpon>TorVUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TransferUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TransferUC.Designer.cs">
+      <DependentUpon>TransferUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CacherUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CacherUC.Designer.cs">
+      <DependentUpon>CacherUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FeedClampUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FeedClampUC.Designer.cs">
+      <DependentUpon>FeedClampUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FeederUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FeederUC.Designer.cs">
+      <DependentUpon>FeederUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FloorUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FloorUC.Designer.cs">
+      <DependentUpon>FloorUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OvenUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OvenUC.Designer.cs">
+      <DependentUpon>OvenUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleClampUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SimpleClampUC.Designer.cs">
+      <DependentUpon>SimpleClampUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TaskInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TaskInfo.Designer.cs">
+      <DependentUpon>TaskInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="YieldDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="YieldDisplay.Designer.cs">
+      <DependentUpon>YieldDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BlankerUC.resx">
+      <DependentUpon>BlankerUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinishTaskConfirmForm.resx">
+      <DependentUpon>FinishTaskConfirmForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachinesStatusUC.resx">
+      <DependentUpon>MachinesStatusUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineStatusUC.resx">
+      <DependentUpon>MachineStatusUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenAllNetControlUC.resx">
+      <DependentUpon>OpenAllNetControlUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OvenParamUC.resx">
+      <DependentUpon>OvenParamUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowOvenInfoTypeUC.resx">
+      <DependentUpon>ShowOvenInfoTypeUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowTandVForm.resx">
+      <DependentUpon>ShowTandVForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParamSettingForm.resx">
+      <DependentUpon>ParamSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RobotUC.resx">
+      <DependentUpon>RobotUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TorVUC.resx">
+      <DependentUpon>TorVUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransferUC.resx">
+      <DependentUpon>TransferUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CacherUC.resx">
+      <DependentUpon>CacherUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FeedClampUC.resx">
+      <DependentUpon>FeedClampUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FeederUC.resx">
+      <DependentUpon>FeederUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FloorUC.resx">
+      <DependentUpon>FloorUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OvenUC.resx">
+      <DependentUpon>OvenUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimpleClampUC.resx">
+      <DependentUpon>SimpleClampUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TaskInfo.resx">
+      <DependentUpon>TaskInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YieldDisplay.resx">
+      <DependentUpon>YieldDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TengDa\TengDa.WF\TengDa.WF.csproj">
+      <Project>{dfd6cb8d-d1fd-4712-8c4e-c611bbe12d08}</Project>
+      <Name>TengDa.WF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TengDa\TengDa\TengDa.csproj">
+      <Project>{313161D4-A305-47FB-8935-D7C0A0CF4B3D}</Project>
+      <Name>TengDa</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BYD.Scan\BYD.Scan.csproj">
+      <Project>{c4e6f31e-2c93-40b4-9919-f9610ab9048e}</Project>
+      <Name>BYD.Scan</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gray_Round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Green_Round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Red_Round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yellow_Round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Continue_Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Stop_Red.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

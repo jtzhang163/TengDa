@@ -93,11 +93,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BYD", "BYD", "{0FC6525E-EF3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BYD.Mes.Test", "BYD\BYD.Mes.Test\BYD.Mes.Test.csproj", "{06B7190B-DFB5-4A95-81B2-589C85BBD765}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BYD.AutoInjection", "BYD\BYD.AutoInjection\BYD.AutoInjection.csproj", "{C4E6F31E-2C93-40B4-9919-F9610AB9048E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BYD.Scan", "BYD\BYD.Scan\BYD.Scan.csproj", "{C4E6F31E-2C93-40B4-9919-F9610AB9048E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BYD.AutoInjection.Controls", "BYD\BYD.AutoInjection.Controls\BYD.AutoInjection.Controls.csproj", "{CCB49E67-7F01-4304-89BB-3FFC367D4458}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BYD.Scan.Controls", "BYD\BYD.Scan.Controls\BYD.Scan.Controls.csproj", "{CCB49E67-7F01-4304-89BB-3FFC367D4458}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BYD.AutoInjection.Dispatcher", "BYD\BYD.AutoInjection.Dispatcher\BYD.AutoInjection.Dispatcher.csproj", "{717EB061-E78A-4D3D-BBD3-4548552E83C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BYD.Scan.Dispatcher", "BYD\BYD.Scan.Dispatcher\BYD.Scan.Dispatcher.csproj", "{717EB061-E78A-4D3D-BBD3-4548552E83C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

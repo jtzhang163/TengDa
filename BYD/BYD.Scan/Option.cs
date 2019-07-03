@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using TengDa;
 
-namespace Anchitech.Baking
+namespace BYD.Scan
 {
     public class Option
     {
@@ -2395,7 +2395,6 @@ namespace Anchitech.Baking
             }
         }
 
-        [Browsable(false)]
         public bool IsDisplayOvenCode { get; set; }
 
         public string[,] GetTemStrs = new string[3, 2]
@@ -2468,10 +2467,8 @@ namespace Anchitech.Baking
             "%01#WCP1R062B1**"
         };
 
-        [Browsable(false)]
         public string FloorShowInfoType { get; set; } = "默认信息";
 
-        [Browsable(false)]
         public bool TaskIsFinished { get; set; } = false;
 
         private int currentWorkNum = 0;
