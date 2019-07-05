@@ -116,6 +116,7 @@ namespace BYD.Scan
             this.ip = rowInfo["IP"].ToString();
             this.port = TengDa._Convert.StrToInt(rowInfo["Port"].ToString(), -1);
             this.number = rowInfo["Number"].ToString();
+            this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
         }
         #endregion
 

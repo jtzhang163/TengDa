@@ -139,6 +139,8 @@ namespace TengDa.WF.Terminals
 
         private SiemensTcpNet siemens_net = null;
 
+        private HslCommunice533.ModBus.ModbusTcpNet busTcpClient = null;
+
         private HslCommunice533.Profinet.Omron.OmronFinsNet omron_net = null;
 
         IPEndPoint point = null;
@@ -194,6 +196,26 @@ namespace TengDa.WF.Terminals
                             IsAlive = false;
                             return false;
                         }                  
+                    }
+                    IsAlive = true;
+                }
+                else if (this.Company == "MCGS" && this.Model == "TPC1061TI(Hi)")
+                {
+                    if (busTcpClient == null)
+                    {
+
+                        busTcpClient?.ConnectClose();
+                        busTcpClient = new HslCommunice533.ModBus.ModbusTcpNet(this.IP, this.Port, 1);
+                        busTcpClient.AddressStartWithZero = true;
+                        busTcpClient.IsStringReverse = false;
+
+                        HslCommunice533.OperateResult result = busTcpClient.ConnectServer();
+                        if (!result.IsSuccess)
+                        {
+                            msg = result.Message;
+                            IsAlive = false;
+                            return false;
+                        }
                     }
                     IsAlive = true;
                 }
@@ -258,6 +280,15 @@ namespace TengDa.WF.Terminals
                     {
                         point = null;
                     }                   
+                    IsAlive = false;
+                }
+                else if (this.Company == "MCGS" && this.Model == "TPC1061TI(Hi)")
+                {
+                    if (busTcpClient != null)
+                    {
+                        busTcpClient.ConnectClose();
+                        busTcpClient = null;
+                    }
                     IsAlive = false;
                 }
                 else if (Socket != null)
@@ -590,6 +621,18 @@ namespace TengDa.WF.Terminals
                     msg = ex.ToString();
                 }
             }
+            else if(this.Company == "MCGS" && this.Model == "TPC1061TI(Hi)")
+            {
+                TcpConnect(out msg);
+                HslCommunice533.OperateResult<ushort[]> result = busTcpClient.ReadUInt16(address, length);
+                TcpDisConnect(out msg);
+                if (result.IsSuccess)
+                {
+                    output = result.Content;
+                    return true;
+                }
+                msg = this.Name + "获取数据出现异常 " + result.Message;
+            }
             return false;
         }
 
@@ -633,6 +676,18 @@ namespace TengDa.WF.Terminals
                 {
                     msg = ex.Message;
                 }
+            }
+            if (this.Company == "MCGS" && this.Model == "TPC1061TI(Hi)")
+            {
+                TcpConnect(out msg);
+                HslCommunice533.OperateResult result = busTcpClient.Write(address, val);
+                TcpDisConnect(out msg);
+                if (result.IsSuccess)
+                {
+                    LogHelper.WriteInfo(string.Format("{0} 成功写入数据 {1}：{2}", this.Name, address, val));
+                    return true;
+                }
+                msg = result.Message;
             }
             return false;
         }

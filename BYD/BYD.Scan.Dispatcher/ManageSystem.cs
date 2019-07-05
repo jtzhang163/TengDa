@@ -533,11 +533,13 @@ namespace BYD.Scan.Dispatcher
 
         #region 控件数组
 
-        private const int LineCount = 12;
+        private const int LineCount = 4;
 
         #endregion
 
         #region 启动逻辑
+
+        DateTime StartTime = DateTime.Now;
 
         private void pictureBox_Click(object sender, EventArgs e)
         {
@@ -661,31 +663,20 @@ namespace BYD.Scan.Dispatcher
         private bool PlcDisConnect()
         {
             string msg = string.Empty;
-      
-            //for (int i = 0; i < OvenCount; i++)
-            //{
-            //    if (Current.ovens[i].IsEnable)
-            //    {
-            //        if (!Current.ovens[i].Plc.TcpDisConnect(out msg))
-            //        {
-            //            Error.Alert(msg);
-            //            return false;
-            //        }
-            //        this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "未连接");
-            //        this.machinesStatusUC1.SetLampColor(Current.ovens[i], Color.Gray);
-            //    }
 
-            //    //防止长时间未连接导致烤箱信息与实际不符
-            //    Current.ovens[i].AlreadyGetAllInfo = false;
-            //    Current.ovens[i].getInfoNum = 0;
-
-            //    Current.ovens[i].PreAlarmStr = string.Empty;
-            //    for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
-            //    {
-            //        Current.ovens[i].Floors[j].DoorStatus = DoorStatus.未知;
-            //        Current.ovens[i].Floors[j].PreAlarmStr = string.Empty;
-            //    }
-            //}
+            for (int i = 0; i < LineCount; i++)
+            {
+                if (Current.Lines[i].Touchscreen.IsEnable)
+                {
+                    if (!Current.Lines[i].Touchscreen.TcpDisConnect(out msg))
+                    {
+                        Error.Alert(msg);
+                        return false;
+                    }
+                    this.machinesStatusUC1.SetStatusInfo(Current.Lines[i].Touchscreen, "未连接");
+                    this.machinesStatusUC1.SetLampColor(Current.Lines[i].Touchscreen, Color.Gray);
+                }
+            }
 
             return true;
         }
@@ -730,67 +721,66 @@ namespace BYD.Scan.Dispatcher
         private bool ScanerConnect()
         {
             string msg = string.Empty;
+            for (int i = 0; i < LineCount; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    for (int k = 0; k < 2; k++)
+                    {
+                        var scaner = Current.Lines[i].ChildLines[j].Scaners[k];
+                        if (scaner.IsEnable)
+                        {
+                            if (!scaner.IsPingSuccess)
+                            {
 
-            //if (Current.BatteryScaner.IsEnable)
-            //{
-            //    if (!Current.BatteryScaner.IsPingSuccess)
-            //    {
+                                Error.Alert(string.Format("无法连接到{0}：{1}", scaner.Name, scaner.IP));
+                                return false;
+                            }
 
-            //        Error.Alert(string.Format("无法连接到{0}：{1}", Current.BatteryScaner.Name, Current.BatteryScaner.IP));
-            //        return false;
-            //    }
-
-            //    if (!Current.BatteryScaner.TcpConnect(out msg))
-            //    {
-            //        Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.BatteryScaner.Name, msg));
-            //        return false;
-            //    }
-            //    this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "连接成功");
-            //    this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Green);
-            //}
-
-            //if (Current.ClampScaner.IsEnable)
-            //{
-            //    if (!Current.ClampScaner.IsPingSuccess)
-            //    {
-
-            //        Error.Alert(string.Format("无法连接到{0}：{1}", Current.ClampScaner.Name, Current.ClampScaner.IP));
-            //        return false;
-            //    }
-
-            //    if (!Current.ClampScaner.TcpConnect(out msg))
-            //    {
-            //        Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.ClampScaner.Name, msg));
-            //        return false;
-            //    }
-
-            //    this.machinesStatusUC1.SetStatusInfo(Current.ClampScaner, "连接成功");
-            //    this.machinesStatusUC1.SetLampColor(Current.ClampScaner, Color.Green);
-            //}
-
+                            if (!scaner.TcpConnect(out msg))
+                            {
+                                Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", scaner.Name, msg));
+                                return false;
+                            }
+                            this.machinesStatusUC1.SetStatusInfo(scaner, "连接成功");
+                            this.machinesStatusUC1.SetLampColor(scaner, Color.Green);
+                            scaner.StartListenReceiveData();
+                        }
+                    }
+                }
+            }
             return true;
         }
 
         private bool ScanerDisConnect()
         {
             string msg = string.Empty;
+            for (int i = 0; i < LineCount; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    for (int k = 0; k < 2; k++)
+                    {
+                        var scaner = Current.Lines[i].ChildLines[j].Scaners[k];
+                        if (scaner.IsEnable)
+                        {
+                            if (scaner.IsAlive)
+                            {
+                                scaner.StopScan();
+                            }
 
-            //if (Current.BatteryScaner.IsEnable)
-            //{
-            //    if (Current.BatteryScaner.IsAlive)
-            //    {
-            //        Current.BatteryScaner.StopClampScan();
-            //    }
+                            if (!scaner.TcpDisConnect(out msg))
+                            {
+                                Error.Alert(msg);
+                                return false;
+                            }
 
-            //    if (!Current.BatteryScaner.TcpDisConnect(out msg))
-            //    {
-            //        Error.Alert(msg);
-            //        return false;
-            //    }
-
-            //    this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "未连接");
-            //    this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Gray);
-            //}
+                            this.machinesStatusUC1.SetStatusInfo(scaner, "未连接");
+                            this.machinesStatusUC1.SetLampColor(scaner, Color.Gray);
+                        }
+                    }
+                }
+            }
 
             return true;
         }
@@ -801,7 +791,7 @@ namespace BYD.Scan.Dispatcher
 
         delegate void UpdateUI1PDelegate(string text);
 
-        System.Timers.Timer[] timerOvenRuns = new System.Timers.Timer[LineCount] { null, null, null, null, null, null, null, null, null, null, null, null };
+        System.Timers.Timer[] timerTouchscreenRuns = new System.Timers.Timer[LineCount];
 
         System.Timers.Timer timerRun = null;
 
@@ -839,16 +829,16 @@ namespace BYD.Scan.Dispatcher
                 for (int i = 0; i < LineCount; i++)
                 {
                     int index = i;//如果直接用i, 则完成循环后 i一直 = OvenCount
-                    timerOvenRuns[i] = new System.Timers.Timer();
-                    timerOvenRuns[i].Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000);
-                    timerOvenRuns[i].Elapsed += delegate
+                    timerTouchscreenRuns[i] = new System.Timers.Timer();
+                    timerTouchscreenRuns[i].Interval = TengDa._Convert.StrToInt("3000", 1000);
+                    timerTouchscreenRuns[i].Elapsed += delegate
                     {
-                        Thread listen = new Thread(new ParameterizedThreadStart(OvenRunInvokeFunc));
+                        Thread listen = new Thread(new ParameterizedThreadStart(TouchscreenRunInvokeFunc));
                         listen.IsBackground = true;
                         listen.Start(index);
                     };
                     Thread.Sleep(200);
-                    timerOvenRuns[i].Start();
+                    timerTouchscreenRuns[i].Start();
                 }
 
                 timerRun = new System.Timers.Timer();
@@ -881,11 +871,11 @@ namespace BYD.Scan.Dispatcher
         {
             for (int i = 0; i < LineCount; i++)
             {
-                if (timerOvenRuns[i] != null)
+                if (timerTouchscreenRuns[i] != null)
                 {
-                    timerOvenRuns[i].Stop();
-                    timerOvenRuns[i].Close();
-                    timerOvenRuns[i].Dispose();
+                    timerTouchscreenRuns[i].Stop();
+                    timerTouchscreenRuns[i].Close();
+                    timerTouchscreenRuns[i].Dispose();
                 }
             }
 
@@ -897,74 +887,169 @@ namespace BYD.Scan.Dispatcher
             }
         }
 
-        private void OvenRunInvokeFunc(object obj)
+        private void TouchscreenRunInvokeFunc(object obj)
         {
 
             string msg = string.Empty;
 
             int i = System.Convert.ToInt32(obj);
 
-            //if (timerlock && Current.ovens[i].IsEnable)
-            //{
+            if (timerlock && Current.Lines[i].Touchscreen.IsEnable && (DateTime.Now - Current.ChangeModeTime).TotalSeconds > 10)
+            {
 
-            //    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "发送指令"); }));
-            //    if (Current.ovens[i].GetInfo())
-            //    {
-            //        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "获取信息成功"); }));
-            //    }
-            //    else
-            //    {
-            //        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "获取信息失败"); }));
-            //    }
-                
+                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Lines[i].Touchscreen, "发送指令"); }));
+                if (Current.Lines[i].GetInfo())
+                {
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Lines[i].Touchscreen, "获取信息成功"); }));
+                }
+                else
+                {
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Lines[i].Touchscreen, "获取信息失败"); }));
+                    return;
+                }
 
-            //    if (Current.ovens[i].AlreadyGetAllInfo)
-            //    {
-            //        for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
-            //        {
 
-            //        }
-            //    }
-            //}
+                for (int j = 0; j < 2; j++)
+                {
+                    #region 自动扫码逻辑
+                    if (Current.Lines[i].ChildLines[j].AutoScaner.IsEnable && Current.Lines[i].ChildLines[j].AutoScaner.CanScan)
+                    {
+                        int ii = i;
+                        int jj = j;
+
+                        ScanResult scanResult = ScanResult.Unknown;
+                        string code = "";
+
+                        ScanResult result1 = Current.Lines[ii].ChildLines[jj].AutoScaner.StartScan(out code, out msg);
+
+                        if (result1 == ScanResult.OK)
+                        {
+                            this.BeginInvoke(new MethodInvoker(() =>
+                            {
+                                this.machinesStatusUC1.SetStatusInfo(Current.Lines[ii].ChildLines[jj].AutoScaner, "+" + code);
+                                this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, SystemColors.Control);
+                                this.machinesStatusUC1.SetBackColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Green);
+                            }));
+
+                            Thread t = new Thread(() =>
+                            {
+                                Thread.Sleep(1000);
+                                this.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Green);
+                                    this.machinesStatusUC1.SetBackColor(Current.Lines[ii].ChildLines[jj].AutoScaner, SystemColors.Control);
+                                }));
+                            });
+                            t.Start();
+
+                            scanResult = ScanResult.OK;
+                        }
+                        else
+                        {
+                            //再扫一次
+                            ScanResult result2 = Current.Lines[ii].ChildLines[jj].AutoScaner.StartScan(out code, out msg);
+                            if (result2 == ScanResult.OK)
+                            {
+                                this.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    this.machinesStatusUC1.SetStatusInfo(Current.Lines[ii].ChildLines[jj].AutoScaner, "+" + code);
+                                    this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, SystemColors.Control);
+                                    this.machinesStatusUC1.SetBackColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Green);
+                                }));
+
+                                Thread t = new Thread(() =>
+                                {
+                                    Thread.Sleep(1000);
+                                    this.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Green);
+                                        this.machinesStatusUC1.SetBackColor(Current.Lines[ii].ChildLines[jj].AutoScaner, SystemColors.Control);
+                                    }));
+                                });
+                                t.Start();
+
+                                scanResult = ScanResult.OK;
+                            }
+                            else
+                            {
+                                this.BeginInvoke(new MethodInvoker(() =>
+                                {
+                                    this.machinesStatusUC1.SetStatusInfo(Current.Lines[ii].ChildLines[jj].AutoScaner, "扫码NG");
+                                    this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Red);
+                                }));
+
+                                scanResult = ScanResult.NG;
+                            }
+                        }
+
+
+                        if (Current.Lines[ii].WriteScanFinishInfo(j, out msg))
+                        {
+                            LogHelper.WriteInfo("扫码结束信号成功写入 " + Current.Lines[ii].Touchscreen.Name);
+                        }
+                        else
+                        {
+                            Error.Alert("扫码结束信号写入 " + Current.Lines[ii].Touchscreen.Name + "出错，msg：" + msg);
+                        }
+
+
+                        if (Current.Lines[ii].ChildLines[j].AutoScaner.ScanFinish(scanResult, code, out ScanResult finalScanResult))
+                        {
+                            if (Current.Lines[ii].WriteScanResultInfo(j, finalScanResult, out msg))
+                            {
+                                LogHelper.WriteInfo("两个扫码完成后结果成功写入 " + Current.Lines[ii].Touchscreen.Name);
+                            }
+                            else
+                            {
+                                Error.Alert("两个扫码完成后结果写入 " + Current.Lines[ii].Touchscreen.Name + "出错，msg：" + msg);
+                            }
+                        }
+
+                    }
+                    #endregion
+
+                }
+            }
         }
+
+        private object obj = new object();
 
         /// <summary>
         /// 总体运行逻辑
         /// </summary>
         private void RunInvokeFunc()
         {
-            if (!TengDa.WF.Current.IsTerminalInitFinished)
+
+            lock (obj)
             {
-                return;
-            }
-
-            if (timerlock && Math.Abs((DateTime.Now - Current.ChangeModeTime).Seconds) > 3)
-            {
-
-                ////无论手动还是自动任务模式都会执行
-                //for (int i = 0; i < OvenCount; i++)
-                //{
-                //    for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
-                //    {
-                //        Floor floor = Current.ovens[i].Floors[j];
-
-                //        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤) == 2)
-                //        {
-                //            floor.Stations.ForEach(s =>
-                //            {
-                //                s.SampleStatus = SampleStatus.待结果;
-                //            });
-                //        }
-
-                //        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleInfo == SampleInfo.无样品) == 2)
-                //        {
-                //            floor.Stations.ForEach(s =>
-                //            {
-                //                s.SampleStatus = SampleStatus.水分OK;
-                //            });
-                //        }
-                //    }
-                //}
+                if (timerlock && Math.Abs((DateTime.Now - Current.ChangeModeTime).TotalSeconds) > 3)
+                {
+                    for (int i = 0; i < LineCount; i++)
+                    {
+                        Line line = Current.Lines[i];
+                        if (line.Touchscreen.IsEnable && line.Touchscreen.IsAlive)
+                        {
+                            for (int j = 0; j < 2; j++)
+                            {
+                                Scaner scaner = line.ChildLines[j].ManuScaner;
+                                if (scaner.IsEnable && scaner.IsAlive)
+                                {
+                                    if (scaner.Manu(out ScanResult finalScanResult))
+                                    {
+                                        if (line.WriteScanResultInfoManu(j, finalScanResult, out string msg))
+                                        {
+                                            LogHelper.WriteInfo("【手动】两个扫码完成后结果成功写入 " + line.Touchscreen.Name);
+                                        }
+                                        else
+                                        {
+                                            Error.Alert("【手动】两个扫码完成后结果写入 " + line.Touchscreen.Name + "出错，msg：" + msg);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -1972,7 +2057,8 @@ namespace BYD.Scan.Dispatcher
 
         private void btnDebug_Click(object sende, EventArgs e)
         {
-
+            Current.Lines[1].ChildLines[1].AutoScaner.StartScan(out string code, out string msg);
+            Tip.Alert(code);
         }
     }
 }

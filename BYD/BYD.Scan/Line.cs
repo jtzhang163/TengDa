@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using TengDa;
 using TengDa.WF;
 
@@ -105,6 +106,7 @@ namespace BYD.Scan
             }
         }
 
+
         /// <summary>
         /// 手动扫码枪
         /// </summary>
@@ -115,6 +117,16 @@ namespace BYD.Scan
                 return Scaner.ScanerList.FirstOrDefault(o => o.LineId == this.Id && !o.IsAuto);
             }
         }
+
+        public List<Scaner> Scaners
+        {
+            get
+            {
+                return new List<Scaner>() { AutoScaner, ManuScaner };
+            }
+        }
+
+
 
         #endregion
 
@@ -201,5 +213,80 @@ namespace BYD.Scan
             }
         }
         #endregion
+
+        public bool GetInfo()
+        {
+            lock (this)
+            {
+                if (!this.Touchscreen.IsPingSuccess)
+                {
+                    this.Touchscreen.IsAlive = false;
+                    LogHelper.WriteError("无法连接到 " + this.Touchscreen.IP);
+                    return false;
+                }
+
+                try
+                {
+
+                    #region 获取信息
+
+                    if (!this.Touchscreen.GetInfo("0", 10, out ushort[] output, out string msg))
+                    {
+                        Error.Alert(msg);
+                        this.Touchscreen.IsAlive = false;
+                        return false;
+                    }
+                    if (output.Length < 10)
+                    {
+                        LogHelper.WriteError(string.Format("与PLC通信出现错误，msg：{0}", msg));
+                        return false;
+                    }
+
+
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (output[1 + j * 6] == 1)
+                        {
+                            if (!this.ChildLines[j].AutoScaner.IsReady)
+                            {
+                                this.ChildLines[j].AutoScaner.CanScan = true;
+                                LogHelper.WriteInfo(string.Format("【扫码日志】收到上料机给的请求 {0} 扫码信号！", this.ChildLines[j].AutoScaner.Name));
+                            }
+                            this.ChildLines[j].AutoScaner.IsReady = true;
+                        }
+                        else
+                        {
+                            this.ChildLines[j].AutoScaner.IsReady = false;
+                            this.ChildLines[j].AutoScaner.CanScan = false;
+                        }
+                    }
+
+                    #endregion
+                    Thread.Sleep(20);
+                }
+                catch (Exception ex)
+                {
+                    Error.Alert(ex);
+                }
+
+                this.Touchscreen.IsAlive = true;
+            }
+            return true;
+        }
+
+        public bool WriteScanFinishInfo(int j, out string msg)
+        {
+            return this.Touchscreen.SetInfo((1 + 6 * j).ToString(), (ushort)2, out msg);
+        }
+
+        public bool WriteScanResultInfo(int j, ScanResult scanResult, out string msg)
+        {
+            return this.Touchscreen.SetInfo((6 * j).ToString(), scanResult == ScanResult.OK ? (ushort)1 : (ushort)2, out msg);
+        }
+
+        public bool WriteScanResultInfoManu(int j, ScanResult scanResult, out string msg)
+        {
+            return this.Touchscreen.SetInfo((6 * j).ToString(), scanResult == ScanResult.OK ? (ushort)6 : (ushort)7, out msg);
+        }
     }
 }

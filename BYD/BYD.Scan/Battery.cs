@@ -29,16 +29,11 @@ namespace BYD.Scan
         }
 
         /// <summary>
-        /// 料盒Id
+        /// 扫码枪ID
         /// </summary>
-        [ReadOnly(true), DisplayName("所在夹具Id")]
-        public int ClampId { get; set; } = -1;
+        [ReadOnly(true), DisplayName("扫码枪ID")]
+        public int ScanerId { get; set; } = -1;
 
-        /// <summary>
-        /// 上料机Id
-        /// </summary>
-        [ReadOnly(true), DisplayName("上料机Id")]
-        public int FeederId { get; set; } = -1;
 
         #endregion
 
@@ -50,16 +45,15 @@ namespace BYD.Scan
             this.Id = id;
         }
 
-        public Battery(string code) : this(code, -1, -1)
+        public Battery(string code) : this(code, -1)
         {
 
         }
 
-        public Battery(string code, int feederId, int clampId)
+        public Battery(string code, int scanerId)
         {
             this.code = code;
-            this.FeederId = feederId;
-            this.ClampId = clampId;
+            this.ScanerId = scanerId;
         }
 
         #region 初始化方法
@@ -77,8 +71,7 @@ namespace BYD.Scan
         protected void InitFields(DataRow rowInfo)
         {
             this.code = rowInfo["Code"].ToString().Trim();
-            this.ClampId = TengDa._Convert.StrToInt(rowInfo["ClampId"].ToString(), -1);
-            this.FeederId = TengDa._Convert.StrToInt(rowInfo["FeederId"].ToString(), -1);
+            this.ScanerId = TengDa._Convert.StrToInt(rowInfo["ScanerId"].ToString(), -1);
             this.location = rowInfo["Location"].ToString().Trim();
             this.scanTime = TengDa._Convert.StrToDateTime(rowInfo["ScanTime"].ToString(), Common.DefaultTime);
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
@@ -154,36 +147,20 @@ namespace BYD.Scan
             return false;
         }
 
-        public static int GetCountByClampId(int clampId, out string msg)
-        {
-            DataTable dt = Database.Query(string.Format("SELECT COUNT(*) FROM [dbo].[{0}] WHERE ClampId = {1};", TableName, clampId), out msg);
-            if (dt.Rows.Count > 0)
-            {
-                return TengDa._Convert.StrToInt(dt.Rows[0][0].ToString(), -1);
-            }
-            return 0;
-        }
-
-        public static int Add(Battery addBattery, out string msg)
+        public static int Add(Battery newBattery, out string msg)
         {
             msg = "";
 
-            if (!addBattery.Code.Contains("0000000000"))
+            if (!newBattery.Code.Contains("0000000000"))
             {
-                var addedBattery = GetBattery(addBattery.Code);
+                var addedBattery = GetBattery(newBattery.Code);
                 if (addedBattery.Id > 0)
                 {
                     return addedBattery.Id;
                 }
             }
 
-            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [FeederId], [Location], [ScanTime]) VALUES ('{1}', {2}, {3}, '{4}', '{5}')", TableName, addBattery.Code, addBattery.ClampId, addBattery.FeederId, addBattery.Location, DateTime.Now), out msg);
-        }
-
-        public static bool Update(int clampId, int feederId, out string msg)
-        {
-            return Database.NonQuery(string.Format("UPDATE [dbo].[{0}] SET [ClampId] = {1} WHERE [Id] IN (SELECT TOP {2} [Id] FROM [dbo].[{0}] WHERE [ClampId] = -1 AND [FeederId] = {3} ORDER BY	[ScanTime])",
-                 TableName, clampId, Current.option.ClampBatteryCount, feederId), out msg);
+            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ScanerId], [Location], [ScanTime]) VALUES ('{1}', {2}, '{3}', '{4}')", TableName, newBattery.Code, newBattery.ScanerId, newBattery.Location, DateTime.Now), out msg);
         }
 
         /// <summary>
@@ -204,11 +181,11 @@ namespace BYD.Scan
 
             foreach (Battery battery in addBatteries)
             {
-                sb.Append(string.Format("('{0}', {1}, '{2}', '{3}'),", battery.Code, battery.ClampId, battery.Location, DateTime.Now));
+                sb.Append(string.Format("('{0}', {1}, '{2}', '{3}'),", battery.Code, battery.ScanerId, battery.Location, DateTime.Now));
             }
 
             //Yield.FeedingOK += addBatteries.Count;
-            return Database.NonQuery(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [Location], [ScanTime]) VALUES {1}", TableName, sb.ToString().TrimEnd(',')), out msg);
+            return Database.NonQuery(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ScanerId], [Location], [ScanTime]) VALUES {1}", TableName, sb.ToString().TrimEnd(',')), out msg);
         }
 
         public static bool Delete(Battery delBattery, out string msg)
@@ -222,21 +199,6 @@ namespace BYD.Scan
             return Database.NonQuery(string.Format("DELETE FROM	[dbo].[{0}] WHERE [Code] = '{1}'", TableName, delBattery.Code), out msg);
         }
 
-        public static bool Update(Battery newBattery, out string msg)
-        {
-            List<Battery> list = GetList(string.Format("SELECT * FROM [dbo].[{0}] WHERE [Code] = '{1}'", TableName, newBattery.Code), out msg);
-            if (list.Count() < 1)
-            {
-                msg = "不存在电池！ Code：" + newBattery.Code;
-                return false;
-            }
-            return Database.NonQuery(string.Format("UPDATE [dbo].[{0}] SET [ClampId] = {1} WHERE [Code] = '{2}'", TableName, newBattery.ClampId, newBattery.Code), out msg);
-        }
-
-        public static bool UpdateClampId(string batteryIds, int clampId, out string msg)
-        {
-            return Database.NonQuery(string.Format("UPDATE [dbo].[{0}] SET [ClampId] = {1} WHERE [Id] IN ({2})", TableName, clampId, batteryIds), out msg);
-        }
         #endregion
     }
 }

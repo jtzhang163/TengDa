@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Text.RegularExpressions;
+using System.Threading;
 using TengDa;
 using TengDa.WF;
 
@@ -43,6 +44,45 @@ namespace BYD.Scan
         [ReadOnly(true)]
         [DisplayName("是否为自动扫码枪")]
         public bool IsAuto { get; private set; }
+
+
+        private string code1 = string.Empty;
+        /// <summary>
+        /// 条码1
+        /// </summary>
+        [DisplayName("条码1")]
+        public string Code1
+        {
+            get { return code1; }
+            set
+            {
+                if (code1 != value)
+                {
+                    UpdateDbField("Code1", value);
+                }
+                code1 = value;
+            }
+        }
+
+        private string code2 = string.Empty;
+        /// <summary>
+        /// 条码1
+        /// </summary>
+        [DisplayName("条码1")]
+        public string Code2
+        {
+            get { return code2; }
+            set
+            {
+                if (code2 != value)
+                {
+                    UpdateDbField("Code2", value);
+                }
+                code2 = value;
+            }
+        }
+
+
         #endregion
 
         #region 扫码枪列表
@@ -51,27 +91,30 @@ namespace BYD.Scan
         {
             get
             {
-                string msg = string.Empty;
-                DataTable dt = Database.Query("SELECT * FROM [dbo].[" + TableName + "]", out msg);
+                if (scanerList.Count < 1)
+                {
+                    string msg = string.Empty;
+                    DataTable dt = Database.Query("SELECT * FROM [dbo].[" + TableName + "]", out msg);
 
-                if (!string.IsNullOrEmpty(msg))
-                {
-                    Error.Alert(msg);
-                    return null;
-                }
-
-                if (dt == null || dt.Rows.Count == 0)
-                {
-                    scanerList = null;
-                }
-                else
-                {
-                    scanerList.Clear();
-                    for (int i = 0; i < dt.Rows.Count; i++)
+                    if (!string.IsNullOrEmpty(msg))
                     {
-                        Scaner scaner = new Scaner();
-                        scaner.InitFields(dt.Rows[i]);
-                        scanerList.Add(scaner);
+                        Error.Alert(msg);
+                        return null;
+                    }
+
+                    if (dt == null || dt.Rows.Count == 0)
+                    {
+                        scanerList = null;
+                    }
+                    else
+                    {
+                        scanerList.Clear();
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            Scaner scaner = new Scaner();
+                            scaner.InitFields(dt.Rows[i]);
+                            scanerList.Add(scaner);
+                        }
                     }
                 }
                 return scanerList;
@@ -132,103 +175,87 @@ namespace BYD.Scan
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
             this.LineId = TengDa._Convert.StrToInt(rowInfo["LineId"].ToString(), -1);
             this.IsAuto = Convert.ToBoolean(rowInfo["IsAuto"]);
+            this.code1 = rowInfo["Code1"].ToString();
+            this.code2 = rowInfo["Code2"].ToString();
         }
         #endregion
 
         #region 方法
 
-        public ScanResult StartBatteryScan(out string code, out string msg)
+        public ScanResult StartScan(out string code, out string msg)
         {
-            code = string.Empty;
-            string output = string.Empty;
+            code = "";
+            GetInfo("LON", 200, out string output, out msg);
 
-            if (!GetInfo(Current.option.BatteryScanerTriggerStr, 300, out output, out msg))
+            Thread.Sleep(800);
+            var receiveData = this.GetReceiveData();
+            if (receiveData.Length > 18)
             {
-                if (msg.Contains("超时"))
-                {
-                    StopBatteryScan();
-                    return ScanResult.Timeout;
-                }
-                return ScanResult.Error;
-            }
-
-            if (string.IsNullOrEmpty(output))
-            {
-                msg = "指定时间未接收到串口数据！";
-                return ScanResult.Error;
-            }
-
-            if (!string.IsNullOrEmpty(output) && output.Length > 5)
-            {
-                code = output;
-                // code = Regex.Match(output, Current.option.BatteryCodeRegularExpression).Value;
+                code = receiveData;
+                this.ClearReceiveData();
                 return ScanResult.OK;
             }
 
-            code = Regex.Match(output, Current.option.BatteryScanerFailedStr).Value;
-            if (!string.IsNullOrEmpty(code))
-            {
-                return ScanResult.NG;
-            }
-
-            this.StopBatteryScan();
-            msg = "扫码枪返回字符串无法识别！";
-            LogHelper.WriteError(string.Format("获得电池条码：{0}，不满足正则表达式：{1}", output, Current.option.BatteryCodeRegularExpression));
-            return ScanResult.Unknown;
+            code = "ERROR";
+            StopScan();
+            return ScanResult.NG;
         }
 
-        public ScanResult StartClampScan(out string code, out string msg)
-        {
-            code = string.Empty;
-            string output = string.Empty;
 
-            if (!GetInfo(Current.option.ClampScanerTriggerStr, 200, out output, out msg))
+        public void StopScan()
+        {
+            SetInfo("LOFF", out string msg);
+        }
+
+        /// <summary>
+        /// 扫码结束逻辑
+        /// </summary>
+        /// <param name="scanResult"></param>
+        /// <returns>扫码结束，True：第二个扫码结束（可发送结果至触摸屏）</returns>
+        public bool ScanFinish(ScanResult scanResult, string code, out ScanResult finalScanResult)
+        {
+            finalScanResult = ScanResult.NG;
+            if (string.IsNullOrEmpty(this.Code1))
             {
-                if (msg.Contains("超时"))
+                this.Code1 = scanResult == ScanResult.OK ? code : "ERROR";
+
+                return false;
+            }
+            else if (string.IsNullOrEmpty(this.Code2))
+            {
+                this.Code2 = scanResult == ScanResult.OK ? code : "ERROR";
+
+                if (!this.Code1.Contains("ERROR") && !this.Code2.Contains("ERROR"))
                 {
-                    StopClampScan();
-                    return ScanResult.Timeout;
+                    LogHelper.WriteInfo(string.Format("获得先后两个条码：{0}，{1}", this.Code1, this.Code2));
+
+                    Battery.Add(new Battery() { Code = this.Code1 }, out string msg);
+
+                    Battery.Add(new Battery() { Code = this.Code2 }, out msg);
+
+                    finalScanResult = ScanResult.OK;
                 }
-                return ScanResult.Error;
-            }
 
-            if (string.IsNullOrEmpty(output))
-            {
-                msg = "指定时间未接收到串口数据！";
-                return ScanResult.Error;
+                this.Code1 = "";
+                this.Code2 = "";
+                return true;
             }
-
-            code = Regex.Match(output, Current.option.ClampCodeRegularExpression).Value;
-            if (!string.IsNullOrEmpty(code))
-            {
-                return ScanResult.OK;
-            }
-
-            code = Regex.Match(output, Current.option.ClampScanerFailedStr).Value;
-            if (!string.IsNullOrEmpty(code))
-            {
-                return ScanResult.NG;
-            }
-
-            msg = "扫码枪返回字符串无法识别！";
-            LogHelper.WriteError(string.Format("获得夹具条码：{0}，不满足正则表达式：{1}", output, Current.option.ClampCodeRegularExpression));
-            return ScanResult.Unknown;
+            return true;
         }
 
-        public void StopBatteryScan()
+        public bool Manu(out ScanResult finalScanResult)
         {
-            string output = string.Empty;
-            string msg = string.Empty;
-            SetInfo(Current.option.BatteryScanerStopStr, out msg);
+            var code = "";
+            finalScanResult = ScanResult.NG;
+            var receiveData = this.GetReceiveData();
+            if (receiveData.Length > 8)
+            {
+                code = receiveData;
+                this.ClearReceiveData();
+                return ScanFinish(ScanResult.OK, code, out finalScanResult);
+            }
+            return false;
         }
-
-        public void StopClampScan()
-        {
-            string output = string.Empty;
-            string msg = string.Empty;
-            SetInfo(Current.option.ClampScanerStopStr, out msg);
-        }
-
 
         #endregion
     }
