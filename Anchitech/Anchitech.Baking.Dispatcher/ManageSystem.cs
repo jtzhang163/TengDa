@@ -362,18 +362,6 @@ namespace Anchitech.Baking.Dispatcher
             int iii = Current.ovens.IndexOf(sampleOven);
             int jjj = sampleOven.Floors.IndexOf(sampleFloor);
 
-            Current.ovens.ForEach(o =>
-            {
-                cbSampleSelectedOven.Items.Add(o.Name);
-            });
-            cbSampleSelectedOven.SelectedIndex = iii;
-
-            sampleOven.Floors.ForEach(f =>
-            {
-                cbSampleSelectedFloor.Items.Add(f.Name);
-            });
-            cbSampleSelectedFloor.SelectedIndex = jjj;
-
             cbBatteryScaner.Items.Add(Current.BatteryScaner.Name);
             cbClampScaner.Items.Add(Current.ClampScaner.Name);
 
@@ -3028,37 +3016,6 @@ namespace Anchitech.Baking.Dispatcher
                 System.Reflection.PropertyInfo propertyInfoId = type.GetProperty("Id"); //获取指定名称的属性
                 int Id = (int)propertyInfoId.GetValue(o, null); //获取属性值
                 settingsStr = string.Format("将Id为 {0} 的 {1} 的 {2} 由 {3} 修改为 {4} ", Id, type.Name, e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
-
-                //用来写入参数值
-                if (type == typeof(Floor))
-                {
-                    var floor = (Floor)o;
-                    var oven = floor.GetOven();
-                    var j = oven.Floors.IndexOf(floor);
-                    var propertyName = ((PropertyGrid)s).SelectedGridItem.PropertyDescriptor.Name;
-
-                    string command = "";
-
-                    if (propertyName == "PreheatTimeSet")
-                    {
-                        command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.PreheatTimeSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
-                    }
-                    else if (propertyName == "BakingTimeSet")
-                    {
-                        command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.BakingTimeSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
-                    }
-                    else if (propertyName == "BreathingCycleSet")
-                    {
-                        command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.BreathingCycleSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
-                    }
-
-                    if (!string.IsNullOrEmpty(command))
-                    {
-                        oven.ControlCommands.Add(command);
-                    }
-
-                }
-
             }
             else if (type == typeof(Robot))
             {
@@ -3163,7 +3120,6 @@ namespace Anchitech.Baking.Dispatcher
             //tlpBlanker1
             srcBlankerName = (sender as ContextMenuStrip).SourceControl.Name;
             int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
-            this.tsmCancelRasterInductive.Enabled = Current.Blanker.IsAlive;
         }
 
         private void TsmCancelRasterInductive_Click(object sender, EventArgs e)
@@ -3522,74 +3478,6 @@ namespace Anchitech.Baking.Dispatcher
             else
             {
                 Tip.Alert("OK");
-            }
-        }
-
-        #endregion
-
-        #region 水含量手动输入
-
-        private void cbSampleSelected_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!TengDa.WF.Current.IsRunning) return;
-            string cbSelectName = (sender as ComboBox).Name;
-            int ii = 0, jj = 0;
-
-            if (cbSelectName.Contains("Oven"))
-            {
-                ii = cbSampleSelectedOven.SelectedIndex;
-
-                cbSampleSelectedFloor.Items.Clear();
-                Current.ovens[ii].Floors.ForEach(f =>
-                {
-                    cbSampleSelectedFloor.Items.Add(f.Name);
-                });
-                jj = 0;
-                cbSampleSelectedFloor.SelectedIndex = jj;
-            }
-            else if (cbSelectName.Contains("Floor"))
-            {
-                ii = cbSampleSelectedOven.SelectedIndex;
-                jj = cbSampleSelectedFloor.SelectedIndex;
-            }
-            Current.option.SampleFloorId = Current.ovens[ii].Floors[jj].Id;
-        }
-
-        private void btnWaterContVerify_Click(object sender, EventArgs e)
-        {
-            int i = cbSampleSelectedOven.SelectedIndex;
-            int j = cbSampleSelectedFloor.SelectedIndex;
-
-            //if (Current.ovens[i].Floors[j].Stations.Count(s => s.FloorStatus == FloorStatus.烘烤) > 0)
-            //{
-            //    Tip.Alert(Current.ovens[i].Floors[j].Name + "正在烘烤，不能输入水含量数据！");
-            //    return;
-            //}
-
-            float waterContent = TengDa._Convert.StrToFloat(tbWaterContent.Text.Trim(), 0);
-            if (waterContent > 0)
-            {
-                //    Current.ovens[i].Floors[j].Stations.ForEach(s => s.Clamp.WaterContent = waterContent);
-                //    Current.blankers.ForEach(b => b.Stations.ForEach(bs =>
-                //    {
-                //        Current.ovens[i].Floors[j].Stations.ForEach(fs =>
-                //{
-                //          if (bs.FromStationId == fs.Id && bs.ClampId > 0)
-                //          {
-                //              bs.Clamp.WaterContent = waterContent;
-                //          }
-                //      });
-                //    }));
-                Clamp.SetWaterCont(Current.ovens[i].Floors[j], waterContent);
-                Tip.Alert("水含量数据输入成功！");
-                if (timerlock && Current.mes.IsAlive)
-                {
-                    //UploadBatteriesInfo(new List<Clamp>());
-                }
-            }
-            else
-            {
-                Error.Alert("输入水含量数据格式错误！");
             }
         }
 

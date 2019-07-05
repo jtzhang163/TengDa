@@ -239,22 +239,12 @@
             this.btnBatteryScanOkBackToFeeder = new System.Windows.Forms.Button();
             this.cbBatteryScaner = new System.Windows.Forms.ComboBox();
             this.btnBatteryScanStart = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label66 = new System.Windows.Forms.Label();
-            this.btnWaterContVerify = new System.Windows.Forms.Button();
-            this.tbWaterContent = new System.Windows.Forms.TextBox();
-            this.label65 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.cbSampleSelectedFloor = new System.Windows.Forms.ComboBox();
-            this.cbSampleSelectedOven = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnClampScanNgBackToFeeder = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnClampScanOkBackToFeeder = new System.Windows.Forms.Button();
             this.cbClampScaner = new System.Windows.Forms.ComboBox();
             this.btnClampScanStart = new System.Windows.Forms.Button();
-            this.btnDebug = new System.Windows.Forms.Button();
             this.tabContentTaskLog = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvTaskLog = new System.Windows.Forms.DataGridView();
@@ -313,13 +303,11 @@
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
             this.label37 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.cmsBlanker = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmCancelRasterInductive = new System.Windows.Forms.ToolStripMenuItem();
             this.lbRunStatus = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbTaskMode = new System.Windows.Forms.Label();
+            this.openAllNetControlUC1 = new Anchitech.Baking.Controls.OpenAllNetControlUC();
             this.panel5 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -328,7 +316,6 @@
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
             this.yieldDisplay = new Anchitech.Baking.Controls.YieldDisplay();
             this.machinesStatusUC1 = new Anchitech.Baking.Controls.MachinesStatusUC();
-            this.openAllNetControlUC1 = new Anchitech.Baking.Controls.OpenAllNetControlUC();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -383,7 +370,6 @@
             this.tabContentPageManuTest.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.gbBatteryScanerTest.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabContentTaskLog.SuspendLayout();
             this.tableLayoutPanel22.SuspendLayout();
@@ -414,7 +400,6 @@
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             this.tableLayoutPanel24.SuspendLayout();
-            this.cmsBlanker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -2878,9 +2863,8 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.6142F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.Controls.Add(this.gbBatteryScanerTest, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.groupBox2, 0, 3);
             this.tableLayoutPanel3.Controls.Add(this.groupBox3, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.btnDebug, 0, 4);
+            this.tableLayoutPanel3.Controls.Add(this.openAllNetControlUC1, 0, 3);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -2958,101 +2942,6 @@
             this.btnBatteryScanStart.UseVisualStyleBackColor = true;
             this.btnBatteryScanStart.Click += new System.EventHandler(this.btnBatteryScanStart_Click);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label66);
-            this.groupBox2.Controls.Add(this.btnWaterContVerify);
-            this.groupBox2.Controls.Add(this.tbWaterContent);
-            this.groupBox2.Controls.Add(this.label65);
-            this.groupBox2.Controls.Add(this.label64);
-            this.groupBox2.Controls.Add(this.label63);
-            this.groupBox2.Controls.Add(this.cbSampleSelectedFloor);
-            this.groupBox2.Controls.Add(this.cbSampleSelectedOven);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(30, 343);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(30, 10, 30, 10);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(315, 119);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "水分测试结果输入";
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(167, 84);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(23, 12);
-            this.label66.TabIndex = 15;
-            this.label66.Text = "PPM";
-            // 
-            // btnWaterContVerify
-            // 
-            this.btnWaterContVerify.BackColor = System.Drawing.Color.Green;
-            this.btnWaterContVerify.ForeColor = System.Drawing.Color.White;
-            this.btnWaterContVerify.Location = new System.Drawing.Point(213, 68);
-            this.btnWaterContVerify.Name = "btnWaterContVerify";
-            this.btnWaterContVerify.Size = new System.Drawing.Size(82, 39);
-            this.btnWaterContVerify.TabIndex = 14;
-            this.btnWaterContVerify.Text = "确 认";
-            this.btnWaterContVerify.UseVisualStyleBackColor = false;
-            this.btnWaterContVerify.Click += new System.EventHandler(this.btnWaterContVerify_Click);
-            // 
-            // tbWaterContent
-            // 
-            this.tbWaterContent.BackColor = System.Drawing.SystemColors.Control;
-            this.tbWaterContent.Location = new System.Drawing.Point(88, 80);
-            this.tbWaterContent.Name = "tbWaterContent";
-            this.tbWaterContent.Size = new System.Drawing.Size(68, 21);
-            this.tbWaterContent.TabIndex = 13;
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(42, 84);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(41, 12);
-            this.label65.TabIndex = 12;
-            this.label65.Text = "水分：";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(166, 34);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(41, 12);
-            this.label64.TabIndex = 11;
-            this.label64.Text = "炉层：";
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(40, 34);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(41, 12);
-            this.label63.TabIndex = 10;
-            this.label63.Text = "烤箱：";
-            // 
-            // cbSampleSelectedFloor
-            // 
-            this.cbSampleSelectedFloor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSampleSelectedFloor.FormattingEnabled = true;
-            this.cbSampleSelectedFloor.Location = new System.Drawing.Point(213, 31);
-            this.cbSampleSelectedFloor.Name = "cbSampleSelectedFloor";
-            this.cbSampleSelectedFloor.Size = new System.Drawing.Size(82, 20);
-            this.cbSampleSelectedFloor.TabIndex = 9;
-            this.cbSampleSelectedFloor.SelectedIndexChanged += new System.EventHandler(this.cbSampleSelected_SelectedIndexChanged);
-            // 
-            // cbSampleSelectedOven
-            // 
-            this.cbSampleSelectedOven.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSampleSelectedOven.FormattingEnabled = true;
-            this.cbSampleSelectedOven.Location = new System.Drawing.Point(88, 31);
-            this.cbSampleSelectedOven.Name = "cbSampleSelectedOven";
-            this.cbSampleSelectedOven.Size = new System.Drawing.Size(68, 20);
-            this.cbSampleSelectedOven.TabIndex = 8;
-            this.cbSampleSelectedOven.SelectedIndexChanged += new System.EventHandler(this.cbSampleSelected_SelectedIndexChanged);
-            // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
@@ -3118,17 +3007,6 @@
             this.btnClampScanStart.Text = "扫码";
             this.btnClampScanStart.UseVisualStyleBackColor = true;
             this.btnClampScanStart.Click += new System.EventHandler(this.btnClampScanStart_Click);
-            // 
-            // btnDebug
-            // 
-            this.btnDebug.Location = new System.Drawing.Point(20, 492);
-            this.btnDebug.Margin = new System.Windows.Forms.Padding(20);
-            this.btnDebug.Name = "btnDebug";
-            this.btnDebug.Size = new System.Drawing.Size(75, 23);
-            this.btnDebug.TabIndex = 5;
-            this.btnDebug.Text = "调试";
-            this.btnDebug.UseVisualStyleBackColor = true;
-            this.btnDebug.Click += new System.EventHandler(this.btnDebug_Click);
             // 
             // tabContentTaskLog
             // 
@@ -3966,30 +3844,6 @@
             this.panel8.Size = new System.Drawing.Size(1, 578);
             this.panel8.TabIndex = 0;
             // 
-            // cmsBlanker
-            // 
-            this.cmsBlanker.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.cmsBlanker.Name = "cmsInOutOven";
-            this.cmsBlanker.Size = new System.Drawing.Size(125, 26);
-            this.cmsBlanker.Opening += new System.ComponentModel.CancelEventHandler(this.cmsBlanker_Opening);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmCancelRasterInductive});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
-            this.toolStripMenuItem1.Text = "远程控制";
-            // 
-            // tsmCancelRasterInductive
-            // 
-            this.tsmCancelRasterInductive.Image = global::Anchitech.Baking.Dispatcher.Properties.Resources.Reset_green;
-            this.tsmCancelRasterInductive.Name = "tsmCancelRasterInductive";
-            this.tsmCancelRasterInductive.Size = new System.Drawing.Size(148, 22);
-            this.tsmCancelRasterInductive.Text = "光栅报警复位";
-            this.tsmCancelRasterInductive.Click += new System.EventHandler(this.TsmCancelRasterInductive_Click);
-            // 
             // lbRunStatus
             // 
             this.lbRunStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -4033,7 +3887,6 @@
             this.tableLayoutPanel1.Controls.Add(this.tabMain, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbRunStatus, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbTaskMode, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.openAllNetControlUC1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -4054,6 +3907,15 @@
             this.lbTaskMode.Size = new System.Drawing.Size(248, 56);
             this.lbTaskMode.TabIndex = 10;
             this.lbTaskMode.Text = "手动任务";
+            // 
+            // openAllNetControlUC1
+            // 
+            this.openAllNetControlUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.openAllNetControlUC1.Location = new System.Drawing.Point(10, 388);
+            this.openAllNetControlUC1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.openAllNetControlUC1.Name = "openAllNetControlUC1";
+            this.openAllNetControlUC1.Size = new System.Drawing.Size(125, 28);
+            this.openAllNetControlUC1.TabIndex = 11;
             // 
             // panel5
             // 
@@ -4157,15 +4019,6 @@
             this.machinesStatusUC1.Size = new System.Drawing.Size(270, 416);
             this.machinesStatusUC1.TabIndex = 16;
             // 
-            // openAllNetControlUC1
-            // 
-            this.openAllNetControlUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.openAllNetControlUC1.Location = new System.Drawing.Point(477, 46);
-            this.openAllNetControlUC1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.openAllNetControlUC1.Name = "openAllNetControlUC1";
-            this.openAllNetControlUC1.Size = new System.Drawing.Size(125, 28);
-            this.openAllNetControlUC1.TabIndex = 11;
-            // 
             // ManageSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -4256,8 +4109,6 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.gbBatteryScanerTest.ResumeLayout(false);
             this.gbBatteryScanerTest.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.tabContentTaskLog.ResumeLayout(false);
@@ -4297,7 +4148,6 @@
             this.splitContainer4.ResumeLayout(false);
             this.tableLayoutPanel24.ResumeLayout(false);
             this.tableLayoutPanel24.PerformLayout();
-            this.cmsBlanker.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -4526,15 +4376,6 @@
         private System.Windows.Forms.ComboBox cbBatteryScaner;
         private System.Windows.Forms.Button btnBatteryScanStart;
         private System.Windows.Forms.Button btnBatteryScanNgBackToFeeder;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox cbSampleSelectedFloor;
-        private System.Windows.Forms.ComboBox cbSampleSelectedOven;
-        private System.Windows.Forms.Label label64;
-        private System.Windows.Forms.Label label63;
-        private System.Windows.Forms.Button btnWaterContVerify;
-        private System.Windows.Forms.TextBox tbWaterContent;
-        private System.Windows.Forms.Label label65;
-        private System.Windows.Forms.Label label66;
         private Controls.YieldDisplay yieldDisplay;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnClampScanNgBackToFeeder;
@@ -4544,7 +4385,6 @@
         private System.Windows.Forms.Button btnClampScanStart;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbCount;
-        private System.Windows.Forms.Button btnDebug;
         private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.ComboBox cbCurveSelectedStation;
         private System.Windows.Forms.Label label67;
@@ -4565,9 +4405,6 @@
         private System.Windows.Forms.CheckBox cbTemperIndex22;
         private System.Windows.Forms.CheckBox cbTemperIndex23;
         private System.Windows.Forms.CheckBox cbTemperIndex09;
-        private System.Windows.Forms.ContextMenuStrip cmsBlanker;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem tsmCancelRasterInductive;
         private System.Windows.Forms.CheckBox cbVacuumIndex01;
         private System.Windows.Forms.Label label81;
         private System.Windows.Forms.Label label80;

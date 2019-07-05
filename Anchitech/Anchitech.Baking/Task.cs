@@ -553,7 +553,14 @@ namespace Anchitech.Baking
                     }
                     else if (Current.Task.Status == TaskStatus.可取放 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
                     {
-
+                        if (Current.Task.FromStation.DoorStatus == DoorStatus.关闭)
+                        {
+                            Current.Task.FromStation.OpenDoor();
+                        }
+                        if (Current.Task.ToStation.DoorStatus == DoorStatus.关闭)
+                        {
+                            Current.Task.ToStation.OpenDoor();
+                        }
                         if (!Current.Robot.IsAlreadySendCmd && Current.Task.FromStation.DoorStatus == DoorStatus.打开 && Current.Task.ToStation.DoorStatus == DoorStatus.打开)
                         {
                             if (Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation))
@@ -936,7 +943,7 @@ namespace Anchitech.Baking
         /// <summary>
         /// 任务Id
         /// </summary>
-        [DisplayName("任务ID")]
+        [ReadOnly(true), DisplayName("任务ID")]
         public int TaskId
         {
             get { return taskId; }
@@ -962,7 +969,7 @@ namespace Anchitech.Baking
         /// <summary>
         /// 取盘工位Id
         /// </summary>
-        [DisplayName("取盘工位ID")]
+        [ReadOnly(true), DisplayName("取盘工位ID")]
         public int FromStationId
         {
             get { return fromStationId; }
@@ -980,7 +987,7 @@ namespace Anchitech.Baking
         /// <summary>
         /// 放盘工位Id
         /// </summary>
-        [DisplayName("放盘工位ID")]
+        [ReadOnly(true),DisplayName("放盘工位ID")]
         public int ToStationId
         {
             get { return toStationId; }
