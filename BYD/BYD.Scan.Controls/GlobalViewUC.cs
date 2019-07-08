@@ -12,6 +12,9 @@ namespace BYD.Scan.Controls
 {
     public partial class GlobalViewUC : UserControl
     {
+
+        private LineUC[] lineUCs = new LineUC[Option.LineCount];
+
         public GlobalViewUC()
         {
             InitializeComponent();
@@ -19,10 +22,18 @@ namespace BYD.Scan.Controls
 
         public void Init()
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < Option.LineCount; i++)
             {
-                var lineUC = (LineUC)(this.Controls.Find(string.Format("lineUC{0}", i + 1), true)[0]);
-                lineUC.Init(Current.Lines[i]);
+                lineUCs[i] = (LineUC)(this.Controls.Find(string.Format("lineUC{0}", i + 1), true)[0]);
+                lineUCs[i].Init(Current.Lines[i]);
+            }
+        }
+
+        public void UpdateUI()
+        {
+            for (int i = 0; i < Option.LineCount; i++)
+            {
+                lineUCs[i].UpdateUI();
             }
         }
     }

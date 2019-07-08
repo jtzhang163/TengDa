@@ -13,6 +13,7 @@ namespace BYD.Scan.Controls
     public partial class LineChildUC : UserControl
     {
         private Line line;
+        private ScanerUC[] scanerUCs = new ScanerUC[Option.ChildLineScanerCount];
         public LineChildUC()
         {
             InitializeComponent();
@@ -21,8 +22,19 @@ namespace BYD.Scan.Controls
         public void Init(Line line)
         {
             this.line = line;
-            this.scanerUC1.Init(this.line.AutoScaner);
-            this.scanerUC2.Init(this.line.ManuScaner);
+            for (int k = 0; k < Option.ChildLineScanerCount; k++)
+            {
+                scanerUCs[k] = (ScanerUC)(this.Controls.Find(string.Format("scanerUC{0}", k + 1), true)[0]);
+                scanerUCs[k].Init(this.line.Scaners[k]);
+            }
+        }
+
+        public void UpdateUI()
+        {
+            for (int k = 0; k < Option.ChildLineScanerCount; k++)
+            {
+                scanerUCs[k].UpdateUI();
+            }
         }
     }
 }

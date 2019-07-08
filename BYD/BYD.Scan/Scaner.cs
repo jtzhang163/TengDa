@@ -45,6 +45,14 @@ namespace BYD.Scan
         [DisplayName("是否为自动扫码枪")]
         public bool IsAuto { get; private set; }
 
+        public string[] Codes
+        {
+            get
+            {
+                return new string[2] { Code1, Code2 };
+            }
+        }
+
 
         private string code1 = string.Empty;
         /// <summary>
@@ -185,7 +193,7 @@ namespace BYD.Scan
         public ScanResult StartScan(out string code, out string msg)
         {
             code = "";
-            GetInfo("LON", 200, out string output, out msg);
+            SetInfo("LON", out msg);
 
             Thread.Sleep(800);
             var receiveData = this.GetReceiveData();
@@ -215,6 +223,13 @@ namespace BYD.Scan
         public bool ScanFinish(ScanResult scanResult, string code, out ScanResult finalScanResult)
         {
             finalScanResult = ScanResult.NG;
+
+            if (!string.IsNullOrEmpty(this.Code1) && !string.IsNullOrEmpty(this.Code2))
+            {
+                this.Code1 = "";
+                this.Code2 = "";
+            }
+
             if (string.IsNullOrEmpty(this.Code1))
             {
                 this.Code1 = scanResult == ScanResult.OK ? code : "ERROR";
@@ -229,15 +244,13 @@ namespace BYD.Scan
                 {
                     LogHelper.WriteInfo(string.Format("获得先后两个条码：{0}，{1}", this.Code1, this.Code2));
 
-                    Battery.Add(new Battery() { Code = this.Code1 }, out string msg);
+                    Battery.Add(new Battery() { Code = this.Code1, ScanerId = this.Id }, out string msg);
 
-                    Battery.Add(new Battery() { Code = this.Code2 }, out msg);
+                    Battery.Add(new Battery() { Code = this.Code2, ScanerId = this.Id }, out msg);
 
                     finalScanResult = ScanResult.OK;
                 }
 
-                this.Code1 = "";
-                this.Code2 = "";
                 return true;
             }
             return true;

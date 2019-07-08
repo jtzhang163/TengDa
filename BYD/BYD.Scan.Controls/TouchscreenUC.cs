@@ -23,5 +23,10 @@ namespace BYD.Scan.Controls
             this.touchscreen = touchscreen;
             this.lbName.Text = this.touchscreen.Name;
         }
+
+        public void UpdateUI()
+        {
+            this.BackColor = this.touchscreen.IsAlive ? Color.White : SystemColors.Control;
+        }
     }
 }

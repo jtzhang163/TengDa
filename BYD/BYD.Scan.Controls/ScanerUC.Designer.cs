@@ -29,48 +29,60 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tbCode2 = new System.Windows.Forms.TextBox();
             this.lbName = new System.Windows.Forms.Label();
+            this.tbCode1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.61905F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.38095F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.tbCode2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.lbName, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tbCode1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(357, 35);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(357, 55);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // label1
+            // tbCode2
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.ForeColor = System.Drawing.Color.LimeGreen;
-            this.label1.Location = new System.Drawing.Point(173, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "条码";
+            this.tbCode2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbCode2.ForeColor = System.Drawing.Color.LimeGreen;
+            this.tbCode2.Location = new System.Drawing.Point(123, 30);
+            this.tbCode2.Name = "tbCode2";
+            this.tbCode2.Size = new System.Drawing.Size(231, 21);
+            this.tbCode2.TabIndex = 3;
+            this.tbCode2.DoubleClick += new System.EventHandler(this.TbCode_DoubleClick);
             // 
             // lbName
             // 
             this.lbName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbName.AutoSize = true;
             this.lbName.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbName.Location = new System.Drawing.Point(3, 9);
+            this.lbName.Location = new System.Drawing.Point(3, 19);
             this.lbName.Name = "lbName";
+            this.tableLayoutPanel1.SetRowSpan(this.lbName, 2);
             this.lbName.Size = new System.Drawing.Size(68, 17);
             this.lbName.TabIndex = 1;
             this.lbName.Text = "扫码枪名称";
+            // 
+            // tbCode1
+            // 
+            this.tbCode1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbCode1.ForeColor = System.Drawing.Color.LimeGreen;
+            this.tbCode1.Location = new System.Drawing.Point(123, 3);
+            this.tbCode1.Name = "tbCode1";
+            this.tbCode1.Size = new System.Drawing.Size(231, 21);
+            this.tbCode1.TabIndex = 2;
+            this.tbCode1.DoubleClick += new System.EventHandler(this.TbCode_DoubleClick);
             // 
             // ScanerUC
             // 
@@ -78,7 +90,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ScanerUC";
-            this.Size = new System.Drawing.Size(357, 35);
+            this.Size = new System.Drawing.Size(357, 55);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -88,7 +100,8 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbName;
+        private System.Windows.Forms.TextBox tbCode1;
+        private System.Windows.Forms.TextBox tbCode2;
     }
 }

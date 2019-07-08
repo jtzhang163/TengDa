@@ -123,6 +123,7 @@
             this.tabContentPageManuTest = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDebug = new System.Windows.Forms.Button();
+            this.yieldDisplay = new BYD.Scan.Controls.YieldDisplay();
             this.tabContentPageAlarmLog = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvAlarm = new System.Windows.Forms.DataGridView();
@@ -168,7 +169,6 @@
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
             this.label37 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.yieldDisplay = new BYD.Scan.Controls.YieldDisplay();
             this.lbRunStatus = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -1224,7 +1224,7 @@
             // 
             // globalViewUC1
             // 
-            this.globalViewUC1.BackColor = System.Drawing.Color.Transparent;
+            this.globalViewUC1.BackColor = System.Drawing.SystemColors.Control;
             this.globalViewUC1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.globalViewUC1.Location = new System.Drawing.Point(23, 23);
             this.globalViewUC1.Name = "globalViewUC1";
@@ -1327,6 +1327,15 @@
             this.btnDebug.Text = "调试";
             this.btnDebug.UseVisualStyleBackColor = true;
             this.btnDebug.Click += new System.EventHandler(this.btnDebug_Click);
+            // 
+            // yieldDisplay
+            // 
+            this.yieldDisplay.Location = new System.Drawing.Point(15, 28);
+            this.yieldDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.yieldDisplay.Name = "yieldDisplay";
+            this.yieldDisplay.Size = new System.Drawing.Size(270, 87);
+            this.yieldDisplay.TabIndex = 14;
+            this.yieldDisplay.btnYieldClearClick += new BYD.Scan.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
             // 
             // tabContentPageAlarmLog
             // 
@@ -1967,15 +1976,6 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1, 578);
             this.panel8.TabIndex = 0;
-            // 
-            // yieldDisplay
-            // 
-            this.yieldDisplay.Location = new System.Drawing.Point(15, 28);
-            this.yieldDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.yieldDisplay.Name = "yieldDisplay";
-            this.yieldDisplay.Size = new System.Drawing.Size(270, 87);
-            this.yieldDisplay.TabIndex = 14;
-            this.yieldDisplay.btnYieldClearClick += new BYD.Scan.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
             // 
             // lbRunStatus
             // 

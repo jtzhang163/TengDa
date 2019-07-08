@@ -41,7 +41,7 @@
             // 
             this.gbLine.Controls.Add(this.tableLayoutPanel1);
             this.gbLine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbLine.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.gbLine.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.gbLine.Location = new System.Drawing.Point(0, 0);
             this.gbLine.Name = "gbLine";
             this.gbLine.Size = new System.Drawing.Size(702, 150);
@@ -52,34 +52,34 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.05172F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.94827F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.lineChildUC1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lineChildUC2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.touchscreenUC1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 17);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 22);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(696, 130);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(696, 125);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lineChildUC1
             // 
             this.lineChildUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lineChildUC1.Location = new System.Drawing.Point(239, 3);
+            this.lineChildUC1.Location = new System.Drawing.Point(123, 3);
             this.lineChildUC1.Name = "lineChildUC1";
-            this.lineChildUC1.Size = new System.Drawing.Size(454, 59);
+            this.lineChildUC1.Size = new System.Drawing.Size(570, 56);
             this.lineChildUC1.TabIndex = 0;
             // 
             // lineChildUC2
             // 
             this.lineChildUC2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lineChildUC2.Location = new System.Drawing.Point(239, 68);
+            this.lineChildUC2.Location = new System.Drawing.Point(123, 65);
             this.lineChildUC2.Name = "lineChildUC2";
-            this.lineChildUC2.Size = new System.Drawing.Size(454, 59);
+            this.lineChildUC2.Size = new System.Drawing.Size(570, 57);
             this.lineChildUC2.TabIndex = 1;
             // 
             // touchscreenUC1
@@ -88,7 +88,7 @@
             this.touchscreenUC1.Location = new System.Drawing.Point(3, 3);
             this.touchscreenUC1.Name = "touchscreenUC1";
             this.tableLayoutPanel1.SetRowSpan(this.touchscreenUC1, 2);
-            this.touchscreenUC1.Size = new System.Drawing.Size(230, 124);
+            this.touchscreenUC1.Size = new System.Drawing.Size(114, 119);
             this.touchscreenUC1.TabIndex = 2;
             // 
             // LineUC

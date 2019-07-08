@@ -254,7 +254,7 @@ namespace BYD.Scan.Dispatcher
 
             cbAlarmFloors.Items.Add("All");
 
-            for (int i = 0; i < LineCount; i++)
+            for (int i = 0; i < Option.LineCount; i++)
             {
                 //this.ovenUCs[i].Init(Current.ovens[i]);
 
@@ -364,10 +364,13 @@ namespace BYD.Scan.Dispatcher
             //    TengDa.WF.Current.IsTerminalInitFinished = true;
             //}
 
+            this.globalViewUC1.UpdateUI();
+
             #region 烤箱
 
-            for (int i = 0; i < LineCount; i++)
+            for (int i = 0; i < Option.LineCount; i++)
             {
+
                 //Oven oven = Current.ovens[i];
 
                 //this.ovenUCs[i].UpdateUI();
@@ -407,55 +410,6 @@ namespace BYD.Scan.Dispatcher
                 //}
 
             }
-
-            #endregion
-
-            #region 上料机、扫码枪
-
-           // this.feederUC1.Update(Current.Feeder);
-
-            //if (Current.Feeder.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Feeder) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "连接成功"); } }
-            //else { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "未连接"); }
-
-            //    for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
-            //    {
-            //        Scaner scaner = Current.Feeder.Scaners[j];
-            //        if (!scaner.IsEnable)
-            //            scaner.IsAlive = false;
-            //        if (scaner.IsAlive)
-            //        {
-            //            if (tbScanerStatus[i][j].Text.Trim() == "未连接")
-            //            {
-            //                tbScanerStatus[i][j].Text = "连接成功";
-            //            }
-
-            //            this.pbScanerLamp[i][j].Image = Properties.Resources.Green_Round;
-            //        }
-            //        else
-            //        {
-            //            this.tbScanerStatus[i][j].Text = "未连接";
-            //            this.pbScanerLamp[i][j].Image = Properties.Resources.Gray_Round;
-            //        }
-            //    }
-
-
-
-            //    tlpFeeders[i].Invalidate();
-
-
-            #endregion
-
-            #region 下料机、缓存架、转移台
-
-           // this.blankerUC1.Update(Current.Blanker);
-
-            //if (Current.Blanker.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Blanker) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "连接成功"); } }
-            //else { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "未连接"); }
-
-
-           // this.cacherUC1.Update(Current.Cacher);
-
-           // this.transferUC1.Update(Current.Transfer);
 
             #endregion
 
@@ -532,8 +486,6 @@ namespace BYD.Scan.Dispatcher
         #endregion
 
         #region 控件数组
-
-        private const int LineCount = 4;
 
         #endregion
 
@@ -634,7 +586,7 @@ namespace BYD.Scan.Dispatcher
         {
             string msg = string.Empty;
 
-            for (int i = 0; i < LineCount; i++)
+            for (int i = 0; i < Option.LineCount; i++)
             {
                 if (Current.Lines[i].Touchscreen.IsEnable)
                 {
@@ -664,7 +616,7 @@ namespace BYD.Scan.Dispatcher
         {
             string msg = string.Empty;
 
-            for (int i = 0; i < LineCount; i++)
+            for (int i = 0; i < Option.LineCount; i++)
             {
                 if (Current.Lines[i].Touchscreen.IsEnable)
                 {
@@ -721,7 +673,7 @@ namespace BYD.Scan.Dispatcher
         private bool ScanerConnect()
         {
             string msg = string.Empty;
-            for (int i = 0; i < LineCount; i++)
+            for (int i = 0; i < Option.LineCount; i++)
             {
                 for (int j = 0; j < 2; j++)
                 {
@@ -755,7 +707,7 @@ namespace BYD.Scan.Dispatcher
         private bool ScanerDisConnect()
         {
             string msg = string.Empty;
-            for (int i = 0; i < LineCount; i++)
+            for (int i = 0; i < Option.LineCount; i++)
             {
                 for (int j = 0; j < 2; j++)
                 {
@@ -791,7 +743,7 @@ namespace BYD.Scan.Dispatcher
 
         delegate void UpdateUI1PDelegate(string text);
 
-        System.Timers.Timer[] timerTouchscreenRuns = new System.Timers.Timer[LineCount];
+        System.Timers.Timer[] timerTouchscreenRuns = new System.Timers.Timer[Option.LineCount];
 
         System.Timers.Timer timerRun = null;
 
@@ -803,7 +755,7 @@ namespace BYD.Scan.Dispatcher
         /// <returns></returns>
         public bool CheckStart(out string msg)
         {
-            for (int i = 0; i < LineCount; i++)
+            for (int i = 0; i < Option.LineCount; i++)
             {
                 //if (Current.ovens[i].IsEnable && !Current.ovens[i].Plc.IsAlive)
                 //{
@@ -826,7 +778,7 @@ namespace BYD.Scan.Dispatcher
 
             if (isFirstStart)
             {
-                for (int i = 0; i < LineCount; i++)
+                for (int i = 0; i < Option.LineCount; i++)
                 {
                     int index = i;//如果直接用i, 则完成循环后 i一直 = OvenCount
                     timerTouchscreenRuns[i] = new System.Timers.Timer();
@@ -869,7 +821,7 @@ namespace BYD.Scan.Dispatcher
 
         private void TimersDispose()
         {
-            for (int i = 0; i < LineCount; i++)
+            for (int i = 0; i < Option.LineCount; i++)
             {
                 if (timerTouchscreenRuns[i] != null)
                 {
@@ -1024,7 +976,7 @@ namespace BYD.Scan.Dispatcher
             {
                 if (timerlock && Math.Abs((DateTime.Now - Current.ChangeModeTime).TotalSeconds) > 3)
                 {
-                    for (int i = 0; i < LineCount; i++)
+                    for (int i = 0; i < Option.LineCount; i++)
                     {
                         Line line = Current.Lines[i];
                         if (line.Touchscreen.IsEnable && line.Touchscreen.IsAlive)
@@ -1585,22 +1537,22 @@ namespace BYD.Scan.Dispatcher
                 {
                     dgViewBattery.DataSource = dt;
 
-                    dgViewBattery.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-                    dgViewBattery.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-                    dgViewBattery.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-                    dgViewBattery.Columns[6].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-                    dgViewBattery.Columns[7].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    //dgViewBattery.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    //dgViewBattery.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    //dgViewBattery.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    //dgViewBattery.Columns[6].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    //dgViewBattery.Columns[7].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
 
-                    ////设置显示列宽度
-                    dgViewBattery.Columns[0].Width = 160;
-                    dgViewBattery.Columns[1].Width = 130;
-                    dgViewBattery.Columns[2].Width = 80;
+                    //////设置显示列宽度
+                    //dgViewBattery.Columns[0].Width = 160;
+                    //dgViewBattery.Columns[1].Width = 130;
+                    //dgViewBattery.Columns[2].Width = 80;
 
-                    dgViewBattery.Columns[4].Width = 130;
-                    dgViewBattery.Columns[5].Width = 130;
-                    dgViewBattery.Columns[6].Width = 130;
-                    dgViewBattery.Columns[7].Width = 130;
-                    //dgViewBattery.Columns[8].Width = 100;
+                    //dgViewBattery.Columns[4].Width = 130;
+                    //dgViewBattery.Columns[5].Width = 130;
+                    //dgViewBattery.Columns[6].Width = 130;
+                    //dgViewBattery.Columns[7].Width = 130;
+                    ////dgViewBattery.Columns[8].Width = 100;
 
                     tbBatteryCount.Text = dt.Rows.Count.ToString();
                 }));
@@ -1737,16 +1689,16 @@ namespace BYD.Scan.Dispatcher
                     dgvAlarm.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
 
                     //设置显示列宽度
-                    dgvAlarm.Columns[0].Width = 100;
-                    dgvAlarm.Columns[0].HeaderText = "烤箱/腔体";
-                    dgvAlarm.Columns[1].Width = 100;
-                    dgvAlarm.Columns[2].Width = 100;
-                    dgvAlarm.Columns[3].Width = 150;
-                    dgvAlarm.Columns[4].Width = 150;
-                    dgvAlarm.Columns[5].Width = 150;
-                    dgvAlarm.Columns[6].Width = 150;
-                    dgvAlarm.Columns[6].HeaderText = "持续时间(s)";
-                    dgvAlarm.Columns[7].Width = 150;
+                    //dgvAlarm.Columns[0].Width = 100;
+                    //dgvAlarm.Columns[0].HeaderText = "烤箱/腔体";
+                    //dgvAlarm.Columns[1].Width = 100;
+                    //dgvAlarm.Columns[2].Width = 100;
+                    //dgvAlarm.Columns[3].Width = 150;
+                    //dgvAlarm.Columns[4].Width = 150;
+                    //dgvAlarm.Columns[5].Width = 150;
+                    //dgvAlarm.Columns[6].Width = 150;
+                    //dgvAlarm.Columns[6].HeaderText = "持续时间(s)";
+                    //dgvAlarm.Columns[7].Width = 150;
                     tbNumAlarm.Text = dt.Rows.Count.ToString();
                 }));
             });
