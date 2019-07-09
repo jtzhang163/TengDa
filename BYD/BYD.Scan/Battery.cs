@@ -156,7 +156,7 @@ namespace BYD.Scan
                 var addedBattery = GetBattery(newBattery.Code);
                 if (addedBattery.Id > 0)
                 {
-                    return addedBattery.Id;
+                    LogHelper.WriteError("重复扫码，Code：" + newBattery.Code);
                 }
             }
 

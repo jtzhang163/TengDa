@@ -123,7 +123,6 @@
             this.tabContentPageManuTest = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDebug = new System.Windows.Forms.Button();
-            this.yieldDisplay = new BYD.Scan.Controls.YieldDisplay();
             this.tabContentPageAlarmLog = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvAlarm = new System.Windows.Forms.DataGridView();
@@ -1304,7 +1303,6 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.6142F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.Controls.Add(this.btnDebug, 0, 4);
-            this.tableLayoutPanel3.Controls.Add(this.yieldDisplay, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -1326,16 +1324,8 @@
             this.btnDebug.TabIndex = 5;
             this.btnDebug.Text = "调试";
             this.btnDebug.UseVisualStyleBackColor = true;
+            this.btnDebug.Visible = false;
             this.btnDebug.Click += new System.EventHandler(this.btnDebug_Click);
-            // 
-            // yieldDisplay
-            // 
-            this.yieldDisplay.Location = new System.Drawing.Point(15, 28);
-            this.yieldDisplay.Margin = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.yieldDisplay.Name = "yieldDisplay";
-            this.yieldDisplay.Size = new System.Drawing.Size(270, 87);
-            this.yieldDisplay.TabIndex = 14;
-            this.yieldDisplay.btnYieldClearClick += new BYD.Scan.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
             // 
             // tabContentPageAlarmLog
             // 
@@ -2040,6 +2030,7 @@
             this.lbTaskMode.Size = new System.Drawing.Size(248, 56);
             this.lbTaskMode.TabIndex = 10;
             this.lbTaskMode.Text = "手动任务";
+            this.lbTaskMode.Visible = false;
             // 
             // panel5
             // 
@@ -2377,7 +2368,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TabPage tabContentPageManuTest;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private Controls.YieldDisplay yieldDisplay;
         private System.Windows.Forms.Button btnDebug;
         private System.Windows.Forms.Label lbTime;
         private Controls.MachinesStatusUC machinesStatusUC1;

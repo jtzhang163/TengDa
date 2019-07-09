@@ -108,8 +108,8 @@ namespace BYD.Scan.Dispatcher
             Current.runStstus = RunStatus.闲置;
             //Current.TaskMode = TaskMode.手动任务;
 
-            yieldDisplay.SetYieldType();
-            yieldDisplay.SetClearYieldTime(_Convert.StrToDateTime(Current.option.ClearYieldTime, Common.DefaultTime));
+            //yieldDisplay.SetYieldType();
+            //yieldDisplay.SetClearYieldTime(_Convert.StrToDateTime(Current.option.ClearYieldTime, Common.DefaultTime));
 
             if (!Current.option.IsMesUserEnable)
             {
@@ -134,116 +134,38 @@ namespace BYD.Scan.Dispatcher
 
             TreeNode tnConfig = new TreeNode("配置");
 
-            //List<TreeNode> tnOvens = new List<TreeNode>();
-            //for (int i = 0; i < OvenCount; i++)
-            //{
-            //    List<TreeNode> tnFloors = new List<TreeNode>();
-            //    TreeNode tnOvenPlc = new TreeNode("PLC");
-            //    tnFloors.Add(tnOvenPlc);
-            //    for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
-            //    {
-            //        TreeNode tnFloor = new TreeNode(string.Format("{0}:{1}", Current.ovens[i].Floors[j].Id, Current.ovens[i].Floors[j].Name));
-            //        tnFloors.Add(tnFloor);
-            //    }
+            List<TreeNode> tnLines = new List<TreeNode>();
+            for (int i = 0; i < Option.LineCount; i++)
+            {
+                List<TreeNode> tnChildLines = new List<TreeNode>();
+                for (int j = 0; j < Current.Lines[i].ChildLines.Count; j++)
+                {
+                    TreeNode tnChildLine = new TreeNode(string.Format("{1}[ID:{0}]", Current.Lines[i].ChildLines[j].Id, Current.Lines[i].ChildLines[j].Name));
+                    tnChildLines.Add(tnChildLine);
+                }
 
-            //    TreeNode tnOven = new TreeNode(string.Format("{0}:{1}", Current.ovens[i].Id, Current.ovens[i].Name), tnFloors.ToArray());
-            //    tnOvens.Add(tnOven);
-            //}
+                TreeNode tnLine = new TreeNode(string.Format("{1}[ID:{0}]", Current.Lines[i].Id, Current.Lines[i].Name), tnChildLines.ToArray());
+                tnLines.Add(tnLine);
+            }
+            TreeNode tnLineList = new TreeNode("线别", tnLines.ToArray());
 
-            //TreeNode tnOvenList = new TreeNode("烤箱", tnOvens.ToArray());
+            List<TreeNode> tnTouchscreens = new List<TreeNode>();
+            for (int i = 0; i < Touchscreen.TouchscreenList.Count; i++)
+            {
+                TreeNode tnTouchscreen = new TreeNode(string.Format("{1}[ID:{0}]", Touchscreen.TouchscreenList[i].Id, Touchscreen.TouchscreenList[i].Name));
+                tnTouchscreens.Add(tnTouchscreen);
+            }
+            TreeNode tnTouchscreenList = new TreeNode("触摸屏", tnTouchscreens.ToArray());
 
-            //List<TreeNode> tnFeeders = new List<TreeNode>();
-            //foreach (Feeder feeder in Feeder.FeederList)
-            //{
-            //    tnFeeders.Add(new TreeNode(string.Format("{0}:{1}", feeder.Id, feeder.Name), new TreeNode[] { new TreeNode("PLC") }));
-            //}
-            //TreeNode tnFeederList = new TreeNode("上料机", tnFeeders.ToArray());
+            List<TreeNode> tnScaners = new List<TreeNode>();
+            for (int i = 0; i < Scaner.ScanerList.Count; i++)
+            {
+                TreeNode tnScaner = new TreeNode(string.Format("{1}[ID:{0}]", Scaner.ScanerList[i].Id, Scaner.ScanerList[i].Name));
+                tnScaners.Add(tnScaner);
+            }
+            TreeNode tnScanerList = new TreeNode("扫码枪", tnScaners.ToArray());
 
-            //List<TreeNode> tnBlankers = new List<TreeNode>();
-            //foreach (Blanker blanker in Blanker.BlankerList)
-            //{
-            //    tnBlankers.Add(new TreeNode(string.Format("{0}:{1}", blanker.Id, blanker.Name), new TreeNode[] { new TreeNode("PLC") }));
-            //}
-            //TreeNode tnBlankerList = new TreeNode("下料机", tnBlankers.ToArray());
-
-            //List<TreeNode> tnScaners = new List<TreeNode>();
-            //foreach (Scaner scaner in Scaner.ScanerList)
-            //{
-            //    tnScaners.Add(new TreeNode(string.Format("{0}:{1}", scaner.Id, scaner.Name)));
-            //}
-            //TreeNode tnScanerList = new TreeNode("扫码枪", tnScaners.ToArray());
-
-            //TreeNode tnCache = new TreeNode("缓存架");
-
-            //TreeNode tnRotater = new TreeNode("转移台");
-
-            //List<TreeNode> tnStations = new List<TreeNode>();
-
-            //var stationList = new List<Station>();
-            //Current.Feeder.Stations.ForEach(s => stationList.Add(s));
-            //Current.Blanker.Stations.ForEach(s => stationList.Add(s));
-            //Current.ovens.ForEach(o => o.Floors.ForEach(f => f.Stations.ForEach(s => stationList.Add(s))));
-            //Current.Cacher.Stations.ForEach(s => stationList.Add(s));
-            //stationList.Add(Current.Transfer.Station);
-
-            //foreach (Station station in stationList)
-            //{
-            //    List<TreeNode> tnClamps = new List<TreeNode>();
-            //    if (station.Clamp.Id > 0)
-            //    {
-            //        List<TreeNode> tnBatteries = new List<TreeNode>();
-            //        var batteries = station.Clamp.Batteries;
-            //        foreach (var b in batteries)
-            //        {
-            //            tnBatteries.Add(new TreeNode(string.Format("{0}:{1}(电芯)", b.Id, b.Code)));
-            //        }
-            //        tnClamps.Add(new TreeNode(string.Format("{0}:{1}(夹具)", station.Clamp.Id, station.Clamp.Code), tnBatteries.ToArray()));
-            //    }
-            //    tnStations.Add(new TreeNode(string.Format("{0}:{1}", station.Id, station.Name), tnClamps.ToArray()));
-            //}
-            //TreeNode tnStationList = new TreeNode("工位列表", tnStations.ToArray());
-
-
-            //List<TreeNode> tnTasks = new List<TreeNode>();
-            //foreach (Task task in Task.TaskList)
-            //{
-            //    tnTasks.Add(new TreeNode(string.Format("{0}:{1}", task.Id, task.Description)));
-            //}
-
-            //TreeNode tnTaskList = new TreeNode("全部任务列表", tnTasks.ToArray());
-
-            //List<TreeNode> tnEnabledTasks = new List<TreeNode>();
-            //foreach (Task task in Task.CanGetPutTaskList)
-            //{
-            //    tnEnabledTasks.Add(new TreeNode(string.Format("{0}:{1}", task.Id, task.Description)));
-            //}
-
-            //TreeNode tnEnabledTaskList = new TreeNode("有效任务排序", tnEnabledTasks.ToArray());
-
-            //List<TreeNode> tnRobotNodes = new List<TreeNode>();
-
-            //List<TreeNode> tnRobotClamps = new List<TreeNode>();
-            //if (Current.Robot.Clamp.Id > 0)
-            //{
-            //    List<TreeNode> tnBatteries = new List<TreeNode>();
-            //    var batteries = Current.Robot.Clamp.Batteries;
-            //    foreach (var b in batteries)
-            //    {
-            //        tnBatteries.Add(new TreeNode(string.Format("{0}:{1}(电芯)", b.Id, b.Code)));
-            //    }
-            //    tnRobotClamps.Add(new TreeNode(string.Format("{0}:{1}(夹具)", Current.Robot.Clamp.Id, Current.Robot.Clamp.Code), tnBatteries.ToArray()));
-            //}
-
-            //tnRobotNodes.Add(new TreeNode("PLC"));
-            //tnRobotNodes.AddRange(tnRobotClamps);
-            //TreeNode tnRobot = new TreeNode("机器人", tnRobotNodes.ToArray());
-
-            //TreeNode tnMES = new TreeNode("MES");
-
-            //TreeNode tnCurrentTask = new TreeNode("当前任务");
-
-            //tvSettings.Nodes.AddRange(new TreeNode[] { tnCurrentTask, tnConfig, tnOvenList, tnFeederList, tnBlankerList, tnScanerList, tnCache, tnRotater, tnStationList, tnTaskList, tnEnabledTaskList, tnRobot, tnMES });
-
+            tvSettings.Nodes.AddRange(new TreeNode[] { tnConfig, tnLineList, tnTouchscreenList, tnScanerList });
         }
 
         private void InitTerminal()
@@ -467,14 +389,14 @@ namespace BYD.Scan.Dispatcher
             //    lbTaskMode.ForeColor = Current.TaskMode == TaskMode.自动任务 ? Color.Lime : Color.Gray;
             //}
 
-            yieldDisplay.YieldUpdate();
+            //yieldDisplay.YieldUpdate();
 
             //产量自动清零
             if (!Yield.IsCurrentShift(_Convert.StrToDateTime(Current.option.ClearYieldTime, Common.DefaultTime)) && TengDa.WF.Current.user.Id > 0)
             {
                 Yield.Clear();
                 Current.option.ClearYieldTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                yieldDisplay.SetClearYieldTime(DateTime.Now);
+                //yieldDisplay.SetClearYieldTime(DateTime.Now);
             }
 
             // this.lbTaskStatus.Text = Current.Task.Status.ToString();
@@ -1526,7 +1448,7 @@ namespace BYD.Scan.Dispatcher
             Thread t = new Thread(() =>
             {
                 string msg = string.Empty;
-                DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Battery] WHERE [扫码时间] BETWEEN '{1}' AND '{2}'", Config.DbTableNamePre, startTime, stopTime), out msg);
+                DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Battery] WHERE [扫码时间] BETWEEN '{1}' AND '{2}' ORDER BY [扫码时间]", Config.DbTableNamePre, startTime, stopTime), out msg);
                 if (dt == null)
                 {
                     Error.Alert(msg);
@@ -1537,16 +1459,16 @@ namespace BYD.Scan.Dispatcher
                 {
                     dgViewBattery.DataSource = dt;
 
-                    //dgViewBattery.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    dgViewBattery.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
                     //dgViewBattery.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
                     //dgViewBattery.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
                     //dgViewBattery.Columns[6].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
                     //dgViewBattery.Columns[7].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
 
                     //////设置显示列宽度
-                    //dgViewBattery.Columns[0].Width = 160;
+                    dgViewBattery.Columns[0].Width = 160;
                     //dgViewBattery.Columns[1].Width = 130;
-                    //dgViewBattery.Columns[2].Width = 80;
+                    dgViewBattery.Columns[2].Width = 130;
 
                     //dgViewBattery.Columns[4].Width = 130;
                     //dgViewBattery.Columns[5].Width = 130;
@@ -1610,7 +1532,7 @@ namespace BYD.Scan.Dispatcher
             Operation.Add("清空产量");
             AddTips("清空产量");
             Current.option.ClearYieldTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            yieldDisplay.SetClearYieldTime(DateTime.Now);
+            //yieldDisplay.SetClearYieldTime(DateTime.Now);
         }
 
         private void btnOperQuery_Click(object sender, EventArgs e)
@@ -1619,7 +1541,7 @@ namespace BYD.Scan.Dispatcher
             var stopTime = dtPickerOperStop.Value;
 
             TimeSpan ts = startTime - stopTime;
-            int timeSpan = TengDa._Convert.StrToInt(Current.option.QueryTVTimeSpan, -1);
+            int timeSpan = TengDa._Convert.StrToInt("30", -1);
             if (Math.Abs(ts.TotalDays) > timeSpan)
             {
                 Tip.Alert("查询时间范围太大，请将时间范围设置在 " + timeSpan + " 天 之内！");
@@ -1642,7 +1564,7 @@ namespace BYD.Scan.Dispatcher
                     dgViewOper.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
 
                     //设置显示列宽度
-                    dgViewOper.Columns[3].Width = 400;
+                    dgViewOper.Columns[3].Width = 320;
                     dgViewOper.Columns[4].Width = 130;
                 }));
             });
@@ -1752,228 +1674,112 @@ namespace BYD.Scan.Dispatcher
 
         private void tvSettings_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            //if (e.Action == TreeViewAction.ByMouse)
-            //{
-            //    try
-            //    {
-            //        if (TengDa.WF.Current.user.Id < 1)
-            //        {
-            //            Tip.Alert("请先登录！");
-            //            return;
-            //        }
+            if (e.Action == TreeViewAction.ByMouse)
+            {
+                try
+                {
+                    if (TengDa.WF.Current.user.Id < 1)
+                    {
+                        Tip.Alert("请先登录！");
+                        return;
+                    }
 
-            //        this.propertyGridSettings.Enabled = true;
-            //        if (TengDa.WF.Current.user.Group.Level < 2)
-            //        {
-            //            this.propertyGridSettings.Enabled = false;
-            //            Tip.Alert("当前用户权限不足！");
-            //        }
-            //        if (e.Node.Level == 0 && e.Node.Text == "配置")
-            //        {
-            //            if (TengDa.WF.Current.user.Group.Level < 3)
-            //            {
-            //                this.propertyGridSettings.Enabled = false;
-            //                Tip.Alert("当前用户权限不足！");
-            //            }
-            //            this.propertyGridSettings.SelectedObject = Current.option;
-            //        }
-            //        else if (e.Node.Level == 0 && e.Node.Text == "当前任务")
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Current.Task;
-            //        }
-            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "烤箱")
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Current.ovens.First(o => o.Id.ToString() == e.Node.Text.Split(':')[0]);
-            //        }
-            //        else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "烤箱" && e.Node.Text == "PLC")
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Current.ovens.First(o => o.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
-            //        }
-            //        else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "烤箱" && e.Node.Text.IndexOf("烤箱") > -1)
-            //        {
-            //            Oven oven = Current.ovens.First(o => o.Id.ToString() == e.Node.Parent.Text.Split(':')[0]);
-            //            this.propertyGridSettings.SelectedObject = oven.Floors.First(f => f.Id.ToString() == e.Node.Text.Split(':')[0]);
-            //        }
-            //        else if (e.Node.Level == 0 && e.Node.Text == "MES")
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Current.mes;
-            //        }
-            //        else if (e.Node.Level == 0 && e.Node.Text == "机器人")
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Current.Robot;
-            //        }
-            //        else if (e.Node.Level == 0 && e.Node.Text == "缓存架")
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Current.Cacher;
-            //        }
-            //        else if (e.Node.Level == 0 && e.Node.Text == "转移台")
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Current.Transfer;
-            //        }
-            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "工位列表")
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Station.StationList.First(s => s.Id.ToString() == e.Node.Text.Split(':')[0]);
-            //        }
-            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "扫码枪")
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Scaner.ScanerList.First(s => s.Id.ToString() == e.Node.Text.Split(':')[0]);
-            //        }
-            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "全部任务列表")
-            //        {
-            //            if (TengDa.WF.Current.user.Group.Level < 3)
-            //            {
-            //                this.propertyGridSettings.Enabled = false;
-            //                Tip.Alert("当前用户权限不足！");
-            //            }
-            //            this.propertyGridSettings.SelectedObject = Task.TaskList.First(t => t.Id.ToString() == e.Node.Text.Split(':')[0]);
-            //        }
-            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "有效任务排序")
-            //        {
-            //            if (TengDa.WF.Current.user.Group.Level < 3)
-            //            {
-            //                this.propertyGridSettings.Enabled = false;
-            //                Tip.Alert("当前用户权限不足！");
-            //            }
-            //            this.propertyGridSettings.SelectedObject = Task.TaskList.First(t => t.Id.ToString() == e.Node.Text.Split(':')[0]);
-            //        }
-            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "上料机")
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Current.Feeder;
-            //            //this.propertyGridSettings.SelectedObject = Feeder.FeederList.First(f => f.Id.ToString() == e.Node.Text.Split(':')[0]);
-            //        }
-            //        else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "上料机" && e.Node.Text == "PLC")
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Feeder.FeederList.First(f => f.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
-            //        }
-            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "下料机")
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Blanker.BlankerList.First(b => b.Id.ToString() == e.Node.Text.Split(':')[0]);
-            //        }
-            //        else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "下料机" && e.Node.Text == "PLC")
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Blanker.BlankerList.First(b => b.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
-            //        }
-            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人" && e.Node.Text == "PLC")
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Current.Robot.Plc;
-            //        }
-            //        else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人" && e.Node.Text.IndexOf("夹具") > -1)
-            //        {
-            //            this.propertyGridSettings.SelectedObject = Current.Robot.Clamp;
-            //        }
-            //        else if (e.Node.Level == 2 && e.Node.Text.IndexOf("夹具") > -1)
-            //        {
-            //            int stationId = _Convert.StrToInt(e.Node.Parent.Text.Split(':')[0], -1);
-            //            Clamp clamp = Station.StationList.FirstOrDefault(s => s.Id == stationId).Clamp;
-            //            if (clamp != null && clamp.Id == _Convert.StrToInt(e.Node.Text.Split(':')[0], -1))
-            //            {
-            //                this.propertyGridSettings.SelectedObject = clamp;
-            //            }
-            //        }
-            //        else if (e.Node.Level == 3 && e.Node.Text.IndexOf("电芯") > -1)
-            //        {
-            //            int stationId = _Convert.StrToInt(e.Node.Parent.Parent.Text.Split(':')[0], -1);
-            //            Clamp clamp = Station.StationList.FirstOrDefault(s => s.Id == stationId).Clamp;
-            //            if (clamp.Id == _Convert.StrToInt(e.Node.Parent.Text.Split(':')[0], -1))
-            //            {
-            //                Battery battery = clamp.Batteries.FirstOrDefault(b => b.Id == _Convert.StrToInt(e.Node.Text.Split(':')[0], -1));
-            //                if (battery != null)
-            //                {
-            //                    this.propertyGridSettings.SelectedObject = battery;
-            //                }
-            //            }
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Error.Alert(ex);
-            //    }
-            //}
+                    this.propertyGridSettings.Enabled = true;
+                    if (TengDa.WF.Current.user.Group.Level < 2)
+                    {
+                        this.propertyGridSettings.Enabled = false;
+                        Tip.Alert("当前用户权限不足！");
+                    }
+
+                    if (e.Node.Level == 0 && e.Node.Text == "配置")
+                    {
+                        if (TengDa.WF.Current.user.Group.Level < 3)
+                        {
+                            this.propertyGridSettings.Enabled = false;
+                            Tip.Alert("当前用户权限不足！");
+                        }
+                        this.propertyGridSettings.SelectedObject = Current.option;
+                    }
+                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "线别")
+                    {
+                        this.propertyGridSettings.SelectedObject = Current.Lines.First(o => o.Id.ToString() == e.Node.Text.Split(':', ']')[1]);
+                    }
+                    else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "线别")
+                    {
+                        var line = Current.Lines.First(o => o.Id.ToString() == e.Node.Parent.Text.Split(':', ']')[1]);
+                        this.propertyGridSettings.SelectedObject = line.ChildLines.First(o => o.Id.ToString() == e.Node.Text.Split(':', ']')[1]);
+                    }
+                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "扫码枪")
+                    {
+                        this.propertyGridSettings.SelectedObject = Scaner.ScanerList.First(o => o.Id.ToString() == e.Node.Text.Split(':', ']')[1]);
+                    }
+                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "触摸屏")
+                    {
+                        this.propertyGridSettings.SelectedObject = Touchscreen.TouchscreenList.First(o => o.Id.ToString() == e.Node.Text.Split(':', ']')[1]);
+                    }
+                    //else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "烤箱" && e.Node.Text.IndexOf("烤箱") > -1)
+                    //{
+                    //    Oven oven = Current.ovens.First(o => o.Id.ToString() == e.Node.Parent.Text.Split(':')[0]);
+                    //    this.propertyGridSettings.SelectedObject = oven.Floors.First(f => f.Id.ToString() == e.Node.Text.Split(':')[0]);
+                    //}
+                    //else if (e.Node.Level == 0 && e.Node.Text == "MES")
+                    //{
+                    //    this.propertyGridSettings.SelectedObject = Current.mes;
+                    //}
+                    //else if (e.Node.Level == 0 && e.Node.Text == "机器人")
+                    //{
+                    //    this.propertyGridSettings.SelectedObject = Current.Robot;
+                    //}
+                    //else if (e.Node.Level == 0 && e.Node.Text == "缓存架")
+                    //{
+                    //    this.propertyGridSettings.SelectedObject = Current.Cacher;
+                    //}
+                    //else if (e.Node.Level == 0 && e.Node.Text == "转移台")
+                    //{
+                    //    this.propertyGridSettings.SelectedObject = Current.Transfer;
+                    //}
+                    //else if (e.Node.Level == 2 && e.Node.Text.IndexOf("夹具") > -1)
+                    //{
+                    //    int stationId = _Convert.StrToInt(e.Node.Parent.Text.Split(':')[0], -1);
+                    //    Clamp clamp = Station.StationList.FirstOrDefault(s => s.Id == stationId).Clamp;
+                    //    if (clamp != null && clamp.Id == _Convert.StrToInt(e.Node.Text.Split(':')[0], -1))
+                    //    {
+                    //        this.propertyGridSettings.SelectedObject = clamp;
+                    //    }
+                    //}
+
+                }
+                catch (Exception ex)
+                {
+                    Error.Alert(ex);
+                }
+            }
         }
 
         private void propertyGridSettings_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
-            //object o = this.propertyGridSettings.SelectedObject;
-            //Type type = o.GetType();
+            object o = this.propertyGridSettings.SelectedObject;
+            Type type = o.GetType();
 
-            //string settingsStr = string.Empty;
+            string settingsStr = string.Empty;
 
-            //if (type == typeof(Oven) || type == typeof(Floor) || type == typeof(Clamp) || type == typeof(Battery) || type == typeof(Scaner)
-            //    || type == typeof(Feeder) || type == typeof(Blanker) || type == typeof(PLC) || type == typeof(Station) || type == typeof(Task))
-            //{
-            //    System.Reflection.PropertyInfo propertyInfoId = type.GetProperty("Id"); //获取指定名称的属性
-            //    int Id = (int)propertyInfoId.GetValue(o, null); //获取属性值
-            //    settingsStr = string.Format("将Id为 {0} 的 {1} 的 {2} 由 {3} 修改为 {4} ", Id, type.Name, e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+            if (type == typeof(Line) || type == typeof(Scaner) || type == typeof(Touchscreen))
+            {
+                System.Reflection.PropertyInfo propertyInfoId = type.GetProperty("Id"); //获取指定名称的属性
+                int Id = (int)propertyInfoId.GetValue(o, null); //获取属性值
+                settingsStr = string.Format("将Id为 {0} 的 {1} 的 {2} 由 {3} 修改为 {4} ", Id, type.Name, e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+            }
+            else if (type == typeof(Option))
+            {
+                settingsStr = string.Format("将配置项的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+            }
 
-            //    //用来写入参数值
-            //    if (type == typeof(Floor))
-            //    {
-            //        var floor = (Floor)o;
-            //        var oven = floor.GetOven();
-            //        var j = oven.Floors.IndexOf(floor);
-            //        var propertyName = ((PropertyGrid)s).SelectedGridItem.PropertyDescriptor.Name;
-
-            //        string command = "";
-
-            //        if (propertyName == "PreheatTimeSet")
-            //        {
-            //            command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.PreheatTimeSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
-            //        }
-            //        else if (propertyName == "BakingTimeSet")
-            //        {
-            //            command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.BakingTimeSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
-            //        }
-            //        else if (propertyName == "BreathingCycleSet")
-            //        {
-            //            command = string.Format("%01#WDD{0:D5}{0:D5}{1}**", int.Parse(Current.option.BreathingCycleSetAddrs.Split(',')[j]), PanasonicPLC.ToRevertHexString((int)e.ChangedItem.Value));
-            //        }
-
-            //        if (!string.IsNullOrEmpty(command))
-            //        {
-            //            oven.ControlCommands.Add(command);
-            //        }
-
-            //    }
-
-            //}
-            //else if (type == typeof(Robot))
-            //{
-            //    settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Robot.Name);
-            //}
-            //else if (type == typeof(Transfer))
-            //{
-            //    settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Transfer.Name);
-            //}
-            //else if (type == typeof(Cacher))
-            //{
-            //    settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Cacher.Name);
-            //}
-            //else if (type == typeof(MES))
-            //{
-            //    settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.mes.Name);
-            //}
-            //else if (type == typeof(Option))
-            //{
-            //    settingsStr = string.Format("将配置项的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
-            //}
-            //else if (type == typeof(CurrentTask))
-            //{
-            //    settingsStr = string.Format("将当前任务的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
-            //}
-
-            //if (!string.IsNullOrEmpty(settingsStr))
-            //{
-            //    Operation.Add(settingsStr);
-            //    Tip.Alert("成功" + settingsStr);
-            //}
+            if (!string.IsNullOrEmpty(settingsStr))
+            {
+                Operation.Add(settingsStr);
+                Tip.Alert("成功" + settingsStr);
+            }
         }
-        #endregion
-
-        #region 右键
-        /// <summary>
-        /// 右键源控件名称 如：tlpFloor0401
-        /// </summary>
-
         #endregion
 
         #region 提示信息

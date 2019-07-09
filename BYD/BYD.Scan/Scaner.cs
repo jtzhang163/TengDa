@@ -45,6 +45,8 @@ namespace BYD.Scan
         [DisplayName("是否为自动扫码枪")]
         public bool IsAuto { get; private set; }
 
+
+        [Browsable(false)]
         public string[] Codes
         {
             get
@@ -74,9 +76,9 @@ namespace BYD.Scan
 
         private string code2 = string.Empty;
         /// <summary>
-        /// 条码1
+        /// 条码2
         /// </summary>
-        [DisplayName("条码1")]
+        [DisplayName("条码2")]
         public string Code2
         {
             get { return code2; }

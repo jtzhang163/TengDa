@@ -53,18 +53,19 @@ namespace BYD.Scan
         /// <summary>
         /// 父拉线ID
         /// </summary>
-        [DisplayName("父拉线ID")]
+        [DisplayName("父拉线ID"), ReadOnly(true)]
         public int ParentId { get; set; }
 
         /// <summary>
         /// 触摸屏ID
         /// </summary>
-        [DisplayName("触摸屏ID")]
+        [DisplayName("触摸屏ID"), ReadOnly(true)]
         public int TouchscreenId { get; set; }
 
         /// <summary>
-        /// 子拉线
+        /// 子线列表
         /// </summary>
+        [Browsable(false)]
         public List<Line> ChildLines
         {
             get
@@ -76,6 +77,7 @@ namespace BYD.Scan
         /// <summary>
         /// 父拉线
         /// </summary>
+        [DisplayName("父拉线"), ReadOnly(true)]
         public Line Parent
         {
             get
@@ -87,6 +89,7 @@ namespace BYD.Scan
         /// <summary>
         /// 触摸屏
         /// </summary>
+        [DisplayName("触摸屏"), ReadOnly(true)]
         public Touchscreen Touchscreen
         {
             get
@@ -98,6 +101,7 @@ namespace BYD.Scan
         /// <summary>
         /// 自动扫码枪
         /// </summary>
+        [DisplayName("自动扫码枪"), ReadOnly(true)]
         public Scaner AutoScaner
         {
             get
@@ -110,6 +114,7 @@ namespace BYD.Scan
         /// <summary>
         /// 手动扫码枪
         /// </summary>
+        [DisplayName("手动扫码枪"), ReadOnly(true)]
         public Scaner ManuScaner
         {
             get
@@ -118,6 +123,7 @@ namespace BYD.Scan
             }
         }
 
+        [Browsable(false)]
         public List<Scaner> Scaners
         {
             get

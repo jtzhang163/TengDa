@@ -174,7 +174,7 @@ namespace BYD.Scan
         /// </summary>
         [Description("查询历史记录时间范围控制，单位：Day")]
         [DisplayName("查询历史记录时间范围控制")]
-        [Category("查询时间控制")]
+        [Category("查询时间限制")]
         public string QueryBatteryTimeSpan
         {
             get
@@ -195,40 +195,13 @@ namespace BYD.Scan
             }
         }
 
-        private string queryTVTimeSpan = string.Empty;
-        /// <summary>
-        /// 查询真空温度时间范围，单位：Day
-        /// </summary>
-        [Description("查询真空温度时间范围，单位：Day")]
-        [DisplayName("查询真空温度时间范围")]
-        [Category("查询时间控制")]
-        public string QueryTVTimeSpan
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(queryTVTimeSpan))
-                {
-                    queryTVTimeSpan = TengDa.WF.Option.GetOption("QueryTVTimeSpan");
-                }
-                return queryTVTimeSpan;
-            }
-            set
-            {
-                if (value != queryTVTimeSpan)
-                {
-                    TengDa.WF.Option.SetOption("QueryTVTimeSpan", value);
-                    queryTVTimeSpan = value;
-                }
-            }
-        }
-
         private string queryAlarmTimeSpan = string.Empty;
         /// <summary>
         /// 查询报警记录时间范围，单位：Day
         /// </summary>
         [Description("查询报警记录时间范围，单位：Day")]
         [DisplayName("查询报警记录时间范围")]
-        [Category("查询时间控制")]
+        [Category("查询时间限制")]
         public string QueryAlarmTimeSpan
         {
             get
@@ -272,33 +245,6 @@ namespace BYD.Scan
                 {
                     TengDa.WF.Option.SetOption("CheckPlcPeriod", value);
                     checkPlcPeriod = value;
-                }
-            }
-        }
-
-        private string recordTVInterval = string.Empty;
-        /// <summary>
-        /// 记录温度真空间隔时间，单位：毫秒
-        /// </summary>
-        [Description("记录温度真空间隔时间，单位：毫秒")]
-        [DisplayName("记录温度真空间隔时间")]
-        [Category("定时器")]
-        public string RecordTVInterval
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(recordTVInterval))
-                {
-                    recordTVInterval = TengDa.WF.Option.GetOption("RecordTVInterval");
-                }
-                return recordTVInterval;
-            }
-            set
-            {
-                if (value != recordTVInterval)
-                {
-                    TengDa.WF.Option.SetOption("RecordTVInterval", value);
-                    recordTVInterval = value;
                 }
             }
         }
