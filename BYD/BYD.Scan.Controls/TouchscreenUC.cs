@@ -33,8 +33,8 @@ namespace BYD.Scan.Controls
             if (this.touchscreen.IsReadyScan1)
             {
                 this.lbIsReadyScan1.Text = "请求扫码";
-                this.lbIsReadyScan1.BackColor = Color.White;
-                this.lbIsReadyScan1.ForeColor = Color.Green;
+                this.lbIsReadyScan1.BackColor = Color.Green;
+                this.lbIsReadyScan1.ForeColor = Color.White;
             }
             else
             {
@@ -46,8 +46,8 @@ namespace BYD.Scan.Controls
             if (this.touchscreen.IsReadyScan2)
             {
                 this.lbIsReadyScan2.Text = "请求扫码";
-                this.lbIsReadyScan2.BackColor = Color.White;
-                this.lbIsReadyScan2.ForeColor = Color.Green;
+                this.lbIsReadyScan2.BackColor = Color.Green;
+                this.lbIsReadyScan2.ForeColor = Color.White;
             }
             else
             {

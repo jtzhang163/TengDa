@@ -71,9 +71,9 @@
             // 
             // btnStartScan
             // 
-            this.btnStartScan.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnStartScan.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnStartScan.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnStartScan.Location = new System.Drawing.Point(158, 182);
+            this.btnStartScan.Location = new System.Drawing.Point(133, 182);
             this.btnStartScan.Name = "btnStartScan";
             this.btnStartScan.Size = new System.Drawing.Size(75, 23);
             this.btnStartScan.TabIndex = 0;
@@ -83,9 +83,9 @@
             // 
             // btnStopScan
             // 
-            this.btnStopScan.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnStopScan.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnStopScan.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnStopScan.Location = new System.Drawing.Point(289, 182);
+            this.btnStopScan.Location = new System.Drawing.Point(315, 182);
             this.btnStopScan.Name = "btnStopScan";
             this.btnStopScan.Size = new System.Drawing.Size(75, 23);
             this.btnStopScan.TabIndex = 1;

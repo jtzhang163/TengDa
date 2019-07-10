@@ -2141,7 +2141,7 @@
             this.touchscreenDebugUC1.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.touchscreenDebugUC1.Name = "touchscreenDebugUC1";
             this.tableLayoutPanel3.SetRowSpan(this.touchscreenDebugUC1, 2);
-            this.touchscreenDebugUC1.Size = new System.Drawing.Size(500, 200);
+            this.touchscreenDebugUC1.Size = new System.Drawing.Size(456, 200);
             this.touchscreenDebugUC1.TabIndex = 7;
             // 
             // ManageSystem

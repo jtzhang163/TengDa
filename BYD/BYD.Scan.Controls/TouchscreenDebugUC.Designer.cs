@@ -34,10 +34,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbTouchscreenList = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnRead = new System.Windows.Forms.Button();
-            this.tbReadResult = new System.Windows.Forms.TextBox();
             this.tbWriteValue = new System.Windows.Forms.TextBox();
             this.btnWrite = new System.Windows.Forms.Button();
+            this.btnRead = new System.Windows.Forms.Button();
+            this.tbReadResult = new System.Windows.Forms.TextBox();
             this.gbTouchscreenDebug.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +49,7 @@
             this.gbTouchscreenDebug.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.gbTouchscreenDebug.Location = new System.Drawing.Point(0, 0);
             this.gbTouchscreenDebug.Name = "gbTouchscreenDebug";
-            this.gbTouchscreenDebug.Size = new System.Drawing.Size(501, 206);
+            this.gbTouchscreenDebug.Size = new System.Drawing.Size(432, 206);
             this.gbTouchscreenDebug.TabIndex = 1;
             this.gbTouchscreenDebug.TabStop = false;
             this.gbTouchscreenDebug.Text = "触摸屏调试";
@@ -65,10 +65,10 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.cbTouchscreenList, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tbWriteValue, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnWrite, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnRead, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tbReadResult, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tbWriteValue, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnWrite, 3, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 19);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -76,7 +76,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(495, 184);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(426, 184);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // cbAddr
@@ -98,7 +98,7 @@
             "8 4WUB009 【D902(C线)】"});
             this.cbAddr.Location = new System.Drawing.Point(133, 80);
             this.cbAddr.Name = "cbAddr";
-            this.cbAddr.Size = new System.Drawing.Size(248, 22);
+            this.cbAddr.Size = new System.Drawing.Size(200, 22);
             this.cbAddr.TabIndex = 5;
             this.cbAddr.SelectedIndexChanged += new System.EventHandler(this.CbAddr_SelectedIndexChanged);
             // 
@@ -122,7 +122,7 @@
             this.cbTouchscreenList.FormattingEnabled = true;
             this.cbTouchscreenList.Location = new System.Drawing.Point(133, 19);
             this.cbTouchscreenList.Name = "cbTouchscreenList";
-            this.cbTouchscreenList.Size = new System.Drawing.Size(248, 22);
+            this.cbTouchscreenList.Size = new System.Drawing.Size(200, 22);
             this.cbTouchscreenList.TabIndex = 3;
             this.cbTouchscreenList.SelectedIndexChanged += new System.EventHandler(this.CbTouchscreenList_SelectedIndexChanged);
             // 
@@ -136,6 +136,28 @@
             this.label2.Size = new System.Drawing.Size(49, 14);
             this.label2.TabIndex = 4;
             this.label2.Text = "地址：";
+            // 
+            // tbWriteValue
+            // 
+            this.tbWriteValue.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.tbWriteValue.ForeColor = System.Drawing.Color.LimeGreen;
+            this.tbWriteValue.Location = new System.Drawing.Point(284, 141);
+            this.tbWriteValue.Name = "tbWriteValue";
+            this.tbWriteValue.Size = new System.Drawing.Size(49, 23);
+            this.tbWriteValue.TabIndex = 7;
+            this.tbWriteValue.Text = "0";
+            // 
+            // btnWrite
+            // 
+            this.btnWrite.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnWrite.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnWrite.Location = new System.Drawing.Point(339, 141);
+            this.btnWrite.Name = "btnWrite";
+            this.btnWrite.Size = new System.Drawing.Size(75, 23);
+            this.btnWrite.TabIndex = 0;
+            this.btnWrite.Text = "写入";
+            this.btnWrite.UseVisualStyleBackColor = true;
+            this.btnWrite.Click += new System.EventHandler(this.BtnWrite_Click);
             // 
             // btnRead
             // 
@@ -158,35 +180,13 @@
             this.tbReadResult.Size = new System.Drawing.Size(49, 23);
             this.tbReadResult.TabIndex = 6;
             // 
-            // tbWriteValue
-            // 
-            this.tbWriteValue.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbWriteValue.ForeColor = System.Drawing.Color.LimeGreen;
-            this.tbWriteValue.Location = new System.Drawing.Point(387, 141);
-            this.tbWriteValue.Name = "tbWriteValue";
-            this.tbWriteValue.Size = new System.Drawing.Size(49, 23);
-            this.tbWriteValue.TabIndex = 7;
-            this.tbWriteValue.Text = "0";
-            // 
-            // btnWrite
-            // 
-            this.btnWrite.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnWrite.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnWrite.Location = new System.Drawing.Point(306, 141);
-            this.btnWrite.Name = "btnWrite";
-            this.btnWrite.Size = new System.Drawing.Size(75, 23);
-            this.btnWrite.TabIndex = 0;
-            this.btnWrite.Text = "写入";
-            this.btnWrite.UseVisualStyleBackColor = true;
-            this.btnWrite.Click += new System.EventHandler(this.BtnWrite_Click);
-            // 
             // TouchscreenDebugUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbTouchscreenDebug);
             this.Name = "TouchscreenDebugUC";
-            this.Size = new System.Drawing.Size(501, 206);
+            this.Size = new System.Drawing.Size(432, 206);
             this.gbTouchscreenDebug.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
