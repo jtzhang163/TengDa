@@ -46,6 +46,52 @@ namespace BYD.Scan
             }
         }
 
+
+        protected string username = string.Empty;
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        [DisplayName("用户名")]
+        [Category("基本设置")]
+        public string Username
+        {
+            get
+            {
+                return username;
+            }
+            set
+            {
+                if (username != value)
+                {
+                    UpdateDbField("Username", value);
+                }
+                username = value;
+            }
+        }
+
+
+        protected string password = string.Empty;
+        /// <summary>
+        /// 密码
+        /// </summary>
+        [DisplayName("密码")]
+        [Category("基本设置")]
+        public string Password
+        {
+            get
+            {
+                return password;
+            }
+            set
+            {
+                if (password != value)
+                {
+                    UpdateDbField("Password", value);
+                }
+                password = value;
+            }
+        }
+
         //private string username = string.Empty;
         //public string Username
         //{
@@ -141,6 +187,8 @@ namespace BYD.Scan
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
             this.isOffline = Convert.ToBoolean(rowInfo["IsOffline"]);
             this.webServiceUrl = rowInfo["WebServiceUrl"].ToString();
+            this.username = rowInfo["Username"].ToString();
+            this.password = rowInfo["Password"].ToString();
         }
         #endregion
 

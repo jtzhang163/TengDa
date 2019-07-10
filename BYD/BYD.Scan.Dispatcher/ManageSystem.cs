@@ -165,7 +165,9 @@ namespace BYD.Scan.Dispatcher
             }
             TreeNode tnScanerList = new TreeNode("扫码枪", tnScaners.ToArray());
 
-            tvSettings.Nodes.AddRange(new TreeNode[] { tnConfig, tnLineList, tnTouchscreenList, tnScanerList });
+            TreeNode tnMES = new TreeNode("MES");
+
+            tvSettings.Nodes.AddRange(new TreeNode[] { tnConfig, tnLineList, tnTouchscreenList, tnScanerList, tnMES });
         }
 
         private void InitTerminal()
@@ -194,6 +196,8 @@ namespace BYD.Scan.Dispatcher
 
             this.machinesStatusUC1.Init();
             this.globalViewUC1.Init();
+
+            this.scanerDebugUC1.Init();
         }
 
         private void ManageSystem_FormClosing(object sender, FormClosingEventArgs e)
@@ -679,11 +683,23 @@ namespace BYD.Scan.Dispatcher
         {
             for (int i = 0; i < Option.LineCount; i++)
             {
-                //if (Current.ovens[i].IsEnable && !Current.ovens[i].Plc.IsAlive)
-                //{
-                //    msg = Current.ovens[i].Name + " 启动异常！";
-                //    return false;
-                //}
+                if (Current.Lines[i].Touchscreen.IsEnable && !Current.Lines[i].Touchscreen.IsAlive)
+                {
+                    msg = Current.Lines[i].Touchscreen.Name + " 启动异常！";
+                    return false;
+                }
+
+                for (int j = 0; j < Option.ChildLineCount; j++)
+                {
+                    for (int k = 0; k < Option.ChildLineScanerCount; k++)
+                    {
+                        if (Current.Lines[i].ChildLines[j].Scaners[k].IsEnable && !Current.Lines[i].ChildLines[j].Scaners[k].IsAlive)
+                        {
+                            msg = Current.Lines[i].ChildLines[j].Scaners[k].Name + " 启动异常！";
+                            return false;
+                        }
+                    }
+                }
             }
 
             if (Current.mes.IsEnable && !Current.mes.IsPingSuccess)
@@ -1717,37 +1733,10 @@ namespace BYD.Scan.Dispatcher
                     {
                         this.propertyGridSettings.SelectedObject = Touchscreen.TouchscreenList.First(o => o.Id.ToString() == e.Node.Text.Split(':', ']')[1]);
                     }
-                    //else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "烤箱" && e.Node.Text.IndexOf("烤箱") > -1)
-                    //{
-                    //    Oven oven = Current.ovens.First(o => o.Id.ToString() == e.Node.Parent.Text.Split(':')[0]);
-                    //    this.propertyGridSettings.SelectedObject = oven.Floors.First(f => f.Id.ToString() == e.Node.Text.Split(':')[0]);
-                    //}
-                    //else if (e.Node.Level == 0 && e.Node.Text == "MES")
-                    //{
-                    //    this.propertyGridSettings.SelectedObject = Current.mes;
-                    //}
-                    //else if (e.Node.Level == 0 && e.Node.Text == "机器人")
-                    //{
-                    //    this.propertyGridSettings.SelectedObject = Current.Robot;
-                    //}
-                    //else if (e.Node.Level == 0 && e.Node.Text == "缓存架")
-                    //{
-                    //    this.propertyGridSettings.SelectedObject = Current.Cacher;
-                    //}
-                    //else if (e.Node.Level == 0 && e.Node.Text == "转移台")
-                    //{
-                    //    this.propertyGridSettings.SelectedObject = Current.Transfer;
-                    //}
-                    //else if (e.Node.Level == 2 && e.Node.Text.IndexOf("夹具") > -1)
-                    //{
-                    //    int stationId = _Convert.StrToInt(e.Node.Parent.Text.Split(':')[0], -1);
-                    //    Clamp clamp = Station.StationList.FirstOrDefault(s => s.Id == stationId).Clamp;
-                    //    if (clamp != null && clamp.Id == _Convert.StrToInt(e.Node.Text.Split(':')[0], -1))
-                    //    {
-                    //        this.propertyGridSettings.SelectedObject = clamp;
-                    //    }
-                    //}
-
+                    if (e.Node.Level == 0 && e.Node.Text == "MES")
+                    {
+                        this.propertyGridSettings.SelectedObject = Current.mes;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -1772,6 +1761,10 @@ namespace BYD.Scan.Dispatcher
             else if (type == typeof(Option))
             {
                 settingsStr = string.Format("将配置项的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+            }
+            else if (type == typeof(MES))
+            {
+                settingsStr = string.Format("将MES的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
             }
 
             if (!string.IsNullOrEmpty(settingsStr))

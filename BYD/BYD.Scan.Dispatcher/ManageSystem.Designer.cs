@@ -179,6 +179,7 @@
             this.lbTime = new System.Windows.Forms.Label();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
             this.machinesStatusUC1 = new BYD.Scan.Controls.MachinesStatusUC();
+            this.scanerDebugUC1 = new BYD.Scan.Controls.ScanerDebugUC();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -1303,6 +1304,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.6142F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.Controls.Add(this.btnDebug, 0, 4);
+            this.tableLayoutPanel3.Controls.Add(this.scanerDebugUC1, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -2123,6 +2125,13 @@
             this.machinesStatusUC1.Size = new System.Drawing.Size(270, 491);
             this.machinesStatusUC1.TabIndex = 16;
             // 
+            // scanerDebugUC1
+            // 
+            this.scanerDebugUC1.Location = new System.Drawing.Point(3, 31);
+            this.scanerDebugUC1.Name = "scanerDebugUC1";
+            this.scanerDebugUC1.Size = new System.Drawing.Size(369, 149);
+            this.scanerDebugUC1.TabIndex = 6;
+            // 
             // ManageSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2375,5 +2384,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label lbTaskMode;
         private Controls.GlobalViewUC globalViewUC1;
+        private Controls.ScanerDebugUC scanerDebugUC1;
     }
 }

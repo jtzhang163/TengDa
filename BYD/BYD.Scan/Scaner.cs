@@ -195,7 +195,10 @@ namespace BYD.Scan
         public ScanResult StartScan(out string code, out string msg)
         {
             code = "";
-            SetInfo("LON", out msg);
+            if (!SetInfo("LON", out msg))
+            {
+                return ScanResult.Error;
+            }
 
             Thread.Sleep(800);
             var receiveData = this.GetReceiveData();
