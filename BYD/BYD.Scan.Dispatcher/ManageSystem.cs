@@ -198,6 +198,7 @@ namespace BYD.Scan.Dispatcher
             this.globalViewUC1.Init();
 
             this.scanerDebugUC1.Init();
+            this.touchscreenDebugUC1.Init();
         }
 
         private void ManageSystem_FormClosing(object sender, FormClosingEventArgs e)

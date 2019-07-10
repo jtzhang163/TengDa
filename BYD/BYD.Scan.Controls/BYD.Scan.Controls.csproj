@@ -89,6 +89,12 @@
     <Compile Include="ScanerUC.Designer.cs">
       <DependentUpon>ScanerUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="TouchscreenDebugUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TouchscreenDebugUC.Designer.cs">
+      <DependentUpon>TouchscreenDebugUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="TouchscreenUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ScanerUC.resx">
       <DependentUpon>ScanerUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TouchscreenDebugUC.resx">
+      <DependentUpon>TouchscreenDebugUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TouchscreenUC.resx">
       <DependentUpon>TouchscreenUC.cs</DependentUpon>

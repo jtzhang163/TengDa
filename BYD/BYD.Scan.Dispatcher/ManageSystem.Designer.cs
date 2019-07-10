@@ -115,7 +115,6 @@
             this.cbMesRem = new System.Windows.Forms.CheckBox();
             this.tabContentPageMain = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.globalViewUC1 = new BYD.Scan.Controls.GlobalViewUC();
             this.tabContentPageTips = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -179,7 +178,9 @@
             this.lbTime = new System.Windows.Forms.Label();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
             this.machinesStatusUC1 = new BYD.Scan.Controls.MachinesStatusUC();
+            this.globalViewUC1 = new BYD.Scan.Controls.GlobalViewUC();
             this.scanerDebugUC1 = new BYD.Scan.Controls.ScanerDebugUC();
+            this.touchscreenDebugUC1 = new BYD.Scan.Controls.TouchscreenDebugUC();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -1222,15 +1223,6 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1036, 572);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
-            // globalViewUC1
-            // 
-            this.globalViewUC1.BackColor = System.Drawing.SystemColors.Control;
-            this.globalViewUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.globalViewUC1.Location = new System.Drawing.Point(23, 23);
-            this.globalViewUC1.Name = "globalViewUC1";
-            this.globalViewUC1.Size = new System.Drawing.Size(990, 526);
-            this.globalViewUC1.TabIndex = 15;
-            // 
             // tabContentPageTips
             // 
             this.tabContentPageTips.AutoScroll = true;
@@ -1300,29 +1292,30 @@
             // 
             this.tableLayoutPanel3.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.98848F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.6142F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.Controls.Add(this.btnDebug, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.scanerDebugUC1, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.touchscreenDebugUC1, 0, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 5;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.98962F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.12457F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.22145F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.16609F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1042, 578);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // btnDebug
             // 
-            this.btnDebug.Location = new System.Drawing.Point(20, 492);
+            this.btnDebug.Location = new System.Drawing.Point(20, 488);
             this.btnDebug.Margin = new System.Windows.Forms.Padding(20);
             this.btnDebug.Name = "btnDebug";
-            this.btnDebug.Size = new System.Drawing.Size(75, 23);
+            this.btnDebug.Size = new System.Drawing.Size(75, 22);
             this.btnDebug.TabIndex = 5;
             this.btnDebug.Text = "调试";
             this.btnDebug.UseVisualStyleBackColor = true;
@@ -2125,12 +2118,31 @@
             this.machinesStatusUC1.Size = new System.Drawing.Size(270, 491);
             this.machinesStatusUC1.TabIndex = 16;
             // 
+            // globalViewUC1
+            // 
+            this.globalViewUC1.BackColor = System.Drawing.SystemColors.Control;
+            this.globalViewUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.globalViewUC1.Location = new System.Drawing.Point(23, 23);
+            this.globalViewUC1.Name = "globalViewUC1";
+            this.globalViewUC1.Size = new System.Drawing.Size(990, 526);
+            this.globalViewUC1.TabIndex = 15;
+            // 
             // scanerDebugUC1
             // 
-            this.scanerDebugUC1.Location = new System.Drawing.Point(3, 31);
+            this.scanerDebugUC1.Location = new System.Drawing.Point(30, 33);
+            this.scanerDebugUC1.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.scanerDebugUC1.Name = "scanerDebugUC1";
-            this.scanerDebugUC1.Size = new System.Drawing.Size(369, 149);
+            this.scanerDebugUC1.Size = new System.Drawing.Size(360, 158);
             this.scanerDebugUC1.TabIndex = 6;
+            // 
+            // touchscreenDebugUC1
+            // 
+            this.touchscreenDebugUC1.Location = new System.Drawing.Point(30, 197);
+            this.touchscreenDebugUC1.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
+            this.touchscreenDebugUC1.Name = "touchscreenDebugUC1";
+            this.tableLayoutPanel3.SetRowSpan(this.touchscreenDebugUC1, 2);
+            this.touchscreenDebugUC1.Size = new System.Drawing.Size(500, 200);
+            this.touchscreenDebugUC1.TabIndex = 7;
             // 
             // ManageSystem
             // 
@@ -2385,5 +2397,6 @@
         private System.Windows.Forms.Label lbTaskMode;
         private Controls.GlobalViewUC globalViewUC1;
         private Controls.ScanerDebugUC scanerDebugUC1;
+        private Controls.TouchscreenDebugUC touchscreenDebugUC1;
     }
 }
