@@ -259,11 +259,29 @@ namespace BYD.Scan
                                 LogHelper.WriteInfo(string.Format("【扫码日志】收到上料机给的请求 {0} 扫码信号！", this.ChildLines[j].AutoScaner.Name));
                             }
                             this.ChildLines[j].AutoScaner.IsReady = true;
+
+                            if (j == 0)
+                            {
+                                this.Touchscreen.IsReadyScan1 = true;
+                            }
+                            else
+                            {
+                                this.Touchscreen.IsReadyScan2 = true;
+                            }
                         }
                         else
                         {
                             this.ChildLines[j].AutoScaner.IsReady = false;
                             this.ChildLines[j].AutoScaner.CanScan = false;
+
+                            if (j == 0)
+                            {
+                                this.Touchscreen.IsReadyScan1 = false;
+                            }
+                            else
+                            {
+                                this.Touchscreen.IsReadyScan2 = false;
+                            }
                         }
                     }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,12 @@ namespace BYD.Scan
                 return tableName;
             }
         }
+
+        [Browsable(false)]
+        public bool IsReadyScan1 { get; set; }
+
+        [Browsable(false)]
+        public bool IsReadyScan2 { get; set; }
         #endregion
 
         #region 系统触摸屏列表

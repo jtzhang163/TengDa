@@ -46,7 +46,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(494, 32);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(494, 58);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // scanerUC2
@@ -54,7 +54,7 @@
             this.scanerUC2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scanerUC2.Location = new System.Drawing.Point(250, 3);
             this.scanerUC2.Name = "scanerUC2";
-            this.scanerUC2.Size = new System.Drawing.Size(241, 26);
+            this.scanerUC2.Size = new System.Drawing.Size(241, 52);
             this.scanerUC2.TabIndex = 1;
             // 
             // scanerUC1
@@ -62,7 +62,7 @@
             this.scanerUC1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scanerUC1.Location = new System.Drawing.Point(3, 3);
             this.scanerUC1.Name = "scanerUC1";
-            this.scanerUC1.Size = new System.Drawing.Size(241, 26);
+            this.scanerUC1.Size = new System.Drawing.Size(241, 52);
             this.scanerUC1.TabIndex = 0;
             // 
             // LineChildUC
@@ -71,7 +71,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "LineChildUC";
-            this.Size = new System.Drawing.Size(494, 32);
+            this.Size = new System.Drawing.Size(494, 58);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

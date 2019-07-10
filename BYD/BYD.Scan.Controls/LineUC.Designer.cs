@@ -44,7 +44,7 @@
             this.gbLine.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.gbLine.Location = new System.Drawing.Point(0, 0);
             this.gbLine.Name = "gbLine";
-            this.gbLine.Size = new System.Drawing.Size(702, 150);
+            this.gbLine.Size = new System.Drawing.Size(700, 169);
             this.gbLine.TabIndex = 0;
             this.gbLine.TabStop = false;
             this.gbLine.Text = "1#线";
@@ -63,7 +63,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(696, 125);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(694, 144);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lineChildUC1
@@ -71,24 +71,25 @@
             this.lineChildUC1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lineChildUC1.Location = new System.Drawing.Point(123, 3);
             this.lineChildUC1.Name = "lineChildUC1";
-            this.lineChildUC1.Size = new System.Drawing.Size(570, 56);
+            this.lineChildUC1.Size = new System.Drawing.Size(568, 66);
             this.lineChildUC1.TabIndex = 0;
             // 
             // lineChildUC2
             // 
             this.lineChildUC2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lineChildUC2.Location = new System.Drawing.Point(123, 65);
+            this.lineChildUC2.Location = new System.Drawing.Point(123, 75);
             this.lineChildUC2.Name = "lineChildUC2";
-            this.lineChildUC2.Size = new System.Drawing.Size(570, 57);
+            this.lineChildUC2.Size = new System.Drawing.Size(568, 66);
             this.lineChildUC2.TabIndex = 1;
             // 
             // touchscreenUC1
             // 
             this.touchscreenUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.touchscreenUC1.Location = new System.Drawing.Point(3, 3);
+            this.touchscreenUC1.Location = new System.Drawing.Point(4, 5);
+            this.touchscreenUC1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.touchscreenUC1.Name = "touchscreenUC1";
             this.tableLayoutPanel1.SetRowSpan(this.touchscreenUC1, 2);
-            this.touchscreenUC1.Size = new System.Drawing.Size(114, 119);
+            this.touchscreenUC1.Size = new System.Drawing.Size(112, 134);
             this.touchscreenUC1.TabIndex = 2;
             // 
             // LineUC
@@ -97,7 +98,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbLine);
             this.Name = "LineUC";
-            this.Size = new System.Drawing.Size(702, 150);
+            this.Size = new System.Drawing.Size(700, 169);
             this.gbLine.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
