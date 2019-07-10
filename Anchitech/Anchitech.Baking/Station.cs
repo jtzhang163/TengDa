@@ -56,6 +56,13 @@ namespace Anchitech.Baking
                         status = _status;
                     }
                 }
+                if (this.GetPutType == GetPutType.上料机)
+                {
+                    if (this.ClampStatus == ClampStatus.无夹具)
+                    {
+                        status = StationStatus.可放;
+                    }
+                }
                 return status;
             }
             set

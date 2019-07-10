@@ -484,7 +484,7 @@ namespace Anchitech.Baking
                         switch (iOut[j])
                         {
                             case 1:
-                                this.EmptyClampCount[j]++;
+                                //this.EmptyClampCount[j]++;
                                 this.Stations[j].Status = StationStatus.可放;
                                 break;
                             case 2:
@@ -497,8 +497,7 @@ namespace Anchitech.Baking
                                 {
                                     this.Stations[j].ClampStatus = ClampStatus.空夹具;
                                     this.Stations[j].Status = StationStatus.工作中;
-                                }
-                                
+                                }                    
                                 break;
                             case 4:
                                 this.Stations[j].ClampStatus = ClampStatus.异常;
@@ -510,19 +509,18 @@ namespace Anchitech.Baking
                                 break;
                         }
 
-
-                        if (iOut[j] == 1)
-                        {
-                            if (EmptyClampCount[j] > 2)
-                            {
-                                this.Stations[j].ClampStatus = ClampStatus.无夹具;
-                                EmptyClampCount[j] = 3;
-                            }
-                        }
-                        else
-                        {
-                            EmptyClampCount[j] = 0;
-                        }
+                        //if (iOut[j] == 1)
+                        //{
+                        //    if (EmptyClampCount[j] > 2)
+                        //    {
+                        //        this.Stations[j].ClampStatus = ClampStatus.无夹具;
+                        //        EmptyClampCount[j] = 3;
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    EmptyClampCount[j] = 0;
+                        //}
 
                         if (iOut[j] == 2 && output.Substring(6 + j, 1) == "1")
                         {

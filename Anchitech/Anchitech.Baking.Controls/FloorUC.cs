@@ -197,6 +197,7 @@ namespace Anchitech.Baking.Controls
 
             this.tsmOvenOpenDoor.Enabled =
                 floor.IsNetControlOpen
+                && Current.TaskMode == TaskMode.手动任务
                 && Current.runStstus == RunStatus.运行
                 && oven.IsAlive
                 && floor.DoorStatus != DoorStatus.打开
@@ -205,6 +206,7 @@ namespace Anchitech.Baking.Controls
                 && !floor.Stations[0].IsOpenDoorIntervene;
             this.tsmOvenCloseDoor.Enabled =
                 floor.IsNetControlOpen
+                && Current.TaskMode == TaskMode.手动任务
                 && Current.runStstus == RunStatus.运行
                 && oven.IsAlive
                 && floor.DoorStatus != DoorStatus.关闭;
