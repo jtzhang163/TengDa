@@ -121,7 +121,6 @@
             this.tbTips = new System.Windows.Forms.TextBox();
             this.tabContentPageManuTest = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnDebug = new System.Windows.Forms.Button();
             this.tabContentPageAlarmLog = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvAlarm = new System.Windows.Forms.DataGridView();
@@ -181,6 +180,7 @@
             this.globalViewUC1 = new BYD.Scan.Controls.GlobalViewUC();
             this.scanerDebugUC1 = new BYD.Scan.Controls.ScanerDebugUC();
             this.touchscreenDebugUC1 = new BYD.Scan.Controls.TouchscreenDebugUC();
+            this.mesDebugUC1 = new BYD.Scan.Controls.MesDebugUC();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -1291,36 +1291,23 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.Controls.Add(this.btnDebug, 0, 4);
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 500F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.scanerDebugUC1, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.touchscreenDebugUC1, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.mesDebugUC1, 1, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(40);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 5;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel3.RowCount = 4;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1042, 578);
             this.tableLayoutPanel3.TabIndex = 2;
-            // 
-            // btnDebug
-            // 
-            this.btnDebug.Location = new System.Drawing.Point(20, 488);
-            this.btnDebug.Margin = new System.Windows.Forms.Padding(20);
-            this.btnDebug.Name = "btnDebug";
-            this.btnDebug.Size = new System.Drawing.Size(75, 22);
-            this.btnDebug.TabIndex = 5;
-            this.btnDebug.Text = "调试";
-            this.btnDebug.UseVisualStyleBackColor = true;
-            this.btnDebug.Visible = false;
-            this.btnDebug.Click += new System.EventHandler(this.btnDebug_Click);
             // 
             // tabContentPageAlarmLog
             // 
@@ -2129,20 +2116,31 @@
             // 
             // scanerDebugUC1
             // 
-            this.scanerDebugUC1.Location = new System.Drawing.Point(30, 33);
+            this.scanerDebugUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scanerDebugUC1.Location = new System.Drawing.Point(30, 118);
             this.scanerDebugUC1.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.scanerDebugUC1.Name = "scanerDebugUC1";
-            this.scanerDebugUC1.Size = new System.Drawing.Size(360, 158);
+            this.scanerDebugUC1.Size = new System.Drawing.Size(467, 138);
             this.scanerDebugUC1.TabIndex = 6;
             // 
             // touchscreenDebugUC1
             // 
-            this.touchscreenDebugUC1.Location = new System.Drawing.Point(30, 197);
+            this.touchscreenDebugUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.touchscreenDebugUC1.Location = new System.Drawing.Point(30, 262);
             this.touchscreenDebugUC1.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.touchscreenDebugUC1.Name = "touchscreenDebugUC1";
-            this.tableLayoutPanel3.SetRowSpan(this.touchscreenDebugUC1, 2);
-            this.touchscreenDebugUC1.Size = new System.Drawing.Size(456, 200);
+            this.touchscreenDebugUC1.Size = new System.Drawing.Size(467, 196);
             this.touchscreenDebugUC1.TabIndex = 7;
+            // 
+            // mesDebugUC1
+            // 
+            this.mesDebugUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mesDebugUC1.Location = new System.Drawing.Point(530, 118);
+            this.mesDebugUC1.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
+            this.mesDebugUC1.Name = "mesDebugUC1";
+            this.tableLayoutPanel3.SetRowSpan(this.mesDebugUC1, 2);
+            this.mesDebugUC1.Size = new System.Drawing.Size(509, 340);
+            this.mesDebugUC1.TabIndex = 8;
             // 
             // ManageSystem
             // 
@@ -2389,7 +2387,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TabPage tabContentPageManuTest;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Button btnDebug;
         private System.Windows.Forms.Label lbTime;
         private Controls.MachinesStatusUC machinesStatusUC1;
         private System.Windows.Forms.TabPage tabContentPageMain;
@@ -2398,5 +2395,6 @@
         private Controls.GlobalViewUC globalViewUC1;
         private Controls.ScanerDebugUC scanerDebugUC1;
         private Controls.TouchscreenDebugUC touchscreenDebugUC1;
+        private Controls.MesDebugUC mesDebugUC1;
     }
 }

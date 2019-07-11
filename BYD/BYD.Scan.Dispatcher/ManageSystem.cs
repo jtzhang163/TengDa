@@ -54,7 +54,7 @@ namespace BYD.Scan.Dispatcher
             TengDa.WF.Current.IsRunning = true;
             Operation.Add("打开软件");
             Thread.Sleep(500);
-            AddTips("打开软件", isUiThread: true);
+            AddTips("打开软件", isUiThread: true, false);
             StartRefreshUI();
         }
 
@@ -199,6 +199,7 @@ namespace BYD.Scan.Dispatcher
 
             this.scanerDebugUC1.Init();
             this.touchscreenDebugUC1.Init();
+            this.mesDebugUC1.Init();
         }
 
         private void ManageSystem_FormClosing(object sender, FormClosingEventArgs e)
@@ -874,9 +875,15 @@ namespace BYD.Scan.Dispatcher
                         }
 
 
+                        if (scanResult == ScanResult.OK)
+                        {
+                            AddTips(string.Format("扫码：{0} ", code), false, false);
+                        }
+
                         if (Current.Lines[ii].WriteScanFinishInfo(j, out msg))
                         {
-                            LogHelper.WriteInfo("扫码结束信号成功写入 " + Current.Lines[ii].Touchscreen.Name);
+                            AddTips("扫码结束信号成功写入 " + Current.Lines[ii].Touchscreen.Name, false, false);
+                            //LogHelper.WriteInfo("扫码结束信号成功写入 " + Current.Lines[ii].Touchscreen.Name);
                         }
                         else
                         {
@@ -888,7 +895,8 @@ namespace BYD.Scan.Dispatcher
                         {
                             if (Current.Lines[ii].WriteScanResultInfo(j, finalScanResult, out msg))
                             {
-                                LogHelper.WriteInfo("两个扫码完成后结果成功写入 " + Current.Lines[ii].Touchscreen.Name);
+                                AddTips("两个扫码完成后结果成功写入 " + Current.Lines[ii].Touchscreen.Name, false, false);
+                                //LogHelper.WriteInfo("两个扫码完成后结果成功写入 " + Current.Lines[ii].Touchscreen.Name);
                             }
                             else
                             {
@@ -1778,16 +1786,11 @@ namespace BYD.Scan.Dispatcher
 
         #region 提示信息
 
-        public void AddTips(string tip)
-        {
-            AddTips(tip, false);
-        }
-
-        public void AddTips(string tip, bool isUiThread)
+        public void AddTips(string content, bool isUiThread = true, bool isErrorMsg = false)
         {
             if (isUiThread)
             {
-                tbTips.AppendText(string.Format("[{0}]{1}\r\n", DateTime.Now.ToString("HH:mm:ss"), tip));
+                tbTips.AppendText(string.Format("[{0}]{1}\r\n", DateTime.Now.ToString("HH:mm:ss"), content));
                 tbTips.Focus();
                 tbTips.Select(tbTips.TextLength, 0);
                 tbTips.ScrollToCaret();
@@ -1796,13 +1799,21 @@ namespace BYD.Scan.Dispatcher
             {
                 this.BeginInvoke(new MethodInvoker(() =>
                 {
-                    tbTips.AppendText(string.Format("[{0}]{1}\r\n", DateTime.Now.ToString("HH:mm:ss"), tip));
+                    tbTips.AppendText(string.Format("[{0}]{1}\r\n", DateTime.Now.ToString("HH:mm:ss"), content));
                     tbTips.Focus();
                     tbTips.Select(tbTips.TextLength, 0);
                     tbTips.ScrollToCaret();
                 }));
             }
-            LogHelper.WriteInfo(tip);
+
+            if (isErrorMsg)
+            {
+                LogHelper.WriteError(content);
+            }
+            else
+            {
+                LogHelper.WriteInfo(content);
+            }
         }
 
         #endregion

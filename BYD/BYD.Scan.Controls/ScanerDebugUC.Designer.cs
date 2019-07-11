@@ -45,17 +45,18 @@
             this.gbScanerDebug.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.gbScanerDebug.Location = new System.Drawing.Point(0, 0);
             this.gbScanerDebug.Name = "gbScanerDebug";
-            this.gbScanerDebug.Size = new System.Drawing.Size(399, 280);
+            this.gbScanerDebug.Size = new System.Drawing.Size(514, 189);
             this.gbScanerDebug.TabIndex = 0;
             this.gbScanerDebug.TabStop = false;
             this.gbScanerDebug.Text = "自动扫码枪调试";
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Controls.Add(this.btnStartScan, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnStopScan, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
@@ -66,14 +67,14 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(393, 258);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(508, 167);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnStartScan
             // 
             this.btnStartScan.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnStartScan.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnStartScan.Location = new System.Drawing.Point(133, 182);
+            this.btnStartScan.Location = new System.Drawing.Point(130, 113);
             this.btnStartScan.Name = "btnStartScan";
             this.btnStartScan.Size = new System.Drawing.Size(75, 23);
             this.btnStartScan.TabIndex = 0;
@@ -85,7 +86,7 @@
             // 
             this.btnStopScan.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnStopScan.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnStopScan.Location = new System.Drawing.Point(315, 182);
+            this.btnStopScan.Location = new System.Drawing.Point(303, 113);
             this.btnStopScan.Name = "btnStopScan";
             this.btnStopScan.Size = new System.Drawing.Size(75, 23);
             this.btnStopScan.TabIndex = 1;
@@ -98,11 +99,11 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(8, 57);
+            this.label1.Location = new System.Drawing.Point(33, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 14);
+            this.label1.Size = new System.Drawing.Size(91, 14);
             this.label1.TabIndex = 2;
-            this.label1.Text = "选择自动扫码枪：";
+            this.label1.Text = "选择扫码枪：";
             // 
             // cbScanerList
             // 
@@ -111,9 +112,9 @@
             this.cbScanerList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbScanerList.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbScanerList.FormattingEnabled = true;
-            this.cbScanerList.Location = new System.Drawing.Point(133, 53);
+            this.cbScanerList.Location = new System.Drawing.Point(130, 30);
             this.cbScanerList.Name = "cbScanerList";
-            this.cbScanerList.Size = new System.Drawing.Size(257, 22);
+            this.cbScanerList.Size = new System.Drawing.Size(248, 22);
             this.cbScanerList.TabIndex = 3;
             this.cbScanerList.SelectedIndexChanged += new System.EventHandler(this.CbScanerList_SelectedIndexChanged);
             // 
@@ -123,7 +124,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbScanerDebug);
             this.Name = "ScanerDebugUC";
-            this.Size = new System.Drawing.Size(399, 280);
+            this.Size = new System.Drawing.Size(514, 189);
             this.gbScanerDebug.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

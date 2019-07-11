@@ -77,6 +77,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="MesDebugUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesDebugUC.Designer.cs">
+      <DependentUpon>MesDebugUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="ScanerDebugUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -130,6 +136,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesDebugUC.resx">
+      <DependentUpon>MesDebugUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScanerDebugUC.resx">
       <DependentUpon>ScanerDebugUC.cs</DependentUpon>
