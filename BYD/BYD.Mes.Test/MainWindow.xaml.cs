@@ -25,11 +25,6 @@ namespace Anchitech.Mes.Test
         public MainWindow()
         {
             InitializeComponent();
-
-            this.username.Text = Common.Username;
-            this.password.Text = "**********";
-
-            Common.MainWindow = this;
         }
 
         private void clearLog_Click(object sender, RoutedEventArgs e)

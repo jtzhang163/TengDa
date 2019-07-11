@@ -52,34 +52,9 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-
-
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="选择上传环境："/>
-        <WrapPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,20,0">
-            <RadioButton Content="测试" IsChecked="True" Checked="RadioButton_Checked"/>
-            <RadioButton Content="正式" Checked="RadioButton_Checked"/>
-        </WrapPanel>
-
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="访问地址："/>
+        <WrapPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,20,0"/>
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="url" IsEnabled="False" Height="20" VerticalContentAlignment="Center"/>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="站点："/>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="site" Text="1003"></TextBox>
-
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="设备编号："/>
-        <TextBox Grid.Row="3" Grid.Column="1" x:Name="resource" Text="3CKX0001"></TextBox>
-
         <Button Grid.Row="4" Grid.Column="1" Height="30" Width="100" HorizontalAlignment="Left" FontSize="18" Click="btnUpload_Click">上传</Button>
-
-        <TextBlock Grid.Row="5" Grid.Column="0" Text="状态："/>
-        <TextBox Grid.Row="5" Grid.Column="1" x:Name="status"></TextBox>
-
-        <TextBlock Grid.Row="6" Grid.Column="0" Text="消息："/>
-        <TextBox Grid.Row="6" Grid.Column="1" x:Name="message"></TextBox>
-
-        <TextBlock Grid.Row="7" Grid.Column="0" Text="描述信息："/>
-        <TextBox Grid.Row="7" Grid.Column="1" x:Name="description" Height="Auto" TextWrapping="Wrap" VerticalContentAlignment="Top"></TextBox>
-
-        <Button Grid.Row="8" Grid.Column="1" Height="30" Width="100" HorizontalAlignment="Left" FontSize="18" Click="btnClear_Click">清空</Button>
     </Grid>
 </Window>

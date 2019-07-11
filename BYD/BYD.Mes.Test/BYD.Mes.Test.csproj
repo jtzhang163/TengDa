@@ -61,7 +61,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Common.cs" />
     <Compile Include="ExecuteData.cs" />
     <Compile Include="JsonHelper.cs" />
     <Compile Include="Web References\MesService\Reference.cs">
@@ -111,39 +110,33 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\MesService\EquipService.wsdl" />
+    <None Include="Web References\MesService\autolineservice.wsdl" />
     <None Include="Web References\MesService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\MesService\VMResult1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://192.168.100.11:8094/EquipService.asmx">
+    <WebReferenceUrl Include="D:\TengDa\BYD\BYD.Docs\autolineservice.xml">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\MesService\</RelPath>
-      <UpdateFromURL>http://192.168.100.11:8094/EquipService.asmx</UpdateFromURL>
+      <UpdateFromURL>D:\TengDa\BYD\BYD.Docs\autolineservice.xml</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Anchitech_Mes_Test_MesService_EquipService</CachedSettingsPropName>
+      <CachedSettingsPropName>BYD_Mes_Test_MesService_AutoLineService</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Web References\MesService\EquipService.disco" />
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

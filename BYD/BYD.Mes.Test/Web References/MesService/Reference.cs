@@ -26,26 +26,43 @@ namespace BYD.Mes.Test.MesService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Web.Services.WebServiceBindingAttribute(Name="EquipServiceSoap", Namespace="http://tempuri.org/")]
-    public partial class EquipService : System.Web.Services.Protocols.SoapHttpClientProtocol {
+    [System.Web.Services.WebServiceBindingAttribute(Name="AutoLineServiceSoap", Namespace="http://tempuri.org/")]
+    public partial class AutoLineService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback TestConnectionOperationCompleted;
+        private MySoapHelper mySoapHelperValueField;
         
-        private System.Threading.SendOrPostCallback UploadMultiMachStateListInfoOperationCompleted;
+        private System.Threading.SendOrPostCallback FetchParameterOperationCompleted;
         
-        private System.Threading.SendOrPostCallback UploadBakingDataOperationCompleted;
+        private System.Threading.SendOrPostCallback FetchForeWeightOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PackAsbValidateOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetBoltVersionOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetBoltStandardOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PassStationCheckOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
-        public EquipService() {
-            this.Url = global::BYD.Mes.Test.Properties.Settings.Default.Anchitech_Mes_Test_MesService_EquipService;
+        public AutoLineService() {
+            this.Url = global::BYD.Mes.Test.Properties.Settings.Default.BYD_Mes_Test_MesService_AutoLineService;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
             }
             else {
                 this.useDefaultCredentialsSetExplicitly = true;
+            }
+        }
+        
+        public MySoapHelper MySoapHelperValue {
+            get {
+                return this.mySoapHelperValueField;
+            }
+            set {
+                this.mySoapHelperValueField = value;
             }
         }
         
@@ -74,96 +91,208 @@ namespace BYD.Mes.Test.MesService {
         }
         
         /// <remarks/>
-        public event TestConnectionCompletedEventHandler TestConnectionCompleted;
+        public event FetchParameterCompletedEventHandler FetchParameterCompleted;
         
         /// <remarks/>
-        public event UploadMultiMachStateListInfoCompletedEventHandler UploadMultiMachStateListInfoCompleted;
+        public event FetchForeWeightCompletedEventHandler FetchForeWeightCompleted;
         
         /// <remarks/>
-        public event UploadBakingDataCompletedEventHandler UploadBakingDataCompleted;
+        public event PackAsbValidateCompletedEventHandler PackAsbValidateCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/TestConnection", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string TestConnection() {
-            object[] results = this.Invoke("TestConnection", new object[0]);
+        public event GetBoltVersionCompletedEventHandler GetBoltVersionCompleted;
+        
+        /// <remarks/>
+        public event GetBoltStandardCompletedEventHandler GetBoltStandardCompleted;
+        
+        /// <remarks/>
+        public event PassStationCheckCompletedEventHandler PassStationCheckCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("MySoapHelperValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FetchParameter", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string FetchParameter(int typeCode, string midModel) {
+            object[] results = this.Invoke("FetchParameter", new object[] {
+                        typeCode,
+                        midModel});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void TestConnectionAsync() {
-            this.TestConnectionAsync(null);
+        public void FetchParameterAsync(int typeCode, string midModel) {
+            this.FetchParameterAsync(typeCode, midModel, null);
         }
         
         /// <remarks/>
-        public void TestConnectionAsync(object userState) {
-            if ((this.TestConnectionOperationCompleted == null)) {
-                this.TestConnectionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTestConnectionOperationCompleted);
+        public void FetchParameterAsync(int typeCode, string midModel, object userState) {
+            if ((this.FetchParameterOperationCompleted == null)) {
+                this.FetchParameterOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetchParameterOperationCompleted);
             }
-            this.InvokeAsync("TestConnection", new object[0], this.TestConnectionOperationCompleted, userState);
+            this.InvokeAsync("FetchParameter", new object[] {
+                        typeCode,
+                        midModel}, this.FetchParameterOperationCompleted, userState);
         }
         
-        private void OnTestConnectionOperationCompleted(object arg) {
-            if ((this.TestConnectionCompleted != null)) {
+        private void OnFetchParameterOperationCompleted(object arg) {
+            if ((this.FetchParameterCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.TestConnectionCompleted(this, new TestConnectionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.FetchParameterCompleted(this, new FetchParameterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UploadMultiMachStateListInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public VMResult UploadMultiMachStateListInfo(string Info) {
-            object[] results = this.Invoke("UploadMultiMachStateListInfo", new object[] {
-                        Info});
-            return ((VMResult)(results[0]));
+        [System.Web.Services.Protocols.SoapHeaderAttribute("MySoapHelperValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FetchForeWeight", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string FetchForeWeight(string cellBarcode) {
+            object[] results = this.Invoke("FetchForeWeight", new object[] {
+                        cellBarcode});
+            return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void UploadMultiMachStateListInfoAsync(string Info) {
-            this.UploadMultiMachStateListInfoAsync(Info, null);
+        public void FetchForeWeightAsync(string cellBarcode) {
+            this.FetchForeWeightAsync(cellBarcode, null);
         }
         
         /// <remarks/>
-        public void UploadMultiMachStateListInfoAsync(string Info, object userState) {
-            if ((this.UploadMultiMachStateListInfoOperationCompleted == null)) {
-                this.UploadMultiMachStateListInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUploadMultiMachStateListInfoOperationCompleted);
+        public void FetchForeWeightAsync(string cellBarcode, object userState) {
+            if ((this.FetchForeWeightOperationCompleted == null)) {
+                this.FetchForeWeightOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetchForeWeightOperationCompleted);
             }
-            this.InvokeAsync("UploadMultiMachStateListInfo", new object[] {
-                        Info}, this.UploadMultiMachStateListInfoOperationCompleted, userState);
+            this.InvokeAsync("FetchForeWeight", new object[] {
+                        cellBarcode}, this.FetchForeWeightOperationCompleted, userState);
         }
         
-        private void OnUploadMultiMachStateListInfoOperationCompleted(object arg) {
-            if ((this.UploadMultiMachStateListInfoCompleted != null)) {
+        private void OnFetchForeWeightOperationCompleted(object arg) {
+            if ((this.FetchForeWeightCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.UploadMultiMachStateListInfoCompleted(this, new UploadMultiMachStateListInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.FetchForeWeightCompleted(this, new FetchForeWeightCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UploadBakingData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public VMResult UploadBakingData(string Info) {
-            object[] results = this.Invoke("UploadBakingData", new object[] {
-                        Info});
-            return ((VMResult)(results[0]));
+        [System.Web.Services.Protocols.SoapHeaderAttribute("MySoapHelperValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PackAsbValidate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string PackAsbValidate(string moduleBarcodes) {
+            object[] results = this.Invoke("PackAsbValidate", new object[] {
+                        moduleBarcodes});
+            return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void UploadBakingDataAsync(string Info) {
-            this.UploadBakingDataAsync(Info, null);
+        public void PackAsbValidateAsync(string moduleBarcodes) {
+            this.PackAsbValidateAsync(moduleBarcodes, null);
         }
         
         /// <remarks/>
-        public void UploadBakingDataAsync(string Info, object userState) {
-            if ((this.UploadBakingDataOperationCompleted == null)) {
-                this.UploadBakingDataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUploadBakingDataOperationCompleted);
+        public void PackAsbValidateAsync(string moduleBarcodes, object userState) {
+            if ((this.PackAsbValidateOperationCompleted == null)) {
+                this.PackAsbValidateOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPackAsbValidateOperationCompleted);
             }
-            this.InvokeAsync("UploadBakingData", new object[] {
-                        Info}, this.UploadBakingDataOperationCompleted, userState);
+            this.InvokeAsync("PackAsbValidate", new object[] {
+                        moduleBarcodes}, this.PackAsbValidateOperationCompleted, userState);
         }
         
-        private void OnUploadBakingDataOperationCompleted(object arg) {
-            if ((this.UploadBakingDataCompleted != null)) {
+        private void OnPackAsbValidateOperationCompleted(object arg) {
+            if ((this.PackAsbValidateCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.UploadBakingDataCompleted(this, new UploadBakingDataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.PackAsbValidateCompleted(this, new PackAsbValidateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("MySoapHelperValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBoltVersion", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetBoltVersion(string modelId) {
+            object[] results = this.Invoke("GetBoltVersion", new object[] {
+                        modelId});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetBoltVersionAsync(string modelId) {
+            this.GetBoltVersionAsync(modelId, null);
+        }
+        
+        /// <remarks/>
+        public void GetBoltVersionAsync(string modelId, object userState) {
+            if ((this.GetBoltVersionOperationCompleted == null)) {
+                this.GetBoltVersionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBoltVersionOperationCompleted);
+            }
+            this.InvokeAsync("GetBoltVersion", new object[] {
+                        modelId}, this.GetBoltVersionOperationCompleted, userState);
+        }
+        
+        private void OnGetBoltVersionOperationCompleted(object arg) {
+            if ((this.GetBoltVersionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetBoltVersionCompleted(this, new GetBoltVersionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("MySoapHelperValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBoltStandard", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string GetBoltStandard(string modelId) {
+            object[] results = this.Invoke("GetBoltStandard", new object[] {
+                        modelId});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetBoltStandardAsync(string modelId) {
+            this.GetBoltStandardAsync(modelId, null);
+        }
+        
+        /// <remarks/>
+        public void GetBoltStandardAsync(string modelId, object userState) {
+            if ((this.GetBoltStandardOperationCompleted == null)) {
+                this.GetBoltStandardOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBoltStandardOperationCompleted);
+            }
+            this.InvokeAsync("GetBoltStandard", new object[] {
+                        modelId}, this.GetBoltStandardOperationCompleted, userState);
+        }
+        
+        private void OnGetBoltStandardOperationCompleted(object arg) {
+            if ((this.GetBoltStandardCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetBoltStandardCompleted(this, new GetBoltStandardCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("MySoapHelperValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PassStationCheck", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string PassStationCheck(string barcode, string flag, string terminal, string userId) {
+            object[] results = this.Invoke("PassStationCheck", new object[] {
+                        barcode,
+                        flag,
+                        terminal,
+                        userId});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PassStationCheckAsync(string barcode, string flag, string terminal, string userId) {
+            this.PassStationCheckAsync(barcode, flag, terminal, userId, null);
+        }
+        
+        /// <remarks/>
+        public void PassStationCheckAsync(string barcode, string flag, string terminal, string userId, object userState) {
+            if ((this.PassStationCheckOperationCompleted == null)) {
+                this.PassStationCheckOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPassStationCheckOperationCompleted);
+            }
+            this.InvokeAsync("PassStationCheck", new object[] {
+                        barcode,
+                        flag,
+                        terminal,
+                        userId}, this.PassStationCheckOperationCompleted, userState);
+        }
+        
+        private void OnPassStationCheckOperationCompleted(object arg) {
+            if ((this.PassStationCheckCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PassStationCheckCompleted(this, new PassStationCheckCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -192,46 +321,60 @@ namespace BYD.Mes.Test.MesService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class VMResult {
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/", IsNullable=false)]
+    public partial class MySoapHelper : System.Web.Services.Protocols.SoapHeader {
         
-        private int resultCodeField;
+        private string userNameField;
         
-        private string resultMsgField;
+        private string passWordField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
         
         /// <remarks/>
-        public int ResultCode {
+        public string userName {
             get {
-                return this.resultCodeField;
+                return this.userNameField;
             }
             set {
-                this.resultCodeField = value;
+                this.userNameField = value;
             }
         }
         
         /// <remarks/>
-        public string ResultMsg {
+        public string passWord {
             get {
-                return this.resultMsgField;
+                return this.passWordField;
             }
             set {
-                this.resultMsgField = value;
+                this.passWordField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr {
+            get {
+                return this.anyAttrField;
+            }
+            set {
+                this.anyAttrField = value;
             }
         }
     }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
-    public delegate void TestConnectionCompletedEventHandler(object sender, TestConnectionCompletedEventArgs e);
+    public delegate void FetchParameterCompletedEventHandler(object sender, FetchParameterCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class TestConnectionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class FetchParameterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal TestConnectionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal FetchParameterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -247,52 +390,130 @@ namespace BYD.Mes.Test.MesService {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
-    public delegate void UploadMultiMachStateListInfoCompletedEventHandler(object sender, UploadMultiMachStateListInfoCompletedEventArgs e);
+    public delegate void FetchForeWeightCompletedEventHandler(object sender, FetchForeWeightCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class UploadMultiMachStateListInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class FetchForeWeightCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal UploadMultiMachStateListInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal FetchForeWeightCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public VMResult Result {
+        public string Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((VMResult)(this.results[0]));
+                return ((string)(this.results[0]));
             }
         }
     }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
-    public delegate void UploadBakingDataCompletedEventHandler(object sender, UploadBakingDataCompletedEventArgs e);
+    public delegate void PackAsbValidateCompletedEventHandler(object sender, PackAsbValidateCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class UploadBakingDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class PackAsbValidateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal UploadBakingDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal PackAsbValidateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public VMResult Result {
+        public string Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((VMResult)(this.results[0]));
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
+    public delegate void GetBoltVersionCompletedEventHandler(object sender, GetBoltVersionCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetBoltVersionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetBoltVersionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
+    public delegate void GetBoltStandardCompletedEventHandler(object sender, GetBoltStandardCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetBoltStandardCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetBoltStandardCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
+    public delegate void PassStationCheckCompletedEventHandler(object sender, PassStationCheckCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3190.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PassStationCheckCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PassStationCheckCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }
