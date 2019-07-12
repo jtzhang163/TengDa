@@ -47,10 +47,10 @@ namespace BYD.Scan.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.100.11:8094/EquipService.asmx")]
-        public string Anchitech_Baking_MesService_EquipService {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://10.9.46.194/meswebservice/autolineservice.asmx")]
+        public string BYD_Scan_MesService_AutoLineService {
             get {
-                return ((string)(this["Anchitech_Baking_MesService_EquipService"]));
+                return ((string)(this["BYD_Scan_MesService_AutoLineService"]));
             }
         }
     }

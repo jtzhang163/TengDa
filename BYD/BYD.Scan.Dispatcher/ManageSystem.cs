@@ -722,7 +722,7 @@ namespace BYD.Scan.Dispatcher
                 {
                     int index = i;//如果直接用i, 则完成循环后 i一直 = OvenCount
                     timerTouchscreenRuns[i] = new System.Timers.Timer();
-                    timerTouchscreenRuns[i].Interval = TengDa._Convert.StrToInt("3000", 1000);
+                    timerTouchscreenRuns[i].Interval = TengDa._Convert.StrToInt(Current.option.CheckPlcPeriod, 1000);
                     timerTouchscreenRuns[i].Elapsed += delegate
                     {
                         Thread listen = new Thread(new ParameterizedThreadStart(TouchscreenRunInvokeFunc));
@@ -786,61 +786,39 @@ namespace BYD.Scan.Dispatcher
 
             int i = System.Convert.ToInt32(obj);
 
-            if (timerlock && Current.Lines[i].Touchscreen.IsEnable && (DateTime.Now - Current.ChangeModeTime).TotalSeconds > 10)
+            var touchscreen = Current.Lines[i].Touchscreen;
+
+            lock (touchscreen)
             {
-
-                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Lines[i].Touchscreen, "发送指令"); }));
-                if (Current.Lines[i].GetInfo())
+                if (timerlock && touchscreen.IsEnable && (DateTime.Now - Current.ChangeModeTime).TotalSeconds > 10)
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Lines[i].Touchscreen, "获取信息成功"); }));
-                }
-                else
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Lines[i].Touchscreen, "获取信息失败"); }));
-                    return;
-                }
 
-
-                for (int j = 0; j < 2; j++)
-                {
-                    #region 自动扫码逻辑
-                    if (Current.Lines[i].ChildLines[j].AutoScaner.IsEnable && Current.Lines[i].ChildLines[j].AutoScaner.CanScan)
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(touchscreen, "发送指令"); }));
+                    if (Current.Lines[i].GetInfo())
                     {
-                        int ii = i;
-                        int jj = j;
+                        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(touchscreen, "获取信息成功"); }));
+                    }
+                    else
+                    {
+                        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(touchscreen, "获取信息失败"); }));
+                        return;
+                    }
 
-                        ScanResult scanResult = ScanResult.Unknown;
-                        string code = "";
 
-                        ScanResult result1 = Current.Lines[ii].ChildLines[jj].AutoScaner.StartScan(out code, out msg);
-
-                        if (result1 == ScanResult.OK)
+                    for (int j = 0; j < 2; j++)
+                    {
+                        #region 自动扫码逻辑
+                        if (Current.Lines[i].ChildLines[j].AutoScaner.IsEnable && Current.Lines[i].ChildLines[j].AutoScaner.CanScan)
                         {
-                            this.BeginInvoke(new MethodInvoker(() =>
-                            {
-                                this.machinesStatusUC1.SetStatusInfo(Current.Lines[ii].ChildLines[jj].AutoScaner, "+" + code);
-                                this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, SystemColors.Control);
-                                this.machinesStatusUC1.SetBackColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Green);
-                            }));
+                            int ii = i;
+                            int jj = j;
 
-                            Thread t = new Thread(() =>
-                            {
-                                Thread.Sleep(1000);
-                                this.BeginInvoke(new MethodInvoker(() =>
-                                {
-                                    this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Green);
-                                    this.machinesStatusUC1.SetBackColor(Current.Lines[ii].ChildLines[jj].AutoScaner, SystemColors.Control);
-                                }));
-                            });
-                            t.Start();
+                            ScanResult scanResult = ScanResult.Unknown;
+                            string code = "";
 
-                            scanResult = ScanResult.OK;
-                        }
-                        else
-                        {
-                            //再扫一次
-                            ScanResult result2 = Current.Lines[ii].ChildLines[jj].AutoScaner.StartScan(out code, out msg);
-                            if (result2 == ScanResult.OK)
+                            ScanResult result1 = Current.Lines[ii].ChildLines[jj].AutoScaner.StartScan(out code, out msg);
+
+                            if (result1 == ScanResult.OK)
                             {
                                 this.BeginInvoke(new MethodInvoker(() =>
                                 {
@@ -864,49 +842,76 @@ namespace BYD.Scan.Dispatcher
                             }
                             else
                             {
-                                this.BeginInvoke(new MethodInvoker(() =>
+                                //再扫一次
+                                ScanResult result2 = Current.Lines[ii].ChildLines[jj].AutoScaner.StartScan(out code, out msg);
+                                if (result2 == ScanResult.OK)
                                 {
-                                    this.machinesStatusUC1.SetStatusInfo(Current.Lines[ii].ChildLines[jj].AutoScaner, "扫码NG");
-                                    this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Red);
-                                }));
+                                    this.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        this.machinesStatusUC1.SetStatusInfo(Current.Lines[ii].ChildLines[jj].AutoScaner, "+" + code);
+                                        this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, SystemColors.Control);
+                                        this.machinesStatusUC1.SetBackColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Green);
+                                    }));
 
-                                scanResult = ScanResult.NG;
+                                    Thread t = new Thread(() =>
+                                    {
+                                        Thread.Sleep(1000);
+                                        this.BeginInvoke(new MethodInvoker(() =>
+                                        {
+                                            this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Green);
+                                            this.machinesStatusUC1.SetBackColor(Current.Lines[ii].ChildLines[jj].AutoScaner, SystemColors.Control);
+                                        }));
+                                    });
+                                    t.Start();
+
+                                    scanResult = ScanResult.OK;
+                                }
+                                else
+                                {
+                                    this.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        this.machinesStatusUC1.SetStatusInfo(Current.Lines[ii].ChildLines[jj].AutoScaner, "扫码NG");
+                                        this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Red);
+                                    }));
+
+                                    scanResult = ScanResult.NG;
+                                }
                             }
-                        }
 
 
-                        if (scanResult == ScanResult.OK)
-                        {
-                            AddTips(string.Format("扫码：{0} ", code), false, false);
-                        }
-
-                        if (Current.Lines[ii].WriteScanFinishInfo(j, out msg))
-                        {
-                            AddTips("扫码结束信号成功写入 " + Current.Lines[ii].Touchscreen.Name, false, false);
-                            //LogHelper.WriteInfo("扫码结束信号成功写入 " + Current.Lines[ii].Touchscreen.Name);
-                        }
-                        else
-                        {
-                            Error.Alert("扫码结束信号写入 " + Current.Lines[ii].Touchscreen.Name + "出错，msg：" + msg);
-                        }
-
-
-                        if (Current.Lines[ii].ChildLines[j].AutoScaner.ScanFinish(scanResult, code, out ScanResult finalScanResult))
-                        {
-                            if (Current.Lines[ii].WriteScanResultInfo(j, finalScanResult, out msg))
+                            if (scanResult == ScanResult.OK)
                             {
-                                AddTips("两个扫码完成后结果成功写入 " + Current.Lines[ii].Touchscreen.Name, false, false);
-                                //LogHelper.WriteInfo("两个扫码完成后结果成功写入 " + Current.Lines[ii].Touchscreen.Name);
+                                AddTips(string.Format("扫码：{0} ", code), false, false);
+                            }
+
+                            if (Current.Lines[ii].WriteScanFinishInfo(j, out msg))
+                            {
+                                AddTips("扫码结束信号成功写入 " + Current.Lines[ii].Touchscreen.Name, false, false);
+                                //LogHelper.WriteInfo("扫码结束信号成功写入 " + Current.Lines[ii].Touchscreen.Name);
                             }
                             else
                             {
-                                Error.Alert("两个扫码完成后结果写入 " + Current.Lines[ii].Touchscreen.Name + "出错，msg：" + msg);
+                                Error.Alert("扫码结束信号写入 " + Current.Lines[ii].Touchscreen.Name + "出错，msg：" + msg);
                             }
+
+
+                            if (Current.Lines[ii].ChildLines[j].AutoScaner.ScanFinish(scanResult, code, out ScanResult finalScanResult))
+                            {
+                                if (Current.Lines[ii].WriteScanResultInfo(j, finalScanResult, out msg))
+                                {
+                                    AddTips("两个扫码完成后结果成功写入 " + Current.Lines[ii].Touchscreen.Name, false, false);
+                                    //LogHelper.WriteInfo("两个扫码完成后结果成功写入 " + Current.Lines[ii].Touchscreen.Name);
+                                }
+                                else
+                                {
+                                    Error.Alert("两个扫码完成后结果写入 " + Current.Lines[ii].Touchscreen.Name + "出错，msg：" + msg);
+                                }
+                            }
+
                         }
+                        #endregion
 
                     }
-                    #endregion
-
                 }
             }
         }
@@ -963,47 +968,48 @@ namespace BYD.Scan.Dispatcher
             string msg = string.Empty;
             if (timerlock && Current.mes.IsEnable)
             {
-                UploadMachineStatus();
                 UploadBatteryInfo();
             }
         }
 
         public void UploadBatteryInfo()
         {
-            try
+            lock (Current.mes)
             {
-                Thread.Sleep(200);
-
-
-                this.BeginInvoke(new MethodInvoker(() =>
+                try
                 {
-                    this.machinesStatusUC1.SetStatusInfo(Current.mes, "上传烘烤数据ID:");
-                }));
+                    Thread.Sleep(200);
 
-                MES.UploadBatteryInfo();
-            }
-            catch (Exception ex)
-            {
-                Error.Alert(ex.Message);
-            }
-        }
+                    var batteries = Battery.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsUploaded] = 'false' ORDER BY [Id] DESC", Battery.TableName), out string msg);
 
-        /// <summary>
-        /// 定时上传真空温度数据
-        /// </summary>
-        public void UploadMachineStatus()
-        {
-            try
-            {
-                this.BeginInvoke(new MethodInvoker(() =>
+                    for (int i = 0; i < batteries.Count; i++)
+                    {
+                        var battery = batteries[i];
+                        var request = new MesRequest()
+                        {
+                            Barcode = battery.Code,
+                            Flag = "1",
+                            Terminal = Current.mes.Terminal,
+                            UserId = Current.mes.UserId
+                        };
+                        var response = MES.UploadBatteryInfo(request);
+                        if (response.Code == 0)
+                        {
+                            battery.IsUploaded = true;
+                            this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "上传成功 ID:" + battery.Id); }));
+                            LogHelper.WriteInfo(string.Format("上传MES成功，电池条码：" + battery.Code));
+                        }
+                        else
+                        {
+                            this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "上传失败 ID:" + battery.Id); }));
+                            LogHelper.WriteError(string.Format("上传MES失败，电池条码：{0} msg:{1}", battery.Code, response.RtMsg));
+                        }
+                    }
+                }
+                catch (Exception ex)
                 {
-                    this.machinesStatusUC1.SetStatusInfo(Current.mes, "上传设备数据...");
-                }));
-                MES.UploadMachineStatus();
-            }
-            catch (Exception ex)
-            {
-                Error.Alert(ex.Message);
+                    Error.Alert(ex.Message);
+                }
             }
         }
 
@@ -1491,9 +1497,9 @@ namespace BYD.Scan.Dispatcher
                     //dgViewBattery.Columns[7].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
 
                     //////设置显示列宽度
-                    dgViewBattery.Columns[0].Width = 160;
-                    //dgViewBattery.Columns[1].Width = 130;
-                    dgViewBattery.Columns[2].Width = 130;
+                    dgViewBattery.Columns[0].Width = 180;
+                    dgViewBattery.Columns[1].Width = 150;
+                    dgViewBattery.Columns[2].Width = 150;
 
                     //dgViewBattery.Columns[4].Width = 130;
                     //dgViewBattery.Columns[5].Width = 130;

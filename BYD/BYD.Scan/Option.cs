@@ -224,10 +224,10 @@ namespace BYD.Scan
 
         private string checkPlcPeriod = string.Empty;
         /// <summary>
-        /// 检测PLC状态周期，单位：毫秒
+        /// 检测触摸屏信号状态周期，单位：毫秒
         /// </summary>
-        [Description("检测PLC状态周期，单位：毫秒")]
-        [DisplayName("检测PLC状态周期")]
+        [Description("检测触摸屏信号状态周期，单位：毫秒")]
+        [DisplayName("检测触摸屏信号状态周期")]
         [Category("定时器")]
         public string CheckPlcPeriod
         {

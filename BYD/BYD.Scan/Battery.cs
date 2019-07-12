@@ -35,6 +35,29 @@ namespace BYD.Scan
         public int ScanerId { get; set; } = -1;
 
 
+        private bool isUploaded;
+        /// <summary>
+        /// 是否已上传MES
+        /// </summary>
+        [DisplayName("是否已上传MES")]
+        [Category("基本信息")]
+        public bool IsUploaded
+        {
+            get
+            {
+                return isUploaded;
+            }
+            set
+            {
+                if (isUploaded != value)
+                {
+                    UpdateDbField("IsUploaded", value);
+                }
+                isUploaded = value;
+            }
+        }
+
+
         #endregion
 
         public Battery() : this(-1) { }
@@ -74,6 +97,7 @@ namespace BYD.Scan
             this.ScanerId = TengDa._Convert.StrToInt(rowInfo["ScanerId"].ToString(), -1);
             this.location = rowInfo["Location"].ToString().Trim();
             this.scanTime = TengDa._Convert.StrToDateTime(rowInfo["ScanTime"].ToString(), Common.DefaultTime);
+            this.isUploaded = TengDa._Convert.StrToBool(rowInfo["IsUploaded"].ToString(), false);
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
         }
         #endregion

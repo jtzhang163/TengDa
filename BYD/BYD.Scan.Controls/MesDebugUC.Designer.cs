@@ -41,7 +41,7 @@
             this.tbFlag = new System.Windows.Forms.TextBox();
             this.tbTerminal = new System.Windows.Forms.TextBox();
             this.tbUserId = new System.Windows.Forms.TextBox();
-            this.tbCode = new System.Windows.Forms.TextBox();
+            this.tbRtCode = new System.Windows.Forms.TextBox();
             this.tbRtMsg = new System.Windows.Forms.TextBox();
             this.gbMesDebug.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -76,7 +76,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tbFlag, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.tbTerminal, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.tbUserId, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.tbCode, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.tbRtCode, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.tbRtMsg, 1, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 19);
@@ -123,7 +123,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 14);
             this.label3.TabIndex = 2;
-            this.label3.Text = "调用的类型：";
+            this.label3.Text = "调用的工位：";
             // 
             // label4
             // 
@@ -172,6 +172,8 @@
             // tbBarcode
             // 
             this.tbBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbBarcode.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbBarcode.ForeColor = System.Drawing.Color.Green;
             this.tbBarcode.Location = new System.Drawing.Point(134, 3);
             this.tbBarcode.Name = "tbBarcode";
             this.tbBarcode.Size = new System.Drawing.Size(257, 23);
@@ -180,6 +182,8 @@
             // tbFlag
             // 
             this.tbFlag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFlag.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbFlag.ForeColor = System.Drawing.Color.Green;
             this.tbFlag.Location = new System.Drawing.Point(134, 33);
             this.tbFlag.Name = "tbFlag";
             this.tbFlag.Size = new System.Drawing.Size(257, 23);
@@ -188,6 +192,8 @@
             // tbTerminal
             // 
             this.tbTerminal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbTerminal.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbTerminal.ForeColor = System.Drawing.Color.Green;
             this.tbTerminal.Location = new System.Drawing.Point(134, 63);
             this.tbTerminal.Name = "tbTerminal";
             this.tbTerminal.Size = new System.Drawing.Size(257, 23);
@@ -196,23 +202,27 @@
             // tbUserId
             // 
             this.tbUserId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbUserId.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbUserId.ForeColor = System.Drawing.Color.Green;
             this.tbUserId.Location = new System.Drawing.Point(134, 93);
             this.tbUserId.Name = "tbUserId";
             this.tbUserId.Size = new System.Drawing.Size(257, 23);
             this.tbUserId.TabIndex = 10;
             // 
-            // tbCode
+            // tbRtCode
             // 
-            this.tbCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbCode.Location = new System.Drawing.Point(134, 153);
-            this.tbCode.Name = "tbCode";
-            this.tbCode.Size = new System.Drawing.Size(257, 23);
-            this.tbCode.TabIndex = 11;
+            this.tbRtCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbRtCode.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbRtCode.Location = new System.Drawing.Point(134, 153);
+            this.tbRtCode.Name = "tbRtCode";
+            this.tbRtCode.Size = new System.Drawing.Size(257, 23);
+            this.tbRtCode.TabIndex = 11;
             // 
             // tbRtMsg
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.tbRtMsg, 2);
             this.tbRtMsg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbRtMsg.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbRtMsg.Location = new System.Drawing.Point(134, 183);
             this.tbRtMsg.Multiline = true;
             this.tbRtMsg.Name = "tbRtMsg";
@@ -248,7 +258,7 @@
         private System.Windows.Forms.TextBox tbFlag;
         private System.Windows.Forms.TextBox tbTerminal;
         private System.Windows.Forms.TextBox tbUserId;
-        private System.Windows.Forms.TextBox tbCode;
+        private System.Windows.Forms.TextBox tbRtCode;
         private System.Windows.Forms.TextBox tbRtMsg;
     }
 }

@@ -49,9 +49,9 @@ namespace BYD.Scan
 
         protected string username = string.Empty;
         /// <summary>
-        /// 用户名
+        /// MES用户名
         /// </summary>
-        [DisplayName("用户名")]
+        [DisplayName("MES用户名")]
         [Category("基本设置")]
         public string Username
         {
@@ -72,9 +72,9 @@ namespace BYD.Scan
 
         protected string password = string.Empty;
         /// <summary>
-        /// 密码
+        /// MES密码
         /// </summary>
-        [DisplayName("密码")]
+        [DisplayName("MES密码")]
         [Category("基本设置")]
         public string Password
         {
@@ -92,45 +92,50 @@ namespace BYD.Scan
             }
         }
 
-        //private string username = string.Empty;
-        //public string Username
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(username))
-        //        {
-        //            username = ConfigurationManager.AppSettings["mes_username"].ToString();
-        //        }
-        //        return username;
-        //    }
-        //}
-
-        //private string password = string.Empty;
-        //public string Password
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(password))
-        //        {
-        //            password = ConfigurationManager.AppSettings["mes_password"].ToString();
-        //        }
-        //        return password;
-        //    }
-        //}
+        protected string terminal = string.Empty;
+        /// <summary>
+        /// 工位
+        /// </summary>
+        [DisplayName("工位")]
+        [Category("基本设置")]
+        public string Terminal
+        {
+            get
+            {
+                return terminal;
+            }
+            set
+            {
+                if (terminal != value)
+                {
+                    UpdateDbField("Terminal", value);
+                }
+                terminal = value;
+            }
+        }
 
 
-        //private string site = string.Empty;
-        //public string Site
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(site))
-        //        {
-        //            site = ConfigurationManager.AppSettings["mes_site"].ToString();
-        //        }
-        //        return site;
-        //    }
-        //}
+        protected string userId = string.Empty;
+        /// <summary>
+        /// 员工工号
+        /// </summary>
+        [DisplayName("员工工号")]
+        [Category("基本设置")]
+        public string UserId
+        {
+            get
+            {
+                return userId;
+            }
+            set
+            {
+                if (userId != value)
+                {
+                    UpdateDbField("UserId", value);
+                }
+                userId = value;
+            }
+        }
 
         #endregion
 
@@ -189,6 +194,8 @@ namespace BYD.Scan
             this.webServiceUrl = rowInfo["WebServiceUrl"].ToString();
             this.username = rowInfo["Username"].ToString();
             this.password = rowInfo["Password"].ToString();
+            this.terminal = rowInfo["Terminal"].ToString();
+            this.userId = rowInfo["UserId"].ToString();
         }
         #endregion
 
@@ -262,49 +269,90 @@ namespace BYD.Scan
         #region MES方法
 
 
-        private static EquipService _wsProxy = null;
-        private static EquipService wsProxy
+        private static AutoLineService _wsProxy = null;
+        private static AutoLineService wsProxy
         {
             get
             {
                 if (_wsProxy == null)
                 {
-                    _wsProxy = new EquipService()
+                    _wsProxy = new AutoLineService()
                     {
-                        Url = Current.mes.WebServiceUrl
+                        Url = Current.mes.WebServiceUrl,
+                        Timeout = 2000,
                     };
-                    //{
-                    //    Credentials = new NetworkCredential(Current.mes.Username, Current.mes.Password, null),
-                    //    PreAuthenticate = true,
-                    //    Timeout = 2000,
-                    //    Url = Current.mes.WebServiceUrl
-                    //};
+
+
+                    MySoapHelper header = new MySoapHelper();
+
+                    header.userName = Current.mes.Username;
+                    header.passWord = Current.mes.Password;
+
+                    _wsProxy.MySoapHelperValue = header;
+
                 }
                 return _wsProxy;
             }
         }
 
         /// <summary>
-        /// 烘烤数据上传
+        /// 电池数据上传
         /// </summary>
-        /// <param name="clamps"></param>
-        /// <returns></returns>
-        public static void UploadBatteryInfo()
+        public static MesResponse UploadBatteryInfo(MesRequest request)
         {
-
+            MesResponse response = new MesResponse();
+            try
+            {
+                var jsonResponse = wsProxy.PassStationCheck(request.Barcode, request.Flag, request.Terminal, request.UserId);
+                response = JsonHelper.DeserializeJsonToObject<MesResponse>(jsonResponse);
+            }
+            catch (Exception ex)
+            {
+                response.Code = -1;
+                response.RtMsg = ex.Message;
+                LogHelper.WriteError(ex);
+            }
+            return response;
         }
 
+        #endregion
+    }
 
+    public class MesRequest
+    {
+        /// <summary>
+        /// 电芯条码
+        /// </summary>
+        public string Barcode { get; set; }
 
         /// <summary>
-        /// 设备状态上传
+        /// 调用类型
         /// </summary>
-        /// <param name="clamps"></param>
-        /// <returns></returns>
-        public static void UploadMachineStatus()
-        {
+        public string Flag { get; set; }
 
-        }
-        #endregion
+        /// <summary>
+        /// 调用的工位
+        /// </summary>
+        public string Terminal { get; set; }
+
+        /// <summary>
+        /// 调用者（员工工号）
+        /// </summary>
+        public string UserId { get; set; }
+    }
+
+    public class MesResponse
+    {
+        /// <summary>
+        /// 返回代码
+        /// 0:成功 1: 验证失败 2：值不存在 3：发生错误
+        /// </summary>
+        public int Code { get; set; }
+
+        /// <summary>
+        /// 返回信息
+        /// 成功返回为检测的结果，失败返回对应的提示信息
+        /// </summary>
+        public string RtMsg { get; set; }
     }
 }

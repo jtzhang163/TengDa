@@ -200,7 +200,7 @@ namespace BYD.Scan
                 return ScanResult.Error;
             }
 
-            Thread.Sleep(800);
+            Thread.Sleep(500);
             var receiveData = this.GetReceiveData();
             if (receiveData.Length > 18)
             {

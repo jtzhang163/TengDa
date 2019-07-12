@@ -93,33 +93,27 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\MesService\EquipService.wsdl" />
+    <None Include="Web References\MesService\autolineservice.wsdl" />
     <None Include="Web References\MesService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\MesService\VMResult1.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://192.168.100.11:8094/EquipService.asmx">
+    <WebReferenceUrl Include="D:\TengDa\BYD\BYD.Docs\autolineservice.xml">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\MesService\</RelPath>
-      <UpdateFromURL>http://192.168.100.11:8094/EquipService.asmx</UpdateFromURL>
+      <UpdateFromURL>D:\TengDa\BYD\BYD.Docs\autolineservice.xml</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Anchitech_Baking_MesService_EquipService</CachedSettingsPropName>
+      <CachedSettingsPropName>BYD_Scan_MesService_AutoLineService</CachedSettingsPropName>
     </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Web References\MesService\EquipService.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -44,7 +44,7 @@ namespace TengDa.WF.Terminals
         /// <summary>
         /// 生产厂商
         /// </summary>
-        [DisplayName("生产厂商")]
+        [DisplayName("生产厂商"), ReadOnly(true)]
         [Category("基本设置")]
         public string Company
         {
@@ -65,7 +65,7 @@ namespace TengDa.WF.Terminals
         /// <summary>
         /// 型号
         /// </summary>
-        [DisplayName("型号")]
+        [DisplayName("型号"), ReadOnly(true)]
         [Category("基本设置")]
         public string Model
         {
