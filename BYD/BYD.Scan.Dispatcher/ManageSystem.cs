@@ -200,6 +200,8 @@ namespace BYD.Scan.Dispatcher
             this.scanerDebugUC1.Init();
             this.touchscreenDebugUC1.Init();
             this.mesDebugUC1.Init();
+
+            this.cbIsDebugMode.Checked = Current.option.IsDebugMode;
         }
 
         private void ManageSystem_FormClosing(object sender, FormClosingEventArgs e)
@@ -781,6 +783,11 @@ namespace BYD.Scan.Dispatcher
 
         private void TouchscreenRunInvokeFunc(object obj)
         {
+            //调试模式时不执行后面的步骤
+            if (Current.option.IsDebugMode)
+            {
+                return;
+            }
 
             string msg = string.Empty;
 
@@ -879,10 +886,10 @@ namespace BYD.Scan.Dispatcher
                             }
 
 
-                            if (scanResult == ScanResult.OK)
-                            {
+                            //if (scanResult == ScanResult.OK)
+                            //{
                                 AddTips(string.Format("扫码：{0} ", code), false, false);
-                            }
+                            //}
 
                             if (Current.Lines[ii].WriteScanFinishInfo(j, out msg))
                             {
@@ -996,12 +1003,12 @@ namespace BYD.Scan.Dispatcher
                         if (response.Code == 0)
                         {
                             battery.IsUploaded = true;
-                            this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "上传成功 ID:" + battery.Id); }));
+                            this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "ID:" + battery.Id + "成功"); }));
                             LogHelper.WriteInfo(string.Format("上传MES成功，电池条码：" + battery.Code));
                         }
                         else
                         {
-                            this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "上传失败 ID:" + battery.Id); }));
+                            this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "ID:" + battery.Id + "失败"); }));
                             LogHelper.WriteError(string.Format("上传MES失败，电池条码：{0} msg:{1}", battery.Code, response.RtMsg));
                         }
                     }
@@ -1824,10 +1831,14 @@ namespace BYD.Scan.Dispatcher
 
         #endregion
 
-        private void btnDebug_Click(object sende, EventArgs e)
+        private void CBIsDebugMode_CheckedChanged(object sender, EventArgs e)
         {
-            Current.Lines[1].ChildLines[1].AutoScaner.StartScan(out string code, out string msg);
-            Tip.Alert(code);
+            if (TengDa.WF.Current.user.Id < 1)
+            {
+                return;
+            }
+
+            Current.option.IsDebugMode = this.cbIsDebugMode.Checked;
         }
     }
 }

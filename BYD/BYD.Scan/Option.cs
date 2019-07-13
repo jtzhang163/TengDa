@@ -138,11 +138,6 @@ namespace BYD.Scan
             }
         }
 
-        public const int TemperaturePointCount = 24;
-
-        public const int VacuumPointCount = 1;
-
-        public const int TemperatureSetPointCount = 10;
 
         private string clearYieldTime = string.Empty;
         /// <summary>
@@ -281,6 +276,59 @@ namespace BYD.Scan
         public const int ChildLineCount = 2;
 
         public const int ChildLineScanerCount = 2;
+
+
+        private bool? isDebugMode;
+
+        /// <summary>
+        /// 是否为调试模式
+        /// </summary>
+        [Description("是否为调试模式，调试模式时，不会自动扫码下料")]
+        [DisplayName("是否为调试模式"), ReadOnly(true)]
+        [Category("调试")]
+        public bool IsDebugMode
+        {
+            get
+            {
+                if (isDebugMode == null)
+                {
+                    isDebugMode = _Convert.StrToBool(TengDa.WF.Option.GetOption("IsDebugMode"), false);
+                }
+                return isDebugMode.Value;
+            }
+            set
+            {
+                if (isDebugMode != value)
+                {
+                    TengDa.WF.Option.SetOption("IsDebugMode", value.ToString());
+                    isDebugMode = value;
+                }
+            }
+        }
+
+        private int scanDelayTimeSpan = -1;
+        /// <summary>
+        /// 扫码读取延时时间
+        /// </summary>
+        [Description("扫码读取延时时间, 单位：毫秒")]
+        [DisplayName("扫码读取延时时间")]
+        [Category("扫码枪")]
+        public int ScanDelayTimeSpan
+        {
+            get
+            {
+                if (scanDelayTimeSpan < 0)
+                {
+                    scanDelayTimeSpan = _Convert.StrToInt(TengDa.WF.Option.GetOption("ScanDelayTimeSpan"), 1);
+                }
+                return scanDelayTimeSpan;
+            }
+            set
+            {
+                TengDa.WF.Option.SetOption("ScanDelayTimeSpan", value.ToString());
+                scanDelayTimeSpan = value;
+            }
+        }
 
         //private string xxxXXXXXXXXXXXX = string.Empty;
         ///// <summary>

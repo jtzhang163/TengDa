@@ -176,6 +176,7 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.lbTime = new System.Windows.Forms.Label();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
+            this.cbIsDebugMode = new System.Windows.Forms.CheckBox();
             this.machinesStatusUC1 = new BYD.Scan.Controls.MachinesStatusUC();
             this.globalViewUC1 = new BYD.Scan.Controls.GlobalViewUC();
             this.scanerDebugUC1 = new BYD.Scan.Controls.ScanerDebugUC();
@@ -1297,6 +1298,7 @@
             this.tableLayoutPanel3.Controls.Add(this.scanerDebugUC1, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.touchscreenDebugUC1, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.mesDebugUC1, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.cbIsDebugMode, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(40);
@@ -2096,6 +2098,21 @@
             this.userDisplay.Size = new System.Drawing.Size(270, 77);
             this.userDisplay.TabIndex = 13;
             // 
+            // cbIsDebugMode
+            // 
+            this.cbIsDebugMode.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbIsDebugMode.AutoSize = true;
+            this.cbIsDebugMode.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cbIsDebugMode.ForeColor = System.Drawing.Color.Red;
+            this.cbIsDebugMode.Location = new System.Drawing.Point(32, 49);
+            this.cbIsDebugMode.Margin = new System.Windows.Forms.Padding(32, 3, 3, 3);
+            this.cbIsDebugMode.Name = "cbIsDebugMode";
+            this.cbIsDebugMode.Size = new System.Drawing.Size(297, 16);
+            this.cbIsDebugMode.TabIndex = 9;
+            this.cbIsDebugMode.Text = "调试模式（调试前勾选，调试完成后取消勾选）";
+            this.cbIsDebugMode.UseVisualStyleBackColor = true;
+            this.cbIsDebugMode.CheckedChanged += new System.EventHandler(this.CBIsDebugMode_CheckedChanged);
+            // 
             // machinesStatusUC1
             // 
             this.machinesStatusUC1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2203,6 +2220,7 @@
             this.groupBox1.PerformLayout();
             this.tabContentPageManuTest.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.tabContentPageAlarmLog.ResumeLayout(false);
             this.tableLayoutPanel15.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlarm)).EndInit();
@@ -2396,5 +2414,6 @@
         private Controls.ScanerDebugUC scanerDebugUC1;
         private Controls.TouchscreenDebugUC touchscreenDebugUC1;
         private Controls.MesDebugUC mesDebugUC1;
+        private System.Windows.Forms.CheckBox cbIsDebugMode;
     }
 }
