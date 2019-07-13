@@ -34,6 +34,10 @@ namespace BYD.Scan
 
         [Browsable(false)]
         public bool IsReadyScan2 { get; set; }
+
+
+        [Browsable(false)]
+        public bool IsDealWithData { get; set; }
         #endregion
 
         #region 系统触摸屏列表
