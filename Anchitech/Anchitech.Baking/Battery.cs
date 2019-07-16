@@ -166,16 +166,16 @@ namespace Anchitech.Baking
 
         public static int Add(Battery addBattery, out string msg)
         {
-            msg = "";
+            // msg = "";
 
-            if (!addBattery.Code.Contains("0000000000"))
-            {
-                var addedBattery = GetBattery(addBattery.Code);
-                if (addedBattery.Id > 0)
-                {
-                    return addedBattery.Id;
-                }
-            }
+            //if (!addBattery.Code.Contains("0000000000"))
+            //{
+            //    var addedBattery = GetBattery(addBattery.Code);
+            //    if (addedBattery.Id > 0)
+            //    {
+            //        return addedBattery.Id;
+            //    }
+            //}
 
             return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [FeederId], [Location], [ScanTime]) VALUES ('{1}', {2}, {3}, '{4}', '{5}')", TableName, addBattery.Code, addBattery.ClampId, addBattery.FeederId, addBattery.Location, DateTime.Now), out msg);
         }
