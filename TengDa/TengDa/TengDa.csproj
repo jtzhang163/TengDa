@@ -66,6 +66,7 @@
     <Compile Include="LogHelper.cs" />
     <Compile Include="RegexString.cs" />
     <Compile Include="Enumeration.cs" />
+    <Compile Include="TimeHelper.cs" />
     <Compile Include="_Convert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

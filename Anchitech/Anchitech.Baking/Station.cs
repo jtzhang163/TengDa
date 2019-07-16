@@ -863,7 +863,7 @@ namespace Anchitech.Baking
 
         #endregion
 
-        public int GetPriority(Task task)
+        public long GetPriority(Task task)
         {
             if (task.FromClampStatus == ClampStatus.空夹具 && task.ToType == GetPutType.烤箱)
             {
@@ -872,7 +872,7 @@ namespace Anchitech.Baking
             //下料顺序按入炉顺序
             else if (task.FromClampStatus == ClampStatus.满夹具 && task.ToType == GetPutType.下料机)
             {
-                return (int)(this.Clamp.InOvenTime - Common.DefaultTime).TotalMinutes;
+                return TengDa.TimeHelper.GetTimeStamp(this.Clamp.InOvenTime);
             }
             return this.Priority;
         }
