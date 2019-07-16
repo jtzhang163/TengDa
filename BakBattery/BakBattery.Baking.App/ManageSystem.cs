@@ -2450,7 +2450,7 @@ namespace BakBattery.Baking.App
             string msg = string.Empty;
             if (clamps.Count < 1)
             {
-                clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsInUploaded] = 'false' AND [IsInFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
+                clamps = Clamp.GetList(string.Format("SELECT TOP 5 * FROM [dbo].[{0}] WHERE [IsInUploaded] = 'false' AND [IsInFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
                 if (!string.IsNullOrEmpty(msg))
                 {
                     Error.Alert(msg);
@@ -2463,9 +2463,8 @@ namespace BakBattery.Baking.App
                 return;
             }
 
-            this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传入烤箱数据..."; }));
             await MES.UploadInOvenAsync(clamps);
-            this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "入烤箱数据上传完成..."; }));
+            this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "入烤箱上传完成..."; }));
         }
 
         public async void UploadOutOvenInfo(object obj)
@@ -2475,7 +2474,7 @@ namespace BakBattery.Baking.App
             string msg = string.Empty;
             if (clamps.Count < 1)
             {
-                clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsOutUploaded] = 'false' AND [IsOutFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
+                clamps = Clamp.GetList(string.Format("SELECT TOP 5 * FROM [dbo].[{0}] WHERE [IsOutUploaded] = 'false' AND [IsOutFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
                 if (!string.IsNullOrEmpty(msg))
                 {
                     Error.Alert(msg);
@@ -2488,9 +2487,8 @@ namespace BakBattery.Baking.App
                 return;
             }
 
-            this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传出烤箱数据..."; }));
             await MES.UploadOutOvenAsync(clamps);
-            this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "出烤箱数据上传完成..."; }));
+            this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "出烤箱上传完成..."; }));
         }
 
         /// <summary>
@@ -2525,10 +2523,9 @@ namespace BakBattery.Baking.App
 
             if(uploadTVDs.Count > 0 && Current.mes.IsAlive)
             {
-                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传实时温度真空数据..."; }));
                 await MES.UploadTvdInfoAsync(uploadTVDs);
                 Thread.Sleep(100);
-                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "实时温度真空数据上传完成"; }));
+                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "实时温度真空上传完成"; }));
             }
 
             //保存进数据库
@@ -2542,14 +2539,13 @@ namespace BakBattery.Baking.App
             {
                 //检测上传失败的
                 uploadTVDs.Clear();
-                uploadTVDs = UploadTVD.GetList("SELECT TOP 100 * FROM [" + UploadTVD.TableName + "] WHERE IsUploaded = 'False' ORDER BY [CollectorTime] DESC", out msg);
+                uploadTVDs = UploadTVD.GetList("SELECT TOP 10 * FROM [" + UploadTVD.TableName + "] WHERE IsUploaded = 'False' ORDER BY [CollectorTime] DESC", out msg);
 
                 if (uploadTVDs.Count > 0)
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "上传历史温度真空数据..."; }));
                     await MES.UploadTvdInfoAsync(uploadTVDs);
                     Thread.Sleep(100);
-                    this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "历史温度真空数据上传完成"; }));
+                    this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "历史温度真空上传完成"; }));
                 }
             }
         }

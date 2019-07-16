@@ -506,7 +506,7 @@ namespace BakBattery.Baking
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.WriteError("上传MES出现错误，方法：UploadInOvenAsync 原因：" + ex.Message);
+                    LogHelper.WriteError("上传MES出现错误，方法：UploadOutOvenAsync 原因：" + ex.Message);
                 }
             }
         }
