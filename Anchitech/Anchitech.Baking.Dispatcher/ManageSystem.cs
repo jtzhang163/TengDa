@@ -1567,7 +1567,7 @@ namespace Anchitech.Baking.Dispatcher
 
                     #region 电池扫码逻辑
 
-                    Current.Feeder.CurrentBatteryCount = Battery.GetCountByClampId(Current.Feeder.CurrentPutClampId, out msg);  
+                    Current.Feeder.CurrentBatteryCount = Battery.GetCountByClampId(-1, out msg);  
 
                     var batteryScanResult = ScanResult.Unknown;
 
@@ -1608,7 +1608,7 @@ namespace Anchitech.Baking.Dispatcher
                                     Station.StationList.First(o=>o.Id == Current.Feeder.CurrentPutStationId).SampleInfo = SampleInfo.有样品;
                                 }
 
-                                int id = Battery.Add(new Battery(code, Current.Feeder.Id, Current.Feeder.CurrentPutClampId), out msg);
+                                int id = Battery.Add(new Battery(code, Current.Feeder.Id, -1), out msg);
                                 if (id < 1)
                                 {
                                     Error.Alert(msg);
@@ -1641,7 +1641,7 @@ namespace Anchitech.Baking.Dispatcher
 
                                 foreach (var code in codes.Split(';'))
                                 {
-                                    int id = Battery.Add(new Battery(code, Current.Feeder.Id, Current.Feeder.CurrentPutClampId), out msg);
+                                    int id = Battery.Add(new Battery(code, Current.Feeder.Id, -1), out msg);
                                     if (id < 1)
                                     {
                                         Error.Alert(msg);
@@ -1662,7 +1662,7 @@ namespace Anchitech.Baking.Dispatcher
                             }
                         }
 
-                        Current.Feeder.CurrentBatteryCount = Battery.GetCountByClampId(Current.Feeder.CurrentPutClampId, out msg);
+                        Current.Feeder.CurrentBatteryCount = Battery.GetCountByClampId(-1, out msg);
 
                         Current.BatteryScaner.CanScan = false;
                     }

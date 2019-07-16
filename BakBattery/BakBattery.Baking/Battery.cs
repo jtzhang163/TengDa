@@ -151,7 +151,7 @@ namespace BakBattery.Baking
 
         public static bool Update(int clampId, int feederId, out string msg)
         {
-            return Database.NonQuery(string.Format("UPDATE [dbo].[{0}] SET [ClampId] = {1} WHERE [Id] IN (SELECT TOP {2} [Id] FROM [dbo].[{0}] WHERE [ClampId] = -1 AND [FeederId] = {3} ORDER BY	[ScanTime])",
+            return Database.NonQuery(string.Format("UPDATE [dbo].[{0}] SET [ClampId] = {1} WHERE [Id] IN (SELECT TOP {2} [Id] FROM [dbo].[{0}] WHERE [ClampId] = -1 AND [FeederId] = {3} ORDER BY [Id])",
                  TableName, clampId, Current.option.ClampBatteryCount, feederId), out msg);
         }
 
