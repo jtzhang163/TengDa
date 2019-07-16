@@ -411,8 +411,6 @@ namespace BakBattery.Baking.App
 
             lbRobotClampCode.Text = Current.Robot.Clamp.Code;
 
-            lbRobotClampCode.BackColor = Current.Robot.ClampStatus == ClampStatus.异常 ? Color.Red : Color.Transparent;
-
             cbRobotIsEnable.Checked = Current.Robot.IsEnable;
 
             lbTransferName.Text = Current.Transfer.Name;
@@ -1168,6 +1166,7 @@ namespace BakBattery.Baking.App
             }
 
             lbRobotClampCode.Text = Current.Robot.Clamp.Code;
+            lbRobotClampCode.BackColor = Current.Robot.ClampStatus == ClampStatus.异常 ? Color.Red : Color.Transparent;
 
 
             if (!string.IsNullOrEmpty(Current.Robot.AlarmStr) && Current.Robot.IsAlive)
