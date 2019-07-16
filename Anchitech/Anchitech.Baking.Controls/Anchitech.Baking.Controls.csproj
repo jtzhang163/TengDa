@@ -48,12 +48,6 @@
     <Compile Include="BlankerUC.Designer.cs">
       <DependentUpon>BlankerUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="FinishTaskConfirmForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FinishTaskConfirmForm.Designer.cs">
-      <DependentUpon>FinishTaskConfirmForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="MachinesStatusUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -173,9 +167,6 @@
   <ItemGroup>
     <EmbeddedResource Include="BlankerUC.resx">
       <DependentUpon>BlankerUC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FinishTaskConfirmForm.resx">
-      <DependentUpon>FinishTaskConfirmForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachinesStatusUC.resx">
       <DependentUpon>MachinesStatusUC.cs</DependentUpon>

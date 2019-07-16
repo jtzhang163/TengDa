@@ -565,22 +565,19 @@ namespace Anchitech.Baking
                         {
                             if (Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation))
                             {
-                                Current.Robot.IsMoving = true;
-                                Current.Task.Status = TaskStatus.取放中;
-
-                                if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
-                                {
-                                    var j = Current.Feeder.Stations.IndexOf(Current.Task.FromStation);
-                                    Current.Feeder.SetGetClampFinish(j);
-                                }
+                                Current.Robot.IsAlreadySendCmd = true;
                             }
-
-                            Current.Robot.IsAlreadySendCmd = true;
                         }
 
                         if (Current.Robot.IsReceived())
                         {
-                            //Current.Robot.IsMoving = true;
+                            Current.Robot.IsMoving = true;
+                            if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
+                            {
+                                var j = Current.Feeder.Stations.IndexOf(Current.Task.FromStation);
+                                Current.Feeder.SetGetClampFinish(j);
+                            }
+                            Current.Task.Status = TaskStatus.取放中;
                         }
                     }
                     else if (Current.Task.Status == TaskStatus.取放中 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
@@ -713,30 +710,23 @@ namespace Anchitech.Baking
                     }
                     else if (Current.Task.Status == TaskStatus.可取放 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
                     {
-
                         if (!Current.Robot.IsAlreadySendCmd)
                         {
-
                             if (Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation))
                             {
-                                Current.Robot.IsMoving = true;
-                                Current.Task.Status = TaskStatus.取放中;
-
-
-                                if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
-                                {
-                                    var j = Current.Feeder.Stations.IndexOf(Current.Task.FromStation);
-                                    Current.Feeder.SetGetClampFinish(j);
-                                }
-
-                            }
-
-                            Current.Robot.IsAlreadySendCmd = true;
+                                Current.Robot.IsAlreadySendCmd = true;
+                            }                          
                         }
 
                         if (Current.Robot.IsReceived())
                         {
-                            //Current.Robot.IsMoving = true;
+                            Current.Robot.IsMoving = true;                       
+                            if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
+                            {
+                                var j = Current.Feeder.Stations.IndexOf(Current.Task.FromStation);
+                                Current.Feeder.SetGetClampFinish(j);
+                            }
+                            Current.Task.Status = TaskStatus.取放中;
                         }
                     }
                     else if (Current.Task.Status == TaskStatus.取放中 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)

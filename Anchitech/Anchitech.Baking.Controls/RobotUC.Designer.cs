@@ -37,7 +37,6 @@
             this.cmsRobot = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmManuGetStation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmManuPutStation = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmTaskIsFinish = new System.Windows.Forms.ToolStripMenuItem();
             this.panelRobot.SuspendLayout();
             this.tableLayoutPanel21.SuspendLayout();
             this.cmsRobot.SuspendLayout();
@@ -116,10 +115,9 @@
             // 
             this.cmsRobot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmManuGetStation,
-            this.tsmManuPutStation,
-            this.tsmTaskIsFinish});
+            this.tsmManuPutStation});
             this.cmsRobot.Name = "cmsRobot";
-            this.cmsRobot.Size = new System.Drawing.Size(181, 92);
+            this.cmsRobot.Size = new System.Drawing.Size(181, 70);
             this.cmsRobot.Opening += new System.ComponentModel.CancelEventHandler(this.CmsRobot_Opening);
             // 
             // tsmManuGetStation
@@ -135,13 +133,6 @@
             this.tsmManuPutStation.Size = new System.Drawing.Size(180, 22);
             this.tsmManuPutStation.Text = "手动【放盘】";
             this.tsmManuPutStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
-            // 
-            // tsmTaskIsFinish
-            // 
-            this.tsmTaskIsFinish.Name = "tsmTaskIsFinish";
-            this.tsmTaskIsFinish.Size = new System.Drawing.Size(180, 22);
-            this.tsmTaskIsFinish.Text = "取放盘已结束...";
-            this.tsmTaskIsFinish.Click += new System.EventHandler(this.TsmTaskIsFinish_Click);
             // 
             // RobotUC
             // 
@@ -168,6 +159,5 @@
         private System.Windows.Forms.ContextMenuStrip cmsRobot;
         private System.Windows.Forms.ToolStripMenuItem tsmManuGetStation;
         private System.Windows.Forms.ToolStripMenuItem tsmManuPutStation;
-        private System.Windows.Forms.ToolStripMenuItem tsmTaskIsFinish;
     }
 }
