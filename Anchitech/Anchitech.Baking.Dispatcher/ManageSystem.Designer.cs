@@ -245,6 +245,7 @@
             this.btnClampScanOkBackToFeeder = new System.Windows.Forms.Button();
             this.cbClampScaner = new System.Windows.Forms.ComboBox();
             this.btnClampScanStart = new System.Windows.Forms.Button();
+            this.openAllNetControlUC1 = new Anchitech.Baking.Controls.OpenAllNetControlUC();
             this.tabContentTaskLog = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvTaskLog = new System.Windows.Forms.DataGridView();
@@ -307,7 +308,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbTaskMode = new System.Windows.Forms.Label();
-            this.openAllNetControlUC1 = new Anchitech.Baking.Controls.OpenAllNetControlUC();
             this.panel5 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -316,6 +316,7 @@
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
             this.yieldDisplay = new Anchitech.Baking.Controls.YieldDisplay();
             this.machinesStatusUC1 = new Anchitech.Baking.Controls.MachinesStatusUC();
+            this.batteryBindInitUC1 = new Anchitech.Baking.Controls.BatteryBindInitUC();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -2865,6 +2866,7 @@
             this.tableLayoutPanel3.Controls.Add(this.gbBatteryScanerTest, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.groupBox3, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.openAllNetControlUC1, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.batteryBindInitUC1, 0, 4);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -3007,6 +3009,15 @@
             this.btnClampScanStart.Text = "扫码";
             this.btnClampScanStart.UseVisualStyleBackColor = true;
             this.btnClampScanStart.Click += new System.EventHandler(this.btnClampScanStart_Click);
+            // 
+            // openAllNetControlUC1
+            // 
+            this.openAllNetControlUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.openAllNetControlUC1.Location = new System.Drawing.Point(10, 388);
+            this.openAllNetControlUC1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.openAllNetControlUC1.Name = "openAllNetControlUC1";
+            this.openAllNetControlUC1.Size = new System.Drawing.Size(125, 28);
+            this.openAllNetControlUC1.TabIndex = 11;
             // 
             // tabContentTaskLog
             // 
@@ -3908,15 +3919,6 @@
             this.lbTaskMode.TabIndex = 10;
             this.lbTaskMode.Text = "手动任务";
             // 
-            // openAllNetControlUC1
-            // 
-            this.openAllNetControlUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.openAllNetControlUC1.Location = new System.Drawing.Point(10, 388);
-            this.openAllNetControlUC1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.openAllNetControlUC1.Name = "openAllNetControlUC1";
-            this.openAllNetControlUC1.Size = new System.Drawing.Size(125, 28);
-            this.openAllNetControlUC1.TabIndex = 11;
-            // 
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -4018,6 +4020,15 @@
             this.machinesStatusUC1.Name = "machinesStatusUC1";
             this.machinesStatusUC1.Size = new System.Drawing.Size(270, 416);
             this.machinesStatusUC1.TabIndex = 16;
+            // 
+            // batteryBindInitUC1
+            // 
+            this.batteryBindInitUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.batteryBindInitUC1.Location = new System.Drawing.Point(10, 511);
+            this.batteryBindInitUC1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.batteryBindInitUC1.Name = "batteryBindInitUC1";
+            this.batteryBindInitUC1.Size = new System.Drawing.Size(125, 28);
+            this.batteryBindInitUC1.TabIndex = 12;
             // 
             // ManageSystem
             // 
@@ -4440,5 +4451,6 @@
         private Controls.MachinesStatusUC machinesStatusUC1;
         private Controls.ShowOvenInfoTypeUC showOvenInfoTypeUC1;
         private Controls.OpenAllNetControlUC openAllNetControlUC1;
+        private Controls.BatteryBindInitUC batteryBindInitUC1;
     }
 }

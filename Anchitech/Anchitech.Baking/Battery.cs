@@ -237,6 +237,16 @@ namespace Anchitech.Baking
         {
             return Database.NonQuery(string.Format("UPDATE [dbo].[{0}] SET [ClampId] = {1} WHERE [Id] IN ({2})", TableName, clampId, batteryIds), out msg);
         }
+
+        /// <summary>
+        /// 电池绑定初始化
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public static bool BatteryBindInit(out string msg)
+        {
+            return Database.NonQuery(string.Format("update dbo.[{0}] SET ClampId = (SELECT MAX(ClampId) FROM dbo.[{0}]) WHERE ClampId = -1", TableName), out msg);
+        }
         #endregion
     }
 }

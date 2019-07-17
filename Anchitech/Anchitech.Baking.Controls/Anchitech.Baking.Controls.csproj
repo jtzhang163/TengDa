@@ -60,6 +60,12 @@
     <Compile Include="MachineStatusUC.Designer.cs">
       <DependentUpon>MachineStatusUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="BatteryBindInitUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BatteryBindInitUC.Designer.cs">
+      <DependentUpon>BatteryBindInitUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="OpenAllNetControlUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineStatusUC.resx">
       <DependentUpon>MachineStatusUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BatteryBindInitUC.resx">
+      <DependentUpon>BatteryBindInitUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OpenAllNetControlUC.resx">
       <DependentUpon>OpenAllNetControlUC.cs</DependentUpon>
