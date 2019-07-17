@@ -1476,7 +1476,7 @@ namespace Anchitech.Baking.Dispatcher
                                     station.Status = StationStatus.可取;
                                     break;
                                 case FloorStatus.待出:
-                                    if (floor.RunRemainMinutes <= 0)
+                                    if (floor.RunRemainMinutes <= 0 || floor.RunMinutes <= 0)
                                     {
                                         station.Status = StationStatus.可取;
                                     }
