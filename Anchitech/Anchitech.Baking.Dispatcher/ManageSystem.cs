@@ -2614,11 +2614,11 @@ namespace Anchitech.Baking.Dispatcher
                 DataTable dt = null;
                 if (selectStation == "All")
                 {
-                    dt = Database.Query(string.Format("SELECT TOP {3} * FROM [dbo].[{0}.V_TV] WHERE [记录时间] BETWEEN '{1}' AND '{2}' ", Config.DbTableNamePre, startTime, stopTime, count), out msg);
+                    dt = Database.Query(string.Format("SELECT TOP {3} * FROM [dbo].[{0}.V_TV] WHERE [记录时间] BETWEEN '{1}' AND '{2}' ORDER BY [记录时间]", Config.DbTableNamePre, startTime, stopTime, count), out msg);
                 }
                 else
                 {
-                    dt = Database.Query(string.Format("SELECT TOP {4} * FROM [dbo].[{0}.V_TV] WHERE [烤箱工位] = '{1}' AND [记录时间] BETWEEN '{2}' AND '{3}' ", Config.DbTableNamePre, selectStation, startTime, stopTime, count), out msg);
+                    dt = Database.Query(string.Format("SELECT TOP {4} * FROM [dbo].[{0}.V_TV] WHERE [烤箱工位] = '{1}' AND [记录时间] BETWEEN '{2}' AND '{3}' ORDER BY [记录时间]", Config.DbTableNamePre, selectStation, startTime, stopTime, count), out msg);
                 }
 
                 if (dt == null)

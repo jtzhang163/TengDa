@@ -1024,7 +1024,7 @@ namespace Soundon.Dispatcher.App
                         var sta = Station.StationList.FirstOrDefault(s => s.Id == Current.blankers[i].Stations[j].FromStationId);
                         if (sta.GetPutType == GetPutType.烤箱)
                         {
-                            lbBlankerFromStationName[i][j].Text = sta.Name.Substring(0, 7);
+                            lbBlankerFromStationName[i][j].Text = sta.Name.Substring(0, 7).Replace("烤箱", "炉");
                         }
                         else
                         {

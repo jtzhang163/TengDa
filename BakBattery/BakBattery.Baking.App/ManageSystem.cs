@@ -2450,7 +2450,7 @@ namespace BakBattery.Baking.App
             string msg = string.Empty;
             if (clamps.Count < 1)
             {
-                clamps = Clamp.GetList(string.Format("SELECT TOP 5 * FROM [dbo].[{0}] WHERE [IsInUploaded] = 'false' AND [IsInFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
+                clamps = Clamp.GetList(string.Format("SELECT TOP 5 * FROM [dbo].[{0}] WHERE [IsInUploaded] = 'false' AND [IsInFinished] = 'true' ORDER BY [Id] DESC", Clamp.TableName), out msg);
                 if (!string.IsNullOrEmpty(msg))
                 {
                     Error.Alert(msg);
@@ -2474,7 +2474,7 @@ namespace BakBattery.Baking.App
             string msg = string.Empty;
             if (clamps.Count < 1)
             {
-                clamps = Clamp.GetList(string.Format("SELECT TOP 5 * FROM [dbo].[{0}] WHERE [IsOutUploaded] = 'false' AND [IsOutFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
+                clamps = Clamp.GetList(string.Format("SELECT TOP 5 * FROM [dbo].[{0}] WHERE [IsOutUploaded] = 'false' AND [IsOutFinished] = 'true' ORDER BY [Id] DESC", Clamp.TableName), out msg);
                 if (!string.IsNullOrEmpty(msg))
                 {
                     Error.Alert(msg);
@@ -2539,7 +2539,7 @@ namespace BakBattery.Baking.App
             {
                 //检测上传失败的
                 uploadTVDs.Clear();
-                uploadTVDs = UploadTVD.GetList("SELECT TOP 10 * FROM [" + UploadTVD.TableName + "] WHERE IsUploaded = 'False' ORDER BY [CollectorTime] DESC", out msg);
+                uploadTVDs = UploadTVD.GetList("SELECT TOP 5 * FROM [" + UploadTVD.TableName + "] WHERE IsUploaded = 'False' ORDER BY [Id] DESC", out msg);
 
                 if (uploadTVDs.Count > 0)
                 {

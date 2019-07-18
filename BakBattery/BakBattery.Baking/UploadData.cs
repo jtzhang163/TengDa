@@ -34,7 +34,6 @@ namespace BakBattery.Baking
 
     public class DeviceParamData
     {
-        public string parameter_flag { get; set; }
         public string parameter_name { get; set; }
         public string parameter_unit { get; set; }
         public string parameter_value { get; set; }

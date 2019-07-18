@@ -182,11 +182,11 @@ namespace BakBattery.Baking
             {
                 return true;
             }
-
+            string val = "";
             try
             {
                 var values = new List<KeyValuePair<string, string>>();
-                string val = JsonHelper.SerializeObjectList<UploadData>(uploadDatas);
+                val = JsonHelper.SerializeObjectList<UploadData>(uploadDatas);
                 values.Add(new KeyValuePair<string, string>("data", val));
                 string s = await HttpHelper.HttpPostAsync(Current.mes.WebServiceUrl, values);
                 MesResponse ret = JsonHelper.DeserializeJsonToObject<MesResponse>(s);
@@ -201,7 +201,8 @@ namespace BakBattery.Baking
             }
             catch (Exception ex)
             {
-                LogHelper.WriteError("上传MES出现错误，msg：" + ex.Message);
+                LogHelper.WriteError("上传MES出现错误，msg：" + ex.ToString());
+                LogHelper.WriteError("val:" + val);
             }
             return false;
         }
@@ -223,10 +224,11 @@ namespace BakBattery.Baking
                     var floor = station.GetFloor();
                     var oven = floor.GetOven();
 
-                    var uploadDatas = new List<UploadData>();
+                    bool isClampUploadSuccess = true;
 
                     foreach (var battery in clamp.Batteries)
                     {
+                        var uploadDatas = new List<UploadData>();
                         var uploadData = new UploadData();
 
                         uploadData.batch_number = battery.Code.Split('-')[0];
@@ -263,7 +265,6 @@ namespace BakBattery.Baking
                         {
                             uploadData.deviceParamData.Add(new DeviceParamData
                             {
-                                parameter_flag = uploadTVD.ParameterFlag.ToString(),
                                 parameter_name = Current.option.TemperNames[k] + "实际值",
                                 parameter_unit = "℃",
                                 parameter_value = uploadTVD.T[k].ToString()
@@ -272,23 +273,26 @@ namespace BakBattery.Baking
 
                         uploadData.deviceParamData.Add(new DeviceParamData
                         {
-                            parameter_flag = uploadTVD.ParameterFlag.ToString(),
                             parameter_name = "真空度实际值",
                             parameter_unit = "Pa",
                             parameter_value = uploadTVD.V1.ToString()
                         });
 
                         uploadDatas.Add(uploadData);
+                        if (!await UploadAsync(uploadDatas))
+                        {
+                            isClampUploadSuccess = false;
+                        }
                     }
 
-                    if (await UploadAsync(uploadDatas))
+                    if (isClampUploadSuccess)
                     {
                         uploadTVD.IsUploaded = true;
                     }
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.WriteError("上传MES出现错误，方法：UploadTvdInfoAsync 原因：" + ex.Message);
+                    LogHelper.WriteError("上传MES出现错误，方法：UploadTvdInfoAsync 原因：" + ex.ToString());
                 }
             }
         }
@@ -309,10 +313,12 @@ namespace BakBattery.Baking
                     var floor = station.GetFloor();
                     var oven = floor.GetOven();
 
-                    var uploadDatas = new List<UploadData>();
+                    bool isClampUploadSuccess = true;
 
                     foreach (var battery in clamp.Batteries)
                     {
+                        var uploadDatas = new List<UploadData>();
+
                         var uploadData = new UploadData();
 
                         uploadData.batch_number = battery.Code.Split('-')[0];
@@ -348,7 +354,6 @@ namespace BakBattery.Baking
 
                         uploadData.deviceParamData.Add(new DeviceParamData
                         {
-                            parameter_flag = "0",
                             parameter_name = "工艺温度",
                             parameter_unit = "℃",
                             parameter_value = clamp.ProcessTemperSet.ToString()
@@ -358,7 +363,6 @@ namespace BakBattery.Baking
                         {
                             uploadData.deviceParamData.Add(new DeviceParamData
                             {
-                                parameter_flag = "0",
                                 parameter_name = Current.option.TemperSetNames[k],
                                 parameter_unit = "℃",
                                 parameter_value = clamp.TsSet[k].ToString()
@@ -367,7 +371,6 @@ namespace BakBattery.Baking
 
                         uploadData.deviceParamData.Add(new DeviceParamData
                         {
-                            parameter_flag = "0",
                             parameter_name = "真空度设定值",
                             parameter_unit = "Pa",
                             parameter_value = clamp.VacuumSet.ToString()
@@ -375,7 +378,6 @@ namespace BakBattery.Baking
 
                         uploadData.deviceParamData.Add(new DeviceParamData
                         {
-                            parameter_flag = "0",
                             parameter_name = "热风循环温度",
                             parameter_unit = "℃",
                             parameter_value = clamp.YunFengTSet.ToString()
@@ -383,7 +385,6 @@ namespace BakBattery.Baking
 
                         uploadData.deviceParamData.Add(new DeviceParamData
                         {
-                            parameter_flag = "0",
                             parameter_name = "进烤箱时间",
                             parameter_unit = "",
                             parameter_value = clamp.InOvenTime.ToString("yyyy-MM-dd HH:mm:ss")
@@ -391,7 +392,6 @@ namespace BakBattery.Baking
 
                         uploadData.deviceParamData.Add(new DeviceParamData
                         {
-                            parameter_flag = "0",
                             parameter_name = "预热时间设置",
                             parameter_unit = "min",
                             parameter_value = clamp.PreheatTimeSet.ToString()
@@ -399,7 +399,6 @@ namespace BakBattery.Baking
 
                         uploadData.deviceParamData.Add(new DeviceParamData
                         {
-                            parameter_flag = "0",
                             parameter_name = "烘烤时间设置",
                             parameter_unit = "min",
                             parameter_value = clamp.BakingTimeSet.ToString()
@@ -407,7 +406,6 @@ namespace BakBattery.Baking
 
                         uploadData.deviceParamData.Add(new DeviceParamData
                         {
-                            parameter_flag = "0",
                             parameter_name = "一段呼吸周期设置",
                             parameter_unit = "min",
                             parameter_value = clamp.BreathingCycleSet1.ToString()
@@ -415,23 +413,27 @@ namespace BakBattery.Baking
 
                         uploadData.deviceParamData.Add(new DeviceParamData
                         {
-                            parameter_flag = "0",
                             parameter_name = "二段呼吸周期设置",
                             parameter_unit = "min",
                             parameter_value = clamp.BreathingCycleSet2.ToString()
                         });
 
                         uploadDatas.Add(uploadData);
+                        if (!await UploadAsync(uploadDatas))
+                        {
+                            isClampUploadSuccess = false;
+                            break;
+                        }
                     }
 
-                    if (await UploadAsync(uploadDatas))
+                    if (isClampUploadSuccess)
                     {
                         clamp.IsInUploaded = true;
                     }
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.WriteError("上传MES出现错误，方法：UploadInOvenAsync 原因：" + ex.Message);
+                    LogHelper.WriteError("上传MES出现错误，方法：UploadInOvenAsync 原因：" + ex.ToString());
                 }
             }
         }
@@ -452,10 +454,12 @@ namespace BakBattery.Baking
                     var floor = station.GetFloor();
                     var oven = floor.GetOven();
 
-                    var uploadDatas = new List<UploadData>();
+                    bool isClampUploadSuccess = true;
 
                     foreach (var battery in clamp.Batteries)
                     {
+                        var uploadDatas = new List<UploadData>();
+
                         var uploadData = new UploadData();
 
                         uploadData.batch_number = battery.Code.Split('-')[0];
@@ -490,23 +494,27 @@ namespace BakBattery.Baking
                         uploadData.deviceParamData = new List<DeviceParamData>();
                         uploadData.deviceParamData.Add(new DeviceParamData
                         {
-                            parameter_flag = "0",
                             parameter_name = "出烤箱时间",
                             parameter_unit = "",
                             parameter_value = clamp.OutOvenTime.ToString("yyyy-MM-dd HH:mm:ss")
                         });
 
                         uploadDatas.Add(uploadData);
+                        if(!await UploadAsync(uploadDatas))
+                        {
+                            isClampUploadSuccess = false;
+                            break;
+                        }
                     }
 
-                    if (await UploadAsync(uploadDatas))
+                    if (isClampUploadSuccess)
                     {
                         clamp.IsOutUploaded = true;
                     }
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.WriteError("上传MES出现错误，方法：UploadOutOvenAsync 原因：" + ex.Message);
+                    LogHelper.WriteError("上传MES出现错误，方法：UploadOutOvenAsync 原因：" + ex.ToString());
                 }
             }
         }

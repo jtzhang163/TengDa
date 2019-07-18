@@ -5884,8 +5884,8 @@
             // 
             this.lbBlankerFromStationName0101.AutoSize = true;
             this.lbBlankerFromStationName0101.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerFromStationName0101.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerFromStationName0101.ForeColor = System.Drawing.Color.Violet;
+            this.lbBlankerFromStationName0101.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbBlankerFromStationName0101.ForeColor = System.Drawing.Color.Blue;
             this.lbBlankerFromStationName0101.Location = new System.Drawing.Point(55, 1);
             this.lbBlankerFromStationName0101.Name = "lbBlankerFromStationName0101";
             this.lbBlankerFromStationName0101.Size = new System.Drawing.Size(45, 20);
@@ -5896,8 +5896,8 @@
             // 
             this.lbBlankerFromStationName0102.AutoSize = true;
             this.lbBlankerFromStationName0102.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerFromStationName0102.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerFromStationName0102.ForeColor = System.Drawing.Color.Violet;
+            this.lbBlankerFromStationName0102.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbBlankerFromStationName0102.ForeColor = System.Drawing.Color.Blue;
             this.lbBlankerFromStationName0102.Location = new System.Drawing.Point(4, 1);
             this.lbBlankerFromStationName0102.Name = "lbBlankerFromStationName0102";
             this.lbBlankerFromStationName0102.Size = new System.Drawing.Size(44, 20);
@@ -6132,8 +6132,8 @@
             // 
             this.lbBlankerFromStationName0202.AutoSize = true;
             this.lbBlankerFromStationName0202.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerFromStationName0202.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerFromStationName0202.ForeColor = System.Drawing.Color.Violet;
+            this.lbBlankerFromStationName0202.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbBlankerFromStationName0202.ForeColor = System.Drawing.Color.Blue;
             this.lbBlankerFromStationName0202.Location = new System.Drawing.Point(4, 125);
             this.lbBlankerFromStationName0202.Name = "lbBlankerFromStationName0202";
             this.lbBlankerFromStationName0202.Size = new System.Drawing.Size(44, 20);
@@ -6286,8 +6286,8 @@
             // 
             this.lbBlankerFromStationName0201.AutoSize = true;
             this.lbBlankerFromStationName0201.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbBlankerFromStationName0201.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbBlankerFromStationName0201.ForeColor = System.Drawing.Color.Violet;
+            this.lbBlankerFromStationName0201.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbBlankerFromStationName0201.ForeColor = System.Drawing.Color.Blue;
             this.lbBlankerFromStationName0201.Location = new System.Drawing.Point(55, 125);
             this.lbBlankerFromStationName0201.Name = "lbBlankerFromStationName0201";
             this.lbBlankerFromStationName0201.Size = new System.Drawing.Size(45, 20);

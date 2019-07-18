@@ -30,13 +30,13 @@ namespace Soundon.Dispatcher.Controls
 
                 if (state[i].Text == Current.Task.Status.ToString())
                 {
-                    state[i].BackColor = Color.Green;
+                    state[i].BackColor = Color.Black;
                     state[i].ForeColor = Color.White;
                 }
                 else
                 {
-                    state[i].BackColor = Color.Lime;
-                    state[i].ForeColor = Color.Green;
+                    state[i].BackColor = Color.LightGray;
+                    state[i].ForeColor = Color.DarkGreen;
                 }
             }
             lbTaskName.Text = Current.Task.TaskName;
