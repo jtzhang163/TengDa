@@ -617,7 +617,7 @@ namespace BakBattery.Baking
         /// </summary>
         [Description("MES上传数据间隔时间，单位：秒")]
         [DisplayName("MES上传数据间隔时间")]
-        [Category("MES")]
+        [Category("MES"), Browsable(false)]
         public string UploadMesInterval
         {
             get

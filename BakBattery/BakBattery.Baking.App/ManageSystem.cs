@@ -1903,7 +1903,7 @@ namespace BakBattery.Baking.App
 
 
                 this.timerUploadMes = new System.Timers.Timer();
-                this.timerUploadMes.Interval = TengDa._Convert.StrToInt(Current.option.UploadMesInterval, 60) * 1000;
+                this.timerUploadMes.Interval = TengDa._Convert.StrToInt("60", 60) * 1000;
                 this.timerUploadMes.Elapsed += new System.Timers.ElapsedEventHandler(Timer_UploadMes);
                 this.timerUploadMes.AutoReset = true;
                 this.timerUploadMes.Start();
@@ -2435,11 +2435,15 @@ namespace BakBattery.Baking.App
             string msg = string.Empty;
             if (timerlock)
             {
+                if (DateTime.Now.Minute % 5 == 0)
+                {
+                    InsertUploadMesTVD();
+
+                    UploadInOvenInfo(new List<Clamp>());
+
+                    UploadOutOvenInfo(new List<Clamp>());
+                }
                 UploadMesTVD();
-
-                UploadInOvenInfo(new List<Clamp>());
-
-                UploadOutOvenInfo(new List<Clamp>());
             }
         }
 
@@ -2494,7 +2498,7 @@ namespace BakBattery.Baking.App
         /// <summary>
         /// 定时上传真空温度数据
         /// </summary>
-        public async void UploadMesTVD()
+        public void InsertUploadMesTVD()
         {
             var uploadTVDs = new List<UploadTVD>();
             for (int i = 0; i < OvenCount; i++)
@@ -2521,32 +2525,38 @@ namespace BakBattery.Baking.App
                 }
             }
 
-            if(uploadTVDs.Count > 0 && Current.mes.IsAlive)
-            {
-                await MES.UploadTvdInfoAsync(uploadTVDs);
-                Thread.Sleep(100);
-                this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "实时温度真空上传完成"; }));
-            }
-
             //保存进数据库
             var msg = string.Empty;
             if (!UploadTVD.Add(uploadTVDs, out msg))
             {
                 LogHelper.WriteError(msg);
             }
+        }
 
-            if (Current.mes.IsAlive)
+        private bool IsUploadMesTVD = false;
+
+        public async void UploadMesTVD()
+        {
+            if (!IsUploadMesTVD)
             {
-                //检测上传失败的
-                uploadTVDs.Clear();
-                uploadTVDs = UploadTVD.GetList("SELECT TOP 5 * FROM [" + UploadTVD.TableName + "] WHERE IsUploaded = 'False' ORDER BY [Id] DESC", out msg);
+                IsUploadMesTVD = true;
 
-                if (uploadTVDs.Count > 0)
+
+                var uploadTVDs = new List<UploadTVD>();
+                if (Current.mes.IsAlive)
                 {
-                    await MES.UploadTvdInfoAsync(uploadTVDs);
-                    Thread.Sleep(100);
-                    this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "历史温度真空上传完成"; }));
+                    uploadTVDs = UploadTVD.GetList("SELECT TOP 20 * FROM [" + UploadTVD.TableName + "] WHERE IsUploaded = 'False' ORDER BY [Id] DESC", out string msg);
+
+                    if (uploadTVDs.Count > 0)
+                    {
+                        await MES.UploadTvdInfoAsync(uploadTVDs);
+                        Thread.Sleep(100);
+                        this.BeginInvoke(new MethodInvoker(() => { tbMesStatus.Text = "温度真空OK ID:" + uploadTVDs[0].Id + ".."; }));
+                    }
                 }
+
+
+                IsUploadMesTVD = false;
             }
         }
 
@@ -4410,6 +4420,7 @@ namespace BakBattery.Baking.App
                     tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
 
                     tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+                    tsiStation.ForeColor = GetForeColor(ManuFlag, s);
 
                     if (tsiStation.Enabled) isEnabled = true;
 
@@ -4436,6 +4447,7 @@ namespace BakBattery.Baking.App
                     tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
 
                     tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+                    tsiStation.ForeColor = GetForeColor(ManuFlag, s);
 
                     if (tsiStation.Enabled) isEnabled = true;
 
@@ -4460,7 +4472,9 @@ namespace BakBattery.Baking.App
                     tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
                     tsiStation.Text = s.Name;
                     tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+
                     tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+                    tsiStation.ForeColor = GetForeColor(ManuFlag, s);
 
                     if (tsiStation.Enabled) isEnabled = true;
 
@@ -4485,6 +4499,8 @@ namespace BakBattery.Baking.App
                 tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
 
                 tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+                tsiStation.ForeColor = GetForeColor(ManuFlag, s);
+
                 if (tsiStation.Enabled) isCacheEnabled = true;
                 tsmiCacheStation.DropDownItems.Add(tsiStation);
             });
@@ -4498,6 +4514,7 @@ namespace BakBattery.Baking.App
             tsmiRotaterStation.Click += new System.EventHandler(this.tsmManuStation_Click);
 
             tsmiRotaterStation.Enabled = GetTsiEnabled(ManuFlag, Current.Transfer.Station);
+            tsmiRotaterStation.ForeColor = GetForeColor(ManuFlag, Current.Transfer.Station);
 
             tsiStations.Add(tsmiRotaterStation);
 
@@ -4514,6 +4531,20 @@ namespace BakBattery.Baking.App
 
         }
 
+        private Color GetForeColor(string manuFlag, Station s)
+        {
+            var result = Color.Red;
+            if (manuFlag == "Get" && s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.Status == StationStatus.可取)
+            {
+                result = Color.Black;
+            }
+            else if (manuFlag == "Put" && s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.Status == StationStatus.可放)
+            {
+                result = Color.Black;
+            }
+            return result;
+        }
+
         /// <summary>
         /// 手动时取放盘的按钮变灰防呆
         /// </summary>
@@ -4526,6 +4557,10 @@ namespace BakBattery.Baking.App
             if (manuFlag == "Get")
             {
                 result = s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.ClampStatus != ClampStatus.无夹具;
+                if (s.GetPutType == GetPutType.上料机 || s.GetPutType == GetPutType.下料机)
+                {
+                    result = result && s.Status == StationStatus.可取;
+                }
             }
             else if (manuFlag == "Put")
             {

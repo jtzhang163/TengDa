@@ -132,7 +132,6 @@ namespace BakBattery.Baking
 
         protected void InitFields(DataRow rowInfo)
         {
-            this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
             this.ClampId = TengDa._Convert.StrToInt(rowInfo["ClampId"].ToString(), -1);
             this.T[0] = TengDa._Convert.StrToFloat(rowInfo["T01"].ToString(), -1);
             this.T[1] = TengDa._Convert.StrToFloat(rowInfo["T02"].ToString(), -1);
@@ -147,6 +146,7 @@ namespace BakBattery.Baking
             this.DeviceStatus = TengDa._Convert.StrToInt(rowInfo["DeviceStatus"].ToString(), -1);
             this.CollectorTime = TengDa._Convert.StrToDateTime(rowInfo["CollectorTime"].ToString(), Common.DefaultTime);
             this.isUploaded = TengDa._Convert.StrToBool(rowInfo["IsUploaded"].ToString(), false);
+            this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
         }
         #endregion
 
