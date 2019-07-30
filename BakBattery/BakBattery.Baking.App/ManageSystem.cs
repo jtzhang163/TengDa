@@ -4701,53 +4701,13 @@ namespace BakBattery.Baking.App
 
         private void cmsTransfer_Opening(object sender, CancelEventArgs e)
         {
-            tsmTestResultOK.Enabled = Current.Transfer.Station.ClampStatus != ClampStatus.无夹具;
-            tsmTestResultNG.Enabled = Current.Transfer.Station.ClampStatus != ClampStatus.无夹具;
+            this.tsmInputWaterCon.Enabled = Current.Transfer.Station.ClampStatus == ClampStatus.满夹具;
         }
-
-        private void tsmTestResultOK_Click(object sender, EventArgs e)
-        {
-            DialogResult dr = MessageBox.Show("确定水分测试结果OK？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-            if (dr == DialogResult.OK)
-            {
-                Current.Transfer.Station.SampleStatus = SampleStatus.测试OK;
-                if (Current.Transfer.Station.FromStationId > 0)
-                {
-                    var ovenSamFromStation = Station.StationList.FirstOrDefault(s => s.Id == Current.Transfer.Station.FromStationId);
-                    if (ovenSamFromStation.GetPutType == GetPutType.烤箱)
-                    {
-                        ovenSamFromStation.GetFloor().Stations.ForEach(s => s.SampleStatus = SampleStatus.未知);
-
-                        //该炉腔水分测试OK，下次换该烤箱另一个炉腔测试水分
-                        ovenSamFromStation.GetFloor().GetOven().ChangeWaterContentTestFloor();
-
-                        //测试ng次数复位为0
-                        ovenSamFromStation.GetFloor().NgTimes = 0;
-                    }
-                }
-            }
-        }
-
-        private void tsmTestResultNG_Click(object sender, EventArgs e)
-        {
-            DialogResult dr = MessageBox.Show("确定水分测试结果NG？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-            if (dr == DialogResult.OK)
-            {
-                Current.Transfer.Station.SampleStatus = SampleStatus.测试NG;
-                if (Current.Transfer.Station.FromStationId > 0)
-                {
-                    var ovenSamFromStation = Station.StationList.FirstOrDefault(s => s.Id == Current.Transfer.Station.FromStationId);
-                    ovenSamFromStation.SampleStatus = SampleStatus.测试NG;
-                    if (ovenSamFromStation.GetPutType == GetPutType.烤箱)
-                    {
-                        //水分NG次数增加1
-                        ovenSamFromStation.GetFloor().NgTimes++;
-                    }
-                }
-            }
-        }
-
         #endregion
 
+        private void TsmInputWaterCon_Click(object sender, EventArgs e)
+        {
+            new InputWaterConForm().ShowDialog();
+        }
     }
 }

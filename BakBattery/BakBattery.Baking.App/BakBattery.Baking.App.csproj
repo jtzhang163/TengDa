@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InputWaterConForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputWaterConForm.Designer.cs">
+      <DependentUpon>InputWaterConForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManageSystem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Version.cs" />
+    <EmbeddedResource Include="InputWaterConForm.resx">
+      <DependentUpon>InputWaterConForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ManageSystem.resx">
       <DependentUpon>ManageSystem.cs</DependentUpon>
       <SubType>Designer</SubType>

@@ -1932,6 +1932,33 @@ namespace BakBattery.Baking
             }
         }
 
+        private float waterContentStandard = -1;
+        /// <summary>
+        /// 水含量阈值
+        /// </summary>
+        [DisplayName("水含量阈值（单位：PPM），小于该值时判定为OK")]
+        [Category("A-水含量测试")]
+        public float WaterContentStandard
+        {
+            get
+            {
+                if (waterContentStandard < 0)
+                {
+                    waterContentStandard = _Convert.StrToFloat(TengDa.WF.Option.GetOption("WaterContentStandard"), 300);
+                }
+                return waterContentStandard;
+            }
+            set
+            {
+                if (value != waterContentStandard)
+                {
+                    TengDa.WF.Option.SetOption("WaterContentStandard", value.ToString());
+                    waterContentStandard = value;
+                }
+            }
+        }
+
+
         //private string xxxXXXXXXXXXXXX = string.Empty;
         ///// <summary>
         ///// YYYYYYYYYYYYYYYYY

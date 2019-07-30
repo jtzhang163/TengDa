@@ -433,7 +433,7 @@ namespace BakBattery.Baking
                     if (value == FloorStatus.无盘 && floorStatus == FloorStatus.待出)
                     {
                         this.Clamp.OutOvenTime = DateTime.Now;
-                        this.Clamp.IsOutFinished = true; 
+                        this.Clamp.IsOutFinished = true;
                     }
                 }
 

@@ -155,9 +155,7 @@
             this.lbFeederStationName0202 = new System.Windows.Forms.Label();
             this.tlpTransfer = new System.Windows.Forms.TableLayoutPanel();
             this.cmsTransfer = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmTestResult = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmTestResultOK = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmTestResultNG = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmInputWaterCon = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpTransferClamp = new System.Windows.Forms.TableLayoutPanel();
             this.lbTransferClampCode = new System.Windows.Forms.Label();
             this.lbTransferName = new System.Windows.Forms.Label();
@@ -2325,33 +2323,17 @@
             // cmsTransfer
             // 
             this.cmsTransfer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmTestResult});
+            this.tsmInputWaterCon});
             this.cmsTransfer.Name = "cmsInOutOven";
-            this.cmsTransfer.Size = new System.Drawing.Size(149, 26);
+            this.cmsTransfer.Size = new System.Drawing.Size(182, 26);
             this.cmsTransfer.Opening += new System.ComponentModel.CancelEventHandler(this.cmsTransfer_Opening);
             // 
-            // tsmTestResult
+            // tsmInputWaterCon
             // 
-            this.tsmTestResult.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmTestResultOK,
-            this.tsmTestResultNG});
-            this.tsmTestResult.Name = "tsmTestResult";
-            this.tsmTestResult.Size = new System.Drawing.Size(148, 22);
-            this.tsmTestResult.Text = "水分测试结果";
-            // 
-            // tsmTestResultOK
-            // 
-            this.tsmTestResultOK.Name = "tsmTestResultOK";
-            this.tsmTestResultOK.Size = new System.Drawing.Size(119, 22);
-            this.tsmTestResultOK.Text = "结果OK";
-            this.tsmTestResultOK.Click += new System.EventHandler(this.tsmTestResultOK_Click);
-            // 
-            // tsmTestResultNG
-            // 
-            this.tsmTestResultNG.Name = "tsmTestResultNG";
-            this.tsmTestResultNG.Size = new System.Drawing.Size(119, 22);
-            this.tsmTestResultNG.Text = "结果NG";
-            this.tsmTestResultNG.Click += new System.EventHandler(this.tsmTestResultNG_Click);
+            this.tsmInputWaterCon.Name = "tsmInputWaterCon";
+            this.tsmInputWaterCon.Size = new System.Drawing.Size(181, 22);
+            this.tsmInputWaterCon.Text = "输入水分测试结果...";
+            this.tsmInputWaterCon.Click += new System.EventHandler(this.TsmInputWaterCon_Click);
             // 
             // tlpTransferClamp
             // 
@@ -8885,9 +8867,7 @@
         private System.Windows.Forms.ComboBox cbCount;
         private System.Windows.Forms.Button btnDebug;
         private System.Windows.Forms.ContextMenuStrip cmsTransfer;
-        private System.Windows.Forms.ToolStripMenuItem tsmTestResult;
-        private System.Windows.Forms.ToolStripMenuItem tsmTestResultOK;
-        private System.Windows.Forms.ToolStripMenuItem tsmTestResultNG;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem tsmInputWaterCon;
     }
 }

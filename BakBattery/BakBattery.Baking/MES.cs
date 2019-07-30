@@ -192,6 +192,10 @@ namespace BakBattery.Baking
                 MesResponse ret = JsonHelper.DeserializeJsonToObject<MesResponse>(s);
                 if (ret.status == 0)
                 {
+                    if (val.Contains("水分"))
+                    {
+                        LogHelper.WriteInfo("上传MES成功，" + val);
+                    }
                     return true;
                 }
                 LogHelper.WriteError("上传MES失败，msg：" + ret.msg);
@@ -517,6 +521,22 @@ namespace BakBattery.Baking
                                 parameter_unit = "",
                                 parameter_value = clamp.OutOvenTime.ToString("yyyy-MM-dd HH:mm:ss")
                             });
+
+                            if (clamp.WaterContent > 0f)
+                            {
+                                uploadData.deviceParamData.Add(new DeviceParamData
+                                {
+                                    parameter_name = "水分测试标准值",
+                                    parameter_unit = "PPM",
+                                    parameter_value = Current.option.WaterContentStandard.ToString("#.00")
+                                });
+                                uploadData.deviceParamData.Add(new DeviceParamData
+                                {
+                                    parameter_name = "水分测试实际值",
+                                    parameter_unit = "PPM",
+                                    parameter_value = clamp.WaterContent.ToString("#.00")
+                                });
+                            }
 
                             uploadDatas.Add(uploadData);
                             if (await UploadAsync(uploadDatas))

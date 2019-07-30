@@ -416,6 +416,29 @@ namespace BakBattery.Baking
         private DateTime inOvenTime = TengDa.Common.DefaultTime;
         private DateTime outOvenTime = TengDa.Common.DefaultTime;
 
+
+        private float waterContent = -1;
+        /// <summary>
+        /// 水含量数值
+        /// </summary>
+        [ReadOnly(true), DisplayName("水含量数值")]
+        [Category("基本信息")]
+        public float WaterContent
+        {
+            get
+            {
+                return waterContent;
+            }
+            set
+            {
+                if (waterContent != value)
+                {
+                    UpdateDbField("WaterContent", value);
+                }
+                waterContent = value;
+            }
+        }
+
         #endregion
 
         #region 构造方法
@@ -492,6 +515,7 @@ namespace BakBattery.Baking
             this.bakingTimeSet = TengDa._Convert.StrToInt(rowInfo["BakingTimeSet"].ToString(), -1);
             this.breathingCycleSet1 = TengDa._Convert.StrToInt(rowInfo["BreathingCycleSet1"].ToString(), -1);
             this.breathingCycleSet2 = TengDa._Convert.StrToInt(rowInfo["BreathingCycleSet2"].ToString(), -1);
+            this.waterContent = TengDa._Convert.StrToInt(rowInfo["WaterContent"].ToString(), -1);
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
         }
         #endregion
@@ -552,11 +576,11 @@ namespace BakBattery.Baking
 
         public static int Add(Clamp addClamp, out string msg)
         {
-            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsInFinished], [IsOutFinished], [IsInUploaded], [IsOutUploaded], [VacuumSet], [T01Set], [T02Set], [T03Set], [T04Set], [T05Set], [T06Set], [T07Set], [T08Set], [T09Set], [T10Set], [YunFengTSet], [PreheatTimeSet], [BakingTimeSet], [BreathingCycleSet1], [BreathingCycleSet2], [ProcessTemperSet]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}')", TableName,
+            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsInFinished], [IsOutFinished], [IsInUploaded], [IsOutUploaded], [VacuumSet], [T01Set], [T02Set], [T03Set], [T04Set], [T05Set], [T06Set], [T07Set], [T08Set], [T09Set], [T10Set], [YunFengTSet], [PreheatTimeSet], [BakingTimeSet], [BreathingCycleSet1], [BreathingCycleSet2], [ProcessTemperSet], [WaterContent]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}', '{31}')", TableName,
               addClamp.Code, TengDa.WF.Current.user.Id, addClamp.OvenStationId, addClamp.Location, 
               addClamp.BakingStartTime, addClamp.BakingStopTime, addClamp.ScanTime, addClamp.InOvenTime, addClamp.OutOvenTime,addClamp.IsInFinished,addClamp.IsOutFinished,addClamp.IsInUploaded,addClamp.IsOutUploaded,addClamp.VacuumSet,
               addClamp.TsSet[0], addClamp.TsSet[1], addClamp.TsSet[2], addClamp.TsSet[3], addClamp.TsSet[4], addClamp.TsSet[5], addClamp.TsSet[6], addClamp.TsSet[7], addClamp.TsSet[8], addClamp.TsSet[9], 
-              addClamp.YunFengTSet, addClamp.PreheatTimeSet, addClamp.BakingTimeSet, addClamp.BreathingCycleSet1, addClamp.BreathingCycleSet2, addClamp.ProcessTemperSet), out msg);
+              addClamp.YunFengTSet, addClamp.PreheatTimeSet, addClamp.BakingTimeSet, addClamp.BreathingCycleSet1, addClamp.BreathingCycleSet2, addClamp.ProcessTemperSet, addClamp.WaterContent), out msg);
         }
 
         public static bool Delete(Clamp delClamp, out string msg)
