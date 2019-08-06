@@ -20,7 +20,14 @@ namespace BakBattery.Baking.App
 
             this.lbTrayCode.Text = "";
             this.lbFromStation.Text = "";
-            this.tbResult.Text = "";
+            this.tbResult1.Text = "";
+            this.tbResult2.Text = "";
+            this.tbResult3.Text = "";
+
+            this.lbStandard1.Text = string.Format("(标准值:{0}PPM)", Current.option.WaterContentStandard1);
+            this.lbStandard2.Text = string.Format("(标准值:{0}PPM)", Current.option.WaterContentStandard2);
+            this.lbStandard3.Text = string.Format("(标准值:{0}PPM)", Current.option.WaterContentStandard3);
+
             this.lbTip.Text = "";
 
             this.lbTrayCode.Text = Current.Transfer.Station.Clamp.Code;
@@ -36,19 +43,18 @@ namespace BakBattery.Baking.App
             try
             {
 
-
-                if (!float.TryParse(this.tbResult.Text.Trim(), out float val))
+                if (!float.TryParse(this.tbResult1.Text.Trim(), out float val1) || !float.TryParse(this.tbResult2.Text.Trim(), out float val2) || !float.TryParse(this.tbResult3.Text.Trim(), out float val3))
                 {
                     ShowTip("输入有误，请重新输入！", Color.Red);
                     return;
                 }
 
-                if (val <= 0f)
+                if (val1 <= 0f || val2 <= 0f || val3 <= 0f)
                 {
                     ShowTip("结果不能小于等于0！", Color.Red);
                 }
 
-                if (val < Current.option.WaterContentStandard)
+                if (val1 < Current.option.WaterContentStandard1 && val2 < Current.option.WaterContentStandard2 && val3 < Current.option.WaterContentStandard3)
                 {
                     Current.Transfer.Station.SampleStatus = SampleStatus.测试OK;
                     Current.Transfer.Station.Clamp.IsOutUploaded = false;
@@ -61,7 +67,9 @@ namespace BakBattery.Baking.App
                             ovenSamFromStation.GetFloor().Stations.ForEach(s =>
                             {
                                 s.SampleStatus = SampleStatus.未知;
-                                s.Clamp.WaterContent = val;
+                                s.Clamp.WaterContent1 = val1;
+                                s.Clamp.WaterContent2 = val2;
+                                s.Clamp.WaterContent3 = val3;
                             });
 
                             //该炉腔水分测试OK，下次换该烤箱另一个炉腔测试水分
@@ -70,7 +78,9 @@ namespace BakBattery.Baking.App
                             //测试ng次数复位为0
                             ovenSamFromStation.GetFloor().NgTimes = 0;
 
-                            Current.Transfer.Station.Clamp.WaterContent = val;
+                            Current.Transfer.Station.Clamp.WaterContent1 = val1;
+                            Current.Transfer.Station.Clamp.WaterContent2 = val2;
+                            Current.Transfer.Station.Clamp.WaterContent3 = val3;
 
                             ShowTip("水含量OK结果成功输入系统！", Color.Green);
                         }
@@ -95,12 +105,16 @@ namespace BakBattery.Baking.App
                         {
                             ovenSamFromStation.GetFloor().Stations.ForEach(s =>
                             {
-                                s.Clamp.WaterContent = val;
+                                s.Clamp.WaterContent1 = val1;
+                                s.Clamp.WaterContent2 = val1;
+                                s.Clamp.WaterContent3 = val1;
                             });
                             //水分NG次数增加1
                             ovenSamFromStation.GetFloor().NgTimes++;
 
-                            Current.Transfer.Station.Clamp.WaterContent = val;
+                            Current.Transfer.Station.Clamp.WaterContent1 = val1;
+                            Current.Transfer.Station.Clamp.WaterContent2 = val2;
+                            Current.Transfer.Station.Clamp.WaterContent3 = val3;
 
                             ShowTip("水含量NG结果成功输入系统！", Color.Green);
                         }

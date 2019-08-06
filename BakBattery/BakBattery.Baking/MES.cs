@@ -522,19 +522,43 @@ namespace BakBattery.Baking
                                 parameter_value = clamp.OutOvenTime.ToString("yyyy-MM-dd HH:mm:ss")
                             });
 
-                            if (clamp.WaterContent > 0f)
+                            if (clamp.WaterContent1 > 0f || clamp.WaterContent2 > 0f || clamp.WaterContent3 > 0f)
                             {
                                 uploadData.deviceParamData.Add(new DeviceParamData
                                 {
-                                    parameter_name = "水分测试标准值",
+                                    parameter_name = "水分测试正极标准值",
                                     parameter_unit = "PPM",
-                                    parameter_value = Current.option.WaterContentStandard.ToString("#.00")
+                                    parameter_value = Current.option.WaterContentStandard1.ToString("#.00")
                                 });
                                 uploadData.deviceParamData.Add(new DeviceParamData
                                 {
-                                    parameter_name = "水分测试实际值",
+                                    parameter_name = "水分测试正极实际值",
                                     parameter_unit = "PPM",
-                                    parameter_value = clamp.WaterContent.ToString("#.00")
+                                    parameter_value = clamp.WaterContent1.ToString("#.00")
+                                });
+                                uploadData.deviceParamData.Add(new DeviceParamData
+                                {
+                                    parameter_name = "水分测试负极标准值",
+                                    parameter_unit = "PPM",
+                                    parameter_value = Current.option.WaterContentStandard2.ToString("#.00")
+                                });
+                                uploadData.deviceParamData.Add(new DeviceParamData
+                                {
+                                    parameter_name = "水分测试负极实际值",
+                                    parameter_unit = "PPM",
+                                    parameter_value = clamp.WaterContent2.ToString("#.00")
+                                });
+                                uploadData.deviceParamData.Add(new DeviceParamData
+                                {
+                                    parameter_name = "水分测试混合标准值",
+                                    parameter_unit = "PPM",
+                                    parameter_value = Current.option.WaterContentStandard3.ToString("#.00")
+                                });
+                                uploadData.deviceParamData.Add(new DeviceParamData
+                                {
+                                    parameter_name = "水分测试混合实际值",
+                                    parameter_unit = "PPM",
+                                    parameter_value = clamp.WaterContent3.ToString("#.00")
                                 });
                             }
 

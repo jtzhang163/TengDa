@@ -417,25 +417,70 @@ namespace BakBattery.Baking
         private DateTime outOvenTime = TengDa.Common.DefaultTime;
 
 
-        private float waterContent = -1;
+        private float waterContent1 = -1;
         /// <summary>
-        /// 水含量数值
+        /// 正极实际值
         /// </summary>
-        [ReadOnly(true), DisplayName("水含量数值")]
-        [Category("基本信息")]
-        public float WaterContent
+        [ReadOnly(true), DisplayName("正极实际值")]
+        [Category("水含量")]
+        public float WaterContent1
         {
             get
             {
-                return waterContent;
+                return waterContent1;
             }
             set
             {
-                if (waterContent != value)
+                if (waterContent1 != value)
                 {
-                    UpdateDbField("WaterContent", value);
+                    UpdateDbField("WaterContent1", value);
                 }
-                waterContent = value;
+                waterContent1 = value;
+            }
+        }
+
+        private float waterContent2 = -1;
+        /// <summary>
+        /// 负极实际值
+        /// </summary>
+        [ReadOnly(true), DisplayName("负极实际值")]
+        [Category("水含量")]
+        public float WaterContent2
+        {
+            get
+            {
+                return waterContent2;
+            }
+            set
+            {
+                if (waterContent2 != value)
+                {
+                    UpdateDbField("WaterContent2", value);
+                }
+                waterContent2 = value;
+            }
+        }
+
+
+        private float waterContent3 = -1;
+        /// <summary>
+        /// 混合实际值
+        /// </summary>
+        [ReadOnly(true), DisplayName("混合实际值")]
+        [Category("水含量")]
+        public float WaterContent3
+        {
+            get
+            {
+                return waterContent3;
+            }
+            set
+            {
+                if (waterContent3 != value)
+                {
+                    UpdateDbField("WaterContent3", value);
+                }
+                waterContent3 = value;
             }
         }
 
@@ -515,7 +560,9 @@ namespace BakBattery.Baking
             this.bakingTimeSet = TengDa._Convert.StrToInt(rowInfo["BakingTimeSet"].ToString(), -1);
             this.breathingCycleSet1 = TengDa._Convert.StrToInt(rowInfo["BreathingCycleSet1"].ToString(), -1);
             this.breathingCycleSet2 = TengDa._Convert.StrToInt(rowInfo["BreathingCycleSet2"].ToString(), -1);
-            this.waterContent = TengDa._Convert.StrToInt(rowInfo["WaterContent"].ToString(), -1);
+            this.waterContent1 = TengDa._Convert.StrToInt(rowInfo["WaterContent1"].ToString(), -1);
+            this.waterContent2 = TengDa._Convert.StrToInt(rowInfo["WaterContent2"].ToString(), -1);
+            this.waterContent3 = TengDa._Convert.StrToInt(rowInfo["WaterContent3"].ToString(), -1);
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
         }
         #endregion
@@ -576,11 +623,11 @@ namespace BakBattery.Baking
 
         public static int Add(Clamp addClamp, out string msg)
         {
-            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsInFinished], [IsOutFinished], [IsInUploaded], [IsOutUploaded], [VacuumSet], [T01Set], [T02Set], [T03Set], [T04Set], [T05Set], [T06Set], [T07Set], [T08Set], [T09Set], [T10Set], [YunFengTSet], [PreheatTimeSet], [BakingTimeSet], [BreathingCycleSet1], [BreathingCycleSet2], [ProcessTemperSet], [WaterContent]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}', '{31}')", TableName,
+            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsInFinished], [IsOutFinished], [IsInUploaded], [IsOutUploaded], [VacuumSet], [T01Set], [T02Set], [T03Set], [T04Set], [T05Set], [T06Set], [T07Set], [T08Set], [T09Set], [T10Set], [YunFengTSet], [PreheatTimeSet], [BakingTimeSet], [BreathingCycleSet1], [BreathingCycleSet2], [ProcessTemperSet], [WaterContent1], [WaterContent2], [WaterContent3]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}', '{31}', '{32}', '{33}')", TableName,
               addClamp.Code, TengDa.WF.Current.user.Id, addClamp.OvenStationId, addClamp.Location, 
               addClamp.BakingStartTime, addClamp.BakingStopTime, addClamp.ScanTime, addClamp.InOvenTime, addClamp.OutOvenTime,addClamp.IsInFinished,addClamp.IsOutFinished,addClamp.IsInUploaded,addClamp.IsOutUploaded,addClamp.VacuumSet,
               addClamp.TsSet[0], addClamp.TsSet[1], addClamp.TsSet[2], addClamp.TsSet[3], addClamp.TsSet[4], addClamp.TsSet[5], addClamp.TsSet[6], addClamp.TsSet[7], addClamp.TsSet[8], addClamp.TsSet[9], 
-              addClamp.YunFengTSet, addClamp.PreheatTimeSet, addClamp.BakingTimeSet, addClamp.BreathingCycleSet1, addClamp.BreathingCycleSet2, addClamp.ProcessTemperSet, addClamp.WaterContent), out msg);
+              addClamp.YunFengTSet, addClamp.PreheatTimeSet, addClamp.BakingTimeSet, addClamp.BreathingCycleSet1, addClamp.BreathingCycleSet2, addClamp.ProcessTemperSet, addClamp.WaterContent1, addClamp.WaterContent2, addClamp.WaterContent3), out msg);
         }
 
         public static bool Delete(Clamp delClamp, out string msg)

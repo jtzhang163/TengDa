@@ -1932,28 +1932,80 @@ namespace BakBattery.Baking
             }
         }
 
-        private float waterContentStandard = -1;
+        private float waterContentStandard1 = -1;
         /// <summary>
-        /// 水含量阈值
+        /// 正极标准值
         /// </summary>
-        [DisplayName("水含量阈值（单位：PPM），小于该值时判定为OK")]
-        [Category("A-水含量测试")]
-        public float WaterContentStandard
+        [DisplayName("正极标准值"), Description("正极标准值（单位：PPM）")]
+        [Category("A-水含量")]
+        public float WaterContentStandard1
         {
             get
             {
-                if (waterContentStandard < 0)
+                if (waterContentStandard1 < 0)
                 {
-                    waterContentStandard = _Convert.StrToFloat(TengDa.WF.Option.GetOption("WaterContentStandard"), 300);
+                    waterContentStandard1 = _Convert.StrToFloat(TengDa.WF.Option.GetOption("WaterContentStandard1"), 300);
                 }
-                return waterContentStandard;
+                return waterContentStandard1;
             }
             set
             {
-                if (value != waterContentStandard)
+                if (value != waterContentStandard1)
                 {
-                    TengDa.WF.Option.SetOption("WaterContentStandard", value.ToString());
-                    waterContentStandard = value;
+                    TengDa.WF.Option.SetOption("WaterContentStandard1", value.ToString());
+                    waterContentStandard1 = value;
+                }
+            }
+        }
+
+        private float waterContentStandard2 = -1;
+        /// <summary>
+        /// 负极标准值
+        /// </summary>
+        [DisplayName("负极标准值"), Description("负极标准值（单位：PPM）")]
+        [Category("A-水含量")]
+        public float WaterContentStandard2
+        {
+            get
+            {
+                if (waterContentStandard2 < 0)
+                {
+                    waterContentStandard2 = _Convert.StrToFloat(TengDa.WF.Option.GetOption("WaterContentStandard2"), 300);
+                }
+                return waterContentStandard2;
+            }
+            set
+            {
+                if (value != waterContentStandard2)
+                {
+                    TengDa.WF.Option.SetOption("WaterContentStandard2", value.ToString());
+                    waterContentStandard2 = value;
+                }
+            }
+        }
+
+        private float waterContentStandard3 = -1;
+        /// <summary>
+        /// 混合标准值
+        /// </summary>
+        [DisplayName("混合标准值"), Description("混合标准值（单位：PPM）")]
+        [Category("A-水含量")]
+        public float WaterContentStandard3
+        {
+            get
+            {
+                if (waterContentStandard3 < 0)
+                {
+                    waterContentStandard3 = _Convert.StrToFloat(TengDa.WF.Option.GetOption("WaterContentStandard3"), 300);
+                }
+                return waterContentStandard3;
+            }
+            set
+            {
+                if (value != waterContentStandard3)
+                {
+                    TengDa.WF.Option.SetOption("WaterContentStandard3", value.ToString());
+                    waterContentStandard3 = value;
                 }
             }
         }
