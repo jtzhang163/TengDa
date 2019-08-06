@@ -14,6 +14,10 @@ namespace Anchitech.Baking.Controls
 {
     public partial class FloorUC : UserControl
     {
+
+        private string batchNumber1 = "";
+        private string batchNumber2 = "";
+
         private Floor floor;
 
         private Oven _oven;
@@ -144,23 +148,30 @@ namespace Anchitech.Baking.Controls
             }
             else if (Current.option.FloorShowInfoType == "批次号")
             {
-                var batchNumber1 = "";
-                var batchNumber2 = "";
-                Station s1 = oven.ClampOri == ClampOri.A ? floor.Stations[0] : floor.Stations[1];
-                Station s2 = oven.ClampOri == ClampOri.A ? floor.Stations[1] : floor.Stations[0];
-
-
-                if (s1.Clamp.Batteries.Count > 0 && s1.Clamp.Batteries[0].Code.Length > 12)
+                if (string.IsNullOrEmpty(batchNumber1) && string.IsNullOrEmpty(batchNumber1))
                 {
-                    batchNumber1 = s1.Clamp.Batteries[0].Code.Substring(8, 5);
-                }
+                    Station s1 = oven.ClampOri == ClampOri.A ? floor.Stations[0] : floor.Stations[1];
+                    Station s2 = oven.ClampOri == ClampOri.A ? floor.Stations[1] : floor.Stations[0];
 
-                if (s2.Clamp.Batteries.Count > 0 && s2.Clamp.Batteries[0].Code.Length > 12)
-                {
-                    batchNumber2 = s2.Clamp.Batteries[0].Code.Substring(8, 5);
+                    if (s1.Clamp.Batteries.Count > 0 && s1.Clamp.Batteries[0].Code.Length > 12)
+                    {
+                        batchNumber1 = s1.Clamp.Batteries[0].Code.Substring(8, 5);
+                    }
+
+                    if (s2.Clamp.Batteries.Count > 0 && s2.Clamp.Batteries[0].Code.Length > 12)
+                    {
+                        batchNumber2 = s2.Clamp.Batteries[0].Code.Substring(8, 5);
+                    }
                 }
 
                 lbStatus.Text = batchNumber1.PadLeft(5) + "  " + batchNumber2.PadLeft(5);
+            }
+
+
+            if (Current.option.FloorShowInfoType != "批次号")
+            {
+                batchNumber1 = "";
+                batchNumber1 = "";
             }
 
 
