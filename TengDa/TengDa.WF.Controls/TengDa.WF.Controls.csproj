@@ -48,6 +48,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDisplay2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserDisplay2.Designer.cs">
+      <DependentUpon>UserDisplay2.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserDisplay.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="UserDisplay2.resx">
+      <DependentUpon>UserDisplay2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserDisplay.resx">
       <DependentUpon>UserDisplay.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,9 +93,6 @@
       <Project>{313161d4-a305-47fb-8935-d7c0a0cf4b3d}</Project>
       <Name>TengDa</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="TengDa.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

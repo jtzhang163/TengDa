@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace TengDa.WF.Controls
 {
-    public partial class UserDisplay : UserControl
+    public partial class UserDisplay2 : UserControl
     {
-        public UserDisplay()
+        public UserDisplay2()
         {
             InitializeComponent();
         }
