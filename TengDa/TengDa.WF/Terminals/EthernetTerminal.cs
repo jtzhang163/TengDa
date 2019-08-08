@@ -175,15 +175,16 @@ namespace TengDa.WF.Terminals
                     siemens_net.PortRead = Port;                                           // 端口
                     siemens_net.PortWrite = 102;                                          // 写入端口，最好和读取分开
                     siemens_net.ConnectTimeout = 500;                                      // 连接超时时间
-                    siemens_net.ConnectServer(); 
+                    siemens_net.ConnectServer();
                     IsAlive = true;
                 }
-                else if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
+                else if (this.Company == PlcCompany.OMRON.ToString() && (this.Model == "SYSMAC CP1H" || this.Model == "NX102"))
                 {
                     if (omron_net == null)
                     {
                         omron_net = new HslCommunice533.Profinet.Omron.OmronFinsNet(this.IP, this.Port);
-                        omron_net.SA1 = TengDa.Net.GetIpLastValue(Net.GetLocalIpByRegex("192.168.*"));  // PC网络号，PC的IP地址的最后一个数
+                        var ips = this.IP.Split('.');
+                        omron_net.SA1 = TengDa.Net.GetIpLastValue(Net.GetLocalIpByRegex(string.Format("{0}.{1}.{2}.*", ips[0], ips[1], ips[2])));  // PC网络号，PC的IP地址的最后一个数
                         omron_net.DA1 = TengDa.Net.GetIpLastValue(this.IP);  // PLC网络号，PLC的IP地址的最后一个数0
                         omron_net.DA2 = 0x00; // PLC单元号，通常为0
 
@@ -195,7 +196,7 @@ namespace TengDa.WF.Terminals
                             msg = result.Message;
                             IsAlive = false;
                             return false;
-                        }                  
+                        }
                     }
                     IsAlive = true;
                 }
@@ -260,7 +261,7 @@ namespace TengDa.WF.Terminals
                     }
                     IsAlive = false;
                 }
-                else if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
+                else if (this.Company == PlcCompany.OMRON.ToString() && (this.Model == "SYSMAC CP1H" || this.Model == "NX102"))
                 {
                     if (omron_net != null)
                     {
@@ -577,7 +578,7 @@ namespace TengDa.WF.Terminals
                 }
             }
 
-            if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
+            if (this.Company == PlcCompany.OMRON.ToString() && (this.Model == "SYSMAC CP1H" || this.Model == "NX102"))
             {
                 TcpConnect(out msg);
                 HslCommunice533.OperateResult<ushort[]> result = omron_net.ReadUInt16(address, length);
@@ -639,7 +640,7 @@ namespace TengDa.WF.Terminals
         public bool SetInfo(string address, ushort val, out string msg)
         {
             msg = string.Empty;
-            if (this.Company == PlcCompany.OMRON.ToString() && this.Model == "SYSMAC CP1H")
+            if (this.Company == PlcCompany.OMRON.ToString() && (this.Model == "SYSMAC CP1H" || this.Model == "NX102"))
             {
                 TcpConnect(out msg);
                 HslCommunice533.OperateResult result = omron_net.Write(address, val);
