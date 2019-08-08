@@ -43,7 +43,7 @@ namespace CAMEL.Baking
 
         public static Blanker Blanker = new Blanker(1);
 
-        public static Robot Robot = new Robot(1);
+        public static RGV RGV = new RGV(1);
 
         public static Cacher Cacher = new Cacher(1);
 

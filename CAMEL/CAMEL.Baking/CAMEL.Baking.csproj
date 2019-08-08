@@ -59,7 +59,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="UploadTVD.cs" />
-    <Compile Include="Robot.cs" />
+    <Compile Include="RGV.cs" />
     <Compile Include="Transfer.cs" />
     <Compile Include="Clamp.cs" />
     <Compile Include="Current.cs" />

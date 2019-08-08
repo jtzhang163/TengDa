@@ -28,15 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OvenUC));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.floorUC3 = new CAMEL.Baking.Control.FloorUC();
-            this.floorUC2 = new CAMEL.Baking.Control.FloorUC();
-            this.floorUC1 = new CAMEL.Baking.Control.FloorUC();
+            this.floorUC4 = new CAMEL.Baking.Control.FloorUC();
+            this.floorUC5 = new CAMEL.Baking.Control.FloorUC();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pbTriLamp = new System.Windows.Forms.PictureBox();
             this.lbName = new System.Windows.Forms.Label();
+            this.floorUC2 = new CAMEL.Baking.Control.FloorUC();
+            this.floorUC1 = new CAMEL.Baking.Control.FloorUC();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -63,45 +66,49 @@
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetDouble;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.floorUC1, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.floorUC3, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.floorUC2, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.floorUC1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.floorUC4, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.floorUC5, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.floorUC2, 0, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 28);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(144, 269);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // floorUC3
             // 
-            this.floorUC3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.floorUC3.Location = new System.Drawing.Point(3, 179);
+            this.floorUC3.Location = new System.Drawing.Point(3, 109);
             this.floorUC3.Margin = new System.Windows.Forms.Padding(0);
             this.floorUC3.Name = "floorUC3";
-            this.floorUC3.Size = new System.Drawing.Size(138, 87);
+            this.floorUC3.Size = new System.Drawing.Size(138, 50);
             this.floorUC3.TabIndex = 2;
             // 
-            // floorUC2
+            // floorUC4
             // 
-            this.floorUC2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.floorUC2.Location = new System.Drawing.Point(3, 91);
-            this.floorUC2.Margin = new System.Windows.Forms.Padding(0);
-            this.floorUC2.Name = "floorUC2";
-            this.floorUC2.Size = new System.Drawing.Size(138, 85);
-            this.floorUC2.TabIndex = 1;
+            this.floorUC4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.floorUC4.Location = new System.Drawing.Point(3, 56);
+            this.floorUC4.Margin = new System.Windows.Forms.Padding(0);
+            this.floorUC4.Name = "floorUC4";
+            this.floorUC4.Size = new System.Drawing.Size(138, 50);
+            this.floorUC4.TabIndex = 1;
             // 
-            // floorUC1
+            // floorUC5
             // 
-            this.floorUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.floorUC1.Location = new System.Drawing.Point(3, 3);
-            this.floorUC1.Margin = new System.Windows.Forms.Padding(0);
-            this.floorUC1.Name = "floorUC1";
-            this.floorUC1.Size = new System.Drawing.Size(138, 85);
-            this.floorUC1.TabIndex = 0;
+            this.floorUC5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.floorUC5.Location = new System.Drawing.Point(3, 3);
+            this.floorUC5.Margin = new System.Windows.Forms.Padding(0);
+            this.floorUC5.Name = "floorUC5";
+            this.floorUC5.Size = new System.Drawing.Size(138, 50);
+            this.floorUC5.TabIndex = 0;
             // 
             // tableLayoutPanel3
             // 
@@ -140,6 +147,22 @@
             this.lbName.TabIndex = 7;
             this.lbName.Text = "烤箱名称";
             this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // floorUC2
+            // 
+            this.floorUC2.Location = new System.Drawing.Point(3, 162);
+            this.floorUC2.Margin = new System.Windows.Forms.Padding(0);
+            this.floorUC2.Name = "floorUC2";
+            this.floorUC2.Size = new System.Drawing.Size(138, 50);
+            this.floorUC2.TabIndex = 3;
+            // 
+            // floorUC1
+            // 
+            this.floorUC1.Location = new System.Drawing.Point(3, 215);
+            this.floorUC1.Margin = new System.Windows.Forms.Padding(0);
+            this.floorUC1.Name = "floorUC1";
+            this.floorUC1.Size = new System.Drawing.Size(138, 50);
+            this.floorUC1.TabIndex = 4;
             // 
             // OvenUC
             // 
@@ -181,10 +204,12 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private FloorUC floorUC3;
-        private FloorUC floorUC2;
-        private FloorUC floorUC1;
+        private FloorUC floorUC4;
+        private FloorUC floorUC5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.PictureBox pbTriLamp;
+        private FloorUC floorUC1;
+        private FloorUC floorUC2;
     }
 }

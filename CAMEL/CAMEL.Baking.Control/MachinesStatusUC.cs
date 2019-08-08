@@ -21,12 +21,10 @@ namespace CAMEL.Baking.Control
         {
             this.machineIndexs.Add(new MachineIndex { Machine = Current.Feeder, MsUC = this.machineStatusUC1 });
             this.machineIndexs.Add(new MachineIndex { Machine = Current.ClampScaner, MsUC = this.machineStatusUC2 });
-            this.machineIndexs.Add(new MachineIndex { Machine = Current.BatteryScaner, MsUC = this.machineStatusUC3 });
-            this.machineIndexs.Add(new MachineIndex { Machine = Current.Robot, MsUC = this.machineStatusUC4 });
-            int machineindex = 5;
+            this.machineIndexs.Add(new MachineIndex { Machine = Current.RGV, MsUC = this.machineStatusUC3 });
+            int machineindex = 4;
             Current.ovens.ForEach(o => { this.machineIndexs.Add(new MachineIndex { Machine = o, MsUC = (MachineStatusUC)(this.Controls.Find(string.Format("machineStatusUC{0}", machineindex++), true)[0]) }); });
-            this.machineIndexs.Add(new MachineIndex { Machine = Current.Blanker, MsUC = this.machineStatusUC17 });
-            this.machineIndexs.Add(new MachineIndex { Machine = Current.mes, MsUC = this.machineStatusUC18 });
+            this.machineIndexs.Add(new MachineIndex { Machine = Current.mes, MsUC = this.machineStatusUC29 });
             this.machineIndexs.ForEach(o => o.MsUC.Init(o.Machine));
         }
 

@@ -17,7 +17,7 @@ namespace CAMEL.Baking.Control
         public OvenUC()
         {
             InitializeComponent();
-            this.floorUCs = new FloorUC[3] { floorUC1, floorUC2, floorUC3 };
+            this.floorUCs = new FloorUC[5] { floorUC1, floorUC2, floorUC3, floorUC4, floorUC5 };
         }
 
         public void Init(Oven oven)

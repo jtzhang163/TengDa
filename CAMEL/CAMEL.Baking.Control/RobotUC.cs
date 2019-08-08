@@ -19,7 +19,7 @@ namespace CAMEL.Baking.Control
             InitializeComponent();
         }
 
-        public void Init(Robot robot)
+        public void Init(RGV robot)
         {
             this.lbName.Text = robot.Name;
             this.lbInfo.Text = "闲置";
@@ -27,7 +27,7 @@ namespace CAMEL.Baking.Control
             this.lbClampCode.BackColor = robot.ClampStatus == ClampStatus.异常 ? Color.Red : Color.Transparent;
         }
 
-        public void Update(Robot robot)
+        public void Update(RGV robot)
         {
 
             robot.IsAlive = robot.IsEnable && robot.Plc.IsAlive;
@@ -59,7 +59,7 @@ namespace CAMEL.Baking.Control
                 }
                 else if (robot.IsMoving && TengDa.WF.Current.IsTerminalInitFinished)
                 {
-                    this.lbInfo.Text = Current.Robot.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动中", robot.MovingDirSign) : string.Format("移动中{0}", robot.MovingDirSign);
+                    this.lbInfo.Text = Current.RGV.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动中", robot.MovingDirSign) : string.Format("移动中{0}", robot.MovingDirSign);
                     this.lbInfo.ForeColor = Color.Blue;
                 }
                 else if (robot.IsMoving)
@@ -104,7 +104,7 @@ namespace CAMEL.Baking.Control
             }
             else
             {
-                this.lbName.Text = Current.Robot.Name;
+                this.lbName.Text = Current.RGV.Name;
                 this.lbName.ForeColor = SystemColors.WindowText;
                 this.lbName.BackColor = Color.Transparent;
             }
@@ -113,8 +113,8 @@ namespace CAMEL.Baking.Control
 
         private void CmsRobot_Opening(object sender, CancelEventArgs e)
         {
-            this.tsmManuGetStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.Robot.IsAlive && Current.Task.NextFromStationId < 1 && Current.Task.NextToStationId < 1 && Current.Task.Status == TaskStatus.完成;
-            this.tsmManuPutStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.Robot.IsAlive && Current.Task.NextFromStationId > 0 && Current.Task.NextToStationId < 1 && Current.Task.Status == TaskStatus.完成;
+            this.tsmManuGetStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextFromStationId < 1 && Current.Task.NextToStationId < 1 && Current.Task.Status == TaskStatus.完成;
+            this.tsmManuPutStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextFromStationId > 0 && Current.Task.NextToStationId < 1 && Current.Task.Status == TaskStatus.完成;
         }
 
         private void tsmManuStation_DropDownOpening(object sender, EventArgs e)

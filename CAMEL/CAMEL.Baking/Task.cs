@@ -420,7 +420,7 @@ namespace CAMEL.Baking
                                 CurrentTask.ToSwitchManuTaskMode = false;
                                 return;
                             }
-                            Current.Robot.IsAlreadySendCmd = false;
+                            Current.RGV.IsAlreadySendCmd = false;
                             ///任务遍历
                             foreach (Task task in Task.CanGetPutTaskList.Where(t => t.IsEnable))
                             {
@@ -565,17 +565,17 @@ namespace CAMEL.Baking
                                 {
                                     Current.Task.ToStation.OpenDoor();
                                 }
-                                if (!Current.Robot.IsAlreadySendCmd && Current.Task.FromStation.DoorStatus == DoorStatus.打开 && Current.Task.ToStation.DoorStatus == DoorStatus.打开)
+                                if (!Current.RGV.IsAlreadySendCmd && Current.Task.FromStation.DoorStatus == DoorStatus.打开 && Current.Task.ToStation.DoorStatus == DoorStatus.打开)
                                 {
-                                    if (Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation))
+                                    if (Current.RGV.Move(Current.Task.FromStation, Current.Task.ToStation))
                                     {
-                                        Current.Robot.IsAlreadySendCmd = true;
+                                        Current.RGV.IsAlreadySendCmd = true;
                                     }
                                 }
 
-                                if (Current.Robot.IsReceived())
+                                if (Current.RGV.IsReceived())
                                 {
-                                    Current.Robot.IsMoving = true;
+                                    Current.RGV.IsMoving = true;
                                     if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
                                     {
                                         var j = Current.Feeder.Stations.IndexOf(Current.Task.FromStation);
@@ -586,9 +586,9 @@ namespace CAMEL.Baking
                             }
                             else if (Current.Task.Status == TaskStatus.取放中 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
                             {
-                                Current.Robot.ClampStatus = Current.Task.FromClampStatus;
-                                Current.Robot.ClampId = Current.Task.ClampId;
-                                if (Current.option.TaskIsFinished || Current.Robot.IsFinished())
+                                Current.RGV.ClampStatus = Current.Task.FromClampStatus;
+                                Current.RGV.ClampId = Current.Task.ClampId;
+                                if (Current.option.TaskIsFinished || Current.RGV.IsFinished())
                                 {
                                     if (Current.Task.ToStation.GetPutType == GetPutType.上料机)
                                     {
@@ -608,13 +608,13 @@ namespace CAMEL.Baking
                                         Current.Blanker.SetGetClampFinish(j);
                                     }
 
-                                    Current.Robot.IsMoving = false;
+                                    Current.RGV.IsMoving = false;
                                     Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                                     Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
                                     Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
 
-                                    Current.Robot.ClampStatus = ClampStatus.无夹具;
-                                    Current.Robot.IsAlreadySendCmd = false;
+                                    Current.RGV.ClampStatus = ClampStatus.无夹具;
+                                    Current.RGV.IsAlreadySendCmd = false;
 
                                     if (Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
                                     {
@@ -714,17 +714,17 @@ namespace CAMEL.Baking
                             }
                             else if (Current.Task.Status == TaskStatus.可取放 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
                             {
-                                if (!Current.Robot.IsAlreadySendCmd)
+                                if (!Current.RGV.IsAlreadySendCmd)
                                 {
-                                    if (Current.Robot.Move(Current.Task.FromStation, Current.Task.ToStation))
+                                    if (Current.RGV.Move(Current.Task.FromStation, Current.Task.ToStation))
                                     {
-                                        Current.Robot.IsAlreadySendCmd = true;
+                                        Current.RGV.IsAlreadySendCmd = true;
                                     }
                                 }
 
-                                if (Current.Robot.IsReceived())
+                                if (Current.RGV.IsReceived())
                                 {
-                                    Current.Robot.IsMoving = true;
+                                    Current.RGV.IsMoving = true;
                                     if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
                                     {
                                         var j = Current.Feeder.Stations.IndexOf(Current.Task.FromStation);
@@ -735,9 +735,9 @@ namespace CAMEL.Baking
                             }
                             else if (Current.Task.Status == TaskStatus.取放中 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
                             {
-                                Current.Robot.ClampStatus = Current.Task.FromClampStatus;
-                                Current.Robot.ClampId = Current.Task.ClampId;
-                                if (Current.option.TaskIsFinished || Current.Robot.IsFinished())
+                                Current.RGV.ClampStatus = Current.Task.FromClampStatus;
+                                Current.RGV.ClampId = Current.Task.ClampId;
+                                if (Current.option.TaskIsFinished || Current.RGV.IsFinished())
                                 {
                                     if (Current.Task.ToStation.GetPutType == GetPutType.上料机)
                                     {
@@ -757,13 +757,13 @@ namespace CAMEL.Baking
                                         Current.Blanker.SetGetClampFinish(j);
                                     }
 
-                                    Current.Robot.IsMoving = false;
+                                    Current.RGV.IsMoving = false;
                                     Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                                     Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
                                     Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
 
-                                    Current.Robot.ClampStatus = ClampStatus.无夹具;
-                                    Current.Robot.IsAlreadySendCmd = false;
+                                    Current.RGV.ClampStatus = ClampStatus.无夹具;
+                                    Current.RGV.IsAlreadySendCmd = false;
 
                                     if (Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
                                     {

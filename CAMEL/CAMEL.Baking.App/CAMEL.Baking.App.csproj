@@ -107,7 +107,7 @@
     <None Include="Resources\emergency_stop.png" />
     <None Include="Resources\maintenance.png" />
     <None Include="Resources\ColorIntroduction.png" />
-    <Content Include="Resources\Robot_Track_Lime.PNG" />
+    <None Include="Resources\Rgv_Track_Lime.PNG" />
     <Content Include="TengDa.ico" />
   </ItemGroup>
   <ItemGroup>

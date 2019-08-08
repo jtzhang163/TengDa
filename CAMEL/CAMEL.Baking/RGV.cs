@@ -11,9 +11,9 @@ using TengDa.WF;
 namespace CAMEL.Baking
 {
     /// <summary>
-    /// 机器人搬运车
+    /// RGV
     /// </summary>
-    public class Robot : TengDa.WF.Terminals.Terminal
+    public class RGV : TengDa.WF.Terminals.Terminal
     {
         #region 属性字段
 
@@ -24,7 +24,7 @@ namespace CAMEL.Baking
             {
                 if (string.IsNullOrEmpty(tableName))
                 {
-                    tableName = Config.DbTableNamePre + ".Robot";
+                    tableName = Config.DbTableNamePre + ".RGV";
                 }
                 return tableName;
             }
@@ -155,9 +155,9 @@ namespace CAMEL.Baking
 
         #region 构造方法
 
-        public Robot() : this(-1) { }
+        public RGV() : this(-1) { }
 
-        public Robot(int id)
+        public RGV(int id)
         {
             if (id < 0)
             {
@@ -283,7 +283,7 @@ namespace CAMEL.Baking
 
             LogHelper.WriteInfo(string.Format("给机器人发送取放盘指令------：{0}", cmd));
 
-            if (!Current.Robot.Plc.SetInfo(cmd, out string msg))
+            if (!Current.RGV.Plc.SetInfo(cmd, out string msg))
             {
                 LogHelper.WriteInfo(string.Format("发送取放盘指令失败--：{0}", msg));
                 Error.Alert(msg);
@@ -337,7 +337,7 @@ namespace CAMEL.Baking
         public bool Pause(out string msg)
         {
 
-            if (!Current.Robot.Plc.SetInfo("D1012", (ushort)1, out msg))
+            if (!Current.RGV.Plc.SetInfo("D1012", (ushort)1, out msg))
             {
                 Error.Alert(msg);
                 this.Plc.IsAlive = false;
@@ -358,7 +358,7 @@ namespace CAMEL.Baking
         public bool Restart(out string msg)
         {
 
-            if (!Current.Robot.Plc.SetInfo("D1012", (ushort)0, out msg))
+            if (!Current.RGV.Plc.SetInfo("D1012", (ushort)0, out msg))
             {
                 Error.Alert(msg);
                 this.Plc.IsAlive = false;
@@ -376,194 +376,10 @@ namespace CAMEL.Baking
         /// <returns></returns>
         public bool Stop(out string msg)
         {
-            Current.Robot.Pause(out msg);
+            Current.RGV.Pause(out msg);
             return true;
         }
 
-        #endregion
-    }
-
-    public class RobotPosition : Service
-    {
-        #region 属性字段
-
-        private static string tableName = string.Empty;
-        public static string TableName
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(tableName))
-                {
-                    tableName = Config.DbTableNamePre + ".RobotPositions";
-                }
-                return tableName;
-            }
-        }
-
-        private int position = 1;
-
-        [ReadOnly(true)]
-        [DisplayName("位置编号")]
-        public int Position
-        {
-            get
-            {
-                return position;
-            }
-            set
-            {
-                if (position != value)
-                {
-                    UpdateDbField("Position", value);
-                }
-                position = value;
-            }
-        }
-
-
-        private int xValue = 1;
-
-        [DisplayName("坐标值")]
-        public int XValue
-        {
-            get
-            {
-                return xValue;
-            }
-            set
-            {
-                if (xValue != value)
-                {
-                    UpdateDbField("XValue", value);
-                }
-                xValue = value;
-            }
-        }
-
-        private int xMinValue = 1;
-
-        [DisplayName("最小坐标值")]
-        public int XMinValue
-        {
-            get
-            {
-                return xMinValue;
-            }
-            set
-            {
-                if (xMinValue != value)
-                {
-                    UpdateDbField("XMinValue", value);
-                }
-                xMinValue = value;
-            }
-        }
-
-        private int xMaxValue = 1;
-
-        [DisplayName("最大坐标值")]
-        public int XMaxValue
-        {
-            get
-            {
-                return xMaxValue;
-            }
-            set
-            {
-                if (xMaxValue != value)
-                {
-                    UpdateDbField("XMaxValue", value);
-                }
-                xMaxValue = value;
-            }
-        }
-
-        #endregion
-
-        #region 构造方法
-
-        public RobotPosition() : this(-1) { }
-
-        public RobotPosition(int id)
-        {
-            if (id < 0)
-            {
-                this.Id = -1;
-                return;
-            }
-
-            string msg = string.Empty;
-
-            DataTable dt = Database.Query("SELECT * FROM [dbo].[" + TableName + "] WHERE Id = " + id, out msg);
-
-            if (!string.IsNullOrEmpty(msg))
-            {
-                Error.Alert(msg);
-                return;
-            }
-
-            if (dt == null || dt.Rows.Count == 0) { return; }
-
-            Init(dt.Rows[0]);
-
-            //释放资源
-            dt.Dispose();
-        }
-
-        #endregion
-
-        #region 初始化方法
-        protected void Init(DataRow rowInfo)
-        {
-            if (rowInfo == null)
-            {
-                this.Id = -1;
-                return;
-            }
-
-            InitFields(rowInfo);
-        }
-
-        protected void InitFields(DataRow rowInfo)
-        {
-            this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
-            this.position = TengDa._Convert.StrToInt(rowInfo["Position"].ToString(), -1);
-            this.xValue = TengDa._Convert.StrToInt(rowInfo["XValue"].ToString(), -1);
-            this.xMinValue = TengDa._Convert.StrToInt(rowInfo["XMinValue"].ToString(), -1);
-            this.xMaxValue = TengDa._Convert.StrToInt(rowInfo["XMaxValue"].ToString(), -1);
-        }
-        #endregion
-
-        #region 列表
-        private static List<RobotPosition> robotPositionList = new List<RobotPosition>();
-        public static List<RobotPosition> RobotPositionList
-        {
-            get
-            {
-                if (robotPositionList.Count < 1)
-                {
-                    string msg = string.Empty;
-
-                    DataTable dt = Database.Query("SELECT * FROM [dbo].[" + TableName + "]", out msg);
-                    if (!string.IsNullOrEmpty(msg))
-                    {
-                        Error.Alert(msg);
-                        return null;
-                    }
-
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            RobotPosition robotPosition = new RobotPosition();
-                            robotPosition.InitFields(dt.Rows[i]);
-                            robotPositionList.Add(robotPosition);
-                        }
-                    }
-                }
-                return robotPositionList;
-            }
-        }
         #endregion
     }
 

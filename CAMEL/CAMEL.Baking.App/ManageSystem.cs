@@ -237,15 +237,15 @@ namespace CAMEL.Baking.App
             List<TreeNode> tnRobotNodes = new List<TreeNode>();
 
             List<TreeNode> tnRobotClamps = new List<TreeNode>();
-            if (Current.Robot.Clamp.Id > 0)
+            if (Current.RGV.Clamp.Id > 0)
             {
                 List<TreeNode> tnBatteries = new List<TreeNode>();
-                var batteries = Current.Robot.Clamp.Batteries;
+                var batteries = Current.RGV.Clamp.Batteries;
                 foreach (var b in batteries)
                 {
                     tnBatteries.Add(new TreeNode(string.Format("{0}:{1}(电芯)", b.Id, b.Code)));
                 }
-                tnRobotClamps.Add(new TreeNode(string.Format("{0}:{1}(夹具)", Current.Robot.Clamp.Id, Current.Robot.Clamp.Code), tnBatteries.ToArray()));
+                tnRobotClamps.Add(new TreeNode(string.Format("{0}:{1}(夹具)", Current.RGV.Clamp.Id, Current.RGV.Clamp.Code), tnBatteries.ToArray()));
             }
 
             tnRobotNodes.Add(new TreeNode("PLC"));
@@ -282,7 +282,7 @@ namespace CAMEL.Baking.App
                 cbAlarmFloors.SelectedIndex = 0;
             }
 
-            this.feederUC1.Init(Current.Feeder);
+           // this.feederUC1.Init(Current.Feeder);
 
             //for (int i = 0; i < 1; i++)
             //{
@@ -297,13 +297,10 @@ namespace CAMEL.Baking.App
             //    }
             //}
 
-            this.blankerUC1.Init(Current.Blanker);
+            //this.blankerUC1.Init(Current.Blanker);
 
-            this.robotUC1.Init(Current.Robot);
+            this.robotUC1.Init(Current.RGV);
 
-            this.transferUC1.Init(Current.Transfer);
-
-            this.cacherUC1.Init(Current.Cacher);
 
             bool isAll = true;
             for (int k = 0; k < Option.TemperaturePointCount; k++)
@@ -510,7 +507,7 @@ namespace CAMEL.Baking.App
 
             #region 上料机、扫码枪
 
-            this.feederUC1.Update(Current.Feeder);
+           // this.feederUC1.Update(Current.Feeder);
 
             if (Current.Feeder.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Feeder) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "连接成功"); } }
             else { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "未连接"); }
@@ -543,19 +540,6 @@ namespace CAMEL.Baking.App
 
             #endregion
 
-            #region 下料机、缓存架、转移台
-
-            this.blankerUC1.Update(Current.Blanker);
-
-            if (Current.Blanker.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Blanker) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "连接成功"); } }
-            else { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "未连接"); }
-
-
-            this.cacherUC1.Update(Current.Cacher);
-
-            this.transferUC1.Update(Current.Transfer);
-
-            #endregion
 
             #region MES
 
@@ -577,12 +561,12 @@ namespace CAMEL.Baking.App
 
             #region 机器人
 
-            this.robotUC1.Update(Current.Robot);
+            this.robotUC1.Update(Current.RGV);
 
-            if (Current.Robot.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Robot) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "连接成功"); } }
-            else { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "未连接"); }
+            if (Current.RGV.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.RGV) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "连接成功"); } }
+            else { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "未连接"); }
 
-            //this.panelRobot.Padding = new Padding(Current.Robot.Position + 3, 3, 0, 3);
+            //this.panelRobot.Padding = new Padding(Current.RGV.Position + 3, 3, 0, 3);
 
             #endregion
 
@@ -631,8 +615,8 @@ namespace CAMEL.Baking.App
 
         #region 控件数组
 
-        private const int OvenCount = 12;
-        private const int OvenFloorCount = 3;
+        private const int OvenCount = 25;
+        private const int OvenFloorCount = 5;
 
         private OvenUC[] ovenUCs = new OvenUC[OvenCount];
 
@@ -769,15 +753,15 @@ namespace CAMEL.Baking.App
                             }
                         }
                     }
-                    if (Current.Robot.IsAlive)
+                    if (Current.RGV.IsAlive)
                     {
-                        //if (!Current.Robot.IsExecuting)
+                        //if (!Current.RGV.IsExecuting)
                         //{
                         //    Tip.Alert("机器人尚未成功启动，不能切换自动");
                         //    return;
                         //}
 
-                        if (Current.Robot.ClampStatus != ClampStatus.无夹具)
+                        if (Current.RGV.ClampStatus != ClampStatus.无夹具)
                         {
                             Tip.Alert("机器人负载有夹具，不能切换自动");
                             return;
@@ -851,8 +835,8 @@ namespace CAMEL.Baking.App
             Current.Task.StartTime = TengDa.Common.DefaultTime;
             Current.Task.FromClampStatus = ClampStatus.未知;
             Current.Task.Status = TaskStatus.完成;
-            Current.Robot.IsMoving = false;
-            Current.Robot.IsAlreadySendCmd = false;
+            Current.RGV.IsMoving = false;
+            Current.RGV.IsAlreadySendCmd = false;
         }
 
         private bool PlcConnect()
@@ -916,24 +900,24 @@ namespace CAMEL.Baking.App
             }
             
 
-            if (Current.Robot.IsEnable)
+            if (Current.RGV.IsEnable)
             {
-                if (!Current.Robot.Plc.IsPingSuccess)
+                if (!Current.RGV.Plc.IsPingSuccess)
                 {
-                    Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.Robot.Plc.Name, Current.Robot.Plc.IP));
+                    Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.RGV.Plc.Name, Current.RGV.Plc.IP));
                     return false;
                 }
 
-                if (!Current.Robot.Plc.TcpConnect(out msg))
+                if (!Current.RGV.Plc.TcpConnect(out msg))
                 {
                     Error.Alert(string.Format("打开机器人连接失败，原因：{0}", msg));
                     return false;
                 }
 
-                Current.Robot.Plc.StartListenReceiveData();
+                Current.RGV.Plc.StartListenReceiveData();
 
-                this.machinesStatusUC1.SetStatusInfo(Current.Robot, "连接成功");
-                this.machinesStatusUC1.SetLampColor(Current.Robot, Color.Green);
+                this.machinesStatusUC1.SetStatusInfo(Current.RGV, "连接成功");
+                this.machinesStatusUC1.SetLampColor(Current.RGV, Color.Green);
             }
 
             return true;
@@ -1001,20 +985,20 @@ namespace CAMEL.Baking.App
             Current.Blanker.PreAlarmStr = string.Empty;
             
 
-            if (Current.Robot.IsEnable)
+            if (Current.RGV.IsEnable)
             {
-                //if (Current.Robot.IsStartting && !Current.Robot.IsPausing)
+                //if (Current.RGV.IsStartting && !Current.RGV.IsPausing)
                 //{
-                //    Current.Robot.Pause(out msg);
+                //    Current.RGV.Pause(out msg);
                 //}
 
-                if (!Current.Robot.Plc.TcpDisConnect(out msg))
+                if (!Current.RGV.Plc.TcpDisConnect(out msg))
                 {
                     Error.Alert(msg);
                     return false;
                 }
-                this.machinesStatusUC1.SetStatusInfo(Current.Robot, "未连接");
-                this.machinesStatusUC1.SetLampColor(Current.Robot, Color.Gray);
+                this.machinesStatusUC1.SetStatusInfo(Current.RGV, "未连接");
+                this.machinesStatusUC1.SetLampColor(Current.RGV, Color.Gray);
             }
 
             Current.Transfer.IsAlive = false;
@@ -1121,8 +1105,8 @@ namespace CAMEL.Baking.App
                     return false;
                 }
 
-                this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "未连接");
-                this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Gray);
+                //this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "未连接");
+                //this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Gray);
             }
 
             if (Current.ClampScaner.IsEnable)
@@ -1152,7 +1136,7 @@ namespace CAMEL.Baking.App
 
         delegate void UpdateUI1PDelegate(string text);
 
-        System.Timers.Timer[] timerOvenRuns = new System.Timers.Timer[OvenCount] { null, null, null, null, null, null, null, null, null, null, null, null };
+        System.Timers.Timer[] timerOvenRuns = new System.Timers.Timer[OvenCount];
 
         System.Timers.Timer[] timerFeederRuns = new System.Timers.Timer[1] { null };
 
@@ -1207,9 +1191,9 @@ namespace CAMEL.Baking.App
             }
             
 
-            if (Current.Robot.IsEnable && !Current.Robot.Plc.IsAlive)
+            if (Current.RGV.IsEnable && !Current.RGV.Plc.IsAlive)
             {
-                msg = Current.Robot.Name + " 启动异常！";
+                msg = Current.RGV.Name + " 启动异常！";
                 return false;
             }
 
@@ -1685,14 +1669,14 @@ namespace CAMEL.Baking.App
                         {
                             if (Current.Feeder.PreCurrentBatteryCount != Current.Feeder.CurrentBatteryCount)
                             {
-                                this.feederUC1.Invalidate(j);
+                               // this.feederUC1.Invalidate(j);
                                 //  this.tlpFeederStationClamp[i][j].Invalidate();
                             }
                         }
 
                         if (Current.Feeder.Stations[j].PreIsAlive != Current.Feeder.Stations[j].IsAlive)
                         {
-                            this.feederUC1.Invalidate(j);
+                            //this.feederUC1.Invalidate(j);
                             // this.tlpFeederStationClamp[i][j].Invalidate();
                         }
                         Current.Feeder.Stations[j].PreIsAlive = Current.Feeder.Stations[j].IsAlive;
@@ -1728,19 +1712,19 @@ namespace CAMEL.Baking.App
         private void RobotRunInvokeFunc()
         {
             string msg = string.Empty;
-            if (timerlock && Current.Robot.IsEnable)
+            if (timerlock && Current.RGV.IsEnable)
             {
-                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "发送指令"); }));
-                if (Current.Robot.GetInfo())
+                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "发送指令"); }));
+                if (Current.RGV.GetInfo())
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "获取信息成功"); }));
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "获取信息成功"); }));
                 }
                 else
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "获取信息失败"); }));
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "获取信息失败"); }));
                 }
 
-                if (Current.Robot.AlreadyGetAllInfo)
+                if (Current.RGV.AlreadyGetAllInfo)
                 {
 
 
@@ -1778,7 +1762,7 @@ namespace CAMEL.Baking.App
 
                             ////从某一炉子取完盘后，立即关门，无需等到整个任务结束
                             //if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
-                            //    && Current.Robot.IsAlive && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
+                            //    && Current.RGV.IsAlive && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
                             //{
                             //    Current.ovens[i].CloseDoor(j);
                             //}
@@ -2912,7 +2896,7 @@ namespace CAMEL.Baking.App
                     }
                     else if (e.Node.Level == 0 && e.Node.Text == "机器人")
                     {
-                        this.propertyGridSettings.SelectedObject = Current.Robot;
+                        this.propertyGridSettings.SelectedObject = Current.RGV;
                     }
                     else if (e.Node.Level == 0 && e.Node.Text == "缓存架")
                     {
@@ -2967,11 +2951,11 @@ namespace CAMEL.Baking.App
                     }
                     else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人" && e.Node.Text == "PLC")
                     {
-                        this.propertyGridSettings.SelectedObject = Current.Robot.Plc;
+                        this.propertyGridSettings.SelectedObject = Current.RGV.Plc;
                     }
                     else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人" && e.Node.Text.IndexOf("夹具") > -1)
                     {
-                        this.propertyGridSettings.SelectedObject = Current.Robot.Clamp;
+                        this.propertyGridSettings.SelectedObject = Current.RGV.Clamp;
                     }
                     else if (e.Node.Level == 2 && e.Node.Text.IndexOf("夹具") > -1)
                     {
@@ -3017,9 +3001,9 @@ namespace CAMEL.Baking.App
                 int Id = (int)propertyInfoId.GetValue(o, null); //获取属性值
                 settingsStr = string.Format("将Id为 {0} 的 {1} 的 {2} 由 {3} 修改为 {4} ", Id, type.Name, e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
             }
-            else if (type == typeof(Robot))
+            else if (type == typeof(RGV))
             {
-                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Robot.Name);
+                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.RGV.Name);
             }
             else if (type == typeof(Transfer))
             {
@@ -3485,7 +3469,7 @@ namespace CAMEL.Baking.App
 
         private void btnDebug_Click(object sende, EventArgs e)
         {
-            Current.Robot.Plc.GetInfoNoWrite(out string msg);
+            Current.RGV.Plc.GetInfoNoWrite(out string msg);
             Console.WriteLine(msg);
         }
 
@@ -3499,9 +3483,9 @@ namespace CAMEL.Baking.App
         {
             if (e.KeyChar.ToString() == " ")
             {
-                if (Current.Robot.IsAlive)
+                if (Current.RGV.IsAlive)
                 {
-                    if (Current.Robot.Stop(out string msg))
+                    if (Current.RGV.Stop(out string msg))
                     {
                         Tip.Alert("按下空格键急停大机器人成功！");
                     }
