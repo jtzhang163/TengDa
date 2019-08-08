@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TengDa;
+using TengDa.WF;
 
 namespace CAMEL.Baking.Control
 {
     public partial class FeederUC : UserControl
     {
-        private Feeder feeder;
         public FeederUC()
         {
             InitializeComponent();
@@ -22,14 +22,18 @@ namespace CAMEL.Baking.Control
         public void Init(Feeder feeder)
         {
             this.lbName.Text = feeder.Name;
-            this.lbFeederStationName1.Text = feeder.Stations[0].Name;
-            this.lbFeederStationName2.Text = feeder.Stations[1].Name;
-            this.lbFeederStationName3.Text = feeder.Stations[2].Name;
 
-            this.feedClampUC1.Init(feeder.Stations[0]);
-            this.feedClampUC2.Init(feeder.Stations[1]);
-            this.feedClampUC3.Init(feeder.Stations[2]);
-            this.feeder = feeder;
+            this.lbStationName1.Text = feeder.Stations[0].Name;
+            this.lbStationName2.Text = feeder.Stations[1].Name;
+
+            //this.lbFromStationName1.Text = blanker.Stations[0].FromStation.Name;
+            //this.lbFromStationName2.Text = blanker.Stations[1].FromStation.Name;
+
+            this.simpleClampUC1.Init(feeder.Stations[0]);
+            this.simpleClampUC2.Init(feeder.Stations[1]);
+
+            this.tsmPutFinished1.Text = feeder.Stations[0].Name + "放盘完成";
+            this.tsmPutFinished2.Text = feeder.Stations[1].Name + "放盘完成";
         }
 
         public void Update(Feeder feeder)
@@ -72,24 +76,30 @@ namespace CAMEL.Baking.Control
             }
             feeder.PreAlarmStr = feeder.AlarmStr;
 
-            this.feedClampUC1.Update(feeder.Stations[0]);
-            this.feedClampUC2.Update(feeder.Stations[1]);
-            this.feedClampUC3.Update(feeder.Stations[2]);
+            //this.lbFromStationName1.Text = blanker.Stations[0].FromStation.Name;
+            //this.lbFromStationName2.Text = blanker.Stations[1].FromStation.Name;
+
+            this.simpleClampUC1.Update(feeder.Stations[0]);
+            this.simpleClampUC2.Update(feeder.Stations[1]);
         }
 
-        public void Invalidate(int j)
+        private void CmsBlanker_Opening(object sender, CancelEventArgs e)
         {
-            if (j == 0)
+            this.tsmPutFinished1.Enabled = Current.Feeder.IsAlive && Current.Feeder.Stations[0].ClampStatus == ClampStatus.满夹具;
+            this.tsmPutFinished2.Enabled = Current.Feeder.IsAlive && Current.Feeder.Stations[1].ClampStatus == ClampStatus.满夹具;
+        }
+
+        private void TsmPutFinished_Click(object sender, EventArgs e)
+        {
+            if ((sender as ToolStripMenuItem).Name == "tsmPutFinished1")
             {
-                this.feedClampUC1.InvalidateShowBatteryCount();
+                Operation.Add(string.Format("手动点击{0}放盘完成", Current.Feeder.Stations[0].Name));
+                Current.Feeder.SetPutClampFinish(0);
             }
-            else if (j == 1)
+            else
             {
-                this.feedClampUC2.InvalidateShowBatteryCount();
-            }
-            else if (j == 2)
-            {
-                this.feedClampUC3.InvalidateShowBatteryCount();
+                Operation.Add(string.Format("手动点击{0}放盘完成", Current.Feeder.Stations[1].Name));
+                Current.Feeder.SetPutClampFinish(1);
             }
         }
     }

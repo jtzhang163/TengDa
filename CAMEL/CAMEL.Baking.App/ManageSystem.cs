@@ -195,10 +195,10 @@ namespace CAMEL.Baking.App
 
             var stationList = new List<Station>();
             Current.Feeder.Stations.ForEach(s => stationList.Add(s));
-            Current.Blanker.Stations.ForEach(s => stationList.Add(s));
+            //Current.Blanker.Stations.ForEach(s => stationList.Add(s));
             Current.ovens.ForEach(o => o.Floors.ForEach(f => f.Stations.ForEach(s => stationList.Add(s))));
-            Current.Cacher.Stations.ForEach(s => stationList.Add(s));
-            stationList.Add(Current.Transfer.Station);
+            //Current.Cacher.Stations.ForEach(s => stationList.Add(s));
+            //stationList.Add(Current.Transfer.Station);
 
             foreach (Station station in stationList)
             {
@@ -282,7 +282,7 @@ namespace CAMEL.Baking.App
                 cbAlarmFloors.SelectedIndex = 0;
             }
 
-           // this.feederUC1.Init(Current.Feeder);
+            this.feederUC1.Init(Current.Feeder);
 
             //for (int i = 0; i < 1; i++)
             //{
@@ -359,10 +359,10 @@ namespace CAMEL.Baking.App
             int iii = Current.ovens.IndexOf(sampleOven);
             int jjj = sampleOven.Floors.IndexOf(sampleFloor);
 
-            cbBatteryScaner.Items.Add(Current.BatteryScaner.Name);
+            //cbBatteryScaner.Items.Add(Current.BatteryScaner.Name);
             cbClampScaner.Items.Add(Current.ClampScaner.Name);
 
-            cbBatteryScaner.SelectedIndex = 0;
+            //cbBatteryScaner.SelectedIndex = 0;
             cbClampScaner.SelectedIndex = 0;
 
 
@@ -507,7 +507,7 @@ namespace CAMEL.Baking.App
 
             #region 上料机、扫码枪
 
-           // this.feederUC1.Update(Current.Feeder);
+            this.feederUC1.Update(Current.Feeder);
 
             if (Current.Feeder.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Feeder) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "连接成功"); } }
             else { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "未连接"); }
@@ -882,22 +882,22 @@ namespace CAMEL.Baking.App
             }
 
 
-            if (Current.Blanker.IsEnable)
-            {
-                if (!Current.Blanker.Plc.IsPingSuccess)
-                {
-                    Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.Blanker.Plc.Name, Current.Blanker.Plc.IP));
-                    return false;
-                }
+            //if (Current.Blanker.IsEnable)
+            //{
+            //    if (!Current.Blanker.Plc.IsPingSuccess)
+            //    {
+            //        Error.Alert(string.Format("无法连接到{0}, IP:{1}", Current.Blanker.Plc.Name, Current.Blanker.Plc.IP));
+            //        return false;
+            //    }
 
-                if (!Current.Blanker.Plc.TcpConnect(out msg))
-                {
-                    Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.Blanker.Name, msg));
-                    return false;
-                }
-                this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "连接成功");
-                this.machinesStatusUC1.SetLampColor(Current.Blanker, Color.Green);
-            }
+            //    if (!Current.Blanker.Plc.TcpConnect(out msg))
+            //    {
+            //        Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.Blanker.Name, msg));
+            //        return false;
+            //    }
+            //    this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "连接成功");
+            //    this.machinesStatusUC1.SetLampColor(Current.Blanker, Color.Green);
+            //}
             
 
             if (Current.RGV.IsEnable)
@@ -971,18 +971,18 @@ namespace CAMEL.Baking.App
 
 
 
-            if (Current.Blanker.IsEnable)
-            {
-                if (!Current.Blanker.Plc.TcpDisConnect(out msg))
-                {
-                    Error.Alert(msg);
-                    return false;
-                }
-                this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "未连接");
-                this.machinesStatusUC1.SetLampColor(Current.Blanker, Color.Gray);
-            }
+            //if (Current.Blanker.IsEnable)
+            //{
+            //    if (!Current.Blanker.Plc.TcpDisConnect(out msg))
+            //    {
+            //        Error.Alert(msg);
+            //        return false;
+            //    }
+            //    this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "未连接");
+            //    this.machinesStatusUC1.SetLampColor(Current.Blanker, Color.Gray);
+            //}
 
-            Current.Blanker.PreAlarmStr = string.Empty;
+            //Current.Blanker.PreAlarmStr = string.Empty;
             
 
             if (Current.RGV.IsEnable)
@@ -1001,8 +1001,8 @@ namespace CAMEL.Baking.App
                 this.machinesStatusUC1.SetLampColor(Current.RGV, Color.Gray);
             }
 
-            Current.Transfer.IsAlive = false;
-            Current.Cacher.IsAlive = false;
+            //Current.Transfer.IsAlive = false;
+            //Current.Cacher.IsAlive = false;
 
             return true;
         }
@@ -1048,23 +1048,23 @@ namespace CAMEL.Baking.App
         {
             string msg = string.Empty;
 
-            if (Current.BatteryScaner.IsEnable)
-            {
-                if (!Current.BatteryScaner.IsPingSuccess)
-                {
+            //if (Current.BatteryScaner.IsEnable)
+            //{
+            //    if (!Current.BatteryScaner.IsPingSuccess)
+            //    {
 
-                    Error.Alert(string.Format("无法连接到{0}：{1}", Current.BatteryScaner.Name, Current.BatteryScaner.IP));
-                    return false;
-                }
+            //        Error.Alert(string.Format("无法连接到{0}：{1}", Current.BatteryScaner.Name, Current.BatteryScaner.IP));
+            //        return false;
+            //    }
 
-                if (!Current.BatteryScaner.TcpConnect(out msg))
-                {
-                    Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.BatteryScaner.Name, msg));
-                    return false;
-                }
-                this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "连接成功");
-                this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Green);
-            }
+            //    if (!Current.BatteryScaner.TcpConnect(out msg))
+            //    {
+            //        Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.BatteryScaner.Name, msg));
+            //        return false;
+            //    }
+            //    this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "连接成功");
+            //    this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Green);
+            //}
 
             if (Current.ClampScaner.IsEnable)
             {
@@ -1092,22 +1092,22 @@ namespace CAMEL.Baking.App
         {
             string msg = string.Empty;
 
-            if (Current.BatteryScaner.IsEnable)
-            {
-                if (Current.BatteryScaner.IsAlive)
-                {
-                    Current.BatteryScaner.StopClampScan();
-                }
+            //if (Current.BatteryScaner.IsEnable)
+            //{
+            //    if (Current.BatteryScaner.IsAlive)
+            //    {
+            //        Current.BatteryScaner.StopClampScan();
+            //    }
 
-                if (!Current.BatteryScaner.TcpDisConnect(out msg))
-                {
-                    Error.Alert(msg);
-                    return false;
-                }
+            //    if (!Current.BatteryScaner.TcpDisConnect(out msg))
+            //    {
+            //        Error.Alert(msg);
+            //        return false;
+            //    }
 
-                //this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "未连接");
-                //this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Gray);
-            }
+            //    //this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "未连接");
+            //    //this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Gray);
+            //}
 
             if (Current.ClampScaner.IsEnable)
             {
@@ -1177,18 +1177,18 @@ namespace CAMEL.Baking.App
                 return false;
             }
 
-            if (Current.BatteryScaner.IsEnable && !Current.BatteryScaner.IsAlive)
-            {
-                msg = Current.BatteryScaner.Name + " 启动异常！";
-                return false;
-            }
+            //if (Current.BatteryScaner.IsEnable && !Current.BatteryScaner.IsAlive)
+            //{
+            //    msg = Current.BatteryScaner.Name + " 启动异常！";
+            //    return false;
+            //}
 
 
-            if (Current.Blanker.IsEnable && !Current.Blanker.Plc.IsAlive)
-            {
-                msg = Current.Blanker.Name + " 启动异常！";
-                return false;
-            }
+            //if (Current.Blanker.IsEnable && !Current.Blanker.Plc.IsAlive)
+            //{
+            //    msg = Current.Blanker.Name + " 启动异常！";
+            //    return false;
+            //}
             
 
             if (Current.RGV.IsEnable && !Current.RGV.Plc.IsAlive)
@@ -1557,99 +1557,99 @@ namespace CAMEL.Baking.App
 
                     var isScanFlag = false;//是否执行了扫码
 
-                    if (Current.BatteryScaner.IsEnable && Current.BatteryScaner.CanScan)
-                    {
+                    //if (Current.BatteryScaner.IsEnable && Current.BatteryScaner.CanScan)
+                    //{
 
-                        string codes = string.Empty;
-                        ScanResult result = Current.BatteryScaner.StartBatteryScan(out codes, out msg);
+                    //    string codes = string.Empty;
+                    //    ScanResult result = Current.BatteryScaner.StartBatteryScan(out codes, out msg);
 
-                        isScanFlag = true;
+                    //    isScanFlag = true;
 
-                        if (result == ScanResult.OK)
-                        {
-                            this.BeginInvoke(new MethodInvoker(() =>
-                            {
-                                this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "+" + codes);
-                                this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, SystemColors.Control);
-                                this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, Color.Green);
-                            }));
+                    //    if (result == ScanResult.OK)
+                    //    {
+                    //        this.BeginInvoke(new MethodInvoker(() =>
+                    //        {
+                    //            this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "+" + codes);
+                    //            this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, SystemColors.Control);
+                    //            this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, Color.Green);
+                    //        }));
 
-                            Thread t = new Thread(() => {
-                                Thread.Sleep(1000);
-                                this.BeginInvoke(new MethodInvoker(() =>
-                                {
-                                    this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Green);
-                                    this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, SystemColors.Control);
-                                }));
-                            });
-                            t.Start();
+                    //        Thread t = new Thread(() => {
+                    //            Thread.Sleep(1000);
+                    //            this.BeginInvoke(new MethodInvoker(() =>
+                    //            {
+                    //                this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Green);
+                    //                this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, SystemColors.Control);
+                    //            }));
+                    //        });
+                    //        t.Start();
 
-                            foreach (var code in codes.Split(';'))
-                            {
-                                //
-                                if (code.Contains("0000000000"))
-                                {
-                                    Station.StationList.First(o=>o.Id == Current.Feeder.CurrentPutStationId).SampleInfo = SampleInfo.有样品;
-                                }
+                    //        foreach (var code in codes.Split(';'))
+                    //        {
+                    //            //
+                    //            if (code.Contains("0000000000"))
+                    //            {
+                    //                Station.StationList.First(o=>o.Id == Current.Feeder.CurrentPutStationId).SampleInfo = SampleInfo.有样品;
+                    //            }
 
-                                int id = Battery.Add(new Battery(code, Current.Feeder.Id, -1), out msg);
-                                if (id < 1)
-                                {
-                                    Error.Alert(msg);
-                                }
-                            }
-                            batteryScanResult = ScanResult.OK;
-                        }
-                        else
-                        {
-                            //再扫一次
-                            result = Current.BatteryScaner.StartBatteryScan(out codes, out msg);
-                            if (result == ScanResult.OK)
-                            {
-                                this.BeginInvoke(new MethodInvoker(() => 
-                                {
-                                    this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "+" + codes);
-                                    this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, SystemColors.Control);
-                                    this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, Color.Green);
-                                }));
+                    //            int id = Battery.Add(new Battery(code, Current.Feeder.Id, -1), out msg);
+                    //            if (id < 1)
+                    //            {
+                    //                Error.Alert(msg);
+                    //            }
+                    //        }
+                    //        batteryScanResult = ScanResult.OK;
+                    //    }
+                    //    else
+                    //    {
+                    //        //再扫一次
+                    //        result = Current.BatteryScaner.StartBatteryScan(out codes, out msg);
+                    //        if (result == ScanResult.OK)
+                    //        {
+                    //            this.BeginInvoke(new MethodInvoker(() => 
+                    //            {
+                    //                this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "+" + codes);
+                    //                this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, SystemColors.Control);
+                    //                this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, Color.Green);
+                    //            }));
 
-                                Thread t = new Thread(() => {
-                                    Thread.Sleep(1000);
-                                    this.BeginInvoke(new MethodInvoker(() =>
-                                    {
-                                        this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Green);
-                                        this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, SystemColors.Control);
-                                    }));
-                                });
-                                t.Start();
+                    //            Thread t = new Thread(() => {
+                    //                Thread.Sleep(1000);
+                    //                this.BeginInvoke(new MethodInvoker(() =>
+                    //                {
+                    //                    this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Green);
+                    //                    this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, SystemColors.Control);
+                    //                }));
+                    //            });
+                    //            t.Start();
 
-                                foreach (var code in codes.Split(';'))
-                                {
-                                    int id = Battery.Add(new Battery(code, Current.Feeder.Id, -1), out msg);
-                                    if (id < 1)
-                                    {
-                                        Error.Alert(msg);
-                                    }
-                                }
+                    //            foreach (var code in codes.Split(';'))
+                    //            {
+                    //                int id = Battery.Add(new Battery(code, Current.Feeder.Id, -1), out msg);
+                    //                if (id < 1)
+                    //                {
+                    //                    Error.Alert(msg);
+                    //                }
+                    //            }
 
-                                batteryScanResult = ScanResult.OK;
-                            }
-                            else
-                            {
-                                this.BeginInvoke(new MethodInvoker(() =>
-                                {
-                                    this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "扫码NG");
-                                    this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Red);
-                                }));
+                    //            batteryScanResult = ScanResult.OK;
+                    //        }
+                    //        else
+                    //        {
+                    //            this.BeginInvoke(new MethodInvoker(() =>
+                    //            {
+                    //                this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "扫码NG");
+                    //                this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Red);
+                    //            }));
 
-                                batteryScanResult = ScanResult.NG;
-                            }
-                        }
+                    //            batteryScanResult = ScanResult.NG;
+                    //        }
+                    //    }
 
-                        Current.Feeder.CurrentBatteryCount = Battery.GetCountByClampId(-1, out msg);
+                    //    Current.Feeder.CurrentBatteryCount = Battery.GetCountByClampId(-1, out msg);
 
-                        Current.BatteryScaner.CanScan = false;
-                    }
+                    //    Current.BatteryScaner.CanScan = false;
+                    //}
                     
 
                     if (isScanFlag)
@@ -1695,18 +1695,18 @@ namespace CAMEL.Baking.App
             int i = System.Convert.ToInt32(obj);
 
 
-            if (timerlock && Current.Blanker.IsEnable)
-            {
-                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "发送指令"); }));
-                if (Current.Blanker.GetInfo())
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "获取信息成功"); }));
-                }
-                else
-                {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "获取信息失败"); }));
-                }
-            }
+            //if (timerlock && Current.Blanker.IsEnable)
+            //{
+            //    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "发送指令"); }));
+            //    if (Current.Blanker.GetInfo())
+            //    {
+            //        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "获取信息成功"); }));
+            //    }
+            //    else
+            //    {
+            //        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "获取信息失败"); }));
+            //    }
+            //}
         }
 
         private void RobotRunInvokeFunc()
@@ -1855,25 +1855,25 @@ namespace CAMEL.Baking.App
                     //}
                     //}
 
-                    //下料台取消干涉
+                    ////下料台取消干涉
 
-                    for (int j = 0; j < Current.Blanker.Stations.Count; j++)
-                    {
-                        Station station = Current.Blanker.Stations[j];
+                    //for (int j = 0; j < Current.Blanker.Stations.Count; j++)
+                    //{
+                    //    Station station = Current.Blanker.Stations[j];
 
-                        ////无任务默认关门
-                        //if (station.DoorStatus == DoorStatus.打开 && station.Id != Current.Task.FromStationId && station.Id != Current.Task.ToStationId && station.IsAlive)
-                        //{
-                        //    station.CloseDoor();
-                        //}
+                    //    ////无任务默认关门
+                    //    //if (station.DoorStatus == DoorStatus.打开 && station.Id != Current.Task.FromStationId && station.Id != Current.Task.ToStationId && station.IsAlive)
+                    //    //{
+                    //    //    station.CloseDoor();
+                    //    //}
 
-                        ////从某一炉子取完盘后，立即关门，无需等到整个任务结束
-                        //if (station.DoorStatus == DoorStatus.打开 && station.Id == Current.Task.FromStationId && station.IsAlive
-                        //    && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
-                        //{
-                        //    station.CloseDoor();
-                        //}
-                    }
+                    //    ////从某一炉子取完盘后，立即关门，无需等到整个任务结束
+                    //    //if (station.DoorStatus == DoorStatus.打开 && station.Id == Current.Task.FromStationId && station.IsAlive
+                    //    //    && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
+                    //    //{
+                    //    //    station.CloseDoor();
+                    //    //}
+                    //}
                     
                 }
 
@@ -2898,14 +2898,14 @@ namespace CAMEL.Baking.App
                     {
                         this.propertyGridSettings.SelectedObject = Current.RGV;
                     }
-                    else if (e.Node.Level == 0 && e.Node.Text == "缓存架")
-                    {
-                        this.propertyGridSettings.SelectedObject = Current.Cacher;
-                    }
-                    else if (e.Node.Level == 0 && e.Node.Text == "转移台")
-                    {
-                        this.propertyGridSettings.SelectedObject = Current.Transfer;
-                    }
+                    //else if (e.Node.Level == 0 && e.Node.Text == "缓存架")
+                    //{
+                    //    this.propertyGridSettings.SelectedObject = Current.Cacher;
+                    //}
+                    //else if (e.Node.Level == 0 && e.Node.Text == "转移台")
+                    //{
+                    //    this.propertyGridSettings.SelectedObject = Current.Transfer;
+                    //}
                     else if (e.Node.Level == 1 && e.Node.Parent.Text == "工位列表")
                     {
                         this.propertyGridSettings.SelectedObject = Station.StationList.First(s => s.Id.ToString() == e.Node.Text.Split(':')[0]);
@@ -3005,14 +3005,14 @@ namespace CAMEL.Baking.App
             {
                 settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.RGV.Name);
             }
-            else if (type == typeof(Transfer))
-            {
-                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Transfer.Name);
-            }
-            else if (type == typeof(Cacher))
-            {
-                settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Cacher.Name);
-            }
+            //else if (type == typeof(Transfer))
+            //{
+            //    settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Transfer.Name);
+            //}
+            //else if (type == typeof(Cacher))
+            //{
+            //    settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.Cacher.Name);
+            //}
             else if (type == typeof(MES))
             {
                 settingsStr = string.Format("将{3}的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.mes.Name);
@@ -3056,23 +3056,23 @@ namespace CAMEL.Baking.App
         private void tlpBlanker_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
         {
             //tlpBlanker1
-            int i = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(10, 1), 0) - 1;
+            //int i = _Convert.StrToInt((sender as TableLayoutPanel).Name.Substring(10, 1), 0) - 1;
 
-            Graphics g = e.Graphics;
-            Rectangle r = e.CellBounds;
-            Brush brush = Brushes.White;
+            //Graphics g = e.Graphics;
+            //Rectangle r = e.CellBounds;
+            //Brush brush = Brushes.White;
 
-            for (int j = 0; j < Current.Blanker.Stations.Count; j++)
-            {
-                if (e.Column == 2 - j - 1)
-                {
-                    if (!Current.Blanker.Stations[j].IsAlive)
-                    {
-                        brush = Brushes.LightGray;
-                    }
-                }
-            }
-            g.FillRectangle(brush, r);
+            //for (int j = 0; j < Current.Blanker.Stations.Count; j++)
+            //{
+            //    if (e.Column == 2 - j - 1)
+            //    {
+            //        if (!Current.Blanker.Stations[j].IsAlive)
+            //        {
+            //            brush = Brushes.LightGray;
+            //        }
+            //    }
+            //}
+            //g.FillRectangle(brush, r);
         }
 
         private void tlpFeeder_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
@@ -3106,17 +3106,17 @@ namespace CAMEL.Baking.App
             int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
         }
 
-        private void TsmCancelRasterInductive_Click(object sender, EventArgs e)
-        {
-            if (Current.runStstus != RunStatus.运行)
-            {
-                Tip.Alert("请先启动！");
-                return;
-            }
+        //private void TsmCancelRasterInductive_Click(object sender, EventArgs e)
+        //{
+        //    if (Current.runStstus != RunStatus.运行)
+        //    {
+        //        Tip.Alert("请先启动！");
+        //        return;
+        //    }
 
-            int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
-            Current.Blanker.CancelRasterInductive();
-        }
+        //    int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
+        //    Current.Blanker.CancelRasterInductive();
+        //}
         #endregion
 
         #region 绘制温度曲线
@@ -3416,25 +3416,25 @@ namespace CAMEL.Baking.App
 
         private void btnBatteryScanStart_Click(object sender, EventArgs e)
         {
-            Thread t = new Thread(() =>{
-                string code = string.Empty;
-                string msg = string.Empty;
-                ScanResult scanResult = Current.BatteryScaner.StartBatteryScan(out code, out msg);
-                if (scanResult == ScanResult.OK)
-                {
-                    Tip.Alert(code);
-                }
-                else if (scanResult == ScanResult.NG)
-                {
-                    Tip.Alert("扫码返回NG！");
-                }
-                else
-                {
-                    Error.Alert(msg);
-                }
-            });
+            //Thread t = new Thread(() =>{
+            //    string code = string.Empty;
+            //    string msg = string.Empty;
+            //    ScanResult scanResult = Current.BatteryScaner.StartBatteryScan(out code, out msg);
+            //    if (scanResult == ScanResult.OK)
+            //    {
+            //        Tip.Alert(code);
+            //    }
+            //    else if (scanResult == ScanResult.NG)
+            //    {
+            //        Tip.Alert("扫码返回NG！");
+            //    }
+            //    else
+            //    {
+            //        Error.Alert(msg);
+            //    }
+            //});
 
-            t.Start();
+            //t.Start();
         }
 
         private void btnBatteryScanOkBackToFeeder_Click(object sender, EventArgs e)

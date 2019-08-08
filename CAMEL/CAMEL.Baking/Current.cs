@@ -37,17 +37,17 @@ namespace CAMEL.Baking
 
         public static Feeder Feeder = new Feeder(1);
 
-        public static Scaner BatteryScaner = new Scaner(1);
+        //public static Scaner BatteryScaner = new Scaner(1);
 
-        public static Scaner ClampScaner = new Scaner(2);
+        public static Scaner ClampScaner = new Scaner(1);
 
-        public static Blanker Blanker = new Blanker(1);
+        //public static Blanker Blanker = new Blanker(1);
 
         public static RGV RGV = new RGV(1);
 
-        public static Cacher Cacher = new Cacher(1);
+        //public static Cacher Cacher = new Cacher(1);
 
-        public static Transfer Transfer = new Transfer(1);
+        //public static Transfer Transfer = new Transfer(1);
 
         public static MES mes = MES.Mes;
 

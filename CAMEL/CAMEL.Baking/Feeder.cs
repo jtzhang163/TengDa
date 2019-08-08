@@ -444,20 +444,20 @@ namespace CAMEL.Baking
                         iOut[j] = int.Parse(output.Substring(j * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
                     }
 
-                    if (iOut[4] == 1)
-                    {
-                        if (!Current.BatteryScaner.IsReady)
-                        {
-                            Current.BatteryScaner.CanScan = true;
-                            LogHelper.WriteInfo(Current.BatteryScaner.Name + "【扫码日志】收到上料机给的请求扫码信号！");
-                        }
-                        Current.BatteryScaner.IsReady = true;
-                    }
-                    else
-                    {
-                        Current.BatteryScaner.IsReady = false;
-                        Current.BatteryScaner.CanScan = false;
-                    }
+                    //if (iOut[4] == 1)
+                    //{
+                    //    if (!Current.BatteryScaner.IsReady)
+                    //    {
+                    //        Current.BatteryScaner.CanScan = true;
+                    //        LogHelper.WriteInfo(Current.BatteryScaner.Name + "【扫码日志】收到上料机给的请求扫码信号！");
+                    //    }
+                    //    Current.BatteryScaner.IsReady = true;
+                    //}
+                    //else
+                    //{
+                    //    Current.BatteryScaner.IsReady = false;
+                    //    Current.BatteryScaner.CanScan = false;
+                    //}
 
                     switch (iOut[3])
                     {

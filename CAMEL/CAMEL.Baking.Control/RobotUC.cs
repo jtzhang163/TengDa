@@ -189,62 +189,62 @@ namespace CAMEL.Baking.Control
             }
 
 
-            ToolStripMenuItem tsmiBlankerStation = new ToolStripMenuItem();
-            List<ToolStripItem> tsiBlankerStations = new List<ToolStripItem>();
-            tsmiBlankerStation.Text = Current.Blanker.Name;
+            //ToolStripMenuItem tsmiBlankerStation = new ToolStripMenuItem();
+            //List<ToolStripItem> tsiBlankerStations = new List<ToolStripItem>();
+            //tsmiBlankerStation.Text = Current.Blanker.Name;
 
-            var isBlankerEnabled = false;
+            //var isBlankerEnabled = false;
 
-            Current.Blanker.Stations.ForEach(s =>
-            {
-                ToolStripMenuItem tsiStation = new ToolStripMenuItem();
-                tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
-                tsiStation.Text = s.Name;
-                tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
-                tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
-                tsiStation.ForeColor = GetForeColor(ManuFlag, s);
+            //Current.Blanker.Stations.ForEach(s =>
+            //{
+            //    ToolStripMenuItem tsiStation = new ToolStripMenuItem();
+            //    tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
+            //    tsiStation.Text = s.Name;
+            //    tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+            //    tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+            //    tsiStation.ForeColor = GetForeColor(ManuFlag, s);
 
-                if (tsiStation.Enabled) isBlankerEnabled = true;
+            //    if (tsiStation.Enabled) isBlankerEnabled = true;
 
-                tsmiBlankerStation.DropDownItems.Add(tsiStation);
-            });
+            //    tsmiBlankerStation.DropDownItems.Add(tsiStation);
+            //});
 
-            tsmiBlankerStation.Enabled = isBlankerEnabled;
-            tsiStations.Add(tsmiBlankerStation);
+            //tsmiBlankerStation.Enabled = isBlankerEnabled;
+            //tsiStations.Add(tsmiBlankerStation);
 
 
-            ToolStripMenuItem tsmiCacheStation = new ToolStripMenuItem();
-            List<ToolStripItem> tsiCacheStations = new List<ToolStripItem>();
-            tsmiCacheStation.Text = Current.Cacher.Name;
+            //ToolStripMenuItem tsmiCacheStation = new ToolStripMenuItem();
+            //List<ToolStripItem> tsiCacheStations = new List<ToolStripItem>();
+            //tsmiCacheStation.Text = Current.Cacher.Name;
 
-            var isCacheEnabled = false;
+            //var isCacheEnabled = false;
 
-            Current.Cacher.Stations.ForEach(s =>
-            {
-                ToolStripMenuItem tsiStation = new ToolStripMenuItem();
-                tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
-                tsiStation.Text = s.Name;
-                tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+            //Current.Cacher.Stations.ForEach(s =>
+            //{
+            //    ToolStripMenuItem tsiStation = new ToolStripMenuItem();
+            //    tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
+            //    tsiStation.Text = s.Name;
+            //    tsiStation.Click += new System.EventHandler(this.tsmManuStation_Click);
 
-                tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
-                tsiStation.ForeColor = GetForeColor(ManuFlag, s);
+            //    tsiStation.Enabled = GetTsiEnabled(ManuFlag, s);
+            //    tsiStation.ForeColor = GetForeColor(ManuFlag, s);
 
-                if (tsiStation.Enabled) isCacheEnabled = true;
-                tsmiCacheStation.DropDownItems.Add(tsiStation);
-            });
+            //    if (tsiStation.Enabled) isCacheEnabled = true;
+            //    tsmiCacheStation.DropDownItems.Add(tsiStation);
+            //});
 
-            tsmiCacheStation.Enabled = isCacheEnabled;
-            tsiStations.Add(tsmiCacheStation);
+            //tsmiCacheStation.Enabled = isCacheEnabled;
+            //tsiStations.Add(tsmiCacheStation);
 
-            ToolStripMenuItem tsmiRotaterStation = new ToolStripMenuItem();
-            tsmiRotaterStation.Text = Current.Transfer.Station.Name;
-            tsmiRotaterStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, Current.Transfer.Station.Name);
-            tsmiRotaterStation.Click += new System.EventHandler(this.tsmManuStation_Click);
+            //ToolStripMenuItem tsmiRotaterStation = new ToolStripMenuItem();
+            //tsmiRotaterStation.Text = Current.Transfer.Station.Name;
+            //tsmiRotaterStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, Current.Transfer.Station.Name);
+            //tsmiRotaterStation.Click += new System.EventHandler(this.tsmManuStation_Click);
 
-            tsmiRotaterStation.Enabled = GetTsiEnabled(ManuFlag, Current.Transfer.Station);
-            tsmiRotaterStation.ForeColor = GetForeColor(ManuFlag, Current.Transfer.Station);
+            //tsmiRotaterStation.Enabled = GetTsiEnabled(ManuFlag, Current.Transfer.Station);
+            //tsmiRotaterStation.ForeColor = GetForeColor(ManuFlag, Current.Transfer.Station);
 
-            tsiStations.Add(tsmiRotaterStation);
+            //tsiStations.Add(tsmiRotaterStation);
 
             if (isGet)
             {

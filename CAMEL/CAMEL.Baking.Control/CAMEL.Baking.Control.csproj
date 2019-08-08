@@ -42,11 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlankerUC.cs">
+    <Compile Include="FeederUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BlankerUC.Designer.cs">
-      <DependentUpon>BlankerUC.cs</DependentUpon>
+    <Compile Include="FeederUC.Designer.cs">
+      <DependentUpon>FeederUC.cs</DependentUpon>
     </Compile>
     <Compile Include="MachinesStatusUC.cs">
       <SubType>UserControl</SubType>
@@ -131,12 +131,6 @@
     <Compile Include="FeedClampUC.Designer.cs">
       <DependentUpon>FeedClampUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="FeederUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FeederUC.Designer.cs">
-      <DependentUpon>FeederUC.cs</DependentUpon>
-    </Compile>
     <Compile Include="FloorUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -171,8 +165,8 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BlankerUC.resx">
-      <DependentUpon>BlankerUC.cs</DependentUpon>
+    <EmbeddedResource Include="FeederUC.resx">
+      <DependentUpon>FeederUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachinesStatusUC.resx">
       <DependentUpon>MachinesStatusUC.cs</DependentUpon>
@@ -217,9 +211,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FeedClampUC.resx">
       <DependentUpon>FeedClampUC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FeederUC.resx">
-      <DependentUpon>FeederUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FloorUC.resx">
       <DependentUpon>FloorUC.cs</DependentUpon>
