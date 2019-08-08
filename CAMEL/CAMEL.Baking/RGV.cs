@@ -62,7 +62,7 @@ namespace CAMEL.Baking
         {
             get
             {
-                position = (int)((this.CoordinateValue - Current.option.RobotMinCoordinate) * Current.option.RobotPositionAmplify);
+                position = (int)((this.CoordinateValue - Current.option.RGVMinCoordinate) * Current.option.RGVPositionAmplify);
                 return position;
             }
             set
@@ -97,7 +97,7 @@ namespace CAMEL.Baking
             }
         }
 
-        [ReadOnly(true), DisplayName("机器人正在移动")]
+        [ReadOnly(true), DisplayName("RGV正在移动")]
         public bool IsMoving { get; set; } = false;
 
         [ReadOnly(true), DisplayName("可确认放夹具到位信号出现次数")]
@@ -112,9 +112,9 @@ namespace CAMEL.Baking
         {
             get
             {
-                if (coordinateValue < Current.option.RobotMinCoordinate)
+                if (coordinateValue < Current.option.RGVMinCoordinate)
                 {
-                    coordinateValue = Current.option.RobotMinCoordinate;
+                    coordinateValue = Current.option.RGVMinCoordinate;
                 }
                 return coordinateValue;
             }
@@ -263,6 +263,70 @@ namespace CAMEL.Baking
                 LogHelper.WriteError("无法连接到 " + this.Plc.IP);
                 return false;
             }
+
+            var bOutputs = new ushort[] { };
+            if (!this.Plc.GetInfo("D1000", (ushort)100, out bOutputs, out string msg))
+            {
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            //#region 获取正在执行取放的位置编号
+
+            //// this.GetPutNumber = bOutputs[0];
+
+            //#endregion
+
+            //#region 获取是否启动完成
+
+            ////Current.RGV.IsStartting = true;
+            //this.IsStarting = bOutputs[13] == 1;
+
+            //this.IsExecuting = Current.RGV.IsStarting && bOutputs[16] == 1;
+
+            //#endregion
+
+            //#region 获取报警状态
+
+
+            //Current.RGV.IsAlarming = false;
+            //Current.RGV.AlarmStr = Current.RGV.IsAlarming ? this.Name + "报警中" : "";
+
+            //#endregion
+
+            //#region 获取暂停状态
+
+
+            //Current.RGV.IsPausing = bOutputs[12] == 1;
+
+            //#endregion
+
+            #region 获取夹具状态
+
+            switch (bOutputs[12])
+            {
+                case 2: Current.RGV.ClampStatus = Current.RGV.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具; break;
+                case 1: Current.RGV.ClampStatus = ClampStatus.无夹具; break;
+                case 3: Current.RGV.ClampStatus = ClampStatus.异常; break;
+                default: Current.RGV.ClampStatus = ClampStatus.未知; break;
+            }
+
+            #endregion
+
+            //#region 获取位置
+
+            //Current.RGV.CoordinateValue = bOutputs[15];
+
+            //if (Current.RGV.CoordinateValue < Current.RGV.PreCoordinateValue) { Current.RGV.MovingDirection = MovingDirection.前进; Current.RGV.IsMoving = true; }
+            //else if (Current.RGV.CoordinateValue > Current.RGV.PreCoordinateValue) { Current.RGV.MovingDirection = MovingDirection.后退; Current.RGV.IsMoving = true; }
+            //else { Current.RGV.MovingDirection = MovingDirection.停止; Current.RGV.IsMoving = false; }
+
+            //Current.RGV.PreCoordinateValue = Current.RGV.CoordinateValue;
+
+            //#endregion
+
+            this.AlreadyGetAllInfo = true;
             this.Plc.IsAlive = true;
             return true;      
         }
@@ -278,10 +342,8 @@ namespace CAMEL.Baking
                 return false;
             }
 
-            string cmd = string.Format("<Sensor><WORKNUM>{6}</WORKNUM><N1>{0}</N1><N2>{1}</N2><N3>{2}</N3><N4>{3}</N4><N5>{4}</N5><N6>{5}</N6><CMD>1</CMD></Sensor>",
-                fromStation.RobotValue1, fromStation.RobotValue2, fromStation.RobotValue3, toStation.RobotValue1, toStation.RobotValue2, toStation.RobotValue3,Current.option.CurrentWorkNum);
-
-            LogHelper.WriteInfo(string.Format("给机器人发送取放盘指令------：{0}", cmd));
+            string cmd = "";
+            LogHelper.WriteInfo(string.Format("给RGV发送取放盘指令------：{0}", cmd));
 
             if (!Current.RGV.Plc.SetInfo(cmd, out string msg))
             {
@@ -300,7 +362,7 @@ namespace CAMEL.Baking
             var recevieData = this.Plc.GetReceiveData();
             if (recevieData.Contains("REC"))
             {
-                LogHelper.WriteInfo(string.Format("收到机器人REC指令------：{0}", recevieData));
+                LogHelper.WriteInfo(string.Format("收到RGVREC指令------：{0}", recevieData));
                 this.Plc.ClearReceiveData();
                 return true;
             }
@@ -312,7 +374,7 @@ namespace CAMEL.Baking
             var recevieData = this.Plc.GetReceiveData();
             if (recevieData.Contains("FINISH"))
             {
-                LogHelper.WriteInfo(string.Format("收到机器人FINISH指令------：{0}", recevieData));
+                LogHelper.WriteInfo(string.Format("收到RGVFINISH指令------：{0}", recevieData));
                 this.Plc.ClearReceiveData();
                 return true;
             }
@@ -320,63 +382,73 @@ namespace CAMEL.Baking
         }
 
         /// <summary>
-        /// 首次开机启动机器人
+        /// 启动RGV
         /// </summary>
         /// <returns></returns>
         public bool Start(out string msg)
         {
-            msg = "";
+            if (!Current.RGV.Plc.SetInfo("D1001", (ushort)1, out msg))
+            {
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            LogHelper.WriteInfo(string.Format("给RGV发送启动指令------{0}：{1}  ", "D1001", 1));
             return true;
         }
 
 
         /// <summary>
-        /// 机器人暂停运行
+        /// 停止RGV
         /// </summary>
         /// <returns></returns>
         public bool Pause(out string msg)
         {
-
-            if (!Current.RGV.Plc.SetInfo("D1012", (ushort)1, out msg))
+            if (!Current.RGV.Plc.SetInfo("D1002", (ushort)1, out msg))
             {
                 Error.Alert(msg);
                 this.Plc.IsAlive = false;
                 return false;
             }
 
-            LogHelper.WriteInfo(string.Format("给机器人发送暂停运行指令------{0}：{1}  ", "D1012", 1));
-
+            LogHelper.WriteInfo(string.Format("给RGV发送停止指令------{0}：{1}  ", "D1002", 1));
             return true;
         }
 
 
 
         /// <summary>
-        /// 机器人继续运行
+        /// 复位RGV
         /// </summary>
         /// <returns></returns>
-        public bool Restart(out string msg)
+        public bool Reset(out string msg)
         {
-
-            if (!Current.RGV.Plc.SetInfo("D1012", (ushort)0, out msg))
+            if (!Current.RGV.Plc.SetInfo("D1003", (ushort)1, out msg))
             {
                 Error.Alert(msg);
                 this.Plc.IsAlive = false;
                 return false;
             }
 
-            LogHelper.WriteInfo(string.Format("给机器人发送继续运行指令------{0}：{1}  ", "D1012", 0));
-
+            LogHelper.WriteInfo(string.Format("给RGV发送复位指令------{0}：{1}  ", "D1003", 1));
             return true;
         }
 
         /// <summary>
-        /// 机器人急停
+        /// 急停RGV
         /// </summary>
         /// <returns></returns>
         public bool Stop(out string msg)
         {
-            Current.RGV.Pause(out msg);
+            if (!Current.RGV.Plc.SetInfo("D1004", (ushort)1, out msg))
+            {
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+
+            LogHelper.WriteInfo(string.Format("给RGV发送急停指令------{0}：{1}  ", "D1004", 1));
             return true;
         }
 

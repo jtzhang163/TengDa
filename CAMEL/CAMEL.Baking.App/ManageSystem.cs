@@ -234,9 +234,9 @@ namespace CAMEL.Baking.App
 
             TreeNode tnEnabledTaskList = new TreeNode("有效任务排序", tnEnabledTasks.ToArray());
 
-            List<TreeNode> tnRobotNodes = new List<TreeNode>();
+            List<TreeNode> tnRGVNodes = new List<TreeNode>();
 
-            List<TreeNode> tnRobotClamps = new List<TreeNode>();
+            List<TreeNode> tnRGVClamps = new List<TreeNode>();
             if (Current.RGV.Clamp.Id > 0)
             {
                 List<TreeNode> tnBatteries = new List<TreeNode>();
@@ -245,18 +245,18 @@ namespace CAMEL.Baking.App
                 {
                     tnBatteries.Add(new TreeNode(string.Format("{0}:{1}(电芯)", b.Id, b.Code)));
                 }
-                tnRobotClamps.Add(new TreeNode(string.Format("{0}:{1}(夹具)", Current.RGV.Clamp.Id, Current.RGV.Clamp.Code), tnBatteries.ToArray()));
+                tnRGVClamps.Add(new TreeNode(string.Format("{0}:{1}(夹具)", Current.RGV.Clamp.Id, Current.RGV.Clamp.Code), tnBatteries.ToArray()));
             }
 
-            tnRobotNodes.Add(new TreeNode("PLC"));
-            tnRobotNodes.AddRange(tnRobotClamps);
-            TreeNode tnRobot = new TreeNode("机器人", tnRobotNodes.ToArray());
+            tnRGVNodes.Add(new TreeNode("PLC"));
+            tnRGVNodes.AddRange(tnRGVClamps);
+            TreeNode tnRGV = new TreeNode("RGV", tnRGVNodes.ToArray());
 
             TreeNode tnMES = new TreeNode("MES");
 
             TreeNode tnCurrentTask = new TreeNode("当前任务");
 
-            tvSettings.Nodes.AddRange(new TreeNode[] { tnCurrentTask, tnConfig, tnOvenList, tnFeederList, tnBlankerList, tnScanerList, tnCache, tnRotater, tnStationList, tnTaskList, tnEnabledTaskList, tnRobot, tnMES });
+            tvSettings.Nodes.AddRange(new TreeNode[] { tnCurrentTask, tnConfig, tnOvenList, tnFeederList, tnBlankerList, tnScanerList, tnCache, tnRotater, tnStationList, tnTaskList, tnEnabledTaskList, tnRGV, tnMES });
         }
 
         private void InitTerminal()
@@ -478,7 +478,7 @@ namespace CAMEL.Baking.App
                         {
                             for (int k = 0; k < Option.TemperaturePointCount; k++)
                             {
-                                cbTemperIndex[k].Text = string.Format("{0}:{1}℃", Current.option.TemperNames[k], s.Temperatures[k].ToString("#0.0").PadLeft(5));
+                                //cbTemperIndex[k].Text = string.Format("{0}:{1}℃", Current.option.TemperNames[k], s.Temperatures[k].ToString("#0.0").PadLeft(5));
                             }
                             for (int k = 0; k < Option.VacuumPointCount; k++)
                             {
@@ -559,14 +559,14 @@ namespace CAMEL.Baking.App
 
             #endregion
 
-            #region 机器人
+            #region RGV
 
             this.robotUC1.Update(Current.RGV);
 
             if (Current.RGV.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.RGV) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "连接成功"); } }
             else { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "未连接"); }
 
-            //this.panelRobot.Padding = new Padding(Current.RGV.Position + 3, 3, 0, 3);
+            //this.panelRGV.Padding = new Padding(Current.RGV.Position + 3, 3, 0, 3);
 
             #endregion
 
@@ -757,13 +757,13 @@ namespace CAMEL.Baking.App
                     {
                         //if (!Current.RGV.IsExecuting)
                         //{
-                        //    Tip.Alert("机器人尚未成功启动，不能切换自动");
+                        //    Tip.Alert("RGV尚未成功启动，不能切换自动");
                         //    return;
                         //}
 
                         if (Current.RGV.ClampStatus != ClampStatus.无夹具)
                         {
-                            Tip.Alert("机器人负载有夹具，不能切换自动");
+                            Tip.Alert("RGV负载有夹具，不能切换自动");
                             return;
                         }
                     }
@@ -910,7 +910,7 @@ namespace CAMEL.Baking.App
 
                 if (!Current.RGV.Plc.TcpConnect(out msg))
                 {
-                    Error.Alert(string.Format("打开机器人连接失败，原因：{0}", msg));
+                    Error.Alert(string.Format("打开RGV连接失败，原因：{0}", msg));
                     return false;
                 }
 
@@ -1142,7 +1142,7 @@ namespace CAMEL.Baking.App
 
         System.Timers.Timer[] timerBlankerRuns = new System.Timers.Timer[1] { null };
 
-        System.Timers.Timer timerRobotRun = null;
+        System.Timers.Timer timerRGVRun = null;
 
         System.Timers.Timer timerRun = null;
 
@@ -1254,16 +1254,16 @@ namespace CAMEL.Baking.App
                 timerBlankerRuns[0].Start();
                 
 
-                timerRobotRun = new System.Timers.Timer();
-                timerRobotRun.Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000);
-                timerRobotRun.Elapsed += delegate
+                timerRGVRun = new System.Timers.Timer();
+                timerRGVRun.Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000);
+                timerRGVRun.Elapsed += delegate
                 {
-                    Thread listen = new Thread(new ThreadStart(RobotRunInvokeFunc));
+                    Thread listen = new Thread(new ThreadStart(RGVRunInvokeFunc));
                     listen.IsBackground = true;
                     listen.Start();
                 };
                 Thread.Sleep(200);
-                timerRobotRun.Start();
+                timerRGVRun.Start();
 
                 timerRun = new System.Timers.Timer();
                 timerRun.Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000);
@@ -1340,11 +1340,11 @@ namespace CAMEL.Baking.App
             }
             
 
-            if (timerRobotRun != null)
+            if (timerRGVRun != null)
             {
-                timerRobotRun.Stop();
-                timerRobotRun.Close();
-                timerRobotRun.Dispose();
+                timerRGVRun.Stop();
+                timerRGVRun.Close();
+                timerRGVRun.Dispose();
             }
 
             if (timerPaintCurve != null)
@@ -1709,7 +1709,7 @@ namespace CAMEL.Baking.App
             //}
         }
 
-        private void RobotRunInvokeFunc()
+        private void RGVRunInvokeFunc()
         {
             string msg = string.Empty;
             if (timerlock && Current.RGV.IsEnable)
@@ -1907,7 +1907,7 @@ namespace CAMEL.Baking.App
 
         #endregion
 
-        #region 机器人搬运主逻辑
+        #region RGV搬运主逻辑
 
         System.Timers.Timer timerTask = null;
         private void Timer_Task(object sender, ElapsedEventArgs e)
@@ -2816,7 +2816,7 @@ namespace CAMEL.Baking.App
             kk.FilterIndex = 1;
 
             //默认文件名
-            kk.FileName = "机器人搬运任务 " + dtpStart.Value.ToString("yyyyMMddHHmmss") + "-" + dtpStop.Value.ToString("yyyyMMddHHmmss");
+            kk.FileName = "RGV搬运任务 " + dtpStart.Value.ToString("yyyyMMddHHmmss") + "-" + dtpStop.Value.ToString("yyyyMMddHHmmss");
 
             if (kk.ShowDialog() == DialogResult.OK)
             {
@@ -2894,7 +2894,7 @@ namespace CAMEL.Baking.App
                     {
                         this.propertyGridSettings.SelectedObject = Current.mes;
                     }
-                    else if (e.Node.Level == 0 && e.Node.Text == "机器人")
+                    else if (e.Node.Level == 0 && e.Node.Text == "RGV")
                     {
                         this.propertyGridSettings.SelectedObject = Current.RGV;
                     }
@@ -2949,11 +2949,11 @@ namespace CAMEL.Baking.App
                     {
                         this.propertyGridSettings.SelectedObject = Blanker.BlankerList.First(b => b.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
                     }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人" && e.Node.Text == "PLC")
+                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "RGV" && e.Node.Text == "PLC")
                     {
                         this.propertyGridSettings.SelectedObject = Current.RGV.Plc;
                     }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "机器人" && e.Node.Text.IndexOf("夹具") > -1)
+                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "RGV" && e.Node.Text.IndexOf("夹具") > -1)
                     {
                         this.propertyGridSettings.SelectedObject = Current.RGV.Clamp;
                     }
@@ -3226,7 +3226,7 @@ namespace CAMEL.Baking.App
                                     }
                                     else
                                     {
-                                        Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].Add(Current.ovens[i].Floors[j].Stations[k].Temperatures[m]);
+                                        //Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].Add(Current.ovens[i].Floors[j].Stations[k].Temperatures[m]);
                                     }
                                 }
                             }
@@ -3475,7 +3475,7 @@ namespace CAMEL.Baking.App
 
 
         /// <summary>
-        /// 键盘按下空格键急停机器人
+        /// 键盘按下空格键急停RGV
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -3487,7 +3487,7 @@ namespace CAMEL.Baking.App
                 {
                     if (Current.RGV.Stop(out string msg))
                     {
-                        Tip.Alert("按下空格键急停大机器人成功！");
+                        Tip.Alert("按下空格键急停大RGV成功！");
                     }
                 }
             }

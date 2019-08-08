@@ -101,11 +101,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RobotUC.cs">
+    <Compile Include="RGVUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RobotUC.Designer.cs">
-      <DependentUpon>RobotUC.cs</DependentUpon>
+    <Compile Include="RGVUC.Designer.cs">
+      <DependentUpon>RGVUC.cs</DependentUpon>
     </Compile>
     <Compile Include="TorVUC.cs">
       <SubType>UserControl</SubType>
@@ -197,8 +197,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="RobotUC.resx">
-      <DependentUpon>RobotUC.cs</DependentUpon>
+    <EmbeddedResource Include="RGVUC.resx">
+      <DependentUpon>RGVUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TorVUC.resx">
       <DependentUpon>TorVUC.cs</DependentUpon>

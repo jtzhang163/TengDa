@@ -12,9 +12,9 @@ using TengDa.WF;
 
 namespace CAMEL.Baking.Control
 {
-    public partial class RobotUC : UserControl
+    public partial class RGVUC : UserControl
     {
-        public RobotUC()
+        public RGVUC()
         {
             InitializeComponent();
         }
@@ -36,15 +36,15 @@ namespace CAMEL.Baking.Control
             {
                 switch (robot.ClampStatus)
                 {
-                    case ClampStatus.满夹具: this.panelRobot.BackColor = Color.LimeGreen; break;
-                    case ClampStatus.空夹具: this.panelRobot.BackColor = Color.Cyan; break;
-                    case ClampStatus.无夹具: this.panelRobot.BackColor = Color.White; break;
-                    default: this.panelRobot.BackColor = SystemColors.Control; break;
+                    case ClampStatus.满夹具: this.panelRGV.BackColor = Color.LimeGreen; break;
+                    case ClampStatus.空夹具: this.panelRGV.BackColor = Color.Cyan; break;
+                    case ClampStatus.无夹具: this.panelRGV.BackColor = Color.White; break;
+                    default: this.panelRGV.BackColor = SystemColors.Control; break;
                 }
             }
             else
             {
-                this.panelRobot.BackColor = Color.LightGray;
+                this.panelRGV.BackColor = Color.LightGray;
             }
 
             robot.PrePosition = robot.Position;
@@ -68,7 +68,7 @@ namespace CAMEL.Baking.Control
                     //this.lbInfo.Text = Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取 ? "取盘中" : "放盘中";
                     this.lbInfo.ForeColor = Color.Blue;
                 }
-                //else if (!Current.Robot.IsExecuting)
+                //else if (!Current.RGV.IsExecuting)
                 //{
                 //    this.lbInfo.Text = "未就绪";
                 //    this.lbInfo.ForeColor = Color.Red;
@@ -111,7 +111,7 @@ namespace CAMEL.Baking.Control
             robot.PreAlarmStr = robot.AlarmStr;
         }
 
-        private void CmsRobot_Opening(object sender, CancelEventArgs e)
+        private void CmsRGV_Opening(object sender, CancelEventArgs e)
         {
             this.tsmManuGetStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextFromStationId < 1 && Current.Task.NextToStationId < 1 && Current.Task.Status == TaskStatus.完成;
             this.tsmManuPutStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextFromStationId > 0 && Current.Task.NextToStationId < 1 && Current.Task.Status == TaskStatus.完成;
@@ -331,9 +331,9 @@ namespace CAMEL.Baking.Control
                         return;
                     }
 
-                    //if (Current.Robot.ClampStatus != ClampStatus.无夹具)
+                    //if (Current.RGV.ClampStatus != ClampStatus.无夹具)
                     //{
-                    //    Tip.Alert(Current.Robot.Name + "上有夹具，不能取盘！");
+                    //    Tip.Alert(Current.RGV.Name + "上有夹具，不能取盘！");
                     //    return;
                     //}
 
@@ -374,9 +374,9 @@ namespace CAMEL.Baking.Control
                     //    return;
                     //}
 
-                    //if (Current.Robot.ClampStatus == ClampStatus.无夹具)
+                    //if (Current.RGV.ClampStatus == ClampStatus.无夹具)
                     //{
-                    //    Tip.Alert(Current.Robot.Name + "上无夹具，不能放盘！");
+                    //    Tip.Alert(Current.RGV.Name + "上无夹具，不能放盘！");
                     //    return;
                     //}
 
@@ -401,7 +401,7 @@ namespace CAMEL.Baking.Control
 
                     //if (Current.Task.FromClampStatus != ClampStatus.空夹具 && Current.Task.FromClampStatus != ClampStatus.满夹具)
                     //{
-                    //    Current.Task.FromClampStatus = Current.Robot.ClampStatus;
+                    //    Current.Task.FromClampStatus = Current.RGV.ClampStatus;
                     //}
 
                 }

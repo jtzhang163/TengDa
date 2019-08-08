@@ -138,7 +138,7 @@ namespace CAMEL.Baking
             }
         }
 
-        public const int TemperaturePointCount = 24;
+        public const int TemperaturePointCount = 3;
 
         public const int VacuumPointCount = 1;
 
@@ -163,9 +163,7 @@ namespace CAMEL.Baking
 
         public string[] TemperNames = new string[Option.TemperaturePointCount]
         {
-            "温度1", "温度2", "温度3",  "温度4",  "温度5", "温度6", "温度7", "温度8",
-            "温度9", "温度10", "温度11",  "温度12",  "温度13", "温度14", "温度15", "温度16",
-            "温度17", "温度18", "温度19",  "温度20",  "温度21", "温度22", "温度23", "温度24"
+            "温度1", "温度2", "温度3"
         };
 
         public string[] TemperSetNames = new string[Option.TemperatureSetPointCount]
@@ -702,10 +700,10 @@ namespace CAMEL.Baking
 
         private int taskInterval = -1;
         /// <summary>
-        /// 检测是否生成机器人搬运任务时间间隔，单位：毫秒
+        /// 检测是否生成RGV搬运任务时间间隔，单位：毫秒
         /// </summary>
-        [Description("检测是否生成机器人搬运任务时间间隔，单位：毫秒")]
-        [DisplayName("检测是否生成机器人搬运任务时间间隔")]
+        [Description("检测是否生成RGV搬运任务时间间隔，单位：毫秒")]
+        [DisplayName("检测是否生成RGV搬运任务时间间隔")]
         [Category("定时器")]
         public int TaskInterval
         {
@@ -776,17 +774,17 @@ namespace CAMEL.Baking
 
         private float robotPositionAmplify = -1;
         /// <summary>
-        /// 机器人X轴位置放大倍数
+        /// RGVX轴位置放大倍数
         /// </summary>
-        [DisplayName("机器人X轴位置放大倍数")]
-        [Category("机器人")]
-        public float RobotPositionAmplify
+        [DisplayName("RGVX轴位置放大倍数")]
+        [Category("RGV")]
+        public float RGVPositionAmplify
         {
             get
             {
                 if (robotPositionAmplify < 0)
                 {
-                    robotPositionAmplify = _Convert.StrToFloat(TengDa.WF.Option.GetOption("RobotPositionAmplify"), 6);
+                    robotPositionAmplify = _Convert.StrToFloat(TengDa.WF.Option.GetOption("RGVPositionAmplify"), 6);
                 }
                 return robotPositionAmplify;
             }
@@ -794,7 +792,7 @@ namespace CAMEL.Baking
             {
                 if (value != robotPositionAmplify)
                 {
-                    TengDa.WF.Option.SetOption("RobotPositionAmplify", value.ToString());
+                    TengDa.WF.Option.SetOption("RGVPositionAmplify", value.ToString());
                     robotPositionAmplify = value;
                 }
             }
@@ -802,17 +800,17 @@ namespace CAMEL.Baking
 
         private int robotMinCoordinate = 0;
         /// <summary>
-        /// 机器人X轴坐标最小值
+        /// RGVX轴坐标最小值
         /// </summary>
-        [DisplayName("机器人X轴坐标最小值")]
-        [Category("机器人")]
-        public int RobotMinCoordinate
+        [DisplayName("RGVX轴坐标最小值")]
+        [Category("RGV")]
+        public int RGVMinCoordinate
         {
             get
             {
                 if (robotMinCoordinate == 0)
                 {
-                    robotMinCoordinate = _Convert.StrToInt(TengDa.WF.Option.GetOption("RobotMinCoordinate"), 308);
+                    robotMinCoordinate = _Convert.StrToInt(TengDa.WF.Option.GetOption("RGVMinCoordinate"), 308);
                 }
                 return robotMinCoordinate;
             }
@@ -820,7 +818,7 @@ namespace CAMEL.Baking
             {
                 if (value != robotMinCoordinate)
                 {
-                    TengDa.WF.Option.SetOption("RobotMinCoordinate", value.ToString());
+                    TengDa.WF.Option.SetOption("RGVMinCoordinate", value.ToString());
                     robotMinCoordinate = value;
                 }
             }
@@ -829,19 +827,19 @@ namespace CAMEL.Baking
 
         private int robotStopPosition4RasterInductive = 0;
         /// <summary>
-        /// 下料人员安全光栅感应时机器人急停最大位置
-        /// 若人员进入安全光栅感应区，且搬运机器人位置小于该值，则远程发送急停指令到搬运机器人
+        /// 下料人员安全光栅感应时RGV急停最大位置
+        /// 若人员进入安全光栅感应区，且搬运RGV位置小于该值，则远程发送急停指令到搬运RGV
         /// </summary>
-        [DisplayName("下料人员安全光栅感应时机器人急停最大位置")]
-        [Description("若人员进入安全光栅感应区，且搬运机器人位置小于该值，则远程发送急停指令到搬运机器人")]
-        [Category("机器人")]
-        public int RobotStopPosition4RasterInductive
+        [DisplayName("下料人员安全光栅感应时RGV急停最大位置")]
+        [Description("若人员进入安全光栅感应区，且搬运RGV位置小于该值，则远程发送急停指令到搬运RGV")]
+        [Category("RGV")]
+        public int RGVStopPosition4RasterInductive
         {
             get
             {
                 if (robotStopPosition4RasterInductive == 0)
                 {
-                    robotStopPosition4RasterInductive = _Convert.StrToInt(TengDa.WF.Option.GetOption("RobotStopPosition4RasterInductive"), 4000);
+                    robotStopPosition4RasterInductive = _Convert.StrToInt(TengDa.WF.Option.GetOption("RGVStopPosition4RasterInductive"), 4000);
                 }
                 return robotStopPosition4RasterInductive;
             }
@@ -849,7 +847,7 @@ namespace CAMEL.Baking
             {
                 if (value != robotStopPosition4RasterInductive)
                 {
-                    TengDa.WF.Option.SetOption("RobotStopPosition4RasterInductive", value.ToString());
+                    TengDa.WF.Option.SetOption("RGVStopPosition4RasterInductive", value.ToString());
                     robotStopPosition4RasterInductive = value;
                 }
             }
@@ -935,7 +933,7 @@ namespace CAMEL.Baking
         private int currentWorkNum = 0;
 
         /// <summary>
-        /// 库卡机器人当前任务编号
+        /// 库卡RGV当前任务编号
         /// </summary>
         [Browsable(false)]
         public int CurrentWorkNum

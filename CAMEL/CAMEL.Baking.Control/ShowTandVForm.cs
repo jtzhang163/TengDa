@@ -40,8 +40,8 @@ namespace CAMEL.Baking.Control
         {
             for (int i = 0; i < Option.TemperaturePointCount; i++)
             {
-                showTempers[i].UpdateValue(this.floor.Stations[0].Temperatures[i]);
-                showTempers[i + 24].UpdateValue(this.floor.Stations[1].Temperatures[i]);
+                //showTempers[i].UpdateValue(this.floor.Stations[0].Temperatures[i]);
+                //showTempers[i + 24].UpdateValue(this.floor.Stations[1].Temperatures[i]);
             }
 
             this.showVacuum.UpdateValue(floor.Vacuum);

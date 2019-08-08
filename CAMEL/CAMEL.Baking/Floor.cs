@@ -30,18 +30,19 @@ namespace CAMEL.Baking
 
         [ReadOnly(true), Description("已运行时间，单位：min")]
         [DisplayName("已运行时间")]
-        public int RunMinutes
-        {
-            get
-            {
-                var runMinutes = RunMinutesSet - RunRemainMinutes;
-                return runMinutes > 0 ? runMinutes : 0;
-            }
-        }
+        public int RunMinutes { get; set; }
+
 
         [ReadOnly(true), Description("剩余时间，单位：min")]
         [DisplayName("剩余时间")]
-        public int RunRemainMinutes { get; set; }
+        public int RunRemainMinutes
+        {
+            get
+            {
+                var remainMinutes = RunMinutesSet - RunMinutes;
+                return remainMinutes > 0 ? remainMinutes : 0;
+            }
+        }
 
 
         [ReadOnly(true), Description("总运行时间设置，单位：min")]
@@ -317,11 +318,6 @@ namespace CAMEL.Baking
         public bool toOpenNetControl = false;
         public bool toAlarmReset = false;
         #endregion
-
-        #endregion
-
-        #region 要设置的参数
-
 
         #endregion
 

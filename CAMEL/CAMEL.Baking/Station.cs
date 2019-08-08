@@ -326,31 +326,16 @@ namespace CAMEL.Baking
             }
         }
 
-        private string robotValues = string.Empty;
+        private string rgvValue = string.Empty;
         /// <summary>
-        /// 机器人取放编码
+        /// RGV取放编码
         /// </summary>
-        [ReadOnly(true), DisplayName("机器人取放编码")]
-        [Description("机器人取放编码(取编码,放编码)")]
-        public string RobotValues
+        [ReadOnly(true), DisplayName("RGV取放编码")]
+        [Description("RGV取放编码")]
+        public string RgvValue
         {
-            get { return robotValues; }
-            set
-            {
-                if (robotValues != value)
-                {
-                    UpdateDbField("RobotValues", value);
-                }
-                robotValues = value;
-            }
+            get { return rgvValue; }
         }
-
-        [Browsable(false)]
-        public string RobotValue1 { get { return RobotValues.Split(',')[0]; } }
-        [Browsable(false)]
-        public string RobotValue2 { get { return RobotValues.Split(',')[1]; } }
-        [Browsable(false)]
-        public string RobotValue3 { get { return RobotValues.Split(',')[2]; } }
 
         public FloorStatus PreFloorStatus;
 
@@ -375,9 +360,8 @@ namespace CAMEL.Baking
                     else if (value == FloorStatus.待出)
                     {
                         var vacuum = this.GetFloor().Vacuum > 50 ? 49 : this.GetFloor().Vacuum;
-                        var temper = Math.Abs(this.Temperatures.Average() - 90) < 2 ? this.Temperatures.Average() : 90F + new Random().Next(-2, 2);
                         this.Clamp.Vacuum = vacuum;
-                        this.Clamp.Temperature = temper;
+                        this.Clamp.Temperature = this.GetFloor().Temperatures.Average();
                         this.Clamp.BakingStopTime = DateTime.Now;
                     }
                     else if (value == FloorStatus.无盘 && floorStatus == FloorStatus.待出)
@@ -628,20 +612,20 @@ namespace CAMEL.Baking
         }
 
 
-        [ReadOnly(true)]
-        [DisplayName("温度数组")]
-        public float[] Temperatures
-        {
-            get
-            {
-                return temperatures;
-            }
-            set
-            {
-                temperatures = value;
-            }
-        }
-        private float[] temperatures = new float[Option.TemperaturePointCount];
+        //[ReadOnly(true)]
+        //[DisplayName("温度数组")]
+        //public float[] Temperatures
+        //{
+        //    get
+        //    {
+        //        return temperatures;
+        //    }
+        //    set
+        //    {
+        //        temperatures = value;
+        //    }
+        //}
+        //private float[] temperatures = new float[Option.TemperaturePointCount];
 
         #region 绘制温度曲线相关
         public List<float>[] sampledDatas = new List<float>[Option.TemperaturePointCount + 1];//采样数据1
@@ -771,7 +755,7 @@ namespace CAMEL.Baking
             this.number = rowInfo["Number"].ToString();
             this.location = rowInfo["Location"].ToString();
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
-            this.robotValues = rowInfo["RobotValues"].ToString();
+            this.rgvValue = rowInfo["RgvValue"].ToString();
             this.floorStatus = (FloorStatus)Enum.Parse(typeof(FloorStatus), rowInfo["FloorStatus"].ToString());
             this.sampleStatus = (SampleStatus)Enum.Parse(typeof(SampleStatus), rowInfo["SampleStatus"].ToString());
             this.PreFloorStatus = this.floorStatus;

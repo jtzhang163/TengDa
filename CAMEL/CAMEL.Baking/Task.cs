@@ -642,7 +642,7 @@ namespace CAMEL.Baking
                                     Current.option.TaskIsFinished = false;
                                     Current.Task.Status = TaskStatus.完成;
 
-                                    // Current.Robot.ClampId = -1;
+                                    // Current.RGV.ClampId = -1;
 
                                     if (Current.Task.FromStation != null && Current.Task.FromStation != Current.Task.ToStation)
                                     {
@@ -792,7 +792,7 @@ namespace CAMEL.Baking
                                     Current.option.TaskIsFinished = false;
                                     Current.Task.Status = TaskStatus.完成;
 
-                                    // Current.Robot.ClampId = -1;
+                                    // Current.RGV.ClampId = -1;
 
                                     if (Current.Task.FromStation != null && Current.Task.FromStation != Current.Task.ToStation)
                                     {

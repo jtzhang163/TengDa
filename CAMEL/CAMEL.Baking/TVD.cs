@@ -25,10 +25,10 @@ namespace CAMEL.Baking
             }
         }
         public int Id { get; set; }
-        public int StationId { get; set; }
+        public int FloorId { get; set; }
         public int RunMinutes { get; set; }
         public int UserId { get; set; }
-        public float V1 { get; set; }
+        //public float V1 { get; set; }
         public float[] T = new float[Option.TemperaturePointCount];
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace CAMEL.Baking
 
             StringBuilder sb = new StringBuilder();
             sb.Append(string.Format("INSERT INTO [dbo].[{0}] ", TableName));
-            sb.Append("([StationId]" + sbT + ",[V1], [RunMinutes], [Time], [UserId]) VALUES ");
+            sb.Append("([FloorId]" + sbT + ", [RunMinutes], [Time], [UserId]) VALUES ");
 
             foreach (TVD addTVD in addTVDs)
             {
@@ -63,7 +63,7 @@ namespace CAMEL.Baking
                     sbT1.Append(string.Format(",{0}", addTVD.T[i]));
                 }
 
-                sb.Append(string.Format("({0} {1}, {2}, {3}, '{4}', {5}),", addTVD.StationId, sbT1, addTVD.V1, addTVD.RunMinutes, DateTime.Now, addTVD.UserId));
+                sb.Append(string.Format("({0} {1}, {2}, '{3}', {4}),", addTVD.FloorId, sbT1,  addTVD.RunMinutes, DateTime.Now, addTVD.UserId));
             }
 
             return Database.NonQuery(sb.ToString().TrimEnd(','), out msg);
@@ -84,11 +84,10 @@ namespace CAMEL.Baking
                             for(int k = 0;k< Current.ovens[i].Floors[j].Stations.Count; k++)
                             {
                                 TVD tvd = new TVD();
-                                tvd.StationId = Current.ovens[i].Floors[j].Stations[k].Id;
+                                tvd.FloorId = Current.ovens[i].Floors[j].Id;
                                 tvd.UserId = TengDa.WF.Current.user.Id;
                                 tvd.RunMinutes = Current.ovens[i].Floors[j].RunMinutes;
-                                tvd.T = Current.ovens[i].Floors[j].Stations[k].Temperatures;
-                                tvd.V1 = Current.ovens[i].Floors[j].Vacuum;
+                                tvd.T = Current.ovens[i].Floors[j].Temperatures;
                                 TVDs.Add(tvd);
                             }
                         }

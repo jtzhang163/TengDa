@@ -152,7 +152,7 @@ namespace CAMEL.Baking
             }
         }
 
-        //帮助两台上料机信号传递（上料机器人和搬运机器人干涉防呆）
+        //帮助两台上料机信号传递（上料RGV和搬运RGV干涉防呆）
         public ushort D1025;
         public ushort D1026; 
 
@@ -543,10 +543,10 @@ namespace CAMEL.Baking
                         //this.Stations[j].IsClampScanReady = iOut[j + 4] == 1;
                     }
 
-                    //两台上料机信号传递（上料机器人和搬运机器人干涉防呆）
+                    //两台上料机信号传递（上料RGV和搬运RGV干涉防呆）
                     //if (Current.feeders.Count(f => f.IsAlive) == Current.feeders.Count)
                     //{
-                    //    if (Current.Robot.Plc.Id == this.Plc.Id)
+                    //    if (Current.RGV.Plc.Id == this.Plc.Id)
                     //    {
                     //        var val = Current.feeders.First(f => f.Id != this.Id).D1026;
                     //        if (bOutputs[26] != val)

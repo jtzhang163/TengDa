@@ -1,6 +1,6 @@
 ﻿namespace CAMEL.Baking.Control
 {
-    partial class RobotUC
+    partial class RGVUC
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -29,30 +29,30 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panelRobot = new System.Windows.Forms.Panel();
+            this.panelRGV = new System.Windows.Forms.Panel();
             this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
             this.lbClampCode = new System.Windows.Forms.Label();
             this.lbInfo = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
-            this.cmsRobot = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsRGV = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmManuGetStation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmManuPutStation = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelRobot.SuspendLayout();
+            this.panelRGV.SuspendLayout();
             this.tableLayoutPanel21.SuspendLayout();
-            this.cmsRobot.SuspendLayout();
+            this.cmsRGV.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelRobot
+            // panelRGV
             // 
-            this.panelRobot.BackColor = System.Drawing.SystemColors.Control;
-            this.panelRobot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelRobot.Controls.Add(this.tableLayoutPanel21);
-            this.panelRobot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRobot.Location = new System.Drawing.Point(0, 0);
-            this.panelRobot.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.panelRobot.Name = "panelRobot";
-            this.panelRobot.Size = new System.Drawing.Size(150, 150);
-            this.panelRobot.TabIndex = 2;
+            this.panelRGV.BackColor = System.Drawing.SystemColors.Control;
+            this.panelRGV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRGV.Controls.Add(this.tableLayoutPanel21);
+            this.panelRGV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRGV.Location = new System.Drawing.Point(0, 0);
+            this.panelRGV.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.panelRGV.Name = "panelRGV";
+            this.panelRGV.Size = new System.Drawing.Size(150, 150);
+            this.panelRGV.TabIndex = 2;
             // 
             // tableLayoutPanel21
             // 
@@ -111,14 +111,14 @@
             this.lbName.Text = "XXXX";
             this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cmsRobot
+            // cmsRGV
             // 
-            this.cmsRobot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsRGV.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmManuGetStation,
             this.tsmManuPutStation});
-            this.cmsRobot.Name = "cmsRobot";
-            this.cmsRobot.Size = new System.Drawing.Size(181, 70);
-            this.cmsRobot.Opening += new System.ComponentModel.CancelEventHandler(this.CmsRobot_Opening);
+            this.cmsRGV.Name = "cmsRGV";
+            this.cmsRGV.Size = new System.Drawing.Size(181, 70);
+            this.cmsRGV.Opening += new System.ComponentModel.CancelEventHandler(this.CmsRGV_Opening);
             // 
             // tsmManuGetStation
             // 
@@ -134,29 +134,29 @@
             this.tsmManuPutStation.Text = "手动【放盘】";
             this.tsmManuPutStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
             // 
-            // RobotUC
+            // RGVUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ContextMenuStrip = this.cmsRobot;
-            this.Controls.Add(this.panelRobot);
-            this.Name = "RobotUC";
-            this.panelRobot.ResumeLayout(false);
+            this.ContextMenuStrip = this.cmsRGV;
+            this.Controls.Add(this.panelRGV);
+            this.Name = "RGVUC";
+            this.panelRGV.ResumeLayout(false);
             this.tableLayoutPanel21.ResumeLayout(false);
             this.tableLayoutPanel21.PerformLayout();
-            this.cmsRobot.ResumeLayout(false);
+            this.cmsRGV.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panelRobot;
+        private System.Windows.Forms.Panel panelRGV;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel21;
         private System.Windows.Forms.Label lbClampCode;
         private System.Windows.Forms.Label lbInfo;
         private System.Windows.Forms.Label lbName;
-        private System.Windows.Forms.ContextMenuStrip cmsRobot;
+        private System.Windows.Forms.ContextMenuStrip cmsRGV;
         private System.Windows.Forms.ToolStripMenuItem tsmManuGetStation;
         private System.Windows.Forms.ToolStripMenuItem tsmManuPutStation;
     }

@@ -100,7 +100,7 @@ namespace CAMEL.Baking
 
         /// <summary>
         /// 人员处于安全光栅感应区
-        /// 感应到此信号时，若搬运机器人运行至下料附近，则发送急停信号给搬运机器人
+        /// 感应到此信号时，若搬运RGV运行至下料附近，则发送急停信号给搬运RGV
         /// </summary>
         [ReadOnly(true), DisplayName("人员处于安全光栅感应区")]
         public bool IsRasterInductive { get; set; }
@@ -409,15 +409,15 @@ namespace CAMEL.Baking
                     //    {
                     //        LogHelper.WriteInfo(string.Format("{0} --> 人员进入安全光栅感应区", this.Name));
 
-                    //        if (!Current.Robot.IsPausing && Current.Robot.Position <= Current.option.RobotStopPosition4RasterInductive)
+                    //        if (!Current.RGV.IsPausing && Current.RGV.Position <= Current.option.RGVStopPosition4RasterInductive)
                     //        {
-                    //            if (Current.Robot.Stop(out msg))
+                    //            if (Current.RGV.Stop(out msg))
                     //            {
-                    //                Error.Alert(string.Format("人员进入 {0} 安全光栅感应区域，已远程发送急停信号给 {1}", this.Name, Current.Robot.Name));
+                    //                Error.Alert(string.Format("人员进入 {0} 安全光栅感应区域，已远程发送急停信号给 {1}", this.Name, Current.RGV.Name));
                     //            }
                     //            else
                     //            {
-                    //                Error.Alert(string.Format("人员进入 {0} 安全光栅感应区域，远程发送急停信号给 {1} 失败！", this.Name, Current.Robot.Name));
+                    //                Error.Alert(string.Format("人员进入 {0} 安全光栅感应区域，远程发送急停信号给 {1} 失败！", this.Name, Current.RGV.Name));
                     //            }
                     //        }
 
@@ -432,15 +432,15 @@ namespace CAMEL.Baking
                     //        LogHelper.WriteInfo(string.Format("{0} --> 安全光栅感应报警结束", this.Name));
 
 
-                    //        //if (!otherBlanker.IsRasterInductive && Current.Robot.IsPausing)
+                    //        //if (!otherBlanker.IsRasterInductive && Current.RGV.IsPausing)
                     //        //{
-                    //        //    if (Current.Robot.Restart(out msg))
+                    //        //    if (Current.RGV.Restart(out msg))
                     //        //    {
-                    //        //        Tip.Alert(string.Format("{0} 安全光栅感应报警结束，已远程发送继续运动信号给 {1}", this.Name, Current.Robot.Name));
+                    //        //        Tip.Alert(string.Format("{0} 安全光栅感应报警结束，已远程发送继续运动信号给 {1}", this.Name, Current.RGV.Name));
                     //        //    }
                     //        //    else
                     //        //    {
-                    //        //        Error.Alert(string.Format("{0} 安全光栅感应报警结束，远程发送继续运动信号给 {1} 失败！", this.Name, Current.Robot.Name));
+                    //        //        Error.Alert(string.Format("{0} 安全光栅感应报警结束，远程发送继续运动信号给 {1} 失败！", this.Name, Current.RGV.Name));
                     //        //    }
                     //        //}
                     //    }

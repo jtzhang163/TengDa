@@ -62,7 +62,7 @@ namespace CAMEL.Baking.Control
             }
             else
             {
-                var centerStr = floor.IsEnable ? floor.Vacuum.ToString().PadLeft(4) + "" : "炉层禁用";
+                var centerStr = floor.IsEnable ? floor.Temperatures[Current.option.DisplayTemperIndex].ToString().PadLeft(2) + "℃" : "炉层禁用";
 
                 var ss = new List<Station>() { oven.ClampOri == ClampOri.A ? floor.Stations[0] : floor.Stations[1], oven.ClampOri == ClampOri.A ? floor.Stations[1] : floor.Stations[0] };
                 var strs = new List<string>() { "", "" };
@@ -86,9 +86,9 @@ namespace CAMEL.Baking.Control
                 if (floor.IsBaking)
                 {
                     this.lbInfoTop.Text = string.Format("{0}℃{3} {1} {4}{2}℃",
-                         ss[0].Temperatures[Current.option.DisplayTemperIndex].ToString().PadLeft(2),
+                         floor.Temperatures[Current.option.DisplayTemperIndex].ToString().PadLeft(2),
                          centerStr,
-                         ss[1].Temperatures[Current.option.DisplayTemperIndex].ToString().PadLeft(2),
+                         floor.Temperatures[Current.option.DisplayTemperIndex].ToString().PadLeft(2),
                          ss[0].HasSampleFlag ? "■" : "",
                          ss[1].HasSampleFlag ? "■" : ""
                          );
@@ -111,14 +111,14 @@ namespace CAMEL.Baking.Control
             if (Current.option.FloorShowInfoType == "默认信息")
             {
                 lbStatus.Text =
-                    string.Format("{0} {1} {2}/{3} {4}",
-                    oven.ClampOri == ClampOri.A ? "左" : "右",
-                    //oven.ClampOri == ClampOri.B ? floor.Stations[0].RobotGetCode : floor.Stations[1].RobotGetCode,
+                    string.Format("{0} {1}/{2} {3}",
+                    //oven.ClampOri == ClampOri.A ? "左" : "右",
+                    //oven.ClampOri == ClampOri.B ? floor.Stations[0].RGVGetCode : floor.Stations[1].RGVGetCode,
                     floor.DoorStatus,
                     floor.RunMinutes.ToString().PadLeft(3),
                     floor.RunMinutesSet.ToString().PadLeft(3),
                     ""
-                    //oven.ClampOri == ClampOri.A ? floor.Stations[0].RobotGetCode : floor.Stations[1].RobotGetCode
+                    //oven.ClampOri == ClampOri.A ? floor.Stations[0].RGVGetCode : floor.Stations[1].RGVGetCode
                     );
             }
             else if (Current.option.FloorShowInfoType == "开始烘烤时间")

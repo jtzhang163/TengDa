@@ -129,8 +129,8 @@
             this.tabContentPageMain = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel41 = new System.Windows.Forms.TableLayoutPanel();
             this.showOvenInfoTypeUC1 = new CAMEL.Baking.Control.ShowOvenInfoTypeUC();
-            this.panelRobot = new System.Windows.Forms.Panel();
-            this.robotUC1 = new CAMEL.Baking.Control.RobotUC();
+            this.panelRGV = new System.Windows.Forms.Panel();
+            this.robotUC1 = new CAMEL.Baking.Control.RGVUC();
             this.tableLayoutPanel42 = new System.Windows.Forms.TableLayoutPanel();
             this.ovenUC02 = new CAMEL.Baking.Control.OvenUC();
             this.ovenUC14 = new CAMEL.Baking.Control.OvenUC();
@@ -358,7 +358,7 @@
             this.panel3333.SuspendLayout();
             this.tabContentPageMain.SuspendLayout();
             this.tableLayoutPanel41.SuspendLayout();
-            this.panelRobot.SuspendLayout();
+            this.panelRGV.SuspendLayout();
             this.tableLayoutPanel42.SuspendLayout();
             this.tableLayoutPanel43.SuspendLayout();
             this.tabContentTemperCurve.SuspendLayout();
@@ -1466,7 +1466,7 @@
             this.tableLayoutPanel41.ColumnCount = 1;
             this.tableLayoutPanel41.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel41.Controls.Add(this.showOvenInfoTypeUC1, 0, 3);
-            this.tableLayoutPanel41.Controls.Add(this.panelRobot, 0, 1);
+            this.tableLayoutPanel41.Controls.Add(this.panelRGV, 0, 1);
             this.tableLayoutPanel41.Controls.Add(this.tableLayoutPanel42, 0, 0);
             this.tableLayoutPanel41.Controls.Add(this.taskInfo1, 0, 4);
             this.tableLayoutPanel41.Controls.Add(this.tableLayoutPanel43, 0, 2);
@@ -1490,19 +1490,19 @@
             this.showOvenInfoTypeUC1.Size = new System.Drawing.Size(266, 24);
             this.showOvenInfoTypeUC1.TabIndex = 2;
             // 
-            // panelRobot
+            // panelRGV
             // 
-            this.panelRobot.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelRobot.BackgroundImage")));
-            this.panelRobot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelRobot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelRobot.Controls.Add(this.robotUC1);
-            this.panelRobot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRobot.Location = new System.Drawing.Point(10, 239);
-            this.panelRobot.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.panelRobot.Name = "panelRobot";
-            this.panelRobot.Padding = new System.Windows.Forms.Padding(450, 3, 3, 3);
-            this.panelRobot.Size = new System.Drawing.Size(1152, 54);
-            this.panelRobot.TabIndex = 0;
+            this.panelRGV.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelRGV.BackgroundImage")));
+            this.panelRGV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelRGV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRGV.Controls.Add(this.robotUC1);
+            this.panelRGV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRGV.Location = new System.Drawing.Point(10, 239);
+            this.panelRGV.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.panelRGV.Name = "panelRGV";
+            this.panelRGV.Padding = new System.Windows.Forms.Padding(450, 3, 3, 3);
+            this.panelRGV.Size = new System.Drawing.Size(1152, 54);
+            this.panelRGV.TabIndex = 0;
             // 
             // robotUC1
             // 
@@ -4206,7 +4206,7 @@
             this.panel3333.PerformLayout();
             this.tabContentPageMain.ResumeLayout(false);
             this.tableLayoutPanel41.ResumeLayout(false);
-            this.panelRobot.ResumeLayout(false);
+            this.panelRGV.ResumeLayout(false);
             this.tableLayoutPanel42.ResumeLayout(false);
             this.tableLayoutPanel43.ResumeLayout(false);
             this.tabContentTemperCurve.ResumeLayout(false);
@@ -4536,10 +4536,10 @@
         private System.Windows.Forms.Label label76;
         private System.Windows.Forms.TabPage tabContentPageMain;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel41;
-        private System.Windows.Forms.Panel panelRobot;
+        private System.Windows.Forms.Panel panelRGV;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel42;
         private Control.TaskInfo taskInfo1;
-        private Control.RobotUC robotUC1;
+        private Control.RGVUC robotUC1;
         private Control.MachinesStatusUC machinesStatusUC1;
         private Control.OpenAllNetControlUC openAllNetControlUC1;
         private Control.BatteryBindInitUC batteryBindInitUC1;
