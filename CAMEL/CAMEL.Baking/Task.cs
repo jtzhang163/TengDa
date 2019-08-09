@@ -391,21 +391,6 @@ namespace CAMEL.Baking
                     string msg = string.Empty;
                     if (Current.TaskMode == TaskMode.自动任务)
                     {
-
-
-                        ////烤箱只有一个空位时，不要搬运空夹具至烤箱
-
-                        //if (Task.TaskList.Where(t => t.FromClampStatus == ClampStatus.空夹具 && t.ToType == GetPutType.烤箱).ToList().Count(t => t.IsEnable) > 0)
-                        //{
-
-                        //}
-
-                        //List<Station> stations = Station.StationList.Where(s => s.IsAlive && s.GetPutType == GetPutType.烤箱 && s.FloorStatus == FloorStatus.无盘).ToList();
-                        //Task.TaskList.Where(t => t.FromClampStatus == ClampStatus.空夹具 && t.ToType == GetPutType.烤箱).ToList().
-                        //    ForEach(t => t.IsEnable = stations.Count > 1);
-
-
-
                         if (Current.Task.Status == TaskStatus.完成)
                         {
                             if (CurrentTask.ToSwitchManuTaskMode)
@@ -420,7 +405,7 @@ namespace CAMEL.Baking
                                 CurrentTask.ToSwitchManuTaskMode = false;
                                 return;
                             }
-                            Current.RGV.IsAlreadySendCmd = false;
+    
                             ///任务遍历
                             foreach (Task task in Task.CanGetPutTaskList.Where(t => t.IsEnable))
                             {
@@ -442,18 +427,18 @@ namespace CAMEL.Baking
                                     .OrderBy(s => s.GetPriority(task))
                                     .ToList();
 
-                                //入炉前逻辑
-                                //取样的空位不能入其他夹具
-                                if (task.ToType == GetPutType.烤箱)
-                                {
-                                    toStations = toStations.Where(s => s.GetLabStation().FloorStatus != FloorStatus.待出).ToList();
-                                }
+                                ////入炉前逻辑
+                                ////取样的空位不能入其他夹具
+                                //if (task.ToType == GetPutType.烤箱)
+                                //{
+                                //    toStations = toStations.Where(s => s.GetLabStation().FloorStatus != FloorStatus.待出).ToList();
+                                //}
 
-                                //水分NG烤箱空位要回炉，无法上料
-                                if (task.FromType == GetPutType.上料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
-                                {
-                                    toStations = toStations.Where(s => s.GetLabStation().SampleStatus != SampleStatus.水分NG && s.GetLabStation().SampleStatus != SampleStatus.水分OK).ToList();
-                                }
+                                ////水分NG烤箱空位要回炉，无法上料
+                                //if (task.FromType == GetPutType.上料机 && task.ToType == GetPutType.烤箱 && task.FromClampStatus == ClampStatus.满夹具)
+                                //{
+                                //    toStations = toStations.Where(s => s.GetLabStation().SampleStatus != SampleStatus.水分NG && s.GetLabStation().SampleStatus != SampleStatus.水分OK).ToList();
+                                //}
 
                                 ////测试水分出烤箱前逻辑
                                 //if (task.FromType == GetPutType.烤箱 && task.ToType == GetPutType.下料机 && task.FromClampStatus == ClampStatus.满夹具)
@@ -549,120 +534,62 @@ namespace CAMEL.Baking
                                     Current.Task.ToStation.OpenDoor();
                                 }
 
-                                if (Current.Task.FromStation.DoorStatus == DoorStatus.打开 && Current.Task.ToStation.DoorStatus == DoorStatus.打开)
+                                if (Current.Task.FromStation.DoorStatus == DoorStatus.打开)
                                 {
-                                    Current.Task.Status = TaskStatus.可取放;
+                                    Current.Task.Status = TaskStatus.可取;
                                 }
-
                             }
-                            else if (Current.Task.Status == TaskStatus.可取放 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
+                            else if (Current.Task.Status == TaskStatus.可取)
                             {
-                                if (Current.Task.FromStation.DoorStatus == DoorStatus.关闭)
+                                if (Current.RGV.Get(Current.Task.FromStation))
                                 {
-                                    Current.Task.FromStation.OpenDoor();
+                                    if (Current.RGV.Enter(out msg))
+                                    {
+                                        Current.Task.Status = TaskStatus.正取;
+                                    }
                                 }
-                                if (Current.Task.ToStation.DoorStatus == DoorStatus.关闭)
+                            }
+                            else if (Current.Task.Status == TaskStatus.正取)
+                            {
+                                if (Current.RGV.IsTaskFinished)
+                                {
+                                    Current.Task.Status = TaskStatus.取完;
+                                }
+                            }
+                            else if (Current.Task.Status == TaskStatus.取完)
+                            {
+                                if (Current.Task.ToStation.DoorStatus != DoorStatus.打开)
                                 {
                                     Current.Task.ToStation.OpenDoor();
                                 }
-                                if (!Current.RGV.IsAlreadySendCmd && Current.Task.FromStation.DoorStatus == DoorStatus.打开 && Current.Task.ToStation.DoorStatus == DoorStatus.打开)
-                                {
-                                    if (Current.RGV.Move(Current.Task.FromStation, Current.Task.ToStation))
-                                    {
-                                        Current.RGV.IsAlreadySendCmd = true;
-                                    }
-                                }
 
-                                if (Current.RGV.IsReceived())
+                                if (Current.Task.ToStation.DoorStatus == DoorStatus.打开)
                                 {
-                                    Current.RGV.IsMoving = true;
-                                    if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
-                                    {
-                                        var j = Current.Feeder.Stations.IndexOf(Current.Task.FromStation);
-                                    }
-                                    Current.Task.Status = TaskStatus.取放中;
+                                    Current.Task.Status = TaskStatus.可放;
                                 }
                             }
-                            else if (Current.Task.Status == TaskStatus.取放中 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
+                            else if (Current.Task.Status == TaskStatus.可放)
                             {
-                                Current.RGV.ClampStatus = Current.Task.FromClampStatus;
-                                Current.RGV.ClampId = Current.Task.ClampId;
-                                if (Current.option.TaskIsFinished || Current.RGV.IsFinished())
+                                if (Current.RGV.Put(Current.Task.ToStation))
                                 {
-                                    if (Current.Task.ToStation.GetPutType == GetPutType.上料机)
+                                    if (Current.RGV.Enter(out msg))
                                     {
-                                        var j = Current.Feeder.Stations.IndexOf(Current.Task.ToStation);
+                                        Current.Task.Status = TaskStatus.正放;
                                     }
-
-                                    //if (Current.Task.ToStation.GetPutType == GetPutType.下料机)
-                                    //{
-                                    //    var j = Current.Blanker.Stations.IndexOf(Current.Task.ToStation);
-                                    //    Current.Blanker.SetPutClampFinish(j);
-                                    //}
-
-                                    //if (Current.Task.FromStation.GetPutType == GetPutType.下料机)
-                                    //{
-                                    //    var j = Current.Blanker.Stations.IndexOf(Current.Task.FromStation);
-                                    //    Current.Blanker.SetGetClampFinish(j);
-                                    //}
-
-                                    Current.RGV.IsMoving = false;
+                                }
+                            }
+                            else if (Current.Task.Status == TaskStatus.正放)
+                            {
+                                if (Current.RGV.IsTaskFinished)
+                                {
                                     Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                                     Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
                                     Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
-
-                                    Current.RGV.ClampStatus = ClampStatus.无夹具;
-                                    Current.RGV.IsAlreadySendCmd = false;
-
-                                    if (Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
-                                    {
-                                        int clampId = Clamp.Add(new Clamp(Current.Task.ClampId).Code, out msg);
-                                        if (clampId > 0)
-                                        {
-                                            Current.Task.ToStation.ClampId = clampId;
-                                        }
-                                        else
-                                        {
-                                            Error.Alert(msg);
-                                            Current.Task.ToStation.ClampId = Current.Task.ClampId;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Current.Task.ToStation.ClampId = Current.Task.ClampId;
-                                    }
-
                                     if (!TaskLog.Add(out msg))//记录
                                     {
                                         Error.Alert("保存搬运记录失败：" + msg);
                                     }
-
-                                    Current.option.TaskIsFinished = false;
                                     Current.Task.Status = TaskStatus.完成;
-
-                                    // Current.RGV.ClampId = -1;
-
-                                    if (Current.Task.FromStation != null && Current.Task.FromStation != Current.Task.ToStation)
-                                    {
-                                        // Current.Task.FromStation.ClampId = -1;
-                                    }
-
-                                    //入炉后逻辑
-                                    //修改工位状态
-                                    if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具)
-                                    {
-                                        Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
-                                        Current.Task.ToStation.Clamp.InOvenTime = DateTime.Now;
-                                        Current.Task.ToStation.Clamp.OvenStationId = Current.Task.ToStation.Id;
-                                    }
-
-                                    if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
-                                    {
-                                        Current.Task.FromStation.GetFloor().OutOvenTime = DateTime.Now;
-                                    }
-
-                                    Current.option.CurrentWorkNum %= 100000;
-                                    Current.option.CurrentWorkNum++;
                                 }
                             }
                         }
@@ -677,145 +604,90 @@ namespace CAMEL.Baking
                             //Current.Task.ClampId = -1;
                             //防止任务复位导致ClampId丢失
                             Current.Task.ToStationId = -1;
-                            Current.Task.Status = TaskStatus.完成;
                             Current.Task.FromClampStatus = ClampStatus.未知;
+                            Current.Task.Status = TaskStatus.完成;
 
-                            if (Current.Task.NextFromStationId > 0 && Current.Task.NextToStationId > 0)
+                            if (Current.Task.NextFromStationId > 0)
                             {
                                 Current.Task.FromStationId = Current.Task.NextFromStationId;
-                                Current.Task.ToStationId = Current.Task.NextToStationId;
                                 Current.Task.ClampId = Current.Task.FromStation.ClampId;
                                 Current.Task.NextFromStationId = -1;
-                                Current.Task.NextToStationId = -1;
                                 Current.Task.FromClampStatus = Current.Task.FromStation.ClampStatus;
                                 Current.Task.Status = TaskStatus.就绪;
                             }
                         }
-                        else if (Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
+                        else if (Current.Task.Status == TaskStatus.就绪 && Current.Task.FromStation != null)
                         {
-                            if (Current.Task.Status == TaskStatus.就绪)
+                            if (Current.Task.FromStation.DoorStatus != DoorStatus.打开)
                             {
-                                if (Current.Task.FromStation.DoorStatus != DoorStatus.打开)
-                                {
-                                    Current.Task.FromStation.OpenDoor();
-                                }
-                                if (Current.Task.ToStation.DoorStatus != DoorStatus.打开)
-                                {
-                                    Current.Task.ToStation.OpenDoor();
-                                }
-
-                                if (Current.Task.FromStation.DoorStatus == DoorStatus.打开 && Current.Task.ToStation.DoorStatus == DoorStatus.打开)
-                                {
-                                    Current.Task.Status = TaskStatus.可取放;
-                                }
-
+                                Tip.Alert(Current.Task.FromStation.Name + "门未打开！");
                             }
-                            else if (Current.Task.Status == TaskStatus.可取放 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
-                            {
-                                if (!Current.RGV.IsAlreadySendCmd)
-                                {
-                                    if (Current.RGV.Move(Current.Task.FromStation, Current.Task.ToStation))
-                                    {
-                                        Current.RGV.IsAlreadySendCmd = true;
-                                    }
-                                }
 
-                                if (Current.RGV.IsReceived())
-                                {
-                                    Current.RGV.IsMoving = true;
-                                    if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
-                                    {
-                                        var j = Current.Feeder.Stations.IndexOf(Current.Task.FromStation);
-                                    }
-                                    Current.Task.Status = TaskStatus.取放中;
-                                }
+                            if (Current.Task.FromStation.DoorStatus == DoorStatus.打开)
+                            {
+                                Current.Task.Status = TaskStatus.可取;
                             }
-                            else if (Current.Task.Status == TaskStatus.取放中 && Current.Task.FromStationId > 0 && Current.Task.ToStationId > 0)
+                        }
+                        else if (Current.Task.Status == TaskStatus.可取 && Current.Task.FromStation != null)
+                        {
+                            if (Current.RGV.Get(Current.Task.FromStation))
                             {
-                                Current.RGV.ClampStatus = Current.Task.FromClampStatus;
-                                Current.RGV.ClampId = Current.Task.ClampId;
-                                if (Current.option.TaskIsFinished || Current.RGV.IsFinished())
+                                if (Current.RGV.Enter(out msg))
                                 {
-                                    if (Current.Task.ToStation.GetPutType == GetPutType.上料机)
-                                    {
-                                        var j = Current.Feeder.Stations.IndexOf(Current.Task.ToStation);
-                                    }
-
-                                    //if (Current.Task.ToStation.GetPutType == GetPutType.下料机)
-                                    //{
-                                    //    var j = Current.Blanker.Stations.IndexOf(Current.Task.ToStation);
-                                    //    Current.Blanker.SetPutClampFinish(j);
-                                    //}
-
-                                    //if (Current.Task.FromStation.GetPutType == GetPutType.下料机)
-                                    //{
-                                    //    var j = Current.Blanker.Stations.IndexOf(Current.Task.FromStation);
-                                    //    Current.Blanker.SetGetClampFinish(j);
-                                    //}
-
-                                    Current.RGV.IsMoving = false;
-                                    Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
-                                    Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
-                                    Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
-
-                                    Current.RGV.ClampStatus = ClampStatus.无夹具;
-                                    Current.RGV.IsAlreadySendCmd = false;
-
-                                    if (Current.Task.ToStation.GetPutType == GetPutType.上料机 && Current.Task.FromClampStatus == ClampStatus.空夹具)
-                                    {
-
-                                        int clampId = Clamp.Add(new Clamp(Current.Task.ClampId).Code, out msg);
-                                        if (clampId > 0)
-                                        {
-                                            Current.Task.ToStation.ClampId = clampId;
-                                        }
-                                        else
-                                        {
-                                            Error.Alert(msg);
-                                            Current.Task.ToStation.ClampId = Current.Task.ClampId;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Current.Task.ToStation.ClampId = Current.Task.ClampId;
-                                    }
-
-                                    if (!TaskLog.Add(out msg))//记录
-                                    {
-                                        Error.Alert("保存搬运记录失败：" + msg);
-                                    }
-
-                                    Current.option.TaskIsFinished = false;
-                                    Current.Task.Status = TaskStatus.完成;
-
-                                    // Current.RGV.ClampId = -1;
-
-                                    if (Current.Task.FromStation != null && Current.Task.FromStation != Current.Task.ToStation)
-                                    {
-                                        // Current.Task.FromStation.ClampId = -1;
-                                    }
-
-
-                                    //入炉后逻辑
-                                    //修改工位状态
-                                    if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具)
-                                    {
-                                        Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
-                                        Current.Task.ToStation.Clamp.InOvenTime = DateTime.Now;
-                                        Current.Task.ToStation.Clamp.OvenStationId = Current.Task.ToStation.Id;
-                                    }
-
-                                    if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
-                                    {
-                                        Current.Task.FromStation.GetFloor().OutOvenTime = DateTime.Now;
-                                    }
-
-                                    Current.option.CurrentWorkNum %= 100000;
-                                    Current.option.CurrentWorkNum++;
+                                    Current.Task.Status = TaskStatus.正取;
                                 }
                             }
                         }
-
+                        else if (Current.Task.Status == TaskStatus.正取 && Current.Task.FromStation != null)
+                        {
+                            if (Current.RGV.IsTaskFinished)
+                            {
+                                Current.Task.Status = TaskStatus.取完;
+                            }
+                        }
+                        else if (Current.Task.Status == TaskStatus.取完)
+                        {
+                            if (Current.Task.NextToStationId > 0)
+                            {
+                                Current.Task.ToStationId = Current.Task.NextToStationId;
+                                Current.Task.NextToStationId = -1;
+                            }
+                            if (Current.Task.ToStation != null)
+                            {
+                                if (Current.Task.ToStation.DoorStatus != DoorStatus.打开)
+                                {
+                                    Tip.Alert(Current.Task.ToStation.Name + "门未打开！");
+                                }
+                                if (Current.Task.ToStation.DoorStatus == DoorStatus.打开)
+                                {
+                                    Current.Task.Status = TaskStatus.可放;
+                                }
+                            }
+                        }
+                        else if (Current.Task.Status == TaskStatus.可放 && Current.Task.ToStation != null)
+                        {
+                            if (Current.RGV.Put(Current.Task.ToStation))
+                            {
+                                if (Current.RGV.Enter(out msg))
+                                {
+                                    Current.Task.Status = TaskStatus.正放;
+                                }
+                            }
+                        }
+                        else if (Current.Task.Status == TaskStatus.正放 && Current.Task.ToStation != null)
+                        {
+                            if (Current.RGV.IsTaskFinished)
+                            {
+                                Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
+                                Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
+                                Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
+                                if (!TaskLog.Add(out msg))//记录
+                                {
+                                    Error.Alert("保存搬运记录失败：" + msg);
+                                }
+                                Current.Task.Status = TaskStatus.完成;
+                            }
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -831,9 +703,7 @@ namespace CAMEL.Baking
         未知,
         上料机,
         烤箱,
-        下料机,
-        暂存台,
-        缓存架
+        下料机
     }
 
     public class TaskLog
@@ -1244,8 +1114,11 @@ namespace CAMEL.Baking
     {
         未知,
         就绪,
-        可取放,
-        取放中,
+        可取,
+        正取,
+        取完,
+        可放,
+        正放,
         完成
     }
 }

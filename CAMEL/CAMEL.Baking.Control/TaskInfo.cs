@@ -12,7 +12,7 @@ namespace CAMEL.Baking.Control
 {
     public partial class TaskInfo : UserControl
     {
-        Label[] state = new Label[4];
+        Label[] state = new Label[7];
 
         public TaskInfo()
         {

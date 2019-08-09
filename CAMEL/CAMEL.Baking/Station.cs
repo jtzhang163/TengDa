@@ -39,30 +39,6 @@ namespace CAMEL.Baking
         {
             get
             {
-                if (this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.暂存台)
-                {
-                    var _status = StationStatus.不可用;
-                    if (this.ClampStatus == ClampStatus.无夹具)
-                    {
-                        _status = StationStatus.可放;
-                    }
-                    else
-                    {
-                        _status = StationStatus.可取;
-                    }
-                    if (status != _status)
-                    {
-                        this.GetPutTime = DateTime.Now;
-                        status = _status;
-                    }
-                }
-                if (this.GetPutType == GetPutType.上料机)
-                {
-                    if (this.ClampStatus == ClampStatus.无夹具)
-                    {
-                        status = StationStatus.可放;
-                    }
-                }
                 return status;
             }
             set
@@ -286,7 +262,7 @@ namespace CAMEL.Baking
         {
             get
             {
-                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.暂存台 || this.GetPutType == GetPutType.下料机)
+                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.下料机)
                 {
                     doorStatus = DoorStatus.打开;
                 }
@@ -316,7 +292,7 @@ namespace CAMEL.Baking
         {
             get
             {
-                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.缓存架 || this.GetPutType == GetPutType.暂存台 || this.GetPutType == GetPutType.下料机)
+                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.烤箱 || this.GetPutType == GetPutType.下料机)
                 {
                     return true;
                 }
@@ -641,7 +617,7 @@ namespace CAMEL.Baking
         {
             get
             {
-                if (this.GetPutType == GetPutType.下料机 || this.GetPutType == GetPutType.缓存架)
+                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.下料机)
                 {
                     sampleStatus = SampleStatus.未知;
                 }
@@ -665,7 +641,7 @@ namespace CAMEL.Baking
         {
             get
             {
-                if (this.GetPutType == GetPutType.下料机 || this.GetPutType == GetPutType.缓存架)
+                if (this.GetPutType == GetPutType.上料机 || this.GetPutType == GetPutType.下料机)
                 {
                     return SampleInfo.未知;
                 }
@@ -891,6 +867,7 @@ namespace CAMEL.Baking
                 {
                     Floor floor = Floor.FloorList.First(f => f.StationIds.Contains(this.Id.ToString()));
                     Oven oven = Oven.OvenList.First(o => o.Id == floor.OvenId);
+                    
                 }
             }
         }
@@ -899,11 +876,11 @@ namespace CAMEL.Baking
 
         public void AddLog(string message)
         {
-            string msg = string.Empty;
-            if (!AddLog(message, out msg))
-            {
-                Error.Alert("工位日志保存失败，原因：" + msg);
-            }
+            //string msg = string.Empty;
+            //if (!AddLog(message, out msg))
+            //{
+            //    Error.Alert("工位日志保存失败，原因：" + msg);
+            //}
         }
 
         /// <summary>

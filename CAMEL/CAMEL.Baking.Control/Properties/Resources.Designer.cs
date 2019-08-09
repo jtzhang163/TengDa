@@ -73,6 +73,16 @@ namespace CAMEL.Baking.Control.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap emergency_stop {
+            get {
+                object obj = ResourceManager.GetObject("emergency_stop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Gray_Round {
             get {
                 object obj = ResourceManager.GetObject("Gray_Round", resourceCulture);
@@ -103,9 +113,29 @@ namespace CAMEL.Baking.Control.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Reset_green {
+            get {
+                object obj = ResourceManager.GetObject("Reset_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Stop_Red {
             get {
                 object obj = ResourceManager.GetObject("Stop_Red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Switch_green {
+            get {
+                object obj = ResourceManager.GetObject("Switch_green", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

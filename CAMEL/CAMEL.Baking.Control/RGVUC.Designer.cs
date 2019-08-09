@@ -37,6 +37,11 @@
             this.cmsRGV = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmManuGetStation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmManuPutStation = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiTransAutoManu = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiStart = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPause = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiReset = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiStop = new System.Windows.Forms.ToolStripMenuItem();
             this.panelRGV.SuspendLayout();
             this.tableLayoutPanel21.SuspendLayout();
             this.cmsRGV.SuspendLayout();
@@ -115,24 +120,69 @@
             // 
             this.cmsRGV.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmManuGetStation,
-            this.tsmManuPutStation});
+            this.tsmManuPutStation,
+            this.tsmiTransAutoManu,
+            this.tsmiStart,
+            this.tsmiPause,
+            this.tsmiReset,
+            this.tsmiStop});
             this.cmsRGV.Name = "cmsRGV";
-            this.cmsRGV.Size = new System.Drawing.Size(181, 70);
+            this.cmsRGV.Size = new System.Drawing.Size(181, 180);
             this.cmsRGV.Opening += new System.ComponentModel.CancelEventHandler(this.CmsRGV_Opening);
             // 
             // tsmManuGetStation
             // 
             this.tsmManuGetStation.Name = "tsmManuGetStation";
-            this.tsmManuGetStation.Size = new System.Drawing.Size(180, 22);
+            this.tsmManuGetStation.Size = new System.Drawing.Size(148, 22);
             this.tsmManuGetStation.Text = "手动【取盘】";
             this.tsmManuGetStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
             // 
             // tsmManuPutStation
             // 
             this.tsmManuPutStation.Name = "tsmManuPutStation";
-            this.tsmManuPutStation.Size = new System.Drawing.Size(180, 22);
+            this.tsmManuPutStation.Size = new System.Drawing.Size(148, 22);
             this.tsmManuPutStation.Text = "手动【放盘】";
             this.tsmManuPutStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
+            // 
+            // tsmiTransAutoManu
+            // 
+            this.tsmiTransAutoManu.Image = global::CAMEL.Baking.Control.Properties.Resources.Switch_green;
+            this.tsmiTransAutoManu.Name = "tsmiTransAutoManu";
+            this.tsmiTransAutoManu.Size = new System.Drawing.Size(180, 22);
+            this.tsmiTransAutoManu.Text = "切换为自动";
+            this.tsmiTransAutoManu.Click += new System.EventHandler(this.TsmiTransAutoManu_Click);
+            // 
+            // tsmiStart
+            // 
+            this.tsmiStart.Image = global::CAMEL.Baking.Control.Properties.Resources.Continue_Green;
+            this.tsmiStart.Name = "tsmiStart";
+            this.tsmiStart.Size = new System.Drawing.Size(148, 22);
+            this.tsmiStart.Text = "启动";
+            this.tsmiStart.Click += new System.EventHandler(this.TsmiStart_Click);
+            // 
+            // tsmiPause
+            // 
+            this.tsmiPause.Image = global::CAMEL.Baking.Control.Properties.Resources.Stop_Red;
+            this.tsmiPause.Name = "tsmiPause";
+            this.tsmiPause.Size = new System.Drawing.Size(148, 22);
+            this.tsmiPause.Text = "停止";
+            this.tsmiPause.Click += new System.EventHandler(this.TsmiPause_Click);
+            // 
+            // tsmiReset
+            // 
+            this.tsmiReset.Image = global::CAMEL.Baking.Control.Properties.Resources.Reset_green;
+            this.tsmiReset.Name = "tsmiReset";
+            this.tsmiReset.Size = new System.Drawing.Size(148, 22);
+            this.tsmiReset.Text = "复位";
+            this.tsmiReset.Click += new System.EventHandler(this.TsmiReset_Click);
+            // 
+            // tsmiStop
+            // 
+            this.tsmiStop.Image = global::CAMEL.Baking.Control.Properties.Resources.emergency_stop;
+            this.tsmiStop.Name = "tsmiStop";
+            this.tsmiStop.Size = new System.Drawing.Size(148, 22);
+            this.tsmiStop.Text = "急停";
+            this.tsmiStop.Click += new System.EventHandler(this.TsmiStop_Click);
             // 
             // RGVUC
             // 
@@ -159,5 +209,10 @@
         private System.Windows.Forms.ContextMenuStrip cmsRGV;
         private System.Windows.Forms.ToolStripMenuItem tsmManuGetStation;
         private System.Windows.Forms.ToolStripMenuItem tsmManuPutStation;
+        private System.Windows.Forms.ToolStripMenuItem tsmiStart;
+        private System.Windows.Forms.ToolStripMenuItem tsmiPause;
+        private System.Windows.Forms.ToolStripMenuItem tsmiReset;
+        private System.Windows.Forms.ToolStripMenuItem tsmiStop;
+        private System.Windows.Forms.ToolStripMenuItem tsmiTransAutoManu;
     }
 }

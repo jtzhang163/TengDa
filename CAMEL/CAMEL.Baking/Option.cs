@@ -927,8 +927,6 @@ namespace CAMEL.Baking
         [Browsable(false)]
         public string FloorShowInfoType { get; set; } = "默认信息";
 
-        [Browsable(false)]
-        public bool TaskIsFinished { get; set; } = false;
 
         private int currentWorkNum = 0;
 

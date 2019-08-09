@@ -90,24 +90,6 @@ namespace CAMEL.Baking
             {
                 return false;
             }
-            //set
-            //{
-            //    if (TengDa.WF.Current.IsTerminalInitFinished)
-            //    {
-            //        if (isVacuum != value)
-            //        {
-            //            if (value)
-            //            {
-            //                AddLog("开始抽真空");
-            //            }
-            //            else
-            //            {
-            //                AddLog("泄真空完成");
-            //            }
-            //        }
-            //    }
-            //    isVacuum = value;
-            //}
         }
 
         [ReadOnly(true), Description("网控已开启")]

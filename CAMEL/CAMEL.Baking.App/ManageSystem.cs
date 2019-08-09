@@ -842,7 +842,6 @@ namespace CAMEL.Baking.App
             Current.Task.FromClampStatus = ClampStatus.未知;
             Current.Task.Status = TaskStatus.完成;
             Current.RGV.IsMoving = false;
-            Current.RGV.IsAlreadySendCmd = false;
         }
 
         private bool PlcConnect()

@@ -19,22 +19,22 @@ namespace CAMEL.Baking.Control
             InitializeComponent();
         }
 
-        public void Init(RGV robot)
+        public void Init(RGV rgv)
         {
-            this.lbName.Text = robot.Name;
+            this.lbName.Text = rgv.Name;
             this.lbInfo.Text = "闲置";
-            this.lbClampCode.Text = robot.Clamp.Code;
-            this.lbClampCode.BackColor = robot.ClampStatus == ClampStatus.异常 ? Color.Red : Color.Transparent;
+            this.lbClampCode.Text = rgv.Clamp.Code;
+            this.lbClampCode.BackColor = rgv.ClampStatus == ClampStatus.异常 ? Color.Red : Color.Transparent;
         }
 
-        public void Update(RGV robot)
+        public void Update(RGV rgv)
         {
 
-            robot.IsAlive = robot.IsEnable && robot.Plc.IsAlive;
+            rgv.IsAlive = rgv.IsEnable && rgv.Plc.IsAlive;
 
-            if (robot.IsAlive)
+            if (rgv.IsAlive)
             {
-                switch (robot.ClampStatus)
+                switch (rgv.ClampStatus)
                 {
                     case ClampStatus.满夹具: this.panelRGV.BackColor = Color.LimeGreen; break;
                     case ClampStatus.空夹具: this.panelRGV.BackColor = Color.Cyan; break;
@@ -47,22 +47,22 @@ namespace CAMEL.Baking.Control
                 this.panelRGV.BackColor = Color.LightGray;
             }
 
-            robot.PrePosition = robot.Position;
+            rgv.PrePosition = rgv.Position;
 
-            if (robot.IsAlive)
+            if (rgv.IsAlive)
             {
-                if (robot.IsPausing)
+                if (rgv.IsPausing)
                 {
                     this.lbInfo.Text = "暂停中";
                     this.lbInfo.ForeColor = Color.Red;
 
                 }
-                else if (robot.IsMoving && TengDa.WF.Current.IsTerminalInitFinished)
+                else if (rgv.IsMoving && TengDa.WF.Current.IsTerminalInitFinished)
                 {
-                    this.lbInfo.Text = Current.RGV.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动中", robot.MovingDirSign) : string.Format("移动中{0}", robot.MovingDirSign);
+                    this.lbInfo.Text = Current.RGV.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动中", rgv.MovingDirSign) : string.Format("移动中{0}", rgv.MovingDirSign);
                     this.lbInfo.ForeColor = Color.Blue;
                 }
-                else if (robot.IsMoving)
+                else if (rgv.IsMoving)
                 {
                     this.lbInfo.Text = "取放中";
                     //this.lbInfo.Text = Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取 ? "取盘中" : "放盘中";
@@ -85,13 +85,13 @@ namespace CAMEL.Baking.Control
                 this.lbInfo.ForeColor = SystemColors.WindowText;
             }
 
-            this.lbClampCode.Text = robot.Clamp.Code;
+            this.lbClampCode.Text = rgv.Clamp.Code;
 
-            if (!string.IsNullOrEmpty(robot.AlarmStr) && robot.IsAlive)
+            if (!string.IsNullOrEmpty(rgv.AlarmStr) && rgv.IsAlive)
             {
-                if (robot.PreAlarmStr != robot.AlarmStr)
+                if (rgv.PreAlarmStr != rgv.AlarmStr)
                 {
-                    this.lbName.Text = robot.AlarmStr.TrimEnd(',') + "...";
+                    this.lbName.Text = rgv.AlarmStr.TrimEnd(',') + "...";
                 }
                 else
                 {
@@ -108,13 +108,14 @@ namespace CAMEL.Baking.Control
                 this.lbName.ForeColor = SystemColors.WindowText;
                 this.lbName.BackColor = Color.Transparent;
             }
-            robot.PreAlarmStr = robot.AlarmStr;
+            rgv.PreAlarmStr = rgv.AlarmStr;
         }
 
         private void CmsRGV_Opening(object sender, CancelEventArgs e)
         {
             this.tsmManuGetStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextFromStationId < 1 && Current.Task.NextToStationId < 1 && Current.Task.Status == TaskStatus.完成;
             this.tsmManuPutStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextFromStationId > 0 && Current.Task.NextToStationId < 1 && Current.Task.Status == TaskStatus.完成;
+            this.tsmiTransAutoManu.Text = Current.RGV.IsAuto ? "切换为手动" : "切换为自动";
         }
 
         private void tsmManuStation_DropDownOpening(object sender, EventArgs e)
@@ -412,6 +413,46 @@ namespace CAMEL.Baking.Control
                 Error.Alert(ex);
             }
 
+        }
+
+        private void TsmiStart_Click(object sender, EventArgs e)
+        {
+            if (Current.RGV.Start(out string msg))
+            {
+                Tip.Alert("成功发送启动指令给RGV");
+            }
+        }
+
+        private void TsmiPause_Click(object sender, EventArgs e)
+        {
+            if (Current.RGV.Pause(out string msg))
+            {
+                Tip.Alert("成功发送停止指令给RGV");
+            }
+        }
+
+        private void TsmiReset_Click(object sender, EventArgs e)
+        {
+            if (Current.RGV.Reset(out string msg))
+            {
+                Tip.Alert("成功发送复位指令给RGV");
+            }
+        }
+
+        private void TsmiStop_Click(object sender, EventArgs e)
+        {
+            if (Current.RGV.Stop(out string msg))
+            {
+                Tip.Alert("成功发送急停指令给RGV");
+            }
+        }
+
+        private void TsmiTransAutoManu_Click(object sender, EventArgs e)
+        {
+            if (Current.RGV.TransAutoManu(out string msg))
+            {
+                Tip.Alert("成功发送");
+            }
         }
     }
 }

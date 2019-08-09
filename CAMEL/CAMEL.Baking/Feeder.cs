@@ -455,6 +455,7 @@ namespace CAMEL.Baking
                         return false;
                     }
                     this.GetClampStation.ClampStatus = db17_0 == 2 ? ClampStatus.满夹具 : ClampStatus.无夹具;
+                    this.GetClampStation.Status = db17_0 == 2 ? StationStatus.可取 : StationStatus.工作中;
 
                     if (!this.Plc.GetInfo(false, plcCompany, true, "DB17.2", (byte)0, out int db17_2, out msg))
                     {
@@ -463,6 +464,7 @@ namespace CAMEL.Baking
                         return false;
                     }
                     this.PutClampStation.ClampStatus = db17_2 == 2 ? ClampStatus.无夹具 : ClampStatus.满夹具;
+                    this.PutClampStation.Status = db17_2 == 2 ? StationStatus.可放 : StationStatus.工作中;
 
                     //获取夹具扫码信号
                     if (Current.ClampScaner.IsEnable)

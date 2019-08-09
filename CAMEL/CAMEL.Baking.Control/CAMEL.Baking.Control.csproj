@@ -261,5 +261,14 @@
   <ItemGroup>
     <None Include="Resources\Stop_Red.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reset_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emergency_stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Switch_green.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
