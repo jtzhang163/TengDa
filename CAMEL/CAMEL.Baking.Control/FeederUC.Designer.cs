@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FeederUC));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -39,14 +38,10 @@
             this.lbStationName1 = new System.Windows.Forms.Label();
             this.lbStationName2 = new System.Windows.Forms.Label();
             this.simpleClampUC2 = new CAMEL.Baking.Control.SimpleClampUC();
-            this.cmsBlanker = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmPutFinished2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmPutFinished1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTriLamp)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
-            this.cmsBlanker.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -166,35 +161,11 @@
             this.simpleClampUC2.Size = new System.Drawing.Size(131, 93);
             this.simpleClampUC2.TabIndex = 15;
             // 
-            // cmsBlanker
-            // 
-            this.cmsBlanker.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmPutFinished2,
-            this.tsmPutFinished1});
-            this.cmsBlanker.Name = "cmsInOutOven";
-            this.cmsBlanker.Size = new System.Drawing.Size(156, 48);
-            this.cmsBlanker.Opening += new System.ComponentModel.CancelEventHandler(this.CmsBlanker_Opening);
-            // 
-            // tsmPutFinished2
-            // 
-            this.tsmPutFinished2.Name = "tsmPutFinished2";
-            this.tsmPutFinished2.Size = new System.Drawing.Size(155, 22);
-            this.tsmPutFinished2.Text = "工位2放盘完成";
-            this.tsmPutFinished2.Click += new System.EventHandler(this.TsmPutFinished_Click);
-            // 
-            // tsmPutFinished1
-            // 
-            this.tsmPutFinished1.Name = "tsmPutFinished1";
-            this.tsmPutFinished1.Size = new System.Drawing.Size(155, 22);
-            this.tsmPutFinished1.Text = "工位1放盘完成";
-            this.tsmPutFinished1.Click += new System.EventHandler(this.TsmPutFinished_Click);
-            // 
             // FeederUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ContextMenuStrip = this.cmsBlanker;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FeederUC";
             this.Size = new System.Drawing.Size(141, 268);
@@ -202,7 +173,6 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbTriLamp)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.cmsBlanker.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -218,8 +188,5 @@
         private System.Windows.Forms.Label lbStationName1;
         private System.Windows.Forms.Label lbStationName2;
         private SimpleClampUC simpleClampUC2;
-        private System.Windows.Forms.ContextMenuStrip cmsBlanker;
-        private System.Windows.Forms.ToolStripMenuItem tsmPutFinished2;
-        private System.Windows.Forms.ToolStripMenuItem tsmPutFinished1;
     }
 }

@@ -140,6 +140,12 @@ namespace CAMEL.Baking.App
                 cbVacuumIndex[i] = (CheckBox)(this.Controls.Find(string.Format("cbVacuumIndex{0}", (i + 1).ToString("D2")), true)[0]);
                 cbVacuumIndex[i].ForeColor = Color.Violet;
             }
+
+            if (System.Windows.SystemParameters.PrimaryScreenHeight > 800)
+            {
+                this.tlpOvenCol1.Margin = new Padding(3, 50, 3, 3);
+                this.tlpOvenCol2.Margin = new Padding(3, 3, 3, 50);
+            }
         }
 
         private void InitSettingsTreeView()
@@ -171,14 +177,14 @@ namespace CAMEL.Baking.App
             {
                 tnFeeders.Add(new TreeNode(string.Format("{0}:{1}", feeder.Id, feeder.Name), new TreeNode[] { new TreeNode("PLC") }));
             }
-            TreeNode tnFeederList = new TreeNode("上料机", tnFeeders.ToArray());
+            TreeNode tnFeederList = new TreeNode("上下料机", tnFeeders.ToArray());
 
-            List<TreeNode> tnBlankers = new List<TreeNode>();
-            foreach (Blanker blanker in Blanker.BlankerList)
-            {
-                tnBlankers.Add(new TreeNode(string.Format("{0}:{1}", blanker.Id, blanker.Name), new TreeNode[] { new TreeNode("PLC") }));
-            }
-            TreeNode tnBlankerList = new TreeNode("下料机", tnBlankers.ToArray());
+            //List<TreeNode> tnBlankers = new List<TreeNode>();
+            //foreach (Blanker blanker in Blanker.BlankerList)
+            //{
+            //    tnBlankers.Add(new TreeNode(string.Format("{0}:{1}", blanker.Id, blanker.Name), new TreeNode[] { new TreeNode("PLC") }));
+            //}
+            //TreeNode tnBlankerList = new TreeNode("下料机", tnBlankers.ToArray());
 
             List<TreeNode> tnScaners = new List<TreeNode>();
             foreach (Scaner scaner in Scaner.ScanerList)
@@ -187,9 +193,9 @@ namespace CAMEL.Baking.App
             }
             TreeNode tnScanerList = new TreeNode("扫码枪", tnScaners.ToArray());
 
-            TreeNode tnCache = new TreeNode("缓存架");
+            //TreeNode tnCache = new TreeNode("缓存架");
 
-            TreeNode tnRotater = new TreeNode("转移台");
+            //TreeNode tnRotater = new TreeNode("转移台");
 
             List<TreeNode> tnStations = new List<TreeNode>();
 
@@ -256,7 +262,7 @@ namespace CAMEL.Baking.App
 
             TreeNode tnCurrentTask = new TreeNode("当前任务");
 
-            tvSettings.Nodes.AddRange(new TreeNode[] { tnCurrentTask, tnConfig, tnOvenList, tnFeederList, tnBlankerList, tnScanerList, tnCache, tnRotater, tnStationList, tnTaskList, tnEnabledTaskList, tnRGV, tnMES });
+            tvSettings.Nodes.AddRange(new TreeNode[] { tnCurrentTask, tnConfig, tnOvenList, tnFeederList, tnScanerList, tnStationList, tnTaskList, tnEnabledTaskList, tnRGV, tnMES });
         }
 
         private void InitTerminal()
@@ -1549,119 +1555,6 @@ namespace CAMEL.Baking.App
                     }
                     #endregion
 
-                    #region 电池扫码逻辑
-
-                    Current.Feeder.CurrentBatteryCount = Battery.GetCountByClampId(-1, out msg);  
-
-                    var batteryScanResult = ScanResult.Unknown;
-
-                    var isScanFlag = false;//是否执行了扫码
-
-                    //if (Current.BatteryScaner.IsEnable && Current.BatteryScaner.CanScan)
-                    //{
-
-                    //    string codes = string.Empty;
-                    //    ScanResult result = Current.BatteryScaner.StartBatteryScan(out codes, out msg);
-
-                    //    isScanFlag = true;
-
-                    //    if (result == ScanResult.OK)
-                    //    {
-                    //        this.BeginInvoke(new MethodInvoker(() =>
-                    //        {
-                    //            this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "+" + codes);
-                    //            this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, SystemColors.Control);
-                    //            this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, Color.Green);
-                    //        }));
-
-                    //        Thread t = new Thread(() => {
-                    //            Thread.Sleep(1000);
-                    //            this.BeginInvoke(new MethodInvoker(() =>
-                    //            {
-                    //                this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Green);
-                    //                this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, SystemColors.Control);
-                    //            }));
-                    //        });
-                    //        t.Start();
-
-                    //        foreach (var code in codes.Split(';'))
-                    //        {
-                    //            //
-                    //            if (code.Contains("0000000000"))
-                    //            {
-                    //                Station.StationList.First(o=>o.Id == Current.Feeder.CurrentPutStationId).SampleInfo = SampleInfo.有样品;
-                    //            }
-
-                    //            int id = Battery.Add(new Battery(code, Current.Feeder.Id, -1), out msg);
-                    //            if (id < 1)
-                    //            {
-                    //                Error.Alert(msg);
-                    //            }
-                    //        }
-                    //        batteryScanResult = ScanResult.OK;
-                    //    }
-                    //    else
-                    //    {
-                    //        //再扫一次
-                    //        result = Current.BatteryScaner.StartBatteryScan(out codes, out msg);
-                    //        if (result == ScanResult.OK)
-                    //        {
-                    //            this.BeginInvoke(new MethodInvoker(() => 
-                    //            {
-                    //                this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "+" + codes);
-                    //                this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, SystemColors.Control);
-                    //                this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, Color.Green);
-                    //            }));
-
-                    //            Thread t = new Thread(() => {
-                    //                Thread.Sleep(1000);
-                    //                this.BeginInvoke(new MethodInvoker(() =>
-                    //                {
-                    //                    this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Green);
-                    //                    this.machinesStatusUC1.SetBackColor(Current.BatteryScaner, SystemColors.Control);
-                    //                }));
-                    //            });
-                    //            t.Start();
-
-                    //            foreach (var code in codes.Split(';'))
-                    //            {
-                    //                int id = Battery.Add(new Battery(code, Current.Feeder.Id, -1), out msg);
-                    //                if (id < 1)
-                    //                {
-                    //                    Error.Alert(msg);
-                    //                }
-                    //            }
-
-                    //            batteryScanResult = ScanResult.OK;
-                    //        }
-                    //        else
-                    //        {
-                    //            this.BeginInvoke(new MethodInvoker(() =>
-                    //            {
-                    //                this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "扫码NG");
-                    //                this.machinesStatusUC1.SetForeColor(Current.BatteryScaner, Color.Red);
-                    //            }));
-
-                    //            batteryScanResult = ScanResult.NG;
-                    //        }
-                    //    }
-
-                    //    Current.Feeder.CurrentBatteryCount = Battery.GetCountByClampId(-1, out msg);
-
-                    //    Current.BatteryScaner.CanScan = false;
-                    //}
-                    
-
-                    if (isScanFlag)
-                    {
-                        if (!Current.Feeder.SetScanBatteryResult(batteryScanResult, out msg))
-                        {
-                            Error.Alert(msg);
-                        }
-                    }
-
-                    #endregion
-
                     #region 绘制夹具中电池个数图示
                     for (int j = 0; j < 3; j++)
                     {
@@ -2932,23 +2825,23 @@ namespace CAMEL.Baking.App
                         }
                         this.propertyGridSettings.SelectedObject = Task.TaskList.First(t => t.Id.ToString() == e.Node.Text.Split(':')[0]);
                     }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "上料机")
+                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "上下料机")
                     {
                         this.propertyGridSettings.SelectedObject = Current.Feeder;
                         //this.propertyGridSettings.SelectedObject = Feeder.FeederList.First(f => f.Id.ToString() == e.Node.Text.Split(':')[0]);
                     }
-                    else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "上料机" && e.Node.Text == "PLC")
+                    else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "上下料机" && e.Node.Text == "PLC")
                     {
                         this.propertyGridSettings.SelectedObject = Feeder.FeederList.First(f => f.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
                     }
-                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "下料机")
-                    {
-                        this.propertyGridSettings.SelectedObject = Blanker.BlankerList.First(b => b.Id.ToString() == e.Node.Text.Split(':')[0]);
-                    }
-                    else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "下料机" && e.Node.Text == "PLC")
-                    {
-                        this.propertyGridSettings.SelectedObject = Blanker.BlankerList.First(b => b.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
-                    }
+                    //else if (e.Node.Level == 1 && e.Node.Parent.Text == "下料机")
+                    //{
+                    //    this.propertyGridSettings.SelectedObject = Blanker.BlankerList.First(b => b.Id.ToString() == e.Node.Text.Split(':')[0]);
+                    //}
+                    //else if (e.Node.Level == 2 && e.Node.Parent.Parent.Text == "下料机" && e.Node.Text == "PLC")
+                    //{
+                    //    this.propertyGridSettings.SelectedObject = Blanker.BlankerList.First(b => b.Id.ToString() == e.Node.Parent.Text.Split(':')[0]).Plc;
+                    //}
                     else if (e.Node.Level == 1 && e.Node.Parent.Text == "RGV" && e.Node.Text == "PLC")
                     {
                         this.propertyGridSettings.SelectedObject = Current.RGV.Plc;
@@ -3401,61 +3294,6 @@ namespace CAMEL.Baking.App
         {
             string msg = string.Empty;
             if (!Current.Feeder.SetScanClampResult(ScanResult.NG, out msg))
-            {
-                Error.Alert(msg);
-            }
-            else
-            {
-                Tip.Alert("OK");
-            }
-        }
-
-        #endregion
-
-        #region 手动调试电池扫码枪
-
-        private void btnBatteryScanStart_Click(object sender, EventArgs e)
-        {
-            //Thread t = new Thread(() =>{
-            //    string code = string.Empty;
-            //    string msg = string.Empty;
-            //    ScanResult scanResult = Current.BatteryScaner.StartBatteryScan(out code, out msg);
-            //    if (scanResult == ScanResult.OK)
-            //    {
-            //        Tip.Alert(code);
-            //    }
-            //    else if (scanResult == ScanResult.NG)
-            //    {
-            //        Tip.Alert("扫码返回NG！");
-            //    }
-            //    else
-            //    {
-            //        Error.Alert(msg);
-            //    }
-            //});
-
-            //t.Start();
-        }
-
-        private void btnBatteryScanOkBackToFeeder_Click(object sender, EventArgs e)
-        {
-            int i = cbBatteryScaner.SelectedIndex / 2;
-            string msg = string.Empty;
-            if (!Current.Feeder.SetScanBatteryResult(ScanResult.OK, out msg))
-            {
-                Error.Alert(msg);
-            }
-            else
-            {
-                Tip.Alert("OK");
-            }
-        }
-
-        private void btnBatteryScanNgBackToFeeder_Click(object sender, EventArgs e)
-        {
-            int i = cbBatteryScaner.SelectedIndex / 2;
-            string msg = string.Empty;
-            if (!Current.Feeder.SetScanBatteryResult(ScanResult.NG, out msg))
             {
                 Error.Alert(msg);
             }

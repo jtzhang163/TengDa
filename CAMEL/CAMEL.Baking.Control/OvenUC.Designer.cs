@@ -32,14 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OvenUC));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.floorUC1 = new CAMEL.Baking.Control.FloorUC();
             this.floorUC3 = new CAMEL.Baking.Control.FloorUC();
             this.floorUC4 = new CAMEL.Baking.Control.FloorUC();
             this.floorUC5 = new CAMEL.Baking.Control.FloorUC();
+            this.floorUC2 = new CAMEL.Baking.Control.FloorUC();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pbTriLamp = new System.Windows.Forms.PictureBox();
             this.lbName = new System.Windows.Forms.Label();
-            this.floorUC2 = new CAMEL.Baking.Control.FloorUC();
-            this.floorUC1 = new CAMEL.Baking.Control.FloorUC();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -84,8 +84,18 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(144, 269);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
+            // floorUC1
+            // 
+            this.floorUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.floorUC1.Location = new System.Drawing.Point(3, 215);
+            this.floorUC1.Margin = new System.Windows.Forms.Padding(0);
+            this.floorUC1.Name = "floorUC1";
+            this.floorUC1.Size = new System.Drawing.Size(138, 51);
+            this.floorUC1.TabIndex = 4;
+            // 
             // floorUC3
             // 
+            this.floorUC3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.floorUC3.Location = new System.Drawing.Point(3, 109);
             this.floorUC3.Margin = new System.Windows.Forms.Padding(0);
             this.floorUC3.Name = "floorUC3";
@@ -109,6 +119,15 @@
             this.floorUC5.Name = "floorUC5";
             this.floorUC5.Size = new System.Drawing.Size(138, 50);
             this.floorUC5.TabIndex = 0;
+            // 
+            // floorUC2
+            // 
+            this.floorUC2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.floorUC2.Location = new System.Drawing.Point(3, 162);
+            this.floorUC2.Margin = new System.Windows.Forms.Padding(0);
+            this.floorUC2.Name = "floorUC2";
+            this.floorUC2.Size = new System.Drawing.Size(138, 50);
+            this.floorUC2.TabIndex = 3;
             // 
             // tableLayoutPanel3
             // 
@@ -147,22 +166,6 @@
             this.lbName.TabIndex = 7;
             this.lbName.Text = "烤箱名称";
             this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // floorUC2
-            // 
-            this.floorUC2.Location = new System.Drawing.Point(3, 162);
-            this.floorUC2.Margin = new System.Windows.Forms.Padding(0);
-            this.floorUC2.Name = "floorUC2";
-            this.floorUC2.Size = new System.Drawing.Size(138, 50);
-            this.floorUC2.TabIndex = 3;
-            // 
-            // floorUC1
-            // 
-            this.floorUC1.Location = new System.Drawing.Point(3, 215);
-            this.floorUC1.Margin = new System.Windows.Forms.Padding(0);
-            this.floorUC1.Name = "floorUC1";
-            this.floorUC1.Size = new System.Drawing.Size(138, 50);
-            this.floorUC1.TabIndex = 4;
             // 
             // OvenUC
             // 

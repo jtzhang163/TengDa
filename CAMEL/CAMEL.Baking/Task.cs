@@ -579,7 +579,6 @@ namespace CAMEL.Baking
                                     if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
                                     {
                                         var j = Current.Feeder.Stations.IndexOf(Current.Task.FromStation);
-                                        Current.Feeder.SetGetClampFinish(j);
                                     }
                                     Current.Task.Status = TaskStatus.取放中;
                                 }
@@ -593,7 +592,6 @@ namespace CAMEL.Baking
                                     if (Current.Task.ToStation.GetPutType == GetPutType.上料机)
                                     {
                                         var j = Current.Feeder.Stations.IndexOf(Current.Task.ToStation);
-                                        Current.Feeder.SetPutClampFinish(j);
                                     }
 
                                     //if (Current.Task.ToStation.GetPutType == GetPutType.下料机)
@@ -728,7 +726,6 @@ namespace CAMEL.Baking
                                     if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
                                     {
                                         var j = Current.Feeder.Stations.IndexOf(Current.Task.FromStation);
-                                        Current.Feeder.SetGetClampFinish(j);
                                     }
                                     Current.Task.Status = TaskStatus.取放中;
                                 }
@@ -742,7 +739,6 @@ namespace CAMEL.Baking
                                     if (Current.Task.ToStation.GetPutType == GetPutType.上料机)
                                     {
                                         var j = Current.Feeder.Stations.IndexOf(Current.Task.ToStation);
-                                        Current.Feeder.SetPutClampFinish(j);
                                     }
 
                                     //if (Current.Task.ToStation.GetPutType == GetPutType.下料机)

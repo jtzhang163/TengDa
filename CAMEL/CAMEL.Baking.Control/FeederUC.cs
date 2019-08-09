@@ -31,9 +31,6 @@ namespace CAMEL.Baking.Control
 
             this.simpleClampUC1.Init(feeder.Stations[0]);
             this.simpleClampUC2.Init(feeder.Stations[1]);
-
-            this.tsmPutFinished1.Text = feeder.Stations[0].Name + "放盘完成";
-            this.tsmPutFinished2.Text = feeder.Stations[1].Name + "放盘完成";
         }
 
         public void Update(Feeder feeder)
@@ -81,26 +78,6 @@ namespace CAMEL.Baking.Control
 
             this.simpleClampUC1.Update(feeder.Stations[0]);
             this.simpleClampUC2.Update(feeder.Stations[1]);
-        }
-
-        private void CmsBlanker_Opening(object sender, CancelEventArgs e)
-        {
-            this.tsmPutFinished1.Enabled = Current.Feeder.IsAlive && Current.Feeder.Stations[0].ClampStatus == ClampStatus.满夹具;
-            this.tsmPutFinished2.Enabled = Current.Feeder.IsAlive && Current.Feeder.Stations[1].ClampStatus == ClampStatus.满夹具;
-        }
-
-        private void TsmPutFinished_Click(object sender, EventArgs e)
-        {
-            if ((sender as ToolStripMenuItem).Name == "tsmPutFinished1")
-            {
-                Operation.Add(string.Format("手动点击{0}放盘完成", Current.Feeder.Stations[0].Name));
-                Current.Feeder.SetPutClampFinish(0);
-            }
-            else
-            {
-                Operation.Add(string.Format("手动点击{0}放盘完成", Current.Feeder.Stations[1].Name));
-                Current.Feeder.SetPutClampFinish(1);
-            }
         }
     }
 }

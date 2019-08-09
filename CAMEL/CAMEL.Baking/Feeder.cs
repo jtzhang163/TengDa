@@ -400,6 +400,28 @@ namespace CAMEL.Baking
                 return stations;
             }
         }
+
+        /// <summary>
+        /// 取盘位
+        /// </summary>
+        public Station GetClampStation
+        {
+            get
+            {
+                return Stations[0];
+            }
+        }
+
+        /// <summary>
+        /// 放盘位
+        /// </summary>
+        public Station PutClampStation
+        {
+            get
+            {
+                return Stations[1];
+            }
+        }
         #endregion
 
         #region 通信
@@ -424,173 +446,48 @@ namespace CAMEL.Baking
                 {
 
                     #region 获取信息
+                    var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
-                    if (!this.Plc.GetInfo(false, "%01#RDD0020000204**", out output, out msg))
+                    if (!this.Plc.GetInfo(false, plcCompany, true, "DB17.0", (byte)0, out int db17_0, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;
                         return false;
                     }
-                    if (output.Substring(3, 1) != "$")
-                    {
-                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RDD0020000204**", output));
-                        return false;
-                    }
+                    this.GetClampStation.ClampStatus = db17_0 == 2 ? ClampStatus.满夹具 : ClampStatus.无夹具;
 
-                    int[] iOut = new int[5];
-                    output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-                    for (int j = 0; j < iOut.Length; j++)
-                    {
-                        iOut[j] = int.Parse(output.Substring(j * 4, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                    }
-
-                    //if (iOut[4] == 1)
-                    //{
-                    //    if (!Current.BatteryScaner.IsReady)
-                    //    {
-                    //        Current.BatteryScaner.CanScan = true;
-                    //        LogHelper.WriteInfo(Current.BatteryScaner.Name + "【扫码日志】收到上料机给的请求扫码信号！");
-                    //    }
-                    //    Current.BatteryScaner.IsReady = true;
-                    //}
-                    //else
-                    //{
-                    //    Current.BatteryScaner.IsReady = false;
-                    //    Current.BatteryScaner.CanScan = false;
-                    //}
-
-                    switch (iOut[3])
-                    {
-                        case 1: this.TriLamp = TriLamp.Green; break;
-                        case 2: this.TriLamp = TriLamp.Yellow; break;
-                        case 3: this.TriLamp = TriLamp.Red; break;
-                        default: this.TriLamp = TriLamp.Unknown; break;
-                    }
-
-                    if (!this.Plc.GetInfo(false, "%01#RCP6R0212R0211R0210R0215R0214R0213**", out output, out msg))
+                    if (!this.Plc.GetInfo(false, plcCompany, true, "DB17.2", (byte)0, out int db17_2, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;
                         return false;
                     }
-                    if (output.Substring(3, 1) != "$")
-                    {
-                        LogHelper.WriteError(string.Format("与PLC通信格式错误，input：{0}，output：{1}", "%01#RCP6R0212R0211R0210R0215R0214R0213**", output));
-                        return false;
-                    }
+                    this.PutClampStation.ClampStatus = db17_2 == 2 ? ClampStatus.无夹具 : ClampStatus.满夹具;
 
-                    for (int j = 0; j < this.Stations.Count; j++)
+                    //获取夹具扫码信号
+                    if (Current.ClampScaner.IsEnable)
                     {
-                        switch (iOut[j])
+                        if (!this.Plc.GetInfo(false, plcCompany, true, "DB17.8", (byte)0, out int db17_8, out msg))
                         {
-                            case 1:
-                                //this.EmptyClampCount[j]++;
-                                this.Stations[j].Status = StationStatus.可放;
-                                break;
-                            case 2:
-                                if(output.Substring(6 + j, 1) == "1")
-                                {
-                                    this.FillClampCount[j]++;
-                                    this.Stations[j].Status = StationStatus.可取;
-                                }
-                                else
-                                {
-                                    this.Stations[j].ClampStatus = ClampStatus.空夹具;
-                                    this.Stations[j].Status = StationStatus.工作中;
-                                }                    
-                                break;
-                            case 4:
-                                this.Stations[j].ClampStatus = ClampStatus.异常;
-                                this.Stations[j].Status = StationStatus.不可用;
-                                break;
-                            default:
-                                this.Stations[j].ClampStatus = ClampStatus.未知;
-                                this.Stations[j].Status = StationStatus.不可用;
-                                break;
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
                         }
 
-                        //if (iOut[j] == 1)
-                        //{
-                        //    if (EmptyClampCount[j] > 2)
-                        //    {
-                        //        this.Stations[j].ClampStatus = ClampStatus.无夹具;
-                        //        EmptyClampCount[j] = 3;
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    EmptyClampCount[j] = 0;
-                        //}
-
-                        if (iOut[j] == 2 && output.Substring(6 + j, 1) == "1")
+                        if (db17_8 == 2)
                         {
-                            if (FillClampCount[j] > 2)
+                            if (!Current.ClampScaner.IsReady)
                             {
-                                this.Stations[j].ClampStatus = ClampStatus.满夹具;
-                                FillClampCount[j] = 3;
+                                Current.ClampScaner.CanScan = true;
                             }
+                            Current.ClampScaner.IsReady = true;
                         }
                         else
                         {
-                            FillClampCount[j] = 0;
+                            Current.ClampScaner.IsReady = false;
+                            Current.ClampScaner.CanScan = false;
                         }
-
-                        if (output.Substring(9 + j, 1) == "1")
-                        {
-                            this.CurrentPutStationId = this.Stations[j].Id;
-                        }
-
-                        //this.Stations[j].IsClampScanReady = iOut[j + 4] == 1;
                     }
-
-                    //两台上料机信号传递（上料RGV和搬运RGV干涉防呆）
-                    //if (Current.feeders.Count(f => f.IsAlive) == Current.feeders.Count)
-                    //{
-                    //    if (Current.RGV.Plc.Id == this.Plc.Id)
-                    //    {
-                    //        var val = Current.feeders.First(f => f.Id != this.Id).D1026;
-                    //        if (bOutputs[26] != val)
-                    //        {
-                    //            if (!this.Plc.SetInfo("D1026", val, out msg))
-                    //            {
-                    //                Error.Alert(msg);
-                    //                this.Plc.IsAlive = false;
-                    //                return false;
-                    //            }
-                    //        }
-
-                    //        for (var i = 0; i < Current.blankers.Count; i++)
-                    //        {
-                    //            var blanker = Current.blankers[i];
-                    //            if (blanker.IsAlive)
-                    //            {
-                    //                if (bOutputs[27 + i] != blanker.D2027)
-                    //                {
-                    //                    var addr = string.Format("D{0:D4}", 1027 + i);
-                    //                    if (!this.Plc.SetInfo(addr, blanker.D2027, out msg))
-                    //                    {
-                    //                        Error.Alert(msg);
-                    //                        this.Plc.IsAlive = false;
-                    //                        return false;
-                    //                    }
-                    //                }
-                    //            }
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-                    //        var val = Current.feeders.First(f => f.Id != this.Id).D1025;
-                    //        if (bOutputs[25] != val)
-                    //        {
-                    //            if (!this.Plc.SetInfo("D1025", val, out msg))
-                    //            {
-                    //                Error.Alert(msg);
-                    //                this.Plc.IsAlive = false;
-                    //                return false;
-                    //            }
-                    //        }
-                    //    }
-                    //}
 
                     #endregion
                     Thread.Sleep(20);
@@ -608,63 +505,16 @@ namespace CAMEL.Baking
             return true;
         }
 
-        public bool SetScanBatteryResult(ScanResult scanResult, out string msg)
-        {
-            if (scanResult == ScanResult.OK)
-            {
-                if (this.Plc.GetInfo("%01#WCSR02050**", out string output, out msg))
-                {
-                    if (this.Plc.GetInfo("%01#WCSR02000**", out output, out msg))
-                    {
-                        LogHelper.WriteInfo(string.Format("成功发送电池扫码OK结果到{0} %01#WCSR02050** %01#WCSR02000**", this.Plc.Name));
-                        return true;
-                    }
-                }
-            }
-            else
-            {
-                if (this.Plc.GetInfo("%01#WCSR02051**", out string output, out msg))
-                {
-                    if (this.Plc.GetInfo("%01#WCSR02000**", out output, out msg))
-                    {
-                        LogHelper.WriteInfo(string.Format("成功发送电池扫码NG结果到{0} %01#WCSR02051** %01#WCSR02000**", this.Plc.Name));
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
         public bool SetScanClampResult(ScanResult scanResult, out string msg)
         {
-            if (this.Plc.GetInfo("%01#WCSR02051**", out string output, out msg))
+            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
+            if (!this.Plc.GetInfo(false, plcCompany, false, "Q4", (byte)(scanResult == ScanResult.OK ? 2 : 5), out int o, out msg))
             {
-                if (this.Plc.GetInfo("%01#WCSR02000**", out output, out msg))
-                {
-                    LogHelper.WriteInfo(string.Format("成功发送电池扫码NG结果到{0} %01#WCSR02051** %01#WCSR02000**", this.Plc.Name));
-                    return true;
-                }
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+                return false;
             }
             return false;
-        }
-
-        public bool SetGetClampFinish(int j)
-        {
-            var ret = this.Plc.GetInfo(string.Format("%01#WCSR{0:D4}0**", 212 - j), out string output, out string msg);
-
-            LogHelper.WriteInfo(string.Format("%01#WCSR{0:D4}0**", 212 - j) + string.Format("######发送取完夹具信号到{0}，", this.Plc.Name) + ret);
-
-            return ret;
-        }
-
-        public bool SetPutClampFinish(int j)
-        {
-            var ret = this.Plc.GetInfo(string.Format("%01#WCSY000{0}1**", 3 + j), out string output, out string msg);
-
-            LogHelper.WriteInfo(string.Format("%01#WCSY000{0}1**", 3 + j) + string.Format("######发送放完夹具信号到{0}，", this.Plc.Name) + ret);
-
-            return ret;
         }
 
         #endregion

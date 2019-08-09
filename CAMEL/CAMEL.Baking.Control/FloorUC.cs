@@ -34,6 +34,12 @@ namespace CAMEL.Baking.Control
         public FloorUC()
         {
             InitializeComponent();
+
+            if (System.Windows.SystemParameters.PrimaryScreenHeight > 800)
+            {
+                this.lbInfoTop.Font = new System.Drawing.Font("Consolas", 9.0F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.lbStatus.Font = new System.Drawing.Font("Consolas", 9.0F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            }
         }
 
         public void Init(Floor floor)
@@ -62,7 +68,7 @@ namespace CAMEL.Baking.Control
             }
             else
             {
-                var centerStr = floor.IsEnable ? floor.Temperatures[Current.option.DisplayTemperIndex].ToString().PadLeft(2) + "℃" : "炉层禁用";
+                var centerStr = floor.IsEnable ? "" : "禁用";
 
                 var ss = new List<Station>() { oven.ClampOri == ClampOri.A ? floor.Stations[0] : floor.Stations[1], oven.ClampOri == ClampOri.A ? floor.Stations[1] : floor.Stations[0] };
                 var strs = new List<string>() { "", "" };

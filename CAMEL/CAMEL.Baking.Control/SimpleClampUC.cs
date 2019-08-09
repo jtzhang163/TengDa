@@ -25,7 +25,7 @@ namespace CAMEL.Baking.Control
         public void Update(Station station)
         {
 
-            this.BackColor = station.IsEnable ? Color.Transparent : Color.LightGray;
+            this.BackColor = station.IsAlive ? Color.Transparent : Color.LightGray;
 
             this.lbClampCode.Text = station.Clamp.Code;
 
@@ -45,21 +45,21 @@ namespace CAMEL.Baking.Control
             else
             {
 
-                if (!station.IsAlive)
+                //if (!station.IsAlive)
+                //{
+                //    this.BackColor = Color.LightGray;
+                //}
+                //else
+                //{
+                this.lbClampCode.Visible = station.ClampStatus != ClampStatus.无夹具;
+                switch (station.ClampStatus)
                 {
-                    this.BackColor = Color.LightGray;
+                    case ClampStatus.满夹具: this.lbClampCode.BackColor = Color.LimeGreen; break;
+                    case ClampStatus.空夹具: this.lbClampCode.BackColor = Color.Cyan; break;
+                    case ClampStatus.异常: this.lbClampCode.BackColor = Color.Red; break;
+                    default: this.lbClampCode.BackColor = SystemColors.Control; break;
                 }
-                else
-                {
-                    this.lbClampCode.Visible = station.ClampStatus != ClampStatus.无夹具;
-                    switch (station.ClampStatus)
-                    {
-                        case ClampStatus.满夹具: this.lbClampCode.BackColor = Color.LimeGreen; break;
-                        case ClampStatus.空夹具: this.lbClampCode.BackColor = Color.Cyan; break;
-                        case ClampStatus.异常: this.lbClampCode.BackColor = Color.Red; break;
-                        default: this.lbClampCode.BackColor = SystemColors.Control; break;
-                    }
-                }
+                //}
             }
         }
     }
