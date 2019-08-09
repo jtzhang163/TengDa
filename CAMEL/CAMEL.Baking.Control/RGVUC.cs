@@ -29,7 +29,6 @@ namespace CAMEL.Baking.Control
 
         public void Update(RGV rgv)
         {
-
             rgv.IsAlive = rgv.IsEnable && rgv.Plc.IsAlive;
 
             if (rgv.IsAlive)
@@ -113,8 +112,8 @@ namespace CAMEL.Baking.Control
 
         private void CmsRGV_Opening(object sender, CancelEventArgs e)
         {
-            this.tsmManuGetStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextFromStationId < 1 && Current.Task.NextToStationId < 1 && Current.Task.Status == TaskStatus.完成;
-            this.tsmManuPutStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextFromStationId > 0 && Current.Task.NextToStationId < 1 && Current.Task.Status == TaskStatus.完成;
+            this.tsmManuGetStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextFromStationId < 1;
+            this.tsmManuPutStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextToStationId < 1;
             this.tsmiTransAutoManu.Text = Current.RGV.IsAuto ? "切换为手动" : "切换为自动";
         }
 

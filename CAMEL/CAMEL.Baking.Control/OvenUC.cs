@@ -84,6 +84,7 @@ namespace CAMEL.Baking.Control
                 this.floorUCs[j].UpdateUI();
             }
 
+            oven.PreAlarmStr = oven.AlarmStr;
         }
     }
 }

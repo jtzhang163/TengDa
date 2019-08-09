@@ -572,7 +572,7 @@ namespace CAMEL.Baking.App
             if (Current.RGV.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.RGV) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "连接成功"); } }
             else { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "未连接"); }
 
-            //this.panelRGV.Padding = new Padding(Current.RGV.Position + 3, 3, 0, 3);
+            this.panelRGV.Padding = new Padding(Current.RGV.Position + 3, 3, 0, 3);
 
             #endregion
 
@@ -919,8 +919,6 @@ namespace CAMEL.Baking.App
                     return false;
                 }
 
-                Current.RGV.Plc.StartListenReceiveData();
-
                 this.machinesStatusUC1.SetStatusInfo(Current.RGV, "连接成功");
                 this.machinesStatusUC1.SetLampColor(Current.RGV, Color.Green);
             }
@@ -1260,7 +1258,7 @@ namespace CAMEL.Baking.App
                 
 
                 timerRGVRun = new System.Timers.Timer();
-                timerRGVRun.Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000);
+                timerRGVRun.Interval = 2000;
                 timerRGVRun.Elapsed += delegate
                 {
                     Thread listen = new Thread(new ThreadStart(RGVRunInvokeFunc));
@@ -1391,14 +1389,14 @@ namespace CAMEL.Baking.App
             if (timerlock && Current.ovens[i].IsEnable)
             {
 
-                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "发送指令"); }));
+              //  this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "发送指令"); }));
                 if (Current.ovens[i].GetInfo())
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "获取信息成功"); }));
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "通信中..."); }));
                 }
                 else
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "获取信息失败"); }));
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "通信失败"); }));
                 }
                 
 
@@ -1504,14 +1502,14 @@ namespace CAMEL.Baking.App
 
             if (timerlock && Current.Feeder.IsEnable)
             {
-                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "发送指令"); }));
+               // this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "发送指令"); }));
                 if (Current.Feeder.GetInfo())
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "获取信息成功"); }));
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "通信中..."); }));
                 }
                 else
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "获取信息失败"); }));
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "通信失败"); }));
                 }
 
                 if (Current.Feeder.AlreadyGetAllInfo)
@@ -1554,27 +1552,27 @@ namespace CAMEL.Baking.App
                     }
                     #endregion
 
-                    #region 绘制夹具中电池个数图示
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (Current.Feeder.Stations[j].Id == Current.Feeder.CurrentPutStationId)
-                        {
-                            if (Current.Feeder.PreCurrentBatteryCount != Current.Feeder.CurrentBatteryCount)
-                            {
-                               // this.feederUC1.Invalidate(j);
-                                //  this.tlpFeederStationClamp[i][j].Invalidate();
-                            }
-                        }
+                    //#region 绘制夹具中电池个数图示
+                    //for (int j = 0; j < 2; j++)
+                    //{
+                    //    if (Current.Feeder.Stations[j].Id == Current.Feeder.CurrentPutStationId)
+                    //    {
+                    //        if (Current.Feeder.PreCurrentBatteryCount != Current.Feeder.CurrentBatteryCount)
+                    //        {
+                    //           // this.feederUC1.Invalidate(j);
+                    //            //  this.tlpFeederStationClamp[i][j].Invalidate();
+                    //        }
+                    //    }
 
-                        if (Current.Feeder.Stations[j].PreIsAlive != Current.Feeder.Stations[j].IsAlive)
-                        {
-                            //this.feederUC1.Invalidate(j);
-                            // this.tlpFeederStationClamp[i][j].Invalidate();
-                        }
-                        Current.Feeder.Stations[j].PreIsAlive = Current.Feeder.Stations[j].IsAlive;
-                    }
-                    Current.Feeder.PreCurrentBatteryCount = Current.Feeder.CurrentBatteryCount;
-                    #endregion
+                    //    if (Current.Feeder.Stations[j].PreIsAlive != Current.Feeder.Stations[j].IsAlive)
+                    //    {
+                    //        //this.feederUC1.Invalidate(j);
+                    //        // this.tlpFeederStationClamp[i][j].Invalidate();
+                    //    }
+                    //    Current.Feeder.Stations[j].PreIsAlive = Current.Feeder.Stations[j].IsAlive;
+                    //}
+                    //Current.Feeder.PreCurrentBatteryCount = Current.Feeder.CurrentBatteryCount;
+                    //#endregion
                 }
             }
         }
@@ -1592,11 +1590,11 @@ namespace CAMEL.Baking.App
             //    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "发送指令"); }));
             //    if (Current.Blanker.GetInfo())
             //    {
-            //        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "获取信息成功"); }));
+            //        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "通信中..."); }));
             //    }
             //    else
             //    {
-            //        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "获取信息失败"); }));
+            //        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "通信失败"); }));
             //    }
             //}
         }
@@ -1606,14 +1604,14 @@ namespace CAMEL.Baking.App
             string msg = string.Empty;
             if (timerlock && Current.RGV.IsEnable)
             {
-                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "发送指令"); }));
+               // this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "发送指令"); }));
                 if (Current.RGV.GetInfo())
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "获取信息成功"); }));
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "通信中..."); }));
                 }
                 else
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "获取信息失败"); }));
+                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "通信失败"); }));
                 }
 
                 if (Current.RGV.AlreadyGetAllInfo)

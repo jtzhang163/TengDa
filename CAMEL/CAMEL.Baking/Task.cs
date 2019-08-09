@@ -405,7 +405,7 @@ namespace CAMEL.Baking
                                 CurrentTask.ToSwitchManuTaskMode = false;
                                 return;
                             }
-    
+
                             ///任务遍历
                             foreach (Task task in Task.CanGetPutTaskList.Where(t => t.IsEnable))
                             {
@@ -553,6 +553,7 @@ namespace CAMEL.Baking
                             {
                                 if (Current.RGV.IsTaskFinished)
                                 {
+                                    Current.RGV.ClampStatus = Current.Task.FromClampStatus;
                                     Current.Task.Status = TaskStatus.取完;
                                 }
                             }
@@ -585,6 +586,7 @@ namespace CAMEL.Baking
                                     Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                                     Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
                                     Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
+                                    Current.RGV.ClampStatus = ClampStatus.无夹具;
                                     if (!TaskLog.Add(out msg))//记录
                                     {
                                         Error.Alert("保存搬运记录失败：" + msg);
@@ -607,12 +609,14 @@ namespace CAMEL.Baking
                             Current.Task.FromClampStatus = ClampStatus.未知;
                             Current.Task.Status = TaskStatus.完成;
 
-                            if (Current.Task.NextFromStationId > 0)
+                            if (Current.Task.NextFromStationId > 0 && Current.Task.NextToStationId > 0)
                             {
                                 Current.Task.FromStationId = Current.Task.NextFromStationId;
-                                Current.Task.ClampId = Current.Task.FromStation.ClampId;
                                 Current.Task.NextFromStationId = -1;
+                                Current.Task.ToStationId = Current.Task.NextToStationId;
+                                Current.Task.NextToStationId = -1;
                                 Current.Task.FromClampStatus = Current.Task.FromStation.ClampStatus;
+                                Current.Task.ClampId = Current.Task.FromStation.ClampId;
                                 Current.Task.Status = TaskStatus.就绪;
                             }
                         }
@@ -642,6 +646,7 @@ namespace CAMEL.Baking
                         {
                             if (Current.RGV.IsTaskFinished)
                             {
+                                Current.RGV.ClampStatus = Current.Task.FromClampStatus;
                                 Current.Task.Status = TaskStatus.取完;
                             }
                         }
@@ -680,7 +685,11 @@ namespace CAMEL.Baking
                             {
                                 Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                                 Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
-                                Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
+                                if (Current.Task.FromStation != null)
+                                {
+                                    Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
+                                }
+                                Current.RGV.ClampStatus = ClampStatus.无夹具;
                                 if (!TaskLog.Add(out msg))//记录
                                 {
                                     Error.Alert("保存搬运记录失败：" + msg);

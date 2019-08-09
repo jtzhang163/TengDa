@@ -374,21 +374,21 @@ namespace CAMEL.Baking
 
                     //if (this.TriLamp == TriLamp.Red)
                     //{
-                    //    var bOutputs2 = new ushort[] { };
-                    //    if (!this.Plc.GetInfo(true, "D4600", (ushort)400, out bOutputs2, out msg))
-                    //    {
-                    //        Error.Alert(msg);
-                    //        this.Plc.IsAlive = false;
-                    //        return false;
-                    //    }
+                    var bOutputs3 = new ushort[] { };
+                    if (!this.Plc.GetInfo(true, "D1000", (ushort)11, out bOutputs3, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
 
-                    //    StringBuilder sb = new StringBuilder();
-                    //    for (int n = 0; n < bOutputs2.Length; n++)
-                    //    {
-                    //        sb.Append(_Convert.Revert(OmronPLC.GetBitStr(bOutputs2[n], 16)));
-                    //    }
+                    StringBuilder sb = new StringBuilder();
+                    for (int n = 0; n < bOutputs3.Length; n++)
+                    {
+                        sb.Append(_Convert.Revert(OmronPLC.GetBitStr(bOutputs3[n], 16)));
+                    }
 
-                    //    this.Alarm2BinString = sb.ToString();
+                    this.Alarm2BinString = sb.ToString();
                     //}
                     //else
                     //{
@@ -396,82 +396,82 @@ namespace CAMEL.Baking
                     //}
 
 
-                    //if (this.Alarm2BinString != this.PreAlarm2BinString)
-                    //{
-                    //    this.AlarmStr = string.Empty;
-                    //    for (int j = 0; j < this.Floors.Count; j++)
-                    //    {
-                    //        this.Floors[j].AlarmStr = string.Empty;
-                    //    }
+                    if (this.Alarm2BinString != this.PreAlarm2BinString)
+                    {
+                        this.AlarmStr = string.Empty;
+                        for (int j = 0; j < this.Floors.Count; j++)
+                        {
+                            this.Floors[j].AlarmStr = string.Empty;
+                        }
 
-                    //    List<AlarmLog> alarmLogs = new List<AlarmLog>();
+                        List<AlarmLog> alarmLogs = new List<AlarmLog>();
 
-                    //    for (int x = 0; x < this.Alarm2BinString.Length; x++)
-                    //    {
-                    //        if (x > Alarm.Alarms.Count - 1)
-                    //        {
-                    //            break;
-                    //        }
-                    //        char c = this.Alarm2BinString[x];
-                    //        char cPre = this.PreAlarm2BinString.Length < this.Alarm2BinString.Length ? '0' : this.PreAlarm2BinString[x];
-                    //        if (c == '1')
-                    //        {
-                    //            Alarm alarm = (from a in Alarm.Alarms where a.Id == x + 1 select a).ToList()[0];
-                    //            if (alarm.FloorNum == 0)
-                    //            {
-                    //                if (cPre == '0')
-                    //                {
-                    //                    AlarmLog.Stop(AlarmType.Oven, x + 1, this.Id, out msg);
-                    //                }
-                    //            }
-                    //            else if (alarm.FloorNum > 0 && alarm.FloorNum <= this.Floors.Count)
-                    //            {
-                    //                this.Floors[alarm.FloorNum - 1].AlarmStr += alarm.AlarmStr + ",";
+                        for (int x = 0; x < this.Alarm2BinString.Length; x++)
+                        {
+                            if (x > Alarm.Alarms.Count - 1)
+                            {
+                                break;
+                            }
+                            char c = this.Alarm2BinString[x];
+                            char cPre = this.PreAlarm2BinString.Length < this.Alarm2BinString.Length ? '0' : this.PreAlarm2BinString[x];
+                            if (c == '1')
+                            {
+                                Alarm alarm = (from a in Alarm.Alarms where a.Id == x + 1 select a).ToList()[0];
+                                if (alarm.FloorNum == 0)
+                                {
+                                    this.AlarmStr += alarm.AlarmStr + ",";
+                                    if (cPre == '0')
+                                    {
+                                        AlarmLog alarmLog = new AlarmLog();
+                                        alarmLog.AlarmId = x + 1;
+                                        alarmLog.AlarmType = AlarmType.Oven;
+                                        alarmLog.TypeId = this.Id;
+                                        alarmLogs.Add(alarmLog);
+                                    }
+                                }
+                                else if (alarm.FloorNum > 0 && alarm.FloorNum <= this.Floors.Count)
+                                {
+                                    this.Floors[alarm.FloorNum - 1].AlarmStr += alarm.AlarmStr + ",";
 
-                    //                if (cPre == '0')
-                    //                {
-                    //                    AlarmLog alarmLog = new AlarmLog();
-                    //                    alarmLog.AlarmId = x + 1;
-                    //                    alarmLog.AlarmType = AlarmType.Floor;
-                    //                    alarmLog.TypeId = this.Floors[alarm.FloorNum - 1].Id;
-                    //                    alarmLog.Clamp1Id = this.Floors[alarm.FloorNum - 1].Stations[0].ClampId > 0 ? this.Floors[alarm.FloorNum - 1].Stations[0].ClampId : 60;
-                    //                    alarmLog.Clamp2Id = this.Floors[alarm.FloorNum - 1].Stations[1].ClampId > 0 ? this.Floors[alarm.FloorNum - 1].Stations[1].ClampId : 60;
-                    //                    alarmLogs.Add(alarmLog);
-                    //                }
-                    //            }
-                    //        }
-                    //        else if (c == '0')
-                    //        {
-                    //            Alarm alarm = (from a in Alarm.Alarms where a.Id == x + 1 select a).ToList()[0];
-                    //            if (alarm.FloorNum == 0)
-                    //            {
-                    //                this.AlarmStr += alarm.AlarmStr + ",";
-                    //                if (cPre == '1')
-                    //                {
-                    //                    AlarmLog alarmLog = new AlarmLog();
-                    //                    alarmLog.AlarmId = x + 1;
-                    //                    alarmLog.AlarmType = AlarmType.Oven;
-                    //                    alarmLog.TypeId = this.Id;
-                    //                    alarmLogs.Add(alarmLog);
-                    //                }
-                    //            }
-                    //            else if (alarm.FloorNum > 0 && alarm.FloorNum <= this.Floors.Count)
-                    //            {
-                    //                if (cPre == '1')
-                    //                {
-                    //                    AlarmLog.Stop(AlarmType.Floor, x + 1, this.Floors[alarm.FloorNum - 1].Id, out msg);
-                    //                }
-                    //            }
-                    //        }
-                    //    }
+                                    if (cPre == '0')
+                                    {
+                                        AlarmLog alarmLog = new AlarmLog();
+                                        alarmLog.AlarmId = x + 1;
+                                        alarmLog.AlarmType = AlarmType.Floor;
+                                        alarmLog.TypeId = this.Floors[alarm.FloorNum - 1].Id;
+                                        alarmLog.Clamp1Id = this.Floors[alarm.FloorNum - 1].Stations[0].ClampId > 0 ? this.Floors[alarm.FloorNum - 1].Stations[0].ClampId : 60;
+                                        alarmLog.Clamp2Id = this.Floors[alarm.FloorNum - 1].Stations[1].ClampId > 0 ? this.Floors[alarm.FloorNum - 1].Stations[1].ClampId : 60;
+                                        alarmLogs.Add(alarmLog);
+                                    }
+                                }
+                            }
+                            else if (c == '0')
+                            {
+                                Alarm alarm = (from a in Alarm.Alarms where a.Id == x + 1 select a).ToList()[0];
+                                if (alarm.FloorNum == 0)
+                                {
+                                    if (cPre == '1')
+                                    {
+                                        AlarmLog.Stop(AlarmType.Oven, x + 1, this.Id, out msg);
+                                    }
+                                }
+                                else if (alarm.FloorNum > 0 && alarm.FloorNum <= this.Floors.Count)
+                                {
+                                    if (cPre == '1')
+                                    {
+                                        AlarmLog.Stop(AlarmType.Floor, x + 1, this.Floors[alarm.FloorNum - 1].Id, out msg);
+                                    }
+                                }
+                            }
+                        }
 
-                    //    if (!AlarmLog.Add(alarmLogs, out msg))
-                    //    {
-                    //        Error.Alert(msg);
-                    //    }
-                    //}
+                        if (!AlarmLog.Add(alarmLogs, out msg))
+                        {
+                            Error.Alert(msg);
+                        }
+                    }
 
-                    //this.PreAlarm2BinString = this.Alarm2BinString;
+                    this.PreAlarm2BinString = this.Alarm2BinString;
 
                     #endregion
 

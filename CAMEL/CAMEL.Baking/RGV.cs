@@ -292,23 +292,23 @@ namespace CAMEL.Baking
             }
 
             //手动自动信号
-            this.IsAuto = bOutputs[5] == 2;
+            this.IsAuto = bOutputs[6] == 1;
 
             //报警
-            this.IsAlarming = bOutputs[11] == 1;
-            this.AlarmStr = bOutputs[11] == 1 ? "有异常" : "";
+            this.IsAlarming = bOutputs[11] == 1 || bOutputs[60] == 4;
+            this.AlarmStr = this.IsAlarming ? this.name + "异常中" : "";
 
             //有无料
-            switch (bOutputs[12])
-            {
-                case 2: this.ClampStatus = this.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具; break;
-                case 1: this.ClampStatus = ClampStatus.无夹具; break;
-                case 3: this.ClampStatus = ClampStatus.异常; break;
-                default: this.ClampStatus = ClampStatus.未知; break;
-            }
+            //switch (bOutputs[12])
+            //{
+            //    case 1: this.ClampStatus = this.ClampStatus == ClampStatus.空夹具 ? ClampStatus.空夹具 : ClampStatus.满夹具; break;
+            //    case 0: this.ClampStatus = ClampStatus.无夹具; break;
+            //    case 3: this.ClampStatus = ClampStatus.异常; break;
+            //    default: this.ClampStatus = ClampStatus.未知; break;
+            //}
 
             //调度有效
-            this.IsDispatchEnabled = bOutputs[13] == 0;
+            this.IsDispatchEnabled = bOutputs[13] == 1;
 
             //任务完成
             this.IsTaskFinished = bOutputs[15] == 1;
@@ -323,7 +323,7 @@ namespace CAMEL.Baking
             //rgv状态
             this.Status = bOutputs[60];
 
-            this.IsReady = this.Status == 2 && this.IsDispatchEnabled && this.IsAuto && this.IsTaskFinished;
+            this.IsReady = this.Status == 2 && this.IsDispatchEnabled && this.IsAuto;
 
             this.AlreadyGetAllInfo = true;
             this.Plc.IsAlive = true;
@@ -357,6 +357,7 @@ namespace CAMEL.Baking
                     this.Plc.IsAlive = false;
                     return false;
                 }
+                this.IsTaskFinished = false;
             }
 
             //发送位置编号
@@ -400,6 +401,7 @@ namespace CAMEL.Baking
                     this.Plc.IsAlive = false;
                     return false;
                 }
+                this.IsTaskFinished = false;
             }
 
             //发送位置编号
