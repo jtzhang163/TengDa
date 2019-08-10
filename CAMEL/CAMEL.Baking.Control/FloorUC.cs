@@ -189,11 +189,11 @@ namespace CAMEL.Baking.Control
                     break;
                 case DoorStatus.正在打开:
                     lbStatus.ForeColor = Color.White;
-                    lbStatus.BackColor = Color.Red;
+                    lbStatus.BackColor = Color.Lime;
                     break;
                 case DoorStatus.正在关闭:
                     lbStatus.ForeColor = Color.White;
-                    lbStatus.BackColor = Color.Red;
+                    lbStatus.BackColor = Color.Lime;
                     break;
                 case DoorStatus.异常:
                     lbStatus.ForeColor = Color.White;
@@ -420,7 +420,7 @@ namespace CAMEL.Baking.Control
                     }
                     else if (canChangeColor && station.Id == Current.Task.ToStationId)
                     {
-                        brush = Current.Task.FromClampStatus == ClampStatus.空夹具 ? Brushes.Cyan : Brushes.LightBlue;
+                        brush = Current.Task.FromClampStatus == ClampStatus.空夹具 ? Brushes.Cyan : Brushes.Yellow;
                     }
                     else
                     {
@@ -440,7 +440,7 @@ namespace CAMEL.Baking.Control
                                 {
                                     case FloorStatus.无盘: brush = Brushes.White; break;
                                     case FloorStatus.空盘: brush = Brushes.Cyan; break;
-                                    case FloorStatus.待烤: brush = Brushes.LightBlue; break;
+                                    case FloorStatus.待烤: brush = Brushes.Yellow; break;
                                     case FloorStatus.烘烤: brush = Brushes.Pink; break;
                                     case FloorStatus.待出: brush = Brushes.LimeGreen; break;
                                     default: brush = Brushes.WhiteSmoke; break;

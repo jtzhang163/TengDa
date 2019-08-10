@@ -748,11 +748,11 @@ namespace CAMEL.Baking.App
                     {
                         for (int j = 0; j < OvenFloorCount; j++)
                         {
-                            if (Current.ovens[i].Floors[j].IsAlive && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.打开)
-                            {
-                                Tip.Alert(Current.ovens[i].Floors[j].Name + "门尚未关闭，请手动关闭后再切换自动");
-                                return;
-                            }
+                            //if (Current.ovens[i].Floors[j].IsAlive && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.打开)
+                            //{
+                            //    Tip.Alert(Current.ovens[i].Floors[j].Name + "门尚未关闭，请手动关闭后再切换自动");
+                            //    return;
+                            //}
                         }
                     }
                     if (Current.RGV.IsAlive)
@@ -3096,22 +3096,22 @@ namespace CAMEL.Baking.App
                     {
                         for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
                         {
-                            for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
-                            {
-                                for (int m = 0; m < Option.TemperaturePointCount + 1; m++)
+                            //for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
+                            //{
+                                for (int m = 0; m < Option.TemperaturePointCount; m++)
                                 {
-                                    while (Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].Count > 1500)
-                                        Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].RemoveAt(0);
+                                    while (Current.ovens[i].Floors[j].sampledDatas[m].Count > 1500)
+                                        Current.ovens[i].Floors[j].sampledDatas[m].RemoveAt(0);
                                     if (m == Option.TemperaturePointCount)
                                     {
-                                        Current.ovens[i].Floors[j].Stations[k].sampledDatas[Option.TemperaturePointCount].Add((float)(Math.Log10(Current.ovens[i].Floors[j].Stations[k].GetFloor().Vacuum4Show) * 10 + 20));
+                                       // Current.ovens[i].Floors[j].sampledDatas[Option.TemperaturePointCount].Add((float)(Math.Log10(Current.ovens[i].Floors[j].Vacuum4Show) * 10 + 20));
                                     }
                                     else
                                     {
-                                        //Current.ovens[i].Floors[j].Stations[k].sampledDatas[m].Add(Current.ovens[i].Floors[j].Stations[k].Temperatures[m]);
+                                        Current.ovens[i].Floors[j].sampledDatas[m].Add(Current.ovens[i].Floors[j].Temperatures[m]);
                                     }
                                 }
-                            }
+                            //}
                         }
                     }
                 }

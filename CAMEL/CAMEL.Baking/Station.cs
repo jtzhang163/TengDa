@@ -604,7 +604,7 @@ namespace CAMEL.Baking
         //private float[] temperatures = new float[Option.TemperaturePointCount];
 
         #region 绘制温度曲线相关
-        public List<float>[] sampledDatas = new List<float>[Option.TemperaturePointCount + 1];//采样数据1
+        //public List<float>[] sampledDatas = new List<float>[Option.TemperaturePointCount + 1];//采样数据1
         #endregion
 
         protected SampleStatus sampleStatus = SampleStatus.未知;
@@ -736,10 +736,10 @@ namespace CAMEL.Baking
             this.sampleStatus = (SampleStatus)Enum.Parse(typeof(SampleStatus), rowInfo["SampleStatus"].ToString());
             this.PreFloorStatus = this.floorStatus;
             this.fromStationId = TengDa._Convert.StrToInt(rowInfo["FromStationId"].ToString(), -1);
-            for (int i = 0; i < Option.TemperaturePointCount + 1; i++)
-            {
-                this.sampledDatas[i] = new List<float>();
-            }
+            //for (int i = 0; i < Option.TemperaturePointCount + 1; i++)
+            //{
+            //    this.sampledDatas[i] = new List<float>();
+            //}
         }
         #endregion
 

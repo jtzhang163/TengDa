@@ -182,10 +182,11 @@ namespace CAMEL.Baking
             {
                 if (curveColors.Count == 0)
                 {
-                    for (int i = 0; i < TemperaturePointCount; i++)
-                    {
-                        curveColors.Add(Color.FromArgb(i * 6 + 30, 255 - i * 6, i * 6 + 30));
-                    }
+                    //for (int i = 0; i < TemperaturePointCount; i++)
+                    //{
+                    //    curveColors.Add(Color.FromArgb(i * 6 + 30, 255 - i * 6, i * 6 + 30));
+                    //}
+                    curveColors = new Color[TemperaturePointCount] { Color.Red, Color.Green, Color.Blue }.ToList();
                 }
                 return curveColors;
             }

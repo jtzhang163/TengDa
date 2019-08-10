@@ -31,7 +31,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbToStation = new System.Windows.Forms.Label();
             this.lbFromStation = new System.Windows.Forms.Label();
-            this.state4 = new System.Windows.Forms.Label();
             this.state3 = new System.Windows.Forms.Label();
             this.state2 = new System.Windows.Forms.Label();
             this.state1 = new System.Windows.Forms.Label();
@@ -40,6 +39,7 @@
             this.lb2 = new System.Windows.Forms.Label();
             this.lb3 = new System.Windows.Forms.Label();
             this.lbTaskName = new System.Windows.Forms.Label();
+            this.state4 = new System.Windows.Forms.Label();
             this.state6 = new System.Windows.Forms.Label();
             this.state7 = new System.Windows.Forms.Label();
             this.state5 = new System.Windows.Forms.Label();
@@ -62,7 +62,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel1.Controls.Add(this.lbToStation, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbFromStation, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.state3, 9, 0);
@@ -91,8 +91,9 @@
             // 
             this.lbToStation.AutoSize = true;
             this.lbToStation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbToStation.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbToStation.ForeColor = System.Drawing.Color.Green;
-            this.lbToStation.Location = new System.Drawing.Point(494, 0);
+            this.lbToStation.Location = new System.Drawing.Point(493, 0);
             this.lbToStation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbToStation.Name = "lbToStation";
             this.lbToStation.Size = new System.Drawing.Size(83, 30);
@@ -103,35 +104,22 @@
             // 
             this.lbFromStation.AutoSize = true;
             this.lbFromStation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbFromStation.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbFromStation.ForeColor = System.Drawing.Color.Green;
-            this.lbFromStation.Location = new System.Drawing.Point(337, 0);
+            this.lbFromStation.Location = new System.Drawing.Point(336, 0);
             this.lbFromStation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbFromStation.Name = "lbFromStation";
             this.lbFromStation.Size = new System.Drawing.Size(83, 30);
             this.lbFromStation.TabIndex = 13;
             this.lbFromStation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // state4
-            // 
-            this.state4.AutoSize = true;
-            this.state4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.state4.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.state4.ForeColor = System.Drawing.Color.DarkGreen;
-            this.state4.Location = new System.Drawing.Point(791, 0);
-            this.state4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.state4.Name = "state4";
-            this.state4.Size = new System.Drawing.Size(46, 30);
-            this.state4.TabIndex = 5;
-            this.state4.Text = "取完";
-            this.state4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // state3
             // 
             this.state3.AutoSize = true;
             this.state3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.state3.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.state3.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.state3.ForeColor = System.Drawing.Color.DarkGreen;
-            this.state3.Location = new System.Drawing.Point(741, 0);
+            this.state3.Location = new System.Drawing.Point(740, 0);
             this.state3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.state3.Name = "state3";
             this.state3.Size = new System.Drawing.Size(46, 30);
@@ -143,9 +131,9 @@
             // 
             this.state2.AutoSize = true;
             this.state2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.state2.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.state2.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.state2.ForeColor = System.Drawing.Color.DarkGreen;
-            this.state2.Location = new System.Drawing.Point(691, 0);
+            this.state2.Location = new System.Drawing.Point(690, 0);
             this.state2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.state2.Name = "state2";
             this.state2.Size = new System.Drawing.Size(46, 30);
@@ -157,9 +145,9 @@
             // 
             this.state1.AutoSize = true;
             this.state1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.state1.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.state1.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.state1.ForeColor = System.Drawing.Color.DarkGreen;
-            this.state1.Location = new System.Drawing.Point(641, 0);
+            this.state1.Location = new System.Drawing.Point(640, 0);
             this.state1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.state1.Name = "state1";
             this.state1.Size = new System.Drawing.Size(46, 30);
@@ -171,9 +159,9 @@
             // 
             this.State.AutoSize = true;
             this.State.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.State.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.State.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.State.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.State.Location = new System.Drawing.Point(581, 0);
+            this.State.Location = new System.Drawing.Point(580, 0);
             this.State.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.State.Name = "State";
             this.State.Size = new System.Drawing.Size(56, 30);
@@ -185,6 +173,7 @@
             // 
             this.lb1.AutoSize = true;
             this.lb1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb1.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb1.Location = new System.Drawing.Point(2, 0);
             this.lb1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lb1.Name = "lb1";
@@ -197,8 +186,9 @@
             // 
             this.lb2.AutoSize = true;
             this.lb2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb2.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lb2.Location = new System.Drawing.Point(267, 0);
+            this.lb2.Location = new System.Drawing.Point(266, 0);
             this.lb2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lb2.Name = "lb2";
             this.lb2.Size = new System.Drawing.Size(66, 30);
@@ -210,8 +200,9 @@
             // 
             this.lb3.AutoSize = true;
             this.lb3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb3.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lb3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lb3.Location = new System.Drawing.Point(424, 0);
+            this.lb3.Location = new System.Drawing.Point(423, 0);
             this.lb3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lb3.Name = "lb3";
             this.lb3.Size = new System.Drawing.Size(66, 30);
@@ -223,22 +214,37 @@
             // 
             this.lbTaskName.AutoSize = true;
             this.lbTaskName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbTaskName.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTaskName.ForeColor = System.Drawing.Color.Green;
             this.lbTaskName.Location = new System.Drawing.Point(92, 0);
             this.lbTaskName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbTaskName.Name = "lbTaskName";
-            this.lbTaskName.Size = new System.Drawing.Size(171, 30);
+            this.lbTaskName.Size = new System.Drawing.Size(170, 30);
             this.lbTaskName.TabIndex = 12;
             this.lbTaskName.Text = "空盘返上料机";
             this.lbTaskName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // state4
+            // 
+            this.state4.AutoSize = true;
+            this.state4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.state4.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.state4.ForeColor = System.Drawing.Color.DarkGreen;
+            this.state4.Location = new System.Drawing.Point(790, 0);
+            this.state4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.state4.Name = "state4";
+            this.state4.Size = new System.Drawing.Size(46, 30);
+            this.state4.TabIndex = 5;
+            this.state4.Text = "取完";
+            this.state4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // state6
             // 
             this.state6.AutoSize = true;
             this.state6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.state6.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.state6.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.state6.ForeColor = System.Drawing.Color.DarkGreen;
-            this.state6.Location = new System.Drawing.Point(891, 0);
+            this.state6.Location = new System.Drawing.Point(890, 0);
             this.state6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.state6.Name = "state6";
             this.state6.Size = new System.Drawing.Size(46, 30);
@@ -250,12 +256,12 @@
             // 
             this.state7.AutoSize = true;
             this.state7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.state7.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.state7.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.state7.ForeColor = System.Drawing.Color.DarkGreen;
-            this.state7.Location = new System.Drawing.Point(941, 0);
+            this.state7.Location = new System.Drawing.Point(940, 0);
             this.state7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.state7.Name = "state7";
-            this.state7.Size = new System.Drawing.Size(47, 30);
+            this.state7.Size = new System.Drawing.Size(48, 30);
             this.state7.TabIndex = 16;
             this.state7.Text = "完成";
             this.state7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -264,9 +270,9 @@
             // 
             this.state5.AutoSize = true;
             this.state5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.state5.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.state5.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.state5.ForeColor = System.Drawing.Color.DarkGreen;
-            this.state5.Location = new System.Drawing.Point(841, 0);
+            this.state5.Location = new System.Drawing.Point(840, 0);
             this.state5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.state5.Name = "state5";
             this.state5.Size = new System.Drawing.Size(46, 30);

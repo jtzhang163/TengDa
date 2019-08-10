@@ -389,7 +389,7 @@ namespace CAMEL.Baking
                 try
                 {
                     string msg = string.Empty;
-                    if (Current.TaskMode == TaskMode.自动任务)
+                    if (Current.TaskMode == TaskMode.自动任务 && Current.RGV.IsReady)
                     {
                         if (Current.Task.Status == TaskStatus.完成)
                         {
@@ -1002,10 +1002,10 @@ namespace CAMEL.Baking
             {
                 if (Current.TaskMode == TaskMode.手动任务)
                 {
-                    return "手动任务" + string.Format("[{0}]", Current.option.CurrentWorkNum);
+                    return "手动任务";// + string.Format("[{0}]", Current.option.CurrentWorkNum);
                 }
                 var task = Task.TaskList.FirstOrDefault(t => t.Id == this.TaskId);
-                return (task == null ? "尚未生成任务" : task.Description) + string.Format("[{0}]", Current.option.CurrentWorkNum);
+                return (task == null ? "尚未生成任务" : task.Description);// + string.Format("[{0}]", Current.option.CurrentWorkNum);
             }
         }
 

@@ -67,11 +67,11 @@ namespace CAMEL.Baking.Control
                     //this.lbInfo.Text = Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取 ? "取盘中" : "放盘中";
                     this.lbInfo.ForeColor = Color.Blue;
                 }
-                //else if (!Current.RGV.IsExecuting)
-                //{
-                //    this.lbInfo.Text = "未就绪";
-                //    this.lbInfo.ForeColor = Color.Red;
-                //}
+                else if (Current.RGV.Status > 2)
+                {
+                    this.lbInfo.Text = "未就绪";
+                    this.lbInfo.ForeColor = Color.Red;
+                }
                 else
                 {
                     this.lbInfo.Text = "闲置";
@@ -116,8 +116,8 @@ namespace CAMEL.Baking.Control
             this.tsmManuPutStation.Enabled = Current.RGV.IsDispatchEnabled && Current.RGV.IsAuto && !Current.RGV.IsAlarming && Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextToStationId < 1;
             this.tsmiTransAutoManu.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming;
             this.tsmiTransAutoManu.Text = Current.RGV.IsDispatchEnabled && Current.RGV.IsAuto ? "切换为手动" : "切换为自动";
-            this.tsmiStart.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming;
-            this.tsmiReset.Enabled = Current.RGV.IsDispatchEnabled;
+            this.tsmiStart.Enabled = false;//Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming && Current.RGV.Status == 2;
+            this.tsmiReset.Enabled = Current.RGV.IsDispatchEnabled && Current.RGV.Status == 4;
             this.tsmiPause.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming;
             this.tsmiStop.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming;
         }

@@ -30,7 +30,7 @@ namespace CAMEL.Baking.Control
 
                 if (state[i].Text == Current.Task.Status.ToString())
                 {
-                    state[i].BackColor = Color.Black;
+                    state[i].BackColor = Color.DarkGreen;
                     state[i].ForeColor = Color.White;
                 }
                 else
