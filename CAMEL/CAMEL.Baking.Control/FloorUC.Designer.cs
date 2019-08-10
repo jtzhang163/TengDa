@@ -132,7 +132,7 @@
             this.tsmShowTandV,
             this.tsmFloorEnabled});
             this.cmsFloor.Name = "cmsInOutOven";
-            this.cmsFloor.Size = new System.Drawing.Size(158, 114);
+            this.cmsFloor.Size = new System.Drawing.Size(181, 136);
             this.cmsFloor.Opening += new System.ComponentModel.CancelEventHandler(this.CmsFloor_Opening);
             // 
             // tsmRemoteControl
@@ -149,28 +149,27 @@
             this.tsmStopBaking,
             this.tsmOpenNetControl});
             this.tsmRemoteControl.Name = "tsmRemoteControl";
-            this.tsmRemoteControl.Size = new System.Drawing.Size(157, 22);
+            this.tsmRemoteControl.Size = new System.Drawing.Size(180, 22);
             this.tsmRemoteControl.Text = "远程控制";
             // 
             // tsmAlarmReset
             // 
             this.tsmAlarmReset.Name = "tsmAlarmReset";
-            this.tsmAlarmReset.Size = new System.Drawing.Size(136, 22);
+            this.tsmAlarmReset.Size = new System.Drawing.Size(180, 22);
             this.tsmAlarmReset.Text = "报警复位";
-            this.tsmAlarmReset.Visible = false;
             this.tsmAlarmReset.Click += new System.EventHandler(this.TsmAlarmReset_Click);
             // 
             // tsmOvenOpenDoor
             // 
             this.tsmOvenOpenDoor.Name = "tsmOvenOpenDoor";
-            this.tsmOvenOpenDoor.Size = new System.Drawing.Size(136, 22);
+            this.tsmOvenOpenDoor.Size = new System.Drawing.Size(180, 22);
             this.tsmOvenOpenDoor.Text = "开门";
             this.tsmOvenOpenDoor.Click += new System.EventHandler(this.TsmOvenOpenDoor_Click);
             // 
             // tsmOvenCloseDoor
             // 
             this.tsmOvenCloseDoor.Name = "tsmOvenCloseDoor";
-            this.tsmOvenCloseDoor.Size = new System.Drawing.Size(136, 22);
+            this.tsmOvenCloseDoor.Size = new System.Drawing.Size(180, 22);
             this.tsmOvenCloseDoor.Text = "关门";
             this.tsmOvenCloseDoor.Click += new System.EventHandler(this.TsmOvenCloseDoor_Click);
             // 
@@ -178,7 +177,7 @@
             // 
             this.tsmLoadVacuum.Enabled = false;
             this.tsmLoadVacuum.Name = "tsmLoadVacuum";
-            this.tsmLoadVacuum.Size = new System.Drawing.Size(136, 22);
+            this.tsmLoadVacuum.Size = new System.Drawing.Size(180, 22);
             this.tsmLoadVacuum.Text = "抽真空";
             this.tsmLoadVacuum.Visible = false;
             this.tsmLoadVacuum.Click += new System.EventHandler(this.TsmLoadVacuum_Click);
@@ -187,7 +186,7 @@
             // 
             this.tsmCancelLoadVacuum.Enabled = false;
             this.tsmCancelLoadVacuum.Name = "tsmCancelLoadVacuum";
-            this.tsmCancelLoadVacuum.Size = new System.Drawing.Size(136, 22);
+            this.tsmCancelLoadVacuum.Size = new System.Drawing.Size(180, 22);
             this.tsmCancelLoadVacuum.Text = "取消抽真空";
             this.tsmCancelLoadVacuum.Visible = false;
             this.tsmCancelLoadVacuum.Click += new System.EventHandler(this.TsmCancelLoadVacuum_Click);
@@ -196,7 +195,7 @@
             // 
             this.tsmUploadVacuum.Enabled = false;
             this.tsmUploadVacuum.Name = "tsmUploadVacuum";
-            this.tsmUploadVacuum.Size = new System.Drawing.Size(136, 22);
+            this.tsmUploadVacuum.Size = new System.Drawing.Size(180, 22);
             this.tsmUploadVacuum.Text = "泄真空";
             this.tsmUploadVacuum.Visible = false;
             this.tsmUploadVacuum.Click += new System.EventHandler(this.TsmUploadVacuum_Click);
@@ -205,7 +204,7 @@
             // 
             this.tsmCancelUploadVacuum.Enabled = false;
             this.tsmCancelUploadVacuum.Name = "tsmCancelUploadVacuum";
-            this.tsmCancelUploadVacuum.Size = new System.Drawing.Size(136, 22);
+            this.tsmCancelUploadVacuum.Size = new System.Drawing.Size(180, 22);
             this.tsmCancelUploadVacuum.Text = "取消泄真空";
             this.tsmCancelUploadVacuum.Visible = false;
             this.tsmCancelUploadVacuum.Click += new System.EventHandler(this.TsmCancelUploadVacuum_Click);
@@ -214,7 +213,7 @@
             // 
             this.tsmStartBaking.Image = global::CAMEL.Baking.Control.Properties.Resources.Continue_Green;
             this.tsmStartBaking.Name = "tsmStartBaking";
-            this.tsmStartBaking.Size = new System.Drawing.Size(136, 22);
+            this.tsmStartBaking.Size = new System.Drawing.Size(180, 22);
             this.tsmStartBaking.Text = "启动";
             this.tsmStartBaking.Click += new System.EventHandler(this.TsmStartBaking_Click);
             // 
@@ -222,14 +221,14 @@
             // 
             this.tsmStopBaking.Image = ((System.Drawing.Image)(resources.GetObject("tsmStopBaking.Image")));
             this.tsmStopBaking.Name = "tsmStopBaking";
-            this.tsmStopBaking.Size = new System.Drawing.Size(136, 22);
+            this.tsmStopBaking.Size = new System.Drawing.Size(180, 22);
             this.tsmStopBaking.Text = "停止";
             this.tsmStopBaking.Click += new System.EventHandler(this.TsmStopBaking_Click);
             // 
             // tsmOpenNetControl
             // 
             this.tsmOpenNetControl.Name = "tsmOpenNetControl";
-            this.tsmOpenNetControl.Size = new System.Drawing.Size(136, 22);
+            this.tsmOpenNetControl.Size = new System.Drawing.Size(180, 22);
             this.tsmOpenNetControl.Text = "打开网控";
             this.tsmOpenNetControl.Click += new System.EventHandler(this.TsmOpenNetControl_Click);
             // 
@@ -239,7 +238,7 @@
             this.tsmWatContentTestOK,
             this.tsmWatContentTestNG});
             this.tsmWatContentResult.Name = "tsmWatContentResult";
-            this.tsmWatContentResult.Size = new System.Drawing.Size(157, 22);
+            this.tsmWatContentResult.Size = new System.Drawing.Size(180, 22);
             this.tsmWatContentResult.Text = "水分测试结果";
             // 
             // tsmWatContentTestOK
@@ -259,21 +258,21 @@
             // tsmParamSetting
             // 
             this.tsmParamSetting.Name = "tsmParamSetting";
-            this.tsmParamSetting.Size = new System.Drawing.Size(157, 22);
+            this.tsmParamSetting.Size = new System.Drawing.Size(180, 22);
             this.tsmParamSetting.Text = "参数设置...";
             this.tsmParamSetting.Click += new System.EventHandler(this.TsmParamSetting_Click);
             // 
             // tsmShowTandV
             // 
             this.tsmShowTandV.Name = "tsmShowTandV";
-            this.tsmShowTandV.Size = new System.Drawing.Size(157, 22);
+            this.tsmShowTandV.Size = new System.Drawing.Size(180, 22);
             this.tsmShowTandV.Text = "查看温度真空...";
             this.tsmShowTandV.Click += new System.EventHandler(this.TsmShowTandV_Click);
             // 
             // tsmFloorEnabled
             // 
             this.tsmFloorEnabled.Name = "tsmFloorEnabled";
-            this.tsmFloorEnabled.Size = new System.Drawing.Size(157, 22);
+            this.tsmFloorEnabled.Size = new System.Drawing.Size(180, 22);
             this.tsmFloorEnabled.Text = "启用/禁用";
             this.tsmFloorEnabled.Click += new System.EventHandler(this.TsmFloorEnabled_Click);
             // 

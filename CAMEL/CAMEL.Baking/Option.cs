@@ -214,27 +214,27 @@ namespace CAMEL.Baking
             }
         }
 
-        private int curveStationId = -1;
+        private int curveFloorId = -1;
         /// <summary>
-        /// 温度曲线工位Id
+        /// 温度曲线炉层Id
         /// </summary>
         [ReadOnly(true)]
-        [DisplayName("温度曲线工位Id")]
+        [DisplayName("温度曲线炉层Id")]
         [Category("温度曲线")]
-        public int CurveStationId
+        public int CurveFloorId
         {
             get
             {
-                if (curveStationId < 0)
+                if (curveFloorId < 0)
                 {
-                    curveStationId = _Convert.StrToInt(TengDa.WF.Option.GetOption("CurveStationId"), 1);
+                    curveFloorId = _Convert.StrToInt(TengDa.WF.Option.GetOption("CurveFloorId"), 1);
                 }
-                return curveStationId;
+                return curveFloorId;
             }
             set
             {
-                TengDa.WF.Option.SetOption("CurveStationId", value.ToString());
-                curveStationId = value;
+                TengDa.WF.Option.SetOption("CurveFloorId", value.ToString());
+                curveFloorId = value;
             }
         }
 

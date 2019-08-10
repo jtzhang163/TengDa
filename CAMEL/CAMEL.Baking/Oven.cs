@@ -336,6 +336,10 @@ namespace CAMEL.Baking
                         //this.Floors[j].IsBaking = bOutputs0[688 - 44 * j] == 1 || output.Substring(2, 1) == "1" && output.Substring(3, 1) == "1";
                     }
 
+                    this.TriLamp =
+                        bOutputs0[70] == 1 ? TriLamp.Green :
+                        bOutputs0[70] == 2 ? TriLamp.Yellow :
+                        bOutputs0[70] == 3 ? TriLamp.Red : TriLamp.Unknown;
 
                     var bOutputs1 = new ushort[] { };
                     if (!this.Plc.GetInfo(true, "D0", (ushort)99, out bOutputs1, out msg))
@@ -358,7 +362,7 @@ namespace CAMEL.Baking
                     #region 报警信息
 
                     var bOutputs2 = new ushort[] { };
-                    if (!this.Plc.GetInfo(true, "D1000", (ushort)99, out bOutputs2, out msg))
+                    if (!this.Plc.GetInfo(true, "C1000", (ushort)99, out bOutputs2, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;
@@ -368,32 +372,33 @@ namespace CAMEL.Baking
                     var isFinishBinString = _Convert.Revert(OmronPLC.GetBitStr(bOutputs2[21], 16));
                     for (int j = 0; j < this.Floors.Count; j++)
                     {
-                        this.Floors[j].IsBakeFinished = isFinishBinString[j + 1] == '1';
+                        this.Floors[j].IsBakeFinished = isFinishBinString[j] == '1';
+                        this.Floors[j].IsBaking = isFinishBinString[j + 6] == '1';
                     }
 
 
-                    //if (this.TriLamp == TriLamp.Red)
-                    //{
-                    var bOutputs3 = new ushort[] { };
-                    if (!this.Plc.GetInfo(true, "D1000", (ushort)11, out bOutputs3, out msg))
+                    if (this.TriLamp == TriLamp.Red)
                     {
-                        Error.Alert(msg);
-                        this.Plc.IsAlive = false;
-                        return false;
-                    }
+                        var bOutputs3 = new ushort[] { };
+                        if (!this.Plc.GetInfo(true, "C1000", (ushort)11, out bOutputs3, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
 
-                    StringBuilder sb = new StringBuilder();
-                    for (int n = 0; n < bOutputs3.Length; n++)
+                        StringBuilder sb = new StringBuilder();
+                        for (int n = 0; n < bOutputs3.Length; n++)
+                        {
+                            sb.Append(_Convert.Revert(OmronPLC.GetBitStr(bOutputs3[n], 16)));
+                        }
+
+                        this.Alarm2BinString = sb.ToString();
+                    }
+                    else
                     {
-                        sb.Append(_Convert.Revert(OmronPLC.GetBitStr(bOutputs3[n], 16)));
+                        this.Alarm2BinString = new String('0', 176);
                     }
-
-                    this.Alarm2BinString = sb.ToString();
-                    //}
-                    //else
-                    //{
-                    //    this.Alarm2BinString = new String('0', 6400);
-                    //}
 
 
                     if (this.Alarm2BinString != this.PreAlarm2BinString)
@@ -475,6 +480,20 @@ namespace CAMEL.Baking
 
                     #endregion
 
+                    var bOutputs4 = new ushort[] { };
+                    if (!this.Plc.GetInfo(true, "H0", (ushort)1, out bOutputs4, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+
+                    var isNetControlBinString = _Convert.Revert(OmronPLC.GetBitStr(bOutputs4[0], 16));
+                    for (int j = 0; j < this.Floors.Count; j++)
+                    {
+                        this.Floors[j].IsNetControlOpen = isNetControlBinString[j + 1] == '0';
+                    }
+
                     #region 写指令 控制开关门、启动运行、抽破真空
                     for (int j = 0; j < this.Floors.Count; j++)
                     {
@@ -523,7 +542,7 @@ namespace CAMEL.Baking
                         if (this.Floors[j].toCloseDoor)
                         {
                             var addr = "D0";
-                            var val = Convert.ToUInt16(2 * (j + 1) -1);
+                            var val = Convert.ToUInt16(2 * (j + 1) - 1);
 
                             if (!this.Plc.SetInfo(addr, val, out msg))
                             {
@@ -556,43 +575,43 @@ namespace CAMEL.Baking
                         }
                         #endregion
 
-                        //    #region 结束运行
-                        //    if (this.Floors[j].toStopBaking)
-                        //    {
-                        //        var addr = Current.option.OvenStopBakingAddrVals.Split(',')[j].Split(':')[0];
-                        //        var val = Convert.ToUInt16(Current.option.OvenStopBakingAddrVals.Split(',')[j].Split(':')[1]);
+                        #region 结束运行
+                        if (this.Floors[j].toStopBaking)
+                        {
+                            var addr = "D" + (j + 1);
+                            var val = Convert.ToUInt16(0);
 
-                        //        if (!this.Plc.SetInfo(addr, val, out msg))
-                        //        {
-                        //            Error.Alert(msg);
-                        //            this.Plc.IsAlive = false;
-                        //            return false;
-                        //        }
+                            if (!this.Plc.SetInfo(addr, val, out msg))
+                            {
+                                Error.Alert(msg);
+                                this.Plc.IsAlive = false;
+                                return false;
+                            }
 
-                        //        LogHelper.WriteInfo(string.Format("成功发送停止运行指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenStopBakingAddrVals.Split(',')[j]));
-                        //        this.Floors[j].toStopBaking = false;
-                        //    }
-                        //    #endregion
+                            LogHelper.WriteInfo(string.Format("成功发送结束运行指令到{0}, {1}:{2}", this.Floors[j].Name, addr, val));
+                            this.Floors[j].toStopBaking = false;
+                        }
+                        #endregion
 
                         //    #region 开启网控
 
                         //    #endregion
 
-                        //    #region 报警复位
-                        //    if (this.Floors[j].toAlarmReset)
-                        //    {
+                        #region 报警复位
+                        if (this.Floors[j].toAlarmReset)
+                        {
 
-                        //        if (!this.Plc.SetInfo("D5303", (ushort)1, out msg))
-                        //        {
-                        //            Error.Alert(msg);
-                        //            this.Plc.IsAlive = false;
-                        //            return false;
-                        //        }
+                            if (!this.Plc.SetInfo("D4071", (ushort)1, out msg))
+                            {
+                                Error.Alert(msg);
+                                this.Plc.IsAlive = false;
+                                return false;
+                            }
 
-                        //        LogHelper.WriteInfo(string.Format("成功发送报警复位指令到{0}:{1}", this.Name, "D5303"));
-                        //        this.Floors[j].toAlarmReset = false;
-                        //    }
-                        //    #endregion
+                            LogHelper.WriteInfo(string.Format("成功发送报警复位指令到{0}:{1}", this.Name, "D4071"));
+                            this.Floors[j].toAlarmReset = false;
+                        }
+                        #endregion
 
                         //    #region 抽真空
                         //    if (this.Floors[j].toLoadVacuum)

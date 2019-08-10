@@ -135,11 +135,11 @@ namespace CAMEL.Baking.App
                 cbTemperIndex[i].ForeColor = Current.option.CurveColors[i];
             }
 
-            for (int i = 0; i < Option.VacuumPointCount; i++)
-            {
-                cbVacuumIndex[i] = (CheckBox)(this.Controls.Find(string.Format("cbVacuumIndex{0}", (i + 1).ToString("D2")), true)[0]);
-                cbVacuumIndex[i].ForeColor = Color.Violet;
-            }
+            //for (int i = 0; i < Option.VacuumPointCount; i++)
+            //{
+            //    cbVacuumIndex[i] = (CheckBox)(this.Controls.Find(string.Format("cbVacuumIndex{0}", (i + 1).ToString("D2")), true)[0]);
+            //    cbVacuumIndex[i].ForeColor = Color.Violet;
+            //}
 
             if (System.Windows.SystemParameters.PrimaryScreenHeight > 800)
             {
@@ -269,7 +269,7 @@ namespace CAMEL.Baking.App
         {
             Current.ovens = Oven.OvenList;
             Current.Yields = Yield.YieldList;
-            cbStations.Items.Add("All");
+            cbFloors.Items.Add("All");
             cbAlarmFloors.Items.Add("All");
 
             for (int i = 0; i < OvenCount; i++)
@@ -281,10 +281,10 @@ namespace CAMEL.Baking.App
                 ///查询温度真空时下拉列表数据            
                 for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
                 {
-                    Current.ovens[i].Floors[j].Stations.ForEach(s => cbStations.Items.Add(s.Name));
+                    cbFloors.Items.Add(Current.ovens[i].Floors[j].Name);
                     cbAlarmFloors.Items.Add(Current.ovens[i].Floors[j].Name);
                 }
-                cbStations.SelectedIndex = 0;
+                cbFloors.SelectedIndex = 0;
                 cbAlarmFloors.SelectedIndex = 0;
             }
 
@@ -323,20 +323,18 @@ namespace CAMEL.Baking.App
             }
             cbTemperAll.Checked = isAll;
 
-            for (int k = 0; k < Option.VacuumPointCount; k++)
-            {
-                cbVacuumIndex[k].Checked = true;
-            }
+            //for (int k = 0; k < Option.VacuumPointCount; k++)
+            //{
+            //    cbVacuumIndex[k].Checked = true;
+            //}
 
             //温度曲线显示工位初始化
 
-            Station curveStation = Station.StationList.Where(s => s.Id == Current.option.CurveStationId).FirstOrDefault();
-            Floor curveFloor = Floor.FloorList.First(f => f.Stations.Contains(curveStation));
-            Oven curveOven = Oven.OvenList.First(o => o.Floors.Contains(curveFloor));
+            Floor curveFloor = Floor.FloorList.First(f => f.Id == Current.option.CurveFloorId);
+            Oven curveOven = curveFloor.GetOven();
 
             int ii = Current.ovens.IndexOf(curveOven);
             int jj = curveOven.Floors.IndexOf(curveFloor);
-            int kk = curveFloor.Stations.IndexOf(curveStation);
 
             Current.ovens.ForEach(o =>
             {
@@ -350,11 +348,11 @@ namespace CAMEL.Baking.App
             });
             cbCurveSelectedFloor.SelectedIndex = jj;
 
-            curveFloor.Stations.ForEach(s =>
-            {
-                cbCurveSelectedStation.Items.Add(s.Name);
-            });
-            cbCurveSelectedStation.SelectedIndex = kk;
+            //curveFloor.Stations.ForEach(s =>
+            //{
+            //    cbCurveSelectedStation.Items.Add(s.Name);
+            //});
+            //cbCurveSelectedStation.SelectedIndex = kk;
 
 
             //水分手动上传选择炉层初始化
@@ -478,22 +476,20 @@ namespace CAMEL.Baking.App
 
                 for (int j = 0; j < OvenFloorCount; j++)
                 {
-                    oven.Floors[j].Stations.ForEach(s =>
-                    {
-                        if (s.Id == Current.option.CurveStationId)
-                        {
-                            for (int k = 0; k < Option.TemperaturePointCount; k++)
-                            {
-                                //cbTemperIndex[k].Text = string.Format("{0}:{1}℃", Current.option.TemperNames[k], s.Temperatures[k].ToString("#0.0").PadLeft(5));
-                            }
-                            for (int k = 0; k < Option.VacuumPointCount; k++)
-                            {
-                                cbVacuumIndex[k].Text = string.Format("{0}:{1}Pa", "真空度", s.GetFloor().Vacuum.ToString());
-                            }
-                        }
-                    });
-
                     var floor = oven.Floors[j];
+
+                    if (floor.Id == Current.option.CurveFloorId)
+                    {
+                        for (int k = 0; k < Option.TemperaturePointCount; k++)
+                        {
+                            cbTemperIndex[k].Text = string.Format("{0}:{1}℃", Current.option.TemperNames[k], floor.Temperatures[k].ToString("#0.0").PadLeft(5));
+                        }
+                        //for (int k = 0; k < Option.VacuumPointCount; k++)
+                        //{
+                        //    cbVacuumIndex[k].Text = string.Format("{0}:{1}Pa", "真空度", s.GetFloor().Vacuum.ToString());
+                        //}
+                    }
+                   
 
                     if (floor.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId) > 0)
                     {
@@ -627,7 +623,7 @@ namespace CAMEL.Baking.App
         private OvenUC[] ovenUCs = new OvenUC[OvenCount];
 
         private CheckBox[] cbTemperIndex = new CheckBox[Option.TemperaturePointCount];
-        private CheckBox[] cbVacuumIndex = new CheckBox[Option.VacuumPointCount];
+        //private CheckBox[] cbVacuumIndex = new CheckBox[Option.VacuumPointCount];
 
         #endregion
 
@@ -2480,19 +2476,19 @@ namespace CAMEL.Baking.App
             var startTime = dtpStart.Value;
             var stopTime = dtpStop.Value;
             var count = cbCount.Text.Trim();
-            var selectStation = cbStations.Text.Trim();
+            var selectFloor = cbFloors.Text.Trim();
 
             Thread t = new Thread(() =>
             {
                 string msg = string.Empty;
                 DataTable dt = null;
-                if (selectStation == "All")
+                if (selectFloor == "All")
                 {
                     dt = Database.Query(string.Format("SELECT TOP {3} * FROM [dbo].[{0}.V_TV] WHERE [记录时间] BETWEEN '{1}' AND '{2}' ORDER BY [记录时间]", Config.DbTableNamePre, startTime, stopTime, count), out msg);
                 }
                 else
                 {
-                    dt = Database.Query(string.Format("SELECT TOP {4} * FROM [dbo].[{0}.V_TV] WHERE [烤箱工位] = '{1}' AND [记录时间] BETWEEN '{2}' AND '{3}' ORDER BY [记录时间]", Config.DbTableNamePre, selectStation, startTime, stopTime, count), out msg);
+                    dt = Database.Query(string.Format("SELECT TOP {4} * FROM [dbo].[{0}.V_TV] WHERE [烤箱炉层] = '{1}' AND [记录时间] BETWEEN '{2}' AND '{3}' ORDER BY [记录时间]", Config.DbTableNamePre, selectFloor, startTime, stopTime, count), out msg);
                 }
 
                 if (dt == null)
@@ -2509,11 +2505,10 @@ namespace CAMEL.Baking.App
                     {
                         dgvTV.Columns[i].Width = 65;
                     }
-                    dgvTV.Columns[Option.TemperaturePointCount + 1].Width = 70;
+                    dgvTV.Columns[Option.TemperaturePointCount + 1].Width = 100;
                     dgvTV.Columns[Option.TemperaturePointCount + 2].Width = 100;
                     dgvTV.Columns[Option.TemperaturePointCount + 3].Width = 100;
-                    dgvTV.Columns[Option.TemperaturePointCount + 4].Width = 140;
-                    dgvTV.Columns[Option.TemperaturePointCount + 4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    dgvTV.Columns[Option.TemperaturePointCount + 3].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
                     tbNumTV.Text = dt.Rows.Count.ToString();
                 }));
             });
@@ -3041,11 +3036,8 @@ namespace CAMEL.Baking.App
 
             #region 绘制曲线
 
-            Station station = Station.StationList.Where(s => s.Id == Current.option.CurveStationId).FirstOrDefault();
-            if (station == null) return;
-
-            Floor floor = Floor.FloorList.First(f => f.Stations.Contains(station));
-            Oven oven = Oven.OvenList.First(o => o.Floors.Contains(floor));
+            Floor floor = Floor.FloorList.First(f => f.Id == Current.option.CurveFloorId);
+            Oven oven = floor.GetOven();
             int jj = oven.Floors.IndexOf(floor);
 
             if (oven.IsAlive)
@@ -3054,39 +3046,39 @@ namespace CAMEL.Baking.App
                 {
                     if (Array.IndexOf(Current.option.CurveIndexs.Split(','), k.ToString()) > -1)
                     {
-                        if (station.sampledDatas[k].Count <= 1) return; // 一个数据就不绘制了
-                        float A = station.sampledDatas[k][0];//station.sampledDatas[k][0] - 20
-                        for (int kk = 1; kk < station.sampledDatas[k].Count; kk++)
+                        if (floor.sampledDatas[k].Count <= 1) return; // 一个数据就不绘制了
+                        float A = floor.sampledDatas[k][0];//station.sampledDatas[k][0] - 20
+                        for (int kk = 1; kk < floor.sampledDatas[k].Count; kk++)
                         {
-                            float B = station.sampledDatas[k][kk];//station.sampledDatas[k][kk] - 20
+                            float B = floor.sampledDatas[k][kk];//station.sampledDatas[k][kk] - 20
                             e.Graphics.DrawLine(new Pen(Current.option.CurveColors[k]),
-                                new Point(pCurve.ClientSize.Width - station.sampledDatas[k].Count + kk - 1, pCurve.ClientSize.Height -
+                                new Point(pCurve.ClientSize.Width - floor.sampledDatas[k].Count + kk - 1, pCurve.ClientSize.Height -
                                     (int)(((double)A / 100) * pCurve.ClientSize.Height)),
-                                new Point(pCurve.ClientSize.Width - station.sampledDatas[k].Count + kk, pCurve.ClientSize.Height -
+                                new Point(pCurve.ClientSize.Width - floor.sampledDatas[k].Count + kk, pCurve.ClientSize.Height -
                                     (int)(((double)B / 100) * pCurve.ClientSize.Height)));
                             A = B;
                         }
                     }
                 }
 
-                for (int k = 0; k < Option.VacuumPointCount; k++)
-                {
-                    if (cbVacuumIndex[k].Checked)
-                    {
-                        if (station.sampledDatas[k + Option.TemperaturePointCount].Count <= 1) return; // 一个数据就不绘制了
-                        float A = station.sampledDatas[k + Option.TemperaturePointCount][0];//station.sampledDatas[k][0] - 20
-                        for (int kk = 1; kk < station.sampledDatas[k + Option.TemperaturePointCount].Count; kk++)
-                        {
-                            float B = station.sampledDatas[k + Option.TemperaturePointCount][kk];//station.sampledDatas[k][kk] - 20
-                            e.Graphics.DrawLine(new Pen(Color.Violet),
-                                new Point(pCurve.ClientSize.Width - station.sampledDatas[k + Option.TemperaturePointCount].Count + kk - 1, pCurve.ClientSize.Height -
-                                    (int)(((double)A / 100) * pCurve.ClientSize.Height)),
-                                new Point(pCurve.ClientSize.Width - station.sampledDatas[k + Option.TemperaturePointCount].Count + kk, pCurve.ClientSize.Height -
-                                    (int)(((double)B / 100) * pCurve.ClientSize.Height)));
-                            A = B;
-                        }
-                    }
-                }
+                //for (int k = 0; k < Option.VacuumPointCount; k++)
+                //{
+                //    if (cbVacuumIndex[k].Checked)
+                //    {
+                //        if (station.sampledDatas[k + Option.TemperaturePointCount].Count <= 1) return; // 一个数据就不绘制了
+                //        float A = station.sampledDatas[k + Option.TemperaturePointCount][0];//station.sampledDatas[k][0] - 20
+                //        for (int kk = 1; kk < station.sampledDatas[k + Option.TemperaturePointCount].Count; kk++)
+                //        {
+                //            float B = station.sampledDatas[k + Option.TemperaturePointCount][kk];//station.sampledDatas[k][kk] - 20
+                //            e.Graphics.DrawLine(new Pen(Color.Violet),
+                //                new Point(pCurve.ClientSize.Width - station.sampledDatas[k + Option.TemperaturePointCount].Count + kk - 1, pCurve.ClientSize.Height -
+                //                    (int)(((double)A / 100) * pCurve.ClientSize.Height)),
+                //                new Point(pCurve.ClientSize.Width - station.sampledDatas[k + Option.TemperaturePointCount].Count + kk, pCurve.ClientSize.Height -
+                //                    (int)(((double)B / 100) * pCurve.ClientSize.Height)));
+                //            A = B;
+                //        }
+                //    }
+                //}
             }
 
             #endregion
@@ -3168,7 +3160,7 @@ namespace CAMEL.Baking.App
         {
             if (!TengDa.WF.Current.IsRunning) return;
             string cbSelectName = (sender as ComboBox).Name;
-            int ii = 0, jj = 0, kk = 0;
+            int ii = 0, jj = 0;
 
             if (cbSelectName.Contains("Oven"))
             {
@@ -3182,35 +3174,35 @@ namespace CAMEL.Baking.App
                 jj = 0;
                 cbCurveSelectedFloor.SelectedIndex = jj;
 
-                cbCurveSelectedStation.Items.Clear();
-                Current.ovens[ii].Floors[jj].Stations.ForEach(s =>
-                {
-                    cbCurveSelectedStation.Items.Add(s.Name);
-                });
-                kk = 0;
-                cbCurveSelectedStation.SelectedIndex = kk;
+                //cbCurveSelectedStation.Items.Clear();
+                //Current.ovens[ii].Floors[jj].Stations.ForEach(s =>
+                //{
+                //    cbCurveSelectedStation.Items.Add(s.Name);
+                //});
+                //kk = 0;
+                //cbCurveSelectedStation.SelectedIndex = kk;
             }
             else if (cbSelectName.Contains("Floor"))
             {
                 ii = cbCurveSelectedOven.SelectedIndex;
                 jj = cbCurveSelectedFloor.SelectedIndex;
 
-                cbCurveSelectedStation.Items.Clear();
-                Current.ovens[ii].Floors[jj].Stations.ForEach(s =>
-                {
-                    cbCurveSelectedStation.Items.Add(s.Name);
-                });
-                kk = 0;
-                cbCurveSelectedStation.SelectedIndex = kk;
+                //cbCurveSelectedStation.Items.Clear();
+                //Current.ovens[ii].Floors[jj].Stations.ForEach(s =>
+                //{
+                //    cbCurveSelectedStation.Items.Add(s.Name);
+                //});
+                //kk = 0;
+                //cbCurveSelectedStation.SelectedIndex = kk;
             }
             else if (cbSelectName.Contains("Station"))
             {
                 ii = cbCurveSelectedOven.SelectedIndex;
                 jj = cbCurveSelectedFloor.SelectedIndex;
-                kk = cbCurveSelectedStation.SelectedIndex;
+                //kk = cbCurveSelectedStation.SelectedIndex;
             }
 
-            Current.option.CurveStationId = Current.ovens[ii].Floors[jj].Stations[kk].Id;
+            Current.option.CurveFloorId = Current.ovens[ii].Floors[jj].Id;
         }
 
         #endregion

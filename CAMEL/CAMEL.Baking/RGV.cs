@@ -65,15 +65,15 @@ namespace CAMEL.Baking
                 position = (int)((this.CoordinateValue - Current.option.RGVMinCoordinate) * Current.option.RGVPositionAmplify);
                 return position;
             }
-            set
-            {
-                if (position != value)
-                {
-                    this.Location = string.Format("{0},1", value);
-                    UpdateDbField("Position", value);
-                }
-                position = value;
-            }
+            //set
+            //{
+            //    if (position != value)
+            //    {
+            //        this.Location = string.Format("{0},1", value);
+            //        UpdateDbField("Position", value);
+            //    }
+            //    position = value;
+            //}
         }
         [Browsable(false)]
         public int PrePosition { get; set; }
@@ -117,6 +117,10 @@ namespace CAMEL.Baking
             }
             set
             {
+                if (coordinateValue != value)
+                {
+                    UpdateDbField("CoordinateValue", value);
+                }
                 coordinateValue = value;
             }
         }
@@ -220,7 +224,7 @@ namespace CAMEL.Baking
             this.location = rowInfo["Location"].ToString();
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
             this.clampId = TengDa._Convert.StrToInt(rowInfo["ClampId"].ToString(), -1);
-            this.position = TengDa._Convert.StrToInt(rowInfo["Position"].ToString(), 1);
+            this.coordinateValue = TengDa._Convert.StrToInt(rowInfo["CoordinateValue"].ToString(), 1);
             this.clampStatus = (ClampStatus)Enum.Parse(typeof(ClampStatus), rowInfo["ClampStatus"].ToString());
         }
         #endregion
@@ -315,10 +319,13 @@ namespace CAMEL.Baking
 
             //X轴位置
             this.CoordinateValue = bOutputs[20];
-            if (this.CoordinateValue < this.PreCoordinateValue) { this.MovingDirection = MovingDirection.前进; this.IsMoving = true; }
-            else if (this.CoordinateValue > this.PreCoordinateValue) { this.MovingDirection = MovingDirection.后退; this.IsMoving = true; }
-            else { this.MovingDirection = MovingDirection.停止; this.IsMoving = false; }
-            this.PreCoordinateValue = this.CoordinateValue;
+            if (this.CoordinateValue > 0)
+            {
+                if (this.CoordinateValue < this.PreCoordinateValue) { this.MovingDirection = MovingDirection.前进; this.IsMoving = true; }
+                else if (this.CoordinateValue > this.PreCoordinateValue) { this.MovingDirection = MovingDirection.后退; this.IsMoving = true; }
+                else { this.MovingDirection = MovingDirection.停止; this.IsMoving = false; }
+                this.PreCoordinateValue = this.CoordinateValue;
+            }
 
             //rgv状态
             this.Status = bOutputs[60];

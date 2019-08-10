@@ -185,7 +185,15 @@ namespace CAMEL.Baking.Control
             {
                 case DoorStatus.打开:
                     lbStatus.ForeColor = Color.White;
-                    lbStatus.BackColor = SystemColors.WindowText;
+                    lbStatus.BackColor = Color.Green;
+                    break;
+                case DoorStatus.正在打开:
+                    lbStatus.ForeColor = Color.White;
+                    lbStatus.BackColor = Color.Red;
+                    break;
+                case DoorStatus.正在关闭:
+                    lbStatus.ForeColor = Color.White;
+                    lbStatus.BackColor = Color.Red;
                     break;
                 case DoorStatus.异常:
                     lbStatus.ForeColor = Color.White;

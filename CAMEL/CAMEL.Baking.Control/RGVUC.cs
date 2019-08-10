@@ -58,12 +58,12 @@ namespace CAMEL.Baking.Control
                 }
                 else if (rgv.IsMoving && TengDa.WF.Current.IsTerminalInitFinished)
                 {
-                    this.lbInfo.Text = Current.RGV.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动中", rgv.MovingDirSign) : string.Format("移动中{0}", rgv.MovingDirSign);
+                    this.lbInfo.Text = Current.RGV.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动", rgv.MovingDirSign) : string.Format("移动{0}", rgv.MovingDirSign);
                     this.lbInfo.ForeColor = Color.Blue;
                 }
-                else if (rgv.IsMoving)
+                else if (rgv.Status == 1)
                 {
-                    this.lbInfo.Text = "取放中";
+                    this.lbInfo.Text = Current.Task.Status == TaskStatus.正取 ? "取盘中" : "放盘中";
                     //this.lbInfo.Text = Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取 ? "取盘中" : "放盘中";
                     this.lbInfo.ForeColor = Color.Blue;
                 }
@@ -112,9 +112,14 @@ namespace CAMEL.Baking.Control
 
         private void CmsRGV_Opening(object sender, CancelEventArgs e)
         {
-            this.tsmManuGetStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextFromStationId < 1;
-            this.tsmManuPutStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextToStationId < 1;
-            this.tsmiTransAutoManu.Text = Current.RGV.IsAuto ? "切换为手动" : "切换为自动";
+            this.tsmManuGetStation.Enabled = Current.RGV.IsDispatchEnabled && Current.RGV.IsAuto && !Current.RGV.IsAlarming && Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextFromStationId < 1;
+            this.tsmManuPutStation.Enabled = Current.RGV.IsDispatchEnabled && Current.RGV.IsAuto && !Current.RGV.IsAlarming && Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextToStationId < 1;
+            this.tsmiTransAutoManu.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming;
+            this.tsmiTransAutoManu.Text = Current.RGV.IsDispatchEnabled && Current.RGV.IsAuto ? "切换为手动" : "切换为自动";
+            this.tsmiStart.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming;
+            this.tsmiReset.Enabled = Current.RGV.IsDispatchEnabled;
+            this.tsmiPause.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming;
+            this.tsmiStop.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming;
         }
 
         private void tsmManuStation_DropDownOpening(object sender, EventArgs e)
