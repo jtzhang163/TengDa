@@ -687,13 +687,13 @@ namespace BakBattery.Baking
         {
             get
             {
-                if (ClampStatus == ClampStatus.空夹具)
+                if (ClampStatus == ClampStatus.空夹具 && this.GetPutType != GetPutType.取样台)
                 {
-                    sampleStatus = SampleStatus.未知;
+                    return SampleStatus.未知;
                 }
-                else if (ClampStatus == ClampStatus.无夹具 && this.GetPutType != GetPutType.烤箱)
+                else if (ClampStatus == ClampStatus.无夹具 && this.GetPutType != GetPutType.烤箱 && this.GetPutType != GetPutType.取样台)
                 {
-                    sampleStatus = SampleStatus.未知;
+                    return SampleStatus.未知;
                 }
                 return sampleStatus;
             }
