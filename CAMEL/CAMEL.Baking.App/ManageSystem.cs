@@ -119,15 +119,6 @@ namespace CAMEL.Baking.App
             }
 
 
-            #region 烤箱相关控件数组
-
-            for (int i = 0; i < OvenCount; i++)
-            {
-                ovenUCs[i] = (OvenUC)(this.Controls.Find(string.Format("ovenUC{0}", (i + 1).ToString("D2")), true)[0]);
-            }
-
-            #endregion
-
 
             for (int i = 0; i < Option.TemperaturePointCount; i++)
             {
@@ -141,11 +132,6 @@ namespace CAMEL.Baking.App
             //    cbVacuumIndex[i].ForeColor = Color.Violet;
             //}
 
-            if (System.Windows.SystemParameters.PrimaryScreenHeight > 800)
-            {
-                this.tlpOvenCol1.Margin = new Padding(3, 50, 3, 3);
-                this.tlpOvenCol2.Margin = new Padding(3, 3, 3, 50);
-            }
         }
 
         private void InitSettingsTreeView()
@@ -274,7 +260,6 @@ namespace CAMEL.Baking.App
 
             for (int i = 0; i < OvenCount; i++)
             {
-                this.ovenUCs[i].Init(Current.ovens[i]);
 
                 cbAlarmFloors.Items.Add(Current.ovens[i].Name);
 
@@ -288,7 +273,7 @@ namespace CAMEL.Baking.App
                 cbAlarmFloors.SelectedIndex = 0;
             }
 
-            this.feederUC1.Init(Current.Feeder);
+            //this.feederUC1.Init(Current.Feeder);
 
             //for (int i = 0; i < 1; i++)
             //{
@@ -305,7 +290,7 @@ namespace CAMEL.Baking.App
 
             //this.blankerUC1.Init(Current.Blanker);
 
-            this.robotUC1.Init(Current.RGV);
+            
 
 
             bool isAll = true;
@@ -369,9 +354,6 @@ namespace CAMEL.Baking.App
             //cbBatteryScaner.SelectedIndex = 0;
             cbClampScaner.SelectedIndex = 0;
 
-            this.machinesStatus1UC = new CAMEL.Baking.Control.MachinesStatus1UC();
-            this.machinesStatus2UC = new CAMEL.Baking.Control.MachinesStatus2UC();
-
             if (Option.LineNum == 1)
             {
                 this.machinesStatus1UC.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -383,6 +365,9 @@ namespace CAMEL.Baking.App
                 this.tableLayoutPanel6.Controls.Add(this.machinesStatus1UC, 0, 0);
 
                 this.machinesStatus1UC.Init();
+
+                this.pageMain1UC.Dock = System.Windows.Forms.DockStyle.Fill;
+                this.tabContentPageMain.Controls.Add(this.pageMain1UC);
             }
             else
             {
@@ -395,6 +380,19 @@ namespace CAMEL.Baking.App
                 this.tableLayoutPanel6.Controls.Add(this.machinesStatus2UC, 0, 0);
 
                 this.machinesStatus2UC.Init();
+
+                this.pageMain2UC.Dock = System.Windows.Forms.DockStyle.Fill;
+                this.tabContentPageMain.Controls.Add(this.pageMain2UC);
+
+            }
+
+            if (Option.LineNum == 1)
+            {
+                this.pageMain1UC.Init();
+            }
+            else
+            {
+                this.pageMain2UC.Init();
             }
         }
 
@@ -494,8 +492,6 @@ namespace CAMEL.Baking.App
             {
                 Oven oven = Current.ovens[i];
 
-                this.ovenUCs[i].UpdateUI();
-
                 if (oven.Plc.IsAlive) { if (this.GetMachineStatusInfo(oven) == "未连接") { this.SetMachineStatusInfo(oven, "连接成功"); } }
                 else { this.SetMachineStatusInfo(oven, "未连接"); }
 
@@ -514,18 +510,7 @@ namespace CAMEL.Baking.App
                         //    cbVacuumIndex[k].Text = string.Format("{0}:{1}Pa", "真空度", s.GetFloor().Vacuum.ToString());
                         //}
                     }
-                   
-
-                    if (floor.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId) > 0)
-                    {
-                        this.ovenUCs[i].Invalidate(j);
-                    }
-
-                    if (floor.PreIsAlive != floor.IsAlive)
-                    {
-                        this.ovenUCs[i].Invalidate(j);
-                    }
-
+                  
                 }
 
             }
@@ -533,8 +518,6 @@ namespace CAMEL.Baking.App
             #endregion
 
             #region 上料机、扫码枪
-
-            this.feederUC1.Update(Current.Feeder);
 
             if (Current.Feeder.Plc.IsAlive) { if (this.GetMachineStatusInfo(Current.Feeder) == "未连接") { this.SetMachineStatusInfo(Current.Feeder, "连接成功"); } }
             else { this.SetMachineStatusInfo(Current.Feeder, "未连接"); }
@@ -588,12 +571,8 @@ namespace CAMEL.Baking.App
 
             #region RGV
 
-            this.robotUC1.Update(Current.RGV);
-
             if (Current.RGV.Plc.IsAlive) { if (this.GetMachineStatusInfo(Current.RGV) == "未连接") { this.SetMachineStatusInfo(Current.RGV, "连接成功"); } }
             else { this.SetMachineStatusInfo(Current.RGV, "未连接"); }
-
-            this.panelRGV.Padding = new Padding(Current.RGV.Position + 3, 3, 0, 3);
 
             #endregion
 
@@ -633,9 +612,16 @@ namespace CAMEL.Baking.App
             }
 
             // this.lbTaskStatus.Text = Current.Task.Status.ToString();
-            this.taskInfo1.UpdateInfo();
-            #endregion
 
+            if (Option.LineNum == 1)
+            {
+                this.pageMain1UC.RefreshUI();
+            }
+            else
+            {
+                this.pageMain2UC.RefreshUI();
+            }
+            #endregion
         }
 
         private void SetMachineStatusInfo(object machine, string info)
@@ -689,13 +675,16 @@ namespace CAMEL.Baking.App
 
         #region 控件数组
 
-        private const int OvenCount = 25;
+        private static int OvenCount = Option.LineNum == 1 ? 25 : 29;
         private const int OvenFloorCount = 5;
 
         private MachinesStatus1UC machinesStatus1UC = new MachinesStatus1UC();
         private MachinesStatus2UC machinesStatus2UC = new MachinesStatus2UC();
 
-        private OvenUC[] ovenUCs = new OvenUC[OvenCount];
+        private PageMain1UC pageMain1UC = new PageMain1UC();
+        private PageMain2UC pageMain2UC = new PageMain2UC();
+
+
 
         private CheckBox[] cbTemperIndex = new CheckBox[Option.TemperaturePointCount];
         //private CheckBox[] cbVacuumIndex = new CheckBox[Option.VacuumPointCount];
@@ -1515,12 +1504,27 @@ namespace CAMEL.Baking.App
                                 {
                                     Current.ovens[i].UploadVacuum(j);
                                 }
-                                this.ovenUCs[i].Invalidate(j);
+
+                                if (Option.LineNum == 1)
+                                {
+                                    this.pageMain1UC.OvenInvalidate(i, j);
+                                }
+                                else
+                                {
+                                    this.pageMain2UC.OvenInvalidate(i, j);
+                                }
                               
                             }
                             else if (station.ClampStatus == ClampStatus.异常)
                             {
-                                this.ovenUCs[i].Invalidate(j);                            
+                                if (Option.LineNum == 1)
+                                {
+                                    this.pageMain1UC.OvenInvalidate(i, j);
+                                }
+                                else
+                                {
+                                    this.pageMain2UC.OvenInvalidate(i, j);
+                                }
                             }
 
                             station.PreFloorStatus = station.FloorStatus;

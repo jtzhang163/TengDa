@@ -18,6 +18,11 @@ namespace CAMEL.Baking.Control
         {
             InitializeComponent();
             this.floorUCs = new FloorUC[5] { floorUC1, floorUC2, floorUC3, floorUC4, floorUC5 };
+
+            if (System.Windows.SystemParameters.PrimaryScreenHeight > 800)
+            {
+                this.lbName.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            }
         }
 
         public void Init(Oven oven)

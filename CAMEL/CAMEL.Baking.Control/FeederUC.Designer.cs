@@ -90,7 +90,7 @@
             // lbName
             // 
             this.lbName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbName.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbName.Font = new System.Drawing.Font("宋体", 7.5F);
             this.lbName.Location = new System.Drawing.Point(3, 0);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(110, 25);

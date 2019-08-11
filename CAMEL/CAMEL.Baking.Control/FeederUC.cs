@@ -17,6 +17,11 @@ namespace CAMEL.Baking.Control
         public FeederUC()
         {
             InitializeComponent();
+
+            if (System.Windows.SystemParameters.PrimaryScreenHeight > 800)
+            {
+                this.lbName.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            }
         }
 
         public void Init(Feeder feeder)

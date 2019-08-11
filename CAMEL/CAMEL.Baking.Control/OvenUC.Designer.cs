@@ -32,14 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OvenUC));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.pbTriLamp = new System.Windows.Forms.PictureBox();
+            this.lbName = new System.Windows.Forms.Label();
             this.floorUC1 = new CAMEL.Baking.Control.FloorUC();
             this.floorUC3 = new CAMEL.Baking.Control.FloorUC();
             this.floorUC4 = new CAMEL.Baking.Control.FloorUC();
             this.floorUC5 = new CAMEL.Baking.Control.FloorUC();
             this.floorUC2 = new CAMEL.Baking.Control.FloorUC();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbTriLamp = new System.Windows.Forms.PictureBox();
-            this.lbName = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -83,6 +83,44 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(144, 269);
             this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.Controls.Add(this.pbTriLamp, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.lbName, 0, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(150, 25);
+            this.tableLayoutPanel3.TabIndex = 1;
+            // 
+            // pbTriLamp
+            // 
+            this.pbTriLamp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbTriLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbTriLamp.Image")));
+            this.pbTriLamp.Location = new System.Drawing.Point(127, 2);
+            this.pbTriLamp.Margin = new System.Windows.Forms.Padding(2);
+            this.pbTriLamp.Name = "pbTriLamp";
+            this.pbTriLamp.Size = new System.Drawing.Size(21, 21);
+            this.pbTriLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbTriLamp.TabIndex = 30;
+            this.pbTriLamp.TabStop = false;
+            // 
+            // lbName
+            // 
+            this.lbName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbName.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbName.Location = new System.Drawing.Point(3, 0);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(119, 25);
+            this.lbName.TabIndex = 7;
+            this.lbName.Text = "烤箱名称";
+            this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // floorUC1
             // 
@@ -128,44 +166,6 @@
             this.floorUC2.Name = "floorUC2";
             this.floorUC2.Size = new System.Drawing.Size(138, 50);
             this.floorUC2.TabIndex = 3;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.Controls.Add(this.pbTriLamp, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.lbName, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(150, 25);
-            this.tableLayoutPanel3.TabIndex = 1;
-            // 
-            // pbTriLamp
-            // 
-            this.pbTriLamp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbTriLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbTriLamp.Image")));
-            this.pbTriLamp.Location = new System.Drawing.Point(127, 2);
-            this.pbTriLamp.Margin = new System.Windows.Forms.Padding(2);
-            this.pbTriLamp.Name = "pbTriLamp";
-            this.pbTriLamp.Size = new System.Drawing.Size(21, 21);
-            this.pbTriLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbTriLamp.TabIndex = 30;
-            this.pbTriLamp.TabStop = false;
-            // 
-            // lbName
-            // 
-            this.lbName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbName.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbName.Location = new System.Drawing.Point(3, 0);
-            this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(119, 25);
-            this.lbName.TabIndex = 7;
-            this.lbName.Text = "烤箱名称";
-            this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // OvenUC
             // 
