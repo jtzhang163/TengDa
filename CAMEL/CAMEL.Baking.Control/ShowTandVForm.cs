@@ -14,37 +14,35 @@ namespace CAMEL.Baking.Control
 {
     public partial class ShowTandVForm : Form
     {
-        private Floor floor;
-        private TorVUC[] showTempers = new TorVUC[48];
-        public ShowTandVForm(Floor floor)
+        private Oven oven;
+        private Label[,] lbTemp = new Label[5,3];
+        public ShowTandVForm(Oven oven)
         {
             InitializeComponent();
 
-            this.floor = floor;
+            this.oven = oven;
 
-            this.Text = this.floor.Name + " 温度真空显示";
-
-            this.showVacuum.Init("真空度(Pa)：");
-
-            for (int i = 0; i < Option.TemperaturePointCount; i++)
+            this.Text = this.oven.Name + " 实时温度";
+            for (int i = 0; i < this.oven.Floors.Count; i++)
             {
-                showTempers[i] = (TorVUC)(this.Controls.Find(string.Format("showTemper01{0}", (i + 1).ToString("D2")), true)[0]);
-                showTempers[i].Init("左" + Current.option.TemperNames[i] + "(℃):");
-                showTempers[i + 24] = (TorVUC)(this.Controls.Find(string.Format("showTemper02{0}", (i + 1).ToString("D2")), true)[0]);
-                showTempers[i + 24].Init("右" + Current.option.TemperNames[i] + "(℃):");
+                for (int j = 0; j < Option.TemperaturePointCount; j++)
+                {
+                    lbTemp[i, j] = (Label)(this.Controls.Find(string.Format("lbTemp{0:D2}{1:D2}", i + 1, j + 1), true)[0]);
+                }
             }
-            BtnFreshUI_Click(null, null);
+
+            Timer1_Tick(null, null);
         }
 
-        private void BtnFreshUI_Click(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
-            for (int i = 0; i < Option.TemperaturePointCount; i++)
+            for (int i = 0; i < this.oven.Floors.Count; i++)
             {
-                //showTempers[i].UpdateValue(this.floor.Stations[0].Temperatures[i]);
-                //showTempers[i + 24].UpdateValue(this.floor.Stations[1].Temperatures[i]);
+                for (int j = 0; j < Option.TemperaturePointCount; j++)
+                {
+                    lbTemp[i, j].Text = this.oven.Floors[i].Temperatures[j].ToString("#00.0") + "℃";
+                }
             }
-
-            this.showVacuum.UpdateValue(floor.Vacuum);
         }
     }
 }

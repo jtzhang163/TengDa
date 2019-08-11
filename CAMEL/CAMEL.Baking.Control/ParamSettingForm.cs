@@ -57,20 +57,15 @@ namespace CAMEL.Baking.Control
                     for (int i = 0; i < this.ovenParamUCs.Length; i++)
                     {
                         var ii = i;
-                        var addr = 0;
+                        var addr = "";
                         var j = oven.Floors.IndexOf(this.floor);
-                        if (j == 0)
-                        {
-                            addr = this.ovenParamUCs[ii].ovenParam.Floor1Addr;
-                        }
-                        else if (j == 1)
-                        {
-                            addr = this.ovenParamUCs[ii].ovenParam.Floor2Addr;
-                        }
-                        else if (j == 2)
-                        {
-                            addr = this.ovenParamUCs[ii].ovenParam.Floor3Addr;
-                        }
+
+                        addr =
+                        j == 0 ? this.ovenParamUCs[ii].ovenParam.Floor1Addr :
+                        j == 1 ? this.ovenParamUCs[ii].ovenParam.Floor2Addr :
+                        j == 2 ? this.ovenParamUCs[ii].ovenParam.Floor3Addr :
+                        j == 3 ? this.ovenParamUCs[ii].ovenParam.Floor4Addr :
+                        j == 4 ? this.ovenParamUCs[ii].ovenParam.Floor5Addr : "";
 
                         if (oven.GetParam(addr, out int val, out msg))
                         {
@@ -139,7 +134,7 @@ namespace CAMEL.Baking.Control
 
                     for (int i = 0; i < this.ovenParamUCs.Length; i++)
                     {
-                        var addr = 0;
+                        var addr = "";
                         var j = oven.Floors.IndexOf(this.floor);
                         if (j == 0)
                         {

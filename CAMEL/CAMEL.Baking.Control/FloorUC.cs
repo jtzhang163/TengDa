@@ -91,13 +91,9 @@ namespace CAMEL.Baking.Control
 
                 if (floor.IsBaking)
                 {
-                    this.lbInfoTop.Text = string.Format("{0}℃{3} {1} {4}{2}℃",
-                         floor.Temperatures[Current.option.DisplayTemperIndex].ToString().PadLeft(2),
-                         centerStr,
-                         floor.Temperatures[Current.option.DisplayTemperIndex].ToString().PadLeft(2),
-                         ss[0].HasSampleFlag ? "■" : "",
-                         ss[1].HasSampleFlag ? "■" : ""
-                         );
+                    this.lbInfoTop.Text = string.Format("烘烤中 {0}℃",
+                         floor.Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4)
+                          );
                 }
                 else
                 {
@@ -189,11 +185,11 @@ namespace CAMEL.Baking.Control
                     break;
                 case DoorStatus.正在打开:
                     lbStatus.ForeColor = Color.White;
-                    lbStatus.BackColor = Color.Lime;
+                    lbStatus.BackColor = Color.HotPink;
                     break;
                 case DoorStatus.正在关闭:
                     lbStatus.ForeColor = Color.White;
-                    lbStatus.BackColor = Color.Lime;
+                    lbStatus.BackColor = Color.HotPink;
                     break;
                 case DoorStatus.异常:
                     lbStatus.ForeColor = Color.White;
@@ -466,7 +462,7 @@ namespace CAMEL.Baking.Control
 
         private void TsmShowTandV_Click(object sender, EventArgs e)
         {
-            var showTandVForm = new ShowTandVForm(this.floor);
+            var showTandVForm = new ShowTandVForm(this.floor.GetOven());
             showTandVForm.ShowDialog();
         }
 

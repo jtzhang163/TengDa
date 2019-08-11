@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ParamSettingForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbSetStatus = new System.Windows.Forms.Label();
+            this.btnSetParam = new System.Windows.Forms.Button();
             this.tlpParamList = new System.Windows.Forms.TableLayoutPanel();
             this.ovenParamUC010 = new CAMEL.Baking.Control.OvenParamUC();
             this.ovenParamUC020 = new CAMEL.Baking.Control.OvenParamUC();
@@ -55,14 +55,15 @@
             this.btnGetParam = new System.Windows.Forms.Button();
             this.btnSetDefaultValue = new System.Windows.Forms.Button();
             this.lbGetStatus = new System.Windows.Forms.Label();
+            this.lbSetStatus = new System.Windows.Forms.Label();
             this.btnGetDefaultValue = new System.Windows.Forms.Button();
-            this.btnSetParam = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tlpParamList.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -85,17 +86,16 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // lbSetStatus
+            // btnSetParam
             // 
-            this.lbSetStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbSetStatus.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.lbSetStatus, 2);
-            this.lbSetStatus.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbSetStatus.Location = new System.Drawing.Point(403, 419);
-            this.lbSetStatus.Name = "lbSetStatus";
-            this.lbSetStatus.Size = new System.Drawing.Size(89, 12);
-            this.lbSetStatus.TabIndex = 4;
-            this.lbSetStatus.Text = "设置设备值状态";
+            this.btnSetParam.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSetParam.Location = new System.Drawing.Point(111, 413);
+            this.btnSetParam.Name = "btnSetParam";
+            this.btnSetParam.Size = new System.Drawing.Size(86, 23);
+            this.btnSetParam.TabIndex = 6;
+            this.btnSetParam.Text = "更新到设备";
+            this.btnSetParam.UseVisualStyleBackColor = true;
+            this.btnSetParam.Click += new System.EventHandler(this.BtnSetParam_Click);
             // 
             // tlpParamList
             // 
@@ -314,6 +314,18 @@
             this.lbGetStatus.TabIndex = 3;
             this.lbGetStatus.Text = "获取设备值状态";
             // 
+            // lbSetStatus
+            // 
+            this.lbSetStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbSetStatus.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.lbSetStatus, 2);
+            this.lbSetStatus.ForeColor = System.Drawing.Color.LimeGreen;
+            this.lbSetStatus.Location = new System.Drawing.Point(403, 419);
+            this.lbSetStatus.Name = "lbSetStatus";
+            this.lbSetStatus.Size = new System.Drawing.Size(89, 12);
+            this.lbSetStatus.TabIndex = 4;
+            this.lbSetStatus.Text = "设置设备值状态";
+            // 
             // btnGetDefaultValue
             // 
             this.btnGetDefaultValue.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -324,17 +336,6 @@
             this.btnGetDefaultValue.Text = "加载默认值";
             this.btnGetDefaultValue.UseVisualStyleBackColor = true;
             this.btnGetDefaultValue.Click += new System.EventHandler(this.BtnGetDefaultValue_Click);
-            // 
-            // btnSetParam
-            // 
-            this.btnSetParam.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSetParam.Location = new System.Drawing.Point(111, 413);
-            this.btnSetParam.Name = "btnSetParam";
-            this.btnSetParam.Size = new System.Drawing.Size(86, 23);
-            this.btnSetParam.TabIndex = 6;
-            this.btnSetParam.Text = "更新到设备";
-            this.btnSetParam.UseVisualStyleBackColor = true;
-            this.btnSetParam.Click += new System.EventHandler(this.BtnSetParam_Click);
             // 
             // ParamSettingForm
             // 

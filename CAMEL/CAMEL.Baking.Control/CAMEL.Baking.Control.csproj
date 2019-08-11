@@ -96,12 +96,6 @@
     <Compile Include="RGVUC.Designer.cs">
       <DependentUpon>RGVUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="TorVUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TorVUC.Designer.cs">
-      <DependentUpon>TorVUC.cs</DependentUpon>
-    </Compile>
     <Compile Include="TransferUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -182,9 +176,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RGVUC.resx">
       <DependentUpon>RGVUC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TorVUC.resx">
-      <DependentUpon>TorVUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TransferUC.resx">
       <DependentUpon>TransferUC.cs</DependentUpon>

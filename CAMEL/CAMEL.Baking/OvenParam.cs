@@ -29,11 +29,15 @@ namespace CAMEL.Baking
 
         public string Unit { get; set; }
 
-        public int Floor1Addr { get; set; }
+        public string Floor1Addr { get; set; }
 
-        public int Floor2Addr { get; set; }
+        public string Floor2Addr { get; set; }
 
-        public int Floor3Addr { get; set; }
+        public string Floor3Addr { get; set; }
+
+        public string Floor4Addr { get; set; }
+
+        public string Floor5Addr { get; set; }
 
         private int defaultValue = -1;
         public int DefaultValue
@@ -132,9 +136,11 @@ namespace CAMEL.Baking
         {
             this.Content = rowInfo["Content"].ToString();
             this.Unit = rowInfo["Unit"].ToString();
-            this.Floor1Addr = TengDa._Convert.StrToInt(rowInfo["Floor1Addr"].ToString(), -1);
-            this.Floor2Addr = TengDa._Convert.StrToInt(rowInfo["Floor2Addr"].ToString(), -1);
-            this.Floor3Addr = TengDa._Convert.StrToInt(rowInfo["Floor3Addr"].ToString(), -1);
+            this.Floor1Addr = rowInfo["Floor1Addr"].ToString();
+            this.Floor2Addr = rowInfo["Floor2Addr"].ToString();
+            this.Floor3Addr = rowInfo["Floor3Addr"].ToString();
+            this.Floor4Addr = rowInfo["Floor4Addr"].ToString();
+            this.Floor5Addr = rowInfo["Floor5Addr"].ToString();
             this.defaultValue = TengDa._Convert.StrToInt(rowInfo["DefaultValue"].ToString(), -1);
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
         }

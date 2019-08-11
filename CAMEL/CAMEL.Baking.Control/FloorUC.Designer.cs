@@ -132,7 +132,7 @@
             this.tsmShowTandV,
             this.tsmFloorEnabled});
             this.cmsFloor.Name = "cmsInOutOven";
-            this.cmsFloor.Size = new System.Drawing.Size(158, 114);
+            this.cmsFloor.Size = new System.Drawing.Size(181, 136);
             this.cmsFloor.Opening += new System.ComponentModel.CancelEventHandler(this.CmsFloor_Opening);
             // 
             // tsmRemoteControl
@@ -149,7 +149,7 @@
             this.tsmStopBaking,
             this.tsmOpenNetControl});
             this.tsmRemoteControl.Name = "tsmRemoteControl";
-            this.tsmRemoteControl.Size = new System.Drawing.Size(157, 22);
+            this.tsmRemoteControl.Size = new System.Drawing.Size(180, 22);
             this.tsmRemoteControl.Text = "远程控制";
             // 
             // tsmAlarmReset
@@ -238,7 +238,7 @@
             this.tsmWatContentTestOK,
             this.tsmWatContentTestNG});
             this.tsmWatContentResult.Name = "tsmWatContentResult";
-            this.tsmWatContentResult.Size = new System.Drawing.Size(157, 22);
+            this.tsmWatContentResult.Size = new System.Drawing.Size(180, 22);
             this.tsmWatContentResult.Text = "水分测试结果";
             // 
             // tsmWatContentTestOK
@@ -258,21 +258,21 @@
             // tsmParamSetting
             // 
             this.tsmParamSetting.Name = "tsmParamSetting";
-            this.tsmParamSetting.Size = new System.Drawing.Size(157, 22);
+            this.tsmParamSetting.Size = new System.Drawing.Size(180, 22);
             this.tsmParamSetting.Text = "参数设置...";
             this.tsmParamSetting.Click += new System.EventHandler(this.TsmParamSetting_Click);
             // 
             // tsmShowTandV
             // 
             this.tsmShowTandV.Name = "tsmShowTandV";
-            this.tsmShowTandV.Size = new System.Drawing.Size(157, 22);
-            this.tsmShowTandV.Text = "查看温度真空...";
+            this.tsmShowTandV.Size = new System.Drawing.Size(180, 22);
+            this.tsmShowTandV.Text = "查看温度...";
             this.tsmShowTandV.Click += new System.EventHandler(this.TsmShowTandV_Click);
             // 
             // tsmFloorEnabled
             // 
             this.tsmFloorEnabled.Name = "tsmFloorEnabled";
-            this.tsmFloorEnabled.Size = new System.Drawing.Size(157, 22);
+            this.tsmFloorEnabled.Size = new System.Drawing.Size(180, 22);
             this.tsmFloorEnabled.Text = "启用/禁用";
             this.tsmFloorEnabled.Click += new System.EventHandler(this.TsmFloorEnabled_Click);
             // 

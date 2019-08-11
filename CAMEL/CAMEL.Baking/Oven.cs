@@ -708,27 +708,22 @@ namespace CAMEL.Baking
         }
 
 
-        public bool GetParam(int addr, out int val, out string msg)
+        public bool GetParam(string addr, out int val, out string msg)
         {
             lock (this)
             {
                 val = -1;
-                var cmd = string.Format("%01#RDD{0:D5}{0:D5}**", addr);
-
                 try
                 {
-                    if (this.Plc.GetInfo(cmd, out string output, out msg))
+                    var bOutputs0 = new ushort[] { };
+                    if (!this.Plc.GetInfo(true, addr, (ushort)1, out bOutputs0, out msg))
                     {
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            msg = string.Format("与PLC通信格式错误，input：{0}，output：{1}", cmd, output);
-                            return false;
-                        }
-
-                        output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-                        val = int.Parse(output.Substring(0, 4), System.Globalization.NumberStyles.AllowHexSpecifier);
-                        return true;
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
                     }
+                    val = bOutputs0[0];
+                    return true;
                 }
                 catch (Exception ex)
                 {
@@ -738,23 +733,19 @@ namespace CAMEL.Baking
             }
         }
 
-        public bool SetParam(int addr, int val, out string msg)
+        public bool SetParam(string addr, int val, out string msg)
         {
             lock (this)
             {
-                var cmd = string.Format("%01#WDD{0:D5}{0:D5}{1}**", addr, PanasonicPLC.ToRevertHexString(val));
                 try
                 {
-                    if (this.Plc.GetInfo(cmd, out string output, out msg))
+                    if (!this.Plc.SetInfo(addr, (ushort)val, out msg))
                     {
-                        if (output.Substring(3, 1) != "$")
-                        {
-                            msg = string.Format("与PLC通信格式错误，input：{0}，output：{1}", cmd, output);
-                            return false;
-                        }
-                        output = PanasonicPLC.ConvertHexStr(output.TrimEnd('\r'), false);
-                        return true;
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
                     }
+                    return true;
                 }
                 catch (Exception ex)
                 {
