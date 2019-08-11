@@ -46,9 +46,6 @@
             this.tsmStartBaking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStopBaking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmOpenNetControl = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmWatContentResult = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmWatContentTestOK = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmWatContentTestNG = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmParamSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmShowTandV = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFloorEnabled = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,16 +77,16 @@
             // 
             // lbInfoTop
             // 
+            this.lbInfoTop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbInfoTop.AutoSize = true;
             this.lbInfoTop.BackColor = System.Drawing.Color.Transparent;
             this.tlpFloor.SetColumnSpan(this.lbInfoTop, 3);
-            this.lbInfoTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbInfoTop.Font = new System.Drawing.Font("Consolas", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbInfoTop.ForeColor = System.Drawing.Color.Red;
-            this.lbInfoTop.Location = new System.Drawing.Point(0, 2);
-            this.lbInfoTop.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.lbInfoTop.Location = new System.Drawing.Point(0, 30);
+            this.lbInfoTop.Margin = new System.Windows.Forms.Padding(0);
             this.lbInfoTop.Name = "lbInfoTop";
-            this.lbInfoTop.Size = new System.Drawing.Size(150, 68);
+            this.lbInfoTop.Size = new System.Drawing.Size(150, 12);
             this.lbInfoTop.TabIndex = 13;
             this.lbInfoTop.Text = "0.0℃ 10000Pa 0.0℃";
             this.lbInfoTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -109,16 +106,16 @@
             // 
             // lbStatus
             // 
+            this.lbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbStatus.AutoSize = true;
             this.lbStatus.BackColor = System.Drawing.SystemColors.Control;
             this.tlpFloor.SetColumnSpan(this.lbStatus, 3);
-            this.lbStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbStatus.Font = new System.Drawing.Font("Consolas", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStatus.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbStatus.Location = new System.Drawing.Point(0, 79);
-            this.lbStatus.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.lbStatus.Location = new System.Drawing.Point(0, 107);
+            this.lbStatus.Margin = new System.Windows.Forms.Padding(0);
             this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Size = new System.Drawing.Size(150, 69);
+            this.lbStatus.Size = new System.Drawing.Size(150, 12);
             this.lbStatus.TabIndex = 17;
             this.lbStatus.Text = "右 关闭 100/200 左";
             this.lbStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -127,12 +124,11 @@
             // 
             this.cmsFloor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmRemoteControl,
-            this.tsmWatContentResult,
             this.tsmParamSetting,
             this.tsmShowTandV,
             this.tsmFloorEnabled});
             this.cmsFloor.Name = "cmsInOutOven";
-            this.cmsFloor.Size = new System.Drawing.Size(181, 136);
+            this.cmsFloor.Size = new System.Drawing.Size(134, 92);
             this.cmsFloor.Opening += new System.ComponentModel.CancelEventHandler(this.CmsFloor_Opening);
             // 
             // tsmRemoteControl
@@ -149,7 +145,7 @@
             this.tsmStopBaking,
             this.tsmOpenNetControl});
             this.tsmRemoteControl.Name = "tsmRemoteControl";
-            this.tsmRemoteControl.Size = new System.Drawing.Size(180, 22);
+            this.tsmRemoteControl.Size = new System.Drawing.Size(133, 22);
             this.tsmRemoteControl.Text = "远程控制";
             // 
             // tsmAlarmReset
@@ -232,47 +228,24 @@
             this.tsmOpenNetControl.Text = "打开网控";
             this.tsmOpenNetControl.Click += new System.EventHandler(this.TsmOpenNetControl_Click);
             // 
-            // tsmWatContentResult
-            // 
-            this.tsmWatContentResult.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmWatContentTestOK,
-            this.tsmWatContentTestNG});
-            this.tsmWatContentResult.Name = "tsmWatContentResult";
-            this.tsmWatContentResult.Size = new System.Drawing.Size(180, 22);
-            this.tsmWatContentResult.Text = "水分测试结果";
-            // 
-            // tsmWatContentTestOK
-            // 
-            this.tsmWatContentTestOK.Name = "tsmWatContentTestOK";
-            this.tsmWatContentTestOK.Size = new System.Drawing.Size(119, 22);
-            this.tsmWatContentTestOK.Text = "结果OK";
-            this.tsmWatContentTestOK.Click += new System.EventHandler(this.TsmWatContentTestOK_Click);
-            // 
-            // tsmWatContentTestNG
-            // 
-            this.tsmWatContentTestNG.Name = "tsmWatContentTestNG";
-            this.tsmWatContentTestNG.Size = new System.Drawing.Size(119, 22);
-            this.tsmWatContentTestNG.Text = "结果NG";
-            this.tsmWatContentTestNG.Click += new System.EventHandler(this.TsmWatContentTestNG_Click);
-            // 
             // tsmParamSetting
             // 
             this.tsmParamSetting.Name = "tsmParamSetting";
-            this.tsmParamSetting.Size = new System.Drawing.Size(180, 22);
+            this.tsmParamSetting.Size = new System.Drawing.Size(133, 22);
             this.tsmParamSetting.Text = "参数设置...";
             this.tsmParamSetting.Click += new System.EventHandler(this.TsmParamSetting_Click);
             // 
             // tsmShowTandV
             // 
             this.tsmShowTandV.Name = "tsmShowTandV";
-            this.tsmShowTandV.Size = new System.Drawing.Size(180, 22);
+            this.tsmShowTandV.Size = new System.Drawing.Size(133, 22);
             this.tsmShowTandV.Text = "查看温度...";
             this.tsmShowTandV.Click += new System.EventHandler(this.TsmShowTandV_Click);
             // 
             // tsmFloorEnabled
             // 
             this.tsmFloorEnabled.Name = "tsmFloorEnabled";
-            this.tsmFloorEnabled.Size = new System.Drawing.Size(180, 22);
+            this.tsmFloorEnabled.Size = new System.Drawing.Size(133, 22);
             this.tsmFloorEnabled.Text = "启用/禁用";
             this.tsmFloorEnabled.Click += new System.EventHandler(this.TsmFloorEnabled_Click);
             // 
@@ -308,9 +281,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmCancelUploadVacuum;
         private System.Windows.Forms.ToolStripMenuItem tsmStopBaking;
         private System.Windows.Forms.ToolStripMenuItem tsmOpenNetControl;
-        private System.Windows.Forms.ToolStripMenuItem tsmWatContentResult;
-        private System.Windows.Forms.ToolStripMenuItem tsmWatContentTestOK;
-        private System.Windows.Forms.ToolStripMenuItem tsmWatContentTestNG;
         private System.Windows.Forms.ToolStripMenuItem tsmParamSetting;
         private System.Windows.Forms.ToolStripMenuItem tsmFloorEnabled;
         private System.Windows.Forms.ToolStripMenuItem tsmShowTandV;

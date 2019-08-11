@@ -212,7 +212,6 @@ namespace CAMEL.Baking.Control
         private void CmsFloor_Opening(object sender, CancelEventArgs e)
         {
             this.tsmRemoteControl.Enabled = oven.IsAlive;
-            this.tsmWatContentResult.Enabled = oven.IsAlive;
             this.tsmParamSetting.Enabled = oven.IsAlive;
             this.tsmShowTandV.Enabled = oven.IsAlive;
 
@@ -268,7 +267,6 @@ namespace CAMEL.Baking.Control
                 && oven.IsAlive
                 && floor.IsBaking;
             this.tsmAlarmReset.Enabled = oven.IsAlive;
-            this.tsmWatContentResult.Enabled = floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 || (s.FloorStatus == FloorStatus.待烤 && s.SampleStatus == SampleStatus.水分NG)) > 0;
         }
 
         private void TsmAlarmReset_Click(object sender, EventArgs e)
