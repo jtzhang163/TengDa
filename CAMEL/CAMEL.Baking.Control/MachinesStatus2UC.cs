@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CAMEL.Baking.Control
 {
-    public partial class MachinesStatusUC : UserControl
+    public partial class MachinesStatus2UC : UserControl
     {
-        public MachinesStatusUC()
+        public MachinesStatus2UC()
         {
             InitializeComponent();
         }
@@ -24,7 +24,7 @@ namespace CAMEL.Baking.Control
             this.machineIndexs.Add(new MachineIndex { Machine = Current.RGV, MsUC = this.machineStatusUC3 });
             int machineindex = 4;
             Current.ovens.ForEach(o => { this.machineIndexs.Add(new MachineIndex { Machine = o, MsUC = (MachineStatusUC)(this.Controls.Find(string.Format("machineStatusUC{0}", machineindex++), true)[0]) }); });
-            this.machineIndexs.Add(new MachineIndex { Machine = Current.mes, MsUC = this.machineStatusUC29 });
+            this.machineIndexs.Add(new MachineIndex { Machine = Current.mes, MsUC = this.machineStatusUC33 });
             this.machineIndexs.ForEach(o => o.MsUC.Init(o.Machine));
         }
 

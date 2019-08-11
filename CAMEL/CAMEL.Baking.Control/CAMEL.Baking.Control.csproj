@@ -49,11 +49,18 @@
     <Compile Include="FeederUC.Designer.cs">
       <DependentUpon>FeederUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="MachinesStatusUC.cs">
+    <Compile Include="MachineIndex.cs" />
+    <Compile Include="MachinesStatus2UC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MachinesStatusUC.Designer.cs">
-      <DependentUpon>MachinesStatusUC.cs</DependentUpon>
+    <Compile Include="MachinesStatus2UC.Designer.cs">
+      <DependentUpon>MachinesStatus2UC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MachinesStatus1UC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MachinesStatus1UC.Designer.cs">
+      <DependentUpon>MachinesStatus1UC.cs</DependentUpon>
     </Compile>
     <Compile Include="MachineStatusUC.cs">
       <SubType>UserControl</SubType>
@@ -151,8 +158,11 @@
     <EmbeddedResource Include="FeederUC.resx">
       <DependentUpon>FeederUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MachinesStatusUC.resx">
-      <DependentUpon>MachinesStatusUC.cs</DependentUpon>
+    <EmbeddedResource Include="MachinesStatus2UC.resx">
+      <DependentUpon>MachinesStatus2UC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachinesStatus1UC.resx">
+      <DependentUpon>MachinesStatus1UC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineStatusUC.resx">
       <DependentUpon>MachineStatusUC.cs</DependentUpon>

@@ -139,7 +139,7 @@ namespace CAMEL.Baking
                 {
                     return string.Empty;
                 }
-                return this.MovingDirection == MovingDirection.前进 ^ Option.LayoutType == 1 ? "←" : "→";
+                return this.MovingDirection == MovingDirection.前进 ^ false ? "←" : "→";
             }
         }
 

@@ -369,8 +369,33 @@ namespace CAMEL.Baking.App
             //cbBatteryScaner.SelectedIndex = 0;
             cbClampScaner.SelectedIndex = 0;
 
+            this.machinesStatus1UC = new CAMEL.Baking.Control.MachinesStatus1UC();
+            this.machinesStatus2UC = new CAMEL.Baking.Control.MachinesStatus2UC();
 
-            this.machinesStatusUC1.Init();
+            if (Option.LineNum == 1)
+            {
+                this.machinesStatus1UC.Dock = System.Windows.Forms.DockStyle.Fill;
+                this.machinesStatus1UC.Location = new System.Drawing.Point(5, 5);
+                this.machinesStatus1UC.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
+                this.machinesStatus1UC.Name = "machinesStatus1UC";
+                this.machinesStatus1UC.Size = new System.Drawing.Size(170, 445);
+                this.machinesStatus1UC.TabIndex = 16;
+                this.tableLayoutPanel6.Controls.Add(this.machinesStatus1UC, 0, 0);
+
+                this.machinesStatus1UC.Init();
+            }
+            else
+            {
+                this.machinesStatus2UC.Dock = System.Windows.Forms.DockStyle.Fill;
+                this.machinesStatus2UC.Location = new System.Drawing.Point(5, 5);
+                this.machinesStatus2UC.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
+                this.machinesStatus2UC.Name = "machinesStatus2UC";
+                this.machinesStatus2UC.Size = new System.Drawing.Size(170, 445);
+                this.machinesStatus2UC.TabIndex = 16;
+                this.tableLayoutPanel6.Controls.Add(this.machinesStatus2UC, 0, 0);
+
+                this.machinesStatus2UC.Init();
+            }
         }
 
         private void ManageSystem_FormClosing(object sender, FormClosingEventArgs e)
@@ -471,8 +496,8 @@ namespace CAMEL.Baking.App
 
                 this.ovenUCs[i].UpdateUI();
 
-                if (oven.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(oven) == "未连接") { this.machinesStatusUC1.SetStatusInfo(oven, "连接成功"); } }
-                else { this.machinesStatusUC1.SetStatusInfo(oven, "未连接"); }
+                if (oven.Plc.IsAlive) { if (this.GetMachineStatusInfo(oven) == "未连接") { this.SetMachineStatusInfo(oven, "连接成功"); } }
+                else { this.SetMachineStatusInfo(oven, "未连接"); }
 
                 for (int j = 0; j < OvenFloorCount; j++)
                 {
@@ -511,8 +536,8 @@ namespace CAMEL.Baking.App
 
             this.feederUC1.Update(Current.Feeder);
 
-            if (Current.Feeder.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Feeder) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "连接成功"); } }
-            else { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "未连接"); }
+            if (Current.Feeder.Plc.IsAlive) { if (this.GetMachineStatusInfo(Current.Feeder) == "未连接") { this.SetMachineStatusInfo(Current.Feeder, "连接成功"); } }
+            else { this.SetMachineStatusInfo(Current.Feeder, "未连接"); }
 
             //    for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
             //    {
@@ -547,16 +572,16 @@ namespace CAMEL.Baking.App
 
             if (Current.runStstus != RunStatus.闲置 && Current.mes.IsAlive)
             {
-                if (this.machinesStatusUC1.GetStatusInfo(Current.mes) == "未连接")
+                if (this.GetMachineStatusInfo(Current.mes) == "未连接")
                 {
-                    this.machinesStatusUC1.SetStatusInfo(Current.mes, "连接成功");
+                    this.SetMachineStatusInfo(Current.mes, "连接成功");
                 }
-                this.machinesStatusUC1.SetLampColor(Current.mes, Color.Green);
+                this.SetMachineLampColor(Current.mes, Color.Green);
             }
             else
             {
-                this.machinesStatusUC1.SetStatusInfo(Current.mes, "未连接");
-                this.machinesStatusUC1.SetLampColor(Current.mes, Color.Gray);
+                this.SetMachineStatusInfo(Current.mes, "未连接");
+                this.SetMachineLampColor(Current.mes, Color.Gray);
             }
 
             #endregion
@@ -565,8 +590,8 @@ namespace CAMEL.Baking.App
 
             this.robotUC1.Update(Current.RGV);
 
-            if (Current.RGV.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.RGV) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "连接成功"); } }
-            else { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "未连接"); }
+            if (Current.RGV.Plc.IsAlive) { if (this.GetMachineStatusInfo(Current.RGV) == "未连接") { this.SetMachineStatusInfo(Current.RGV, "连接成功"); } }
+            else { this.SetMachineStatusInfo(Current.RGV, "未连接"); }
 
             this.panelRGV.Padding = new Padding(Current.RGV.Position + 3, 3, 0, 3);
 
@@ -613,12 +638,62 @@ namespace CAMEL.Baking.App
 
         }
 
+        private void SetMachineStatusInfo(object machine, string info)
+        {
+            if (Option.LineNum == 1)
+            {
+                this.machinesStatus1UC.SetStatusInfo(machine, info);
+            }
+            else
+            {
+                this.machinesStatus2UC.SetStatusInfo(machine, info);
+            }
+        }
+
+        private void SetMachineLampColor(object machine, Color color)
+        {
+            if (Option.LineNum == 1)
+            {
+                this.machinesStatus1UC.SetLampColor(machine, color);
+            }
+            else
+            {
+                this.machinesStatus2UC.SetLampColor(machine, color);
+            }
+        }
+
+        private string GetMachineStatusInfo(object machine)
+        {
+            if (Option.LineNum == 1)
+            {
+                return this.machinesStatus1UC.GetStatusInfo(machine);
+            }
+            else
+            {
+                return this.machinesStatus2UC.GetStatusInfo(machine);
+            }
+        }
+
+        private void GetMachineStatusInfo(bool isEnabled)
+        {
+            if (Option.LineNum == 1)
+            {
+                this.machinesStatus1UC.SetCheckBoxEnabled(isEnabled);
+            }
+            else
+            {
+                this.machinesStatus2UC.SetCheckBoxEnabled(isEnabled);
+            }
+        }
         #endregion
 
         #region 控件数组
 
         private const int OvenCount = 25;
         private const int OvenFloorCount = 5;
+
+        private MachinesStatus1UC machinesStatus1UC = new MachinesStatus1UC();
+        private MachinesStatus2UC machinesStatus2UC = new MachinesStatus2UC();
 
         private OvenUC[] ovenUCs = new OvenUC[OvenCount];
 
@@ -661,7 +736,7 @@ namespace CAMEL.Baking.App
                         else if (!CheckStart(out msg))
                         {
                             Current.runStstus = RunStatus.异常;
-                            this.machinesStatusUC1.SetCheckBoxEnabled(false);//禁止操作启用复选框
+                            this.GetMachineStatusInfo(false);//禁止操作启用复选框
                             Operation.Add("启动出现异常，" + msg);
                             AddTips("启动出现异常");
                         }
@@ -701,7 +776,7 @@ namespace CAMEL.Baking.App
                     TimersDispose();
                     if (PlcDisConnect() && ScanerDisConnect() && MesDisConnect())
                     {
-                        this.machinesStatusUC1.SetCheckBoxEnabled(true);
+                        this.GetMachineStatusInfo(true);
                         isFirstStart = true;
                         Current.TaskMode = TaskMode.手动任务;
                         Current.runStstus = RunStatus.闲置;
@@ -857,8 +932,8 @@ namespace CAMEL.Baking.App
                     Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.Feeder.Name, msg));
                     return false;
                 }
-                this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "连接成功");
-                this.machinesStatusUC1.SetLampColor(Current.Feeder, Color.Green);
+                this.SetMachineStatusInfo(Current.Feeder, "连接成功");
+                this.SetMachineLampColor(Current.Feeder, Color.Green);
             }
             
 
@@ -877,8 +952,8 @@ namespace CAMEL.Baking.App
                         Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.ovens[i].Name, msg));
                         return false;
                     }
-                    this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "连接成功");
-                    this.machinesStatusUC1.SetLampColor(Current.ovens[i], Color.Green);
+                    this.SetMachineStatusInfo(Current.ovens[i], "连接成功");
+                    this.SetMachineLampColor(Current.ovens[i], Color.Green);
                 }
             }
 
@@ -896,8 +971,8 @@ namespace CAMEL.Baking.App
             //        Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.Blanker.Name, msg));
             //        return false;
             //    }
-            //    this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "连接成功");
-            //    this.machinesStatusUC1.SetLampColor(Current.Blanker, Color.Green);
+            //    this.SetMachineStatusInfo(Current.Blanker, "连接成功");
+            //    this.SetMachineLampColor(Current.Blanker, Color.Green);
             //}
             
 
@@ -915,8 +990,8 @@ namespace CAMEL.Baking.App
                     return false;
                 }
 
-                this.machinesStatusUC1.SetStatusInfo(Current.RGV, "连接成功");
-                this.machinesStatusUC1.SetLampColor(Current.RGV, Color.Green);
+                this.SetMachineStatusInfo(Current.RGV, "连接成功");
+                this.SetMachineLampColor(Current.RGV, Color.Green);
             }
 
             return true;
@@ -936,8 +1011,8 @@ namespace CAMEL.Baking.App
                     Error.Alert(msg);
                     return false;
                 }
-                this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "未连接");
-                this.machinesStatusUC1.SetLampColor(Current.Feeder, Color.Gray);
+                this.SetMachineStatusInfo(Current.Feeder, "未连接");
+                this.SetMachineLampColor(Current.Feeder, Color.Gray);
             }
 
             Current.Feeder.PreAlarmStr = string.Empty;
@@ -952,8 +1027,8 @@ namespace CAMEL.Baking.App
                         Error.Alert(msg);
                         return false;
                     }
-                    this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "未连接");
-                    this.machinesStatusUC1.SetLampColor(Current.ovens[i], Color.Gray);
+                    this.SetMachineStatusInfo(Current.ovens[i], "未连接");
+                    this.SetMachineLampColor(Current.ovens[i], Color.Gray);
                 }
 
                 //防止长时间未连接导致烤箱信息与实际不符
@@ -977,8 +1052,8 @@ namespace CAMEL.Baking.App
             //        Error.Alert(msg);
             //        return false;
             //    }
-            //    this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "未连接");
-            //    this.machinesStatusUC1.SetLampColor(Current.Blanker, Color.Gray);
+            //    this.SetMachineStatusInfo(Current.Blanker, "未连接");
+            //    this.SetMachineLampColor(Current.Blanker, Color.Gray);
             //}
 
             //Current.Blanker.PreAlarmStr = string.Empty;
@@ -996,8 +1071,8 @@ namespace CAMEL.Baking.App
                     Error.Alert(msg);
                     return false;
                 }
-                this.machinesStatusUC1.SetStatusInfo(Current.RGV, "未连接");
-                this.machinesStatusUC1.SetLampColor(Current.RGV, Color.Gray);
+                this.SetMachineStatusInfo(Current.RGV, "未连接");
+                this.SetMachineLampColor(Current.RGV, Color.Gray);
             }
 
             //Current.Transfer.IsAlive = false;
@@ -1024,8 +1099,8 @@ namespace CAMEL.Baking.App
                         Current.mes.IsOffline = false;
                     }
                 }
-                this.machinesStatusUC1.SetStatusInfo(Current.mes, "连接成功");
-                this.machinesStatusUC1.SetLampColor(Current.mes, Color.Green);
+                this.SetMachineStatusInfo(Current.mes, "连接成功");
+                this.SetMachineLampColor(Current.mes, Color.Green);
             }
             return true;
         }
@@ -1036,8 +1111,8 @@ namespace CAMEL.Baking.App
 
             if (Current.mes.IsEnable)
             {
-                this.machinesStatusUC1.SetStatusInfo(Current.mes, "未连接");
-                this.machinesStatusUC1.SetLampColor(Current.mes, Color.Gray);
+                this.SetMachineStatusInfo(Current.mes, "未连接");
+                this.SetMachineLampColor(Current.mes, Color.Gray);
             }
 
             return true;
@@ -1061,8 +1136,8 @@ namespace CAMEL.Baking.App
             //        Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.BatteryScaner.Name, msg));
             //        return false;
             //    }
-            //    this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "连接成功");
-            //    this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Green);
+            //    this.SetMachineStatusInfo(Current.BatteryScaner, "连接成功");
+            //    this.SetMachineLampColor(Current.BatteryScaner, Color.Green);
             //}
 
             if (Current.ClampScaner.IsEnable)
@@ -1080,8 +1155,8 @@ namespace CAMEL.Baking.App
                     return false;
                 }
 
-                this.machinesStatusUC1.SetStatusInfo(Current.ClampScaner, "连接成功");
-                this.machinesStatusUC1.SetLampColor(Current.ClampScaner, Color.Green);
+                this.SetMachineStatusInfo(Current.ClampScaner, "连接成功");
+                this.SetMachineLampColor(Current.ClampScaner, Color.Green);
             }
 
             return true;
@@ -1104,8 +1179,8 @@ namespace CAMEL.Baking.App
             //        return false;
             //    }
 
-            //    //this.machinesStatusUC1.SetStatusInfo(Current.BatteryScaner, "未连接");
-            //    //this.machinesStatusUC1.SetLampColor(Current.BatteryScaner, Color.Gray);
+            //    //this.SetMachineStatusInfo(Current.BatteryScaner, "未连接");
+            //    //this.SetMachineLampColor(Current.BatteryScaner, Color.Gray);
             //}
 
             if (Current.ClampScaner.IsEnable)
@@ -1121,8 +1196,8 @@ namespace CAMEL.Baking.App
                     return false;
                 }
 
-                this.machinesStatusUC1.SetStatusInfo(Current.ClampScaner, "未连接");
-                this.machinesStatusUC1.SetLampColor(Current.ClampScaner, Color.Gray);
+                this.SetMachineStatusInfo(Current.ClampScaner, "未连接");
+                this.SetMachineLampColor(Current.ClampScaner, Color.Gray);
             }
 
             
@@ -1301,7 +1376,7 @@ namespace CAMEL.Baking.App
                 this.timerUploadMes.Start();
             }
 
-            this.machinesStatusUC1.SetCheckBoxEnabled(false);//运行后禁止操作启用复选框
+            this.GetMachineStatusInfo(false);//运行后禁止操作启用复选框
 
             isFirstStart = false;
             timerlock = true;
@@ -1385,14 +1460,14 @@ namespace CAMEL.Baking.App
             if (timerlock && Current.ovens[i].IsEnable)
             {
 
-              //  this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "发送指令"); }));
+              //  this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.ovens[i], "发送指令"); }));
                 if (Current.ovens[i].GetInfo())
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "通信中..."); }));
+                    this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.ovens[i], "通信中..."); }));
                 }
                 else
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.ovens[i], "通信失败"); }));
+                    this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.ovens[i], "通信失败"); }));
                 }
                 
 
@@ -1498,14 +1573,14 @@ namespace CAMEL.Baking.App
 
             if (timerlock && Current.Feeder.IsEnable)
             {
-               // this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "发送指令"); }));
+               // this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.Feeder, "发送指令"); }));
                 if (Current.Feeder.GetInfo())
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "通信中..."); }));
+                    this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.Feeder, "通信中..."); }));
                 }
                 else
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Feeder, "通信失败"); }));
+                    this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.Feeder, "通信失败"); }));
                 }
 
                 if (Current.Feeder.AlreadyGetAllInfo)
@@ -1583,14 +1658,14 @@ namespace CAMEL.Baking.App
 
             //if (timerlock && Current.Blanker.IsEnable)
             //{
-            //    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "发送指令"); }));
+            //    this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.Blanker, "发送指令"); }));
             //    if (Current.Blanker.GetInfo())
             //    {
-            //        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "通信中..."); }));
+            //        this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.Blanker, "通信中..."); }));
             //    }
             //    else
             //    {
-            //        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.Blanker, "通信失败"); }));
+            //        this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.Blanker, "通信失败"); }));
             //    }
             //}
         }
@@ -1600,14 +1675,14 @@ namespace CAMEL.Baking.App
             string msg = string.Empty;
             if (timerlock && Current.RGV.IsEnable)
             {
-               // this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "发送指令"); }));
+               // this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.RGV, "发送指令"); }));
                 if (Current.RGV.GetInfo())
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "通信中..."); }));
+                    this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.RGV, "通信中..."); }));
                 }
                 else
                 {
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.RGV, "通信失败"); }));
+                    this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.RGV, "通信失败"); }));
                 }
 
                 if (Current.RGV.AlreadyGetAllInfo)
@@ -1853,7 +1928,7 @@ namespace CAMEL.Baking.App
 
                 this.BeginInvoke(new MethodInvoker(() =>
                 {
-                    this.machinesStatusUC1.SetStatusInfo(Current.mes, "上传烘烤数据ID:" + clamps[0].Id);
+                    this.SetMachineStatusInfo(Current.mes, "上传烘烤数据ID:" + clamps[0].Id);
                 }));
                 MES.UploadBatteryInfo(clamps);
             }
@@ -1872,7 +1947,7 @@ namespace CAMEL.Baking.App
             {
                 this.BeginInvoke(new MethodInvoker(() =>
                 {
-                    this.machinesStatusUC1.SetStatusInfo(Current.mes, "上传设备数据...");
+                    this.SetMachineStatusInfo(Current.mes, "上传设备数据...");
                 }));
                 MES.UploadMachineStatus();
             }

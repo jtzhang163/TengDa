@@ -144,20 +144,20 @@ namespace CAMEL.Baking
 
         public const int TemperatureSetPointCount = 10;
 
-        private static int layoutType = -1;
+        private static int lineNum = -1;
         /// <summary>
         /// 设备布局类型    
-        /// A/B线：1，C/D线：2（之信遗留）
+        /// 
         /// </summary>
-        public static int LayoutType
+        public static int LineNum
         {
             get
             {
-                if (layoutType < 0)
+                if (lineNum < 0)
                 {
-                    layoutType = TengDa._Convert.StrToInt(ConfigurationManager.AppSettings["LayoutType"], -1);
+                    lineNum = TengDa._Convert.StrToInt(ConfigurationManager.AppSettings["LINE_NUM"], -1);
                 }
-                return layoutType;
+                return lineNum;
             }
         }
 

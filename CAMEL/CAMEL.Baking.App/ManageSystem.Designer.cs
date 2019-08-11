@@ -285,7 +285,7 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.lbTime = new System.Windows.Forms.Label();
             this.yieldDisplay = new CAMEL.Baking.Control.YieldDisplay();
-            this.machinesStatusUC1 = new CAMEL.Baking.Control.MachinesStatusUC();
+            //this.machinesStatusUC1 = new CAMEL.Baking.Control.MachinesStatus1UC();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay2();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
@@ -3544,7 +3544,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Controls.Add(this.lbTime, 0, 3);
             this.tableLayoutPanel6.Controls.Add(this.yieldDisplay, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.machinesStatusUC1, 0, 0);
+            //this.tableLayoutPanel6.Controls.Add(this.machinesStatusUC1, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.userDisplay, 0, 2);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
@@ -3585,12 +3585,12 @@
             // 
             // machinesStatusUC1
             // 
-            this.machinesStatusUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.machinesStatusUC1.Location = new System.Drawing.Point(5, 5);
-            this.machinesStatusUC1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
-            this.machinesStatusUC1.Name = "machinesStatusUC1";
-            this.machinesStatusUC1.Size = new System.Drawing.Size(170, 445);
-            this.machinesStatusUC1.TabIndex = 16;
+            //this.machinesStatusUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            //this.machinesStatusUC1.Location = new System.Drawing.Point(5, 5);
+            //this.machinesStatusUC1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
+            //this.machinesStatusUC1.Name = "machinesStatusUC1";
+            //this.machinesStatusUC1.Size = new System.Drawing.Size(170, 445);
+            //this.machinesStatusUC1.TabIndex = 16;
             // 
             // userDisplay
             // 
@@ -3959,7 +3959,7 @@
         private System.Windows.Forms.TableLayoutPanel tlpOvenCol1;
         private Control.TaskInfo taskInfo1;
         private Control.RGVUC robotUC1;
-        private Control.MachinesStatusUC machinesStatusUC1;
+        //private Control.MachinesStatus1UC machinesStatusUC1;
         private TengDa.WF.Controls.UserDisplay2 userDisplay;
         private System.Windows.Forms.TableLayoutPanel tlpOvenCol2;
         private Control.ShowOvenInfoTypeUC showOvenInfoTypeUC1;
