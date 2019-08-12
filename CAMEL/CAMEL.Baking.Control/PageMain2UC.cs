@@ -57,26 +57,7 @@ namespace CAMEL.Baking.Control
 
             for (int i = 0; i < OvenCount; i++)
             {
-                Oven oven = Current.ovens[i];
-
                 this.ovenUCs[i].UpdateUI();
-
-                for (int j = 0; j < OvenFloorCount; j++)
-                {
-                    var floor = oven.Floors[j];
-
-                    if (floor.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId) > 0)
-                    {
-                        this.ovenUCs[i].Invalidate(j);
-                    }
-
-                    if (floor.PreIsAlive != floor.IsAlive)
-                    {
-                        this.ovenUCs[i].Invalidate(j);
-                    }
-
-                }
-
             }
 
             #endregion

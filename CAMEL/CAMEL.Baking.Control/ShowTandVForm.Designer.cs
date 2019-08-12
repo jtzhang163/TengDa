@@ -106,11 +106,11 @@
             // 
             this.lbTemp0103.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0103.AutoSize = true;
-            this.lbTemp0103.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0103.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0103.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0103.Location = new System.Drawing.Point(335, 198);
+            this.lbTemp0103.Location = new System.Drawing.Point(335, 197);
             this.lbTemp0103.Name = "lbTemp0103";
-            this.lbTemp0103.Size = new System.Drawing.Size(122, 19);
+            this.lbTemp0103.Size = new System.Drawing.Size(122, 21);
             this.lbTemp0103.TabIndex = 23;
             this.lbTemp0103.Text = "00.0℃";
             this.lbTemp0103.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -119,11 +119,11 @@
             // 
             this.lbTemp0102.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0102.AutoSize = true;
-            this.lbTemp0102.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0102.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0102.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0102.Location = new System.Drawing.Point(209, 198);
+            this.lbTemp0102.Location = new System.Drawing.Point(209, 197);
             this.lbTemp0102.Name = "lbTemp0102";
-            this.lbTemp0102.Size = new System.Drawing.Size(120, 19);
+            this.lbTemp0102.Size = new System.Drawing.Size(120, 21);
             this.lbTemp0102.TabIndex = 22;
             this.lbTemp0102.Text = "00.0℃";
             this.lbTemp0102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -132,11 +132,11 @@
             // 
             this.lbTemp0101.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0101.AutoSize = true;
-            this.lbTemp0101.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0101.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0101.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0101.Location = new System.Drawing.Point(83, 198);
+            this.lbTemp0101.Location = new System.Drawing.Point(83, 197);
             this.lbTemp0101.Name = "lbTemp0101";
-            this.lbTemp0101.Size = new System.Drawing.Size(120, 19);
+            this.lbTemp0101.Size = new System.Drawing.Size(120, 21);
             this.lbTemp0101.TabIndex = 21;
             this.lbTemp0101.Text = "00.0℃";
             this.lbTemp0101.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -145,11 +145,11 @@
             // 
             this.lbTemp0203.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0203.AutoSize = true;
-            this.lbTemp0203.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0203.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0203.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0203.Location = new System.Drawing.Point(335, 160);
+            this.lbTemp0203.Location = new System.Drawing.Point(335, 159);
             this.lbTemp0203.Name = "lbTemp0203";
-            this.lbTemp0203.Size = new System.Drawing.Size(122, 19);
+            this.lbTemp0203.Size = new System.Drawing.Size(122, 21);
             this.lbTemp0203.TabIndex = 20;
             this.lbTemp0203.Text = "00.0℃";
             this.lbTemp0203.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -158,11 +158,11 @@
             // 
             this.lbTemp0202.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0202.AutoSize = true;
-            this.lbTemp0202.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0202.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0202.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0202.Location = new System.Drawing.Point(209, 160);
+            this.lbTemp0202.Location = new System.Drawing.Point(209, 159);
             this.lbTemp0202.Name = "lbTemp0202";
-            this.lbTemp0202.Size = new System.Drawing.Size(120, 19);
+            this.lbTemp0202.Size = new System.Drawing.Size(120, 21);
             this.lbTemp0202.TabIndex = 19;
             this.lbTemp0202.Text = "00.0℃";
             this.lbTemp0202.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -171,11 +171,11 @@
             // 
             this.lbTemp0201.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0201.AutoSize = true;
-            this.lbTemp0201.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0201.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0201.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0201.Location = new System.Drawing.Point(83, 160);
+            this.lbTemp0201.Location = new System.Drawing.Point(83, 159);
             this.lbTemp0201.Name = "lbTemp0201";
-            this.lbTemp0201.Size = new System.Drawing.Size(120, 19);
+            this.lbTemp0201.Size = new System.Drawing.Size(120, 21);
             this.lbTemp0201.TabIndex = 18;
             this.lbTemp0201.Text = "00.0℃";
             this.lbTemp0201.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -184,11 +184,11 @@
             // 
             this.lbTemp0303.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0303.AutoSize = true;
-            this.lbTemp0303.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0303.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0303.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0303.Location = new System.Drawing.Point(335, 123);
+            this.lbTemp0303.Location = new System.Drawing.Point(335, 122);
             this.lbTemp0303.Name = "lbTemp0303";
-            this.lbTemp0303.Size = new System.Drawing.Size(122, 19);
+            this.lbTemp0303.Size = new System.Drawing.Size(122, 21);
             this.lbTemp0303.TabIndex = 17;
             this.lbTemp0303.Text = "00.0℃";
             this.lbTemp0303.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -197,11 +197,11 @@
             // 
             this.lbTemp0302.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0302.AutoSize = true;
-            this.lbTemp0302.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0302.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0302.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0302.Location = new System.Drawing.Point(209, 123);
+            this.lbTemp0302.Location = new System.Drawing.Point(209, 122);
             this.lbTemp0302.Name = "lbTemp0302";
-            this.lbTemp0302.Size = new System.Drawing.Size(120, 19);
+            this.lbTemp0302.Size = new System.Drawing.Size(120, 21);
             this.lbTemp0302.TabIndex = 16;
             this.lbTemp0302.Text = "00.0℃";
             this.lbTemp0302.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -210,11 +210,11 @@
             // 
             this.lbTemp0301.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0301.AutoSize = true;
-            this.lbTemp0301.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0301.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0301.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0301.Location = new System.Drawing.Point(83, 123);
+            this.lbTemp0301.Location = new System.Drawing.Point(83, 122);
             this.lbTemp0301.Name = "lbTemp0301";
-            this.lbTemp0301.Size = new System.Drawing.Size(120, 19);
+            this.lbTemp0301.Size = new System.Drawing.Size(120, 21);
             this.lbTemp0301.TabIndex = 15;
             this.lbTemp0301.Text = "00.0℃";
             this.lbTemp0301.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -223,11 +223,11 @@
             // 
             this.lbTemp0403.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0403.AutoSize = true;
-            this.lbTemp0403.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0403.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0403.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0403.Location = new System.Drawing.Point(335, 86);
+            this.lbTemp0403.Location = new System.Drawing.Point(335, 85);
             this.lbTemp0403.Name = "lbTemp0403";
-            this.lbTemp0403.Size = new System.Drawing.Size(122, 19);
+            this.lbTemp0403.Size = new System.Drawing.Size(122, 21);
             this.lbTemp0403.TabIndex = 14;
             this.lbTemp0403.Text = "00.0℃";
             this.lbTemp0403.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -236,11 +236,11 @@
             // 
             this.lbTemp0402.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0402.AutoSize = true;
-            this.lbTemp0402.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0402.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0402.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0402.Location = new System.Drawing.Point(209, 86);
+            this.lbTemp0402.Location = new System.Drawing.Point(209, 85);
             this.lbTemp0402.Name = "lbTemp0402";
-            this.lbTemp0402.Size = new System.Drawing.Size(120, 19);
+            this.lbTemp0402.Size = new System.Drawing.Size(120, 21);
             this.lbTemp0402.TabIndex = 13;
             this.lbTemp0402.Text = "00.0℃";
             this.lbTemp0402.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -249,11 +249,11 @@
             // 
             this.lbTemp0401.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0401.AutoSize = true;
-            this.lbTemp0401.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0401.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0401.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0401.Location = new System.Drawing.Point(83, 86);
+            this.lbTemp0401.Location = new System.Drawing.Point(83, 85);
             this.lbTemp0401.Name = "lbTemp0401";
-            this.lbTemp0401.Size = new System.Drawing.Size(120, 19);
+            this.lbTemp0401.Size = new System.Drawing.Size(120, 21);
             this.lbTemp0401.TabIndex = 12;
             this.lbTemp0401.Text = "00.0℃";
             this.lbTemp0401.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -262,11 +262,11 @@
             // 
             this.lbTemp0503.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0503.AutoSize = true;
-            this.lbTemp0503.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0503.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0503.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0503.Location = new System.Drawing.Point(335, 49);
+            this.lbTemp0503.Location = new System.Drawing.Point(335, 48);
             this.lbTemp0503.Name = "lbTemp0503";
-            this.lbTemp0503.Size = new System.Drawing.Size(122, 19);
+            this.lbTemp0503.Size = new System.Drawing.Size(122, 21);
             this.lbTemp0503.TabIndex = 11;
             this.lbTemp0503.Text = "00.0℃";
             this.lbTemp0503.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -275,11 +275,11 @@
             // 
             this.lbTemp0502.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0502.AutoSize = true;
-            this.lbTemp0502.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0502.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0502.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0502.Location = new System.Drawing.Point(209, 49);
+            this.lbTemp0502.Location = new System.Drawing.Point(209, 48);
             this.lbTemp0502.Name = "lbTemp0502";
-            this.lbTemp0502.Size = new System.Drawing.Size(120, 19);
+            this.lbTemp0502.Size = new System.Drawing.Size(120, 21);
             this.lbTemp0502.TabIndex = 10;
             this.lbTemp0502.Text = "00.0℃";
             this.lbTemp0502.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -288,11 +288,11 @@
             // 
             this.lbTemp0501.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTemp0501.AutoSize = true;
-            this.lbTemp0501.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbTemp0501.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbTemp0501.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTemp0501.Location = new System.Drawing.Point(83, 49);
+            this.lbTemp0501.Location = new System.Drawing.Point(83, 48);
             this.lbTemp0501.Name = "lbTemp0501";
-            this.lbTemp0501.Size = new System.Drawing.Size(120, 19);
+            this.lbTemp0501.Size = new System.Drawing.Size(120, 21);
             this.lbTemp0501.TabIndex = 9;
             this.lbTemp0501.Text = "00.0℃";
             this.lbTemp0501.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

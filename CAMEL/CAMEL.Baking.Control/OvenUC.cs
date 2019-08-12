@@ -37,7 +37,7 @@ namespace CAMEL.Baking.Control
 
         public void Invalidate(int j)
         {
-            this.floorUCs[j].Invalidate4ClampStatus();
+            this.floorUCs[j].FloorInvalidate();
         }
 
         public void UpdateUI()
@@ -78,6 +78,21 @@ namespace CAMEL.Baking.Control
                 this.lbName.Text = oven.Name;
                 this.lbName.ForeColor = SystemColors.WindowText;
                 this.lbName.BackColor = Color.Transparent;
+            }
+
+            for (int j = 0; j < oven.Floors.Count; j++)
+            {
+                var floor = oven.Floors[j];
+
+                if (floor.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId) > 0)
+                {
+                    this.Invalidate(j);
+                }
+
+                if (floor.PreIsAlive != floor.IsAlive)
+                {
+                    this.Invalidate(j);
+                }
             }
 
             oven.PreIsAlive = oven.IsAlive;

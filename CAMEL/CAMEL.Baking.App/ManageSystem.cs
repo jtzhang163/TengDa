@@ -510,9 +510,7 @@ namespace CAMEL.Baking.App
                         //    cbVacuumIndex[k].Text = string.Format("{0}:{1}Pa", "真空度", s.GetFloor().Vacuum.ToString());
                         //}
                     }
-                  
                 }
-
             }
 
             #endregion
@@ -669,6 +667,19 @@ namespace CAMEL.Baking.App
             else
             {
                 this.machinesStatus2UC.SetCheckBoxEnabled(isEnabled);
+            }
+        }
+
+
+        private void OvenInvalidate(int i, int j)
+        {
+            if (Option.LineNum == 1)
+            {
+                this.pageMain1UC.OvenInvalidate(i, j);
+            }
+            else
+            {
+                this.pageMain2UC.OvenInvalidate(i, j);
             }
         }
         #endregion
@@ -1505,26 +1516,12 @@ namespace CAMEL.Baking.App
                                     Current.ovens[i].UploadVacuum(j);
                                 }
 
-                                if (Option.LineNum == 1)
-                                {
-                                    this.pageMain1UC.OvenInvalidate(i, j);
-                                }
-                                else
-                                {
-                                    this.pageMain2UC.OvenInvalidate(i, j);
-                                }
+                                this.OvenInvalidate(i, j);
                               
                             }
                             else if (station.ClampStatus == ClampStatus.异常)
                             {
-                                if (Option.LineNum == 1)
-                                {
-                                    this.pageMain1UC.OvenInvalidate(i, j);
-                                }
-                                else
-                                {
-                                    this.pageMain2UC.OvenInvalidate(i, j);
-                                }
+                                this.OvenInvalidate(i, j);
                             }
 
                             station.PreFloorStatus = station.FloorStatus;

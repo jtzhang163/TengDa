@@ -96,7 +96,7 @@
             this.showOvenInfoTypeUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.showOvenInfoTypeUC1.Location = new System.Drawing.Point(3, 421);
             this.showOvenInfoTypeUC1.Name = "showOvenInfoTypeUC1";
-            this.showOvenInfoTypeUC1.Size = new System.Drawing.Size(266, 24);
+            this.showOvenInfoTypeUC1.Size = new System.Drawing.Size(260, 24);
             this.showOvenInfoTypeUC1.TabIndex = 2;
             // 
             // panelRGV
@@ -461,18 +461,18 @@
             // feederUC1
             // 
             this.feederUC1.BackColor = System.Drawing.Color.White;
-            this.feederUC1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.feederUC1.Location = new System.Drawing.Point(3, 3);
+            this.feederUC1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.feederUC1.Location = new System.Drawing.Point(3, 10);
             this.feederUC1.Name = "feederUC1";
-            this.feederUC1.Size = new System.Drawing.Size(68, 157);
+            this.feederUC1.Size = new System.Drawing.Size(68, 160);
             this.feederUC1.TabIndex = 12;
             // 
-            // PageMainUC
+            // PageMain1UC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel41);
-            this.Name = "PageMainUC";
+            this.Name = "PageMain1UC";
             this.Size = new System.Drawing.Size(1053, 479);
             this.tableLayoutPanel41.ResumeLayout(false);
             this.panelRGV.ResumeLayout(false);

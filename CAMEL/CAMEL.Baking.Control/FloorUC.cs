@@ -97,12 +97,10 @@ namespace CAMEL.Baking.Control
                 }
                 else
                 {
-                    this.lbInfoTop.Text = string.Format("{0}{3} {1} {4}{2}",
+                    this.lbInfoTop.Text = string.Format("{0} {1} {2}",
                          strs[0],
                          centerStr,
-                         strs[1],
-                         ss[0].HasSampleFlag ? "■" : "",
-                         ss[1].HasSampleFlag ? "■" : "");
+                         strs[1]);
                 }
 
                 //}
@@ -113,14 +111,11 @@ namespace CAMEL.Baking.Control
             if (Current.option.FloorShowInfoType == "默认信息")
             {
                 lbStatus.Text =
-                    string.Format("{0} {1}/{2} {3}",
+                    string.Format("{0} {1}/{2}",
                     //oven.ClampOri == ClampOri.A ? "左" : "右",
-                    //oven.ClampOri == ClampOri.B ? floor.Stations[0].RGVGetCode : floor.Stations[1].RGVGetCode,
                     floor.DoorStatus,
                     floor.RunMinutes.ToString().PadLeft(3),
-                    floor.RunMinutesSet.ToString().PadLeft(3),
-                    ""
-                    //oven.ClampOri == ClampOri.A ? floor.Stations[0].RGVGetCode : floor.Stations[1].RGVGetCode
+                    floor.RunMinutesSet.ToString().PadLeft(3)
                     );
             }
             else if (Current.option.FloorShowInfoType == "开始烘烤时间")
@@ -204,7 +199,7 @@ namespace CAMEL.Baking.Control
             floor.PreAlarmStr = floor.AlarmStr;
         }
 
-        public void Invalidate4ClampStatus()
+        public void FloorInvalidate()
         {
             this.tlpFloor.Invalidate();
         }
