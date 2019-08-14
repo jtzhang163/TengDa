@@ -404,7 +404,7 @@ namespace CAMEL.Baking
         /// <summary>
         /// 取盘位
         /// </summary>
-        public Station GetClampStation
+        public Station GetStation
         {
             get
             {
@@ -415,7 +415,7 @@ namespace CAMEL.Baking
         /// <summary>
         /// 放盘位
         /// </summary>
-        public Station PutClampStation
+        public Station PutStation
         {
             get
             {
@@ -459,8 +459,8 @@ namespace CAMEL.Baking
                         this.Plc.IsAlive = false;
                         return false;
                     }
-                    this.PutClampStation.ClampStatus = db17_0 == 2 ? ClampStatus.无夹具 : ClampStatus.满夹具;
-                    this.PutClampStation.Status = db17_0 == 2 ? StationStatus.可放 : StationStatus.工作中;
+                    this.PutStation.ClampStatus = db17_0 == 2 ? ClampStatus.无夹具 : ClampStatus.满夹具;
+                    this.PutStation.Status = db17_0 == 2 ? StationStatus.可放 : StationStatus.工作中;
 
                     addr = Option.LineNum == 1 ? "DB17.2" : "DB17.6";
                     if (!this.Plc.GetInfo(false, plcCompany, true, addr, (ushort)0, out ushort db17_2, out msg))
@@ -469,8 +469,8 @@ namespace CAMEL.Baking
                         this.Plc.IsAlive = false;
                         return false;
                     }
-                    this.GetClampStation.ClampStatus = db17_2 == 2 ? ClampStatus.满夹具 : ClampStatus.无夹具;
-                    this.GetClampStation.Status = db17_2 == 2 ? StationStatus.可取 : StationStatus.工作中;
+                    this.GetStation.ClampStatus = db17_2 == 2 ? ClampStatus.满夹具 : ClampStatus.无夹具;
+                    this.GetStation.Status = db17_2 == 2 ? StationStatus.可取 : StationStatus.工作中;
 
                     //获取夹具扫码信号
                     if (Current.ClampScaner.IsEnable)
@@ -527,14 +527,16 @@ namespace CAMEL.Baking
 
         public bool SetScanClampResult(ScanResult scanResult, out string msg)
         {
+            var val = scanResult == ScanResult.OK ? (ushort)2 : (ushort)5;
             var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
-            if (!this.Plc.GetInfo(false, plcCompany, false, "Q4", (byte)(scanResult == ScanResult.OK ? 2 : 5), out int o, out msg))
+            var addr = Option.LineNum == 1 ? "DB17.10" : "DB17.14";
+            if (!this.Plc.GetInfo(false, plcCompany, false, addr, val, out ushort db17_10, out msg))
             {
                 Error.Alert(msg);
                 this.Plc.IsAlive = false;
                 return false;
             }
-            return false;
+            return true;
         }
 
         public void GetFinished()

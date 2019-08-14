@@ -116,7 +116,7 @@ namespace CAMEL.Baking.Control
             this.tsmManuPutStation.Enabled = Current.RGV.IsDispatchEnabled && Current.RGV.IsAuto && !Current.RGV.IsAlarming && Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextToStationId < 1;
             this.tsmiTransAutoManu.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming;
             this.tsmiTransAutoManu.Text = Current.RGV.IsDispatchEnabled && Current.RGV.IsAuto ? "切换为手动" : "切换为自动";
-            this.tsmiStart.Enabled = false;//Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming && Current.RGV.Status == 2;
+            this.tsmiStart.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming && Current.RGV.Status == 2;
             this.tsmiReset.Enabled = Current.RGV.IsDispatchEnabled && Current.RGV.Status == 4;
             this.tsmiPause.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming;
             this.tsmiStop.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming;
@@ -147,7 +147,13 @@ namespace CAMEL.Baking.Control
 
             var isFeederEnabled = false;
 
-            Current.Feeder.Stations.ForEach(s =>
+            var feederStations = new List<Station>()
+            {
+                Current.Feeder.PutStation,
+                Current.Feeder.GetStation
+            };
+
+            feederStations.ForEach(s =>
             {
                 ToolStripMenuItem tsiStation = new ToolStripMenuItem();
                 tsiStation.Name = string.Format("tsmManu_{0}_{1}", ManuFlag, s.Name);
