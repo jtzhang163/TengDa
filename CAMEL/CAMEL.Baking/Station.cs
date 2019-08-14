@@ -313,6 +313,28 @@ namespace CAMEL.Baking
             get { return rgvValue; }
         }
 
+        private string rgvGetFeederValue = string.Empty;
+        /// <summary>
+        /// RGV编码-取上下料机
+        /// </summary>
+        [ReadOnly(true), DisplayName("RGV编码-取上下料机")]
+        [Description("RGV编码-取上下料机")]
+        public string RgvGetFeederValue
+        {
+            get { return rgvGetFeederValue; }
+        }
+
+        private string rgvPutFeederValue = string.Empty;
+        /// <summary>
+        /// RGV编码-放上下料机
+        /// </summary>
+        [ReadOnly(true), DisplayName("RGV编码-放上下料机")]
+        [Description("RGV编码-放上下料机")]
+        public string RgvPutFeederValue
+        {
+            get { return rgvPutFeederValue; }
+        }
+
         public FloorStatus PreFloorStatus;
 
         protected FloorStatus floorStatus = FloorStatus.未知;
@@ -665,6 +687,18 @@ namespace CAMEL.Baking
         }
 
 
+        public ClampOri OvenClampOri
+        {
+            get
+            {
+                if (this.GetPutType != GetPutType.烤箱)
+                {
+                    return Baking.ClampOri.未知;
+                }
+                return this.GetFloor().GetOven().ClampOri;
+            }
+        }
+
         #region 控制标志
         public bool toOpenDoor = false;
         public bool toCloseDoor = false;
@@ -732,6 +766,8 @@ namespace CAMEL.Baking
             this.location = rowInfo["Location"].ToString();
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
             this.rgvValue = rowInfo["RgvValue"].ToString();
+            this.rgvGetFeederValue = rowInfo["RgvGetFeederValue"].ToString();
+            this.rgvPutFeederValue = rowInfo["RgvPutFeederValue"].ToString();
             this.floorStatus = (FloorStatus)Enum.Parse(typeof(FloorStatus), rowInfo["FloorStatus"].ToString());
             this.sampleStatus = (SampleStatus)Enum.Parse(typeof(SampleStatus), rowInfo["SampleStatus"].ToString());
             this.PreFloorStatus = this.floorStatus;

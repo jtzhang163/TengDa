@@ -168,6 +168,11 @@ namespace CAMEL.Baking
         /// </summary>
         public bool IsTaskFinished { get; set; } = false;
 
+        /// <summary>
+        /// 货叉在原点
+        /// </summary>
+        public bool IsForkAtOriginalPoint { get; set; } = false;
+
         #endregion
 
         #region 构造方法
@@ -327,6 +332,9 @@ namespace CAMEL.Baking
                 this.PreCoordinateValue = this.CoordinateValue;
             }
 
+            //货叉
+            this.IsForkAtOriginalPoint = bOutputs[21] == 1;
+
             //rgv状态
             this.Status = bOutputs[60];
 
@@ -340,7 +348,7 @@ namespace CAMEL.Baking
         /// <summary>
         /// 取盘
         /// </summary>
-        public bool Get(Station fromStation)
+        public bool Get(Station fromStation, Station toStation)
         {
             var msg = "";
             if (!this.Plc.IsPingSuccess)
@@ -367,8 +375,10 @@ namespace CAMEL.Baking
                 this.IsTaskFinished = false;
             }
 
+            var rgvValue = fromStation.GetPutType == GetPutType.上料机 ? toStation.RgvGetFeederValue : fromStation.RgvValue;
+
             //发送位置编号
-            if (!this.Plc.SetInfo("D1009", ushort.Parse(fromStation.RgvValue), out msg))
+            if (!this.Plc.SetInfo("D1009", ushort.Parse(rgvValue), out msg))
             {
                 Error.Alert(msg);
                 this.Plc.IsAlive = false;
@@ -384,7 +394,7 @@ namespace CAMEL.Baking
         /// <summary>
         /// 放盘
         /// </summary>
-        public bool Put(Station toStation)
+        public bool Put(Station fromStation, Station toStation)
         {
             var msg = "";
             if (!this.Plc.IsPingSuccess)
@@ -411,8 +421,10 @@ namespace CAMEL.Baking
                 this.IsTaskFinished = false;
             }
 
+            var rgvValue = toStation.GetPutType == GetPutType.下料机 ? fromStation.RgvPutFeederValue : toStation.RgvValue;
+
             //发送位置编号
-            if (!this.Plc.SetInfo("D1008", ushort.Parse(toStation.RgvValue), out msg))
+            if (!this.Plc.SetInfo("D1008", ushort.Parse(rgvValue), out msg))
             {
                 Error.Alert(msg);
                 this.Plc.IsAlive = false;

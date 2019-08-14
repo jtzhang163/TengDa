@@ -1087,10 +1087,11 @@
             // gbMana
             // 
             this.gbMana.BackColor = System.Drawing.SystemColors.Control;
-            this.gbMana.ColumnCount = 3;
-            this.gbMana.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.gbMana.ColumnCount = 4;
+            this.gbMana.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.gbMana.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 420F));
-            this.gbMana.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.gbMana.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.gbMana.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.gbMana.Controls.Add(this.tableLayoutPanel19, 2, 2);
             this.gbMana.Controls.Add(this.label14, 1, 0);
             this.gbMana.Controls.Add(this.label21, 1, 2);
@@ -1098,10 +1099,11 @@
             this.gbMana.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbMana.Location = new System.Drawing.Point(0, 0);
             this.gbMana.Name = "gbMana";
-            this.gbMana.RowCount = 3;
-            this.gbMana.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.gbMana.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.gbMana.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.gbMana.RowCount = 4;
+            this.gbMana.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.gbMana.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.gbMana.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.gbMana.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.gbMana.Size = new System.Drawing.Size(1178, 599);
             this.gbMana.TabIndex = 10;
             // 
@@ -1120,26 +1122,26 @@
             this.tableLayoutPanel19.Controls.Add(this.label23, 0, 1);
             this.tableLayoutPanel19.Controls.Add(this.lbSelectedUserName, 1, 0);
             this.tableLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel19.Location = new System.Drawing.Point(799, 449);
+            this.tableLayoutPanel19.Location = new System.Drawing.Point(470, 488);
             this.tableLayoutPanel19.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel19.Name = "tableLayoutPanel19";
             this.tableLayoutPanel19.RowCount = 2;
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel19.Size = new System.Drawing.Size(379, 150);
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(652, 80);
             this.tableLayoutPanel19.TabIndex = 10;
             // 
             // btnUserVerify
             // 
+            this.btnUserVerify.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnUserVerify.BackColor = System.Drawing.Color.LimeGreen;
             this.btnUserVerify.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUserVerify.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUserVerify.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnUserVerify.Location = new System.Drawing.Point(302, 10);
+            this.btnUserVerify.Location = new System.Drawing.Point(529, 22);
             this.btnUserVerify.Margin = new System.Windows.Forms.Padding(20, 10, 0, 10);
             this.btnUserVerify.Name = "btnUserVerify";
             this.tableLayoutPanel19.SetRowSpan(this.btnUserVerify, 2);
-            this.btnUserVerify.Size = new System.Drawing.Size(77, 130);
+            this.btnUserVerify.Size = new System.Drawing.Size(123, 36);
             this.btnUserVerify.TabIndex = 9;
             this.btnUserVerify.Text = "审核(&V)";
             this.btnUserVerify.UseVisualStyleBackColor = false;
@@ -1152,7 +1154,7 @@
             this.label22.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label22.Location = new System.Drawing.Point(3, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(73, 75);
+            this.label22.Size = new System.Drawing.Size(130, 40);
             this.label22.TabIndex = 3;
             this.label22.Text = "用户名：";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1161,12 +1163,11 @@
             // 
             this.btnChangeUserLevel.BackColor = System.Drawing.Color.Yellow;
             this.btnChangeUserLevel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnChangeUserLevel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnChangeUserLevel.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnChangeUserLevel.Location = new System.Drawing.Point(208, 77);
+            this.btnChangeUserLevel.Location = new System.Drawing.Point(344, 42);
             this.btnChangeUserLevel.Margin = new System.Windows.Forms.Padding(20, 2, 20, 2);
             this.btnChangeUserLevel.Name = "btnChangeUserLevel";
-            this.btnChangeUserLevel.Size = new System.Drawing.Size(54, 71);
+            this.btnChangeUserLevel.Size = new System.Drawing.Size(123, 36);
             this.btnChangeUserLevel.TabIndex = 8;
             this.btnChangeUserLevel.Text = "修改(&C)";
             this.btnChangeUserLevel.UseVisualStyleBackColor = false;
@@ -1178,7 +1179,7 @@
             this.cbbUserGroupName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbUserGroupName.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbbUserGroupName.FormattingEnabled = true;
-            this.cbbUserGroupName.Location = new System.Drawing.Point(82, 100);
+            this.cbbUserGroupName.Location = new System.Drawing.Point(139, 48);
             this.cbbUserGroupName.Name = "cbbUserGroupName";
             this.cbbUserGroupName.Size = new System.Drawing.Size(103, 24);
             this.cbbUserGroupName.TabIndex = 7;
@@ -1187,12 +1188,11 @@
             // 
             this.btnDelUser.BackColor = System.Drawing.Color.Red;
             this.btnDelUser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDelUser.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnDelUser.Location = new System.Drawing.Point(208, 2);
+            this.btnDelUser.Location = new System.Drawing.Point(344, 2);
             this.btnDelUser.Margin = new System.Windows.Forms.Padding(20, 2, 20, 2);
             this.btnDelUser.Name = "btnDelUser";
-            this.btnDelUser.Size = new System.Drawing.Size(54, 71);
+            this.btnDelUser.Size = new System.Drawing.Size(123, 36);
             this.btnDelUser.TabIndex = 5;
             this.btnDelUser.Text = "删除(&D)";
             this.btnDelUser.UseVisualStyleBackColor = false;
@@ -1203,9 +1203,9 @@
             this.label23.AutoSize = true;
             this.label23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label23.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label23.Location = new System.Drawing.Point(3, 75);
+            this.label23.Location = new System.Drawing.Point(3, 40);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(73, 75);
+            this.label23.Size = new System.Drawing.Size(130, 40);
             this.label23.TabIndex = 6;
             this.label23.Text = "组  别：";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1215,9 +1215,9 @@
             this.lbSelectedUserName.AutoSize = true;
             this.lbSelectedUserName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbSelectedUserName.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbSelectedUserName.Location = new System.Drawing.Point(82, 0);
+            this.lbSelectedUserName.Location = new System.Drawing.Point(139, 0);
             this.lbSelectedUserName.Name = "lbSelectedUserName";
-            this.lbSelectedUserName.Size = new System.Drawing.Size(103, 75);
+            this.lbSelectedUserName.Size = new System.Drawing.Size(182, 40);
             this.lbSelectedUserName.TabIndex = 4;
             this.lbSelectedUserName.Text = "XXXXXXXX";
             this.lbSelectedUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1227,9 +1227,9 @@
             this.label14.AutoSize = true;
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label14.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.Location = new System.Drawing.Point(382, 0);
+            this.label14.Location = new System.Drawing.Point(53, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(414, 149);
+            this.label14.Size = new System.Drawing.Size(414, 50);
             this.label14.TabIndex = 1;
             this.label14.Text = "用户列表：";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1239,9 +1239,9 @@
             this.label21.AutoSize = true;
             this.label21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label21.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label21.Location = new System.Drawing.Point(382, 449);
+            this.label21.Location = new System.Drawing.Point(53, 488);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(414, 150);
+            this.label21.Size = new System.Drawing.Size(414, 80);
             this.label21.TabIndex = 2;
             this.label21.Text = "当前选中：";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1254,10 +1254,10 @@
             this.lvUsers.FullRowSelect = true;
             this.lvUsers.GridLines = true;
             this.lvUsers.HideSelection = false;
-            this.lvUsers.Location = new System.Drawing.Point(382, 152);
+            this.lvUsers.Location = new System.Drawing.Point(53, 53);
             this.lvUsers.Name = "lvUsers";
             this.lvUsers.ShowItemToolTips = true;
-            this.lvUsers.Size = new System.Drawing.Size(793, 294);
+            this.lvUsers.Size = new System.Drawing.Size(1066, 432);
             this.lvUsers.TabIndex = 0;
             this.lvUsers.TileSize = new System.Drawing.Size(200, 28);
             this.lvUsers.UseCompatibleStateImageBehavior = false;

@@ -422,6 +422,9 @@ namespace CAMEL.Baking
                 return Stations[1];
             }
         }
+
+        public ushort HeartValue { get; set; }
+
         #endregion
 
         #region 通信
@@ -448,28 +451,32 @@ namespace CAMEL.Baking
                     #region 获取信息
                     var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
-                    if (!this.Plc.GetInfo(false, plcCompany, true, "DB17.0", (byte)0, out int db17_0, out msg))
-                    {
-                        Error.Alert(msg);
-                        this.Plc.IsAlive = false;
-                        return false;
-                    }
-                    this.GetClampStation.ClampStatus = db17_0 == 2 ? ClampStatus.满夹具 : ClampStatus.无夹具;
-                    this.GetClampStation.Status = db17_0 == 2 ? StationStatus.可取 : StationStatus.工作中;
+                    var addr = Option.LineNum == 1 ? "DB17.0" : "DB17.4";
 
-                    if (!this.Plc.GetInfo(false, plcCompany, true, "DB17.2", (byte)0, out int db17_2, out msg))
+                    if (!this.Plc.GetInfo(false, plcCompany, true, addr, (ushort)0, out ushort db17_0, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;
                         return false;
                     }
-                    this.PutClampStation.ClampStatus = db17_2 == 2 ? ClampStatus.无夹具 : ClampStatus.满夹具;
-                    this.PutClampStation.Status = db17_2 == 2 ? StationStatus.可放 : StationStatus.工作中;
+                    this.PutClampStation.ClampStatus = db17_0 == 2 ? ClampStatus.无夹具 : ClampStatus.满夹具;
+                    this.PutClampStation.Status = db17_0 == 2 ? StationStatus.可放 : StationStatus.工作中;
+
+                    addr = Option.LineNum == 1 ? "DB17.2" : "DB17.6";
+                    if (!this.Plc.GetInfo(false, plcCompany, true, addr, (ushort)0, out ushort db17_2, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+                    this.GetClampStation.ClampStatus = db17_2 == 2 ? ClampStatus.满夹具 : ClampStatus.无夹具;
+                    this.GetClampStation.Status = db17_2 == 2 ? StationStatus.可取 : StationStatus.工作中;
 
                     //获取夹具扫码信号
                     if (Current.ClampScaner.IsEnable)
                     {
-                        if (!this.Plc.GetInfo(false, plcCompany, true, "DB17.8", (byte)0, out int db17_8, out msg))
+                        addr = Option.LineNum == 1 ? "DB17.8" : "DB17.12";
+                        if (!this.Plc.GetInfo(false, plcCompany, true, addr, (ushort)0, out ushort db17_8, out msg))
                         {
                             Error.Alert(msg);
                             this.Plc.IsAlive = false;
@@ -491,6 +498,17 @@ namespace CAMEL.Baking
                         }
                     }
 
+
+                    addr = Option.LineNum == 1 ? "DB17.28" : "DB17.30";
+
+                    if (!this.Plc.GetInfo(false, plcCompany, false, addr, this.HeartValue, out ushort db17_28, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                    }
+
+                    this.HeartValue = this.HeartValue == 0 ? (ushort)2 : (ushort)0;
+
                     #endregion
                     Thread.Sleep(20);
                 }
@@ -500,10 +518,10 @@ namespace CAMEL.Baking
                 }
 
                 this.Plc.IsAlive = true;
-
                 this.AlreadyGetAllInfo = true;
-
             }
+
+            this.TriLamp = this.Plc.IsAlive ? TriLamp.Green : TriLamp.Unknown;
             return true;
         }
 
@@ -517,6 +535,32 @@ namespace CAMEL.Baking
                 return false;
             }
             return false;
+        }
+
+        public void GetFinished()
+        {
+            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
+
+            var addr = Option.LineNum == 1 ? "DB17.18" : "DB17.22";
+
+            if (!this.Plc.GetInfo(false, plcCompany, false, addr, (ushort)2, out ushort db17_18, out string msg))
+            {
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+            }
+        }
+
+        public void PutFinished()
+        {
+            var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
+
+            var addr = Option.LineNum == 1 ? "DB17.16" : "DB17.20";
+
+            if (!this.Plc.GetInfo(false, plcCompany, false, addr, (ushort)2, out ushort db17_18, out string msg))
+            {
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+            }
         }
 
         #endregion

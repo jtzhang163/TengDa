@@ -541,7 +541,7 @@ namespace CAMEL.Baking
                             }
                             else if (Current.Task.Status == TaskStatus.可取)
                             {
-                                if (Current.RGV.Get(Current.Task.FromStation))
+                                if (Current.RGV.Get(Current.Task.FromStation, Current.Task.ToStation))
                                 {
                                     if (Current.RGV.Enter(out msg))
                                     {
@@ -571,7 +571,7 @@ namespace CAMEL.Baking
                             }
                             else if (Current.Task.Status == TaskStatus.可放)
                             {
-                                if (Current.RGV.Put(Current.Task.ToStation))
+                                if (Current.RGV.Put(Current.Task.FromStation, Current.Task.ToStation))
                                 {
                                     if (Current.RGV.Enter(out msg))
                                     {
@@ -634,7 +634,7 @@ namespace CAMEL.Baking
                         }
                         else if (Current.Task.Status == TaskStatus.可取 && Current.Task.FromStation != null)
                         {
-                            if (Current.RGV.Get(Current.Task.FromStation))
+                            if (Current.RGV.Get(Current.Task.FromStation, Current.Task.ToStation))
                             {
                                 if (Current.RGV.Enter(out msg))
                                 {
@@ -648,6 +648,11 @@ namespace CAMEL.Baking
                             {
                                 Current.RGV.ClampStatus = Current.Task.FromClampStatus;
                                 Current.Task.Status = TaskStatus.取完;
+
+                                if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
+                                {
+                                    Current.Feeder.GetFinished();
+                                }
                             }
                         }
                         else if (Current.Task.Status == TaskStatus.取完)
@@ -671,7 +676,7 @@ namespace CAMEL.Baking
                         }
                         else if (Current.Task.Status == TaskStatus.可放 && Current.Task.ToStation != null)
                         {
-                            if (Current.RGV.Put(Current.Task.ToStation))
+                            if (Current.RGV.Put(Current.Task.FromStation, Current.Task.ToStation))
                             {
                                 if (Current.RGV.Enter(out msg))
                                 {
@@ -694,6 +699,12 @@ namespace CAMEL.Baking
                                 {
                                     Error.Alert("保存搬运记录失败：" + msg);
                                 }
+
+                                if (Current.Task.ToStation.GetPutType == GetPutType.下料机)
+                                {
+                                    Current.Feeder.PutFinished();
+                                }
+
                                 Current.Task.Status = TaskStatus.完成;
                             }
                         }

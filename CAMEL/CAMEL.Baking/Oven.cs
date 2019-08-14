@@ -533,29 +533,29 @@ namespace CAMEL.Baking
                         }
                         #endregion
 
-                        //#region 控制关门
-                        //if (this.Floors[j].DoorStatus == DoorStatus.关闭)
-                        //{
-                        //    this.Floors[j].toCloseDoor = false;
-                        //}
+                        #region 控制关门
+                        if (this.Floors[j].DoorStatus == DoorStatus.关闭)
+                        {
+                            this.Floors[j].toCloseDoor = false;
+                        }
 
-                        //if (this.Floors[j].toCloseDoor)
-                        //{
-                        //    var addr = "D0";
-                        //    var val = Convert.ToUInt16(2 * (j + 1) - 1);
+                        if (this.Floors[j].toCloseDoor)
+                        {
+                            var addr = "D0";
+                            var val = Convert.ToUInt16(2 * (j + 1) - 1);
 
-                        //    if (!this.Plc.SetInfo(addr, val, out msg))
-                        //    {
-                        //        Error.Alert(msg);
-                        //        this.Plc.IsAlive = false;
-                        //        return false;
-                        //    }
+                            if (!this.Plc.SetInfo(addr, val, out msg))
+                            {
+                                Error.Alert(msg);
+                                this.Plc.IsAlive = false;
+                                return false;
+                            }
 
-                        //    LogHelper.WriteInfo(string.Format("成功发送关门指令到{0}, {1}:{2}", this.Floors[j].Name, addr, val));
-                        //    this.Floors[j].toCloseDoor = false;
-                        //    this.Floors[j].DoorIsClosing = true;
-                        //}
-                        //#endregion
+                            LogHelper.WriteInfo(string.Format("成功发送关门指令到{0}, {1}:{2}", this.Floors[j].Name, addr, val));
+                            this.Floors[j].toCloseDoor = false;
+                            this.Floors[j].DoorIsClosing = true;
+                        }
+                        #endregion
 
                         #region 启动运行
                         if (this.Floors[j].toStartBaking)
@@ -849,17 +849,17 @@ namespace CAMEL.Baking
                 return;
             }
 
-            //if (!this.Floors[j].DoorIsClosing)
-            //{
-            //    if (this.Floors[j].Stations.Count(s => s.Id == Current.Task.FromStationId) + this.Floors[j].Stations.Count(s => s.Id == Current.Task.ToStationId) > 0)
-            //    {
-            //        Tip.Alert(this.Floors[j].Name + "有取放任务，无法远程关门 ");
-            //        return;
-            //    }
-            //    this.Floors[j].DoorStatus = DoorStatus.正在关闭;
-            //    this.Floors[j].DoorIsClosing = true;
-            //    this.Floors[j].toCloseDoor = true;
-            //}
+            if (!this.Floors[j].DoorIsClosing)
+            {
+                if (this.Floors[j].Stations.Count(s => s.Id == Current.Task.FromStationId) + this.Floors[j].Stations.Count(s => s.Id == Current.Task.ToStationId) > 0)
+                {
+                    Tip.Alert(this.Floors[j].Name + "有取放任务，无法远程关门 ");
+                    return;
+                }
+                this.Floors[j].DoorStatus = DoorStatus.正在关闭;
+                this.Floors[j].DoorIsClosing = true;
+                this.Floors[j].toCloseDoor = true;
+            }
         }
 
         /// <summary>

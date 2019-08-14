@@ -139,6 +139,8 @@ namespace TengDa.WF.Terminals
 
         private SiemensTcpNet siemens_net = null;
 
+        private HslCommunice533.Profinet.Siemens.SiemensS7Net siemensS7Net = null;
+
         private HslCommunice533.ModBus.ModbusTcpNet busTcpClient = null;
 
         private HslCommunice533.Profinet.Omron.OmronFinsNet omron_net = null;
@@ -169,13 +171,12 @@ namespace TengDa.WF.Terminals
                 }
                 else if (this.Company == PlcCompany.Siemens.ToString())
                 {
-                    siemens_net = new SiemensTcpNet(SiemensPLCS.S1200);
-
-                    siemens_net.PLCIpAddress = System.Net.IPAddress.Parse(this.IP);    // PLC的IP地址
-                    siemens_net.PortRead = Port;                                           // 端口
-                    siemens_net.PortWrite = 102;                                          // 写入端口，最好和读取分开
-                    siemens_net.ConnectTimeout = 500;                                      // 连接超时时间
-                    siemens_net.ConnectServer();
+                    siemensS7Net = new HslCommunice533.Profinet.Siemens.SiemensS7Net(HslCommunice533.Profinet.Siemens.SiemensPLCS.S1200);
+                    siemensS7Net.IpAddress = this.IP;    // PLC的IP地址
+                    //siemens_net.PortRead = Port;                                           // 端口
+                    //siemens_net.PortWrite = 102;                                          // 写入端口，最好和读取分开
+                    //siemens_net.ConnectTimeout = 500;                                      // 连接超时时间
+                    siemensS7Net.ConnectServer();
                     IsAlive = true;
                 }
                 else if (this.Company == PlcCompany.OMRON.ToString() && (this.Model == "SYSMAC CP1H" || this.Model == "NX102"))
@@ -254,10 +255,10 @@ namespace TengDa.WF.Terminals
                 }
                 else if (this.Company == PlcCompany.Siemens.ToString())
                 {
-                    if (siemens_net != null)
+                    if (siemensS7Net != null)
                     {
-                        siemens_net.ConnectClose();
-                        siemens_net = null;
+                        siemensS7Net.ConnectClose();
+                        siemensS7Net = null;
                     }
                     IsAlive = false;
                 }
@@ -1009,6 +1010,104 @@ namespace TengDa.WF.Terminals
                     else//写
                     {
                         OperateResult result = siemens_net.WriteIntoPLC(address, value);
+                        if (result.IsSuccess)
+                        {
+                            IsAlive = true;
+                            return true;
+                        }
+                        else
+                        {
+                            msg = string.Format("{0} 中写入 {1} 出现错误，代码：{2}", address, value, result.ErrorCode);
+                            IsAlive = false;
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                msg = string.Format("和{0}通信出现异常！原因：{1}", Name, ex.Message);
+            }
+
+            IsAlive = false;
+            return false;
+        }
+
+        public bool GetInfo(bool checkPingSuccess, PlcCompany plcCompany, bool isRead, string address, ushort value, out ushort output, out string msg)
+        {
+
+            output = 0;
+            msg = string.Empty;
+
+            if (checkPingSuccess)
+            {
+                if (!IsPingSuccess)
+                {
+                    IsAlive = false;
+                    msg = string.Format("无法连接到【{0}】，IP：{1}", this.Name, this.IP);
+                    return false;
+                }
+            }
+
+            try
+            {
+                if (plcCompany == PlcCompany.Mitsubishi)
+                {
+
+                    if (isRead)//读
+                    {
+                        OperateResult<ushort> result = melsec_net.ReadUShortFromPLC(address);
+                        if (result.IsSuccess)
+                        {
+                            output = result.Content;
+                            IsAlive = true;
+                            return true;
+                        }
+                        else
+                        {
+                            msg = string.Format("从{0}中读取数据出现错误，代码：{1}", address, result.ErrorCode);
+                            IsAlive = false;
+                            return false;
+                        }
+                    }
+                    else//写
+                    {
+                        OperateResult result = melsec_net.WriteIntoPLC(address, value);
+                        if (result.IsSuccess)
+                        {
+                            IsAlive = true;
+                            return true;
+                        }
+                        else
+                        {
+                            msg = string.Format("{0} 中写入 {1} 出现错误，代码：{2}", address, value, result.ErrorCode);
+                            IsAlive = false;
+                            return false;
+                        }
+                    }
+                }
+                else if (plcCompany == PlcCompany.Siemens)
+                {
+
+                    if (isRead)//读
+                    {
+                        HslCommunice533.OperateResult<ushort> result = siemensS7Net.ReadUInt16(address);
+                        if (result.IsSuccess)
+                        {
+                            output = result.Content;
+                            IsAlive = true;
+                            return true;
+                        }
+                        else
+                        {
+                            msg = string.Format("从{0}中读取数据出现错误，代码：{1}", address, result.ErrorCode);
+                            IsAlive = false;
+                            return false;
+                        }
+                    }
+                    else//写
+                    {
+                        HslCommunice533.OperateResult result = siemensS7Net.Write(address, value);
                         if (result.IsSuccess)
                         {
                             IsAlive = true;
