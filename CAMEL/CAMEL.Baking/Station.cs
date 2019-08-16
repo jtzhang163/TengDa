@@ -43,9 +43,9 @@ namespace CAMEL.Baking
             }
             set
             {
-                if (status != value && (value == StationStatus.可取 || value == StationStatus.可放))
+                if (status != value && (value == StationStatus.可取 || value == StationStatus.可放) && status == StationStatus.不可用)
                 {
-                    this.GetPutTime = DateTime.Now;
+                    //this.GetPutTime = DateTime.Now;
                 }
                 status = value;
             }

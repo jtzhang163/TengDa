@@ -31,7 +31,7 @@ namespace CAMEL.Baking.Control
         {
             rgv.IsAlive = rgv.IsEnable && rgv.Plc.IsAlive;
 
-            if (rgv.IsAlive)
+            if (rgv.IsAlive || rgv.PreIsAlive)
             {
                 switch (rgv.ClampStatus)
                 {
@@ -48,7 +48,7 @@ namespace CAMEL.Baking.Control
 
             rgv.PrePosition = rgv.Position;
 
-            if (rgv.IsAlive)
+            if (rgv.IsAlive || rgv.PreIsAlive)
             {
                 if (rgv.IsPausing)
                 {
@@ -86,7 +86,7 @@ namespace CAMEL.Baking.Control
 
             this.lbClampCode.Text = rgv.Clamp.Code;
 
-            if (!string.IsNullOrEmpty(rgv.AlarmStr) && rgv.IsAlive)
+            if (!string.IsNullOrEmpty(rgv.AlarmStr) && (rgv.IsAlive || rgv.PreIsAlive))
             {
                 if (rgv.PreAlarmStr != rgv.AlarmStr)
                 {
@@ -107,6 +107,8 @@ namespace CAMEL.Baking.Control
                 this.lbName.ForeColor = SystemColors.WindowText;
                 this.lbName.BackColor = Color.Transparent;
             }
+
+            rgv.PreIsAlive = rgv.IsAlive;
             rgv.PreAlarmStr = rgv.AlarmStr;
         }
 
@@ -116,7 +118,7 @@ namespace CAMEL.Baking.Control
             this.tsmManuPutStation.Enabled = Current.RGV.IsDispatchEnabled && Current.RGV.IsAuto && !Current.RGV.IsAlarming && Current.TaskMode == TaskMode.手动任务 && Current.RGV.IsAlive && Current.Task.NextToStationId < 1;
             this.tsmiTransAutoManu.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming;
             this.tsmiTransAutoManu.Text = Current.RGV.IsDispatchEnabled && Current.RGV.IsAuto ? "切换为手动" : "切换为自动";
-            this.tsmiStart.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming && Current.RGV.Status == 2;
+            this.tsmiStart.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming && Current.RGV.Status == 2 && Current.RGV.IsAlreadyHasTask;
             this.tsmiReset.Enabled = Current.RGV.IsDispatchEnabled && Current.RGV.Status == 4;
             this.tsmiPause.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming;
             this.tsmiStop.Enabled = Current.RGV.IsDispatchEnabled && !Current.RGV.IsAlarming;

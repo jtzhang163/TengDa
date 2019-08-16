@@ -1039,6 +1039,8 @@ namespace CAMEL.Baking.App
                 for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
                 {
                     Current.ovens[i].Floors[j].DoorStatus = DoorStatus.未知;
+                    Current.ovens[i].Floors[j].DoorIsClosing = false;
+                    Current.ovens[i].Floors[j].DoorIsOpenning = false;
                     Current.ovens[i].Floors[j].PreAlarmStr = string.Empty;
                 }
             }
@@ -1329,7 +1331,7 @@ namespace CAMEL.Baking.App
                 
 
                 timerRGVRun = new System.Timers.Timer();
-                timerRGVRun.Interval = 2000;
+                timerRGVRun.Interval = 1500;
                 timerRGVRun.Elapsed += delegate
                 {
                     Thread listen = new Thread(new ThreadStart(RGVRunInvokeFunc));
@@ -1714,13 +1716,13 @@ namespace CAMEL.Baking.App
                         {
                             Floor floor = Current.ovens[i].Floors[j];
 
-                            //无任务默认关门
-                            if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) == 0
-                                && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) == 0
-                                && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
-                            {
-                                Current.ovens[i].CloseDoor(j);
-                            }
+                            ////无任务默认关门
+                            //if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) == 0
+                            //    && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) == 0
+                            //    && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
+                            //{
+                            //    Current.ovens[i].CloseDoor(j);
+                            //}
 
                             ////从某一炉子取完盘后，立即关门，无需等到整个任务结束
                             //if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive

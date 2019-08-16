@@ -173,6 +173,13 @@ namespace CAMEL.Baking
         /// </summary>
         public bool IsForkAtOriginalPoint { get; set; } = false;
 
+        /// <summary>
+        /// 已经有任务
+        /// </summary>
+        public bool IsAlreadyHasTask { get; set; } = false;
+
+        public string Alarm2BinString { get; set; } = "";
+
         #endregion
 
         #region 构造方法
@@ -277,6 +284,31 @@ namespace CAMEL.Baking
 
         public bool AlreadyGetAllInfo = false;
 
+        public string[] Alarms = new string[] {
+            "急停按下",
+            "PLC异常状态异常",
+            "EtherNet/IP异常状态异常",
+            "EthenCAT状态异常",
+            "PLC总线状态异常",
+            "行走电机报警",
+            "升降电机报警",
+            "货叉电机报警",
+            "调度心跳报警",
+            "门号错误",
+            "行走.货叉同时动作",
+            "行走电机限位报警",
+            "升降电机限位报警",
+            "货叉电机限位报警",
+            "升降下降超过保护限位",
+            "货叉不在原点",
+            "行走安全位.取门号.放门号不能同时给",
+            "行走位置方向错误",
+            "升降位置方向错误",
+            "行走位置错误",
+            "升降位置错误",
+            "货叉位置错误"
+        };
+
         public bool GetInfo()
         {
             if (!this.Plc.IsPingSuccess)
@@ -303,9 +335,11 @@ namespace CAMEL.Baking
             //手动自动信号
             this.IsAuto = bOutputs[6] == 1;
 
+            this.IsAlreadyHasTask = bOutputs[8] > 0 || bOutputs[9] > 0;
+
             //报警
             this.IsAlarming = bOutputs[11] == 1 || bOutputs[60] == 4;
-            this.AlarmStr = this.IsAlarming ? this.name + "异常中" : "";
+            //this.AlarmStr = this.IsAlarming ? this.name + "异常中" : "";
 
             //有无料
             //switch (bOutputs[12])
@@ -339,6 +373,54 @@ namespace CAMEL.Baking
             this.Status = bOutputs[60];
 
             this.IsReady = this.Status == 2 && this.IsDispatchEnabled && this.IsAuto;
+
+            if (this.IsAlarming)
+            {
+                StringBuilder sb = new StringBuilder();
+                for (int n = 30; n < 32; n++)
+                {
+                    sb.Append(_Convert.Revert(OmronPLC.GetBitStr(bOutputs[n], 16)));
+                }
+
+                this.Alarm2BinString = sb.ToString();
+
+                var alarmStr = "";
+
+                for (int x = 0; x < this.Alarms.Length; x++)
+                {
+                    if (this.Alarm2BinString[x] == '1')
+                    {
+                        alarmStr += this.Alarms[x] + ",";
+                    }
+                }
+                this.AlarmStr = alarmStr;
+            }
+            else
+            {
+                this.AlarmStr = "";
+            }
+
+            //D1030.01    PLC异常状态异常
+            //D1030.02    EtherNet / IP异常状态异常
+            //D1030.03    EthenCAT状态异常
+            //D1030.04    PLC总线状态异常
+            //D1030.05    行走电机报警
+            //D1030.06    升降电机报警
+            //D1030.07    货叉电机报警
+            //D1030.08    调度心跳报警
+            //D1030.09    门号错误
+            //D1030.10    行走.货叉同时动作
+            //D1030.11    行走电机限位报警
+            //D1030.12    升降电机限位报警
+            //D1030.13    货叉电机限位报警
+            //D1030.14    升降下降超过保护限位
+            //D1030.15    货叉不在原点
+            //D1031.00    行走安全位.取门号.放门号不能同时给
+            //D1031.01    行走位置方向错误
+            //D1031.02    升降位置方向错误
+            //D1031.03    行走位置错误
+            //D1031.04    升降位置错误
+            //D1031.05    货叉位置错误
 
             this.AlreadyGetAllInfo = true;
             this.Plc.IsAlive = true;

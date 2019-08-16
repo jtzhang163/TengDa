@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TengDa;
 using TengDa.WF;
+using System.Threading;
 
 namespace CAMEL.Baking.Control
 {
@@ -38,7 +39,9 @@ namespace CAMEL.Baking.Control
             if (System.Windows.SystemParameters.PrimaryScreenHeight > 800)
             {
                 this.lbInfoTop.Font = new System.Drawing.Font("Consolas", 9.0F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.lbInfoTop.Height = 14;
                 this.lbStatus.Font = new System.Drawing.Font("Consolas", 9.0F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.lbStatus.Height = 14;
             }
         }
 
@@ -111,11 +114,12 @@ namespace CAMEL.Baking.Control
             if (Current.option.FloorShowInfoType == "默认信息")
             {
                 lbStatus.Text =
-                    string.Format("{0} {1}/{2}",
+                    string.Format("{3}{0} {1}/{2}",
                     //oven.ClampOri == ClampOri.A ? "左" : "右",
-                    floor.DoorStatus,
-                    floor.RunMinutes.ToString().PadLeft(3),
-                    floor.RunMinutesSet.ToString().PadLeft(3)
+                    floor.DoorStatus.ToString().Replace("正在关闭", "正关").Replace("正在打开", "正开").Replace("打开", "开").Replace("关闭", "关").Replace("未知", ""),
+                    floor.RunMinutes.ToString(),
+                    floor.RunMinutesSet.ToString(),
+                    _oven.Floors.IndexOf(floor) + 1
                     );
             }
             else if (Current.option.FloorShowInfoType == "开始烘烤时间")
@@ -178,6 +182,10 @@ namespace CAMEL.Baking.Control
                     lbStatus.ForeColor = Color.White;
                     lbStatus.BackColor = Color.Green;
                     break;
+                case DoorStatus.异常:
+                    lbStatus.ForeColor = Color.White;
+                    lbStatus.BackColor = Color.Red;
+                    break;
                 case DoorStatus.正在打开:
                     lbStatus.ForeColor = Color.White;
                     lbStatus.BackColor = Color.HotPink;
@@ -185,10 +193,6 @@ namespace CAMEL.Baking.Control
                 case DoorStatus.正在关闭:
                     lbStatus.ForeColor = Color.White;
                     lbStatus.BackColor = Color.HotPink;
-                    break;
-                case DoorStatus.异常:
-                    lbStatus.ForeColor = Color.White;
-                    lbStatus.BackColor = Color.Red;
                     break;
                 default:
                     lbStatus.ForeColor = SystemColors.WindowText;
@@ -201,6 +205,8 @@ namespace CAMEL.Baking.Control
 
         public void FloorInvalidate()
         {
+            this.tlpFloor.Invalidate();
+            Thread.Sleep(5);
             this.tlpFloor.Invalidate();
         }
 

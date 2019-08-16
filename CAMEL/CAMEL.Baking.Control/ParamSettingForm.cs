@@ -116,8 +116,8 @@ namespace CAMEL.Baking.Control
 
         private void BtnSetParam_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 Thread t = new Thread(() =>
                 {
                     this.BeginInvoke(new MethodInvoker(() =>
@@ -136,18 +136,12 @@ namespace CAMEL.Baking.Control
                     {
                         var addr = "";
                         var j = oven.Floors.IndexOf(this.floor);
-                        if (j == 0)
-                        {
-                            addr = this.ovenParamUCs[i].ovenParam.Floor1Addr;
-                        }
-                        else if (j == 1)
-                        {
-                            addr = this.ovenParamUCs[i].ovenParam.Floor2Addr;
-                        }
-                        else if (j == 2)
-                        {
-                            addr = this.ovenParamUCs[i].ovenParam.Floor3Addr;
-                        }
+                        addr =
+                        j == 0 ? this.ovenParamUCs[i].ovenParam.Floor1Addr :
+                        j == 1 ? this.ovenParamUCs[i].ovenParam.Floor2Addr :
+                        j == 2 ? this.ovenParamUCs[i].ovenParam.Floor3Addr :
+                        j == 3 ? this.ovenParamUCs[i].ovenParam.Floor4Addr :
+                        j == 4 ? this.ovenParamUCs[i].ovenParam.Floor5Addr : "";
 
                         if (this.ovenParamUCs[i].GetNewValue() == this.ovenParamUCs[i].GetOldValue())
                         {
@@ -193,11 +187,11 @@ namespace CAMEL.Baking.Control
 
                 });
                 t.Start();
-            }
-            catch (Exception ex)
-            {
-                Error.Alert(ex);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Error.Alert(ex);
+            //}
         }
 
         private void BtnGetDefaultValue_Click(object sender, EventArgs e)

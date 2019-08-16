@@ -542,15 +542,16 @@ namespace CAMEL.Baking
                 msg = string.Empty;
                 return true;
             }
+            msg = "";
+            return true;
+            //StringBuilder sb = new StringBuilder();
 
-            StringBuilder sb = new StringBuilder();
+            //foreach (FloorLog floorLog in addLogs)
+            //{
+            //    sb.Append(string.Format("({0}, '{1}', '{2}', {3}),", floorLog.FloorId, floorLog.Message, DateTime.Now, TengDa.WF.Current.user.Id));
+            //}
 
-            foreach (FloorLog floorLog in addLogs)
-            {
-                sb.Append(string.Format("({0}, '{1}', '{2}', {3}),", floorLog.FloorId, floorLog.Message, DateTime.Now, TengDa.WF.Current.user.Id));
-            }
-
-            return Database.NonQuery(string.Format("INSERT INTO [dbo].[{0}] ([FloorId], [Message], [RecodeTime], [UserId]) VALUES {1}", TableName, sb.ToString().TrimEnd(',')), out msg);
+            //return Database.NonQuery(string.Format("INSERT INTO [dbo].[{0}] ([FloorId], [Message], [RecodeTime], [UserId]) VALUES {1}", TableName, sb.ToString().TrimEnd(',')), out msg);
         }
 
         #endregion

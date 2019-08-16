@@ -491,7 +491,7 @@ namespace CAMEL.Baking
                     var isNetControlBinString = _Convert.Revert(OmronPLC.GetBitStr(bOutputs4[0], 16));
                     for (int j = 0; j < this.Floors.Count; j++)
                     {
-                        this.Floors[j].IsNetControlOpen = isNetControlBinString[j + 1] == '0';
+                        this.Floors[j].IsNetControlOpen = isNetControlBinString[j + 1] == '0' && isNetControlBinString[0] == '0';
                     }
 
                     #region 写指令 控制开关门、启动运行、抽破真空
