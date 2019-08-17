@@ -493,7 +493,11 @@ namespace CAMEL.Baking.App
                 Oven oven = Current.ovens[i];
 
                 if (oven.Plc.IsAlive) { if (this.GetMachineStatusInfo(oven) == "未连接") { this.SetMachineStatusInfo(oven, "连接成功"); } }
-                else { this.SetMachineStatusInfo(oven, "未连接"); }
+                else
+                {
+                    this.SetMachineStatusInfo(oven, "未连接");
+                    this.SetMachineLampColor(Current.mes, Color.Gray);
+                }
 
                 for (int j = 0; j < OvenFloorCount; j++)
                 {
@@ -518,7 +522,10 @@ namespace CAMEL.Baking.App
             #region 上料机、扫码枪
 
             if (Current.Feeder.Plc.IsAlive) { if (this.GetMachineStatusInfo(Current.Feeder) == "未连接") { this.SetMachineStatusInfo(Current.Feeder, "连接成功"); } }
-            else { this.SetMachineStatusInfo(Current.Feeder, "未连接"); }
+            else {
+                this.SetMachineStatusInfo(Current.Feeder, "未连接");
+                this.SetMachineLampColor(Current.Feeder, Color.Gray);
+            }
 
             //    for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
             //    {
@@ -570,7 +577,11 @@ namespace CAMEL.Baking.App
             #region RGV
 
             if (Current.RGV.Plc.IsAlive) { if (this.GetMachineStatusInfo(Current.RGV) == "未连接") { this.SetMachineStatusInfo(Current.RGV, "连接成功"); } }
-            else { this.SetMachineStatusInfo(Current.RGV, "未连接"); }
+            else
+            {
+                this.SetMachineStatusInfo(Current.RGV, "未连接");
+                this.SetMachineLampColor(Current.RGV, Color.Gray);
+            }
 
             #endregion
 
@@ -670,18 +681,6 @@ namespace CAMEL.Baking.App
             }
         }
 
-
-        private void OvenInvalidate(int i, int j)
-        {
-            if (Option.LineNum == 1)
-            {
-                this.pageMain1UC.OvenInvalidate(i, j);
-            }
-            else
-            {
-                this.pageMain2UC.OvenInvalidate(i, j);
-            }
-        }
         #endregion
 
         #region 控件数组
@@ -1470,99 +1469,6 @@ namespace CAMEL.Baking.App
                 else
                 {
                     this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.ovens[i], "通信失败"); }));
-                }
-                
-
-                if (Current.ovens[i].AlreadyGetAllInfo)
-                {
-                    for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
-                    {
-                        Floor floor = Current.ovens[i].Floors[j];
-                        for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
-                        {
-                            Station station = Current.ovens[i].Floors[j].Stations[k];
-                            if (floor.IsBaking)
-                            {
-                                station.FloorStatus = FloorStatus.烘烤;
-                            }
-                            else if (station.ClampStatus == ClampStatus.无夹具)
-                            {
-                                station.FloorStatus = FloorStatus.无盘;
-                            }
-                            else if (station.ClampStatus == ClampStatus.空夹具)
-                            {
-                                station.FloorStatus = FloorStatus.空盘;
-                            }
-                            else if (station.ClampStatus == ClampStatus.满夹具 && (station.PreFloorStatus == FloorStatus.无盘 || station.PreFloorStatus == FloorStatus.待烤 || station.PreFloorStatus == FloorStatus.未知))
-                            {
-                                station.FloorStatus = FloorStatus.待烤;
-                            }
-                            else if (station.ClampStatus == ClampStatus.满夹具 && (station.PreFloorStatus == FloorStatus.烘烤 || station.PreFloorStatus == FloorStatus.待出 || station.PreFloorStatus == FloorStatus.未知))
-                            {
-                                station.FloorStatus = FloorStatus.待出;
-                            }
-                            else
-                            {
-                                station.FloorStatus = FloorStatus.未知;
-                            }
-
-                            if (station.PreFloorStatus != station.FloorStatus)
-                            {
-                                string tip = string.Format("{0}:{1}-->{2}", station.Name, station.PreFloorStatus, station.FloorStatus);
-                                AddTips(tip);
-                                StationLog.Add(new List<StationLog>() { new StationLog() { StationId = station.Id, Message = tip } }, out msg);
-
-                                //烘烤完成直接泄真空                         
-                                if (station.FloorStatus == FloorStatus.待出 && floor.IsVacuum && floor.RunRemainMinutes <= 1)
-                                {
-                                    Current.ovens[i].UploadVacuum(j);
-                                }
-
-                                this.OvenInvalidate(i, j);
-                              
-                            }
-                            else if (station.ClampStatus == ClampStatus.异常)
-                            {
-                                this.OvenInvalidate(i, j);
-                            }
-
-                            station.PreFloorStatus = station.FloorStatus;
-
-                            switch (station.FloorStatus)
-                            {
-                                case FloorStatus.无盘:
-                                    station.Status = StationStatus.可放;
-                                    break;
-                                case FloorStatus.空盘:
-                                    station.Status = StationStatus.可取;
-                                    break;
-                                case FloorStatus.待出:
-                                    if (floor.RunRemainMinutes <= 0 || floor.RunMinutes <= 0)
-                                    {
-                                        station.Status = StationStatus.可取;
-                                    }
-                                    else
-                                    {
-                                        station.Status = StationStatus.工作中;
-                                    }                                   
-                                    break;
-                                case FloorStatus.待烤:
-                                case FloorStatus.烘烤:
-                                    station.Status = StationStatus.工作中;
-                                    break;
-                                default:
-                                    station.Status = StationStatus.不可用;
-                                    break;
-                            }
-
-                        }
-
-                        //自动状态下网控强制打开
-                        if (Current.TaskMode == TaskMode.自动任务 && !floor.IsNetControlOpen && floor.IsEnable)
-                        {
-                            Current.ovens[i].OpenNetControl(j);
-                        }
-                    }
                 }
             }
         }

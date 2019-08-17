@@ -111,15 +111,110 @@ namespace CAMEL.Baking.Control
                 this.lbInfoTop.BackColor = Color.Transparent;
             }
 
+
+            if (oven.AlreadyGetAllInfo)
+            {
+                for (int k = 0; k < floor.Stations.Count; k++)
+                {
+                    Station station = floor.Stations[k];
+                    if (floor.IsBaking)
+                    {
+                        station.FloorStatus = FloorStatus.烘烤;
+                    }
+                    else if (station.ClampStatus == ClampStatus.无夹具)
+                    {
+                        station.FloorStatus = FloorStatus.无盘;
+                    }
+                    else if (station.ClampStatus == ClampStatus.空夹具)
+                    {
+                        station.FloorStatus = FloorStatus.空盘;
+                    }
+                    else if (station.ClampStatus == ClampStatus.满夹具 && (station.PreFloorStatus == FloorStatus.无盘 || station.PreFloorStatus == FloorStatus.待烤 || station.PreFloorStatus == FloorStatus.未知))
+                    {
+                        station.FloorStatus = FloorStatus.待烤;
+                    }
+                    else if (station.ClampStatus == ClampStatus.满夹具 && (station.PreFloorStatus == FloorStatus.烘烤 || station.PreFloorStatus == FloorStatus.待出 || station.PreFloorStatus == FloorStatus.未知))
+                    {
+                        station.FloorStatus = FloorStatus.待出;
+                    }
+                    else
+                    {
+                        station.FloorStatus = FloorStatus.未知;
+                    }
+
+                    if (station.PreFloorStatus != station.FloorStatus)
+                    {
+                        string tip = string.Format("{0}:{1}-->{2}", station.Name, station.PreFloorStatus, station.FloorStatus);
+                        StationLog.Add(new List<StationLog>() { new StationLog() { StationId = station.Id, Message = tip } }, out string msg);
+
+                        ////烘烤完成直接泄真空                         
+                        //if (station.FloorStatus == FloorStatus.待出 && floor.IsVacuum && floor.RunRemainMinutes <= 1)
+                        //{
+                        //    oven.UploadVacuum(j);
+                        //}
+
+                        this.tlpFloor.Invalidate();
+
+                    }
+                    else if (station.ClampStatus == ClampStatus.异常)
+                    {
+                        this.tlpFloor.Invalidate();
+                    }
+
+                    switch (station.FloorStatus)
+                    {
+                        case FloorStatus.无盘:
+                            station.Status = StationStatus.可放;
+                            break;
+                        case FloorStatus.空盘:
+                            station.Status = StationStatus.可取;
+                            break;
+                        case FloorStatus.待出:
+                            if (floor.RunRemainMinutes <= 0 || floor.RunMinutes <= 0)
+                            {
+                                station.Status = StationStatus.可取;
+                            }
+                            else
+                            {
+                                station.Status = StationStatus.工作中;
+                            }
+                            break;
+                        case FloorStatus.待烤:
+                        case FloorStatus.烘烤:
+                            station.Status = StationStatus.工作中;
+                            break;
+                        default:
+                            station.Status = StationStatus.不可用;
+                            break;
+                    }
+
+                    station.PreFloorStatus = station.FloorStatus;
+                }
+            }
+
+            if (floor.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId) > 0)
+            {
+                this.tlpFloor.Invalidate();
+            }
+
+            if (floor.PreIsAlive != floor.IsAlive)
+            {
+                this.tlpFloor.Invalidate();
+            }
+
+            floor.PreIsAlive = floor.IsAlive;
+            floor.Stations.ForEach(s => s.PreIsAlive = s.IsAlive);
+
             if (Current.option.FloorShowInfoType == "默认信息")
             {
                 lbStatus.Text =
-                    string.Format("{3}{0} {1}/{2}",
+                    string.Format("{2} {0}/{1}",
                     //oven.ClampOri == ClampOri.A ? "左" : "右",
-                    floor.DoorStatus.ToString().Replace("正在关闭", "正关").Replace("正在打开", "正开").Replace("打开", "开").Replace("关闭", "关").Replace("未知", ""),
-                    floor.RunMinutes.ToString(),
-                    floor.RunMinutesSet.ToString(),
-                    _oven.Floors.IndexOf(floor) + 1
+                    //floor.DoorStatus.ToString().Replace("正在关闭", "正关").Replace("正在打开", "正开").Replace("打开", "开").Replace("关闭", "关").Replace("未知", ""),
+                    floor.RunMinutes.ToString().PadLeft(4),
+                    floor.RunMinutesSet.ToString().PadLeft(4),
+                    //floor.Name.Replace("烤箱", ""),
+                    oven.Floors.IndexOf(floor) + 1
                     );
             }
             else if (Current.option.FloorShowInfoType == "开始烘烤时间")
@@ -203,12 +298,6 @@ namespace CAMEL.Baking.Control
             floor.PreAlarmStr = floor.AlarmStr;
         }
 
-        public void FloorInvalidate()
-        {
-            this.tlpFloor.Invalidate();
-            Thread.Sleep(5);
-            this.tlpFloor.Invalidate();
-        }
 
         private void CmsFloor_Opening(object sender, CancelEventArgs e)
         {

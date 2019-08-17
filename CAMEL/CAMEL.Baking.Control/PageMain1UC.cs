@@ -70,10 +70,5 @@ namespace CAMEL.Baking.Control
             #endregion
         }
 
-        public void OvenInvalidate(int i, int j)
-        {
-            this.ovenUCs[i].Invalidate(j);
-        }
-
     }
 }

@@ -71,7 +71,7 @@
             this.tlpFloor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpFloor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.tlpFloor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFloor.Size = new System.Drawing.Size(150, 150);
+            this.tlpFloor.Size = new System.Drawing.Size(150, 102);
             this.tlpFloor.TabIndex = 13;
             this.tlpFloor.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.TlpFloor_CellPaint);
             // 
@@ -82,7 +82,7 @@
             this.tlpFloor.SetColumnSpan(this.lbInfoTop, 3);
             this.lbInfoTop.Font = new System.Drawing.Font("Consolas", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbInfoTop.ForeColor = System.Drawing.Color.Red;
-            this.lbInfoTop.Location = new System.Drawing.Point(0, 30);
+            this.lbInfoTop.Location = new System.Drawing.Point(0, 18);
             this.lbInfoTop.Margin = new System.Windows.Forms.Padding(0);
             this.lbInfoTop.Name = "lbInfoTop";
             this.lbInfoTop.Size = new System.Drawing.Size(150, 12);
@@ -96,7 +96,7 @@
             this.tlpFloor.SetColumnSpan(this.pbRunTime, 3);
             this.pbRunTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbRunTime.ForeColor = System.Drawing.Color.YellowGreen;
-            this.pbRunTime.Location = new System.Drawing.Point(5, 72);
+            this.pbRunTime.Location = new System.Drawing.Point(5, 48);
             this.pbRunTime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.pbRunTime.Name = "pbRunTime";
             this.pbRunTime.Size = new System.Drawing.Size(140, 5);
@@ -110,7 +110,7 @@
             this.tlpFloor.SetColumnSpan(this.lbStatus, 3);
             this.lbStatus.Font = new System.Drawing.Font("Consolas", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStatus.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbStatus.Location = new System.Drawing.Point(0, 107);
+            this.lbStatus.Location = new System.Drawing.Point(0, 71);
             this.lbStatus.Margin = new System.Windows.Forms.Padding(0);
             this.lbStatus.Name = "lbStatus";
             this.lbStatus.Size = new System.Drawing.Size(150, 12);
@@ -255,6 +255,7 @@
             this.ContextMenuStrip = this.cmsFloor;
             this.Controls.Add(this.tlpFloor);
             this.Name = "FloorUC";
+            this.Size = new System.Drawing.Size(150, 102);
             this.tlpFloor.ResumeLayout(false);
             this.cmsFloor.ResumeLayout(false);
             this.ResumeLayout(false);

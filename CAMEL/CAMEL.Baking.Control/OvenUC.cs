@@ -35,11 +35,6 @@ namespace CAMEL.Baking.Control
             }
         }
 
-        public void Invalidate(int j)
-        {
-            this.floorUCs[j].FloorInvalidate();
-        }
-
         public void UpdateUI()
         {
             oven.IsAlive = oven.IsEnable && oven.Plc.IsAlive;
@@ -80,24 +75,7 @@ namespace CAMEL.Baking.Control
                 this.lbName.BackColor = Color.Transparent;
             }
 
-            for (int j = 0; j < oven.Floors.Count; j++)
-            {
-                var floor = oven.Floors[j];
-
-                if (floor.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId) > 0)
-                {
-                    this.Invalidate(j);
-                }
-
-                if (floor.PreIsAlive != floor.IsAlive)
-                {
-                    this.Invalidate(j);
-                }
-            }
-
             oven.PreIsAlive = oven.IsAlive;
-            oven.Floors.ForEach(f => f.PreIsAlive = f.IsAlive);
-            oven.Floors.ForEach(f => f.Stations.ForEach(s => s.PreIsAlive = s.IsAlive));
 
             for (int j = 0; j < floorUCs.Length; j++)
             {
