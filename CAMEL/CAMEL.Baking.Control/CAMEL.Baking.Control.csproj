@@ -127,12 +127,6 @@
     <Compile Include="CacherUC.Designer.cs">
       <DependentUpon>CacherUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="FeedClampUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FeedClampUC.Designer.cs">
-      <DependentUpon>FeedClampUC.cs</DependentUpon>
-    </Compile>
     <Compile Include="FloorUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -210,9 +204,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CacherUC.resx">
       <DependentUpon>CacherUC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FeedClampUC.resx">
-      <DependentUpon>FeedClampUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FloorUC.resx">
       <DependentUpon>FloorUC.cs</DependentUpon>

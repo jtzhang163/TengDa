@@ -115,46 +115,24 @@ namespace CAMEL.Baking
             }
         }
 
-        private int currentPutStationId = -1;
+        private int nextFeedClampId = -1;
         /// <summary>
-        /// 当前入料工位Id
+        /// 下一个上料夹具ID
         /// </summary>
         [ReadOnly(true)]
-        [DisplayName("当前入料工位Id")]
-        public int CurrentPutStationId
+        [DisplayName("下一个上料夹具ID")]
+        public int NextFeedClampId
         {
-            get { return currentPutStationId; }
+            get { return nextFeedClampId; }
             set
             {
-                if (currentPutStationId != value)
+                if (nextFeedClampId != value)
                 {
-                    UpdateDbField("CurrentPutStationId", value);
+                    UpdateDbField("NextFeedClampId", value);
                 }
-                currentPutStationId = value;
+                nextFeedClampId = value;
             }
         }
-
-        /// <summary>
-        /// 当前入料夹具Id
-        /// </summary>
-        [ReadOnly(true)]
-        [DisplayName("当前入料夹具Id")]
-        public int CurrentPutClampId
-        {
-            get
-            {
-                var station = this.Stations.FirstOrDefault(s => s.Id == this.CurrentPutStationId);
-                if (station == null)
-                {
-                    return -1;
-                }
-                return station.ClampId;
-            }
-        }
-
-        //帮助两台上料机信号传递（上料RGV和搬运RGV干涉防呆）
-        public ushort D1025;
-        public ushort D1026; 
 
         /// <summary>
         /// 夹爪移动类型
@@ -305,7 +283,7 @@ namespace CAMEL.Baking
             this.stationIds = rowInfo["StationIds"].ToString();
             this.scanerIds = rowInfo["ScanerIds"].ToString();
             this.batteryCacheId = TengDa._Convert.StrToInt(rowInfo["BatteryCacheId"].ToString(), -1);
-            this.currentPutStationId = TengDa._Convert.StrToInt(rowInfo["CurrentPutStationId"].ToString(), -1);
+            this.nextFeedClampId = TengDa._Convert.StrToInt(rowInfo["NextFeedClampId"].ToString(), -1);
             this.cacheBatteryIdsStr = rowInfo["CacheBatteryIdsStr"].ToString();
             this.currentBatteryCount = TengDa._Convert.StrToInt(rowInfo["CurrentBatteryCount"].ToString(), 0);
         }
@@ -469,6 +447,12 @@ namespace CAMEL.Baking
                         this.Plc.IsAlive = false;
                         return false;
                     }
+
+                    if (db17_2 == 2 && this.GetStation.ClampStatus != ClampStatus.满夹具)
+                    {
+                        this.GetStation.ClampId = this.NextFeedClampId;
+                    }
+
                     this.GetStation.ClampStatus = db17_2 == 2 ? ClampStatus.满夹具 : ClampStatus.无夹具;
                     this.GetStation.Status = db17_2 == 2 ? StationStatus.可取 : StationStatus.工作中;
 

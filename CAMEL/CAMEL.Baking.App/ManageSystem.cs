@@ -1158,6 +1158,7 @@ namespace CAMEL.Baking.App
 
                 this.SetMachineStatusInfo(Current.ClampScaner, "连接成功");
                 this.SetMachineLampColor(Current.ClampScaner, Color.Green);
+                Current.ClampScaner.StartListenReceiveData();
             }
 
             return true;
@@ -1188,7 +1189,7 @@ namespace CAMEL.Baking.App
             {
                 if (Current.ClampScaner.IsAlive)
                 {
-                    Current.ClampScaner.StopClampScan();
+                    Current.ClampScaner.StopScan();
                 }
                     
                 if (!Current.ClampScaner.TcpDisConnect(out msg))
@@ -1201,7 +1202,6 @@ namespace CAMEL.Baking.App
                 this.SetMachineLampColor(Current.ClampScaner, Color.Gray);
             }
 
-            
             return true;
         }
 
@@ -1497,38 +1497,32 @@ namespace CAMEL.Baking.App
                     #region 夹具扫码逻辑
                     if (Current.ClampScaner.IsEnable && Current.ClampScaner.CanScan)
                     {
-                        Current.Feeder.Stations.ForEach(s =>
+                        string code = string.Empty;
+                        ScanResult result = Current.ClampScaner.StartScan(out code, out msg);
+                        if (result == ScanResult.OK)
                         {
-                            if (s.IsClampScanReady)
+                            this.SetMachineStatusInfo(Current.ClampScaner, "+" + code);
+                            Current.Feeder.NextFeedClampId = Clamp.Add(code, out msg);
+                            if (!Current.Feeder.SetScanClampResult(ScanResult.OK, out msg))
                             {
-                                string code = string.Empty;
-                                ScanResult result = Current.ClampScaner.StartClampScan(out code, out msg);
-                                if (result == ScanResult.OK)
-                                {
-                                    //this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][2].Text = "+" + code; }));                           
-                                    s.Clamp.Code = code;
-                                    s.Clamp.ScanTime = DateTime.Now;
-
-                                    if (!Current.Feeder.SetScanClampResult(ScanResult.OK, out msg))
-                                    {
-                                        Error.Alert(msg);
-                                    }
-                                }
-                                else if (result == ScanResult.NG || result == ScanResult.Timeout)
-                                {
-                                    //this.BeginInvoke(new MethodInvoker(() => { this.tbScanerStatus[i][2].Text = "扫码NG"; }));
-                                    if (!Current.Feeder.SetScanClampResult(ScanResult.NG, out msg))
-                                    {
-                                        Error.Alert(msg);
-                                    }
-                                }
-                                else if (!string.IsNullOrEmpty(msg))
-                                {
-                                    Error.Alert(msg);
-                                }
-
+                                Error.Alert(msg);
                             }
-                        });
+                        }
+                        else if (result == ScanResult.NG || result == ScanResult.Timeout)
+                        {
+                            this.SetMachineStatusInfo(Current.ClampScaner, "扫码NG");
+
+                            if (!Current.Feeder.SetScanClampResult(ScanResult.NG, out msg))
+                            {
+                                Error.Alert(msg);
+                            }
+                        }
+                        else if (!string.IsNullOrEmpty(msg))
+                        {
+                            Error.Alert(msg);
+                        }
+
+                        Current.ClampScaner.CanScan = false;
                     }
                     #endregion
 
@@ -3235,7 +3229,7 @@ namespace CAMEL.Baking.App
         {
             string code = string.Empty;
             string msg = string.Empty;
-            ScanResult scanResult = Current.ClampScaner.StartClampScan(out code, out msg);
+            ScanResult scanResult = Current.ClampScaner.StartScan(out code, out msg);
             if (scanResult == ScanResult.OK)
             {
                 Tip.Alert(code);
