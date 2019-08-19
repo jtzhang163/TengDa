@@ -254,6 +254,18 @@ namespace CAMEL.Baking
 
         public bool AlreadyGetAllInfo = false;
 
+        /// <summary>
+        /// 温度地址矩阵
+        /// </summary>
+        private static int[,] temperAddrMatrix = new int[5, 3] 
+        {
+            { 50, 55, 56 },
+            { 51, 57, 58 },
+            { 52, 59, 60 },
+            { 53, 61, 62 },
+            { 54, 63, 64 }
+        };
+
         #endregion
 
         #region 通信
@@ -353,7 +365,7 @@ namespace CAMEL.Baking
                     {
                         for (int n = 0; n < Option.TemperaturePointCount; n++)
                         {
-                            this.Floors[j].Temperatures[n] = bOutputs1[50 + 5 * n + j] / 10f;
+                            this.Floors[j].Temperatures[n] = bOutputs1[temperAddrMatrix[j, n]] / 10f;
                         }
                         this.Floors[j].RunMinutesSet = bOutputs1[10 + 2 * j];
                         this.Floors[j].RunMinutes = bOutputs1[20 + 2 * j];
