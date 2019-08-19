@@ -1632,14 +1632,14 @@
             // 
             // label51
             // 
+            this.label51.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label51.AutoSize = true;
-            this.label51.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label51.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label51.Location = new System.Drawing.Point(3, 0);
+            this.label51.Location = new System.Drawing.Point(3, 9);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(124, 35);
+            this.label51.Size = new System.Drawing.Size(88, 16);
             this.label51.TabIndex = 0;
-            this.label51.Text = "选择烤箱工位";
+            this.label51.Text = "选择炉层：";
             this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cbCurveSelectedFloor
@@ -1706,34 +1706,34 @@
             // tableLayoutPanel31
             // 
             this.tableLayoutPanel31.BackColor = System.Drawing.SystemColors.Control;
-            this.tableLayoutPanel31.ColumnCount = 1;
-            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.96251F));
+            this.tableLayoutPanel31.ColumnCount = 4;
+            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex01, 0, 0);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex02, 0, 1);
-            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex03, 0, 2);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex02, 1, 0);
+            this.tableLayoutPanel31.Controls.Add(this.cbTemperIndex03, 2, 0);
             this.tableLayoutPanel31.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel31.Location = new System.Drawing.Point(40, 465);
             this.tableLayoutPanel31.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.tableLayoutPanel31.Name = "tableLayoutPanel31";
             this.tableLayoutPanel31.RowCount = 3;
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel31.Size = new System.Drawing.Size(1098, 124);
             this.tableLayoutPanel31.TabIndex = 10;
             // 
             // cbTemperIndex01
             // 
+            this.cbTemperIndex01.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbTemperIndex01.AutoSize = true;
-            this.cbTemperIndex01.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex01.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cbTemperIndex01.Location = new System.Drawing.Point(0, 0);
+            this.cbTemperIndex01.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cbTemperIndex01.Location = new System.Drawing.Point(0, 10);
             this.cbTemperIndex01.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex01.Name = "cbTemperIndex01";
-            this.cbTemperIndex01.Size = new System.Drawing.Size(1098, 41);
+            this.cbTemperIndex01.Size = new System.Drawing.Size(123, 20);
             this.cbTemperIndex01.TabIndex = 8;
             this.cbTemperIndex01.Text = "主控01:000℃";
             this.cbTemperIndex01.UseVisualStyleBackColor = true;
@@ -1741,13 +1741,14 @@
             // 
             // cbTemperIndex02
             // 
+            this.cbTemperIndex02.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbTemperIndex02.AutoSize = true;
-            this.cbTemperIndex02.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbTemperIndex02.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbTemperIndex02.ForeColor = System.Drawing.Color.Fuchsia;
-            this.cbTemperIndex02.Location = new System.Drawing.Point(0, 41);
+            this.cbTemperIndex02.Location = new System.Drawing.Point(150, 10);
             this.cbTemperIndex02.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex02.Name = "cbTemperIndex02";
-            this.cbTemperIndex02.Size = new System.Drawing.Size(1098, 41);
+            this.cbTemperIndex02.Size = new System.Drawing.Size(123, 20);
             this.cbTemperIndex02.TabIndex = 9;
             this.cbTemperIndex02.Text = "主控01:000℃";
             this.cbTemperIndex02.UseVisualStyleBackColor = true;
@@ -1755,12 +1756,13 @@
             // 
             // cbTemperIndex03
             // 
+            this.cbTemperIndex03.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbTemperIndex03.AutoSize = true;
-            this.cbTemperIndex03.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTemperIndex03.Location = new System.Drawing.Point(0, 82);
+            this.cbTemperIndex03.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cbTemperIndex03.Location = new System.Drawing.Point(300, 10);
             this.cbTemperIndex03.Margin = new System.Windows.Forms.Padding(0);
             this.cbTemperIndex03.Name = "cbTemperIndex03";
-            this.cbTemperIndex03.Size = new System.Drawing.Size(1098, 42);
+            this.cbTemperIndex03.Size = new System.Drawing.Size(123, 20);
             this.cbTemperIndex03.TabIndex = 10;
             this.cbTemperIndex03.Text = "主控01:000℃";
             this.cbTemperIndex03.UseVisualStyleBackColor = true;
@@ -1866,7 +1868,7 @@
             // 
             // btnExportTV
             // 
-            this.btnExportTV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnExportTV.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnExportTV.Location = new System.Drawing.Point(929, 13);
             this.btnExportTV.Margin = new System.Windows.Forms.Padding(13);
             this.btnExportTV.Name = "btnExportTV";
@@ -1907,7 +1909,7 @@
             // 
             // btnQueryTV
             // 
-            this.btnQueryTV.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnQueryTV.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnQueryTV.Location = new System.Drawing.Point(950, 13);
             this.btnQueryTV.Margin = new System.Windows.Forms.Padding(13);
             this.btnQueryTV.Name = "btnQueryTV";
@@ -2266,7 +2268,7 @@
             // 
             // btnExportTaskLog
             // 
-            this.btnExportTaskLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnExportTaskLog.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnExportTaskLog.Location = new System.Drawing.Point(929, 13);
             this.btnExportTaskLog.Margin = new System.Windows.Forms.Padding(13);
             this.btnExportTaskLog.Name = "btnExportTaskLog";
@@ -2344,7 +2346,7 @@
             // 
             // btnQueryTaskLog
             // 
-            this.btnQueryTaskLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnQueryTaskLog.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnQueryTaskLog.Location = new System.Drawing.Point(944, 13);
             this.btnQueryTaskLog.Margin = new System.Windows.Forms.Padding(13);
             this.btnQueryTaskLog.Name = "btnQueryTaskLog";
@@ -2454,7 +2456,7 @@
             // 
             // btnAlarmExport
             // 
-            this.btnAlarmExport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAlarmExport.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnAlarmExport.Location = new System.Drawing.Point(929, 13);
             this.btnAlarmExport.Margin = new System.Windows.Forms.Padding(13);
             this.btnAlarmExport.Name = "btnAlarmExport";
@@ -2491,7 +2493,7 @@
             // 
             // btnAlarmQuery
             // 
-            this.btnAlarmQuery.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAlarmQuery.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnAlarmQuery.Location = new System.Drawing.Point(944, 13);
             this.btnAlarmQuery.Margin = new System.Windows.Forms.Padding(13);
             this.btnAlarmQuery.Name = "btnAlarmQuery";
@@ -2667,7 +2669,7 @@
             // 
             // btnExport
             // 
-            this.btnExport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnExport.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnExport.Location = new System.Drawing.Point(929, 13);
             this.btnExport.Margin = new System.Windows.Forms.Padding(13);
             this.btnExport.Name = "btnExport";
@@ -2745,7 +2747,7 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnQuery.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnQuery.Location = new System.Drawing.Point(944, 13);
             this.btnQuery.Margin = new System.Windows.Forms.Padding(13);
             this.btnQuery.Name = "btnQuery";
@@ -2834,7 +2836,7 @@
             // 
             // btnOperQuery
             // 
-            this.btnOperQuery.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnOperQuery.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnOperQuery.Location = new System.Drawing.Point(944, 13);
             this.btnOperQuery.Margin = new System.Windows.Forms.Padding(13);
             this.btnOperQuery.Name = "btnOperQuery";
