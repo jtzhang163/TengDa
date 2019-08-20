@@ -555,6 +555,11 @@ namespace CAMEL.Baking
                                 {
                                     Current.RGV.ClampStatus = Current.Task.FromClampStatus;
                                     Current.Task.Status = TaskStatus.取完;
+
+                                    if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
+                                    {
+                                        Current.Feeder.GetFinished();
+                                    }
                                 }
                             }
                             else if (Current.Task.Status == TaskStatus.取完)
@@ -592,6 +597,11 @@ namespace CAMEL.Baking
                                         Error.Alert("保存搬运记录失败：" + msg);
                                     }
                                     Current.Task.Status = TaskStatus.完成;
+
+                                    if (Current.Task.ToStation.GetPutType == GetPutType.下料机)
+                                    {
+                                        Current.Feeder.PutFinished();
+                                    }
                                 }
                             }
                         }
