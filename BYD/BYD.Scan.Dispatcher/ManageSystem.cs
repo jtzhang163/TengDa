@@ -872,7 +872,7 @@ namespace BYD.Scan.Dispatcher
                                             this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Red);
                                         }));
 
-                                        scanResult = ScanResult.NG;
+                                        scanResult = ScanResult.Error;
                                     }
                                 }
 
@@ -964,6 +964,29 @@ namespace BYD.Scan.Dispatcher
 
         #endregion
 
+        private int CheckBattery(string code)
+        {
+            var request = new MesRequest()
+            {
+                Barcode = code,
+                Flag = "1",
+                Terminal = Current.mes.Terminal,
+                UserId = Current.mes.UserId
+            };
+            var response = MES.UploadBatteryInfo(request);
+            if (response.Code == 0)
+            {
+                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "成功:" + code); }));
+                LogHelper.WriteInfo(string.Format("上传MES成功，电池条码：" + code));
+            }
+            else
+            {
+                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "失败:" + code); }));
+                LogHelper.WriteError(string.Format("上传MES失败，电池条码：{0} msg:{1}", code, response.RtMsg));
+            }
+            return response.Code;
+        }
+
         #region 定时将数据上传MES(设备信息和未上传成功的电芯信息)
         System.Timers.Timer timerUploadMes = null;
 
@@ -978,43 +1001,44 @@ namespace BYD.Scan.Dispatcher
 
         public void UploadBatteryInfo()
         {
-            lock (Current.mes)
-            {
-                try
-                {
-                    Thread.Sleep(200);
+            return;
+            //lock (Current.mes)
+            //{
+            //    try
+            //    {
+            //        Thread.Sleep(200);
 
-                    var batteries = Battery.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsUploaded] = 'false' ORDER BY [Id] DESC", Battery.TableName), out string msg);
+            //        var batteries = Battery.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsUploaded] = 'false' ORDER BY [Id] DESC", Battery.TableName), out string msg);
 
-                    for (int i = 0; i < batteries.Count; i++)
-                    {
-                        var battery = batteries[i];
-                        var request = new MesRequest()
-                        {
-                            Barcode = battery.Code,
-                            Flag = "1",
-                            Terminal = Current.mes.Terminal,
-                            UserId = Current.mes.UserId
-                        };
-                        var response = MES.UploadBatteryInfo(request);
-                        if (response.Code == 0)
-                        {
-                            battery.IsUploaded = true;
-                            this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "成功:" + battery.Id); }));
-                            LogHelper.WriteInfo(string.Format("上传MES成功，电池条码：" + battery.Code));
-                        }
-                        else
-                        {
-                            this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "失败:" + battery.Id); }));
-                            LogHelper.WriteError(string.Format("上传MES失败，电池条码：{0} msg:{1}", battery.Code, response.RtMsg));
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Error.Alert(ex.Message);
-                }
-            }
+            //        for (int i = 0; i < batteries.Count; i++)
+            //        {
+            //            var battery = batteries[i];
+            //            var request = new MesRequest()
+            //            {
+            //                Barcode = battery.Code,
+            //                Flag = "1",
+            //                Terminal = Current.mes.Terminal,
+            //                UserId = Current.mes.UserId
+            //            };
+            //            var response = MES.UploadBatteryInfo(request);
+            //            if (response.Code == 0)
+            //            {
+            //                battery.IsUploaded = true;
+            //                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "成功:" + battery.Id); }));
+            //                LogHelper.WriteInfo(string.Format("上传MES成功，电池条码：" + battery.Code));
+            //            }
+            //            else
+            //            {
+            //                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "失败:" + battery.Id); }));
+            //                LogHelper.WriteError(string.Format("上传MES失败，电池条码：{0} msg:{1}", battery.Code, response.RtMsg));
+            //            }
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Error.Alert(ex.Message);
+            //    }
+            //}
         }
 
         #endregion

@@ -46,6 +46,44 @@ namespace BYD.Scan
         public bool IsAuto { get; private set; }
 
 
+        public string[] MES_RESULTs
+        {
+            get
+            {
+                return new string[2] { MES_RESULT1, MES_RESULT2 };
+            }
+        }
+
+        private string mes_RESULT1 = string.Empty;
+
+        public string MES_RESULT1
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(mes_RESULT1) && !string.IsNullOrEmpty(Code1))
+                {
+                    mes_RESULT1 = Battery.GetBattery(this.Code1).Location;
+                }
+                return mes_RESULT1;
+            }
+        }
+
+
+        private string mes_RESULT2 = string.Empty;
+
+        public string MES_RESULT2
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(mes_RESULT2) && !string.IsNullOrEmpty(Code2))
+                {
+                    mes_RESULT2 = Battery.GetBattery(this.Code2).Location;
+                }
+                return mes_RESULT2;
+            }
+        }
+
+
         [Browsable(false)]
         public string[] Codes
         {
@@ -68,6 +106,10 @@ namespace BYD.Scan
             {
                 if (code1 != value)
                 {
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        this.mes_RESULT1 = "";
+                    }
                     UpdateDbField("Code1", value);
                 }
                 code1 = value;
@@ -86,6 +128,10 @@ namespace BYD.Scan
             {
                 if (code2 != value)
                 {
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        this.mes_RESULT2 = "";
+                    }
                     UpdateDbField("Code2", value);
                 }
                 code2 = value;
@@ -212,7 +258,7 @@ namespace BYD.Scan
 
             code = "ERROR";
             StopScan();
-            return ScanResult.NG;
+            return ScanResult.Error;
         }
 
 
@@ -228,7 +274,7 @@ namespace BYD.Scan
         /// <returns>扫码结束，True：第二个扫码结束（可发送结果至触摸屏）</returns>
         public bool ScanFinish(ScanResult scanResult, string code, out ScanResult finalScanResult)
         {
-            finalScanResult = ScanResult.NG;
+            finalScanResult = ScanResult.Error;
 
             if (!string.IsNullOrEmpty(this.Code1) && !string.IsNullOrEmpty(this.Code2))
             {
@@ -250,11 +296,21 @@ namespace BYD.Scan
                 {
                     LogHelper.WriteInfo(string.Format("获得先后两个条码：{0}，{1}", this.Code1, this.Code2));
 
-                    Battery.Add(new Battery() { Code = this.Code1, ScanerId = this.Id }, out string msg);
+                    var mesResult1 = MES.CheckBattery(this.Code1);
+                    var mesResult2 = MES.CheckBattery(this.Code2);
 
-                    Battery.Add(new Battery() { Code = this.Code2, ScanerId = this.Id }, out msg);
+                    Battery.Add(new Battery() { Code = this.Code1, ScanerId = this.Id, Location = mesResult1.ToString() }, out string msg);
 
-                    finalScanResult = ScanResult.OK;
+                    Battery.Add(new Battery() { Code = this.Code2, ScanerId = this.Id, Location = mesResult2.ToString() }, out msg);
+
+                    if (mesResult1 == 0 && mesResult2 == 0)
+                    {
+                        finalScanResult = ScanResult.OK;
+                    }
+                    else
+                    {
+                        finalScanResult = ScanResult.NG;
+                    }        
                 }
 
                 return true;
@@ -265,7 +321,7 @@ namespace BYD.Scan
         public bool Manu(out ScanResult finalScanResult)
         {
             var code = "";
-            finalScanResult = ScanResult.NG;
+            finalScanResult = ScanResult.Error;
             var receiveData = this.GetReceiveData();
             if (receiveData.Length > 8)
             {

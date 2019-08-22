@@ -50,6 +50,10 @@ namespace BYD.Scan.Controls
             }
             else if (this.scaner.Codes[0].Length > 18 && this.scaner.Codes[1].Length > 18)
             {
+                if (this.scaner.MES_RESULTs[x] == "1")
+                {
+                    return Color.Blue;
+                }
                 return Color.LimeGreen;
             }
             return Color.Black;

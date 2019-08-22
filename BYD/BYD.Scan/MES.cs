@@ -315,6 +315,25 @@ namespace BYD.Scan
             return response;
         }
 
+        public static int CheckBattery(string code)
+        {
+            if (!Current.mes.IsEnable)
+            {
+                return 0;
+            }
+            var request = new MesRequest()
+            {
+                Barcode = code,
+                Flag = "1",
+                Terminal = Current.mes.Terminal,
+                UserId = Current.mes.UserId
+            };
+            var response = UploadBatteryInfo(request);
+
+            LogHelper.WriteInfo(string.Format("检验MES结果，条码：{0}, 结果：{1}", code, response.Code));
+            return response.Code;
+        }
+
         #endregion
     }
 

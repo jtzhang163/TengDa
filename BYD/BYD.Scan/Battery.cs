@@ -184,7 +184,7 @@ namespace BYD.Scan
                 }
             }
 
-            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ScanerId], [Location], [ScanTime], [IsUploaded]) VALUES ('{1}', {2}, '{3}', '{4}', 'false')", TableName, newBattery.Code, newBattery.ScanerId, newBattery.Location, DateTime.Now), out msg);
+            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ScanerId], [Location], [ScanTime], [IsUploaded]) VALUES ('{1}', {2}, '{3}', '{4}', 'true')", TableName, newBattery.Code, newBattery.ScanerId, newBattery.Location, DateTime.Now), out msg);
         }
 
         /// <summary>
