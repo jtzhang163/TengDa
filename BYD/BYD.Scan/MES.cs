@@ -315,11 +315,11 @@ namespace BYD.Scan
             return response;
         }
 
-        public static int CheckBattery(string code)
+        public static string CheckBattery(string code)
         {
             if (!Current.mes.IsEnable)
             {
-                return 0;
+                return "OK";
             }
             var request = new MesRequest()
             {
@@ -330,8 +330,8 @@ namespace BYD.Scan
             };
             var response = UploadBatteryInfo(request);
 
-            LogHelper.WriteInfo(string.Format("检验MES结果，条码：{0}, 结果：{1}", code, response.Code));
-            return response.Code;
+            LogHelper.WriteInfo(string.Format("【校验MES结果】条码：{0}, 结果：{1}", code, response.RtMsg));
+            return response.RtMsg;
         }
 
         #endregion

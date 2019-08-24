@@ -116,7 +116,7 @@ namespace BYD.Scan
         public static Battery GetBattery(string code)
         {
             var msg = string.Empty;
-            var batteries = GetList(string.Format("SELECT * FROM [dbo].[{0}] WHERE [Code] = '{1}'", TableName, code), out msg);
+            var batteries = GetList(string.Format("SELECT * FROM [dbo].[{0}] WHERE [Code] = '{1}' ORDER BY [Id] DESC", TableName, code), out msg);
             if (batteries.Count < 1)
                 return new Battery();
             return batteries[0];

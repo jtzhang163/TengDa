@@ -964,29 +964,6 @@ namespace BYD.Scan.Dispatcher
 
         #endregion
 
-        private int CheckBattery(string code)
-        {
-            var request = new MesRequest()
-            {
-                Barcode = code,
-                Flag = "1",
-                Terminal = Current.mes.Terminal,
-                UserId = Current.mes.UserId
-            };
-            var response = MES.UploadBatteryInfo(request);
-            if (response.Code == 0)
-            {
-                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "成功:" + code); }));
-                LogHelper.WriteInfo(string.Format("上传MES成功，电池条码：" + code));
-            }
-            else
-            {
-                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "失败:" + code); }));
-                LogHelper.WriteError(string.Format("上传MES失败，电池条码：{0} msg:{1}", code, response.RtMsg));
-            }
-            return response.Code;
-        }
-
         #region 定时将数据上传MES(设备信息和未上传成功的电芯信息)
         System.Timers.Timer timerUploadMes = null;
 

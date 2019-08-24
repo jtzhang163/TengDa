@@ -299,11 +299,11 @@ namespace BYD.Scan
                     var mesResult1 = MES.CheckBattery(this.Code1);
                     var mesResult2 = MES.CheckBattery(this.Code2);
 
-                    Battery.Add(new Battery() { Code = this.Code1, ScanerId = this.Id, Location = mesResult1.ToString() }, out string msg);
+                    Battery.Add(new Battery() { Code = this.Code1, ScanerId = this.Id, Location = mesResult1 }, out string msg);
 
-                    Battery.Add(new Battery() { Code = this.Code2, ScanerId = this.Id, Location = mesResult2.ToString() }, out msg);
+                    Battery.Add(new Battery() { Code = this.Code2, ScanerId = this.Id, Location = mesResult2 }, out msg);
 
-                    if (mesResult1 == 0 && mesResult2 == 0)
+                    if (mesResult1.ToLower().Contains("ok") && mesResult2.ToLower().Contains("ok"))
                     {
                         finalScanResult = ScanResult.OK;
                     }
