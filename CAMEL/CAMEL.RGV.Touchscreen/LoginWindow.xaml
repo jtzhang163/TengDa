@@ -1,0 +1,24 @@
+﻿<Window x:Class="CAMEL.RGV.Touchscreen.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CAMEL.RGV.Touchscreen" 
+        xmlns:view="clr-namespace:CAMEL.RGV.Touchscreen.View" 
+        Icon="TengDa.ico" Background="Black"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Title="襄阳骆驼二次高温RGV远程触摸屏" Height="400" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="350"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <view:LoginUC Grid.Row="1" Grid.Column="1"></view:LoginUC>
+    </Grid>
+</Window>

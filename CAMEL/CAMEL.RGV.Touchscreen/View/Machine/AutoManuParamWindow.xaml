@@ -1,0 +1,136 @@
+﻿<Window x:Class="CAMEL.RGV.Touchscreen.View.AutoManuParamWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CAMEL.RGV.Touchscreen.View"
+        xmlns:cvt="clr-namespace:CAMEL.RGV.Touchscreen.Converter"
+        xmlns:ctrl="clr-namespace:CAMEL.RGV.Touchscreen.Control"
+        Background="Black" Topmost="True"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Title="襄阳骆驼二次高温RGV远程触摸屏 - 手动/自动参数" Height="700" Width="1200">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <!--Height="35" FontSize="20" Background="#FF367BB5" Foreground="White"-->
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="55"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Background" Value="#FF367BB5"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style x:Key="触摸按钮" TargetType="{x:Type Label}">
+            <!--Height="35" FontSize="20" Background="#FF367BB5" Foreground="White"-->
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="55"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Background" Value="#FF367BB5"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <cvt:PadIsEnabledConverter x:Key="padIsEnabledConverter"/>
+        <cvt:ParamEnabledConverter x:Key="paramEnabledConverter"/>
+    </Window.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="1" Grid.Column="0" FontSize="22" FontWeight="Bold">电机</Label>
+        <Label Grid.Row="2" Grid.Column="0" FontSize="22" FontWeight="Bold">行走电机</Label>
+        <Label Grid.Row="3" Grid.Column="0" FontSize="22" FontWeight="Bold">升降电机</Label>
+        <Label Grid.Row="4" Grid.Column="0" FontSize="22" FontWeight="Bold">货叉电机</Label>
+
+        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FontSize="22" FontWeight="Bold">显示值</Label>
+        <Label Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" FontSize="22" FontWeight="Bold">自动手动加减速时间设定</Label>
+        <Label Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="3" FontSize="22" FontWeight="Bold">点动</Label>
+        <ctrl:ParamBox ParamName="行走当前位置" ParamValue="{Binding 行走当前位置}" ParamUnit="" Grid.Row="2" Grid.Column="1" IsEnabled="False"/>
+        <ctrl:ParamBox ParamName="行走当前速度" ParamValue="{Binding 行走当前速度}" ParamUnit="" Grid.Row="2" Grid.Column="2" IsEnabled="False"/>
+        <ctrl:ParamBox ParamName="行走加速时间" ParamValue="{Binding 行走加速时间}" ParamUnit="ms" Grid.Row="2" Grid.Column="3" />
+        <ctrl:ParamBox ParamName="行走减速时间" ParamValue="{Binding 行走减速时间}" ParamUnit="ms" Grid.Row="2" Grid.Column="4" />
+        <ctrl:ParamBox ParamName="行走目标速度" ParamValue="{Binding 行走目标速度}" ParamUnit="mm/s" Grid.Row="2" Grid.Column="5" />
+
+        <ctrl:ParamBox ParamName="升降当前位置" ParamValue="{Binding 升降当前位置}" ParamUnit="" Grid.Row="3" Grid.Column="1" IsEnabled="False"/>
+        <ctrl:ParamBox ParamName="升降当前速度" ParamValue="{Binding 升降当前速度}" ParamUnit="" Grid.Row="3" Grid.Column="2" IsEnabled="False"/>
+        <ctrl:ParamBox ParamName="升降加速时间" ParamValue="{Binding 升降加速时间}" ParamUnit="ms" Grid.Row="3" Grid.Column="3" />
+        <ctrl:ParamBox ParamName="升降减速时间" ParamValue="{Binding 升降减速时间}" ParamUnit="ms" Grid.Row="3" Grid.Column="4" />
+        <ctrl:ParamBox ParamName="升降目标速度" ParamValue="{Binding 升降目标速度}" ParamUnit="mm/s" Grid.Row="3" Grid.Column="5" />
+
+        <ctrl:ParamBox ParamName="货叉当前位置" ParamValue="{Binding 货叉当前位置}" ParamUnit="" Grid.Row="4" Grid.Column="1" IsEnabled="False"/>
+        <ctrl:ParamBox ParamName="货叉当前速度" ParamValue="{Binding 货叉当前速度}" ParamUnit="" Grid.Row="4" Grid.Column="2" IsEnabled="False"/>
+        <ctrl:ParamBox ParamName="货叉加速时间" ParamValue="{Binding 货叉加速时间}" ParamUnit="ms" Grid.Row="4" Grid.Column="3" />
+        <ctrl:ParamBox ParamName="货叉减速时间" ParamValue="{Binding 货叉减速时间}" ParamUnit="ms" Grid.Row="4" Grid.Column="4" />
+        <ctrl:ParamBox ParamName="货叉目标速度" ParamValue="{Binding 货叉目标速度}" ParamUnit="mm/s" Grid.Row="4" Grid.Column="5" />
+
+        <Label x:Name="btn行走JOG正转" Content="行走JOG正转" Grid.Row="2" Grid.Column="7" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+        <Label x:Name="btn行走JOG反转" Content="行走JOG反转" Grid.Row="2" Grid.Column="9" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+        <Label x:Name="btn升降JOG上升" Content="升降JOG上升" Grid.Row="3" Grid.Column="7" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+        <Label x:Name="btn升降JOG降下" Content="升降JOG降下" Grid.Row="3" Grid.Column="9" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+        <Label x:Name="btn货叉JOG正转" Content="货叉JOG正转" Grid.Row="4" Grid.Column="7" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+        <Label x:Name="btn货叉原点" Content="货叉原点" Background="{Binding 货叉原点, Converter={StaticResource paramEnabledConverter}}" Grid.Row="4" Grid.Column="8" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+        <Label x:Name="btn货叉JOG反转" Content="货叉JOG反转" Grid.Row="4" Grid.Column="9" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+
+        <ctrl:ParamBox ParamName="行走电机" ParamValue="{Binding 行走电机}" ParamUnit="" Grid.Row="6" Grid.Column="7" Grid.ColumnSpan="2" IsEnabled="False" HorizontalAlignment="Left"/>
+        <ctrl:ParamBox ParamName="升降电机" ParamValue="{Binding 升降电机}" ParamUnit="" Grid.Row="6" Grid.Column="8" Grid.ColumnSpan="4" IsEnabled="False" HorizontalAlignment="Left"/>
+        <ctrl:ParamBox ParamName="货叉电机" ParamValue="{Binding 货叉电机}" ParamUnit="" Grid.Row="6" Grid.Column="9" Grid.ColumnSpan="2" IsEnabled="False" HorizontalAlignment="Left"/>
+
+        <ctrl:ParamBox ParamName="货位号" ParamValue="{Binding 货位号}" ParamUnit="" Grid.Row="6" Grid.RowSpan="1" Grid.Column="1"/>
+        <Label x:Name="btn参数写入" Content="参数写入" Background="{Binding 参数写入, Converter={StaticResource paramEnabledConverter}}"
+               Grid.Row="7" Grid.Column="1" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+
+        <ctrl:ParamBox ParamName="行走位置参数" ParamValue="{Binding 行走位置参数}" ParamUnit="" Grid.Row="6" Grid.Column="2"/>
+        <Label x:Name="btn行走测试" Content="行走测试" Background="{Binding 行走测试, Converter={StaticResource paramEnabledConverter}}"
+               Grid.Row="7" Grid.Column="2" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+        <ctrl:ParamBox ParamName="升降1位置参数" ParamValue="{Binding 升降1位置参数}" ParamUnit="" Grid.Row="6" Grid.Column="3"/>
+        <Label x:Name="btn升降1测试" Content="升降1测试" Background="{Binding 升降1测试, Converter={StaticResource paramEnabledConverter}}"
+               Grid.Row="7" Grid.Column="3" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+        <ctrl:ParamBox ParamName="升降2位置参数" ParamValue="{Binding 升降2位置参数}" ParamUnit="" Grid.Row="6" Grid.Column="4"/>
+        <Label x:Name="btn升降2测试" Content="升降2测试" Background="{Binding 升降2测试, Converter={StaticResource paramEnabledConverter}}"
+               Grid.Row="7" Grid.Column="4" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+        <ctrl:ParamBox ParamName="货叉位置参数" ParamValue="{Binding 货叉位置参数}" ParamUnit="" Grid.Row="6" Grid.Column="5"/>
+        <Label x:Name="btn货叉测试" Content="货叉测试" Background="{Binding 货叉测试, Converter={StaticResource paramEnabledConverter}}"
+               Grid.Row="7" Grid.Column="5" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+
+        <Label x:Name="btn手动状态" Content="手动状态" Background="{Binding 手动状态, Converter={StaticResource padIsEnabledConverter}}"
+               Grid.Row="9" Grid.Column="1" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+        <Label x:Name="btn启动" Content="启动" Grid.Row="9" Grid.Column="2" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+        <Label x:Name="btn复位" Content="复位" Grid.Row="9" Grid.Column="3" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+        <Label x:Name="btn停止" Content="停止" Grid.Row="9" Grid.Column="4" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+        <Label x:Name="btn急停" Content="急停" Grid.Row="9" Grid.Column="5" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+
+        <Button Content="返回主界面" x:Name="btnClose"  Grid.Row="9" Grid.Column="9" Background="Green" Click="BtnClose_Click"/>
+
+        <Label x:Name="lbCurrentTime" Content="{Binding CurrentTime}" Grid.Row="10" Grid.ColumnSpan="2" Foreground="Green" FontSize="20" FontWeight="Bold"/>
+    </Grid>
+</Window>

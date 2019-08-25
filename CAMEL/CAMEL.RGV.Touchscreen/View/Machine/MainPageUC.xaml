@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="CAMEL.RGV.Touchscreen.View.MainPageUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CAMEL.RGV.Touchscreen.View"
+             xmlns:ctrl="clr-namespace:CAMEL.RGV.Touchscreen.Control"
+             xmlns:cvt="clr-namespace:CAMEL.RGV.Touchscreen.Converter"
+             mc:Ignorable="d"  Background="Black"
+             d:DesignHeight="700" d:DesignWidth="1300">
+    <UserControl.Resources>
+        <!--<ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Style/Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>-->
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <!--Height="35" FontSize="20" Background="#FF367BB5" Foreground="White"-->
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="55"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Background" Value="#FF367BB5"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style x:Key="触摸按钮" TargetType="{x:Type Label}">
+            <!--Height="35" FontSize="20" Background="#FF367BB5" Foreground="White"-->
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="55"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Background" Value="#FF367BB5"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <cvt:PadIsEnabledConverter x:Key="padIsEnabledConverter"/>
+        <cvt:ParamEnabledConverter x:Key="paramEnabledConverter"/>
+    </UserControl.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="报警显示"/>
+        <Label Content="运行时间监控" Grid.Column="1"/>
+        <Label Content="菜单" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Border Grid.Row="1" Grid.RowSpan="2" BorderThickness="2" BorderBrush="Blue" Padding="10">
+            <TextBlock Text="{Binding AlarmStr}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                       Foreground="Red" FontSize="25"/>
+        </Border>
+
+        <Grid Grid.Row="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.ColumnSpan="4">功能按钮</Label>
+                <Label x:Name="btn调度无效" Content="调度无效" Background="{Binding 调度无效, Converter={StaticResource padIsEnabledConverter}}"
+                       Grid.Row="1" Grid.Column="0" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+                <Label x:Name="btn蜂鸣停止" Content="蜂鸣停止" Background="{Binding 蜂鸣停止, Converter={StaticResource paramEnabledConverter}}"
+                       Grid.Row="1" Grid.Column="1" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+                <Label x:Name="btn复位" Content="复位" Grid.Row="1" Grid.Column="2" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+                <Label Content="平板有效" Background="{Binding 平板有效, Converter={StaticResource padIsEnabledConverter}}" Grid.Row="1" Grid.Column="3" Style="{StaticResource 触摸按钮}"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ctrl:ParamBox ParamValue="{Binding 行走位}" ParamUnit="" ParamName="行走位" Grid.Column="0"/>
+            <ctrl:ParamBox ParamValue="{Binding 取货位号}" ParamUnit="" ParamName="取货位号" Grid.Column="1"/>
+            <ctrl:ParamBox ParamValue="{Binding 放货位号}" ParamUnit="" ParamName="放货位号" Grid.Column="2"/>
+            <ctrl:ParamBox ParamValue="{Binding 货叉进}" ParamUnit="" ParamName="货叉进" Grid.Column="3"/>
+        </Grid>
+
+        <ctrl:ParamBox ParamValue="{Binding 运行时间}" ParamUnit="s" ParamName="运行时间" Grid.Column="1" Grid.Row="1" IsEnabled="False"/>
+        <ctrl:ParamBox ParamValue="{Binding 行走定位时间}" ParamUnit="s" ParamName="行走定位时间" Grid.Column="1" Grid.Row="2" IsEnabled="False"/>
+        <ctrl:ParamBox ParamValue="{Binding 升降定位时间}" ParamUnit="s" ParamName="升降定位时间" Grid.Column="1" Grid.Row="3" IsEnabled="False"/>
+        <ctrl:ParamBox ParamValue="{Binding 货叉定位时间}" ParamUnit="s" ParamName="货叉定位时间" Grid.Column="1" Grid.Row="4" IsEnabled="False"/>
+
+        <Button x:Name="btnShowLine1Layout" Content="一号线位置" Grid.Row="1" Grid.Column="2" Click="BtnShowLine1Layout_Click"/>
+        <Button x:Name="btnShowLine2Layout" Content="二号线位置" Grid.Row="1" Grid.Column="3" Click="BtnShowLine2Layout_Click"/>
+        <Button Content="I/O状态" Grid.Row="2" Grid.Column="2" IsEnabled="False"/>
+        <Button Content="上位机信号" Grid.Row="2" Grid.Column="3" IsEnabled="False"/>
+        <Button Content="自动/手动参数" Grid.Row="3" Grid.Column="2" x:Name="btnAutoManuParam" Click="BtnAutoManuParam_Click"/>
+        <Button Content="报警参数" Grid.Row="3" Grid.Column="3" x:Name="btnAlarmParam" Click="BtnAlarmParam_Click"/>
+        <Label x:Name="btn手动状态" Content="手动状态"  Background="{Binding 手动状态, Converter={StaticResource padIsEnabledConverter}}"
+               Grid.Row="4" Grid.Column="2" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
+        <Button Content="关闭该程序" x:Name="btnClose"  Grid.Row="4" Grid.Column="3" Background="Red" Click="BtnClose_Click"/>
+    </Grid>
+</UserControl>
