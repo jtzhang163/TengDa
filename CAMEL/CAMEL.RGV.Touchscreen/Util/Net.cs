@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -11,6 +12,14 @@ namespace CAMEL.RGV.Touchscreen.Util
 {
     public class Net
     {
+        public static bool IsPingSuccess(string ip)
+        {
+            Ping ping = new Ping();
+            PingReply pingReply = ping.Send(ip, 1000);
+            return pingReply.Status == IPStatus.Success;
+        }
+
+
         /// <summary>
         /// 获取本地电脑IP列表
         /// </summary>

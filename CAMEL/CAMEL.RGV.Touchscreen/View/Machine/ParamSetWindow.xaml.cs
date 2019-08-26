@@ -44,6 +44,12 @@ namespace CAMEL.RGV.Touchscreen.View
                 return;
             }
 
+            if (result < Parameter.GetMinvalue(this.paramName) || result > Parameter.GetMaxvalue(this.paramName))
+            {
+                this.lbTip.Content = "请输入有效范围内的值";
+                return;
+            }
+
             if (result != currentValue)
             {
                 if (!Current.RGV.Write(Parameter.GetAddr(this.paramName), (short)result, out string msg))

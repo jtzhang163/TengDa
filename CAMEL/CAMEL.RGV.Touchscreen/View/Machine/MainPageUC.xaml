@@ -40,7 +40,10 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
-        <cvt:PadIsEnabledConverter x:Key="padIsEnabledConverter"/>
+        <Style TargetType="{x:Type ctrl:ParamBox}">
+            <Setter Property="Margin" Value="20,0,0,0"/>
+        </Style>
+        <cvt:IsEnabledConverter x:Key="isEnabledConverter"/>
         <cvt:ParamEnabledConverter x:Key="paramEnabledConverter"/>
     </UserControl.Resources>
     <Grid Margin="10">
@@ -78,12 +81,12 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.ColumnSpan="4">功能按钮</Label>
-                <Label x:Name="btn调度无效" Content="调度无效" Background="{Binding 调度无效, Converter={StaticResource padIsEnabledConverter}}"
+                <Label x:Name="btn调度无效" Content="调度无效" Background="{Binding 调度无效, Converter={StaticResource isEnabledConverter}}"
                        Grid.Row="1" Grid.Column="0" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
-                <Label x:Name="btn蜂鸣停止" Content="蜂鸣停止" Background="{Binding 蜂鸣停止, Converter={StaticResource paramEnabledConverter}}"
+                <Label x:Name="btn蜂鸣停止" Content="蜂鸣停止" Background="{Binding 蜂鸣停止, Converter={StaticResource isEnabledConverter}}"
                        Grid.Row="1" Grid.Column="1" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
                 <Label x:Name="btn复位" Content="复位" Grid.Row="1" Grid.Column="2" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
-                <Label Content="平板有效" Background="{Binding 平板有效, Converter={StaticResource padIsEnabledConverter}}" Grid.Row="1" Grid.Column="3" Style="{StaticResource 触摸按钮}"/>
+                <Label Content="平板有效" Background="{Binding 平板有效, Converter={StaticResource isEnabledConverter}}" Grid.Row="1" Grid.Column="3" Style="{StaticResource 触摸按钮}"/>
             </Grid>
         </Grid>
 
@@ -111,7 +114,7 @@
         <Button Content="上位机信号" Grid.Row="2" Grid.Column="3" IsEnabled="False"/>
         <Button Content="自动/手动参数" Grid.Row="3" Grid.Column="2" x:Name="btnAutoManuParam" Click="BtnAutoManuParam_Click"/>
         <Button Content="报警参数" Grid.Row="3" Grid.Column="3" x:Name="btnAlarmParam" Click="BtnAlarmParam_Click"/>
-        <Label x:Name="btn手动状态" Content="手动状态"  Background="{Binding 手动状态, Converter={StaticResource padIsEnabledConverter}}"
+        <Label x:Name="btn手动状态" Content="手动状态"  Background="{Binding 手动状态, Converter={StaticResource isEnabledConverter}}"
                Grid.Row="4" Grid.Column="2" Style="{StaticResource 触摸按钮}" TouchEnter="触摸按钮_TouchEnter" TouchLeave="触摸按钮_TouchLeave"/>
         <Button Content="关闭该程序" x:Name="btnClose"  Grid.Row="4" Grid.Column="3" Background="Red" Click="BtnClose_Click"/>
     </Grid>

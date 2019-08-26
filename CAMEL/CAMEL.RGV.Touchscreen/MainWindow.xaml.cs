@@ -32,9 +32,7 @@ namespace CAMEL.RGV.Touchscreen
         private void Init()
         {
             Current.RGV.IP = Current.Option.RGV1_IP;
-            Current.RGV.Port = 9600;
-
-            
+            Current.RGV.Port = 9600;           
         }
 
         private static void ReadRgvInfoTimerInvokeFunc(object obj)
@@ -49,6 +47,12 @@ namespace CAMEL.RGV.Touchscreen
         private static void RefreshCurrentTime(object o)
         {
             Current.Option.CurrentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Current.RGV.DisConnect(out string msg);
+            Application.Current.Shutdown();
         }
     }
 }

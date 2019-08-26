@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace CAMEL.RGV.Touchscreen.Converter
 {
-    public class PadIsEnabledConverter : IValueConverter
+    public class IsEnabledConverter : IValueConverter
     {
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

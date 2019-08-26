@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace CAMEL.RGV.Touchscreen
 {
@@ -459,6 +460,12 @@ namespace CAMEL.RGV.Touchscreen
         public bool Connect(out string msg)
         {
             msg = "";
+            if (!Net.IsPingSuccess(this.IP))
+            {
+                msg = "无法连接到 " + this.IP;
+                return false;
+            }
+
             if (omron_net == null)
             {
                 omron_net = new OmronFinsNet(this.IP, this.Port);
@@ -590,6 +597,11 @@ namespace CAMEL.RGV.Touchscreen
 
                 this.平板有效 = datas[76] == 1;
             }
+            else
+            {
+                this.IsConnected = false;
+                MessageBox.Show("连接PLC出错：" + result.Message, "异常提示", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
 
             if (omron_net == null)
             {
@@ -634,6 +646,11 @@ namespace CAMEL.RGV.Touchscreen
                 {
                     this.AlarmStr = "";
                 }
+            }
+            else
+            {
+                this.IsConnected = false;
+                MessageBox.Show("连接PLC出错：" + result.Message, "异常提示", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
         }

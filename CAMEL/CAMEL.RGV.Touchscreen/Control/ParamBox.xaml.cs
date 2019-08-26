@@ -72,7 +72,7 @@ namespace CAMEL.RGV.Touchscreen.Control
         {
             if (!Current.RGV.IsConnected)
             {
-                MessageBox.Show("尚未连接RGV PLC！","异常提示", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("尚未连接RGV PLC！", "异常提示", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
             new ParamSetWindow(ParamName, int.Parse(ParamValue)).ShowDialog();

@@ -40,6 +40,6 @@
                 <Label>⑤ 完成定位</Label>
             </StackPanel>
         </TextBlock>
-        <Button Content="返回主界面" x:Name="btnClose" Grid.Column="2" Background="Green" Click="BtnClose_Click"/>
+        <Button Content="返回主界面" x:Name="btnClose" Grid.Column="2" Background="Red" Click="BtnClose_Click"/>
     </Grid>
 </Window>

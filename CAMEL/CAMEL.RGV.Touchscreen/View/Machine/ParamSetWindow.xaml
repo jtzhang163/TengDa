@@ -47,6 +47,7 @@
         <Label Content="提示信息" Grid.Row="3" HorizontalAlignment="Right"/>
         <Label Name="lbTip" Content="" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Red" HorizontalAlignment="Left"/>
         <Button Name="btnOK" Click="BtnOK_Click"  Grid.Row="4" HorizontalAlignment="Right">确定</Button>
-        <Button Name="btnClose" Click="BtnClose_Click" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left">取消</Button>
+        <Button Name="btnClose" Click="BtnClose_Click" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Background="Red">取消</Button>
+        
     </Grid>
 </Window>

@@ -13,6 +13,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -43,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -65,14 +67,11 @@
     <Compile Include="Control\SignalBox.xaml.cs">
       <DependentUpon>SignalBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\ParamBox2.xaml.cs">
-      <DependentUpon>ParamBox2.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Control\ParamBox.xaml.cs">
       <DependentUpon>ParamBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\ParamEnabledConverter.cs" />
-    <Compile Include="Converter\PadIsEnabledConverter.cs" />
+    <Compile Include="Converter\IsEnabledConverter.cs" />
     <Compile Include="Converter\ConnectedInfoConverter.cs" />
     <Compile Include="Current.cs" />
     <Compile Include="Model\Parameter.cs" />
@@ -107,10 +106,6 @@
       <DependentUpon>MainPageUC.xaml</DependentUpon>
     </Compile>
     <Page Include="Control\SignalBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Control\ParamBox2.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

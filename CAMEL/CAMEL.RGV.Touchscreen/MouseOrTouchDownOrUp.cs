@@ -75,7 +75,7 @@ namespace CAMEL.RGV.Touchscreen
                     }
                 }
             }
-            else if (Parameter.GetType(btnContent) == "手动自动状态")
+            else if (Parameter.GetType(btnContent) == "状态使能")
             {
                 if (btnContent == "调度无效")
                 {

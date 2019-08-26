@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CAMEL.RGV.Touchscreen"
         xmlns:view="clr-namespace:CAMEL.RGV.Touchscreen.View"
-        mc:Ignorable="d" Icon="TengDa.ico" Background="Black"
+        mc:Ignorable="d" Icon="TengDa.ico" Background="Black" Closed="Window_Closed"
         WindowStartupLocation="CenterScreen" WindowState="Maximized"
         Title="襄阳骆驼二次高温RGV远程触摸屏" Height="450" Width="800">
     <Grid Margin="20">

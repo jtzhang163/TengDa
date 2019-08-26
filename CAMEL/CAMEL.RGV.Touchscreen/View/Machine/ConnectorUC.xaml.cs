@@ -35,6 +35,10 @@ namespace CAMEL.RGV.Touchscreen.View
                 this.btnConnect.IsEnabled = false;
                 this.btnDisConnect.IsEnabled = true;
             }
+            else
+            {
+                MessageBox.Show("连接PLC出错：" + msg, "异常提示", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void BtnDisConnect_Click(object sender, RoutedEventArgs e)

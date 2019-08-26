@@ -45,11 +45,21 @@ namespace CAMEL.RGV.Touchscreen.View
 
         private void BtnAlarmParam_Click(object sender, RoutedEventArgs e)
         {
+            if (!Current.RGV.IsConnected)
+            {
+                MessageBox.Show("尚未连接RGV PLC！", "异常提示", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
             new AlarmParamWindow().ShowDialog();
         }
 
         private void BtnAutoManuParam_Click(object sender, RoutedEventArgs e)
         {
+            if (!Current.RGV.IsConnected)
+            {
+                MessageBox.Show("尚未连接RGV PLC！", "异常提示", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
             new AutoManuParamWindow().ShowDialog();
         }
 
@@ -65,9 +75,7 @@ namespace CAMEL.RGV.Touchscreen.View
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            Current.RGV.DisConnect(out string msg);
             Window.GetWindow(this).Close();
-            Application.Current.Shutdown();
         }
 
         private void 触摸按钮_MouseDown(object sender, MouseButtonEventArgs e)

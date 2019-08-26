@@ -47,8 +47,8 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Label Content="选择:" HorizontalAlignment="Center" Style="{StaticResource title}"/>
-        <ComboBox Name="selectRGV" Height="40" FontSize="20" SelectionChanged="ComboBox_SelectionChanged" Foreground="Green"
-                  Grid.Column="1" SelectedIndex="0" VerticalContentAlignment="Center" Background="Black" Width="130">
+        <ComboBox Name="selectRGV" Height="55" FontSize="20" SelectionChanged="ComboBox_SelectionChanged" Foreground="Green"
+                  Grid.Column="1" SelectedIndex="0" VerticalContentAlignment="Center" Background="Black" Width="140">
             <ComboBoxItem Content="一号线RGV" Background="Black"/>
             <ComboBoxItem Content="二号线RGV" Background="Black"/>
         </ComboBox>
@@ -57,8 +57,8 @@
         <Label Content="端口：" Style="{StaticResource title}" Grid.Column="4"/>
         <Label Content="{Binding Port}" Style="{StaticResource content}" Grid.Column="5"/>
 
-        <Button x:Name="btnConnect" Content="连接" Height="40" Grid.Column="6" Click="BtnConnect_Click"/>
-        <Button x:Name="btnDisConnect" Content="断开连接" Height="40" Grid.Column="7" Click="BtnDisConnect_Click"/>
+        <Button x:Name="btnConnect" Content="连接" Height="55" Width="120" Grid.Column="6" Click="BtnConnect_Click"/>
+        <Button x:Name="btnDisConnect" Content="断开连接" Height="55" Width="120" Grid.Column="7" Click="BtnDisConnect_Click"/>
         <Label Content="{Binding IsConnected, Converter={StaticResource connectedInfoConverter}}" Style="{StaticResource content}" Grid.Column="8"/>
     </Grid>
 </UserControl>
