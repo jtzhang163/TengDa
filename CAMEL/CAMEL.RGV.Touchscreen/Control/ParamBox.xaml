@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <Border BorderThickness="3" BorderBrush="Blue" Width="100" Height="40">
             <Label Name="tbParamValue" Content="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
-                 FontSize="20" FontWeight="Bold" Foreground="Green" MouseDown="TbParamValue_MouseDown"/>
+                 FontSize="22" FontWeight="Bold" Foreground="White" MouseDown="TbParamValue_MouseDown"/>
         </Border>
         <Label Name="lbParamUnit" Grid.Column="2" Content="单位" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <Label Name="lbParamName" Grid.Row="1" Grid.ColumnSpan="2" Content="参数名称" HorizontalAlignment="Left" VerticalAlignment="Top"/>

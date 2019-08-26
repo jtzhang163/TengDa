@@ -24,6 +24,14 @@ namespace CAMEL.RGV.Touchscreen
             var btnContent = button.Content.ToString();
             var addr = Parameter.GetAddr(btnContent);
 
+            if (btnContent == "参数写入")
+            {
+                if (MessageBox.Show("确定写入参数？", "提示信息", MessageBoxButton.OKCancel, MessageBoxImage.Information) != MessageBoxResult.OK)
+                {
+                    return;
+                }
+            }
+
             var val = 0;
 
             if (Parameter.GetType(btnContent) == "点动")
@@ -45,34 +53,7 @@ namespace CAMEL.RGV.Touchscreen
                 val = oldVal == 1 ? 2 : 1;
                 if (Current.RGV.Write(addr, (short)val, out msg))
                 {
-                    if (btnContent == "货叉原点")
-                    {
-                        Current.RGV.货叉原点 = val == 1;
-                    }
-                    else if (btnContent == "行走测试")
-                    {
-                        Current.RGV.行走测试 = val == 1;
-                    }
-                    else if (btnContent == "升降1测试")
-                    {
-                        Current.RGV.升降1测试 = val == 1;
-                    }
-                    else if (btnContent == "升降2测试")
-                    {
-                        Current.RGV.升降2测试 = val == 1;
-                    }
-                    else if (btnContent == "货叉测试")
-                    {
-                        Current.RGV.货叉测试 = val == 1;
-                    }
-                    else if (btnContent == "参数写入")
-                    {
-                        Current.RGV.参数写入 = val == 1;
-                    }
-                    else if (btnContent == "蜂鸣停止")
-                    {
-                        Current.RGV.蜂鸣停止 = val == 1;
-                    }
+                    Util.Tool.SetValue(Current.RGV, btnContent, val == 1);
                 }
             }
             else if (Parameter.GetType(btnContent) == "状态使能")
@@ -99,7 +80,6 @@ namespace CAMEL.RGV.Touchscreen
             {
                 button.Background = Brushes.LightGray;
             }
-
         }
 
         public static void MouseOrTouchUp(object sender)

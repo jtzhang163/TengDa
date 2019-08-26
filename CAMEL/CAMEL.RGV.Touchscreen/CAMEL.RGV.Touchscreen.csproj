@@ -77,6 +77,7 @@
     <Compile Include="Model\Parameter.cs" />
     <Compile Include="MouseOrTouchDownOrUp.cs" />
     <Compile Include="Util\Net.cs" />
+    <Compile Include="Util\Tool.cs" />
     <Compile Include="Util\_Convert.cs" />
     <Compile Include="ViewModel\Option.cs" />
     <Compile Include="ViewModel\RGV.cs" />
