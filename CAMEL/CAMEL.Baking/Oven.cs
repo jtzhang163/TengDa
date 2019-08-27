@@ -695,9 +695,22 @@ namespace CAMEL.Baking
                         //    }
                         //    #endregion
 
-                        //    #region 运行时间清零
+                        #region 运行时间清零
+                        if (this.Floors[j].toClearRunTime)
+                        {
+                            var addr = "D" + (20 + 2 * j);
 
-                        //#endregion
+                            if (!this.Plc.SetInfo(addr, (ushort)0, out msg))
+                            {
+                                Error.Alert(msg);
+                                this.Plc.IsAlive = false;
+                                return false;
+                            }
+
+                            LogHelper.WriteInfo(string.Format("成功发送运行时间清零指令到{0}:{1}", this.Name, addr));
+                            this.Floors[j].toClearRunTime = false;
+                        }
+                        #endregion
                     }
                     #endregion
 

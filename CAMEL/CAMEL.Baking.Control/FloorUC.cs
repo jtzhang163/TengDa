@@ -357,6 +357,9 @@ namespace CAMEL.Baking.Control
                 && oven.IsAlive
                 && floor.IsBaking;
             this.tsmAlarmReset.Enabled = oven.IsAlive;
+            this.tsmClearRunTime.Enabled =
+                floor.IsNetControlOpen
+                && oven.IsAlive;
         }
 
         private void TsmAlarmReset_Click(object sender, EventArgs e)
