@@ -17,6 +17,10 @@ using TengDa;
 using TengDa.Web;
 using TengDa.WF;
 using CAMEL.Baking.MesService;
+using CAMEL.Baking.IdentityVerificationWebService;
+using CAMEL.Baking.TrayBindingWebService;
+using CAMEL.Baking.DeviceStatusRecordWebService;
+using CAMEL.Baking.ProductionDataUploadWebService;
 
 namespace CAMEL.Baking
 {
@@ -24,53 +28,125 @@ namespace CAMEL.Baking
     {
 
         #region 字段属性
-        protected string webServiceUrl = string.Empty;
+
+
+        private string webServiceUrl_IdentityVerification = string.Empty;
         /// <summary>
-        /// Web服务地址
+        /// 身份验证接口地址
         /// </summary>
-        [DisplayName("Web服务地址")]
+        [DisplayName("身份验证接口地址")]
         [Category("基本设置")]
-        public string WebServiceUrl
+        public string WebServiceUrl_IdentityVerification
         {
             get
             {
-                return webServiceUrl;
+                return webServiceUrl_IdentityVerification;
             }
             set
             {
-                if (webServiceUrl != value)
+                if (webServiceUrl_IdentityVerification != value)
                 {
-                    UpdateDbField("WebServiceUrl", value);
+                    UpdateDbField("WebServiceUrl_IdentityVerification", value);
                 }
-                webServiceUrl = value;
+                webServiceUrl_IdentityVerification = value;
             }
         }
 
-        //private string username = string.Empty;
-        //public string Username
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(username))
-        //        {
-        //            username = ConfigurationManager.AppSettings["mes_username"].ToString();
-        //        }
-        //        return username;
-        //    }
-        //}
 
-        //private string password = string.Empty;
-        //public string Password
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(password))
-        //        {
-        //            password = ConfigurationManager.AppSettings["mes_password"].ToString();
-        //        }
-        //        return password;
-        //    }
-        //}
+        private string webServiceUrl_TrayBinding = string.Empty;
+        /// <summary>
+        /// 电芯与托盘信息查询接口地址
+        /// </summary>
+        [DisplayName("电芯与托盘信息查询接口地址")]
+        [Category("基本设置")]
+        public string WebServiceUrl_TrayBinding
+        {
+            get
+            {
+                return webServiceUrl_TrayBinding;
+            }
+            set
+            {
+                if (webServiceUrl_TrayBinding != value)
+                {
+                    UpdateDbField("WebServiceUrl_TrayBinding", value);
+                }
+                webServiceUrl_TrayBinding = value;
+            }
+        }
+
+
+        private string webServiceUrl_DeviceStatusRecord = string.Empty;
+        /// <summary>
+        /// 记录设备状态接口地址
+        /// </summary>
+        [DisplayName("记录设备状态接口地址")]
+        [Category("基本设置")]
+        public string WebServiceUrl_DeviceStatusRecord
+        {
+            get
+            {
+                return webServiceUrl_DeviceStatusRecord;
+            }
+            set
+            {
+                if (webServiceUrl_DeviceStatusRecord != value)
+                {
+                    UpdateDbField("WebServiceUrl_DeviceStatusRecord", value);
+                }
+                webServiceUrl_DeviceStatusRecord = value;
+            }
+        }
+
+        private string webServiceUrl_ProductionDataUpload = string.Empty;
+        /// <summary>
+        /// 二次高温数据上传接口地址
+        /// </summary>
+        [DisplayName("二次高温数据上传接口地址")]
+        [Category("基本设置")]
+        public string WebServiceUrl_ProductionDataUpload
+        {
+            get
+            {
+                return webServiceUrl_ProductionDataUpload;
+            }
+            set
+            {
+                if (webServiceUrl_ProductionDataUpload != value)
+                {
+                    UpdateDbField("WebServiceUrl_ProductionDataUpload", value);
+                }
+                webServiceUrl_ProductionDataUpload = value;
+            }
+        }
+
+
+
+        private string username = string.Empty;
+        public string Username
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(username))
+                {
+                    username = ConfigurationManager.AppSettings["mes_username"].ToString();
+                }
+                return username;
+            }
+        }
+
+        private string password = string.Empty;
+        public string Password
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(password))
+                {
+                    password = ConfigurationManager.AppSettings["mes_password"].ToString();
+                }
+                return password;
+            }
+        }
 
 
         //private string site = string.Empty;
@@ -140,7 +216,10 @@ namespace CAMEL.Baking
             this.host = rowInfo["Host"].ToString();
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
             this.isOffline = Convert.ToBoolean(rowInfo["IsOffline"]);
-            this.webServiceUrl = rowInfo["WebServiceUrl"].ToString();
+            this.webServiceUrl_IdentityVerification = rowInfo["WebServiceUrl_IdentityVerification"].ToString();
+            this.webServiceUrl_TrayBinding = rowInfo["WebServiceUrl_TrayBinding"].ToString();
+            this.webServiceUrl_DeviceStatusRecord = rowInfo["WebServiceUrl_DeviceStatusRecord"].ToString();
+            this.webServiceUrl_ProductionDataUpload = rowInfo["WebServiceUrl_ProductionDataUpload"].ToString();
         }
         #endregion
 
@@ -214,143 +293,226 @@ namespace CAMEL.Baking
         #region MES方法
 
 
-        private static EquipService _wsProxy = null;
-        private static EquipService wsProxy
+        private static IdentityVerificationService identityVerificationProxy = null;
+        private static IdentityVerificationService IdentityVerificationProxy
         {
             get
             {
-                if (_wsProxy == null)
+                if (identityVerificationProxy == null)
                 {
-                    _wsProxy = new EquipService()
+                    identityVerificationProxy = new IdentityVerificationService()
                     {
-                        Url = Current.mes.WebServiceUrl
+                        Url = Current.mes.WebServiceUrl_IdentityVerification
                     };
-                    //{
-                    //    Credentials = new NetworkCredential(Current.mes.Username, Current.mes.Password, null),
-                    //    PreAuthenticate = true,
-                    //    Timeout = 2000,
-                    //    Url = Current.mes.WebServiceUrl
-                    //};
                 }
-                return _wsProxy;
+                return identityVerificationProxy;
             }
         }
 
-        /// <summary>
-        /// 烘烤数据上传
-        /// </summary>
-        /// <param name="clamps"></param>
-        /// <returns></returns>
-        public static void UploadBatteryInfo(List<Clamp> clamps)
+        private static TrayBindingService trayBindingProxy = null;
+        private static TrayBindingService TrayBindingProxy
         {
-            for (int i = 0; i < clamps.Count; i++)
+            get
             {
-                var clamp = clamps[i];
-                var station = Station.StationList.FirstOrDefault(s => s.Id == clamp.OvenStationId);
-                if (station.GetPutType != GetPutType.烤箱)
+                if (trayBindingProxy == null)
                 {
-                    clamp.IsUploaded = true;
-                    LogHelper.WriteError(string.Format("异常,ID为{0}的夹具所属烤箱工位为：", clamp.Id, station.Name));
-                    break;
-                }
-                var floor = station.GetFloor();
-                var oven = floor.GetOven();
-                try
-                {
-                    var allIsPass = true;
-                    for (int x = 0; x < clamp.Batteries.Count; x++)
+                    trayBindingProxy = new TrayBindingService()
                     {
-                        var battery = clamp.Batteries[x];
-                        if (!battery.Code.Contains("0000000000"))//样品电池数据不上传
-                        {
-                            var data = new BakingMesData()
-                            {
-                                Barcode = battery.Code,
-                                TrayNo = clamp.CompleteCode,
-                                StartTime = clamp.BakingStartTime.ToString("yyyy/MM/dd HH:mm:ss"),
-                                EndTime = clamp.BakingStopTime.ToString("yyyy/MM/dd HH:mm:ss"),
-                                Temperature = clamp.Temperature,
-                                Vacuum = clamp.Vacuum,
-                                MachineCode = station.Number
-                            };
-                            var info = JsonHelper.SerializeObject(data);
-                            var result = wsProxy.UploadBakingData(info);
-                            if (result.ResultCode == 0)
-                            {
-                                //LogHelper.WriteInfo(string.Format("上传mes成功，参数：{0}", info));
-                            }
-                            else
-                            {
-                                if (!result.ResultMsg.Contains("长度不是35或24"))
-                                {
-                                    allIsPass = false;
-                                }
-                                LogHelper.WriteError(string.Format("上传mes失败，参数：{0} 原因：{1}", info, result.ResultMsg));
-                            }
-                        }
-                    }
-
-                    if (allIsPass)
-                    {
-                        clamp.IsUploaded = true;
-                        LogHelper.WriteInfo(string.Format("上传mes成功，clamp.Id：{0}", clamp.Id));
-                    }
-                    //{"Barcode":"36ANCCB23140160N18E01C18E04H1000784","MachineCode":"BK02-04-01","TrayNo":"","StartTime":"2019\/6\/21 14:19:12","EndTime":"2019\/6\/21 14:19:12","Temperature":92.3,"Vacuum":12.3}
-                }
-                catch (System.Exception ex)
-                {
-                    LogHelper.WriteError(ex);
-                }
-            }
-        }
-
-
-
-        /// <summary>
-        /// 设备状态上传
-        /// </summary>
-        /// <param name="clamps"></param>
-        /// <returns></returns>
-        public static void UploadMachineStatus()
-        {
-            try
-            {
-                var datas = new List<MachineStatusData>();
-                Station.StationList.Where(s => s.GetPutType == GetPutType.烤箱).ToList().ForEach(station =>
-                {
-                    var floor = station.GetFloor();
-                    var oven = floor.GetOven();
-
-                    var data = new MachineStatusData()
-                    {
-                        MachCode = station.Number,
-                        MachStatus = oven.IsAlive ? "99" : "12",
-                        MachTrouble = null,
-                        StepProdLotNo = null
+                        Url = Current.mes.WebServiceUrl_TrayBinding
                     };
-                    datas.Add(data);
-
-                });
-
-                var info = JsonHelper.SerializeObjectList<MachineStatusData>(datas);
-                var result = wsProxy.UploadMultiMachStateListInfo(info);
-                if (result.ResultCode == 0)
-                {
-                    //LogHelper.WriteInfo(string.Format("上传mes成功，参数：{0}", info));
                 }
-                else
-                {
-                    LogHelper.WriteError(string.Format("上传mes失败，参数：{0} 原因：{1}", info, result.ResultMsg));
-                }
-                //[{"MachCode":"BK01-04-02","MachStatus":"99","StepProdLotNo":null,"MachTrouble":null}]
-            }
-            catch (Exception ex)
-            {
-                LogHelper.WriteError(ex);
+                return trayBindingProxy;
             }
         }
+
+        private static DeviceStatusRecordService deviceStatusRecordProxy = null;
+        private static DeviceStatusRecordService DeviceStatusRecordProxy
+        {
+            get
+            {
+                if (deviceStatusRecordProxy == null)
+                {
+                    deviceStatusRecordProxy = new DeviceStatusRecordService()
+                    {
+                        Url = Current.mes.WebServiceUrl_DeviceStatusRecord
+                    };
+                }
+                return deviceStatusRecordProxy;
+            }
+        }
+
+        private static ProductionDataUploadService productionDataUploadProxy = null;
+        private static ProductionDataUploadService ProductionDataUploadProxy
+        {
+            get
+            {
+                if (productionDataUploadProxy == null)
+                {
+                    productionDataUploadProxy = new ProductionDataUploadService()
+                    {
+                        Url = Current.mes.WebServiceUrl_ProductionDataUpload
+                    };
+                }
+                return productionDataUploadProxy;
+            }
+        }
+
+
+        public static string IdentityVerification(string xmlParams)
+        {
+            var retXmlString = "";
+
+            IdentityVerificationProxy.IdentityVerification(xmlParams);
+
+            return retXmlString;
+        }
+
         #endregion
     }
+
+
+    public class CommonRequest
+    {
+        public object Request { get; set; }
+    }
+
+    public class CommonResponse
+    {
+        public object Response { get; set; }
+    }
+
+    public class IdentityVerificationRequest
+    {
+        public string AccountNumber { get; set; }
+
+        public string Password { get; set; }
+    }
+
+    public class IdentityVerificationResponse
+    {
+        public string AccountNumber { get; set; }
+
+        public string ProcessCode { get; set; }
+
+        public string ProcessName { get; set; }
+        public string StationCode { get; set; }
+        public string StationName { get; set; }
+        public string DeviceId { get; set; }
+        public bool Result { get; set; }
+        public string Message { get; set; }
+
+        public int ExecutionTime { get; set; }
+    }
+
+
+    public class TrayBindingRequest
+    {
+        public string TrayBarcode { get; set; }
+
+        public string DeviceId { get; set; }
+    }
+
+    public class TrayBindingResponse
+    {
+        public BarcodeInfo[] BarcodeGroup { get; set; }
+
+        public string DeviceId { get; set; }
+        public bool Result { get; set; }
+        public string Message { get; set; }
+
+        public int ExecutionTime { get; set; }
+
+        public class BarcodeInfo
+        {
+            public int Point { get; set; }
+            public string Barcode { get; set; }
+        }
+    }
+
+
+    public class DeviceStatusRecordRequest
+    {
+        public string DeviceStatus { get; set; }
+
+        public string StatusDescription { get; set; }
+
+        public string DeviceId { get; set; }
+
+        public string StationCode { get; set; }
+
+        public string ProcessCode { get; set; }
+
+        public DateTime ProductionTime { get; set; }
+
+        public string Operator { get; set; }
+    }
+
+
+    public class DeviceStatusRecordResponse
+    {
+
+        public string DeviceId { get; set; }
+        public bool Result { get; set; }
+        public string Message { get; set; }
+        public int ExecutionTime { get; set; }
+    }
+
+
+    public class ProductionDataUploadRequest
+    {
+        public TestData[] TestDatas { get; set; }
+
+        public string DeviceId { get; set; }
+
+        public string StationCode { get; set; }
+
+        public string ProcessCode { get; set; }
+
+        public string Shift { get; set; }
+
+        public DateTime ProductionTime { get; set; }
+
+        public string Operator { get; set; }
+
+        public class TestData
+        {
+            public string MoCode { get; set; }
+            public string TrayBarcode { get; set; }
+            public string Barcode { get; set; }
+            public string Position { get; set; }
+            public string Result { get; set; }
+            public string BakingTime { get; set; }
+            public string BakingTemperature { get; set; }
+        }
+    }
+
+
+    public class ProductionDataUploadResponse
+    {
+
+        public string DeviceId { get; set; }
+        public bool Result { get; set; }
+        public string Message { get; set; }
+        public int ExecutionTime { get; set; }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public class BakingMesData
     {

@@ -86,6 +86,12 @@
     <Compile Include="PageMain1UC.Designer.cs">
       <DependentUpon>PageMain1UC.cs</DependentUpon>
     </Compile>
+    <Compile Include="ScanerDebugUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ScanerDebugUC.Designer.cs">
+      <DependentUpon>ScanerDebugUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShowOvenInfoTypeUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PageMain1UC.resx">
       <DependentUpon>PageMain1UC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScanerDebugUC.resx">
+      <DependentUpon>ScanerDebugUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShowOvenInfoTypeUC.resx">
       <DependentUpon>ShowOvenInfoTypeUC.cs</DependentUpon>

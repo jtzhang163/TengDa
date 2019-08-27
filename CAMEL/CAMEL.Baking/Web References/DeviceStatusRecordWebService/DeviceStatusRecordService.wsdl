@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://172.21.30.251/CamelPostSection/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://172.21.30.251/CamelPostSection/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://172.21.30.251/CamelPostSection/">
+      <s:element name="RecordDeviceStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecordDeviceStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecordDeviceStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RecordDeviceStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:RecordDeviceStatus" />
+  </wsdl:message>
+  <wsdl:message name="RecordDeviceStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:RecordDeviceStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecordDeviceStatusHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RecordDeviceStatusHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RecordDeviceStatusHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RecordDeviceStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="DeviceStatusRecordServiceSoap">
+    <wsdl:operation name="RecordDeviceStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">记录设备状态</wsdl:documentation>
+      <wsdl:input message="tns:RecordDeviceStatusSoapIn" />
+      <wsdl:output message="tns:RecordDeviceStatusSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DeviceStatusRecordServiceHttpGet">
+    <wsdl:operation name="RecordDeviceStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">记录设备状态</wsdl:documentation>
+      <wsdl:input message="tns:RecordDeviceStatusHttpGetIn" />
+      <wsdl:output message="tns:RecordDeviceStatusHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DeviceStatusRecordServiceHttpPost">
+    <wsdl:operation name="RecordDeviceStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">记录设备状态</wsdl:documentation>
+      <wsdl:input message="tns:RecordDeviceStatusHttpPostIn" />
+      <wsdl:output message="tns:RecordDeviceStatusHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DeviceStatusRecordServiceSoap" type="tns:DeviceStatusRecordServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RecordDeviceStatus">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/RecordDeviceStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DeviceStatusRecordServiceSoap12" type="tns:DeviceStatusRecordServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RecordDeviceStatus">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/RecordDeviceStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DeviceStatusRecordServiceHttpGet" type="tns:DeviceStatusRecordServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="RecordDeviceStatus">
+      <http:operation location="/RecordDeviceStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DeviceStatusRecordServiceHttpPost" type="tns:DeviceStatusRecordServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="RecordDeviceStatus">
+      <http:operation location="/RecordDeviceStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DeviceStatusRecordService">
+    <wsdl:port name="DeviceStatusRecordServiceSoap" binding="tns:DeviceStatusRecordServiceSoap">
+      <soap:address location="http://172.21.30.251:9010/DeviceStatusRecordService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DeviceStatusRecordServiceSoap12" binding="tns:DeviceStatusRecordServiceSoap12">
+      <soap12:address location="http://172.21.30.251:9010/DeviceStatusRecordService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DeviceStatusRecordServiceHttpGet" binding="tns:DeviceStatusRecordServiceHttpGet">
+      <http:address location="http://172.21.30.251:9010/DeviceStatusRecordService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DeviceStatusRecordServiceHttpPost" binding="tns:DeviceStatusRecordServiceHttpPost">
+      <http:address location="http://172.21.30.251:9010/DeviceStatusRecordService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -155,7 +155,7 @@ namespace CAMEL.Baking
             Thread.Sleep(800);
 
             var receiveData = this.GetReceiveData();
-            if (receiveData.Length > 8)
+            if (receiveData.Length > 6)
             {
                 code = receiveData;
                 this.ClearReceiveData();

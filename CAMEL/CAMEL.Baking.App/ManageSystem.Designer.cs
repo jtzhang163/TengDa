@@ -177,12 +177,6 @@
             this.tbTips = new System.Windows.Forms.TextBox();
             this.tabContentPageManuTest = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnClampScanNgBackToFeeder = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnClampScanOkBackToFeeder = new System.Windows.Forms.Button();
-            this.cbClampScaner = new System.Windows.Forms.ComboBox();
-            this.btnClampScanStart = new System.Windows.Forms.Button();
             this.tabContentTaskLog = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvTaskLog = new System.Windows.Forms.DataGridView();
@@ -252,6 +246,7 @@
             this.lbTime = new System.Windows.Forms.Label();
             this.yieldDisplay = new CAMEL.Baking.Control.YieldDisplay();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay2();
+            this.scanerDebugUC1 = new CAMEL.Baking.Control.ScanerDebugUC();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -298,7 +293,6 @@
             this.groupBox1.SuspendLayout();
             this.tabContentPageManuTest.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.tabContentTaskLog.SuspendLayout();
             this.tableLayoutPanel22.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTaskLog)).BeginInit();
@@ -2079,86 +2073,21 @@
             // 
             this.tableLayoutPanel3.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.98848F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.6142F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.Controls.Add(this.groupBox3, 0, 1);
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.01152F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.6338F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.35468F));
+            this.tableLayoutPanel3.Controls.Add(this.scanerDebugUC1, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 5;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.98962F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.12457F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.22145F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.16609F));
+            this.tableLayoutPanel3.RowCount = 4;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.26087F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.35508F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.36232F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.02174F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1178, 599);
             this.tableLayoutPanel3.TabIndex = 2;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox3.Controls.Add(this.btnClampScanNgBackToFeeder);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.btnClampScanOkBackToFeeder);
-            this.groupBox3.Controls.Add(this.cbClampScaner);
-            this.groupBox3.Controls.Add(this.btnClampScanStart);
-            this.groupBox3.Location = new System.Drawing.Point(30, 49);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(30, 20, 30, 20);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(30);
-            this.groupBox3.Size = new System.Drawing.Size(364, 115);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "夹具扫码枪手动调试";
-            // 
-            // btnClampScanNgBackToFeeder
-            // 
-            this.btnClampScanNgBackToFeeder.Location = new System.Drawing.Point(228, 72);
-            this.btnClampScanNgBackToFeeder.Name = "btnClampScanNgBackToFeeder";
-            this.btnClampScanNgBackToFeeder.Size = new System.Drawing.Size(41, 23);
-            this.btnClampScanNgBackToFeeder.TabIndex = 6;
-            this.btnClampScanNgBackToFeeder.Text = "NG";
-            this.btnClampScanNgBackToFeeder.UseVisualStyleBackColor = true;
-            this.btnClampScanNgBackToFeeder.Click += new System.EventHandler(this.btnClampScanNgBackToFeeder_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(58, 77);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 12);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "结果反馈上料机：";
-            // 
-            // btnClampScanOkBackToFeeder
-            // 
-            this.btnClampScanOkBackToFeeder.Location = new System.Drawing.Point(167, 72);
-            this.btnClampScanOkBackToFeeder.Name = "btnClampScanOkBackToFeeder";
-            this.btnClampScanOkBackToFeeder.Size = new System.Drawing.Size(41, 23);
-            this.btnClampScanOkBackToFeeder.TabIndex = 4;
-            this.btnClampScanOkBackToFeeder.Text = "OK";
-            this.btnClampScanOkBackToFeeder.UseVisualStyleBackColor = true;
-            this.btnClampScanOkBackToFeeder.Click += new System.EventHandler(this.btnClampScanOkBackToFeeder_Click);
-            // 
-            // cbClampScaner
-            // 
-            this.cbClampScaner.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbClampScaner.FormattingEnabled = true;
-            this.cbClampScaner.Location = new System.Drawing.Point(58, 32);
-            this.cbClampScaner.Name = "cbClampScaner";
-            this.cbClampScaner.Size = new System.Drawing.Size(102, 20);
-            this.cbClampScaner.TabIndex = 3;
-            // 
-            // btnClampScanStart
-            // 
-            this.btnClampScanStart.Location = new System.Drawing.Point(194, 31);
-            this.btnClampScanStart.Name = "btnClampScanStart";
-            this.btnClampScanStart.Size = new System.Drawing.Size(75, 23);
-            this.btnClampScanStart.TabIndex = 0;
-            this.btnClampScanStart.Text = "扫码";
-            this.btnClampScanStart.UseVisualStyleBackColor = true;
-            this.btnClampScanStart.Click += new System.EventHandler(this.btnClampScanStart_Click);
             // 
             // tabContentTaskLog
             // 
@@ -3153,6 +3082,14 @@
             this.userDisplay.Size = new System.Drawing.Size(170, 65);
             this.userDisplay.TabIndex = 17;
             // 
+            // scanerDebugUC1
+            // 
+            this.scanerDebugUC1.Location = new System.Drawing.Point(30, 30);
+            this.scanerDebugUC1.Margin = new System.Windows.Forms.Padding(30);
+            this.scanerDebugUC1.Name = "scanerDebugUC1";
+            this.scanerDebugUC1.Size = new System.Drawing.Size(316, 109);
+            this.scanerDebugUC1.TabIndex = 0;
+            // 
             // ManageSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3234,8 +3171,6 @@
             this.groupBox1.PerformLayout();
             this.tabContentPageManuTest.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.tabContentTaskLog.ResumeLayout(false);
             this.tableLayoutPanel22.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTaskLog)).EndInit();
@@ -3491,17 +3426,12 @@
         private System.Windows.Forms.TabPage tabContentPageManuTest;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private Control.YieldDisplay yieldDisplay;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btnClampScanNgBackToFeeder;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnClampScanOkBackToFeeder;
-        private System.Windows.Forms.ComboBox cbClampScaner;
-        private System.Windows.Forms.Button btnClampScanStart;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbCount;
         private System.Windows.Forms.Label lbTime;
         //private Control.MachinesStatus1UC machinesStatusUC1;
         private TengDa.WF.Controls.UserDisplay2 userDisplay;
         private System.Windows.Forms.TabPage tabContentPageMain;
+        private Control.ScanerDebugUC scanerDebugUC1;
     }
 }

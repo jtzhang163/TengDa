@@ -73,7 +73,27 @@
     <Compile Include="PLC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scaner.cs" />
+    <Compile Include="Web References\DeviceStatusRecordWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\IdentityVerificationWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\MesService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ProductionDataUploadWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\TrayBindingWebService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -106,6 +126,16 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Web References\DeviceStatusRecordWebService\DeviceStatusRecordService.wsdl" />
+    <None Include="Web References\DeviceStatusRecordWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\IdentityVerificationWebService\IdentityVerificationService.wsdl" />
+    <None Include="Web References\IdentityVerificationWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <None Include="Web References\MesService\EquipService.wsdl" />
     <None Include="Web References\MesService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -114,11 +144,65 @@
     <None Include="Web References\MesService\VMResult1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\ProductionDataUploadWebService\ProductionDataUploadService.wsdl" />
+    <None Include="Web References\ProductionDataUploadWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\TrayBindingWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\TrayBindingWebService\TrayBindingService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <WebReferenceUrl Include="D:\TengDa\CAMEL\docs\mes\DeviceStatusRecordService.xml">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\DeviceStatusRecordWebService\</RelPath>
+      <UpdateFromURL>D:\TengDa\CAMEL\docs\mes\DeviceStatusRecordService.xml</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CAMEL_Baking_DeviceStatusRecordService_DeviceStatusRecordService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="D:\TengDa\CAMEL\docs\mes\IdentityVerificationService.xml">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\IdentityVerificationWebService\</RelPath>
+      <UpdateFromURL>D:\TengDa\CAMEL\docs\mes\IdentityVerificationService.xml</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CAMEL_Baking_IdentityVerificationService_IdentityVerificationService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="D:\TengDa\CAMEL\docs\mes\ProductionDataUploadService.xml">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ProductionDataUploadWebService\</RelPath>
+      <UpdateFromURL>D:\TengDa\CAMEL\docs\mes\ProductionDataUploadService.xml</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CAMEL_Baking_ProductionDataUploadService_ProductionDataUploadService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="D:\TengDa\CAMEL\docs\mes\TrayBindingService.xml">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\TrayBindingWebService\</RelPath>
+      <UpdateFromURL>D:\TengDa\CAMEL\docs\mes\TrayBindingService.xml</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CAMEL_Baking_TrayBindingService_TrayBindingService</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="http://192.168.100.11:8094/EquipService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\MesService\</RelPath>

@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://172.21.30.251/CamelPostSection/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://172.21.30.251/CamelPostSection/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://172.21.30.251/CamelPostSection/">
+      <s:element name="TrayBinding">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TrayBindingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TrayBindingResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTrayBindingDeviceId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTrayBindingDeviceIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateTrayBindingDeviceIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TrayUnbinding">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TrayUnbindingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TrayUnbindingResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductUnbinding">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductUnbindingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProductUnbindingResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TrayBindingInfoDeletion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TrayBindingInfoDeletionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TrayBindingInfoDeletionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTrayBindingInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTrayBindingInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTrayBindingInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="TrayBindingSoapIn">
+    <wsdl:part name="parameters" element="tns:TrayBinding" />
+  </wsdl:message>
+  <wsdl:message name="TrayBindingSoapOut">
+    <wsdl:part name="parameters" element="tns:TrayBindingResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTrayBindingDeviceIdSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTrayBindingDeviceId" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTrayBindingDeviceIdSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTrayBindingDeviceIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrayUnbindingSoapIn">
+    <wsdl:part name="parameters" element="tns:TrayUnbinding" />
+  </wsdl:message>
+  <wsdl:message name="TrayUnbindingSoapOut">
+    <wsdl:part name="parameters" element="tns:TrayUnbindingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProductUnbindingSoapIn">
+    <wsdl:part name="parameters" element="tns:ProductUnbinding" />
+  </wsdl:message>
+  <wsdl:message name="ProductUnbindingSoapOut">
+    <wsdl:part name="parameters" element="tns:ProductUnbindingResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrayBindingInfoDeletionSoapIn">
+    <wsdl:part name="parameters" element="tns:TrayBindingInfoDeletion" />
+  </wsdl:message>
+  <wsdl:message name="TrayBindingInfoDeletionSoapOut">
+    <wsdl:part name="parameters" element="tns:TrayBindingInfoDeletionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTrayBindingInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTrayBindingInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetTrayBindingInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTrayBindingInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrayBindingHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TrayBindingHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTrayBindingDeviceIdHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTrayBindingDeviceIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TrayUnbindingHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TrayUnbindingHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ProductUnbindingHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProductUnbindingHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TrayBindingInfoDeletionHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TrayBindingInfoDeletionHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTrayBindingInfoHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTrayBindingInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TrayBindingHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TrayBindingHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTrayBindingDeviceIdHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTrayBindingDeviceIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TrayUnbindingHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TrayUnbindingHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ProductUnbindingHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ProductUnbindingHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TrayBindingInfoDeletionHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TrayBindingInfoDeletionHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTrayBindingInfoHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTrayBindingInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="TrayBindingServiceSoap">
+    <wsdl:operation name="TrayBinding">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘绑定</wsdl:documentation>
+      <wsdl:input message="tns:TrayBindingSoapIn" />
+      <wsdl:output message="tns:TrayBindingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTrayBindingDeviceId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">更新托盘绑定的设备编号信息</wsdl:documentation>
+      <wsdl:input message="tns:UpdateTrayBindingDeviceIdSoapIn" />
+      <wsdl:output message="tns:UpdateTrayBindingDeviceIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TrayUnbinding">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘解除绑定（全部解除）</wsdl:documentation>
+      <wsdl:input message="tns:TrayUnbindingSoapIn" />
+      <wsdl:output message="tns:TrayUnbindingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProductUnbinding">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘解除绑定（NG产品解除）</wsdl:documentation>
+      <wsdl:input message="tns:ProductUnbindingSoapIn" />
+      <wsdl:output message="tns:ProductUnbindingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TrayBindingInfoDeletion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘绑定信息删除</wsdl:documentation>
+      <wsdl:input message="tns:TrayBindingInfoDeletionSoapIn" />
+      <wsdl:output message="tns:TrayBindingInfoDeletionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrayBindingInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘绑定信息查询</wsdl:documentation>
+      <wsdl:input message="tns:GetTrayBindingInfoSoapIn" />
+      <wsdl:output message="tns:GetTrayBindingInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TrayBindingServiceHttpGet">
+    <wsdl:operation name="TrayBinding">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘绑定</wsdl:documentation>
+      <wsdl:input message="tns:TrayBindingHttpGetIn" />
+      <wsdl:output message="tns:TrayBindingHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTrayBindingDeviceId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">更新托盘绑定的设备编号信息</wsdl:documentation>
+      <wsdl:input message="tns:UpdateTrayBindingDeviceIdHttpGetIn" />
+      <wsdl:output message="tns:UpdateTrayBindingDeviceIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TrayUnbinding">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘解除绑定（全部解除）</wsdl:documentation>
+      <wsdl:input message="tns:TrayUnbindingHttpGetIn" />
+      <wsdl:output message="tns:TrayUnbindingHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProductUnbinding">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘解除绑定（NG产品解除）</wsdl:documentation>
+      <wsdl:input message="tns:ProductUnbindingHttpGetIn" />
+      <wsdl:output message="tns:ProductUnbindingHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TrayBindingInfoDeletion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘绑定信息删除</wsdl:documentation>
+      <wsdl:input message="tns:TrayBindingInfoDeletionHttpGetIn" />
+      <wsdl:output message="tns:TrayBindingInfoDeletionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrayBindingInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘绑定信息查询</wsdl:documentation>
+      <wsdl:input message="tns:GetTrayBindingInfoHttpGetIn" />
+      <wsdl:output message="tns:GetTrayBindingInfoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TrayBindingServiceHttpPost">
+    <wsdl:operation name="TrayBinding">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘绑定</wsdl:documentation>
+      <wsdl:input message="tns:TrayBindingHttpPostIn" />
+      <wsdl:output message="tns:TrayBindingHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTrayBindingDeviceId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">更新托盘绑定的设备编号信息</wsdl:documentation>
+      <wsdl:input message="tns:UpdateTrayBindingDeviceIdHttpPostIn" />
+      <wsdl:output message="tns:UpdateTrayBindingDeviceIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TrayUnbinding">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘解除绑定（全部解除）</wsdl:documentation>
+      <wsdl:input message="tns:TrayUnbindingHttpPostIn" />
+      <wsdl:output message="tns:TrayUnbindingHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProductUnbinding">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘解除绑定（NG产品解除）</wsdl:documentation>
+      <wsdl:input message="tns:ProductUnbindingHttpPostIn" />
+      <wsdl:output message="tns:ProductUnbindingHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TrayBindingInfoDeletion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘绑定信息删除</wsdl:documentation>
+      <wsdl:input message="tns:TrayBindingInfoDeletionHttpPostIn" />
+      <wsdl:output message="tns:TrayBindingInfoDeletionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrayBindingInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">电芯与托盘绑定信息查询</wsdl:documentation>
+      <wsdl:input message="tns:GetTrayBindingInfoHttpPostIn" />
+      <wsdl:output message="tns:GetTrayBindingInfoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TrayBindingServiceSoap" type="tns:TrayBindingServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TrayBinding">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/TrayBinding" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTrayBindingDeviceId">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/UpdateTrayBindingDeviceId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TrayUnbinding">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/TrayUnbinding" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProductUnbinding">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/ProductUnbinding" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TrayBindingInfoDeletion">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/TrayBindingInfoDeletion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrayBindingInfo">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/GetTrayBindingInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TrayBindingServiceSoap12" type="tns:TrayBindingServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TrayBinding">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/TrayBinding" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTrayBindingDeviceId">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/UpdateTrayBindingDeviceId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TrayUnbinding">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/TrayUnbinding" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProductUnbinding">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/ProductUnbinding" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TrayBindingInfoDeletion">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/TrayBindingInfoDeletion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrayBindingInfo">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/GetTrayBindingInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TrayBindingServiceHttpGet" type="tns:TrayBindingServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="TrayBinding">
+      <http:operation location="/TrayBinding" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTrayBindingDeviceId">
+      <http:operation location="/UpdateTrayBindingDeviceId" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TrayUnbinding">
+      <http:operation location="/TrayUnbinding" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProductUnbinding">
+      <http:operation location="/ProductUnbinding" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TrayBindingInfoDeletion">
+      <http:operation location="/TrayBindingInfoDeletion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrayBindingInfo">
+      <http:operation location="/GetTrayBindingInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TrayBindingServiceHttpPost" type="tns:TrayBindingServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="TrayBinding">
+      <http:operation location="/TrayBinding" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTrayBindingDeviceId">
+      <http:operation location="/UpdateTrayBindingDeviceId" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TrayUnbinding">
+      <http:operation location="/TrayUnbinding" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProductUnbinding">
+      <http:operation location="/ProductUnbinding" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TrayBindingInfoDeletion">
+      <http:operation location="/TrayBindingInfoDeletion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrayBindingInfo">
+      <http:operation location="/GetTrayBindingInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TrayBindingService">
+    <wsdl:port name="TrayBindingServiceSoap" binding="tns:TrayBindingServiceSoap">
+      <soap:address location="http://172.21.30.251:9010/TrayBindingService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TrayBindingServiceSoap12" binding="tns:TrayBindingServiceSoap12">
+      <soap12:address location="http://172.21.30.251:9010/TrayBindingService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TrayBindingServiceHttpGet" binding="tns:TrayBindingServiceHttpGet">
+      <http:address location="http://172.21.30.251:9010/TrayBindingService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TrayBindingServiceHttpPost" binding="tns:TrayBindingServiceHttpPost">
+      <http:address location="http://172.21.30.251:9010/TrayBindingService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

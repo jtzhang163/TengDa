@@ -348,11 +348,7 @@ namespace CAMEL.Baking.App
             int iii = Current.ovens.IndexOf(sampleOven);
             int jjj = sampleOven.Floors.IndexOf(sampleFloor);
 
-            //cbBatteryScaner.Items.Add(Current.BatteryScaner.Name);
-            cbClampScaner.Items.Add(Current.ClampScaner.Name);
-
-            //cbBatteryScaner.SelectedIndex = 0;
-            cbClampScaner.SelectedIndex = 0;
+            this.scanerDebugUC1.Init();
 
             if (Option.LineNum == 1)
             {
@@ -1155,9 +1151,10 @@ namespace CAMEL.Baking.App
                     Error.Alert(string.Format("{0}:打开连接失败，原因：{1}", Current.ClampScaner.Name, msg));
                     return false;
                 }
-
-                this.SetMachineStatusInfo(Current.ClampScaner, "连接成功");
-                this.SetMachineLampColor(Current.ClampScaner, Color.Green);
+                this.BeginInvoke(new MethodInvoker(() => {
+                    this.SetMachineStatusInfo(Current.ClampScaner, "连接成功");
+                    this.SetMachineLampColor(Current.ClampScaner, Color.Green);
+                }));
                 Current.ClampScaner.StartListenReceiveData();
             }
 
@@ -1191,15 +1188,17 @@ namespace CAMEL.Baking.App
                 {
                     Current.ClampScaner.StopScan();
                 }
-                    
+
                 if (!Current.ClampScaner.TcpDisConnect(out msg))
                 {
                     Error.Alert(msg);
                     return false;
                 }
-
-                this.SetMachineStatusInfo(Current.ClampScaner, "未连接");
-                this.SetMachineLampColor(Current.ClampScaner, Color.Gray);
+                this.BeginInvoke(new MethodInvoker(() =>
+                {
+                    this.SetMachineStatusInfo(Current.ClampScaner, "未连接");
+                    this.SetMachineLampColor(Current.ClampScaner, Color.Gray);
+                }));
             }
 
             return true;
@@ -1305,7 +1304,7 @@ namespace CAMEL.Baking.App
                 {
                     int index = i;//如果直接用i, 则完成循环后 i一直 = OvenCount
                     timerFeederRuns[i] = new System.Timers.Timer();
-                    timerFeederRuns[i].Interval = TengDa._Convert.StrToInt(TengDa.WF.Option.GetOption("CheckPlcPeriod"), 1000) / 3;
+                    timerFeederRuns[i].Interval = 500;
                     timerFeederRuns[i].Elapsed += delegate
                     {
                         Thread listen = new Thread(new ParameterizedThreadStart(FeederRunInvokeFunc));
@@ -1501,7 +1500,10 @@ namespace CAMEL.Baking.App
                         ScanResult result = Current.ClampScaner.StartScan(out code, out msg);
                         if (result == ScanResult.OK)
                         {
-                            this.SetMachineStatusInfo(Current.ClampScaner, "+" + code);
+                            this.BeginInvoke(new MethodInvoker(() =>
+                            {
+                                this.SetMachineStatusInfo(Current.ClampScaner, "+" + code);
+                            }));
                             Current.Feeder.NextFeedClampId = Clamp.Add(code, out msg);
                             if (!Current.Feeder.SetScanClampResult(ScanResult.OK, out msg))
                             {
@@ -1510,7 +1512,10 @@ namespace CAMEL.Baking.App
                         }
                         else if (result == ScanResult.NG || result == ScanResult.Timeout)
                         {
-                            this.SetMachineStatusInfo(Current.ClampScaner, "扫码NG");
+                            this.BeginInvoke(new MethodInvoker(() =>
+                            {
+                                this.SetMachineStatusInfo(Current.ClampScaner, "扫码NG");
+                            }));
 
                             if (!Current.Feeder.SetScanClampResult(ScanResult.NG, out msg))
                             {
@@ -1674,18 +1679,18 @@ namespace CAMEL.Baking.App
                         }
                     }
 
-                    //测试OK出炉前泄真空
-                    var floors2 = Floor.FloorList.Where(f => f.IsAlive && f.IsVacuum && !f.Stations[0].IsOpenDoorIntervene && f.Stations.Count(s => s.FloorStatus == FloorStatus.待出) > 0 && f.Stations.Count(s => s.SampleStatus == SampleStatus.水分OK) > 0).OrderBy(f => f.Stations[0].GetPutTime);
-                    if (floors2.Count() > 0)
-                    {
-                        var floor = floors2.First();
-                        if (floor.RunRemainMinutes <= 0)
-                        {
-                            var oven = floor.GetOven();
-                            var jj = oven.Floors.IndexOf(floor);
-                            oven.UploadVacuum(jj);
-                        }
-                    }
+                    ////测试OK出炉前泄真空
+                    //var floors2 = Floor.FloorList.Where(f => f.IsAlive && f.IsVacuum && !f.Stations[0].IsOpenDoorIntervene && f.Stations.Count(s => s.FloorStatus == FloorStatus.待出) > 0 && f.Stations.Count(s => s.SampleStatus == SampleStatus.水分OK) > 0).OrderBy(f => f.Stations[0].GetPutTime);
+                    //if (floors2.Count() > 0)
+                    //{
+                    //    var floor = floors2.First();
+                    //    if (floor.RunRemainMinutes <= 0)
+                    //    {
+                    //        var oven = floor.GetOven();
+                    //        var jj = oven.Floors.IndexOf(floor);
+                    //        oven.UploadVacuum(jj);
+                    //    }
+                    //}
 
 
                     //List<ClampOri> ClampOris = new List<ClampOri> { ClampOri.A, ClampOri.B };
@@ -1742,29 +1747,29 @@ namespace CAMEL.Baking.App
                 }
 
                 //无论手动还是自动任务模式都会执行
-                for (int i = 0; i < OvenCount; i++)
-                {
-                    for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
-                    {
-                        Floor floor = Current.ovens[i].Floors[j];
+                //for (int i = 0; i < OvenCount; i++)
+                //{
+                //    for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
+                //    {
+                //        Floor floor = Current.ovens[i].Floors[j];
 
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤) == 2)
-                        {
-                            floor.Stations.ForEach(s =>
-                            {
-                                s.SampleStatus = SampleStatus.待结果;
-                            });
-                        }
+                //        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.烘烤) == 2)
+                //        {
+                //            floor.Stations.ForEach(s =>
+                //            {
+                //                s.SampleStatus = SampleStatus.待结果;
+                //            });
+                //        }
 
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleInfo == SampleInfo.无样品) == 2)
-                        {
-                            floor.Stations.ForEach(s =>
-                            {
-                                s.SampleStatus = SampleStatus.水分OK;
-                            });
-                        }
-                    }
-                }
+                //        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleInfo == SampleInfo.无样品) == 2)
+                //        {
+                //            floor.Stations.ForEach(s =>
+                //            {
+                //                s.SampleStatus = SampleStatus.水分OK;
+                //            });
+                //        }
+                //    }
+                //}
             }
         }
 
@@ -1833,7 +1838,7 @@ namespace CAMEL.Baking.App
                 {
                     this.SetMachineStatusInfo(Current.mes, "上传烘烤数据ID:" + clamps[0].Id);
                 }));
-                MES.UploadBatteryInfo(clamps);
+               // MES.UploadBatteryInfo(clamps);
             }
             catch (Exception ex)
             {
@@ -1852,7 +1857,7 @@ namespace CAMEL.Baking.App
                 {
                     this.SetMachineStatusInfo(Current.mes, "上传设备数据...");
                 }));
-                MES.UploadMachineStatus();
+                //MES.UploadMachineStatus();
             }
             catch (Exception ex)
             {
@@ -3219,55 +3224,6 @@ namespace CAMEL.Baking.App
                 }));
             }
             LogHelper.WriteInfo(tip);
-        }
-
-        #endregion
-
-        #region 手动调试夹具扫码枪
-
-        private void btnClampScanStart_Click(object sender, EventArgs e)
-        {
-            string code = string.Empty;
-            string msg = string.Empty;
-            ScanResult scanResult = Current.ClampScaner.StartScan(out code, out msg);
-            if (scanResult == ScanResult.OK)
-            {
-                Tip.Alert(code);
-            }
-            else if (scanResult == ScanResult.NG)
-            {
-                Tip.Alert("扫码返回NG！");
-            }
-            else
-            {
-                Error.Alert(msg);
-            }
-        }
-
-        private void btnClampScanOkBackToFeeder_Click(object sender, EventArgs e)
-        {
-            string msg = string.Empty;
-            if (!Current.Feeder.SetScanClampResult(ScanResult.OK, out msg))
-            {
-                Error.Alert(msg);
-            }
-            else
-            {
-                Tip.Alert("OK");
-            }
-        }
-
-        private void btnClampScanNgBackToFeeder_Click(object sender, EventArgs e)
-        {
-            string msg = string.Empty;
-            if (!Current.Feeder.SetScanClampResult(ScanResult.NG, out msg))
-            {
-                Error.Alert(msg);
-            }
-            else
-            {
-                Tip.Alert("OK");
-            }
         }
 
         #endregion

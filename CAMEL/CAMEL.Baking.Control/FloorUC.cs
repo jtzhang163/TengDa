@@ -78,18 +78,18 @@ namespace CAMEL.Baking.Control
 
                 for (var x = 0; x < ss.Count; x++)
                 {
-                    if (ss[x].FloorStatus == FloorStatus.待出)
-                    {
-                        strs[x] = ss[x].SampleStatus == SampleStatus.待结果 ? "待测" : ss[x].SampleStatus == SampleStatus.水分OK ? "OK" : ss[x].SampleStatus == SampleStatus.水分NG ? "NG" : "未知";
-                    }
-                    else if (ss[x].FloorStatus == FloorStatus.待烤 && ss[x].SampleStatus == SampleStatus.水分NG)
-                    {
-                        strs[x] = "NG";
-                    }
-                    else
-                    {
-                        strs[x] = ss[x].FloorStatus.ToString();
-                    }
+                    //if (ss[x].FloorStatus == FloorStatus.待出)
+                    //{
+                    //    strs[x] = ss[x].SampleStatus == SampleStatus.待结果 ? "待测" : ss[x].SampleStatus == SampleStatus.水分OK ? "OK" : ss[x].SampleStatus == SampleStatus.水分NG ? "NG" : "未知";
+                    //}
+                    //else if (ss[x].FloorStatus == FloorStatus.待烤 && ss[x].SampleStatus == SampleStatus.水分NG)
+                    //{
+                    //    strs[x] = "NG";
+                    //}
+                    //else
+                    //{
+                    strs[x] = ss[x].FloorStatus.ToString();
+                    //}
                 }
 
                 if (floor.IsBaking)
@@ -438,46 +438,6 @@ namespace CAMEL.Baking.Control
             oven.OpenNetControl(oven.Floors.IndexOf(floor));
         }
 
-        private void TsmWatContentTestOK_Click(object sender, EventArgs e)
-        {
-            var floorName = this.floor.Name;
-            DialogResult dr = MessageBox.Show("确定" + floorName + "水分测试结果OK？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-            if (dr == DialogResult.OK)
-            {
-                this.floor.Stations.ForEach(s =>
-                {
-                    if (s.ClampStatus == ClampStatus.满夹具)
-                    {
-                        s.SampleStatus = SampleStatus.水分OK;
-                        s.FloorStatus = FloorStatus.待出;
-                        s.SampleInfo = SampleInfo.无样品;
-                    }
-                    else
-                    {
-                        s.SampleStatus = SampleStatus.未知;
-                    }
-                });
-            }
-        }
-
-        private void TsmWatContentTestNG_Click(object sender, EventArgs e)
-        {
-
-            var floorName = this.floor.Name;
-            DialogResult dr = MessageBox.Show("确定" + floorName + "水分测试结果NG？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-            if (dr == DialogResult.OK)
-            {
-                this.floor.Stations.ForEach(s =>
-                {
-                    if (s.ClampStatus == ClampStatus.满夹具)
-                    {
-                        s.SampleStatus = SampleStatus.水分NG;
-                        s.FloorStatus = FloorStatus.待烤;
-                    }
-                });
-            }
-        }
-
         private void TlpFloor_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
         {
             if (this.floor == null) return;
@@ -514,22 +474,22 @@ namespace CAMEL.Baking.Control
                         }
                         else
                         {
-                            if (station.SampleStatus == SampleStatus.待结果 && station.FloorStatus == FloorStatus.待出)
+                            //if (station.SampleStatus == SampleStatus.待结果 && station.FloorStatus == FloorStatus.待出)
+                            //{
+                            //    brush = Brushes.DeepSkyBlue;
+                            //}
+                            //else
+                            //{
+                            switch (station.FloorStatus)
                             {
-                                brush = Brushes.DeepSkyBlue;
+                                case FloorStatus.无盘: brush = Brushes.White; break;
+                                case FloorStatus.空盘: brush = Brushes.Cyan; break;
+                                case FloorStatus.待烤: brush = Brushes.Yellow; break;
+                                case FloorStatus.烘烤: brush = Brushes.Pink; break;
+                                case FloorStatus.待出: brush = Brushes.LimeGreen; break;
+                                default: brush = Brushes.WhiteSmoke; break;
                             }
-                            else
-                            {
-                                switch (station.FloorStatus)
-                                {
-                                    case FloorStatus.无盘: brush = Brushes.White; break;
-                                    case FloorStatus.空盘: brush = Brushes.Cyan; break;
-                                    case FloorStatus.待烤: brush = Brushes.Yellow; break;
-                                    case FloorStatus.烘烤: brush = Brushes.Pink; break;
-                                    case FloorStatus.待出: brush = Brushes.LimeGreen; break;
-                                    default: brush = Brushes.WhiteSmoke; break;
-                                }
-                            }
+                            //}
                         }
                     }
                 }

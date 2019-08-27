@@ -11,5 +11,17 @@
     <Setting Name="Anchitech_Baking_MesService_EquipService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://192.168.100.11:8094/EquipService.asmx</Value>
     </Setting>
+    <Setting Name="CAMEL_Baking_DeviceStatusRecordService_DeviceStatusRecordService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://172.21.30.251:9010/DeviceStatusRecordService.asmx</Value>
+    </Setting>
+    <Setting Name="CAMEL_Baking_IdentityVerificationService_IdentityVerificationService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://172.21.30.251:9010/IdentityVerificationService.asmx</Value>
+    </Setting>
+    <Setting Name="CAMEL_Baking_ProductionDataUploadService_ProductionDataUploadService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://172.21.30.251:9010/ProductionDataUploadService.asmx</Value>
+    </Setting>
+    <Setting Name="CAMEL_Baking_TrayBindingService_TrayBindingService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://172.21.30.251:9010/TrayBindingService.asmx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

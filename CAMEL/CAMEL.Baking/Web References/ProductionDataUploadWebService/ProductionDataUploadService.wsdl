@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://172.21.30.251/CamelPostSection/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://172.21.30.251/CamelPostSection/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://172.21.30.251/CamelPostSection/">
+      <s:element name="UploadInjectionData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadInjectionDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadInjectionDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInjectionWeightData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInjectionWeightDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInjectionWeightDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadDegas1Data">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadDegas1DataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadDegas1DataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadDegas2Data">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadDegas2DataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadDegas2DataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadSecondaryHighTempData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadSecondaryHighTempDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadSecondaryHighTempDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadIntoATankData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadIntoATankDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadIntoATankDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadSubCapacityCabinetData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadSubCapacityCabinetDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadSubCapacityCabinetDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubCapacityCabinetResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubCapacityCabinetResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSubCapacityCabinetResultResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadOCV1_2Data">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadOCV1_2DataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadOCV1_2DataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadOCV3_4Data">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadOCV3_4DataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadOCV3_4DataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="UploadInjectionDataSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadInjectionData" />
+  </wsdl:message>
+  <wsdl:message name="UploadInjectionDataSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadInjectionDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInjectionWeightDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInjectionWeightData" />
+  </wsdl:message>
+  <wsdl:message name="GetInjectionWeightDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInjectionWeightDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadDegas1DataSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadDegas1Data" />
+  </wsdl:message>
+  <wsdl:message name="UploadDegas1DataSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadDegas1DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadDegas2DataSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadDegas2Data" />
+  </wsdl:message>
+  <wsdl:message name="UploadDegas2DataSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadDegas2DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadSecondaryHighTempDataSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadSecondaryHighTempData" />
+  </wsdl:message>
+  <wsdl:message name="UploadSecondaryHighTempDataSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadSecondaryHighTempDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadIntoATankDataSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadIntoATankData" />
+  </wsdl:message>
+  <wsdl:message name="UploadIntoATankDataSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadIntoATankDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadSubCapacityCabinetDataSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadSubCapacityCabinetData" />
+  </wsdl:message>
+  <wsdl:message name="UploadSubCapacityCabinetDataSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadSubCapacityCabinetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSubCapacityCabinetResultSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSubCapacityCabinetResult" />
+  </wsdl:message>
+  <wsdl:message name="GetSubCapacityCabinetResultSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSubCapacityCabinetResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadOCV1_2DataSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadOCV1_2Data" />
+  </wsdl:message>
+  <wsdl:message name="UploadOCV1_2DataSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadOCV1_2DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadOCV3_4DataSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadOCV3_4Data" />
+  </wsdl:message>
+  <wsdl:message name="UploadOCV3_4DataSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadOCV3_4DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadInjectionDataHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadInjectionDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetInjectionWeightDataHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetInjectionWeightDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadDegas1DataHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadDegas1DataHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadDegas2DataHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadDegas2DataHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadSecondaryHighTempDataHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadSecondaryHighTempDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadIntoATankDataHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadIntoATankDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadSubCapacityCabinetDataHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadSubCapacityCabinetDataHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSubCapacityCabinetResultHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSubCapacityCabinetResultHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadOCV1_2DataHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadOCV1_2DataHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadOCV3_4DataHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadOCV3_4DataHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadInjectionDataHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadInjectionDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetInjectionWeightDataHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetInjectionWeightDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadDegas1DataHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadDegas1DataHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadDegas2DataHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadDegas2DataHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadSecondaryHighTempDataHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadSecondaryHighTempDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadIntoATankDataHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadIntoATankDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadSubCapacityCabinetDataHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadSubCapacityCabinetDataHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSubCapacityCabinetResultHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSubCapacityCabinetResultHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadOCV1_2DataHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadOCV1_2DataHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadOCV3_4DataHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UploadOCV3_4DataHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="ProductionDataUploadServiceSoap">
+    <wsdl:operation name="UploadInjectionData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传注液数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadInjectionDataSoapIn" />
+      <wsdl:output message="tns:UploadInjectionDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInjectionWeightData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取注液前后重量数据</wsdl:documentation>
+      <wsdl:input message="tns:GetInjectionWeightDataSoapIn" />
+      <wsdl:output message="tns:GetInjectionWeightDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadDegas1Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传一封机数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadDegas1DataSoapIn" />
+      <wsdl:output message="tns:UploadDegas1DataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadDegas2Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传二封机数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadDegas2DataSoapIn" />
+      <wsdl:output message="tns:UploadDegas2DataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadSecondaryHighTempData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传二次高温数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadSecondaryHighTempDataSoapIn" />
+      <wsdl:output message="tns:UploadSecondaryHighTempDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadIntoATankData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传化成柜数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadIntoATankDataSoapIn" />
+      <wsdl:output message="tns:UploadIntoATankDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadSubCapacityCabinetData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传分容数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadSubCapacityCabinetDataSoapIn" />
+      <wsdl:output message="tns:UploadSubCapacityCabinetDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubCapacityCabinetResult">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询产品分容结果</wsdl:documentation>
+      <wsdl:input message="tns:GetSubCapacityCabinetResultSoapIn" />
+      <wsdl:output message="tns:GetSubCapacityCabinetResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadOCV1_2Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传OCV1_2数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadOCV1_2DataSoapIn" />
+      <wsdl:output message="tns:UploadOCV1_2DataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadOCV3_4Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传OCV3_4数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadOCV3_4DataSoapIn" />
+      <wsdl:output message="tns:UploadOCV3_4DataSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ProductionDataUploadServiceHttpGet">
+    <wsdl:operation name="UploadInjectionData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传注液数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadInjectionDataHttpGetIn" />
+      <wsdl:output message="tns:UploadInjectionDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInjectionWeightData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取注液前后重量数据</wsdl:documentation>
+      <wsdl:input message="tns:GetInjectionWeightDataHttpGetIn" />
+      <wsdl:output message="tns:GetInjectionWeightDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadDegas1Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传一封机数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadDegas1DataHttpGetIn" />
+      <wsdl:output message="tns:UploadDegas1DataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadDegas2Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传二封机数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadDegas2DataHttpGetIn" />
+      <wsdl:output message="tns:UploadDegas2DataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadSecondaryHighTempData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传二次高温数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadSecondaryHighTempDataHttpGetIn" />
+      <wsdl:output message="tns:UploadSecondaryHighTempDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadIntoATankData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传化成柜数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadIntoATankDataHttpGetIn" />
+      <wsdl:output message="tns:UploadIntoATankDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadSubCapacityCabinetData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传分容数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadSubCapacityCabinetDataHttpGetIn" />
+      <wsdl:output message="tns:UploadSubCapacityCabinetDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubCapacityCabinetResult">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询产品分容结果</wsdl:documentation>
+      <wsdl:input message="tns:GetSubCapacityCabinetResultHttpGetIn" />
+      <wsdl:output message="tns:GetSubCapacityCabinetResultHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadOCV1_2Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传OCV1_2数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadOCV1_2DataHttpGetIn" />
+      <wsdl:output message="tns:UploadOCV1_2DataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadOCV3_4Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传OCV3_4数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadOCV3_4DataHttpGetIn" />
+      <wsdl:output message="tns:UploadOCV3_4DataHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ProductionDataUploadServiceHttpPost">
+    <wsdl:operation name="UploadInjectionData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传注液数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadInjectionDataHttpPostIn" />
+      <wsdl:output message="tns:UploadInjectionDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInjectionWeightData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取注液前后重量数据</wsdl:documentation>
+      <wsdl:input message="tns:GetInjectionWeightDataHttpPostIn" />
+      <wsdl:output message="tns:GetInjectionWeightDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadDegas1Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传一封机数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadDegas1DataHttpPostIn" />
+      <wsdl:output message="tns:UploadDegas1DataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadDegas2Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传二封机数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadDegas2DataHttpPostIn" />
+      <wsdl:output message="tns:UploadDegas2DataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadSecondaryHighTempData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传二次高温数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadSecondaryHighTempDataHttpPostIn" />
+      <wsdl:output message="tns:UploadSecondaryHighTempDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadIntoATankData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传化成柜数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadIntoATankDataHttpPostIn" />
+      <wsdl:output message="tns:UploadIntoATankDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadSubCapacityCabinetData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传分容数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadSubCapacityCabinetDataHttpPostIn" />
+      <wsdl:output message="tns:UploadSubCapacityCabinetDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubCapacityCabinetResult">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询产品分容结果</wsdl:documentation>
+      <wsdl:input message="tns:GetSubCapacityCabinetResultHttpPostIn" />
+      <wsdl:output message="tns:GetSubCapacityCabinetResultHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadOCV1_2Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传OCV1_2数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadOCV1_2DataHttpPostIn" />
+      <wsdl:output message="tns:UploadOCV1_2DataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadOCV3_4Data">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传OCV3_4数据</wsdl:documentation>
+      <wsdl:input message="tns:UploadOCV3_4DataHttpPostIn" />
+      <wsdl:output message="tns:UploadOCV3_4DataHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProductionDataUploadServiceSoap" type="tns:ProductionDataUploadServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadInjectionData">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/UploadInjectionData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInjectionWeightData">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/GetInjectionWeightData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDegas1Data">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/UploadDegas1Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDegas2Data">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/UploadDegas2Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadSecondaryHighTempData">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/UploadSecondaryHighTempData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadIntoATankData">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/UploadIntoATankData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadSubCapacityCabinetData">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/UploadSubCapacityCabinetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubCapacityCabinetResult">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/GetSubCapacityCabinetResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadOCV1_2Data">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/UploadOCV1_2Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadOCV3_4Data">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/UploadOCV3_4Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProductionDataUploadServiceSoap12" type="tns:ProductionDataUploadServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadInjectionData">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/UploadInjectionData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInjectionWeightData">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/GetInjectionWeightData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDegas1Data">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/UploadDegas1Data" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDegas2Data">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/UploadDegas2Data" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadSecondaryHighTempData">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/UploadSecondaryHighTempData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadIntoATankData">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/UploadIntoATankData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadSubCapacityCabinetData">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/UploadSubCapacityCabinetData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubCapacityCabinetResult">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/GetSubCapacityCabinetResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadOCV1_2Data">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/UploadOCV1_2Data" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadOCV3_4Data">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/UploadOCV3_4Data" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProductionDataUploadServiceHttpGet" type="tns:ProductionDataUploadServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="UploadInjectionData">
+      <http:operation location="/UploadInjectionData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInjectionWeightData">
+      <http:operation location="/GetInjectionWeightData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDegas1Data">
+      <http:operation location="/UploadDegas1Data" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDegas2Data">
+      <http:operation location="/UploadDegas2Data" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadSecondaryHighTempData">
+      <http:operation location="/UploadSecondaryHighTempData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadIntoATankData">
+      <http:operation location="/UploadIntoATankData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadSubCapacityCabinetData">
+      <http:operation location="/UploadSubCapacityCabinetData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubCapacityCabinetResult">
+      <http:operation location="/GetSubCapacityCabinetResult" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadOCV1_2Data">
+      <http:operation location="/UploadOCV1_2Data" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadOCV3_4Data">
+      <http:operation location="/UploadOCV3_4Data" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProductionDataUploadServiceHttpPost" type="tns:ProductionDataUploadServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="UploadInjectionData">
+      <http:operation location="/UploadInjectionData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInjectionWeightData">
+      <http:operation location="/GetInjectionWeightData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDegas1Data">
+      <http:operation location="/UploadDegas1Data" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDegas2Data">
+      <http:operation location="/UploadDegas2Data" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadSecondaryHighTempData">
+      <http:operation location="/UploadSecondaryHighTempData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadIntoATankData">
+      <http:operation location="/UploadIntoATankData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadSubCapacityCabinetData">
+      <http:operation location="/UploadSubCapacityCabinetData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubCapacityCabinetResult">
+      <http:operation location="/GetSubCapacityCabinetResult" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadOCV1_2Data">
+      <http:operation location="/UploadOCV1_2Data" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadOCV3_4Data">
+      <http:operation location="/UploadOCV3_4Data" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProductionDataUploadService">
+    <wsdl:port name="ProductionDataUploadServiceSoap" binding="tns:ProductionDataUploadServiceSoap">
+      <soap:address location="http://172.21.30.251:9010/ProductionDataUploadService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ProductionDataUploadServiceSoap12" binding="tns:ProductionDataUploadServiceSoap12">
+      <soap12:address location="http://172.21.30.251:9010/ProductionDataUploadService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ProductionDataUploadServiceHttpGet" binding="tns:ProductionDataUploadServiceHttpGet">
+      <http:address location="http://172.21.30.251:9010/ProductionDataUploadService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ProductionDataUploadServiceHttpPost" binding="tns:ProductionDataUploadServiceHttpPost">
+      <http:address location="http://172.21.30.251:9010/ProductionDataUploadService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -12,7 +12,7 @@ namespace CAMEL.Baking.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.2.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -51,6 +51,46 @@ namespace CAMEL.Baking.Properties {
         public string Anchitech_Baking_MesService_EquipService {
             get {
                 return ((string)(this["Anchitech_Baking_MesService_EquipService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://172.21.30.251:9010/DeviceStatusRecordService.asmx")]
+        public string CAMEL_Baking_DeviceStatusRecordService_DeviceStatusRecordService {
+            get {
+                return ((string)(this["CAMEL_Baking_DeviceStatusRecordService_DeviceStatusRecordService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://172.21.30.251:9010/IdentityVerificationService.asmx")]
+        public string CAMEL_Baking_IdentityVerificationService_IdentityVerificationService {
+            get {
+                return ((string)(this["CAMEL_Baking_IdentityVerificationService_IdentityVerificationService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://172.21.30.251:9010/ProductionDataUploadService.asmx")]
+        public string CAMEL_Baking_ProductionDataUploadService_ProductionDataUploadService {
+            get {
+                return ((string)(this["CAMEL_Baking_ProductionDataUploadService_ProductionDataUploadService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://172.21.30.251:9010/TrayBindingService.asmx")]
+        public string CAMEL_Baking_TrayBindingService_TrayBindingService {
+            get {
+                return ((string)(this["CAMEL_Baking_TrayBindingService_TrayBindingService"]));
             }
         }
     }

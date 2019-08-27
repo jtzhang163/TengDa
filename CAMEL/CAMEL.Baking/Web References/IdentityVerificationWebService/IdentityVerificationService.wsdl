@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://172.21.30.251/CamelPostSection/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://172.21.30.251/CamelPostSection/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://172.21.30.251/CamelPostSection/">
+      <s:element name="IdentityVerification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IdentityVerificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IdentityVerificationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="IdentityVerificationSoapIn">
+    <wsdl:part name="parameters" element="tns:IdentityVerification" />
+  </wsdl:message>
+  <wsdl:message name="IdentityVerificationSoapOut">
+    <wsdl:part name="parameters" element="tns:IdentityVerificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IdentityVerificationHttpGetIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IdentityVerificationHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="IdentityVerificationHttpPostIn">
+    <wsdl:part name="xmlParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IdentityVerificationHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="IdentityVerificationServiceSoap">
+    <wsdl:operation name="IdentityVerification">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">身份验证</wsdl:documentation>
+      <wsdl:input message="tns:IdentityVerificationSoapIn" />
+      <wsdl:output message="tns:IdentityVerificationSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IdentityVerificationServiceHttpGet">
+    <wsdl:operation name="IdentityVerification">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">身份验证</wsdl:documentation>
+      <wsdl:input message="tns:IdentityVerificationHttpGetIn" />
+      <wsdl:output message="tns:IdentityVerificationHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IdentityVerificationServiceHttpPost">
+    <wsdl:operation name="IdentityVerification">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">身份验证</wsdl:documentation>
+      <wsdl:input message="tns:IdentityVerificationHttpPostIn" />
+      <wsdl:output message="tns:IdentityVerificationHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IdentityVerificationServiceSoap" type="tns:IdentityVerificationServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IdentityVerification">
+      <soap:operation soapAction="http://172.21.30.251/CamelPostSection/IdentityVerification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IdentityVerificationServiceSoap12" type="tns:IdentityVerificationServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IdentityVerification">
+      <soap12:operation soapAction="http://172.21.30.251/CamelPostSection/IdentityVerification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IdentityVerificationServiceHttpGet" type="tns:IdentityVerificationServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="IdentityVerification">
+      <http:operation location="/IdentityVerification" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IdentityVerificationServiceHttpPost" type="tns:IdentityVerificationServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="IdentityVerification">
+      <http:operation location="/IdentityVerification" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IdentityVerificationService">
+    <wsdl:port name="IdentityVerificationServiceSoap" binding="tns:IdentityVerificationServiceSoap">
+      <soap:address location="http://172.21.30.251:9010/IdentityVerificationService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IdentityVerificationServiceSoap12" binding="tns:IdentityVerificationServiceSoap12">
+      <soap12:address location="http://172.21.30.251:9010/IdentityVerificationService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IdentityVerificationServiceHttpGet" binding="tns:IdentityVerificationServiceHttpGet">
+      <http:address location="http://172.21.30.251:9010/IdentityVerificationService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IdentityVerificationServiceHttpPost" binding="tns:IdentityVerificationServiceHttpPost">
+      <http:address location="http://172.21.30.251:9010/IdentityVerificationService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

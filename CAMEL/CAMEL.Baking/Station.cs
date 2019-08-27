@@ -1026,9 +1026,9 @@ namespace CAMEL.Baking
 
     public enum SampleStatus
     {
-        待结果,
-        水分OK,
-        水分NG,
+        //待结果,
+        //水分OK,
+        //水分NG,
         未知
     }
 
