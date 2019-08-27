@@ -68,6 +68,12 @@
     <Compile Include="MachineStatusUC.Designer.cs">
       <DependentUpon>MachineStatusUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesDubugUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesDubugUC.Designer.cs">
+      <DependentUpon>MesDubugUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="OvenParamUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -178,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineStatusUC.resx">
       <DependentUpon>MachineStatusUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesDubugUC.resx">
+      <DependentUpon>MesDubugUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OvenParamUC.resx">
       <DependentUpon>OvenParamUC.cs</DependentUpon>

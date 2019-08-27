@@ -854,76 +854,7 @@ namespace CAMEL.Baking
             }
         }
 
-
-        public string[,] GetTemStrs = new string[3, 2]
-        {
-            { "%01#RDD0005100074**", "%01#RDD0011100134**" },
-               { "%01#RDD0017100194**", "%01#RDD0023100254**" },
-                 { "%01#RDD0029100314**", "%01#RDD0035100374**" },
-        };
-
-        public string[] OpenOvenDoorStrs = new string[3]
-        {
-            "%01#WCP1R09011**",
-            "%01#WCP1R09111**",
-            "%01#WCP1R09211**"
-        };
-
-        public string[] CloseOvenDoorStrs = new string[3]
-        {
-            "%01#WCP1R09021**",
-            "%01#WCP1R09121**",
-            "%01#WCP1R09221**"
-        };
-
-        public string[] StartBakingStrs = new string[3]
-        {
-            "%01#WCP1R06011**",
-            "%01#WCP1R06111**",
-            "%01#WCP1R06211**"
-        };
-
-        public string[] StopBakingStrs = new string[3]
-        {
-            "%01#WCP1R06010**",
-            "%01#WCP1R06110**",
-            "%01#WCP1R06210**"
-        };
-
-        public string[] LoadVacuumStrs = new string[3]
-        {
-            "%01#WCP1R06081**",
-            "%01#WCP1R06181**",
-            "%01#WCP1R06281**"
-        };
-
-        public string[] UnloadVacuumStrs = new string[3]
-        {
-            "%01#WCP1R06091**",
-            "%01#WCP1R06191**",
-            "%01#WCP1R06291**"
-        };
-
-        public string[] GetRuntimeStrs = new string[3]
-        {
-            "%01#RDD0501805018**",
-            "%01#RDD0505805058**",
-            "%01#RDD0509805098**"
-        };
-
-        public string[] GetRuntimeSetStrs = new string[3]
-        {
-            "%01#RDD0502005020**",
-            "%01#RDD0506005060**",
-            "%01#RDD0510005100**"
-        };
-
-        public string[] OpenNetControlStrs = new string[3]
-        {
-            "%01#WCP1R060B1**",
-            "%01#WCP1R061B1**",
-            "%01#WCP1R062B1**"
-        };
+        
 
         [Browsable(false)]
         public string FloorShowInfoType { get; set; } = "默认信息";
@@ -951,6 +882,115 @@ namespace CAMEL.Baking
                 {
                     TengDa.WF.Option.SetOption("CurrentWorkNum", value.ToString());
                     currentWorkNum = value;
+                }
+            }
+        }
+
+
+
+
+        private string mesManuIdentityVerificationInput = string.Empty;
+        /// <summary>
+        /// MES手动调试身份验证请求数据
+        /// </summary>
+        [DisplayName("MES手动调试身份验证请求数据")]
+        [Browsable(false)]
+        public string MesManuIdentityVerificationInput
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(mesManuIdentityVerificationInput))
+                {
+                    mesManuIdentityVerificationInput = TengDa.WF.Option.GetOption("MesManuIdentityVerificationInput");
+                }
+                return mesManuIdentityVerificationInput;
+            }
+            set
+            {
+                if (value != mesManuIdentityVerificationInput)
+                {
+                    TengDa.WF.Option.SetOption("MesManuIdentityVerificationInput", value);
+                    mesManuIdentityVerificationInput = value;
+                }
+            }
+        }
+
+
+        private string mesManuGetTrayBindingInfoInput = string.Empty;
+        /// <summary>
+        /// MES手动调试电芯与托盘信息查询请求数据
+        /// </summary>
+        [DisplayName("MES手动调试电芯与托盘信息查询请求数据")]
+        [Browsable(false)]
+        public string MesManuGetTrayBindingInfoInput
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(mesManuGetTrayBindingInfoInput))
+                {
+                    mesManuGetTrayBindingInfoInput = TengDa.WF.Option.GetOption("MesManuGetTrayBindingInfoInput");
+                }
+                return mesManuGetTrayBindingInfoInput;
+            }
+            set
+            {
+                if (value != mesManuGetTrayBindingInfoInput)
+                {
+                    TengDa.WF.Option.SetOption("MesManuGetTrayBindingInfoInput", value);
+                    mesManuGetTrayBindingInfoInput = value;
+                }
+            }
+        }
+
+        private string mesManuRecordDeviceStatusInput = string.Empty;
+        /// <summary>
+        /// MES手动调试记录设备状态请求数据
+        /// </summary>
+        [DisplayName("MES手动调试记录设备状态请求数据")]
+        [Browsable(false)]
+        public string MesManuRecordDeviceStatusInput
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(mesManuRecordDeviceStatusInput))
+                {
+                    mesManuRecordDeviceStatusInput = TengDa.WF.Option.GetOption("MesManuRecordDeviceStatusInput");
+                }
+                return mesManuRecordDeviceStatusInput;
+            }
+            set
+            {
+                if (value != mesManuRecordDeviceStatusInput)
+                {
+                    TengDa.WF.Option.SetOption("MesManuRecordDeviceStatusInput", value);
+                    mesManuRecordDeviceStatusInput = value;
+                }
+            }
+        }
+
+
+        private string mesManuUploadSecondaryHighTempDataInput = string.Empty;
+        /// <summary>
+        /// MES手动调试二次高温数据上传请求数据
+        /// </summary>
+        [DisplayName("MES手动调试二次高温数据上传请求数据")]
+        [Browsable(false)]
+        public string MesManuUploadSecondaryHighTempDataInput
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(mesManuUploadSecondaryHighTempDataInput))
+                {
+                    mesManuUploadSecondaryHighTempDataInput = TengDa.WF.Option.GetOption("MesManuUploadSecondaryHighTempDataInput");
+                }
+                return mesManuUploadSecondaryHighTempDataInput;
+            }
+            set
+            {
+                if (value != mesManuUploadSecondaryHighTempDataInput)
+                {
+                    TengDa.WF.Option.SetOption("MesManuUploadSecondaryHighTempDataInput", value);
+                    mesManuUploadSecondaryHighTempDataInput = value;
                 }
             }
         }

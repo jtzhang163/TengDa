@@ -348,8 +348,6 @@ namespace CAMEL.Baking.App
             int iii = Current.ovens.IndexOf(sampleOven);
             int jjj = sampleOven.Floors.IndexOf(sampleFloor);
 
-            this.scanerDebugUC1.Init();
-
             if (Option.LineNum == 1)
             {
                 this.machinesStatus1UC.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -390,6 +388,9 @@ namespace CAMEL.Baking.App
             {
                 this.pageMain2UC.Init();
             }
+
+            this.scanerDebugUC1.Init();
+            this.mesDubugUC1.Init();
         }
 
         private void ManageSystem_FormClosing(object sender, FormClosingEventArgs e)

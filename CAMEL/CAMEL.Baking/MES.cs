@@ -294,7 +294,7 @@ namespace CAMEL.Baking
 
 
         private static IdentityVerificationService identityVerificationProxy = null;
-        private static IdentityVerificationService IdentityVerificationProxy
+        public static IdentityVerificationService IdentityVerificationProxy
         {
             get
             {
@@ -310,7 +310,7 @@ namespace CAMEL.Baking
         }
 
         private static TrayBindingService trayBindingProxy = null;
-        private static TrayBindingService TrayBindingProxy
+        public static TrayBindingService TrayBindingProxy
         {
             get
             {
@@ -326,7 +326,7 @@ namespace CAMEL.Baking
         }
 
         private static DeviceStatusRecordService deviceStatusRecordProxy = null;
-        private static DeviceStatusRecordService DeviceStatusRecordProxy
+        public static DeviceStatusRecordService DeviceStatusRecordProxy
         {
             get
             {
@@ -342,7 +342,7 @@ namespace CAMEL.Baking
         }
 
         private static ProductionDataUploadService productionDataUploadProxy = null;
-        private static ProductionDataUploadService ProductionDataUploadProxy
+        public static ProductionDataUploadService ProductionDataUploadProxy
         {
             get
             {
@@ -360,13 +360,54 @@ namespace CAMEL.Baking
 
         public static string IdentityVerification(string xmlParams)
         {
-            var retXmlString = "";
 
-            IdentityVerificationProxy.IdentityVerification(xmlParams);
-
-            return retXmlString;
+            try
+            {
+                return IdentityVerificationProxy.IdentityVerification(xmlParams);
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+           
         }
 
+        public static string GetTrayBindingInfo(string xmlParams)
+        {
+            try
+            {
+                return TrayBindingProxy.GetTrayBindingInfo(xmlParams);
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
+
+        public static string RecordDeviceStatus(string xmlParams)
+        {
+            try
+            {
+                return DeviceStatusRecordProxy.RecordDeviceStatus(xmlParams);
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public static string UploadSecondaryHighTempData(string xmlParams)
+        {
+            try
+            {
+                return ProductionDataUploadProxy.UploadSecondaryHighTempData(xmlParams);
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
         #endregion
     }
 
