@@ -882,7 +882,7 @@ namespace BYD.Scan.Dispatcher
                                 AddTips(string.Format("扫码：{0} ", code), false, false);
                                 //}
 
-                                if (Current.Lines[ii].WriteScanFinishInfo(j, out msg))
+                                if (Current.Lines[ii].WriteScanFinishInfoAuto(j, out msg))
                                 {
                                     AddTips("扫码结束信号成功写入 " + Current.Lines[ii].Touchscreen.Name, false, false);
                                     //LogHelper.WriteInfo("扫码结束信号成功写入 " + Current.Lines[ii].Touchscreen.Name);
@@ -893,7 +893,7 @@ namespace BYD.Scan.Dispatcher
                                 }
 
 
-                                if (Current.Lines[ii].ChildLines[j].AutoScaner.ScanFinish(scanResult, code, out ScanResult finalScanResult))
+                                if (Current.Lines[ii].ChildLines[j].AutoScaner.ScanFinishAuto(scanResult, code, out ScanResult finalScanResult))
                                 {
                                     if (Current.Lines[ii].WriteScanResultInfo(j, finalScanResult, out msg))
                                     {
@@ -942,9 +942,9 @@ namespace BYD.Scan.Dispatcher
                                 Scaner scaner = line.ChildLines[j].ManuScaner;
                                 if (scaner.IsEnable && scaner.IsAlive)
                                 {
-                                    if (scaner.Manu(out ScanResult finalScanResult))
+                                    if (scaner.Manu(out bool mesOK1, out bool batchOK1, out bool mesOK2, out bool batchOK2))
                                     {
-                                        if (line.WriteScanResultInfoManu(j, finalScanResult, out string msg))
+                                        if (line.WriteScanResultInfoManu(j, mesOK1, batchOK1, mesOK2, batchOK2, out string msg))
                                         {
                                             LogHelper.WriteInfo("【手动】两个扫码完成后结果成功写入 " + line.Touchscreen.Name);
                                         }

@@ -177,6 +177,8 @@
             this.tbTips = new System.Windows.Forms.TextBox();
             this.tabContentPageManuTest = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.mesDubugUC1 = new CAMEL.Baking.Control.MesDubugUC();
+            this.scanerDebugUC1 = new CAMEL.Baking.Control.ScanerDebugUC();
             this.tabContentTaskLog = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvTaskLog = new System.Windows.Forms.DataGridView();
@@ -244,10 +246,8 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.lbTime = new System.Windows.Forms.Label();
-            this.userDisplay = new TengDa.WF.Controls.UserDisplay2();
             this.yieldDisplay = new CAMEL.Baking.Control.YieldDisplay();
-            this.scanerDebugUC1 = new CAMEL.Baking.Control.ScanerDebugUC();
-            this.mesDubugUC1 = new CAMEL.Baking.Control.MesDubugUC();
+            this.userDisplay = new TengDa.WF.Controls.UserDisplay2();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -2093,6 +2093,25 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1178, 599);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
+            // mesDubugUC1
+            // 
+            this.tableLayoutPanel3.SetColumnSpan(this.mesDubugUC1, 2);
+            this.mesDubugUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mesDubugUC1.Location = new System.Drawing.Point(30, 30);
+            this.mesDubugUC1.Margin = new System.Windows.Forms.Padding(30);
+            this.mesDubugUC1.Name = "mesDubugUC1";
+            this.tableLayoutPanel3.SetRowSpan(this.mesDubugUC1, 4);
+            this.mesDubugUC1.Size = new System.Drawing.Size(724, 539);
+            this.mesDubugUC1.TabIndex = 1;
+            // 
+            // scanerDebugUC1
+            // 
+            this.scanerDebugUC1.Location = new System.Drawing.Point(814, 30);
+            this.scanerDebugUC1.Margin = new System.Windows.Forms.Padding(30);
+            this.scanerDebugUC1.Name = "scanerDebugUC1";
+            this.scanerDebugUC1.Size = new System.Drawing.Size(334, 109);
+            this.scanerDebugUC1.TabIndex = 0;
+            // 
             // tabContentTaskLog
             // 
             this.tabContentTaskLog.Controls.Add(this.tableLayoutPanel22);
@@ -3067,15 +3086,6 @@
             this.lbTime.Text = "当前时间";
             this.lbTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // userDisplay
-            // 
-            this.userDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userDisplay.Location = new System.Drawing.Point(5, 535);
-            this.userDisplay.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.userDisplay.Name = "userDisplay";
-            this.userDisplay.Size = new System.Drawing.Size(170, 65);
-            this.userDisplay.TabIndex = 17;
-            // 
             // yieldDisplay
             // 
             this.yieldDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -3086,25 +3096,14 @@
             this.yieldDisplay.TabIndex = 14;
             this.yieldDisplay.btnYieldClearClick += new CAMEL.Baking.Control.YieldDisplay.BtnClick(this.btnYieldClear_Click);
             // 
-            // scanerDebugUC1
+            // userDisplay
             // 
-            this.scanerDebugUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scanerDebugUC1.Location = new System.Drawing.Point(814, 30);
-            this.scanerDebugUC1.Margin = new System.Windows.Forms.Padding(30);
-            this.scanerDebugUC1.Name = "scanerDebugUC1";
-            this.scanerDebugUC1.Size = new System.Drawing.Size(334, 109);
-            this.scanerDebugUC1.TabIndex = 0;
-            // 
-            // mesDubugUC1
-            // 
-            this.tableLayoutPanel3.SetColumnSpan(this.mesDubugUC1, 2);
-            this.mesDubugUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mesDubugUC1.Location = new System.Drawing.Point(30, 30);
-            this.mesDubugUC1.Margin = new System.Windows.Forms.Padding(30);
-            this.mesDubugUC1.Name = "mesDubugUC1";
-            this.tableLayoutPanel3.SetRowSpan(this.mesDubugUC1, 4);
-            this.mesDubugUC1.Size = new System.Drawing.Size(724, 539);
-            this.mesDubugUC1.TabIndex = 1;
+            this.userDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userDisplay.Location = new System.Drawing.Point(5, 535);
+            this.userDisplay.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.userDisplay.Name = "userDisplay";
+            this.userDisplay.Size = new System.Drawing.Size(170, 65);
+            this.userDisplay.TabIndex = 17;
             // 
             // ManageSystem
             // 

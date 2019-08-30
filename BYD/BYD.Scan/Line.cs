@@ -62,6 +62,43 @@ namespace BYD.Scan
         [DisplayName("触摸屏ID"), ReadOnly(true)]
         public int TouchscreenId { get; set; }
 
+        private string currentBatch = string.Empty;
+        /// <summary>
+        /// 当前批次
+        /// </summary>
+        [DisplayName("当前批次")]
+        public string CurrentBatch
+        {
+            get { return currentBatch; }
+            set
+            {
+                if (currentBatch != value)
+                {
+                    UpdateDbField("CurrentBatch", value);
+                }
+                currentBatch = value;
+            }
+        }
+
+
+        private bool isMatchBatch = false;
+        /// <summary>
+        /// 当前批次是否必须匹配
+        /// </summary>
+        [DisplayName("当前批次是否必须匹配")]
+        public bool IsMatchBatch
+        {
+            get { return isMatchBatch; }
+            set
+            {
+                if (isMatchBatch != value)
+                {
+                    UpdateDbField("IsMatchBatch", value);
+                }
+                isMatchBatch = value;
+            }
+        }
+
         /// <summary>
         /// 子线列表
         /// </summary>
@@ -183,6 +220,8 @@ namespace BYD.Scan
             this.name = rowInfo["Name"].ToString();
             this.ParentId = TengDa._Convert.StrToInt(rowInfo["ParentId"].ToString(), -1);
             this.TouchscreenId = TengDa._Convert.StrToInt(rowInfo["TouchscreenId"].ToString(), -1);
+            this.currentBatch = rowInfo["CurrentBatch"].ToString();
+            this.isMatchBatch = Convert.ToBoolean(rowInfo["IsMatchBatch"]);
         }
         #endregion
 
@@ -298,7 +337,7 @@ namespace BYD.Scan
             return true;
         }
 
-        public bool WriteScanFinishInfo(int j, out string msg)
+        public bool WriteScanFinishInfoAuto(int j, out string msg)
         {
             return this.Touchscreen.SetInfo((1 + 6 * j).ToString(), (ushort)2, out msg);
         }
@@ -308,9 +347,40 @@ namespace BYD.Scan
             return this.Touchscreen.SetInfo((6 * j).ToString(), scanResult == ScanResult.OK ? (ushort)1 : (ushort)2, out msg);
         }
 
-        public bool WriteScanResultInfoManu(int j, ScanResult scanResult, out string msg)
+
+        public bool WriteScanResultInfoManu(int j, bool mesOK1, bool batchOK1, bool mesOK2, bool batchOK2, out string msg)
         {
-            return this.Touchscreen.SetInfo((6 * j).ToString(), scanResult == ScanResult.OK ? (ushort)6 : (ushort)7, out msg);
+            msg = "";
+            //A线
+            var addr1 = j == 0 ? "9" : "11";
+            var addr2 = j == 0 ? "2" : "8";
+
+            var ret1 = this.Touchscreen.SetInfo(addr1, GetWriteVal(mesOK1, batchOK1), out string msg1);
+            var ret2 = this.Touchscreen.SetInfo(addr2, GetWriteVal(mesOK2, batchOK2), out string msg2);
+
+            msg = msg1 + msg2;
+
+            return ret1 && ret2;
+        }
+
+        public ushort GetWriteVal(bool mesOK, bool batchOK)
+        {
+            if (mesOK && batchOK)
+            {
+                return (ushort)64;
+            }
+            else if (mesOK && !batchOK)
+            {
+                return (ushort)80;
+            }
+            else if (!mesOK && batchOK)
+            {
+                return (ushort)128;
+            } 
+            else
+            {
+                return (ushort)144;
+            }
         }
     }
 }

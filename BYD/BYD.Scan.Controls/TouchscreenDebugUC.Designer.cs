@@ -87,15 +87,18 @@
             this.cbAddr.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbAddr.FormattingEnabled = true;
             this.cbAddr.Items.AddRange(new object[] {
-            "0 4WUB001 【D900(A线)】",
-            "1 4WUB002 【D901(A线)】",
-            "2 4WUB003 【D902(A线)】",
+            "0 4WUB001 【A线D900】",
+            "1 4WUB002 【A线D901】",
+            "2 4WUB003 【A线D902】",
             "3 4WUB004",
             "4 4WUB005",
             "5 4WUB006",
-            "6 4WUB007 【D900(C线)】",
-            "7 4WUB008 【D901(C线)】",
-            "8 4WUB009 【D902(C线)】"});
+            "6 4WUB007 【C线D900】",
+            "7 4WUB008 【C线D901】",
+            "8 4WUB009 【C线D902】",
+            "9 4WUB010 【A线D903】",
+            "10 4WUB011",
+            "11 4WUB012 【C线D903】"});
             this.cbAddr.Location = new System.Drawing.Point(109, 80);
             this.cbAddr.Name = "cbAddr";
             this.cbAddr.Size = new System.Drawing.Size(206, 22);

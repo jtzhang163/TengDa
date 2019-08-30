@@ -238,6 +238,33 @@ namespace BYD.Scan
 
         #region 方法
 
+        /// <summary>
+        /// 条码是否属于当前批次
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public bool IsMatchingCurrentBatch(string code)
+        {
+            var currentBatch = "";
+            var isMatchBatch = false;
+            Current.Lines.ForEach(o1 =>
+            {
+                o1.ChildLines.ForEach(o2 =>
+                {
+                    o2.Scaners.ForEach(o3 =>
+                    {
+                        if (o3.Id == this.Id)
+                        {
+                            currentBatch = o1.CurrentBatch;
+                            isMatchBatch = o1.IsMatchBatch;
+                        }
+                    });
+                });
+            });
+            if (!isMatchBatch) return true; //不需要匹配批次 直接返回true
+            return code.StartsWith(currentBatch);//是否匹配，规则待确认！！！！！！
+        }
+
         public ScanResult StartScan(out string code, out string msg)
         {
             code = "";
@@ -268,11 +295,9 @@ namespace BYD.Scan
         }
 
         /// <summary>
-        /// 扫码结束逻辑
+        /// 自动扫码结束逻辑
         /// </summary>
-        /// <param name="scanResult"></param>
-        /// <returns>扫码结束，True：第二个扫码结束（可发送结果至触摸屏）</returns>
-        public bool ScanFinish(ScanResult scanResult, string code, out ScanResult finalScanResult)
+        public bool ScanFinishAuto(ScanResult scanResult, string code, out ScanResult finalScanResult)
         {
             finalScanResult = ScanResult.Error;
 
@@ -285,7 +310,6 @@ namespace BYD.Scan
             if (string.IsNullOrEmpty(this.Code1))
             {
                 this.Code1 = scanResult == ScanResult.OK ? code : "ERROR";
-
                 return false;
             }
             else if (string.IsNullOrEmpty(this.Code2))
@@ -299,12 +323,14 @@ namespace BYD.Scan
                     var mesResult1 = MES.CheckBattery(this.Code1);
                     var mesResult2 = MES.CheckBattery(this.Code2);
 
-                    Battery.Add(new Battery() { Code = this.Code1, ScanerId = this.Id, Location = mesResult1 }, out string msg);
+                    var isMatchingBatch1 = IsMatchingCurrentBatch(this.Code1);
+                    var isMatchingBatch2 = IsMatchingCurrentBatch(this.Code2);
 
-                    Battery.Add(new Battery() { Code = this.Code2, ScanerId = this.Id, Location = mesResult2 }, out msg);
-
-                    if (mesResult1.ToLower().Contains("ok") && mesResult2.ToLower().Contains("ok"))
+                    //两个条码均MES OK且批次OK才返回OK
+                    if (mesResult1.ToLower().Contains("ok") && mesResult2.ToLower().Contains("ok") && isMatchingBatch1 && isMatchingBatch2)
                     {
+                        Battery.Add(new Battery() { Code = this.Code1, ScanerId = this.Id, Location = mesResult1 }, out string msg);
+                        Battery.Add(new Battery() { Code = this.Code2, ScanerId = this.Id, Location = mesResult2 }, out msg);
                         finalScanResult = ScanResult.OK;
                     }
                     else
@@ -318,16 +344,63 @@ namespace BYD.Scan
             return true;
         }
 
-        public bool Manu(out ScanResult finalScanResult)
+        /// <summary>
+        /// 手动扫码结束逻辑
+        /// </summary>
+        public bool ScanFinishManu(string code, out bool mesOK1, out bool batchOK1, out bool mesOK2, out bool batchOK2)
         {
+            mesOK1 = false;
+            batchOK1 = false;
+            mesOK2 = false;
+            batchOK2 = false;
+
+            if (!string.IsNullOrEmpty(this.Code1) && !string.IsNullOrEmpty(this.Code2))
+            {
+                this.Code1 = "";
+                this.Code2 = "";
+            }
+
+            if (string.IsNullOrEmpty(this.Code1))
+            {
+                this.Code1 = code;
+                return false;
+            }
+            else if (string.IsNullOrEmpty(this.Code2))
+            {
+                this.Code2 = code;
+                LogHelper.WriteInfo(string.Format("获得先后两个条码：{0}，{1}", this.Code1, this.Code2));
+
+                var mesResult1 = MES.CheckBattery(this.Code1);
+                var mesResult2 = MES.CheckBattery(this.Code2);
+
+                Battery.Add(new Battery() { Code = this.Code1, ScanerId = this.Id, Location = mesResult1 }, out string msg);
+                Battery.Add(new Battery() { Code = this.Code2, ScanerId = this.Id, Location = mesResult2 }, out msg);
+
+                mesOK1 = mesResult1.ToLower().Contains("ok");
+                mesOK2 = mesResult2.ToLower().Contains("ok");
+
+                batchOK1 = IsMatchingCurrentBatch(this.Code1);
+                batchOK2 = IsMatchingCurrentBatch(this.Code2);
+
+                return true;
+            }
+            return true;
+        }
+
+        public bool Manu(out bool mesOK1, out bool batchOK1, out bool mesOK2, out bool batchOK2)
+        {
+            mesOK1 = false;
+            batchOK1 = false;
+            mesOK2 = false;
+            batchOK2 = false;
+
             var code = "";
-            finalScanResult = ScanResult.Error;
             var receiveData = this.GetReceiveData();
             if (receiveData.Length > 8)
             {
                 code = receiveData;
                 this.ClearReceiveData();
-                return ScanFinish(ScanResult.OK, code, out finalScanResult);
+                return ScanFinishManu(code, out mesOK1, out batchOK1, out mesOK2, out batchOK2);
             }
             return false;
         }
