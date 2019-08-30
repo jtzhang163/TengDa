@@ -31,12 +31,31 @@ namespace CAMEL.RGV.Touchscreen.View
             this.tbNewValue.Text = "";
         }
 
-        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        private void BtnOK_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            if (Current.Option.IsPad) return;   //运行在平板时不触发
+            ChangeParam();
         }
 
-        private void BtnOK_Click(object sender, RoutedEventArgs e)
+        private void BtnOK_TouchEnter(object sender, TouchEventArgs e)
+        {
+            if (!Current.Option.IsPad) return;
+            ChangeParam();
+        }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            if (Current.Option.IsPad) return;   //运行在平板时不触发
+            CloseIWindow();
+        }
+
+        private void BtnClose_TouchLeave(object sender, TouchEventArgs e)
+        {
+            if (!Current.Option.IsPad) return;
+            CloseIWindow();
+        }
+
+        private void ChangeParam()
         {
             if (!int.TryParse(this.tbNewValue.Text.Trim(), out int result))
             {
@@ -58,7 +77,11 @@ namespace CAMEL.RGV.Touchscreen.View
                     return;
                 }
             }
+            this.Close();
+        }
 
+        private void CloseIWindow()
+        {
             this.Close();
         }
     }

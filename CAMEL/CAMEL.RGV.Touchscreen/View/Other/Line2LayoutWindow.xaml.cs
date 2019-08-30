@@ -23,5 +23,10 @@ namespace CAMEL.RGV.Touchscreen.View
         {
             InitializeComponent();
         }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

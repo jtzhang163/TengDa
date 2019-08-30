@@ -85,7 +85,7 @@ namespace CAMEL.Baking
             {
                 if (TengDa.WF.Current.IsTerminalInitFinished && clampStatus != value)
                 {
-                    if (value == ClampStatus.满夹具 && clampStatus == ClampStatus.空夹具 && this.GetPutType == GetPutType.上料机)
+                    if (value == ClampStatus.满夹具 && clampStatus == ClampStatus.无夹具 && this.GetPutType == GetPutType.上料机)
                     {
                         //上料计数逻辑
                         Current.Yields.First(y => y.ClampOri == this.ClampOri).FeedingOK++;
@@ -102,7 +102,7 @@ namespace CAMEL.Baking
                     }
 
                     //下料计数逻辑
-                    if (value == ClampStatus.空夹具 && clampStatus == ClampStatus.满夹具 && this.GetPutType == GetPutType.下料机)
+                    if (value == ClampStatus.无夹具 && clampStatus == ClampStatus.满夹具 && this.GetPutType == GetPutType.下料机)
                     {
                         Current.Yields.First(y => y.ClampOri == this.ClampOri).BlankingOK++;
                     }
@@ -371,6 +371,7 @@ namespace CAMEL.Baking
 
                 if (floorStatus != value && this.IsAlive)
                 {
+                    PreFloorStatus = value;
                     UpdateDbField("FloorStatus", value);
                 }
                 floorStatus = value;
