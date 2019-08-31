@@ -27,10 +27,6 @@ namespace TengDa.WF
                 }
                 return connectionString;
             }
-            set
-            {
-                connectionString = value;
-            }
         }
 
         private static int openDbTimeout = -1;
@@ -49,6 +45,21 @@ namespace TengDa.WF
             }
         }
 
+        private static SqlConnection sqlConnection;
+        public static SqlConnection SqlConnection
+        {
+            get
+            {
+                if (sqlConnection == null)
+                {
+                    sqlConnection = new SqlConnection(ConnectionString);
+                    //con.Open(); 该方法连接数据库超时太久
+                    SqlExtensions.QuickOpen(SqlConnection, OpenDbTimeout);
+                }
+                return sqlConnection;
+            }
+        }
+
         /// <summary>
         /// 查询数据库
         /// </summary>
@@ -59,18 +70,12 @@ namespace TengDa.WF
         {
             try
             {
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = ConnectionString;
-                SqlExtensions.QuickOpen(con, OpenDbTimeout);
-
-                //con.Open(); 该方法连接数据库超时太久
-
                 SqlCommand com = new SqlCommand();
-                com.Connection = con;
+                com.Connection = SqlConnection;
                 com.CommandType = CommandType.Text;
                 com.CommandText = sql;
 
-                com.CommandTimeout = con.ConnectionTimeout;//超时
+                com.CommandTimeout = SqlConnection.ConnectionTimeout;//超时
 
                 SqlDataAdapter SqlDap = new SqlDataAdapter(com);
                 DataSet dataset = new DataSet();
@@ -78,7 +83,6 @@ namespace TengDa.WF
 
                 SqlDap.Dispose();
                 com.Dispose();
-                con.Close();
                 msg = string.Empty;
                 return dataset.Tables[0];
 
@@ -99,24 +103,16 @@ namespace TengDa.WF
         {
             try
             {
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = ConnectionString;
-
-                SqlExtensions.QuickOpen(con, OpenDbTimeout);
-
-                //con.Open(); 该方法连接数据库超时太久
-
                 SqlCommand com = new SqlCommand();
-                com.Connection = con;
+                com.Connection = SqlConnection;
                 com.CommandType = CommandType.Text;
                 com.CommandText = sql;
 
-                com.CommandTimeout = con.ConnectionTimeout;//超时
+                com.CommandTimeout = SqlConnection.ConnectionTimeout;//超时
 
                 com.ExecuteNonQuery();
 
                 com.Dispose();
-                con.Close();
                 msg = string.Empty;
                 return true;
             }
@@ -136,22 +132,16 @@ namespace TengDa.WF
         {
             try
             {
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = ConnectionString;
-
-                SqlExtensions.QuickOpen(con, OpenDbTimeout);
-
                 SqlCommand com = new SqlCommand();
-                com.Connection = con;
+                com.Connection = SqlConnection;
                 com.CommandType = CommandType.Text;
                 com.CommandText = sql + " Select @@Identity";
 
-                com.CommandTimeout = con.ConnectionTimeout;//超时
+                com.CommandTimeout = SqlConnection.ConnectionTimeout;//超时
 
                 int id = Convert.ToInt32(com.ExecuteScalar());
 
                 com.Dispose();
-                con.Close();
                 msg = string.Empty;
                 return id;
             }
