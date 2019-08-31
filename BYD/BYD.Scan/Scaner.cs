@@ -354,6 +354,10 @@ namespace BYD.Scan
             mesOK2 = false;
             batchOK2 = false;
 
+            //如果条码和当前某个条码相等，说明该电池被人工移走
+            if (code == this.Code1) { this.Code1 = ""; return false; }
+            if (code == this.Code2) { this.Code2 = ""; return false; }
+
             if (!string.IsNullOrEmpty(this.Code1) && !string.IsNullOrEmpty(this.Code2))
             {
                 this.Code1 = "";

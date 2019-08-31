@@ -176,24 +176,6 @@ namespace BYD.Scan.Dispatcher
 
             Current.Yields = Yield.YieldList;
 
-            cbAlarmFloors.Items.Add("All");
-
-            for (int i = 0; i < Option.LineCount; i++)
-            {
-                //this.ovenUCs[i].Init(Current.ovens[i]);
-
-                //cbAlarmFloors.Items.Add(Current.ovens[i].Name);
-
-                /////查询温度真空时下拉列表数据            
-                //for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
-                //{
-                //    Current.ovens[i].Floors[j].Stations.ForEach(s => cbStations.Items.Add(s.Name));
-                //    cbAlarmFloors.Items.Add(Current.ovens[i].Floors[j].Name);
-                //}
-                //cbStations.SelectedIndex = 0;
-                //cbAlarmFloors.SelectedIndex = 0;
-            }
-
             this.machinesStatusUC1.Init();
             this.globalViewUC1.Init();
 
@@ -295,82 +277,6 @@ namespace BYD.Scan.Dispatcher
             //}
 
             this.globalViewUC1.UpdateUI();
-
-            #region 烤箱
-
-            for (int i = 0; i < Option.LineCount; i++)
-            {
-
-                //Oven oven = Current.ovens[i];
-
-                //this.ovenUCs[i].UpdateUI();
-
-                ////if (oven.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(oven) == "未连接") { this.machinesStatusUC1.SetStatusInfo(oven, "连接成功"); } }
-                ////else { this.machinesStatusUC1.SetStatusInfo(oven, "未连接"); }
-
-                //for (int j = 0; j < OvenFloorCount; j++)
-                //{
-                //    oven.Floors[j].Stations.ForEach(s =>
-                //    {
-                //        if (s.Id == Current.option.CurveStationId)
-                //        {
-                //            for (int k = 0; k < Option.TemperaturePointCount; k++)
-                //            {
-                //                cbTemperIndex[k].Text = string.Format("{0}:{1}℃", Current.option.TemperNames[k], s.Temperatures[k].ToString("#0.0").PadLeft(5));
-                //            }
-                //            for (int k = 0; k < Option.VacuumPointCount; k++)
-                //            {
-                //                cbVacuumIndex[k].Text = string.Format("{0}:{1}Pa", "真空度", s.GetFloor().Vacuum.ToString());
-                //            }
-                //        }
-                //    });
-
-                //    var floor = oven.Floors[j];
-
-                //    if (floor.IsAlive && floor.Stations.Count(s => s.Id == Current.Task.FromStationId || s.Id == Current.Task.ToStationId) > 0)
-                //    {
-                //        this.ovenUCs[i].Invalidate(j);
-                //    }
-
-                //    if (floor.PreIsAlive != floor.IsAlive)
-                //    {
-                //        this.ovenUCs[i].Invalidate(j);
-                //    }
-
-                //}
-
-            }
-
-            #endregion
-
-            #region MES
-
-            //if (Current.runStstus != RunStatus.闲置 && Current.mes.IsAlive)
-            //{
-            //    if (this.machinesStatusUC1.GetStatusInfo(Current.mes) == "未连接")
-            //    {
-            //        this.machinesStatusUC1.SetStatusInfo(Current.mes, "连接成功");
-            //    }
-            //    this.machinesStatusUC1.SetLampColor(Current.mes, Color.Green);
-            //}
-            //else
-            //{
-            //    this.machinesStatusUC1.SetStatusInfo(Current.mes, "未连接");
-            //    this.machinesStatusUC1.SetLampColor(Current.mes, Color.Gray);
-            //}
-
-            #endregion
-
-            #region 机器人
-
-           // this.robotUC1.Update(Current.Robot);
-
-            //if (Current.Robot.Plc.IsAlive) { if (this.machinesStatusUC1.GetStatusInfo(Current.Robot) == "未连接") { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "连接成功"); } }
-            //else { this.machinesStatusUC1.SetStatusInfo(Current.Robot, "未连接"); }
-
-            //this.panelRobot.Padding = new Padding(Current.Robot.Position + 3, 3, 0, 3);
-
-            #endregion
 
             #region 当前时间，运行状态、产量、任务信息
 
@@ -745,12 +651,6 @@ namespace BYD.Scan.Dispatcher
                 };
                 Thread.Sleep(200);
                 timerRun.Start();
-
-                this.timerUploadMes = new System.Timers.Timer();
-                this.timerUploadMes.Interval = TengDa._Convert.StrToInt(Current.option.UploadMesInterval, 60) * 1000;
-                this.timerUploadMes.Elapsed += new System.Timers.ElapsedEventHandler(Timer_UploadMes);
-                this.timerUploadMes.AutoReset = true;
-                this.timerUploadMes.Start();
             }
 
             this.machinesStatusUC1.SetCheckBoxEnabled(false);//运行后禁止操作启用复选框
@@ -772,12 +672,11 @@ namespace BYD.Scan.Dispatcher
                     timerTouchscreenRuns[i].Dispose();
                 }
             }
-
-            if (timerUploadMes != null)
+            if (timerRun != null)
             {
-                timerUploadMes.Stop();
-                timerUploadMes.Close();
-                timerUploadMes.Dispose();
+                timerRun.Stop();
+                timerRun.Close();
+                timerRun.Dispose();
             }
         }
 
@@ -964,61 +863,6 @@ namespace BYD.Scan.Dispatcher
 
         #endregion
 
-        #region 定时将数据上传MES(设备信息和未上传成功的电芯信息)
-        System.Timers.Timer timerUploadMes = null;
-
-        private void Timer_UploadMes(object sender, ElapsedEventArgs e)
-        {
-            string msg = string.Empty;
-            if (timerlock && Current.mes.IsEnable)
-            {
-                UploadBatteryInfo();
-            }
-        }
-
-        public void UploadBatteryInfo()
-        {
-            return;
-            //lock (Current.mes)
-            //{
-            //    try
-            //    {
-            //        Thread.Sleep(200);
-
-            //        var batteries = Battery.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsUploaded] = 'false' ORDER BY [Id] DESC", Battery.TableName), out string msg);
-
-            //        for (int i = 0; i < batteries.Count; i++)
-            //        {
-            //            var battery = batteries[i];
-            //            var request = new MesRequest()
-            //            {
-            //                Barcode = battery.Code,
-            //                Flag = "1",
-            //                Terminal = Current.mes.Terminal,
-            //                UserId = Current.mes.UserId
-            //            };
-            //            var response = MES.UploadBatteryInfo(request);
-            //            if (response.Code == 0)
-            //            {
-            //                battery.IsUploaded = true;
-            //                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "成功:" + battery.Id); }));
-            //                LogHelper.WriteInfo(string.Format("上传MES成功，电池条码：" + battery.Code));
-            //            }
-            //            else
-            //            {
-            //                this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(Current.mes, "失败:" + battery.Id); }));
-            //                LogHelper.WriteError(string.Format("上传MES失败，电池条码：{0} msg:{1}", battery.Code, response.RtMsg));
-            //            }
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Error.Alert(ex.Message);
-            //    }
-            //}
-        }
-
-        #endregion
 
         #region 用户登录、注销、注册、管理
 
@@ -1557,19 +1401,6 @@ namespace BYD.Scan.Dispatcher
             }
         }
 
-        private void btnYieldClear_Click(object sender, EventArgs e)
-        {
-            if (TengDa.WF.Current.user.Id < 1)
-            {
-                Tip.Alert("请先登录！");
-                return;
-            }
-            Yield.Clear();
-            Operation.Add("清空产量");
-            AddTips("清空产量");
-            Current.option.ClearYieldTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            //yieldDisplay.SetClearYieldTime(DateTime.Now);
-        }
 
         private void btnOperQuery_Click(object sender, EventArgs e)
         {
@@ -1607,98 +1438,6 @@ namespace BYD.Scan.Dispatcher
             t.Start();
         }
 
-        private void btnAlarmQuery_Click(object sender, EventArgs e)
-        {
-            var startTime = dtpAlarmStart.Value;
-            var stopTime = dtpAlarmStop.Value;
-            var selectFloor = cbAlarmFloors.Text.Trim();
-
-            TimeSpan ts = stopTime - startTime;
-            int timeSpan = TengDa._Convert.StrToInt(Current.option.QueryAlarmTimeSpan, -1);
-            if (Math.Abs(ts.TotalDays) > timeSpan)
-            {
-                Tip.Alert("查询时间范围太大，请将时间范围设置在 " + timeSpan + " 天 之内！");
-                return;
-            }
-
-            Thread t = new Thread(() =>
-            {
-                string msg = string.Empty;
-                DataTable dt = null;
-                if (selectFloor == "All")
-                {
-                    dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Alarm] WHERE [开始时间] BETWEEN '{1}' AND '{2}' ORDER BY [开始时间]", Config.DbTableNamePre, startTime, stopTime), out msg);
-                }
-                else
-                {
-                    dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Alarm] WHERE [名称] = '{1}' AND [开始时间] BETWEEN '{2}' AND '{3}' ORDER BY [开始时间]", Config.DbTableNamePre, selectFloor, startTime, stopTime), out msg);
-                }
-
-                if (dt == null)
-                {
-                    Error.Alert(msg);
-                    return;
-                }
-
-                this.BeginInvoke(new MethodInvoker(() =>
-                {
-                    dgvAlarm.DataSource = dt;
-                    dgvAlarm.Columns[2].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-                    dgvAlarm.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-
-                    //设置显示列宽度
-                    //dgvAlarm.Columns[0].Width = 100;
-                    //dgvAlarm.Columns[0].HeaderText = "烤箱/腔体";
-                    //dgvAlarm.Columns[1].Width = 100;
-                    //dgvAlarm.Columns[2].Width = 100;
-                    //dgvAlarm.Columns[3].Width = 150;
-                    //dgvAlarm.Columns[4].Width = 150;
-                    //dgvAlarm.Columns[5].Width = 150;
-                    //dgvAlarm.Columns[6].Width = 150;
-                    //dgvAlarm.Columns[6].HeaderText = "持续时间(s)";
-                    //dgvAlarm.Columns[7].Width = 150;
-                    tbNumAlarm.Text = dt.Rows.Count.ToString();
-                }));
-            });
-            t.Start();
-        }
-
-        private void btnAlarmExport_Click(object sender, EventArgs e)
-        {
-            DataTable dt = (DataTable)this.dgvAlarm.DataSource;
-            if (dt == null || dt.Rows.Count < 1)
-            {
-                Tip.Alert("尚无数据！");
-                return;
-            }
-
-            SaveFileDialog kk = new SaveFileDialog();
-            kk.Title = "保存EXECL文件";
-            kk.Filter = "EXECL文件(*.xlsx) |*.xlsx |所有文件(*.*) |*.*";
-            kk.FilterIndex = 1;
-
-            //默认文件名
-            kk.FileName = "Alarm Log " + dtpAlarmStart.Value.ToString("yyyyMMddHHmmss") + "-" + dtpAlarmStop.Value.ToString("yyyyMMddHHmmss");
-
-            if (kk.ShowDialog() == DialogResult.OK)
-            {
-                string FileName = kk.FileName;
-                if (File.Exists(FileName)) File.Delete(FileName);
-
-                try
-                {
-                    using (ExcelHelper excelHelper = new ExcelHelper(FileName))
-                    {
-                        int count = excelHelper.DataTableToExcel(dt, "Sheet1", true);
-                        if (count > 0) MessageBox.Show("导出成功！");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("导出Excel出现异常: \r\n" + ex.Message);
-                }
-            }
-        }
 
         private void tabContent_SelectedIndexChanged(object sender, EventArgs e)
         {

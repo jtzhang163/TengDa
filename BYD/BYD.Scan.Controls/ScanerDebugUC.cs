@@ -43,7 +43,7 @@ namespace BYD.Scan.Controls
                 }
                 else
                 {
-                    Error.Alert(code);
+                    Error.Alert(msg);
                 }
             });
             t.Start();

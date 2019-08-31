@@ -32,8 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSystem));
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabMainUser = new System.Windows.Forms.TabPage();
@@ -115,27 +113,17 @@
             this.cbMesRem = new System.Windows.Forms.CheckBox();
             this.tabContentPageMain = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.globalViewUC1 = new BYD.Scan.Controls.GlobalViewUC();
             this.tabContentPageTips = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbTips = new System.Windows.Forms.TextBox();
             this.tabContentPageManuTest = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tabContentPageAlarmLog = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
-            this.dgvAlarm = new System.Windows.Forms.DataGridView();
-            this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
-            this.label47 = new System.Windows.Forms.Label();
-            this.tbNumAlarm = new System.Windows.Forms.TextBox();
-            this.btnAlarmExport = new System.Windows.Forms.Button();
-            this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnAlarmQuery = new System.Windows.Forms.Button();
-            this.dtpAlarmStop = new System.Windows.Forms.DateTimePicker();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
-            this.dtpAlarmStart = new System.Windows.Forms.DateTimePicker();
-            this.cbAlarmFloors = new System.Windows.Forms.ComboBox();
+            this.scanerDebugUC1 = new BYD.Scan.Controls.ScanerDebugUC();
+            this.touchscreenDebugUC1 = new BYD.Scan.Controls.TouchscreenDebugUC();
+            this.mesDebugUC1 = new BYD.Scan.Controls.MesDebugUC();
+            this.cbIsDebugMode = new System.Windows.Forms.CheckBox();
             this.tabContentPageQuery = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.dgViewBattery = new System.Windows.Forms.DataGridView();
@@ -176,12 +164,7 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.lbTime = new System.Windows.Forms.Label();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
-            this.cbIsDebugMode = new System.Windows.Forms.CheckBox();
             this.machinesStatusUC1 = new BYD.Scan.Controls.MachinesStatusUC();
-            this.globalViewUC1 = new BYD.Scan.Controls.GlobalViewUC();
-            this.scanerDebugUC1 = new BYD.Scan.Controls.ScanerDebugUC();
-            this.touchscreenDebugUC1 = new BYD.Scan.Controls.TouchscreenDebugUC();
-            this.mesDebugUC1 = new BYD.Scan.Controls.MesDebugUC();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -216,11 +199,6 @@
             this.groupBox1.SuspendLayout();
             this.tabContentPageManuTest.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tabContentPageAlarmLog.SuspendLayout();
-            this.tableLayoutPanel15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAlarm)).BeginInit();
-            this.tableLayoutPanel16.SuspendLayout();
-            this.tableLayoutPanel17.SuspendLayout();
             this.tabContentPageQuery.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgViewBattery)).BeginInit();
@@ -596,7 +574,6 @@
             this.tabContent.Controls.Add(this.tabContentPageMain);
             this.tabContent.Controls.Add(this.tabContentPageTips);
             this.tabContent.Controls.Add(this.tabContentPageManuTest);
-            this.tabContent.Controls.Add(this.tabContentPageAlarmLog);
             this.tabContent.Controls.Add(this.tabContentPageQuery);
             this.tabContent.Controls.Add(this.tabContentPageOperation);
             this.tabContent.Controls.Add(this.tabContentPageSettings);
@@ -1224,6 +1201,15 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1036, 572);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
+            // globalViewUC1
+            // 
+            this.globalViewUC1.BackColor = System.Drawing.SystemColors.Control;
+            this.globalViewUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.globalViewUC1.Location = new System.Drawing.Point(23, 23);
+            this.globalViewUC1.Name = "globalViewUC1";
+            this.globalViewUC1.Size = new System.Drawing.Size(990, 526);
+            this.globalViewUC1.TabIndex = 15;
+            // 
             // tabContentPageTips
             // 
             this.tabContentPageTips.AutoScroll = true;
@@ -1311,218 +1297,48 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1042, 578);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
-            // tabContentPageAlarmLog
+            // scanerDebugUC1
             // 
-            this.tabContentPageAlarmLog.Controls.Add(this.tableLayoutPanel15);
-            this.tabContentPageAlarmLog.Location = new System.Drawing.Point(4, 22);
-            this.tabContentPageAlarmLog.Name = "tabContentPageAlarmLog";
-            this.tabContentPageAlarmLog.Size = new System.Drawing.Size(1042, 578);
-            this.tabContentPageAlarmLog.TabIndex = 6;
-            this.tabContentPageAlarmLog.Text = "报警记录";
-            this.tabContentPageAlarmLog.UseVisualStyleBackColor = true;
+            this.scanerDebugUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scanerDebugUC1.Location = new System.Drawing.Point(30, 118);
+            this.scanerDebugUC1.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
+            this.scanerDebugUC1.Name = "scanerDebugUC1";
+            this.scanerDebugUC1.Size = new System.Drawing.Size(467, 138);
+            this.scanerDebugUC1.TabIndex = 6;
             // 
-            // tableLayoutPanel15
+            // touchscreenDebugUC1
             // 
-            this.tableLayoutPanel15.ColumnCount = 3;
-            this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel15.Controls.Add(this.dgvAlarm, 1, 1);
-            this.tableLayoutPanel15.Controls.Add(this.tableLayoutPanel16, 1, 2);
-            this.tableLayoutPanel15.Controls.Add(this.tableLayoutPanel17, 1, 0);
-            this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel15.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel15.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel15.Name = "tableLayoutPanel15";
-            this.tableLayoutPanel15.RowCount = 3;
-            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel15.Size = new System.Drawing.Size(1042, 578);
-            this.tableLayoutPanel15.TabIndex = 21;
+            this.touchscreenDebugUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.touchscreenDebugUC1.Location = new System.Drawing.Point(30, 262);
+            this.touchscreenDebugUC1.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
+            this.touchscreenDebugUC1.Name = "touchscreenDebugUC1";
+            this.touchscreenDebugUC1.Size = new System.Drawing.Size(467, 196);
+            this.touchscreenDebugUC1.TabIndex = 7;
             // 
-            // dgvAlarm
+            // mesDebugUC1
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlarm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvAlarm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAlarm.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvAlarm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAlarm.Location = new System.Drawing.Point(52, 57);
-            this.dgvAlarm.Margin = new System.Windows.Forms.Padding(0);
-            this.dgvAlarm.Name = "dgvAlarm";
-            this.dgvAlarm.RowTemplate.Height = 23;
-            this.dgvAlarm.Size = new System.Drawing.Size(937, 462);
-            this.dgvAlarm.TabIndex = 14;
+            this.mesDebugUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mesDebugUC1.Location = new System.Drawing.Point(530, 118);
+            this.mesDebugUC1.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
+            this.mesDebugUC1.Name = "mesDebugUC1";
+            this.tableLayoutPanel3.SetRowSpan(this.mesDebugUC1, 2);
+            this.mesDebugUC1.Size = new System.Drawing.Size(509, 340);
+            this.mesDebugUC1.TabIndex = 8;
             // 
-            // tableLayoutPanel16
+            // cbIsDebugMode
             // 
-            this.tableLayoutPanel16.ColumnCount = 3;
-            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
-            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tableLayoutPanel16.Controls.Add(this.label47, 0, 0);
-            this.tableLayoutPanel16.Controls.Add(this.tbNumAlarm, 1, 0);
-            this.tableLayoutPanel16.Controls.Add(this.btnAlarmExport, 2, 0);
-            this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel16.Location = new System.Drawing.Point(55, 522);
-            this.tableLayoutPanel16.Name = "tableLayoutPanel16";
-            this.tableLayoutPanel16.RowCount = 1;
-            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel16.Size = new System.Drawing.Size(931, 53);
-            this.tableLayoutPanel16.TabIndex = 18;
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label47.Location = new System.Drawing.Point(3, 0);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(59, 53);
-            this.label47.TabIndex = 15;
-            this.label47.Text = "总计：";
-            this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tbNumAlarm
-            // 
-            this.tbNumAlarm.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbNumAlarm.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbNumAlarm.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbNumAlarm.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbNumAlarm.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.tbNumAlarm.Location = new System.Drawing.Point(68, 19);
-            this.tbNumAlarm.Name = "tbNumAlarm";
-            this.tbNumAlarm.Size = new System.Drawing.Size(76, 14);
-            this.tbNumAlarm.TabIndex = 16;
-            this.tbNumAlarm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnAlarmExport
-            // 
-            this.btnAlarmExport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAlarmExport.Location = new System.Drawing.Point(822, 13);
-            this.btnAlarmExport.Margin = new System.Windows.Forms.Padding(13);
-            this.btnAlarmExport.Name = "btnAlarmExport";
-            this.btnAlarmExport.Size = new System.Drawing.Size(96, 27);
-            this.btnAlarmExport.TabIndex = 17;
-            this.btnAlarmExport.Text = "导出(&E)";
-            this.btnAlarmExport.UseVisualStyleBackColor = true;
-            this.btnAlarmExport.Click += new System.EventHandler(this.btnAlarmExport_Click);
-            // 
-            // tableLayoutPanel17
-            // 
-            this.tableLayoutPanel17.ColumnCount = 7;
-            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
-            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 185F));
-            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
-            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 123F));
-            this.tableLayoutPanel17.Controls.Add(this.btnAlarmQuery, 6, 0);
-            this.tableLayoutPanel17.Controls.Add(this.dtpAlarmStop, 5, 0);
-            this.tableLayoutPanel17.Controls.Add(this.label48, 4, 0);
-            this.tableLayoutPanel17.Controls.Add(this.label49, 0, 0);
-            this.tableLayoutPanel17.Controls.Add(this.label50, 2, 0);
-            this.tableLayoutPanel17.Controls.Add(this.dtpAlarmStart, 3, 0);
-            this.tableLayoutPanel17.Controls.Add(this.cbAlarmFloors, 1, 0);
-            this.tableLayoutPanel17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel17.Location = new System.Drawing.Point(55, 3);
-            this.tableLayoutPanel17.Name = "tableLayoutPanel17";
-            this.tableLayoutPanel17.RowCount = 1;
-            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel17.Size = new System.Drawing.Size(931, 51);
-            this.tableLayoutPanel17.TabIndex = 19;
-            // 
-            // btnAlarmQuery
-            // 
-            this.btnAlarmQuery.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAlarmQuery.Location = new System.Drawing.Point(821, 13);
-            this.btnAlarmQuery.Margin = new System.Windows.Forms.Padding(13);
-            this.btnAlarmQuery.Name = "btnAlarmQuery";
-            this.btnAlarmQuery.Size = new System.Drawing.Size(97, 25);
-            this.btnAlarmQuery.TabIndex = 9;
-            this.btnAlarmQuery.Text = "查询(&Q)";
-            this.btnAlarmQuery.UseVisualStyleBackColor = true;
-            this.btnAlarmQuery.Click += new System.EventHandler(this.btnAlarmQuery_Click);
-            // 
-            // dtpAlarmStop
-            // 
-            this.dtpAlarmStop.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.dtpAlarmStop.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dtpAlarmStop.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpAlarmStop.Location = new System.Drawing.Point(528, 15);
-            this.dtpAlarmStop.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.dtpAlarmStop.Name = "dtpAlarmStop";
-            this.dtpAlarmStop.Size = new System.Drawing.Size(151, 21);
-            this.dtpAlarmStop.TabIndex = 11;
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label48.Location = new System.Drawing.Point(441, 0);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(69, 51);
-            this.label48.TabIndex = 13;
-            this.label48.Text = "截止时间：";
-            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label49.Location = new System.Drawing.Point(3, 0);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(75, 51);
-            this.label49.TabIndex = 18;
-            this.label49.Text = "报警对象：";
-            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label50.Location = new System.Drawing.Point(175, 0);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(75, 51);
-            this.label50.TabIndex = 12;
-            this.label50.Text = "起始时间：";
-            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // dtpAlarmStart
-            // 
-            this.dtpAlarmStart.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.dtpAlarmStart.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dtpAlarmStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpAlarmStart.Location = new System.Drawing.Point(268, 15);
-            this.dtpAlarmStart.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.dtpAlarmStart.Name = "dtpAlarmStart";
-            this.dtpAlarmStart.Size = new System.Drawing.Size(151, 21);
-            this.dtpAlarmStart.TabIndex = 10;
-            // 
-            // cbAlarmFloors
-            // 
-            this.cbAlarmFloors.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cbAlarmFloors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbAlarmFloors.FormattingEnabled = true;
-            this.cbAlarmFloors.Location = new System.Drawing.Point(81, 15);
-            this.cbAlarmFloors.Margin = new System.Windows.Forms.Padding(0);
-            this.cbAlarmFloors.Name = "cbAlarmFloors";
-            this.cbAlarmFloors.Size = new System.Drawing.Size(91, 20);
-            this.cbAlarmFloors.TabIndex = 19;
+            this.cbIsDebugMode.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbIsDebugMode.AutoSize = true;
+            this.cbIsDebugMode.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cbIsDebugMode.ForeColor = System.Drawing.Color.Red;
+            this.cbIsDebugMode.Location = new System.Drawing.Point(32, 49);
+            this.cbIsDebugMode.Margin = new System.Windows.Forms.Padding(32, 3, 3, 3);
+            this.cbIsDebugMode.Name = "cbIsDebugMode";
+            this.cbIsDebugMode.Size = new System.Drawing.Size(297, 16);
+            this.cbIsDebugMode.TabIndex = 9;
+            this.cbIsDebugMode.Text = "调试模式（调试前勾选，调试完成后取消勾选）";
+            this.cbIsDebugMode.UseVisualStyleBackColor = true;
+            this.cbIsDebugMode.CheckedChanged += new System.EventHandler(this.CBIsDebugMode_CheckedChanged);
             // 
             // tabContentPageQuery
             // 
@@ -1556,23 +1372,23 @@
             // 
             // dgViewBattery
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgViewBattery.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgViewBattery.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgViewBattery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewBattery.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewBattery.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgViewBattery.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgViewBattery.Location = new System.Drawing.Point(52, 57);
             this.dgViewBattery.Margin = new System.Windows.Forms.Padding(0);
@@ -1743,23 +1559,23 @@
             // 
             // dgViewOper
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgViewOper.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgViewOper.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgViewOper.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewOper.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewOper.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgViewOper.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgViewOper.Location = new System.Drawing.Point(52, 57);
             this.dgViewOper.Margin = new System.Windows.Forms.Padding(0);
@@ -2098,21 +1914,6 @@
             this.userDisplay.Size = new System.Drawing.Size(270, 77);
             this.userDisplay.TabIndex = 13;
             // 
-            // cbIsDebugMode
-            // 
-            this.cbIsDebugMode.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cbIsDebugMode.AutoSize = true;
-            this.cbIsDebugMode.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cbIsDebugMode.ForeColor = System.Drawing.Color.Red;
-            this.cbIsDebugMode.Location = new System.Drawing.Point(32, 49);
-            this.cbIsDebugMode.Margin = new System.Windows.Forms.Padding(32, 3, 3, 3);
-            this.cbIsDebugMode.Name = "cbIsDebugMode";
-            this.cbIsDebugMode.Size = new System.Drawing.Size(297, 16);
-            this.cbIsDebugMode.TabIndex = 9;
-            this.cbIsDebugMode.Text = "调试模式（调试前勾选，调试完成后取消勾选）";
-            this.cbIsDebugMode.UseVisualStyleBackColor = true;
-            this.cbIsDebugMode.CheckedChanged += new System.EventHandler(this.CBIsDebugMode_CheckedChanged);
-            // 
             // machinesStatusUC1
             // 
             this.machinesStatusUC1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2121,43 +1922,6 @@
             this.machinesStatusUC1.Name = "machinesStatusUC1";
             this.machinesStatusUC1.Size = new System.Drawing.Size(270, 491);
             this.machinesStatusUC1.TabIndex = 16;
-            // 
-            // globalViewUC1
-            // 
-            this.globalViewUC1.BackColor = System.Drawing.SystemColors.Control;
-            this.globalViewUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.globalViewUC1.Location = new System.Drawing.Point(23, 23);
-            this.globalViewUC1.Name = "globalViewUC1";
-            this.globalViewUC1.Size = new System.Drawing.Size(990, 526);
-            this.globalViewUC1.TabIndex = 15;
-            // 
-            // scanerDebugUC1
-            // 
-            this.scanerDebugUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scanerDebugUC1.Location = new System.Drawing.Point(30, 118);
-            this.scanerDebugUC1.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
-            this.scanerDebugUC1.Name = "scanerDebugUC1";
-            this.scanerDebugUC1.Size = new System.Drawing.Size(467, 138);
-            this.scanerDebugUC1.TabIndex = 6;
-            // 
-            // touchscreenDebugUC1
-            // 
-            this.touchscreenDebugUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.touchscreenDebugUC1.Location = new System.Drawing.Point(30, 262);
-            this.touchscreenDebugUC1.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
-            this.touchscreenDebugUC1.Name = "touchscreenDebugUC1";
-            this.touchscreenDebugUC1.Size = new System.Drawing.Size(467, 196);
-            this.touchscreenDebugUC1.TabIndex = 7;
-            // 
-            // mesDebugUC1
-            // 
-            this.mesDebugUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mesDebugUC1.Location = new System.Drawing.Point(530, 118);
-            this.mesDebugUC1.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
-            this.mesDebugUC1.Name = "mesDebugUC1";
-            this.tableLayoutPanel3.SetRowSpan(this.mesDebugUC1, 2);
-            this.mesDebugUC1.Size = new System.Drawing.Size(509, 340);
-            this.mesDebugUC1.TabIndex = 8;
             // 
             // ManageSystem
             // 
@@ -2221,13 +1985,6 @@
             this.tabContentPageManuTest.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.tabContentPageAlarmLog.ResumeLayout(false);
-            this.tableLayoutPanel15.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAlarm)).EndInit();
-            this.tableLayoutPanel16.ResumeLayout(false);
-            this.tableLayoutPanel16.PerformLayout();
-            this.tableLayoutPanel17.ResumeLayout(false);
-            this.tableLayoutPanel17.PerformLayout();
             this.tabContentPageQuery.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgViewBattery)).EndInit();
@@ -2374,21 +2131,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
-        private System.Windows.Forms.TabPage tabContentPageAlarmLog;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
-        private System.Windows.Forms.DataGridView dgvAlarm;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.TextBox tbNumAlarm;
-        private System.Windows.Forms.Button btnAlarmExport;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel17;
-        private System.Windows.Forms.Button btnAlarmQuery;
-        private System.Windows.Forms.DateTimePicker dtpAlarmStop;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.DateTimePicker dtpAlarmStart;
-        private System.Windows.Forms.ComboBox cbAlarmFloors;
         private System.Windows.Forms.TableLayoutPanel gbMana;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel19;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel24;
