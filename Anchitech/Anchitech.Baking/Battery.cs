@@ -247,6 +247,15 @@ namespace Anchitech.Baking
         {
             return Database.NonQuery(string.Format("update dbo.[{0}] SET ClampId = (SELECT MAX(ClampId) FROM dbo.[{0}]) WHERE ClampId = -1", TableName), out msg);
         }
+
+        /// <summary>
+        /// 删除很久之前数据库中的电池数据，保留最近的100000条数据
+        /// </summary>
+        public static bool DeleteLongAgo(out string msg)
+        {
+            return Database.NonQuery(string.Format("DELETE FROM dbo.[{0}] WHERE Id <= ((SELECT MAX(Id) from dbo.[{0}]) - 10000)", TableName), out msg);
+        }
+
         #endregion
     }
 }

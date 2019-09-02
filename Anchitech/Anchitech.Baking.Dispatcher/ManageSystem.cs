@@ -664,13 +664,13 @@ namespace Anchitech.Baking.Dispatcher
                     {
                         if (PlcConnect() && ScanerConnect() && MesConnect())
                         {
-
                             StartRun();
                             Current.ChangeModeTime = DateTime.Now;
                             Current.runStstus = RunStatus.运行;
                             Tip.Alert("成功启动！");
                             Operation.Add("启动运行");
                             AddTips("启动运行");
+                            Battery.DeleteLongAgo(out msg);
                         }
                         else if (!CheckStart(out msg))
                         {
@@ -3508,6 +3508,5 @@ namespace Anchitech.Baking.Dispatcher
                 }
             }
         }
-
     }
 }

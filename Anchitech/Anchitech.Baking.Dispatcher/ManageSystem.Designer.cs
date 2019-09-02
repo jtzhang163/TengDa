@@ -128,30 +128,11 @@
             this.cbMesRem = new System.Windows.Forms.CheckBox();
             this.tabContentPageMain = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel41 = new System.Windows.Forms.TableLayoutPanel();
-            this.taskInfo1 = new Anchitech.Baking.Controls.TaskInfo();
             this.panelRobot = new System.Windows.Forms.Panel();
-            this.robotUC1 = new Anchitech.Baking.Controls.RobotUC();
             this.tableLayoutPanel42 = new System.Windows.Forms.TableLayoutPanel();
-            this.ovenUC05 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC06 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC07 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC08 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC09 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC10 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC11 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC12 = new Anchitech.Baking.Controls.OvenUC();
             this.tableLayoutPanel43 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel44 = new System.Windows.Forms.TableLayoutPanel();
-            this.ovenUC02 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC01 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC04 = new Anchitech.Baking.Controls.OvenUC();
-            this.ovenUC03 = new Anchitech.Baking.Controls.OvenUC();
-            this.cacherUC1 = new Anchitech.Baking.Controls.CacherUC();
-            this.transferUC1 = new Anchitech.Baking.Controls.TransferUC();
             this.tableLayoutPanel45 = new System.Windows.Forms.TableLayoutPanel();
-            this.feederUC1 = new Anchitech.Baking.Controls.FeederUC();
-            this.showOvenInfoTypeUC1 = new Anchitech.Baking.Controls.ShowOvenInfoTypeUC();
-            this.blankerUC1 = new Anchitech.Baking.Controls.BlankerUC();
             this.tabContentTemperCurve = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
             this.pCurve = new TengDa.WF.Controls.DoubleBufferPanel();
@@ -245,7 +226,6 @@
             this.btnClampScanOkBackToFeeder = new System.Windows.Forms.Button();
             this.cbClampScaner = new System.Windows.Forms.ComboBox();
             this.btnClampScanStart = new System.Windows.Forms.Button();
-            this.openAllNetControlUC1 = new Anchitech.Baking.Controls.OpenAllNetControlUC();
             this.tabContentTaskLog = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvTaskLog = new System.Windows.Forms.DataGridView();
@@ -316,6 +296,26 @@
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
             this.yieldDisplay = new Anchitech.Baking.Controls.YieldDisplay();
             this.machinesStatusUC1 = new Anchitech.Baking.Controls.MachinesStatusUC();
+            this.taskInfo1 = new Anchitech.Baking.Controls.TaskInfo();
+            this.robotUC1 = new Anchitech.Baking.Controls.RobotUC();
+            this.ovenUC05 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC06 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC07 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC08 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC09 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC10 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC11 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC12 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC02 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC01 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC04 = new Anchitech.Baking.Controls.OvenUC();
+            this.ovenUC03 = new Anchitech.Baking.Controls.OvenUC();
+            this.cacherUC1 = new Anchitech.Baking.Controls.CacherUC();
+            this.transferUC1 = new Anchitech.Baking.Controls.TransferUC();
+            this.feederUC1 = new Anchitech.Baking.Controls.FeederUC();
+            this.showOvenInfoTypeUC1 = new Anchitech.Baking.Controls.ShowOvenInfoTypeUC();
+            this.blankerUC1 = new Anchitech.Baking.Controls.BlankerUC();
+            this.openAllNetControlUC1 = new Anchitech.Baking.Controls.OpenAllNetControlUC();
             this.batteryBindInitUC1 = new Anchitech.Baking.Controls.BatteryBindInitUC();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
@@ -1474,16 +1474,6 @@
             this.tableLayoutPanel41.Size = new System.Drawing.Size(1036, 572);
             this.tableLayoutPanel41.TabIndex = 0;
             // 
-            // taskInfo1
-            // 
-            this.taskInfo1.BackColor = System.Drawing.SystemColors.Control;
-            this.taskInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.taskInfo1.Location = new System.Drawing.Point(2, 550);
-            this.taskInfo1.Margin = new System.Windows.Forms.Padding(2, 8, 2, 3);
-            this.taskInfo1.Name = "taskInfo1";
-            this.taskInfo1.Size = new System.Drawing.Size(1032, 19);
-            this.taskInfo1.TabIndex = 4;
-            // 
             // panelRobot
             // 
             this.panelRobot.BackgroundImage = global::Anchitech.Baking.Dispatcher.Properties.Resources.Robot_Track_Lime;
@@ -1497,15 +1487,6 @@
             this.panelRobot.Padding = new System.Windows.Forms.Padding(450, 3, 3, 3);
             this.panelRobot.Size = new System.Drawing.Size(1016, 54);
             this.panelRobot.TabIndex = 0;
-            // 
-            // robotUC1
-            // 
-            this.robotUC1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.robotUC1.Location = new System.Drawing.Point(450, 3);
-            this.robotUC1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
-            this.robotUC1.Name = "robotUC1";
-            this.robotUC1.Size = new System.Drawing.Size(80, 46);
-            this.robotUC1.TabIndex = 0;
             // 
             // tableLayoutPanel42
             // 
@@ -1533,78 +1514,6 @@
             this.tableLayoutPanel42.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel42.Size = new System.Drawing.Size(1030, 235);
             this.tableLayoutPanel42.TabIndex = 1;
-            // 
-            // ovenUC05
-            // 
-            this.ovenUC05.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC05.Location = new System.Drawing.Point(899, 3);
-            this.ovenUC05.Name = "ovenUC05";
-            this.ovenUC05.OvenIndex = 5;
-            this.ovenUC05.Size = new System.Drawing.Size(128, 229);
-            this.ovenUC05.TabIndex = 7;
-            // 
-            // ovenUC06
-            // 
-            this.ovenUC06.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC06.Location = new System.Drawing.Point(771, 3);
-            this.ovenUC06.Name = "ovenUC06";
-            this.ovenUC06.OvenIndex = 6;
-            this.ovenUC06.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC06.TabIndex = 6;
-            // 
-            // ovenUC07
-            // 
-            this.ovenUC07.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC07.Location = new System.Drawing.Point(643, 3);
-            this.ovenUC07.Name = "ovenUC07";
-            this.ovenUC07.OvenIndex = 7;
-            this.ovenUC07.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC07.TabIndex = 5;
-            // 
-            // ovenUC08
-            // 
-            this.ovenUC08.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC08.Location = new System.Drawing.Point(515, 3);
-            this.ovenUC08.Name = "ovenUC08";
-            this.ovenUC08.OvenIndex = 8;
-            this.ovenUC08.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC08.TabIndex = 4;
-            // 
-            // ovenUC09
-            // 
-            this.ovenUC09.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC09.Location = new System.Drawing.Point(387, 3);
-            this.ovenUC09.Name = "ovenUC09";
-            this.ovenUC09.OvenIndex = 9;
-            this.ovenUC09.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC09.TabIndex = 3;
-            // 
-            // ovenUC10
-            // 
-            this.ovenUC10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC10.Location = new System.Drawing.Point(259, 3);
-            this.ovenUC10.Name = "ovenUC10";
-            this.ovenUC10.OvenIndex = 10;
-            this.ovenUC10.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC10.TabIndex = 2;
-            // 
-            // ovenUC11
-            // 
-            this.ovenUC11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC11.Location = new System.Drawing.Point(131, 3);
-            this.ovenUC11.Name = "ovenUC11";
-            this.ovenUC11.OvenIndex = 11;
-            this.ovenUC11.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC11.TabIndex = 1;
-            // 
-            // ovenUC12
-            // 
-            this.ovenUC12.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ovenUC12.Location = new System.Drawing.Point(3, 3);
-            this.ovenUC12.Name = "ovenUC12";
-            this.ovenUC12.OvenIndex = 12;
-            this.ovenUC12.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC12.TabIndex = 0;
             // 
             // tableLayoutPanel43
             // 
@@ -1647,60 +1556,6 @@
             this.tableLayoutPanel44.Size = new System.Drawing.Size(515, 235);
             this.tableLayoutPanel44.TabIndex = 0;
             // 
-            // ovenUC02
-            // 
-            this.ovenUC02.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ovenUC02.Location = new System.Drawing.Point(259, 3);
-            this.ovenUC02.Name = "ovenUC02";
-            this.ovenUC02.OvenIndex = 2;
-            this.ovenUC02.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC02.TabIndex = 11;
-            // 
-            // ovenUC01
-            // 
-            this.ovenUC01.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ovenUC01.Location = new System.Drawing.Point(387, 3);
-            this.ovenUC01.Name = "ovenUC01";
-            this.ovenUC01.OvenIndex = 1;
-            this.ovenUC01.Size = new System.Drawing.Size(125, 229);
-            this.ovenUC01.TabIndex = 10;
-            // 
-            // ovenUC04
-            // 
-            this.ovenUC04.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ovenUC04.Location = new System.Drawing.Point(3, 3);
-            this.ovenUC04.Name = "ovenUC04";
-            this.ovenUC04.OvenIndex = 4;
-            this.ovenUC04.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC04.TabIndex = 9;
-            // 
-            // ovenUC03
-            // 
-            this.ovenUC03.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ovenUC03.Location = new System.Drawing.Point(131, 3);
-            this.ovenUC03.Name = "ovenUC03";
-            this.ovenUC03.OvenIndex = 3;
-            this.ovenUC03.Size = new System.Drawing.Size(122, 229);
-            this.ovenUC03.TabIndex = 8;
-            // 
-            // cacherUC1
-            // 
-            this.cacherUC1.BackColor = System.Drawing.Color.Transparent;
-            this.cacherUC1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cacherUC1.Location = new System.Drawing.Point(816, 3);
-            this.cacherUC1.Name = "cacherUC1";
-            this.cacherUC1.Size = new System.Drawing.Size(66, 168);
-            this.cacherUC1.TabIndex = 2;
-            // 
-            // transferUC1
-            // 
-            this.transferUC1.BackColor = System.Drawing.Color.Transparent;
-            this.transferUC1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.transferUC1.Location = new System.Drawing.Point(888, 3);
-            this.transferUC1.Name = "transferUC1";
-            this.transferUC1.Size = new System.Drawing.Size(66, 103);
-            this.transferUC1.TabIndex = 3;
-            // 
             // tableLayoutPanel45
             // 
             this.tableLayoutPanel45.ColumnCount = 2;
@@ -1716,31 +1571,6 @@
             this.tableLayoutPanel45.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel45.Size = new System.Drawing.Size(292, 229);
             this.tableLayoutPanel45.TabIndex = 4;
-            // 
-            // feederUC1
-            // 
-            this.feederUC1.BackColor = System.Drawing.Color.Transparent;
-            this.feederUC1.Location = new System.Drawing.Point(3, 3);
-            this.feederUC1.Name = "feederUC1";
-            this.feederUC1.Size = new System.Drawing.Size(176, 161);
-            this.feederUC1.TabIndex = 1;
-            // 
-            // showOvenInfoTypeUC1
-            // 
-            this.showOvenInfoTypeUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.showOvenInfoTypeUC1.Location = new System.Drawing.Point(3, 192);
-            this.showOvenInfoTypeUC1.Name = "showOvenInfoTypeUC1";
-            this.showOvenInfoTypeUC1.Size = new System.Drawing.Size(266, 27);
-            this.showOvenInfoTypeUC1.TabIndex = 2;
-            // 
-            // blankerUC1
-            // 
-            this.blankerUC1.BackColor = System.Drawing.Color.White;
-            this.blankerUC1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.blankerUC1.Location = new System.Drawing.Point(960, 3);
-            this.blankerUC1.Name = "blankerUC1";
-            this.blankerUC1.Size = new System.Drawing.Size(67, 167);
-            this.blankerUC1.TabIndex = 3;
             // 
             // tabContentTemperCurve
             // 
@@ -3010,15 +2840,6 @@
             this.btnClampScanStart.UseVisualStyleBackColor = true;
             this.btnClampScanStart.Click += new System.EventHandler(this.btnClampScanStart_Click);
             // 
-            // openAllNetControlUC1
-            // 
-            this.openAllNetControlUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.openAllNetControlUC1.Location = new System.Drawing.Point(10, 388);
-            this.openAllNetControlUC1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.openAllNetControlUC1.Name = "openAllNetControlUC1";
-            this.openAllNetControlUC1.Size = new System.Drawing.Size(125, 28);
-            this.openAllNetControlUC1.TabIndex = 11;
-            // 
             // tabContentTaskLog
             // 
             this.tabContentTaskLog.Controls.Add(this.tableLayoutPanel22);
@@ -4020,6 +3841,185 @@
             this.machinesStatusUC1.Name = "machinesStatusUC1";
             this.machinesStatusUC1.Size = new System.Drawing.Size(270, 416);
             this.machinesStatusUC1.TabIndex = 16;
+            // 
+            // taskInfo1
+            // 
+            this.taskInfo1.BackColor = System.Drawing.SystemColors.Control;
+            this.taskInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.taskInfo1.Location = new System.Drawing.Point(2, 550);
+            this.taskInfo1.Margin = new System.Windows.Forms.Padding(2, 8, 2, 3);
+            this.taskInfo1.Name = "taskInfo1";
+            this.taskInfo1.Size = new System.Drawing.Size(1032, 19);
+            this.taskInfo1.TabIndex = 4;
+            // 
+            // robotUC1
+            // 
+            this.robotUC1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.robotUC1.Location = new System.Drawing.Point(450, 3);
+            this.robotUC1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
+            this.robotUC1.Name = "robotUC1";
+            this.robotUC1.Size = new System.Drawing.Size(80, 46);
+            this.robotUC1.TabIndex = 0;
+            // 
+            // ovenUC05
+            // 
+            this.ovenUC05.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC05.Location = new System.Drawing.Point(899, 3);
+            this.ovenUC05.Name = "ovenUC05";
+            this.ovenUC05.OvenIndex = 5;
+            this.ovenUC05.Size = new System.Drawing.Size(128, 229);
+            this.ovenUC05.TabIndex = 7;
+            // 
+            // ovenUC06
+            // 
+            this.ovenUC06.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC06.Location = new System.Drawing.Point(771, 3);
+            this.ovenUC06.Name = "ovenUC06";
+            this.ovenUC06.OvenIndex = 6;
+            this.ovenUC06.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC06.TabIndex = 6;
+            // 
+            // ovenUC07
+            // 
+            this.ovenUC07.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC07.Location = new System.Drawing.Point(643, 3);
+            this.ovenUC07.Name = "ovenUC07";
+            this.ovenUC07.OvenIndex = 7;
+            this.ovenUC07.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC07.TabIndex = 5;
+            // 
+            // ovenUC08
+            // 
+            this.ovenUC08.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC08.Location = new System.Drawing.Point(515, 3);
+            this.ovenUC08.Name = "ovenUC08";
+            this.ovenUC08.OvenIndex = 8;
+            this.ovenUC08.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC08.TabIndex = 4;
+            // 
+            // ovenUC09
+            // 
+            this.ovenUC09.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC09.Location = new System.Drawing.Point(387, 3);
+            this.ovenUC09.Name = "ovenUC09";
+            this.ovenUC09.OvenIndex = 9;
+            this.ovenUC09.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC09.TabIndex = 3;
+            // 
+            // ovenUC10
+            // 
+            this.ovenUC10.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC10.Location = new System.Drawing.Point(259, 3);
+            this.ovenUC10.Name = "ovenUC10";
+            this.ovenUC10.OvenIndex = 10;
+            this.ovenUC10.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC10.TabIndex = 2;
+            // 
+            // ovenUC11
+            // 
+            this.ovenUC11.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC11.Location = new System.Drawing.Point(131, 3);
+            this.ovenUC11.Name = "ovenUC11";
+            this.ovenUC11.OvenIndex = 11;
+            this.ovenUC11.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC11.TabIndex = 1;
+            // 
+            // ovenUC12
+            // 
+            this.ovenUC12.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ovenUC12.Location = new System.Drawing.Point(3, 3);
+            this.ovenUC12.Name = "ovenUC12";
+            this.ovenUC12.OvenIndex = 12;
+            this.ovenUC12.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC12.TabIndex = 0;
+            // 
+            // ovenUC02
+            // 
+            this.ovenUC02.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ovenUC02.Location = new System.Drawing.Point(259, 3);
+            this.ovenUC02.Name = "ovenUC02";
+            this.ovenUC02.OvenIndex = 2;
+            this.ovenUC02.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC02.TabIndex = 11;
+            // 
+            // ovenUC01
+            // 
+            this.ovenUC01.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ovenUC01.Location = new System.Drawing.Point(387, 3);
+            this.ovenUC01.Name = "ovenUC01";
+            this.ovenUC01.OvenIndex = 1;
+            this.ovenUC01.Size = new System.Drawing.Size(125, 229);
+            this.ovenUC01.TabIndex = 10;
+            // 
+            // ovenUC04
+            // 
+            this.ovenUC04.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ovenUC04.Location = new System.Drawing.Point(3, 3);
+            this.ovenUC04.Name = "ovenUC04";
+            this.ovenUC04.OvenIndex = 4;
+            this.ovenUC04.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC04.TabIndex = 9;
+            // 
+            // ovenUC03
+            // 
+            this.ovenUC03.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ovenUC03.Location = new System.Drawing.Point(131, 3);
+            this.ovenUC03.Name = "ovenUC03";
+            this.ovenUC03.OvenIndex = 3;
+            this.ovenUC03.Size = new System.Drawing.Size(122, 229);
+            this.ovenUC03.TabIndex = 8;
+            // 
+            // cacherUC1
+            // 
+            this.cacherUC1.BackColor = System.Drawing.Color.Transparent;
+            this.cacherUC1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cacherUC1.Location = new System.Drawing.Point(816, 3);
+            this.cacherUC1.Name = "cacherUC1";
+            this.cacherUC1.Size = new System.Drawing.Size(66, 168);
+            this.cacherUC1.TabIndex = 2;
+            // 
+            // transferUC1
+            // 
+            this.transferUC1.BackColor = System.Drawing.Color.Transparent;
+            this.transferUC1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.transferUC1.Location = new System.Drawing.Point(888, 3);
+            this.transferUC1.Name = "transferUC1";
+            this.transferUC1.Size = new System.Drawing.Size(66, 103);
+            this.transferUC1.TabIndex = 3;
+            // 
+            // feederUC1
+            // 
+            this.feederUC1.BackColor = System.Drawing.Color.Transparent;
+            this.feederUC1.Location = new System.Drawing.Point(3, 3);
+            this.feederUC1.Name = "feederUC1";
+            this.feederUC1.Size = new System.Drawing.Size(176, 161);
+            this.feederUC1.TabIndex = 1;
+            // 
+            // showOvenInfoTypeUC1
+            // 
+            this.showOvenInfoTypeUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.showOvenInfoTypeUC1.Location = new System.Drawing.Point(3, 192);
+            this.showOvenInfoTypeUC1.Name = "showOvenInfoTypeUC1";
+            this.showOvenInfoTypeUC1.Size = new System.Drawing.Size(266, 27);
+            this.showOvenInfoTypeUC1.TabIndex = 2;
+            // 
+            // blankerUC1
+            // 
+            this.blankerUC1.BackColor = System.Drawing.Color.White;
+            this.blankerUC1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.blankerUC1.Location = new System.Drawing.Point(960, 3);
+            this.blankerUC1.Name = "blankerUC1";
+            this.blankerUC1.Size = new System.Drawing.Size(67, 167);
+            this.blankerUC1.TabIndex = 3;
+            // 
+            // openAllNetControlUC1
+            // 
+            this.openAllNetControlUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.openAllNetControlUC1.Location = new System.Drawing.Point(10, 388);
+            this.openAllNetControlUC1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.openAllNetControlUC1.Name = "openAllNetControlUC1";
+            this.openAllNetControlUC1.Size = new System.Drawing.Size(125, 28);
+            this.openAllNetControlUC1.TabIndex = 11;
             // 
             // batteryBindInitUC1
             // 
