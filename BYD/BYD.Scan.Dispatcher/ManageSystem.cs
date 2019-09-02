@@ -682,66 +682,41 @@ namespace BYD.Scan.Dispatcher
 
         private void TouchscreenRunInvokeFunc(object obj)
         {
-            //调试模式时不执行后面的步骤
-            if (Current.option.IsDebugMode)
+            try
             {
-                return;
-            }
-
-            string msg = string.Empty;
-            int i = System.Convert.ToInt32(obj);
-
-            var touchscreen = Current.Lines[i].Touchscreen;
-
-            if (timerlock && touchscreen.IsEnable && (DateTime.Now - Current.ChangeModeTime).TotalSeconds > 10)
-            {
-                if (!touchscreen.IsDealWithData)
+                //调试模式时不执行后面的步骤
+                if (Current.option.IsDebugMode)
                 {
-                    touchscreen.IsDealWithData = true;
-                    this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(touchscreen, "发送指令"); }));
-                    if (Current.Lines[i].GetInfo())
+                    return;
+                }
+
+                string msg = string.Empty;
+                int i = System.Convert.ToInt32(obj);
+
+                var touchscreen = Current.Lines[i].Touchscreen;
+
+                if (timerlock && touchscreen.IsEnable && (DateTime.Now - Current.ChangeModeTime).TotalSeconds > 10)
+                {
+                    if (!touchscreen.IsDealWithData)
                     {
-                        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(touchscreen, "获取信息成功"); }));
-                        for (int j = 0; j < 2; j++)
+                        touchscreen.IsDealWithData = true;
+                        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(touchscreen, "发送指令"); }));
+                        if (Current.Lines[i].GetInfo())
                         {
-                            #region 自动扫码逻辑
-                            if (Current.Lines[i].ChildLines[j].AutoScaner.IsEnable && Current.Lines[i].ChildLines[j].AutoScaner.CanScan)
+                            this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(touchscreen, "获取信息成功"); }));
+                            for (int j = 0; j < 2; j++)
                             {
-                                int ii = i;
-                                int jj = j;
-
-                                ScanResult scanResult = ScanResult.Unknown;
-                                string code = "";
-
-                                ScanResult result1 = Current.Lines[ii].ChildLines[jj].AutoScaner.StartScan(out code, out msg);
-
-                                if (result1 == ScanResult.OK)
+                                #region 自动扫码逻辑
+                                if (Current.Lines[i].ChildLines[j].AutoScaner.IsEnable && Current.Lines[i].ChildLines[j].AutoScaner.CanScan)
                                 {
-                                    this.BeginInvoke(new MethodInvoker(() =>
-                                    {
-                                        this.machinesStatusUC1.SetStatusInfo(Current.Lines[ii].ChildLines[jj].AutoScaner, "+" + code);
-                                        this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, SystemColors.Control);
-                                        this.machinesStatusUC1.SetBackColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Green);
-                                    }));
+                                    int ii = i;
+                                    int jj = j;
 
-                                    Thread t = new Thread(() =>
-                                    {
-                                        Thread.Sleep(1000);
-                                        this.BeginInvoke(new MethodInvoker(() =>
-                                        {
-                                            this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Green);
-                                            this.machinesStatusUC1.SetBackColor(Current.Lines[ii].ChildLines[jj].AutoScaner, SystemColors.Control);
-                                        }));
-                                    });
-                                    t.Start();
+                                    ScanResult scanResult = ScanResult.Unknown;
+                                    string code = "";
+                                    ScanResult result1 = Current.Lines[ii].ChildLines[jj].AutoScaner.StartScan(out code, out msg);
 
-                                    scanResult = ScanResult.OK;
-                                }
-                                else
-                                {
-                                    //再扫一次
-                                    ScanResult result2 = Current.Lines[ii].ChildLines[jj].AutoScaner.StartScan(out code, out msg);
-                                    if (result2 == ScanResult.OK)
+                                    if (result1 == ScanResult.OK)
                                     {
                                         this.BeginInvoke(new MethodInvoker(() =>
                                         {
@@ -760,62 +735,83 @@ namespace BYD.Scan.Dispatcher
                                             }));
                                         });
                                         t.Start();
-
                                         scanResult = ScanResult.OK;
                                     }
                                     else
                                     {
-                                        this.BeginInvoke(new MethodInvoker(() =>
+                                        //再扫一次
+                                        ScanResult result2 = Current.Lines[ii].ChildLines[jj].AutoScaner.StartScan(out code, out msg);
+                                        if (result2 == ScanResult.OK)
                                         {
-                                            this.machinesStatusUC1.SetStatusInfo(Current.Lines[ii].ChildLines[jj].AutoScaner, "扫码NG");
-                                            this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Red);
-                                        }));
+                                            this.BeginInvoke(new MethodInvoker(() =>
+                                            {
+                                                this.machinesStatusUC1.SetStatusInfo(Current.Lines[ii].ChildLines[jj].AutoScaner, "+" + code);
+                                                this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, SystemColors.Control);
+                                                this.machinesStatusUC1.SetBackColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Green);
+                                            }));
 
-                                        scanResult = ScanResult.Error;
+                                            Thread t = new Thread(() =>
+                                            {
+                                                Thread.Sleep(1000);
+                                                this.BeginInvoke(new MethodInvoker(() =>
+                                                {
+                                                    this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Green);
+                                                    this.machinesStatusUC1.SetBackColor(Current.Lines[ii].ChildLines[jj].AutoScaner, SystemColors.Control);
+                                                }));
+                                            });
+                                            t.Start();
+                                            scanResult = ScanResult.OK;
+                                        }
+                                        else
+                                        {
+                                            this.BeginInvoke(new MethodInvoker(() =>
+                                            {
+                                                this.machinesStatusUC1.SetStatusInfo(Current.Lines[ii].ChildLines[jj].AutoScaner, "扫码NG");
+                                                this.machinesStatusUC1.SetForeColor(Current.Lines[ii].ChildLines[jj].AutoScaner, Color.Red);
+                                            }));
+                                            scanResult = ScanResult.Error;
+                                        }
                                     }
-                                }
 
+                                    AddTips(string.Format("扫码：{0} ", code), false, false);
 
-                                //if (scanResult == ScanResult.OK)
-                                //{
-                                AddTips(string.Format("扫码：{0} ", code), false, false);
-                                //}
-
-                                if (Current.Lines[ii].WriteScanFinishInfoAuto(j, out msg))
-                                {
-                                    AddTips("扫码结束信号成功写入 " + Current.Lines[ii].Touchscreen.Name, false, false);
-                                    //LogHelper.WriteInfo("扫码结束信号成功写入 " + Current.Lines[ii].Touchscreen.Name);
-                                }
-                                else
-                                {
-                                    Error.Alert("扫码结束信号写入 " + Current.Lines[ii].Touchscreen.Name + "出错，msg：" + msg);
-                                }
-
-
-                                if (Current.Lines[ii].ChildLines[j].AutoScaner.ScanFinishAuto(scanResult, code, out ScanResult finalScanResult))
-                                {
-                                    if (Current.Lines[ii].WriteScanResultInfo(j, finalScanResult, out msg))
+                                    if (Current.Lines[ii].Touchscreen.WriteScanFinishInfoAuto(j, out msg))
                                     {
-                                        AddTips("两个扫码完成后结果成功写入 " + Current.Lines[ii].Touchscreen.Name, false, false);
-                                        //LogHelper.WriteInfo("两个扫码完成后结果成功写入 " + Current.Lines[ii].Touchscreen.Name);
+                                        AddTips("扫码结束信号成功写入 " + Current.Lines[ii].Touchscreen.Name, false, false);
+                                        //LogHelper.WriteInfo("扫码结束信号成功写入 " + Current.Lines[ii].Touchscreen.Name);
                                     }
                                     else
                                     {
-                                        Error.Alert("两个扫码完成后结果写入 " + Current.Lines[ii].Touchscreen.Name + "出错，msg：" + msg);
+                                        Error.Alert("扫码结束信号写入 " + Current.Lines[ii].Touchscreen.Name + "出错，msg：" + msg);
+                                    }
+
+                                    if (Current.Lines[ii].ChildLines[j].AutoScaner.ScanFinishAuto(scanResult, code, out ScanResult finalScanResult))
+                                    {
+                                        if (Current.Lines[ii].Touchscreen.WriteScanResultInfo(j, finalScanResult, out msg))
+                                        {
+                                            AddTips("两个扫码完成后结果成功写入 " + Current.Lines[ii].Touchscreen.Name, false, false);
+                                            //LogHelper.WriteInfo("两个扫码完成后结果成功写入 " + Current.Lines[ii].Touchscreen.Name);
+                                        }
+                                        else
+                                        {
+                                            Error.Alert("两个扫码完成后结果写入 " + Current.Lines[ii].Touchscreen.Name + "出错，msg：" + msg);
+                                        }
                                     }
                                 }
-
+                                #endregion
                             }
-                            #endregion
-
                         }
+                        else
+                        {
+                            this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(touchscreen, "获取信息失败"); }));
+                        }
+                        touchscreen.IsDealWithData = false;
                     }
-                    else
-                    {
-                        this.BeginInvoke(new MethodInvoker(() => { this.machinesStatusUC1.SetStatusInfo(touchscreen, "获取信息失败"); }));
-                    }
-                    touchscreen.IsDealWithData = false;
                 }
+            }
+            catch (Exception ex)
+            {
+                Error.Alert(ex);
             }
         }
 
@@ -831,30 +827,37 @@ namespace BYD.Scan.Dispatcher
             {
                 if (timerlock && Math.Abs((DateTime.Now - Current.ChangeModeTime).TotalSeconds) > 3)
                 {
-                    for (int i = 0; i < Option.LineCount; i++)
+                    try
                     {
-                        Line line = Current.Lines[i];
-                        if (line.Touchscreen.IsEnable && line.Touchscreen.IsAlive)
+                        for (int i = 0; i < Option.LineCount; i++)
                         {
-                            for (int j = 0; j < 2; j++)
+                            Line line = Current.Lines[i];
+                            if (line.Touchscreen.IsEnable && line.Touchscreen.IsAlive)
                             {
-                                Scaner scaner = line.ChildLines[j].ManuScaner;
-                                if (scaner.IsEnable && scaner.IsAlive)
+                                for (int j = 0; j < 2; j++)
                                 {
-                                    if (scaner.Manu(out bool mesOK1, out bool batchOK1, out bool mesOK2, out bool batchOK2))
+                                    Scaner scaner = line.ChildLines[j].ManuScaner;
+                                    if (scaner.IsEnable && scaner.IsAlive)
                                     {
-                                        if (line.WriteScanResultInfoManu(j, mesOK1, batchOK1, mesOK2, batchOK2, out string msg))
+                                        if (scaner.Manu(out bool mesOK1, out bool batchOK1, out bool mesOK2, out bool batchOK2))
                                         {
-                                            LogHelper.WriteInfo("【手动】两个扫码完成后结果成功写入 " + line.Touchscreen.Name);
-                                        }
-                                        else
-                                        {
-                                            Error.Alert("【手动】两个扫码完成后结果写入 " + line.Touchscreen.Name + "出错，msg：" + msg);
+                                            if (line.Touchscreen.WriteScanResultInfoManu(j, mesOK1, batchOK1, mesOK2, batchOK2, out string msg))
+                                            {
+                                                LogHelper.WriteInfo("【手动】两个扫码完成后结果成功写入 " + line.Touchscreen.Name);
+                                            }
+                                            else
+                                            {
+                                                Error.Alert("【手动】两个扫码完成后结果写入 " + line.Touchscreen.Name + "出错，msg：" + msg);
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        Error.Alert(ex);
                     }
                 }
             }

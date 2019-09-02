@@ -276,6 +276,7 @@ namespace TengDa.WF.Terminals
                     if (Socket != null)
                     {
                         Socket.Close();
+                        Socket.Dispose();
                         Socket = null;
                     }
                     if (point != null)
@@ -296,6 +297,7 @@ namespace TengDa.WF.Terminals
                 else if (Socket != null)
                 {
                     Socket.Close();
+                    Socket.Dispose();
                     Socket = null;
                     IsAlive = false;
                 }

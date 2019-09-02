@@ -262,7 +262,40 @@ namespace BYD.Scan
                 });
             });
             if (!isMatchBatch) return true; //不需要匹配批次 直接返回true
-            return code.StartsWith(currentBatch);//是否匹配，规则待确认！！！！！！
+
+            
+            try
+            {
+                if(currentBatch.Length < 7)
+                {
+                    throw new Exception("批次号长度小于7：" + currentBatch);
+                }
+                if (code.Length < 24)
+                {
+                    throw new Exception("条码长度小于24：" + code);
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.Alert(ex);
+                return false;
+            }
+
+            //currentBatch:  AESS84C
+            //batch1:        AESS
+            var batch1 = currentBatch.Substring(0, 4);
+            //batch2:        84C
+            var batch2 = currentBatch.Substring(4, 3);
+            bool matchingFlag = code.Substring(7, 4) == batch1 && code.Substring(14, 3) == batch2;//是否匹配
+            if (matchingFlag)
+            {
+                LogHelper.WriteInfo(string.Format("条码匹配批次号成功：{0}", code));
+            }
+            else
+            {
+                LogHelper.WriteInfo(string.Format("条码匹配批次号失败：{0}", code));
+            }
+            return matchingFlag;
         }
 
         public ScanResult StartScan(out string code, out string msg)
@@ -329,8 +362,8 @@ namespace BYD.Scan
                     //两个条码均MES OK且批次OK才返回OK
                     if (mesResult1.ToLower().Contains("ok") && mesResult2.ToLower().Contains("ok") && isMatchingBatch1 && isMatchingBatch2)
                     {
-                        Battery.Add(new Battery() { Code = this.Code1, ScanerId = this.Id, Location = mesResult1 }, out string msg);
-                        Battery.Add(new Battery() { Code = this.Code2, ScanerId = this.Id, Location = mesResult2 }, out msg);
+                        Battery.Add(new Battery(this.Code1, this.Id, mesResult1), out string msg);
+                        Battery.Add(new Battery(this.Code2, this.Id, mesResult2), out msg);
                         finalScanResult = ScanResult.OK;
                     }
                     else
@@ -377,8 +410,8 @@ namespace BYD.Scan
                 var mesResult1 = MES.CheckBattery(this.Code1);
                 var mesResult2 = MES.CheckBattery(this.Code2);
 
-                Battery.Add(new Battery() { Code = this.Code1, ScanerId = this.Id, Location = mesResult1 }, out string msg);
-                Battery.Add(new Battery() { Code = this.Code2, ScanerId = this.Id, Location = mesResult2 }, out msg);
+                Battery.Add(new Battery(this.Code1, this.Id, mesResult1), out string msg);
+                Battery.Add(new Battery(this.Code2, this.Id, mesResult2), out msg);
 
                 mesOK1 = mesResult1.ToLower().Contains("ok");
                 mesOK2 = mesResult2.ToLower().Contains("ok");

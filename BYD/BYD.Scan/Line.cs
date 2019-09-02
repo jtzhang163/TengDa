@@ -336,51 +336,5 @@ namespace BYD.Scan
             }
             return true;
         }
-
-        public bool WriteScanFinishInfoAuto(int j, out string msg)
-        {
-            return this.Touchscreen.SetInfo((1 + 6 * j).ToString(), (ushort)2, out msg);
-        }
-
-        public bool WriteScanResultInfo(int j, ScanResult scanResult, out string msg)
-        {
-            return this.Touchscreen.SetInfo((6 * j).ToString(), scanResult == ScanResult.OK ? (ushort)1 : (ushort)2, out msg);
-        }
-
-
-        public bool WriteScanResultInfoManu(int j, bool mesOK1, bool batchOK1, bool mesOK2, bool batchOK2, out string msg)
-        {
-            msg = "";
-            //A线
-            var addr1 = j == 0 ? "9" : "11";
-            var addr2 = j == 0 ? "2" : "8";
-
-            var ret1 = this.Touchscreen.SetInfo(addr1, GetWriteVal(mesOK1, batchOK1), out string msg1);
-            var ret2 = this.Touchscreen.SetInfo(addr2, GetWriteVal(mesOK2, batchOK2), out string msg2);
-
-            msg = msg1 + msg2;
-
-            return ret1 && ret2;
-        }
-
-        public ushort GetWriteVal(bool mesOK, bool batchOK)
-        {
-            if (mesOK && batchOK)
-            {
-                return (ushort)64;
-            }
-            else if (mesOK && !batchOK)
-            {
-                return (ushort)80;
-            }
-            else if (!mesOK && batchOK)
-            {
-                return (ushort)128;
-            } 
-            else
-            {
-                return (ushort)144;
-            }
-        }
     }
 }

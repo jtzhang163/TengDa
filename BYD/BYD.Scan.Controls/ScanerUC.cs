@@ -50,15 +50,15 @@ namespace BYD.Scan.Controls
             }
             else if (this.scaner.Codes[0].Length > 18 && this.scaner.Codes[1].Length > 18)
             {
-                //MES NG 显示蓝色
+                //MES NG 显示红色
                 if (!this.scaner.MES_RESULTs[x].ToLower().Contains("ok"))
                 {
-                    return Color.Blue;
+                    return Color.Red;
                 }
-                //批次不对应 显示蓝色
+                //批次不对应 显示黄色
                 if (!this.scaner.IsMatchingCurrentBatch(this.scaner.Codes[x]))
                 {
-                    return Color.Blue;
+                    return Color.Yellow;
                 }
 
                 return Color.LimeGreen;

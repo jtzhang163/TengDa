@@ -68,15 +68,11 @@ namespace BYD.Scan
             this.Id = id;
         }
 
-        public Battery(string code) : this(code, -1)
-        {
-
-        }
-
-        public Battery(string code, int scanerId)
+        public Battery(string code, int scanerId, string location)
         {
             this.code = code;
             this.ScanerId = scanerId;
+            this.location = location;
         }
 
         #region 初始化方法
