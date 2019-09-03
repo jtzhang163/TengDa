@@ -148,36 +148,47 @@ namespace CAMEL.Baking
         /// 就绪
         /// 可进行任务
         /// </summary>
+        [DisplayName("就绪 可进行任务"), ReadOnly(true)]
         public bool IsReady { get; set; } = false;
 
         /// <summary>
         /// RGV状态
         /// 1：为正常运转，2：正常等待，3：停机中，4：异常处理中
         /// </summary>
+        [DisplayName("状态"), ReadOnly(true)]
         public int Status { get; set; }
 
+        [DisplayName("RGV是否为自动"), ReadOnly(true)]
         public bool IsAuto { get; set; } = false;
 
         /// <summary>
         /// 调度有效
         /// </summary>
+        [DisplayName("调度有效"), ReadOnly(true)]
         public bool IsDispatchEnabled { get; set; } = false;
 
         /// <summary>
         /// 任务结束
         /// </summary>
+        [DisplayName("任务结束"), ReadOnly(true)]
         public bool IsTaskFinished { get; set; } = false;
 
         /// <summary>
         /// 货叉在原点
         /// </summary>
+        [DisplayName("货叉在原点"), ReadOnly(true)]
         public bool IsForkAtOriginalPoint { get; set; } = false;
 
         /// <summary>
         /// 已经有任务
         /// </summary>
+        [DisplayName("已经有任务"), ReadOnly(true)]
         public bool IsAlreadyHasTask { get; set; } = false;
 
+        /// <summary>
+        /// 报警二进制字符串
+        /// </summary>
+        [Browsable(false)]
         public string Alarm2BinString { get; set; } = "";
 
         #endregion
@@ -354,7 +365,20 @@ namespace CAMEL.Baking
             this.IsDispatchEnabled = bOutputs[13] == 1;
 
             //任务完成
-            this.IsTaskFinished = bOutputs[15] == 1;
+            var isTaskFinished = bOutputs[15] == 1;
+            if (isTaskFinished && !this.IsTaskFinished)
+            {
+                LogHelper.WriteInfo(string.Format("收到{0}取盘/放盘完成信号，{1}：{2}", this.Plc.Name, "D1015", 1));
+            }
+            this.IsTaskFinished = isTaskFinished;
+
+            //货叉原点
+            var isForkAtOriginalPoint = bOutputs[22] == 1;
+            if (isForkAtOriginalPoint && !this.IsForkAtOriginalPoint)
+            {
+                LogHelper.WriteInfo(string.Format("收到{0}货叉回到原点信号，{1}：{2}", this.Plc.Name, "D1021", 1));
+            }
+            this.IsForkAtOriginalPoint = isForkAtOriginalPoint;
 
             //X轴位置
             this.CoordinateValue = bOutputs[20];
@@ -365,9 +389,6 @@ namespace CAMEL.Baking
                 else { this.MovingDirection = MovingDirection.停止; this.IsMoving = false; }
                 this.PreCoordinateValue = this.CoordinateValue;
             }
-
-            //货叉
-            this.IsForkAtOriginalPoint = bOutputs[21] == 1;
 
             //rgv状态
             this.Status = bOutputs[60];
@@ -459,13 +480,16 @@ namespace CAMEL.Baking
 
             var rgvValue = fromStation.GetPutType == GetPutType.上料机 ? toStation.RgvGetFeederValue : fromStation.RgvValue;
 
+            var addr = "D1009";
+            var val = ushort.Parse(rgvValue);
             //发送位置编号
-            if (!this.Plc.SetInfo("D1009", ushort.Parse(rgvValue), out msg))
+            if (!this.Plc.SetInfo(addr, val, out msg))
             {
                 Error.Alert(msg);
                 this.Plc.IsAlive = false;
                 return false;
             }
+            LogHelper.WriteInfo(string.Format("发送取盘货位号给{0}，{1}：{2}", this.Plc.Name, addr, val));
 
             Thread.Sleep(30);
 
@@ -505,13 +529,17 @@ namespace CAMEL.Baking
 
             var rgvValue = toStation.GetPutType == GetPutType.下料机 ? fromStation.RgvPutFeederValue : toStation.RgvValue;
 
+            var addr = "D1008";
+            var val = ushort.Parse(rgvValue);
             //发送位置编号
-            if (!this.Plc.SetInfo("D1008", ushort.Parse(rgvValue), out msg))
+            if (!this.Plc.SetInfo(addr, val, out msg))
             {
                 Error.Alert(msg);
                 this.Plc.IsAlive = false;
                 return false;
             }
+
+            LogHelper.WriteInfo(string.Format("发送放盘货位号给{0}，{1}：{2}", this.Plc.Name, addr, val));
 
             Thread.Sleep(30);
 
@@ -619,7 +647,7 @@ namespace CAMEL.Baking
                 return false;
             }
 
-            LogHelper.WriteInfo(string.Format("给RGV发送急停指令------{0}：{1}  ", "D1010", 1));
+            LogHelper.WriteInfo(string.Format("给RGV发送货叉伸入指令------{0}：{1}  ", "D1010", 1));
             return true;
         }
 

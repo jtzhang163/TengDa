@@ -1090,13 +1090,12 @@ namespace CAMEL.Baking.App
                     Error.Alert("无法连接到MES服务器：" + Current.mes.Host);
                     return false;
                 }
-                else
+                else if(!MES.IdentityVerification(out msg))
                 {
-                    if (Current.mes.IsOffline)
-                    {
-                        Current.mes.IsOffline = false;
-                    }
+                    Error.Alert(msg);
+                    return false;
                 }
+
                 this.SetMachineStatusInfo(Current.mes, "连接成功");
                 this.SetMachineLampColor(Current.mes, Color.Green);
             }
@@ -1221,6 +1220,8 @@ namespace CAMEL.Baking.App
 
         System.Timers.Timer timerRun = null;
 
+        System.Timers.Timer timerRecordDeviceStatus = null;
+
         private static bool timerlock = false;
 
         /// <summary>
@@ -1297,7 +1298,6 @@ namespace CAMEL.Baking.App
                         listen.IsBackground = true;
                         listen.Start(index);
                     };
-                    Thread.Sleep(200);
                     timerOvenRuns[i].Start();
                 }
 
@@ -1312,7 +1312,7 @@ namespace CAMEL.Baking.App
                         listen.IsBackground = true;
                         listen.Start(index);
                     };
-                    Thread.Sleep(200);
+                    Thread.Sleep(50);
                     timerFeederRuns[i].Start();
                 }
 
@@ -1325,7 +1325,7 @@ namespace CAMEL.Baking.App
                     listen.IsBackground = true;
                     listen.Start(0);
                 };
-                Thread.Sleep(200);
+                Thread.Sleep(50);
                 timerBlankerRuns[0].Start();
                 
 
@@ -1337,7 +1337,7 @@ namespace CAMEL.Baking.App
                     listen.IsBackground = true;
                     listen.Start();
                 };
-                Thread.Sleep(200);
+                Thread.Sleep(50);
                 timerRGVRun.Start();
 
                 timerRun = new System.Timers.Timer();
@@ -1348,8 +1348,19 @@ namespace CAMEL.Baking.App
                     listen.IsBackground = true;
                     listen.Start();
                 };
-                Thread.Sleep(200);
+                Thread.Sleep(50);
                 timerRun.Start();
+
+                timerRecordDeviceStatus = new System.Timers.Timer();
+                timerRecordDeviceStatus.Interval = 30 * 1000;
+                timerRecordDeviceStatus.Elapsed += delegate
+                {
+                    Thread listen = new Thread(new ThreadStart(UploadMachineStatus));
+                    listen.IsBackground = true;
+                    listen.Start();
+                };
+                Thread.Sleep(50);
+                timerRecordDeviceStatus.Start();
 
                 this.timerTask = new System.Timers.Timer();
                 this.timerTask.Interval = Current.option.TaskInterval;
@@ -1622,13 +1633,13 @@ namespace CAMEL.Baking.App
                         {
                             Floor floor = Current.ovens[i].Floors[j];
 
-                            ////无任务默认关门
-                            //if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) == 0
-                            //    && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) == 0
-                            //    && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
-                            //{
-                            //    Current.ovens[i].CloseDoor(j);
-                            //}
+                            //无任务默认关门
+                            if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) == 0
+                                && floor.Stations.Count(s => s.Id == Current.Task.ToStationId) == 0
+                                && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive)
+                            {
+                                Current.ovens[i].CloseDoor(j);
+                            }
 
                             ////从某一炉子取完盘后，立即关门，无需等到整个任务结束
                             //if (floor.DoorStatus == DoorStatus.打开 && floor.Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && floor.Stations[0].IsAlive && floor.Stations[1].IsAlive
@@ -1852,17 +1863,17 @@ namespace CAMEL.Baking.App
         /// </summary>
         public void UploadMachineStatus()
         {
-            try
+            if (timerlock && Current.mes.IsEnable && TengDa.WF.Current.IsRunning)
             {
-                this.BeginInvoke(new MethodInvoker(() =>
+                this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.mes, "上传设备状态..."); }));
+                for (int i = 0; i < Current.ovens.Count; i++)
                 {
-                    this.SetMachineStatusInfo(Current.mes, "上传设备数据...");
-                }));
-                //MES.UploadMachineStatus();
-            }
-            catch (Exception ex)
-            {
-                Error.Alert(ex.Message);
+                    var oven = Current.ovens[i];
+                    if (oven.IsAlive)
+                    {
+                        MES.RecordDeviceStatus(oven);
+                    }
+                }
             }
         }
 
@@ -3255,5 +3266,9 @@ namespace CAMEL.Baking.App
             }
         }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            //MES.RecordDeviceStatus(Current.ovens[24]);
+        }
     }
 }

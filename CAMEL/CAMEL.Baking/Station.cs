@@ -371,7 +371,7 @@ namespace CAMEL.Baking
 
                 if (floorStatus != value && this.IsAlive)
                 {
-                    PreFloorStatus = value;
+                    //PreFloorStatus = value;
                     UpdateDbField("FloorStatus", value);
                 }
                 floorStatus = value;
@@ -861,15 +861,15 @@ namespace CAMEL.Baking
 
         public long GetPriority(Task task)
         {
-            if (task.FromClampStatus == ClampStatus.空夹具 && task.ToType == GetPutType.烤箱)
-            {
-                return 1000 - this.Priority;
-            }
-            //下料顺序按入炉顺序
-            else if (task.FromClampStatus == ClampStatus.满夹具 && task.ToType == GetPutType.下料机)
-            {
-                return TengDa.TimeHelper.GetTimeStamp(this.Clamp.InOvenTime);
-            }
+            //if (task.FromClampStatus == ClampStatus.空夹具 && task.ToType == GetPutType.烤箱)
+            //{
+            //    return 1000 - this.Priority;
+            //}
+            ////下料顺序按入炉顺序
+            //else if (task.FromClampStatus == ClampStatus.满夹具 && task.ToType == GetPutType.下料机)
+            //{
+            //    return TengDa.TimeHelper.GetTimeStamp(this.Clamp.InOvenTime);
+            //}
             return this.Priority;
         }
 

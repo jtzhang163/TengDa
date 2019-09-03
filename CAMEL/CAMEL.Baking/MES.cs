@@ -21,6 +21,7 @@ using CAMEL.Baking.IdentityVerificationWebService;
 using CAMEL.Baking.TrayBindingWebService;
 using CAMEL.Baking.DeviceStatusRecordWebService;
 using CAMEL.Baking.ProductionDataUploadWebService;
+using System.Xml.Serialization;
 
 namespace CAMEL.Baking
 {
@@ -123,6 +124,7 @@ namespace CAMEL.Baking
 
 
         private string username = string.Empty;
+        [ReadOnly(true), DisplayName("用户名称")]
         public string Username
         {
             get
@@ -136,6 +138,7 @@ namespace CAMEL.Baking
         }
 
         private string password = string.Empty;
+        [ReadOnly(true), DisplayName("用户密码")]
         public string Password
         {
             get
@@ -149,18 +152,12 @@ namespace CAMEL.Baking
         }
 
 
-        //private string site = string.Empty;
-        //public string Site
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(site))
-        //        {
-        //            site = ConfigurationManager.AppSettings["mes_site"].ToString();
-        //        }
-        //        return site;
-        //    }
-        //}
+        [ReadOnly(true), DisplayName("设备编号")]
+        public string DeviceId { get; set; } = string.Empty;
+        [ReadOnly(true), DisplayName("工位代码")]
+        public string StationCode { get; set; } = string.Empty;
+        [ReadOnly(true), DisplayName("工序代码")]
+        public string ProcessCode { get; set; } = string.Empty;
 
         #endregion
 
@@ -357,10 +354,13 @@ namespace CAMEL.Baking
             }
         }
 
-
+        /// <summary>
+        /// 身份验证
+        /// </summary>
+        /// <param name="xmlParams"></param>
+        /// <returns></returns>
         public static string IdentityVerification(string xmlParams)
         {
-
             try
             {
                 return IdentityVerificationProxy.IdentityVerification(xmlParams);
@@ -368,8 +368,43 @@ namespace CAMEL.Baking
             catch (Exception ex)
             {
                 return ex.Message;
+            }        
+        }
+
+        /// <summary>
+        /// 身份验证
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public static bool IdentityVerification(out string msg)
+        {
+            try
+            {
+                var request = new IdentityVerificationRequest()
+                {
+                    AccountNumber = Current.mes.Username,
+                    Password = Current.mes.Password
+                };
+
+                var xmlRequest = XmlHelper.Serialize(request);
+                var xmlResponse = IdentityVerificationProxy.IdentityVerification(xmlRequest);
+                var response = XmlHelper.Deserialize<IdentityVerificationResponse>(xmlResponse);
+                if (response.Result)
+                {
+                    Current.mes.DeviceId = response.DeviceId;
+                    Current.mes.StationCode = response.StationCode;
+                    Current.mes.ProcessCode = response.ProcessCode;
+                    LogHelper.WriteInfo(string.Format("MES身份验证OK，xmlRequest：{1}，xmlResponse：{2}", "", xmlRequest, xmlResponse));
+                }
+                msg = "MES身份验证不通过，原因:" + response.Message;
+                return response.Result;
             }
-           
+            catch (Exception ex)
+            {
+                LogHelper.WriteError(ex);
+                msg = "MES身份验证异常报错:" + ex.Message;
+            }
+            return false;
         }
 
         public static string GetTrayBindingInfo(string xmlParams)
@@ -397,6 +432,48 @@ namespace CAMEL.Baking
             }
         }
 
+        public static bool RecordDeviceStatus(Oven oven)
+        {
+            try
+            {
+                var request = new DeviceStatusRecordRequest()
+                {
+                    DeviceId = Current.mes.DeviceId,
+                    Operator = TengDa.WF.Current.user.Name,
+                    ProcessCode = Current.mes.ProcessCode,
+                    StationCode = Current.mes.StationCode,
+                    ProductionTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                    DeviceStatuses = new _DeviceStatus[5]
+                    {
+                        oven.Floors[0].GetMesDeviceStatus(),
+                        oven.Floors[1].GetMesDeviceStatus(),
+                        oven.Floors[2].GetMesDeviceStatus(),
+                        oven.Floors[3].GetMesDeviceStatus(),
+                        oven.Floors[4].GetMesDeviceStatus()
+                    }
+                };
+
+                var xmlRequest = XmlHelper.Serialize(request);
+                var xmlResponse = DeviceStatusRecordProxy.RecordDeviceStatus(xmlRequest);
+                var response = XmlHelper.Deserialize<DeviceStatusRecordResponse>(xmlResponse);
+                if (response.Result)
+                {
+                    LogHelper.WriteInfo(string.Format("{0}状态上传MES成功，xmlRequest：{1}，xmlResponse：{2}", oven.Name, xmlRequest, xmlResponse));
+                }
+                else
+                {
+                    LogHelper.WriteInfo(string.Format("{0}状态上传MES失败，原因：{1}", oven.Name, response.Message));
+                }
+                return response.Result;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError(ex);
+                LogHelper.WriteInfo(string.Format("{0}状态上传MES报错：{1}", oven.Name, ex.Message));
+            }
+            return false;
+        }
+
         public static string UploadSecondaryHighTempData(string xmlParams)
         {
             try
@@ -412,16 +489,7 @@ namespace CAMEL.Baking
     }
 
 
-    public class CommonRequest
-    {
-        public object Request { get; set; }
-    }
-
-    public class CommonResponse
-    {
-        public object Response { get; set; }
-    }
-
+    [XmlRoot("Request")]
     public class IdentityVerificationRequest
     {
         public string AccountNumber { get; set; }
@@ -429,6 +497,7 @@ namespace CAMEL.Baking
         public string Password { get; set; }
     }
 
+    [XmlRoot("Response")]
     public class IdentityVerificationResponse
     {
         public string AccountNumber { get; set; }
@@ -471,11 +540,19 @@ namespace CAMEL.Baking
     }
 
 
-    public class DeviceStatusRecordRequest
+    [XmlRoot("DeviceStatuses")]
+    public class _DeviceStatus
     {
         public string DeviceStatus { get; set; }
 
         public string StatusDescription { get; set; }
+    }
+
+    [XmlRoot("Request")]
+    public class DeviceStatusRecordRequest
+    {
+        [XmlElement("")]
+        public _DeviceStatus[] DeviceStatuses { get; set; }
 
         public string DeviceId { get; set; }
 
@@ -483,15 +560,14 @@ namespace CAMEL.Baking
 
         public string ProcessCode { get; set; }
 
-        public DateTime ProductionTime { get; set; }
+        public string ProductionTime { get; set; }
 
         public string Operator { get; set; }
     }
 
-
+    [XmlRoot("Response")]
     public class DeviceStatusRecordResponse
     {
-
         public string DeviceId { get; set; }
         public bool Result { get; set; }
         public string Message { get; set; }

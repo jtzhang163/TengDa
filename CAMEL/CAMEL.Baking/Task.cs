@@ -551,7 +551,7 @@ namespace CAMEL.Baking
                             }
                             else if (Current.Task.Status == TaskStatus.正取)
                             {
-                                if (Current.RGV.IsTaskFinished)
+                                if (Current.RGV.IsTaskFinished && Current.RGV.IsForkAtOriginalPoint)
                                 {
                                     Current.RGV.ClampStatus = Current.Task.FromClampStatus;
                                     Current.Task.Status = TaskStatus.取完;
@@ -586,7 +586,7 @@ namespace CAMEL.Baking
                             }
                             else if (Current.Task.Status == TaskStatus.正放)
                             {
-                                if (Current.RGV.IsTaskFinished)
+                                if (Current.RGV.IsTaskFinished && Current.RGV.IsForkAtOriginalPoint)
                                 {
                                     Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                                     Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
@@ -654,7 +654,7 @@ namespace CAMEL.Baking
                         }
                         else if (Current.Task.Status == TaskStatus.正取 && Current.Task.FromStation != null)
                         {
-                            if (Current.RGV.IsTaskFinished)
+                            if (Current.RGV.IsTaskFinished && Current.RGV.IsForkAtOriginalPoint)
                             {
                                 Current.RGV.ClampStatus = Current.Task.FromClampStatus;
                                 Current.Task.Status = TaskStatus.取完;
@@ -696,7 +696,7 @@ namespace CAMEL.Baking
                         }
                         else if (Current.Task.Status == TaskStatus.正放 && Current.Task.ToStation != null)
                         {
-                            if (Current.RGV.IsTaskFinished)
+                            if (Current.RGV.IsTaskFinished && Current.RGV.IsForkAtOriginalPoint)
                             {
                                 Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                                 Current.Task.ToStation.FromStationId = Current.Task.FromStationId;

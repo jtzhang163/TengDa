@@ -495,6 +495,27 @@ namespace CAMEL.Baking
             };
             return FloorLog.Add(new List<FloorLog>() { log }, out msg);
         }
+
+        public _DeviceStatus GetMesDeviceStatus()
+        {
+            var ds = new _DeviceStatus();
+            if (!string.IsNullOrEmpty(this.AlarmStr))
+            {
+                ds.DeviceStatus = "DS03";
+                ds.StatusDescription = this.Name +"$"+ this.AlarmStr.Trim(',');
+            }
+            else if(this.IsBaking)
+            {
+                ds.DeviceStatus = "DS01";
+                ds.StatusDescription = this.Name + "$" + "运行";
+            }
+            else
+            {
+                ds.DeviceStatus = "DS02";
+                ds.StatusDescription = this.Name + "$" + "待机";
+            }
+            return ds;
+        }
     }
 
     public class FloorLog

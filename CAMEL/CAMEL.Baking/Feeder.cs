@@ -520,6 +520,7 @@ namespace CAMEL.Baking
                 this.Plc.IsAlive = false;
                 return false;
             }
+            LogHelper.WriteInfo(string.Format("发送扫码结果信号给{0}，{1}：{2}", this.Plc.Name, addr, val));
             return true;
         }
 
@@ -528,12 +529,14 @@ namespace CAMEL.Baking
             var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
             var addr = Option.LineNum == 1 ? "DB17.18" : "DB17.22";
+            var val = (ushort)2;
 
-            if (!this.Plc.GetInfo(false, plcCompany, false, addr, (ushort)2, out ushort db17_18, out string msg))
+            if (!this.Plc.GetInfo(false, plcCompany, false, addr, val, out ushort db17_18, out string msg))
             {
                 Error.Alert(msg);
                 this.Plc.IsAlive = false;
             }
+            LogHelper.WriteInfo(string.Format("发送取完信号给{0}，{1}：{2}", this.Plc.Name, addr, val));
         }
 
         public void PutFinished()
@@ -541,12 +544,14 @@ namespace CAMEL.Baking
             var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
 
             var addr = Option.LineNum == 1 ? "DB17.16" : "DB17.20";
+            var val = (ushort)2;
 
-            if (!this.Plc.GetInfo(false, plcCompany, false, addr, (ushort)2, out ushort db17_18, out string msg))
+            if (!this.Plc.GetInfo(false, plcCompany, false, addr, val, out ushort db17_18, out string msg))
             {
                 Error.Alert(msg);
                 this.Plc.IsAlive = false;
             }
+            LogHelper.WriteInfo(string.Format("发送放完信号给{0}，{1}：{2}", this.Plc.Name, addr, val));
         }
 
         #endregion

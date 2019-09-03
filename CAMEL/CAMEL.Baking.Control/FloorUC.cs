@@ -129,11 +129,11 @@ namespace CAMEL.Baking.Control
                     {
                         station.FloorStatus = FloorStatus.空盘;
                     }
-                    else if (station.ClampStatus == ClampStatus.满夹具 && (station.PreFloorStatus == FloorStatus.无盘 || station.PreFloorStatus == FloorStatus.待烤 || station.PreFloorStatus == FloorStatus.未知))
+                    else if (station.ClampStatus == ClampStatus.满夹具 && (station.FloorStatus == FloorStatus.无盘 || station.FloorStatus == FloorStatus.待烤 || station.FloorStatus == FloorStatus.未知))
                     {
                         station.FloorStatus = FloorStatus.待烤;
                     }
-                    else if (station.ClampStatus == ClampStatus.满夹具 && (station.PreFloorStatus == FloorStatus.烘烤 || station.PreFloorStatus == FloorStatus.待出 || station.PreFloorStatus == FloorStatus.未知))
+                    else if (station.ClampStatus == ClampStatus.满夹具 && (station.FloorStatus == FloorStatus.烘烤 || station.FloorStatus == FloorStatus.待出 || station.FloorStatus == FloorStatus.未知))
                     {
                         station.FloorStatus = FloorStatus.待出;
                     }
