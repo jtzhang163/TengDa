@@ -1162,13 +1162,13 @@ namespace Soundon.Dispatcher.App
 
             yieldDisplay.YieldUpdate();
 
-            //产量自动清零
-            if (!Yield.IsCurrentShift(_Convert.StrToDateTime(Current.option.ClearYieldTime, Common.DefaultTime)) && TengDa.WF.Current.user.Id > 0)
-            {
-                Yield.Clear();
-                Current.option.ClearYieldTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                yieldDisplay.SetClearYieldTime(DateTime.Now);
-            }
+            ////产量自动清零
+            //if (!Yield.IsCurrentShift(_Convert.StrToDateTime(Current.option.ClearYieldTime, Common.DefaultTime)) && TengDa.WF.Current.user.Id > 0)
+            //{
+            //    Yield.Clear();
+            //    Current.option.ClearYieldTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            //    yieldDisplay.SetClearYieldTime(DateTime.Now);
+            //}
 
             // this.lbTaskStatus.Text = Current.Task.Status.ToString();
             this.taskInfo1.UpdateInfo();
