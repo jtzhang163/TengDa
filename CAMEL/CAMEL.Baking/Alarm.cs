@@ -91,33 +91,36 @@ namespace CAMEL.Baking
         {
             get
             {
-                if (alarms.Count < 1)
+                lock (alarms)
                 {
-                    string msg = string.Empty;
-                    DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}]", TableName), out msg);
+                    if (alarms.Count < 1)
+                    {
+                        string msg = string.Empty;
+                        DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}]", TableName), out msg);
 
-                    if (!string.IsNullOrEmpty(msg))
-                    {
-                        Error.Alert(msg);
-                        return alarms;
-                    }
-
-                    if (dt == null || dt.Rows.Count == 0)
-                    {
-                        return alarms;
-                    }
-                    else
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
+                        if (!string.IsNullOrEmpty(msg))
                         {
-                            Alarm alarm = new Alarm();
-                            alarm.InitFields(dt.Rows[i]);
-                            alarms.Add(alarm);
+                            Error.Alert(msg);
+                            return alarms;
+                        }
+
+                        if (dt == null || dt.Rows.Count == 0)
+                        {
+                            return alarms;
+                        }
+                        else
+                        {
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                Alarm alarm = new Alarm();
+                                alarm.InitFields(dt.Rows[i]);
+                                alarms.Add(alarm);
+                            }
                         }
                     }
-                }
 
-                return alarms;
+                    return alarms;
+                }
             }
         }
     }

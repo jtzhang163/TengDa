@@ -443,9 +443,9 @@ namespace CAMEL.RGV.Touchscreen
             "调度心跳报警",
             "门号错误",
             "行走.货叉同时动作",
-            "行走电机限位报警",
-            "升降电机限位报警",
-            "货叉电机限位报警",
+            "行走电机前限报警",
+            "升降电机上限报警",
+            "货叉电机前限报警",
             "升降下降超过保护限位",
             "货叉不在原点",
             "行走安全位.取门号.放门号不能同时给",
@@ -453,7 +453,20 @@ namespace CAMEL.RGV.Touchscreen
             "升降位置方向错误",
             "行走位置错误",
             "升降位置错误",
-            "货叉位置错误"
+            "货叉位置错误",
+            "请复位完成信号",
+            "行走电机后限报警",
+            "行走电机下限报警",
+            "货叉电机后限报警",
+            "料框前限报警",
+            "料框后限报警",
+            "货叉前炉内有料框报警",
+            "货叉后炉内有料框报警",
+            "货叉前炉门未打开报警",
+            "货叉后炉门未打开报警",
+            "货叉有料报警",
+            "货叉无料报警",
+            "相序错误"
         };
 
         private OmronFinsNet omron_net = null;
@@ -624,7 +637,7 @@ namespace CAMEL.RGV.Touchscreen
                 if (this.IsAlarming)
                 {
                     StringBuilder sb = new StringBuilder();
-                    for (int n = 30; n < 32; n++)
+                    for (int n = 30; n < 33; n++)
                     {
                         sb.Append(_Convert.Revert(_Convert.GetBitStr(datas[n], 16)));
                     }
