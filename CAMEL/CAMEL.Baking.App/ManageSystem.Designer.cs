@@ -248,7 +248,6 @@
             this.lbTime = new System.Windows.Forms.Label();
             this.yieldDisplay = new CAMEL.Baking.Control.YieldDisplay();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay2();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -2080,7 +2079,6 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.35468F));
             this.tableLayoutPanel3.Controls.Add(this.mesDubugUC1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.scanerDebugUC1, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.button1, 2, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -3107,16 +3105,6 @@
             this.userDisplay.Size = new System.Drawing.Size(170, 65);
             this.userDisplay.TabIndex = 17;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(787, 335);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
             // ManageSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3131,7 +3119,6 @@
             this.Text = "XXXXXXXXXX";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageSystem_FormClosing);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ManageSystem_KeyPress);
             this.tabMain.ResumeLayout(false);
             this.tabMainUser.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -3461,6 +3448,5 @@
         private System.Windows.Forms.TabPage tabContentPageMain;
         private Control.ScanerDebugUC scanerDebugUC1;
         private Control.MesDubugUC mesDubugUC1;
-        private System.Windows.Forms.Button button1;
     }
 }

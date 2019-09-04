@@ -363,6 +363,10 @@ namespace CAMEL.Baking
         {
             try
             {
+                if (!Current.mes.IsPingSuccess)
+                {
+                    throw new Exception("无法连接到MES服务器：" + Current.mes.Host);
+                }
                 return IdentityVerificationProxy.IdentityVerification(xmlParams);
             }
             catch (Exception ex)
@@ -380,6 +384,10 @@ namespace CAMEL.Baking
         {
             try
             {
+                if (!Current.mes.IsPingSuccess)
+                {
+                    throw new Exception("无法连接到MES服务器：" + Current.mes.Host);
+                }
                 var request = new IdentityVerificationRequest()
                 {
                     AccountNumber = Current.mes.Username,
@@ -411,6 +419,10 @@ namespace CAMEL.Baking
         {
             try
             {
+                if (!Current.mes.IsPingSuccess)
+                {
+                    throw new Exception("无法连接到MES服务器：" + Current.mes.Host);
+                }
                 return TrayBindingProxy.GetTrayBindingInfo(xmlParams);
             }
             catch (Exception ex)
@@ -424,6 +436,10 @@ namespace CAMEL.Baking
         {
             try
             {
+                if (!Current.mes.IsPingSuccess)
+                {
+                    throw new Exception("无法连接到MES服务器：" + Current.mes.Host);
+                }
                 return DeviceStatusRecordProxy.RecordDeviceStatus(xmlParams);
             }
             catch (Exception ex)
@@ -436,6 +452,10 @@ namespace CAMEL.Baking
         {
             try
             {
+                if (!Current.mes.IsPingSuccess)
+                {
+                    throw new Exception("无法连接到MES服务器：" + Current.mes.Host);
+                }
                 var request = new DeviceStatusRecordRequest()
                 {
                     DeviceId = Current.mes.DeviceId,
@@ -478,6 +498,10 @@ namespace CAMEL.Baking
         {
             try
             {
+                if (!Current.mes.IsPingSuccess)
+                {
+                    throw new Exception("无法连接到MES服务器：" + Current.mes.Host);
+                }
                 return ProductionDataUploadProxy.UploadSecondaryHighTempData(xmlParams);
             }
             catch (Exception ex)

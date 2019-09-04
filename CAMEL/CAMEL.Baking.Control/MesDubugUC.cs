@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace CAMEL.Baking.Control
 {
@@ -34,27 +35,40 @@ namespace CAMEL.Baking.Control
             var selectName = this.cbInterfaceName.SelectedItem.ToString();
             var request = this.tbRequest.Text;
             var response = "";
-            if (selectName == "身份验证接口")
-            {
-                response = MES.IdentityVerification(request);
-                Current.option.MesManuIdentityVerificationInput = request;
-            }
-            else if (selectName == "电芯与托盘信息查询接口")
-            {
-                response = MES.GetTrayBindingInfo(request);
-                Current.option.MesManuGetTrayBindingInfoInput = request;
-            }
-            else if (selectName == "记录设备状态接口")
-            {
-                response = MES.RecordDeviceStatus(request);
-                Current.option.MesManuRecordDeviceStatusInput = request;
-            }
-            else if (selectName == "二次高温数据上传接口")
-            {
-                response = MES.UploadSecondaryHighTempData(request);
-                Current.option.MesManuUploadSecondaryHighTempDataInput = request;
-            }
-            this.tbResponse.Text = response;
+
+            new Thread(()=> {
+
+                this.BeginInvoke(new MethodInvoker(() => {
+                    this.btnUpload.Enabled = false;
+                }));
+
+                if (selectName == "身份验证接口")
+                {
+                    response = MES.IdentityVerification(request);
+                    Current.option.MesManuIdentityVerificationInput = request;
+                }
+                else if (selectName == "电芯与托盘信息查询接口")
+                {
+                    response = MES.GetTrayBindingInfo(request);
+                    Current.option.MesManuGetTrayBindingInfoInput = request;
+                }
+                else if (selectName == "记录设备状态接口")
+                {
+                    response = MES.RecordDeviceStatus(request);
+                    Current.option.MesManuRecordDeviceStatusInput = request;
+                }
+                else if (selectName == "二次高温数据上传接口")
+                {
+                    response = MES.UploadSecondaryHighTempData(request);
+                    Current.option.MesManuUploadSecondaryHighTempDataInput = request;
+                }
+
+                this.BeginInvoke(new MethodInvoker(() => {
+                    this.tbResponse.Text = response;
+                    this.btnUpload.Enabled = true;
+                }));
+
+            }).Start();
         }
 
         private void BtnClear_Click(object sender, EventArgs e)

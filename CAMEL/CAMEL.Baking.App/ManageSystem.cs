@@ -1265,7 +1265,7 @@ namespace CAMEL.Baking.App
             //    msg = Current.Blanker.Name + " 启动异常！";
             //    return false;
             //}
-            
+
 
             if (Current.RGV.IsEnable && !Current.RGV.Plc.IsAlive)
             {
@@ -1273,7 +1273,7 @@ namespace CAMEL.Baking.App
                 return false;
             }
 
-            if (Current.mes.IsEnable && !Current.mes.IsPingSuccess)
+            if (Current.mes.IsEnable && (!Current.mes.IsPingSuccess || Current.mes.ProcessCode.Length > 0))
             {
                 msg = Current.mes.Name + " 启动异常！";
                 return false;
@@ -3244,31 +3244,6 @@ namespace CAMEL.Baking.App
         {
             Current.RGV.Plc.GetInfoNoWrite(out string msg);
             Console.WriteLine(msg);
-        }
-
-
-        /// <summary>
-        /// 键盘按下空格键急停RGV
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ManageSystem_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar.ToString() == " ")
-            {
-                if (Current.RGV.IsAlive)
-                {
-                    if (Current.RGV.Stop(out string msg))
-                    {
-                        Tip.Alert("按下空格键急停大RGV成功！");
-                    }
-                }
-            }
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            //MES.RecordDeviceStatus(Current.ovens[24]);
         }
     }
 }
