@@ -43,6 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivationUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActivationUC.Designer.cs">
+      <DependentUpon>ActivationUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActivationWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActivationWindow.Designer.cs">
+      <DependentUpon>ActivationWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="FeederUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -173,6 +185,12 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ActivationUC.resx">
+      <DependentUpon>ActivationUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActivationWindow.resx">
+      <DependentUpon>ActivationWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FeederUC.resx">
       <DependentUpon>FeederUC.cs</DependentUpon>
     </EmbeddedResource>

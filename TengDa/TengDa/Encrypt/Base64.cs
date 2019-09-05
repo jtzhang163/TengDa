@@ -19,9 +19,9 @@ namespace TengDa.Encrypt
         public static string EncodeBase64(Encoding encode, string source)
         {
             string result = "";
-            byte[] bytes = encode.GetBytes(source);
             try
             {
+                byte[] bytes = encode.GetBytes(source);
                 result = Convert.ToBase64String(bytes);
             }
             catch
@@ -50,9 +50,9 @@ namespace TengDa.Encrypt
         public static string DecodeBase64(Encoding encode, string result)
         {
             string decode = "";
-            byte[] bytes = Convert.FromBase64String(result);
             try
             {
+                byte[] bytes = Convert.FromBase64String(result);
                 decode = encode.GetString(bytes);
             }
             catch

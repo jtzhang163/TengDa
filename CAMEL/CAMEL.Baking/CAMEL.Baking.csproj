@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activation.cs" />
     <Compile Include="Alarm.cs" />
     <Compile Include="Battery.cs" />
     <Compile Include="BatteryCache.cs" />

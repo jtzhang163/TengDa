@@ -628,6 +628,15 @@ namespace CAMEL.Baking.App
                 this.pageMain2UC.RefreshUI();
             }
             #endregion
+
+            #region 激活相关
+            Activation.Run();
+            this.activationUC1.Visible = Activation.IsShowActiveMsg();
+            if (Activation.IsStopRunApp())
+            {
+                timerlock = false;
+            }
+            #endregion
         }
 
         private void SetMachineStatusInfo(object machine, string info)
@@ -719,9 +728,8 @@ namespace CAMEL.Baking.App
                 {
                     if (isFirstStart)
                     {
-                        if (PlcConnect() && ScanerConnect() && MesConnect())
+                        if (ActivationCheck() && PlcConnect() && ScanerConnect() && MesConnect())
                         {
-
                             StartRun();
                             Current.ChangeModeTime = DateTime.Now;
                             Current.runStstus = RunStatus.运行;
@@ -909,6 +917,16 @@ namespace CAMEL.Baking.App
             Current.Task.FromClampStatus = ClampStatus.未知;
             Current.Task.Status = TaskStatus.完成;
             Current.RGV.IsMoving = false;
+        }
+
+        private bool ActivationCheck()
+        {
+            if (Activation.IsStopRunApp())
+            {
+                Error.Alert("程序已过期，无法启动！");
+                return false;
+            }
+            return true;
         }
 
         private bool PlcConnect()
@@ -1230,6 +1248,12 @@ namespace CAMEL.Baking.App
         /// <returns></returns>
         public bool CheckStart(out string msg)
         {
+            if (Activation.IsStopRunApp())
+            {
+                msg = "程序已过期，无法启动！";
+                return false;
+            }
+
             for (int i = 0; i < OvenCount; i++)
             {
                 if (Current.ovens[i].IsEnable && !Current.ovens[i].Plc.IsAlive)
