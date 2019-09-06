@@ -126,6 +126,10 @@ namespace CAMEL.Baking
             {
                 return false;
             }
+            if (IsExpired)
+            {
+                return true;
+            }
             return IsShowMsg;
         }
 
@@ -154,7 +158,6 @@ namespace CAMEL.Baking
             {
                 IsExpired = true;
             }
-
         }
 
         public static bool SetValue(string name, object val)
@@ -174,13 +177,4 @@ namespace CAMEL.Baking
         }
     }
 }
-
-//TengDa.Encrypt.Base64.EncodeBase64("2020-01-01")
-//"MjAyMC0wMS0wMQ=="
-//TengDa.Encrypt.Base64.EncodeBase64("2020-08-31")
-//"MjAyMC0wOC0zMQ=="
-//TengDa.Encrypt.Base64.EncodeBase64("true")
-//"dHJ1ZQ=="
-//TengDa.Encrypt.Base64.EncodeBase64("false")
-//"ZmFsc2U="
 

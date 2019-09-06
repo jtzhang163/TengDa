@@ -21,73 +21,74 @@ namespace CAMEL.Baking.Control
 
         private void BtnOK_Click(object sender, EventArgs e)
         {
-            var activeCode = this.tbActiveCode.Text.Trim();
-            var codeAfterDecode = TengDa.Encrypt.Base64.DecodeBase64(activeCode);
-            var codes = codeAfterDecode.Split('_');
-            if (codes.Length < 3)
+            try
             {
-                Error.Alert("激活码格式错误！");
-                return;
-            }
+                // IzIwMTktMDktMDYkU2hvd0FjdGl2ZU1zZ1RpbWU9MjAxOS0wOS0xOFQwMDowMDowMDtFeHBpcmF0aW9uVGltZT0yMDIwLTA5LTE4VDEyOjAwOjAwO0lzU2hvd01zZz1GYWxzZTtJc0V4cGlyZWQ9RmFsc2U7SXNBY3RpdmF0ZWQ9RmFsc2Uj
+                var activeCode = this.tbActiveCode.Text.Trim();
 
-            DateTime.TryParse(codes[0], out DateTime date);
-            if (date.ToString("yyyy-MM-dd") != DateTime.Now.ToString("yyyy-MM-dd"))
-            {
-                Error.Alert("激活码参数错误！");
-                return;
-            }
+                // #2019-09-06$ShowActiveMsgTime=2019-09-18T00:00:00;ExpirationTime=2020-09-18T12:00:00;IsShowMsg=False;IsExpired=False;IsActivated=False#
+                var codeAfterDecode = TengDa.Encrypt.Base64.DecodeBase64(activeCode);
 
-            var propertyName = codes[1];
-            if (!new string[] { "ShowActiveMsgTime", "ExpirationTime", "IsShowMsg", "IsExpired", "IsActivated" }.Contains(propertyName))
-            {
-                Error.Alert("激活码参数错误！");
-                return;
-            }
-
-            var sVal = codes[2];
-
-            if (propertyName.EndsWith("Time"))
-            {
-                if (DateTime.TryParse(sVal, out DateTime dVal))
+                // 2019-09-06
+                var codeNowDate = codeAfterDecode.Trim('#').Split('$')[0];
+                if (!DateTime.TryParse(codeNowDate, out DateTime date))
                 {
-                    if(Activation.SetValue(propertyName, dVal))
+                    throw new Exception("激活码格式错误");
+                }
+                if (date.ToString("yyyy-MM-dd") != DateTime.Now.ToString("yyyy-MM-dd"))
+                {
+                    throw new Exception("激活码参数错误");
+                }
+
+                // ShowActiveMsgTime=2019-09-18T00:00:00;ExpirationTime=2020-09-18T12:00:00;IsShowMsg=False;IsExpired=False;IsActivated=False
+                var codeParams = codeAfterDecode.Trim('#').Split('$')[1];
+
+                var paramList = codeParams.Split(';');
+                if (paramList.Length != 5)
+                {
+                    throw new Exception("激活码格式错误");
+                }
+
+                for (int i = 0; i < 5; i++)
+                {
+                    var propertyName = paramList[i].Split('=')[0];
+                    if (!new string[] { "ShowActiveMsgTime", "ExpirationTime", "IsShowMsg", "IsExpired", "IsActivated" }.Contains(propertyName))
                     {
-                        Tip.Alert("设置激活码成功！");
-                        return;
+                        throw new Exception("激活码格式错误");
+                    }
+
+                    var sVal = paramList[i].Split('=')[1];
+
+                    if (propertyName.EndsWith("Time"))
+                    {
+                        if (!DateTime.TryParse(sVal, out DateTime dVal))
+                        {
+                            throw new Exception("激活码格式错误");
+                        }
+
+                        if (!Activation.SetValue(propertyName, dVal))
+                        {
+                            throw new Exception("设置激活码出错");
+                        }
                     }
                     else
                     {
-                        Error.Alert("设置激活码出错！");
-                        return;
+                        if (!bool.TryParse(sVal, out bool bVal))
+                        {
+                            throw new Exception("激活码格式错误");
+                        }
+                        if (!Activation.SetValue(propertyName, bVal))
+                        {
+                            throw new Exception("设置激活码出错");
+                        }
                     }
                 }
-                else
-                {
-                    Error.Alert("激活码参数错误！");
-                    return;
-                }
+                Tip.Alert("输入验证码成功");
             }
-            else
+            catch (Exception ex)
             {
-                if (bool.TryParse(sVal, out bool bVal))
-                {
-                    if (Activation.SetValue(propertyName, bVal))
-                    {
-                        Tip.Alert("设置激活码成功！");
-                        return;
-                    }
-                    else
-                    {
-                        Error.Alert("设置激活码出错！");
-                        return;
-                    }
-                }
-                else
-                {
-                    Error.Alert("激活码参数错误！");
-                    return;
-                }
-            }     
+                Error.Alert(ex);
+            }
         }
     }
 }
