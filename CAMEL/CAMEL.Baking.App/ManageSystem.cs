@@ -636,6 +636,10 @@ namespace CAMEL.Baking.App
             if (Activation.IsStopRunApp())
             {
                 timerlock = false;
+                if (Current.runStstus == RunStatus.运行)
+                {
+                    Current.runStstus = RunStatus.暂停;
+                }
             }
             #endregion
         }
@@ -727,9 +731,13 @@ namespace CAMEL.Baking.App
             {
                 if (Current.runStstus != RunStatus.运行)
                 {
+                    if (!ActivationCheck())
+                    {
+                        return;
+                    }
                     if (isFirstStart)
                     {
-                        if (ActivationCheck() && PlcConnect() && ScanerConnect() && MesConnect())
+                        if (PlcConnect() && ScanerConnect() && MesConnect())
                         {
                             StartRun();
                             Current.ChangeModeTime = DateTime.Now;

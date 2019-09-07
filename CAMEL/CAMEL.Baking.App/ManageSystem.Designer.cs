@@ -3008,7 +3008,7 @@
             this.activationUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.activationUC1.Location = new System.Drawing.Point(480, 25);
             this.activationUC1.Name = "activationUC1";
-            this.activationUC1.Size = new System.Drawing.Size(145, 50);
+            this.activationUC1.Size = new System.Drawing.Size(300, 50);
             this.activationUC1.TabIndex = 11;
             this.activationUC1.Visible = false;
             // 
