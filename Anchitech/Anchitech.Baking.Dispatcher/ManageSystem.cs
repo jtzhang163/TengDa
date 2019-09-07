@@ -619,12 +619,25 @@ namespace Anchitech.Baking.Dispatcher
                 Yield.Clear();
                 Current.option.ClearYieldTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 yieldDisplay.SetClearYieldTime(DateTime.Now);
-            }
 
+                try
+                {
+                    new Thread(() => {
+                        if (Battery.GetCount(out string msg) > 110000)
+                        {
+                            var tip = Battery.DeleteLongAgo(out msg) ? "删除电池表中较早的数据成功！" : "删除电池表中较早的数据失败！" + msg;
+                            AddTips(tip);
+                        }
+                    }).Start();
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteError("删除电池表中较早的数据失败，msg：" + ex.ToString());
+                }
+            }
             // this.lbTaskStatus.Text = Current.Task.Status.ToString();
             this.taskInfo1.UpdateInfo();
             #endregion
-
         }
 
         #endregion
@@ -670,7 +683,6 @@ namespace Anchitech.Baking.Dispatcher
                             Tip.Alert("成功启动！");
                             Operation.Add("启动运行");
                             AddTips("启动运行");
-                            Battery.DeleteLongAgo(out msg);
                         }
                         else if (!CheckStart(out msg))
                         {
