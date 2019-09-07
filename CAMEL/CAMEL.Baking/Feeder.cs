@@ -115,25 +115,6 @@ namespace CAMEL.Baking
             }
         }
 
-        private int nextFeedClampId = -1;
-        /// <summary>
-        /// 下一个上料夹具ID
-        /// </summary>
-        [ReadOnly(true)]
-        [DisplayName("下一个上料夹具ID")]
-        public int NextFeedClampId
-        {
-            get { return nextFeedClampId; }
-            set
-            {
-                if (nextFeedClampId != value)
-                {
-                    UpdateDbField("NextFeedClampId", value);
-                }
-                nextFeedClampId = value;
-            }
-        }
-
         /// <summary>
         /// 夹爪移动类型
         /// </summary>
@@ -192,37 +173,53 @@ namespace CAMEL.Baking
         /// </summary>
         private int[] FillClampCount = new int[] { 0, 0, 0 };
 
-        public void CacheBatteryIn(Battery battery)
-        {
-            var c = CacheBatteries;
-            c.Add(battery);
-            CacheBatteries = c;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns>Battery的id集合字符串</returns>
-        public string CacheBatteryOut()
-        {
-            if (CacheBatteries.Count < 1)
-            {
-                return "-1";
-            }
-            string batteryIds = CacheBatteries[0].Id.ToString();
-            var c = CacheBatteries;
-            var count = c.Count;
-            if (count < 4)
-            {
-                c.RemoveAt(0);
-            }
-            else
-            {
-                batteryIds = string.Join(",", Array.ConvertAll<Battery, string>(c.Take(count - 3).ToArray(), delegate (Battery b) { return b.Id.ToString(); }));
-                c.RemoveRange(0, count - 3);
-            }
 
-            CacheBatteries = c;
-            return batteryIds;
+        /// <summary>
+        /// 取盘位
+        /// </summary>
+        [Browsable(false)]
+        public Station GetStation
+        {
+            get
+            {
+                return Stations[0];
+            }
+        }
+
+        /// <summary>
+        /// 放盘位
+        /// </summary>
+        [Browsable(false)]
+        public Station PutStation
+        {
+            get
+            {
+                return Stations[1];
+            }
+        }
+
+        [Browsable(false)]
+        public ushort HeartValue { get; set; }
+
+
+        private string cacheClampCodes = string.Empty;
+        /// <summary>
+        /// 缓存夹具条码序列
+        /// LXY00054&LXY00055&
+        /// </summary>
+        [ReadOnly(true)]
+        [DisplayName("缓存夹具条码序列")]
+        public string CacheClampCodes
+        {
+            get { return cacheClampCodes; }
+            private set
+            {
+                if (cacheClampCodes != value)
+                {
+                    UpdateDbField("CacheClampCodes", value);
+                }
+                cacheClampCodes = value;
+            }
         }
 
         #endregion
@@ -282,10 +279,7 @@ namespace CAMEL.Baking
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
             this.stationIds = rowInfo["StationIds"].ToString();
             this.scanerIds = rowInfo["ScanerIds"].ToString();
-            this.batteryCacheId = TengDa._Convert.StrToInt(rowInfo["BatteryCacheId"].ToString(), -1);
-            this.nextFeedClampId = TengDa._Convert.StrToInt(rowInfo["NextFeedClampId"].ToString(), -1);
-            this.cacheBatteryIdsStr = rowInfo["CacheBatteryIdsStr"].ToString();
-            this.currentBatteryCount = TengDa._Convert.StrToInt(rowInfo["CurrentBatteryCount"].ToString(), 0);
+            this.cacheClampCodes = rowInfo["CacheClampCodes"].ToString();
         }
         #endregion
 
@@ -379,30 +373,6 @@ namespace CAMEL.Baking
             }
         }
 
-        /// <summary>
-        /// 取盘位
-        /// </summary>
-        public Station GetStation
-        {
-            get
-            {
-                return Stations[0];
-            }
-        }
-
-        /// <summary>
-        /// 放盘位
-        /// </summary>
-        public Station PutStation
-        {
-            get
-            {
-                return Stations[1];
-            }
-        }
-
-        public ushort HeartValue { get; set; }
-
         #endregion
 
         #region 通信
@@ -450,7 +420,16 @@ namespace CAMEL.Baking
 
                     if (db17_2 == 2 && this.GetStation.ClampStatus != ClampStatus.满夹具)
                     {
-                        this.GetStation.ClampId = this.NextFeedClampId;
+                        var clampCode = Current.Feeder.PopClampCode();
+                        if (!string.IsNullOrEmpty(clampCode))
+                        {
+                            this.GetStation.ClampId = Clamp.Add(clampCode, out msg);
+                        }
+                        else
+                        {
+                            //没有缓存条码时生成随机码
+                            this.GetStation.ClampId = Clamp.Add(Guid.NewGuid().ToString().Substring(0, 8).ToUpper(), out msg);
+                        }
                     }
 
                     this.GetStation.ClampStatus = db17_2 == 2 ? ClampStatus.满夹具 : ClampStatus.无夹具;
@@ -554,8 +533,68 @@ namespace CAMEL.Baking
             LogHelper.WriteInfo(string.Format("发送放完信号给{0}，{1}：{2}", this.Plc.Name, addr, val));
         }
 
-        #endregion
+        public void CacheBatteryIn(Battery battery)
+        {
+            var c = CacheBatteries;
+            c.Add(battery);
+            CacheBatteries = c;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>Battery的id集合字符串</returns>
+        public string CacheBatteryOut()
+        {
+            if (CacheBatteries.Count < 1)
+            {
+                return "-1";
+            }
+            string batteryIds = CacheBatteries[0].Id.ToString();
+            var c = CacheBatteries;
+            var count = c.Count;
+            if (count < 4)
+            {
+                c.RemoveAt(0);
+            }
+            else
+            {
+                batteryIds = string.Join(",", Array.ConvertAll<Battery, string>(c.Take(count - 3).ToArray(), delegate (Battery b) { return b.Id.ToString(); }));
+                c.RemoveRange(0, count - 3);
+            }
 
+            CacheBatteries = c;
+            return batteryIds;
+        }
+
+        /// <summary>
+        /// 往夹具条码缓存中添加条码
+        /// </summary>
+        /// <param name="code"></param>
+        public void PushClampCode(string code)
+        {
+            if (string.IsNullOrEmpty(code) || code.Length != 8) return;
+            if (this.CacheClampCodes.Contains(code)) return;
+            if (this.CacheClampCodes.Length > 20) return;
+            this.CacheClampCodes = this.CacheClampCodes + code + "&";
+        }
+
+        /// <summary>
+        /// 从夹具条码缓存中取出条码
+        /// </summary>
+        /// <returns></returns>
+        public string PopClampCode()
+        {
+            if (this.CacheClampCodes.Length < 9)
+            {
+                return string.Empty;
+            }
+            var codes = this.CacheClampCodes;
+            var code = codes.Split('&')[0];
+            this.CacheClampCodes = codes.Replace(code, "").TrimStart('&');
+            return code;
+        }
+
+        #endregion
     }
 
     /// <summary>

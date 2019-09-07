@@ -1549,7 +1549,7 @@ namespace CAMEL.Baking.App
                             {
                                 this.SetMachineStatusInfo(Current.ClampScaner, "+" + code);
                             }));
-                            Current.Feeder.NextFeedClampId = Clamp.Add(code, out msg);
+                            Current.Feeder.PushClampCode(code);
                             if (!Current.Feeder.SetScanClampResult(ScanResult.OK, out msg))
                             {
                                 Error.Alert(msg);

@@ -686,7 +686,7 @@ namespace CAMEL.Baking
             }
         }
 
-
+        [Browsable(false)]
         public ClampOri OvenClampOri
         {
             get

@@ -16,8 +16,8 @@ namespace CAMEL.Baking.Control
     public partial class FloorUC : UserControl
     {
 
-        private string batchNumber1 = "";
-        private string batchNumber2 = "";
+        //private string batchNumber1 = "";
+        //private string batchNumber2 = "";
 
         private Floor floor;
 
@@ -219,10 +219,13 @@ namespace CAMEL.Baking.Control
             }
             else if (Current.option.FloorShowInfoType == "夹具条码")
             {
+                var code1 = oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code;
+                var code2 = oven.ClampOri == ClampOri.A ? floor.Stations[1].Clamp.Code : floor.Stations[0].Clamp.Code;
+
                 lbStatus.Text =
                     string.Format("{0} {1}",
-                    (oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadRight(6),
-                    (oven.ClampOri == ClampOri.A ? floor.Stations[1].Clamp.Code : floor.Stations[0].Clamp.Code).PadLeft(6)
+                    code1.Length >= 8 ? code1.Substring(3, 5) : code1,
+                    code2.Length >= 8 ? code2.Substring(3, 5) : code2
                     );
             }
             else if (Current.option.FloorShowInfoType == "开始烘烤时间")
@@ -276,11 +279,11 @@ namespace CAMEL.Baking.Control
             //}
 
 
-            if (Current.option.FloorShowInfoType != "批次号")
-            {
-                batchNumber1 = "";
-                batchNumber1 = "";
-            }
+            //if (Current.option.FloorShowInfoType != "批次号")
+            //{
+            //    batchNumber1 = "";
+            //    batchNumber1 = "";
+            //}
 
 
             switch (floor.DoorStatus)

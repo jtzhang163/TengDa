@@ -554,6 +554,7 @@ namespace CAMEL.Baking
                                 if (Current.RGV.IsTaskFinished && Current.RGV.IsForkAtOriginalPoint)
                                 {
                                     Current.RGV.ClampStatus = Current.Task.FromClampStatus;
+                                    Current.RGV.ClampId = Current.Task.ClampId;
                                     Current.Task.Status = TaskStatus.取完;
 
                                     if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
@@ -589,9 +590,11 @@ namespace CAMEL.Baking
                                 if (Current.RGV.IsTaskFinished && Current.RGV.IsForkAtOriginalPoint)
                                 {
                                     Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
+                                    Current.Task.ToStation.ClampId = Current.Task.ClampId;
                                     Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
                                     Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
                                     Current.RGV.ClampStatus = ClampStatus.无夹具;
+                                    Current.RGV.ClampId = -1;
                                     if (!TaskLog.Add(out msg))//记录
                                     {
                                         Error.Alert("保存搬运记录失败：" + msg);
@@ -657,6 +660,7 @@ namespace CAMEL.Baking
                             if (Current.RGV.IsTaskFinished && Current.RGV.IsForkAtOriginalPoint)
                             {
                                 Current.RGV.ClampStatus = Current.Task.FromClampStatus;
+                                Current.RGV.ClampId = Current.Task.ClampId;
                                 Current.Task.Status = TaskStatus.取完;
 
                                 if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
@@ -699,12 +703,14 @@ namespace CAMEL.Baking
                             if (Current.RGV.IsTaskFinished && Current.RGV.IsForkAtOriginalPoint)
                             {
                                 Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
+                                Current.Task.ToStation.ClampId = Current.Task.ClampId;
                                 Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
                                 if (Current.Task.FromStation != null)
                                 {
                                     Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
                                 }
                                 Current.RGV.ClampStatus = ClampStatus.无夹具;
+                                Current.RGV.ClampId = -1;
                                 if (!TaskLog.Add(out msg))//记录
                                 {
                                     Error.Alert("保存搬运记录失败：" + msg);
