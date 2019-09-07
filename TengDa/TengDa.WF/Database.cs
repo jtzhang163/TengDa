@@ -85,6 +85,7 @@ namespace TengDa.WF
                 return null;
             }
         }
+
         /// <summary>
         /// 写数据库
         /// </summary>
@@ -92,6 +93,18 @@ namespace TengDa.WF
         /// <param name="msg">出现异常时的返回字符串</param>
         /// <returns>返回布尔类型表示操作是否成功</returns>
         public static bool NonQuery(string sql, out string msg)
+        {
+            return NonQuery(sql, -1, out msg);
+        }
+
+        /// <summary>
+        /// 写数据库
+        /// </summary>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="timeout">超时时间，单位：秒</param>
+        /// <param name="msg">出现异常时的返回字符串</param>
+        /// <returns>返回布尔类型表示操作是否成功</returns>
+        public static bool NonQuery(string sql, int timeout, out string msg)
         {
             try
             {
@@ -107,7 +120,7 @@ namespace TengDa.WF
                 com.CommandType = CommandType.Text;
                 com.CommandText = sql;
 
-                com.CommandTimeout = con.ConnectionTimeout;//超时
+                com.CommandTimeout = timeout == -1 ? con.ConnectionTimeout : timeout;//超时
 
                 com.ExecuteNonQuery();
 
