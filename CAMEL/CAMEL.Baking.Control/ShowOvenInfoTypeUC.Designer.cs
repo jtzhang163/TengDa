@@ -67,10 +67,12 @@
             this.cbShowType.FormattingEnabled = true;
             this.cbShowType.Items.AddRange(new object[] {
             "默认信息",
+            "夹具条码",
             "开始烘烤时间",
             "出烤箱时间",
-            "批次号",
-            "夹具条码"});
+            "温度设定",
+            "预热时间设定",
+            "超温偏差设定"});
             this.cbShowType.Location = new System.Drawing.Point(132, 3);
             this.cbShowType.Name = "cbShowType";
             this.cbShowType.Size = new System.Drawing.Size(152, 20);

@@ -21,5 +21,10 @@ namespace CAMEL.Baking.Control
         {
             new ActivationWindow().ShowDialog();
         }
+
+        public void SetMsgContent(string content)
+        {
+            this.lbActivationMsg.Text = content;
+        }
     }
 }

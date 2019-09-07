@@ -631,7 +631,8 @@ namespace CAMEL.Baking.App
 
             #region 激活相关
             Activation.Run();
-            this.activationUC1.Visible = Activation.IsShowActiveMsg();
+            this.activationUC1.Visible = Activation.IsShowActiveMsg(out string activeMsg);
+            this.activationUC1.SetMsgContent(activeMsg);
             if (Activation.IsStopRunApp())
             {
                 timerlock = false;
@@ -3268,6 +3269,11 @@ namespace CAMEL.Baking.App
         {
             Current.RGV.Plc.GetInfoNoWrite(out string msg);
             Console.WriteLine(msg);
+        }
+
+        private void TableLayoutPanel1_DoubleClick(object sender, EventArgs e)
+        {
+            new ActivationWindow().ShowDialog();
         }
     }
 }

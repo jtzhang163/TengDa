@@ -69,6 +69,10 @@ namespace CAMEL.Baking.Control
 
                         if (oven.GetParam(addr, out int val, out msg))
                         {
+                            if (this.ovenParamUCs[ii].ovenParam.Unit == "℃")
+                            {
+                                val /= 10;
+                            }
                             this.BeginInvoke(new MethodInvoker(() =>
                             {
                                 this.ovenParamUCs[ii].SetOldValue(val);
@@ -80,6 +84,7 @@ namespace CAMEL.Baking.Control
                             isSuccess = false;
                             break;
                         }
+
                     }
 
                     if (isSuccess)
@@ -116,8 +121,8 @@ namespace CAMEL.Baking.Control
 
         private void BtnSetParam_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 Thread t = new Thread(() =>
                 {
                     this.BeginInvoke(new MethodInvoker(() =>
@@ -155,7 +160,12 @@ namespace CAMEL.Baking.Control
                             break;
                         }
 
-                        if (!oven.SetParam(addr, this.ovenParamUCs[i].GetNewValue(), out msg))
+                        var val = this.ovenParamUCs[i].GetNewValue();
+                        if (this.ovenParamUCs[i].ovenParam.Unit == "℃")
+                        {
+                            val *= 10;
+                        }
+                        if (!oven.SetParam(addr, val, out msg))
                         {
                             isSuccess = false;
                             break;
@@ -187,11 +197,11 @@ namespace CAMEL.Baking.Control
 
                 });
                 t.Start();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Error.Alert(ex);
-            //}
+            }
+            catch (Exception ex)
+            {
+                Error.Alert(ex);
+            }
         }
 
         private void BtnGetDefaultValue_Click(object sender, EventArgs e)

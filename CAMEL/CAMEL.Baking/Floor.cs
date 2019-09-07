@@ -273,6 +273,18 @@ namespace CAMEL.Baking
         public List<float>[] sampledDatas = new List<float>[Option.TemperaturePointCount];//采样数据1
         #endregion
 
+        [ReadOnly(true), Description("预热时间设定，单位：min")]
+        [DisplayName("预热时间设定")]
+        public int PreHeatTimeSetting { get; set; }
+
+        [ReadOnly(true), Description("温度设定，单位：℃")]
+        [DisplayName("温度设定")]
+        public int TemperSetting { get; set; }
+
+        [ReadOnly(true), Description("超温偏差设定，单位：℃")]
+        [DisplayName("超温偏差设定")]
+        public int TemperOverOffsetSetting { get; set; }
+
 
         public bool DoorIsOpenning = false;
         public bool DoorIsClosing = false;

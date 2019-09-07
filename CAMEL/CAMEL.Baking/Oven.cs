@@ -354,7 +354,7 @@ namespace CAMEL.Baking
                         bOutputs0[70] == 3 ? TriLamp.Red : TriLamp.Unknown;
 
                     var bOutputs1 = new ushort[] { };
-                    if (!this.Plc.GetInfo(true, "D0", (ushort)99, out bOutputs1, out msg))
+                    if (!this.Plc.GetInfo(true, "D0", (ushort)200, out bOutputs1, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;
@@ -369,6 +369,9 @@ namespace CAMEL.Baking
                         }
                         this.Floors[j].RunMinutesSet = bOutputs1[10 + 2 * j];
                         this.Floors[j].RunMinutes = bOutputs1[20 + 2 * j];
+                        this.Floors[j].TemperSetting = bOutputs1[30 + j] / 10;
+                        this.Floors[j].PreHeatTimeSetting = bOutputs1[100];
+                        this.Floors[j].TemperOverOffsetSetting = bOutputs1[102];
                     }
 
                     #region 报警信息

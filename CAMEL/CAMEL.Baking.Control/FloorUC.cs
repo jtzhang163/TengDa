@@ -217,6 +217,14 @@ namespace CAMEL.Baking.Control
                     oven.Floors.IndexOf(floor) + 1
                     );
             }
+            else if (Current.option.FloorShowInfoType == "夹具条码")
+            {
+                lbStatus.Text =
+                    string.Format("{0} {1}",
+                    (oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadRight(6),
+                    (oven.ClampOri == ClampOri.A ? floor.Stations[1].Clamp.Code : floor.Stations[0].Clamp.Code).PadLeft(6)
+                    );
+            }
             else if (Current.option.FloorShowInfoType == "开始烘烤时间")
             {
                 var startBakingTime = "";
@@ -234,34 +242,38 @@ namespace CAMEL.Baking.Control
             {
                 lbStatus.Text = floor.OutOvenTime > TengDa.Common.DefaultTime ? floor.OutOvenTime.ToString("yyyy-MM-dd HH:mm") : "";
             }
-            else if (Current.option.FloorShowInfoType == "夹具条码")
+            else if (Current.option.FloorShowInfoType == "温度设定")
             {
-                lbStatus.Text =
-                    string.Format("{0} {1}",
-                    (oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadRight(6),
-                    (oven.ClampOri == ClampOri.A ? floor.Stations[1].Clamp.Code : floor.Stations[0].Clamp.Code).PadLeft(6)
-                    );
+                lbStatus.Text = floor.TemperSetting + "℃";
             }
-            else if (Current.option.FloorShowInfoType == "批次号")
+            else if (Current.option.FloorShowInfoType == "预热时间设定")
             {
-                if (string.IsNullOrEmpty(batchNumber1) && string.IsNullOrEmpty(batchNumber1))
-                {
-                    Station s1 = oven.ClampOri == ClampOri.A ? floor.Stations[0] : floor.Stations[1];
-                    Station s2 = oven.ClampOri == ClampOri.A ? floor.Stations[1] : floor.Stations[0];
-
-                    if (s1.Clamp.Batteries.Count > 0 && s1.Clamp.Batteries[0].Code.Length > 12)
-                    {
-                        batchNumber1 = s1.Clamp.Batteries[0].Code.Substring(8, 5);
-                    }
-
-                    if (s2.Clamp.Batteries.Count > 0 && s2.Clamp.Batteries[0].Code.Length > 12)
-                    {
-                        batchNumber2 = s2.Clamp.Batteries[0].Code.Substring(8, 5);
-                    }
-                }
-
-                lbStatus.Text = batchNumber1.PadLeft(5) + "  " + batchNumber2.PadLeft(5);
+                lbStatus.Text = floor.PreHeatTimeSetting + "min";
             }
+            else if (Current.option.FloorShowInfoType == "超温偏差设定")
+            {
+                lbStatus.Text = floor.TemperOverOffsetSetting + "℃";
+            }
+            //else if (Current.option.FloorShowInfoType == "批次号")
+            //{
+            //    if (string.IsNullOrEmpty(batchNumber1) && string.IsNullOrEmpty(batchNumber1))
+            //    {
+            //        Station s1 = oven.ClampOri == ClampOri.A ? floor.Stations[0] : floor.Stations[1];
+            //        Station s2 = oven.ClampOri == ClampOri.A ? floor.Stations[1] : floor.Stations[0];
+
+            //        if (s1.Clamp.Batteries.Count > 0 && s1.Clamp.Batteries[0].Code.Length > 12)
+            //        {
+            //            batchNumber1 = s1.Clamp.Batteries[0].Code.Substring(8, 5);
+            //        }
+
+            //        if (s2.Clamp.Batteries.Count > 0 && s2.Clamp.Batteries[0].Code.Length > 12)
+            //        {
+            //            batchNumber2 = s2.Clamp.Batteries[0].Code.Substring(8, 5);
+            //        }
+            //    }
+
+            //    lbStatus.Text = batchNumber1.PadLeft(5) + "  " + batchNumber2.PadLeft(5);
+            //}
 
 
             if (Current.option.FloorShowInfoType != "批次号")

@@ -120,14 +120,16 @@ namespace CAMEL.Baking
         }
 
 
-        public static bool IsShowActiveMsg()
+        public static bool IsShowActiveMsg(out string activeMsg)
         {
+            activeMsg = "程序即将过期，点击此处输入激活码";
             if (IsActivated)
             {
                 return false;
             }
             if (IsExpired)
             {
+                activeMsg = "程序已过期，点击此处输入激活码";
                 return true;
             }
             return IsShowMsg;
