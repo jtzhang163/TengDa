@@ -179,6 +179,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.mesDubugUC1 = new CAMEL.Baking.Control.MesDubugUC();
             this.scanerDebugUC1 = new CAMEL.Baking.Control.ScanerDebugUC();
+            this.btnTest = new System.Windows.Forms.Button();
             this.tabContentTaskLog = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvTaskLog = new System.Windows.Forms.DataGridView();
@@ -2080,6 +2081,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.35468F));
             this.tableLayoutPanel3.Controls.Add(this.mesDubugUC1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.scanerDebugUC1, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnTest, 2, 3);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -2112,6 +2114,16 @@
             this.scanerDebugUC1.Name = "scanerDebugUC1";
             this.scanerDebugUC1.Size = new System.Drawing.Size(334, 109);
             this.scanerDebugUC1.TabIndex = 0;
+            // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(787, 486);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTest.TabIndex = 2;
+            this.btnTest.Text = "测试";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.BtnTest_Click);
             // 
             // tabContentTaskLog
             // 
@@ -2999,6 +3011,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1370, 100);
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.DoubleClick += new System.EventHandler(this.TableLayoutPanel1_DoubleClick);
@@ -3008,7 +3021,7 @@
             this.activationUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.activationUC1.Location = new System.Drawing.Point(480, 25);
             this.activationUC1.Name = "activationUC1";
-            this.activationUC1.Size = new System.Drawing.Size(300, 50);
+            this.activationUC1.Size = new System.Drawing.Size(145, 50);
             this.activationUC1.TabIndex = 11;
             this.activationUC1.Visible = false;
             // 
@@ -3461,5 +3474,6 @@
         private Control.ScanerDebugUC scanerDebugUC1;
         private Control.MesDubugUC mesDubugUC1;
         private Control.ActivationUC activationUC1;
+        private System.Windows.Forms.Button btnTest;
     }
 }

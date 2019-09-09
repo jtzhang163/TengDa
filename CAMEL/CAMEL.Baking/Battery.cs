@@ -50,16 +50,17 @@ namespace CAMEL.Baking
             this.Id = id;
         }
 
-        public Battery(string code) : this(code, -1, -1)
+        public Battery(string code) : this(code, -1, -1, "")
         {
 
         }
 
-        public Battery(string code, int feederId, int clampId)
+        public Battery(string code, int feederId, int clampId, string location)
         {
             this.code = code;
             this.FeederId = feederId;
             this.ClampId = clampId;
+            this.location = location;
         }
 
         #region 初始化方法
@@ -204,11 +205,10 @@ namespace CAMEL.Baking
 
             foreach (Battery battery in addBatteries)
             {
-                sb.Append(string.Format("('{0}', {1}, '{2}', '{3}'),", battery.Code, battery.ClampId, battery.Location, DateTime.Now));
+                sb.Append(string.Format("('{0}', {1}, {2}, '{3}', '{4}'),", battery.Code, battery.FeederId, battery.ClampId, battery.Location, DateTime.Now));
             }
 
-            //Yield.FeedingOK += addBatteries.Count;
-            return Database.NonQuery(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [Location], [ScanTime]) VALUES {1}", TableName, sb.ToString().TrimEnd(',')), out msg);
+            return Database.NonQuery(string.Format("INSERT INTO [dbo].[{0}] ([Code], [FeederId], [ClampId], [Location], [ScanTime]) VALUES {1}", TableName, sb.ToString().TrimEnd(',')), out msg);
         }
 
         public static bool Delete(Battery delBattery, out string msg)

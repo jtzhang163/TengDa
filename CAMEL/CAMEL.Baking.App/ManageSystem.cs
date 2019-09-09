@@ -131,7 +131,6 @@ namespace CAMEL.Baking.App
             //    cbVacuumIndex[i] = (CheckBox)(this.Controls.Find(string.Format("cbVacuumIndex{0}", (i + 1).ToString("D2")), true)[0]);
             //    cbVacuumIndex[i].ForeColor = Color.Violet;
             //}
-
         }
 
         private void InitSettingsTreeView()
@@ -1249,6 +1248,8 @@ namespace CAMEL.Baking.App
 
         System.Timers.Timer timerRecordDeviceStatus = null;
 
+        System.Timers.Timer timerDownloadBatteryInfo = null;
+
         private static bool timerlock = false;
 
         /// <summary>
@@ -1395,6 +1396,17 @@ namespace CAMEL.Baking.App
                 Thread.Sleep(50);
                 timerRecordDeviceStatus.Start();
 
+                timerDownloadBatteryInfo = new System.Timers.Timer();
+                timerDownloadBatteryInfo.Interval = 60 * 1000;
+                timerDownloadBatteryInfo.Elapsed += delegate
+                {
+                    Thread listen = new Thread(new ThreadStart(DownloadBatteryInfo));
+                    listen.IsBackground = true;
+                    listen.Start();
+                };
+                Thread.Sleep(50);
+                timerDownloadBatteryInfo.Start();
+
                 this.timerTask = new System.Timers.Timer();
                 this.timerTask.Interval = Current.option.TaskInterval;
                 this.timerTask.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Task);
@@ -1412,13 +1424,6 @@ namespace CAMEL.Baking.App
                 this.timerPaintCurve.Elapsed += new System.Timers.ElapsedEventHandler(Timer_PaintCurve);
                 this.timerPaintCurve.AutoReset = true;
                 this.timerPaintCurve.Start();
-
-
-                this.timerUploadMes = new System.Timers.Timer();
-                this.timerUploadMes.Interval = TengDa._Convert.StrToInt(Current.option.UploadMesInterval, 60) * 1000;
-                this.timerUploadMes.Elapsed += new System.Timers.ElapsedEventHandler(Timer_UploadMes);
-                this.timerUploadMes.AutoReset = true;
-                this.timerUploadMes.Start();
             }
 
             this.GetMachineStatusInfo(false);//运行后禁止操作启用复选框
@@ -1485,13 +1490,6 @@ namespace CAMEL.Baking.App
                 timerRecordTV.Stop();
                 timerRecordTV.Close();
                 timerRecordTV.Dispose();
-            }
-
-            if (timerUploadMes != null)
-            {
-                timerUploadMes.Stop();
-                timerUploadMes.Close();
-                timerUploadMes.Dispose();
             }
         }
 
@@ -1826,50 +1824,35 @@ namespace CAMEL.Baking.App
         }
         #endregion
 
-        #region 定时将数据上传MES(设备信息和未上传成功的电芯信息)
-        System.Timers.Timer timerUploadMes = null;
+        #region 定时将数据上传MES
 
-        private void Timer_UploadMes(object sender, ElapsedEventArgs e)
+        /// <summary>
+        /// 获取夹具绑定的电池信息
+        /// </summary>
+        public void DownloadBatteryInfo()
         {
-            string msg = string.Empty;
-            if (timerlock && Current.mes.IsEnable)
+            Thread.Sleep(200);
+            var clamps = Clamp.GetList(string.Format("SELECT TOP 3 * FROM [dbo].[{0}] WHERE [IsDownloaded] = 'false' AND [Code] LIKE 'LXY%' ORDER BY [Id] DESC", Clamp.TableName), out string msg);
+            if (!string.IsNullOrEmpty(msg))
             {
-                UploadMachineStatus();
-                UploadBatteryInfo(new List<Clamp>());
+                Error.Alert(msg);
+                return;
             }
-        }
+            if (clamps.Count < 1) return;
 
-        public void UploadBatteryInfo(object obj)
-        {
-            try
+            this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.mes, ".获取电池信息"); }));
+            for (int i = 0; i < clamps.Count; i++)
             {
-                Thread.Sleep(200);
-                List<Clamp> clamps = (List<Clamp>)obj;
-                string msg = string.Empty;
-                if (clamps.Count < 1)
+                var isSuccess = MES.GetTrayBindingInfo(clamps[i], out List<Battery> batteries);
+                this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.mes, isSuccess ? "获取电池成功" : "获取电池失败"); }));
+                if (isSuccess)
                 {
-                    clamps = Clamp.GetList(string.Format("SELECT TOP 3 * FROM [dbo].[{0}] WHERE [IsUploaded] = 'false' AND [IsFinished] = 'true' ORDER BY [Id] DESC", Clamp.TableName), out msg);
-                    if (!string.IsNullOrEmpty(msg))
+                    if (!Battery.Add(batteries, out msg))
                     {
-                        Error.Alert(msg);
+                        Error.Alert("电池数据插入数据库失败：" + msg);
                         return;
                     }
                 }
-
-                if (clamps.Count < 1)
-                {
-                    return;
-                }
-
-                this.BeginInvoke(new MethodInvoker(() =>
-                {
-                    this.SetMachineStatusInfo(Current.mes, "上传烘烤数据ID:" + clamps[0].Id);
-                }));
-               // MES.UploadBatteryInfo(clamps);
-            }
-            catch (Exception ex)
-            {
-                Error.Alert(ex.Message);
             }
         }
 
@@ -3258,6 +3241,11 @@ namespace CAMEL.Baking.App
         private void TableLayoutPanel1_DoubleClick(object sender, EventArgs e)
         {
             new ActivationWindow().ShowDialog();
+        }
+
+        private void BtnTest_Click(object sender, EventArgs e)
+        {
+            MES.GetTrayBindingInfo(new Clamp(), out List<Battery> batteries);
         }
     }
 }

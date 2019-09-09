@@ -433,7 +433,52 @@ namespace CAMEL.Baking
             {
                 return ex.Message;
             }
+        }
 
+        public static bool GetTrayBindingInfo(Clamp clamp, out List<Battery> batteries)
+        {
+            batteries = new List<Battery>();
+            try
+            {
+                if (!Current.mes.IsPingSuccess)
+                {
+                    throw new Exception("无法连接到MES服务器：" + Current.mes.Host);
+                }
+
+                var request = new TrayBindingRequest()
+                {
+                    TrayBarcode = clamp.Code,
+                    DeviceId = Current.mes.DeviceId
+                };
+
+                var xmlRequest = XmlHelper.Serialize(request).Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
+                var xmlResponse = TrayBindingProxy.GetTrayBindingInfo(xmlRequest);
+                var response = XmlHelper.Deserialize<TrayBindingResponse>(xmlResponse);
+                if (response.Result)
+                {
+                    for (int i = 0; i < response.BarcodeGroup.Length; i++)
+                    {
+                        if (!string.IsNullOrEmpty(response.BarcodeGroup[i].Barcode))
+                        {
+                            batteries.Add(new Battery(response.BarcodeGroup[i].Barcode, Current.Feeder.Id, clamp.Id, response.BarcodeGroup[i].Point.ToString()));
+                        }
+                    }
+                    //LogHelper.WriteInfo(string.Format("从MES获取夹具绑定的电池成功，xmlRequest：{0}，xmlResponse：{1}", xmlRequest, xmlResponse));
+                    LogHelper.WriteInfo(string.Format("从MES获取夹具绑定的电池成功"));
+                }
+                else
+                {
+                    LogHelper.WriteInfo(string.Format("从MES获取夹具绑定的电池失败，原因：{0}", response.Message));
+                }
+                clamp.IsDownloaded = true;
+                return response.Result;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError(ex);
+                LogHelper.WriteInfo(string.Format("烤箱状态上传MES报错：{0}", ex.Message));
+            }
+            return false;
         }
 
         public static string RecordDeviceStatus(string xmlParams)
@@ -546,7 +591,7 @@ namespace CAMEL.Baking
         public int ExecutionTime { get; set; }
     }
 
-
+    [XmlRoot("Request")]
     public class TrayBindingRequest
     {
         public string TrayBarcode { get; set; }
@@ -554,6 +599,7 @@ namespace CAMEL.Baking
         public string DeviceId { get; set; }
     }
 
+    [XmlRoot("Response")]
     public class TrayBindingResponse
     {
         public BarcodeInfo[] BarcodeGroup { get; set; }

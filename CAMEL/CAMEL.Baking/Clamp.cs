@@ -139,6 +139,30 @@ namespace CAMEL.Baking
             }
         }
 
+
+        private bool isDownloaded;
+        /// <summary>
+        /// 是否已从MES获取电池列表
+        /// </summary>
+        [DisplayName("是否已从MES获取电池列表")]
+        [Category("基本信息")]
+        public bool IsDownloaded
+        {
+            get
+            {
+                return isDownloaded;
+            }
+            set
+            {
+                if (isDownloaded != value)
+                {
+                    UpdateDbField("IsDownloaded", value);
+                }
+                isDownloaded = value;
+            }
+        }
+
+
         private bool isUploaded;
         /// <summary>
         /// 是否已上传MES
@@ -315,6 +339,7 @@ namespace CAMEL.Baking
             this.outOvenTime = TengDa._Convert.StrToDateTime(rowInfo["OutOvenTime"].ToString(), Common.DefaultTime);
             this.isFinished = TengDa._Convert.StrToBool(rowInfo["IsFinished"].ToString(), false);
             this.isUploaded = TengDa._Convert.StrToBool(rowInfo["IsUploaded"].ToString(), true);
+            this.isDownloaded = TengDa._Convert.StrToBool(rowInfo["IsDownloaded"].ToString(), true);
             this.scanTime = TengDa._Convert.StrToDateTime(rowInfo["ScanTime"].ToString(), Common.DefaultTime);
             this.temperature = TengDa._Convert.StrToFloat(rowInfo["Temperature"].ToString(), -1);
             this.vacuum = TengDa._Convert.StrToFloat(rowInfo["Vacuum"].ToString(), -1);
@@ -384,8 +409,8 @@ namespace CAMEL.Baking
 
         public static int Add(Clamp addClamp, out string msg)
         {
-            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsFinished], [IsUploaded], [Temperature], [Vacuum], [SampleInfo]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}')", TableName,
-              addClamp.Code, TengDa.WF.Current.user.Id, addClamp.OvenStationId, addClamp.Location, addClamp.BakingStartTime, addClamp.BakingStopTime, addClamp.ScanTime, addClamp.InOvenTime, addClamp.OutOvenTime, addClamp.IsFinished, addClamp.IsUploaded, addClamp.Temperature, addClamp.Vacuum, addClamp.SampleInfo), out msg);
+            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsFinished], [IsUploaded], [IsDownloaded], [Temperature], [Vacuum], [SampleInfo]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}')", TableName,
+              addClamp.Code, TengDa.WF.Current.user.Id, addClamp.OvenStationId, addClamp.Location, addClamp.BakingStartTime, addClamp.BakingStopTime, addClamp.ScanTime, addClamp.InOvenTime, addClamp.OutOvenTime, addClamp.IsFinished, addClamp.IsUploaded, addClamp.IsDownloaded, addClamp.Temperature, addClamp.Vacuum, addClamp.SampleInfo), out msg);
         }
 
         public static bool Delete(Clamp delClamp, out string msg)
