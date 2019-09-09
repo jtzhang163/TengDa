@@ -393,8 +393,8 @@ namespace CAMEL.Baking
                     AccountNumber = Current.mes.Username,
                     Password = Current.mes.Password
                 };
-
-                var xmlRequest = XmlHelper.Serialize(request);
+                msg = string.Empty;
+                var xmlRequest = XmlHelper.Serialize(request).Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
                 var xmlResponse = IdentityVerificationProxy.IdentityVerification(xmlRequest);
                 var response = XmlHelper.Deserialize<IdentityVerificationResponse>(xmlResponse);
                 if (response.Result)
@@ -402,9 +402,13 @@ namespace CAMEL.Baking
                     Current.mes.DeviceId = response.DeviceId;
                     Current.mes.StationCode = response.StationCode;
                     Current.mes.ProcessCode = response.ProcessCode;
-                    LogHelper.WriteInfo(string.Format("MES身份验证OK，xmlRequest：{1}，xmlResponse：{2}", "", xmlRequest, xmlResponse));
+                    //LogHelper.WriteInfo(string.Format("MES身份验证OK，xmlRequest：{1}，xmlResponse：{2}", "", xmlRequest, xmlResponse));
+                    LogHelper.WriteInfo(string.Format("MES身份验证OK"));
                 }
-                msg = "MES身份验证不通过，原因:" + response.Message;
+                else
+                {
+                    msg = "MES身份验证不通过，原因:" + response.Message;
+                }
                 return response.Result;
             }
             catch (Exception ex)
@@ -448,7 +452,7 @@ namespace CAMEL.Baking
             }
         }
 
-        public static bool RecordDeviceStatus(Oven oven)
+        public static bool RecordDeviceStatus(List<Oven> ovens)
         {
             try
             {
@@ -456,40 +460,44 @@ namespace CAMEL.Baking
                 {
                     throw new Exception("无法连接到MES服务器：" + Current.mes.Host);
                 }
+
+                List<_DeviceStatus> deviceStatusList = new List<_DeviceStatus>();
+                ovens.ForEach(o =>
+                {
+                    o.Floors.ForEach(f =>
+                    {
+                        deviceStatusList.Add(f.GetMesDeviceStatus());
+                    });
+                });
+
                 var request = new DeviceStatusRecordRequest()
                 {
                     DeviceId = Current.mes.DeviceId,
-                    Operator = TengDa.WF.Current.user.Name,
+                    Operator = Current.mes.Username,
                     ProcessCode = Current.mes.ProcessCode,
                     StationCode = Current.mes.StationCode,
                     ProductionTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                    DeviceStatuses = new _DeviceStatus[5]
-                    {
-                        oven.Floors[0].GetMesDeviceStatus(),
-                        oven.Floors[1].GetMesDeviceStatus(),
-                        oven.Floors[2].GetMesDeviceStatus(),
-                        oven.Floors[3].GetMesDeviceStatus(),
-                        oven.Floors[4].GetMesDeviceStatus()
-                    }
+                    DeviceStatuses = deviceStatusList.ToArray()
                 };
 
-                var xmlRequest = XmlHelper.Serialize(request);
+                var xmlRequest = XmlHelper.Serialize(request).Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
                 var xmlResponse = DeviceStatusRecordProxy.RecordDeviceStatus(xmlRequest);
                 var response = XmlHelper.Deserialize<DeviceStatusRecordResponse>(xmlResponse);
                 if (response.Result)
                 {
-                    LogHelper.WriteInfo(string.Format("{0}状态上传MES成功，xmlRequest：{1}，xmlResponse：{2}", oven.Name, xmlRequest, xmlResponse));
+                    //LogHelper.WriteInfo(string.Format("烤箱状态上传MES成功，xmlRequest：{0}，xmlResponse：{1}", xmlRequest, xmlResponse));
+                    LogHelper.WriteInfo(string.Format("烤箱状态上传MES成功"));
                 }
                 else
                 {
-                    LogHelper.WriteInfo(string.Format("{0}状态上传MES失败，原因：{1}", oven.Name, response.Message));
+                    LogHelper.WriteInfo(string.Format("烤箱状态上传MES失败，原因：{0}", response.Message));
                 }
                 return response.Result;
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(ex);
-                LogHelper.WriteInfo(string.Format("{0}状态上传MES报错：{1}", oven.Name, ex.Message));
+                LogHelper.WriteInfo(string.Format("烤箱状态上传MES报错：{0}", ex.Message));
             }
             return false;
         }

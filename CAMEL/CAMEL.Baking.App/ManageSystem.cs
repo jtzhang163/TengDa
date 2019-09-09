@@ -1541,62 +1541,44 @@ namespace CAMEL.Baking.App
                     #region 夹具扫码逻辑
                     if (Current.ClampScaner.IsEnable && Current.ClampScaner.CanScan)
                     {
+                        Current.ClampScaner.CanScan = false;
                         string code = string.Empty;
                         ScanResult result = Current.ClampScaner.StartScan(out code, out msg);
-                        if (result == ScanResult.OK)
+                        if (result != ScanResult.OK)
                         {
-                            this.BeginInvoke(new MethodInvoker(() =>
+                            result = Current.ClampScaner.StartScan(out code, out msg);
+                            if (result != ScanResult.OK)
                             {
-                                this.SetMachineStatusInfo(Current.ClampScaner, "+" + code);
-                            }));
-                            Current.Feeder.PushClampCode(code);
-                            if (!Current.Feeder.SetScanClampResult(ScanResult.OK, out msg))
-                            {
-                                Error.Alert(msg);
-                            }
-                        }
-                        else if (result == ScanResult.NG || result == ScanResult.Timeout)
-                        {
-                            this.BeginInvoke(new MethodInvoker(() =>
-                            {
-                                this.SetMachineStatusInfo(Current.ClampScaner, "扫码NG");
-                            }));
+                                result = Current.ClampScaner.StartScan(out code, out msg);
+                                if (result != ScanResult.OK)
+                                {
+                                    this.BeginInvoke(new MethodInvoker(() =>
+                                    {
+                                        this.SetMachineStatusInfo(Current.ClampScaner, "扫码NG");
+                                    }));
 
-                            if (!Current.Feeder.SetScanClampResult(ScanResult.NG, out msg))
-                            {
-                                Error.Alert(msg);
+                                    if (!Current.Feeder.SetScanClampResult(ScanResult.NG, out msg))
+                                    {
+                                        Error.Alert(msg);
+                                    }
+                                    LogHelper.WriteInfo("三次扫码均NG！！");
+                                    return;
+                                }
                             }
                         }
-                        else if (!string.IsNullOrEmpty(msg))
+
+                        this.BeginInvoke(new MethodInvoker(() =>
+                        {
+                            this.SetMachineStatusInfo(Current.ClampScaner, "+" + code);
+                        }));
+                        Current.Feeder.PushClampCode(code);
+                        if (!Current.Feeder.SetScanClampResult(ScanResult.OK, out msg))
                         {
                             Error.Alert(msg);
                         }
-
-                        Current.ClampScaner.CanScan = false;
+                        LogHelper.WriteInfo("夹具扫码：" + code);
                     }
                     #endregion
-
-                    //#region 绘制夹具中电池个数图示
-                    //for (int j = 0; j < 2; j++)
-                    //{
-                    //    if (Current.Feeder.Stations[j].Id == Current.Feeder.CurrentPutStationId)
-                    //    {
-                    //        if (Current.Feeder.PreCurrentBatteryCount != Current.Feeder.CurrentBatteryCount)
-                    //        {
-                    //           // this.feederUC1.Invalidate(j);
-                    //            //  this.tlpFeederStationClamp[i][j].Invalidate();
-                    //        }
-                    //    }
-
-                    //    if (Current.Feeder.Stations[j].PreIsAlive != Current.Feeder.Stations[j].IsAlive)
-                    //    {
-                    //        //this.feederUC1.Invalidate(j);
-                    //        // this.tlpFeederStationClamp[i][j].Invalidate();
-                    //    }
-                    //    Current.Feeder.Stations[j].PreIsAlive = Current.Feeder.Stations[j].IsAlive;
-                    //}
-                    //Current.Feeder.PreCurrentBatteryCount = Current.Feeder.CurrentBatteryCount;
-                    //#endregion
                 }
             }
         }
@@ -1892,21 +1874,15 @@ namespace CAMEL.Baking.App
         }
 
         /// <summary>
-        /// 定时上传真空温度数据
+        /// 定时上传烤箱状态
         /// </summary>
         public void UploadMachineStatus()
         {
             if (timerlock && Current.mes.IsEnable && TengDa.WF.Current.IsRunning)
             {
-                this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.mes, "上传设备状态..."); }));
-                for (int i = 0; i < Current.ovens.Count; i++)
-                {
-                    var oven = Current.ovens[i];
-                    if (oven.IsAlive)
-                    {
-                        MES.RecordDeviceStatus(oven);
-                    }
-                }
+                this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.mes, ".上传烤箱状态"); }));
+                var isSuccess = MES.RecordDeviceStatus(Current.ovens.Where(o => o.IsAlive).ToList());
+                this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.mes, isSuccess ? "成功上传状态" : "上传状态失败"); }));
             }
         }
 

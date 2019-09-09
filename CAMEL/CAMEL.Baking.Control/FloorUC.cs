@@ -224,8 +224,8 @@ namespace CAMEL.Baking.Control
 
                 lbStatus.Text =
                     string.Format("{0} {1}",
-                    code1.Length >= 8 ? code1.Substring(3, 5) : code1,
-                    code2.Length >= 8 ? code2.Substring(3, 5) : code2
+                    (code1.Length >= 8 ? code1.Substring(3, 5) : code1).PadLeft(5),
+                    (code2.Length >= 8 ? code2.Substring(3, 5) : code2).PadLeft(5)
                     );
             }
             else if (Current.option.FloorShowInfoType == "开始烘烤时间")
