@@ -403,7 +403,7 @@ namespace CAMEL.Baking
                     Current.mes.StationCode = response.StationCode;
                     Current.mes.ProcessCode = response.ProcessCode;
                     //LogHelper.WriteInfo(string.Format("MES身份验证OK，xmlRequest：{1}，xmlResponse：{2}", "", xmlRequest, xmlResponse));
-                    LogHelper.WriteInfo(string.Format("MES身份验证OK"));
+                    //LogHelper.WriteInfo(string.Format("MES身份验证OK"));
                 }
                 else
                 {
@@ -464,7 +464,7 @@ namespace CAMEL.Baking
                         }
                     }
                     //LogHelper.WriteInfo(string.Format("从MES获取夹具绑定的电池成功，xmlRequest：{0}，xmlResponse：{1}", xmlRequest, xmlResponse));
-                    LogHelper.WriteInfo(string.Format("从MES获取夹具绑定的电池成功"));
+                    //LogHelper.WriteInfo(string.Format("从MES获取夹具绑定的电池成功"));
                 }
                 else
                 {

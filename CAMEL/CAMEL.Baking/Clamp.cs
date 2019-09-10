@@ -395,7 +395,7 @@ namespace CAMEL.Baking
             return list;
         }
 
-        public static int Add(string code, out string msg)
+        public static int Add(string code)
         {
             if (string.IsNullOrEmpty(code))
             {
@@ -404,12 +404,17 @@ namespace CAMEL.Baking
             var clamp = new Clamp(code);
             clamp.scanTime = DateTime.Now;
             clamp.sampleInfo = SampleInfo.无样品;
-            return Add(clamp, out msg);
+            var id = Add(clamp, out string msg);
+            if (id < 1)
+            {
+                LogHelper.WriteError(msg);
+            }
+            return id;
         }
 
         public static int Add(Clamp addClamp, out string msg)
         {
-            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsFinished], [IsUploaded], [IsDownloaded], [Temperature], [Vacuum], [SampleInfo]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}')", TableName,
+            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsFinished], [IsUploaded], [IsDownloaded], [Temperature], [Vacuum], [SampleInfo]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}')", TableName,
               addClamp.Code, TengDa.WF.Current.user.Id, addClamp.OvenStationId, addClamp.Location, addClamp.BakingStartTime, addClamp.BakingStopTime, addClamp.ScanTime, addClamp.InOvenTime, addClamp.OutOvenTime, addClamp.IsFinished, addClamp.IsUploaded, addClamp.IsDownloaded, addClamp.Temperature, addClamp.Vacuum, addClamp.SampleInfo), out msg);
         }
 

@@ -423,12 +423,12 @@ namespace CAMEL.Baking
                         var clampCode = Current.Feeder.PopClampCode();
                         if (!string.IsNullOrEmpty(clampCode))
                         {
-                            this.GetStation.ClampId = Clamp.Add(clampCode, out msg);
+                            this.GetStation.ClampId = Clamp.Add(clampCode);
                         }
                         else
                         {
                             //没有缓存条码时生成随机码
-                            this.GetStation.ClampId = Clamp.Add(Guid.NewGuid().ToString().Substring(0, 8).ToUpper(), out msg);
+                            this.GetStation.ClampId = Clamp.Add(Guid.NewGuid().ToString().Substring(0, 8).ToUpper());
                         }
                     }
 
