@@ -54,7 +54,7 @@ namespace CAMEL.Baking.Control
         private void Clear_CLick(object sender, EventArgs e)
         {
             Label label = (Label)sender;
-            DialogResult result = MessageBox.Show(string.Format("你要结束本次提示{0}吗？", label.Text.ToString()), "维护提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            DialogResult result = MessageBox.Show(string.Format("你要结束本次提示【{0}】吗？", label.Text.ToString()), "维护提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (DialogResult.No == result)
             {
                 return;

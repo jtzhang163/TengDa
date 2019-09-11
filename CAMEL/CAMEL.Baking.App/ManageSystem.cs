@@ -2924,9 +2924,8 @@ namespace CAMEL.Baking.App
             if (type == typeof(Oven) || type == typeof(Floor) || type == typeof(Clamp) || type == typeof(Battery) || type == typeof(Scaner)
                 || type == typeof(Feeder) || type == typeof(Blanker) || type == typeof(PLC) || type == typeof(Station) || type == typeof(Task))
             {
-                System.Reflection.PropertyInfo propertyInfoId = type.GetProperty("Id"); //获取指定名称的属性
-                int Id = (int)propertyInfoId.GetValue(o, null); //获取属性值
-                settingsStr = string.Format("将Id为 {0} 的 {1} 的 {2} 由 {3} 修改为 {4} ", Id, type.Name, e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+                int id = (int)type.GetProperty("Id").GetValue(o, null); //获取属性值
+                settingsStr = string.Format("将Id为 {0} 的 {1} 的 {2} 由 {3} 修改为 {4} ", id, type.Name, e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
             }
             else if (type == typeof(RGV))
             {
@@ -2954,7 +2953,9 @@ namespace CAMEL.Baking.App
             }
             else if (type == typeof(Maintain))
             {
-                settingsStr = string.Format("将维护列表的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+                int id = (int)type.GetProperty("Id").GetValue(o, null); //获取属性值
+                settingsStr = string.Format("将维护列表.{3} 的 {0} 由 {1} 修改为 {2}",
+                    e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value, Current.maintains.First(m => m.Id == id).Name);
             }
 
             if (!string.IsNullOrEmpty(settingsStr))

@@ -40,9 +40,9 @@
             this.lbActivationMsg.ForeColor = System.Drawing.Color.White;
             this.lbActivationMsg.Location = new System.Drawing.Point(14, 13);
             this.lbActivationMsg.Name = "lbActivationMsg";
-            this.lbActivationMsg.Size = new System.Drawing.Size(266, 21);
+            this.lbActivationMsg.Size = new System.Drawing.Size(218, 21);
             this.lbActivationMsg.TabIndex = 0;
-            this.lbActivationMsg.Text = "程序即将过期，点击此处输入激活码";
+            this.lbActivationMsg.Text = "程序即将过期，点击此处激活";
             this.lbActivationMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbActivationMsg.Click += new System.EventHandler(this.LbActivationMsg_Click);
             // 
@@ -52,7 +52,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lbActivationMsg);
             this.Name = "ActivationUC";
-            this.Size = new System.Drawing.Size(300, 50);
+            this.Size = new System.Drawing.Size(244, 50);
             this.ResumeLayout(false);
             this.PerformLayout();
 

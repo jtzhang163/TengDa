@@ -346,7 +346,7 @@
             this.tabMain.Margin = new System.Windows.Forms.Padding(5, 3, 0, 3);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(472, 94);
+            this.tabMain.Size = new System.Drawing.Size(456, 94);
             this.tabMain.TabIndex = 7;
             // 
             // tabMainUser
@@ -362,7 +362,7 @@
             this.tabMainUser.Location = new System.Drawing.Point(4, 22);
             this.tabMainUser.Name = "tabMainUser";
             this.tabMainUser.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMainUser.Size = new System.Drawing.Size(464, 68);
+            this.tabMainUser.Size = new System.Drawing.Size(448, 68);
             this.tabMainUser.TabIndex = 1;
             this.tabMainUser.Text = "用户";
             // 
@@ -542,7 +542,7 @@
             this.tabMainOperate.Location = new System.Drawing.Point(4, 22);
             this.tabMainOperate.Name = "tabMainOperate";
             this.tabMainOperate.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMainOperate.Size = new System.Drawing.Size(464, 68);
+            this.tabMainOperate.Size = new System.Drawing.Size(448, 68);
             this.tabMainOperate.TabIndex = 0;
             this.tabMainOperate.Text = "操作";
             // 
@@ -2998,9 +2998,9 @@
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
             this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 477F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 460F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 586F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 520F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
             this.tableLayoutPanel1.Controls.Add(this.activationUC1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tabMain, 0, 0);
@@ -3011,7 +3011,6 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1370, 100);
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.DoubleClick += new System.EventHandler(this.TableLayoutPanel1_DoubleClick);
@@ -3019,9 +3018,9 @@
             // activationUC1
             // 
             this.activationUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.activationUC1.Location = new System.Drawing.Point(480, 25);
+            this.activationUC1.Location = new System.Drawing.Point(464, 25);
             this.activationUC1.Name = "activationUC1";
-            this.activationUC1.Size = new System.Drawing.Size(145, 50);
+            this.activationUC1.Size = new System.Drawing.Size(227, 50);
             this.activationUC1.TabIndex = 11;
             this.activationUC1.Visible = false;
             // 
