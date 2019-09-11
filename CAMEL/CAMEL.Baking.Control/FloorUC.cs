@@ -233,11 +233,11 @@ namespace CAMEL.Baking.Control
                 var startBakingTime = "";
                 if (floor.Stations[0].Clamp.BakingStartTime > Common.DefaultTime)
                 {
-                    startBakingTime = floor.Stations[0].Clamp.BakingStartTime.ToString("yyyy-MM-dd HH:mm");
+                    startBakingTime = floor.Stations[0].Clamp.BakingStartTime.ToString("MM-dd HH:mm");
                 }
                 else if (floor.Stations[1].Clamp.BakingStartTime > Common.DefaultTime)
                 {
-                    startBakingTime = floor.Stations[1].Clamp.BakingStartTime.ToString("yyyy-MM-dd HH:mm");
+                    startBakingTime = floor.Stations[1].Clamp.BakingStartTime.ToString("MM-dd HH:mm");
                 }
                 lbStatus.Text = startBakingTime;
             }

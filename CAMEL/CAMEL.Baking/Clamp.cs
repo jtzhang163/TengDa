@@ -210,10 +210,10 @@ namespace CAMEL.Baking
 
         private float temperature = -1;
         /// <summary>
-        /// 温度值
+        /// 温度
         /// </summary>
-        [ReadOnly(true), DisplayName("温度值")]
-        [Category("基本信息")]
+        [ReadOnly(true), DisplayName("温度")]
+        [Category("MES参数")]
         public float Temperature
         {
             get
@@ -274,6 +274,84 @@ namespace CAMEL.Baking
                     UpdateDbField("SampleInfo", value);
                 }
                 sampleInfo = value;
+            }
+        }
+
+        private string moCode;
+        /// <summary>
+        /// 工单号
+        /// </summary>
+        [ReadOnly(true), DisplayName("工单号")]
+        [Category("MES参数")]
+        public string MoCode
+        {
+            get { return moCode; }
+            set
+            {
+                if (moCode != value)
+                {
+                    this.UpdateDbField("MoCode", value);
+                    moCode = value;
+                }
+            }
+        }
+
+        private string bakingResult;
+        /// <summary>
+        /// NG结果
+        /// </summary>
+        [ReadOnly(true), DisplayName("NG结果")]
+        [Category("MES参数")]
+        public string BakingResult
+        {
+            get { return bakingResult; }
+            set
+            {
+                if (bakingResult != value)
+                {
+                    this.UpdateDbField("BakingResult", value);
+                    bakingResult = value;
+                }
+            }
+        }
+
+
+        private string shift;
+        /// <summary>
+        /// 班次
+        /// </summary>
+        [ReadOnly(true), DisplayName("班次")]
+        [Category("MES参数")]
+        public string Shift
+        {
+            get { return shift; }
+            set
+            {
+                if (shift != value)
+                {
+                    this.UpdateDbField("Shift", value);
+                    shift = value;
+                }
+            }
+        }
+
+
+        private int bakingTime;
+        /// <summary>
+        /// 烘烤时长
+        /// </summary>
+        [ReadOnly(true), DisplayName("烘烤时长")]
+        [Category("MES参数")]
+        public int BakingTime
+        {
+            get { return bakingTime; }
+            set
+            {
+                if (bakingTime != value)
+                {
+                    this.UpdateDbField("BakingTime", value);
+                    bakingTime = value;
+                }
             }
         }
 
@@ -344,6 +422,10 @@ namespace CAMEL.Baking
             this.temperature = TengDa._Convert.StrToFloat(rowInfo["Temperature"].ToString(), -1);
             this.vacuum = TengDa._Convert.StrToFloat(rowInfo["Vacuum"].ToString(), -1);
             this.sampleInfo = (SampleInfo)Enum.Parse(typeof(SampleInfo), rowInfo["SampleInfo"].ToString());
+            this.moCode = rowInfo["MoCode"].ToString().Trim();
+            this.bakingResult = rowInfo["BakingResult"].ToString().Trim();
+            this.shift = rowInfo["Shift"].ToString().Trim();
+            this.bakingTime = TengDa._Convert.StrToInt(rowInfo["BakingTime"].ToString(), 0);
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
         }
         #endregion
@@ -364,6 +446,7 @@ namespace CAMEL.Baking
                 return batteries;
             }
         }
+
         #endregion
 
         #region 增删查改
@@ -401,9 +484,16 @@ namespace CAMEL.Baking
             {
                 code = "6666";
             }
+
             var clamp = new Clamp(code);
             clamp.scanTime = DateTime.Now;
-            clamp.sampleInfo = SampleInfo.无样品;
+            clamp.sampleInfo = SampleInfo.未知;
+
+            clamp.moCode = Current.option.CurrentMoCode;
+            clamp.bakingResult = "OK";
+            clamp.shift = DateTime.Now.Hour >= 8 && DateTime.Now.Hour < 20 ? "白班" : "夜班";
+            clamp.bakingTime = 0;
+
             var id = Add(clamp, out string msg);
             if (id < 1)
             {
@@ -414,8 +504,8 @@ namespace CAMEL.Baking
 
         public static int Add(Clamp addClamp, out string msg)
         {
-            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsFinished], [IsUploaded], [IsDownloaded], [Temperature], [Vacuum], [SampleInfo]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}')", TableName,
-              addClamp.Code, TengDa.WF.Current.user.Id, addClamp.OvenStationId, addClamp.Location, addClamp.BakingStartTime, addClamp.BakingStopTime, addClamp.ScanTime, addClamp.InOvenTime, addClamp.OutOvenTime, addClamp.IsFinished, addClamp.IsUploaded, addClamp.IsDownloaded, addClamp.Temperature, addClamp.Vacuum, addClamp.SampleInfo), out msg);
+            return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [UserId], [OvenStationId], [Location], [BakingStartTime], [BakingStopTime], [ScanTime], [InOvenTime], [OutOvenTime], [IsFinished], [IsUploaded], [IsDownloaded], [Temperature], [Vacuum], [SampleInfo], [MoCode], [BakingResult], [Shift], [BakingTime]) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}')", TableName,
+              addClamp.Code, TengDa.WF.Current.user.Id, addClamp.OvenStationId, addClamp.Location, addClamp.BakingStartTime, addClamp.BakingStopTime, addClamp.ScanTime, addClamp.InOvenTime, addClamp.OutOvenTime, addClamp.IsFinished, addClamp.IsUploaded, addClamp.IsDownloaded, addClamp.Temperature, addClamp.Vacuum, addClamp.SampleInfo, addClamp.MoCode, addClamp.BakingResult, addClamp.Shift, addClamp.BakingTime), out msg);
         }
 
         public static bool Delete(Clamp delClamp, out string msg)

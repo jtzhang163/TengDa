@@ -506,7 +506,7 @@ namespace CAMEL.Baking
                     throw new Exception("无法连接到MES服务器：" + Current.mes.Host);
                 }
 
-                List<_DeviceStatus> deviceStatusList = new List<_DeviceStatus>();
+                List<DeviceStatusRecordRequest._DeviceStatus> deviceStatusList = new List<DeviceStatusRecordRequest._DeviceStatus>();
                 ovens.ForEach(o =>
                 {
                     o.Floors.ForEach(f =>
@@ -531,7 +531,7 @@ namespace CAMEL.Baking
                 if (response.Result)
                 {
                     //LogHelper.WriteInfo(string.Format("烤箱状态上传MES成功，xmlRequest：{0}，xmlResponse：{1}", xmlRequest, xmlResponse));
-                    LogHelper.WriteInfo(string.Format("烤箱状态上传MES成功"));
+                    //LogHelper.WriteInfo(string.Format("烤箱状态上传MES成功"));
                 }
                 else
                 {
@@ -561,6 +561,71 @@ namespace CAMEL.Baking
             {
                 return ex.Message;
             }
+        }
+
+        public static bool UploadSecondaryHighTempData(Clamp clamp)
+        {
+            try
+            {
+                if (!Current.mes.IsPingSuccess)
+                {
+                    throw new Exception("无法连接到MES服务器：" + Current.mes.Host);
+                }
+
+                var batteries = clamp.Batteries;
+                if(batteries.Count == 0)
+                {
+                    LogHelper.WriteInfo(string.Format("二次高温电池数据上传MES时，检测到{0}无绑定的电池数据，ID：{1}", clamp.Code, clamp.Id));
+                    return true;
+                }
+
+                List<ProductionDataUploadRequest.TestData> testDataList = new List<ProductionDataUploadRequest.TestData>();
+                batteries.ForEach(o =>
+                {
+                    testDataList.Add(new ProductionDataUploadRequest.TestData()
+                    {
+                        MoCode = clamp.MoCode,
+                        TrayBarcode = clamp.Code,
+                        Barcode = o.Code,
+                        Position = o.Location,
+                        Result = clamp.BakingResult,
+                        BakingTime = clamp.BakingTime.ToString(),
+                        BakingTemperature = clamp.Temperature.ToString("#0.00")
+                    });
+                });
+
+                var request = new ProductionDataUploadRequest()
+                {
+                    DeviceId = Current.mes.DeviceId,
+                    Operator = Current.mes.Username,
+                    ProcessCode = Current.mes.ProcessCode,
+                    StationCode = Current.mes.StationCode,
+                    ProductionTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                    TestDatas = testDataList.ToArray(),
+                    Shift = clamp.Shift
+                };
+
+                var xmlRequest = XmlHelper.Serialize(request).Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
+                var xmlResponse = ProductionDataUploadProxy.UploadSecondaryHighTempData(xmlRequest);
+                var response = XmlHelper.Deserialize<ProductionDataUploadResponse>(xmlResponse);
+                if (response.Result)
+                {
+                    //LogHelper.WriteInfo(string.Format("二次高温电池数据上传MES成功，xmlRequest：{0}，xmlResponse：{1}", xmlRequest, xmlResponse));
+                    //LogHelper.WriteInfo(string.Format("二次高温电池数据上传MES成功"));
+                }
+                else
+                {
+                    LogHelper.WriteInfo(string.Format("二次高温电池数据上传MES失败，原因：{0} xmlRequest：{1}，xmlResponse：{2}", response.Message, xmlRequest, xmlResponse));
+                }
+                clamp.IsUploaded = true;
+                return response.Result;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError(ex);
+                LogHelper.WriteInfo(string.Format("烤箱状态上传MES报错：{0}", ex.Message));
+            }
+            return false;
         }
         #endregion
     }
@@ -617,15 +682,6 @@ namespace CAMEL.Baking
         }
     }
 
-
-    [XmlRoot("DeviceStatuses")]
-    public class _DeviceStatus
-    {
-        public string DeviceStatus { get; set; }
-
-        public string StatusDescription { get; set; }
-    }
-
     [XmlRoot("Request")]
     public class DeviceStatusRecordRequest
     {
@@ -641,6 +697,14 @@ namespace CAMEL.Baking
         public string ProductionTime { get; set; }
 
         public string Operator { get; set; }
+
+        [XmlRoot("DeviceStatuses")]
+        public class _DeviceStatus
+        {
+            public string DeviceStatus { get; set; }
+
+            public string StatusDescription { get; set; }
+        }
     }
 
     [XmlRoot("Response")]
@@ -652,9 +716,10 @@ namespace CAMEL.Baking
         public int ExecutionTime { get; set; }
     }
 
-
+    [XmlRoot("Request")]
     public class ProductionDataUploadRequest
     {
+        [XmlElement("")]
         public TestData[] TestDatas { get; set; }
 
         public string DeviceId { get; set; }
@@ -665,10 +730,11 @@ namespace CAMEL.Baking
 
         public string Shift { get; set; }
 
-        public DateTime ProductionTime { get; set; }
+        public string ProductionTime { get; set; }
 
         public string Operator { get; set; }
 
+        [XmlRoot("TestDatas")]
         public class TestData
         {
             public string MoCode { get; set; }
@@ -681,51 +747,12 @@ namespace CAMEL.Baking
         }
     }
 
-
+    [XmlRoot("Response")]
     public class ProductionDataUploadResponse
     {
-
         public string DeviceId { get; set; }
         public bool Result { get; set; }
         public string Message { get; set; }
         public int ExecutionTime { get; set; }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public class BakingMesData
-    {
-        public string Barcode { get; set; }
-        public string MachineCode { get; set; }
-        public string TrayNo { get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
-        public float Temperature { get; set; }
-        public float Vacuum { get; set; }
-    }
-
-    public class MachineStatusData
-    {
-        public string MachCode { get; set; }
-        public string MachStatus { get; set; }
-        public string StepProdLotNo { get; set; }
-        public string MachTrouble { get; set; }
-    }
-
 }

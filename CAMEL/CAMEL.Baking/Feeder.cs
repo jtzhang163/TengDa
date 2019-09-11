@@ -490,7 +490,7 @@ namespace CAMEL.Baking
 
         public bool SetScanClampResult(ScanResult scanResult, out string msg)
         {
-            var val = scanResult == ScanResult.OK ? (ushort)2 : (ushort)2;
+            var val = scanResult == ScanResult.OK ? (ushort)2 : (ushort)5;
             var plcCompany = (PlcCompany)Enum.Parse(typeof(PlcCompany), this.Plc.Company);
             var addr = Option.LineNum == 1 ? "DB17.10" : "DB17.14";
             if (!this.Plc.GetInfo(false, plcCompany, false, addr, val, out ushort db17_10, out msg))

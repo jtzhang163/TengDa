@@ -1250,6 +1250,8 @@ namespace CAMEL.Baking.App
 
         System.Timers.Timer timerDownloadBatteryInfo = null;
 
+        System.Timers.Timer timerUploadSecondaryHighTempData = null;
+
         private static bool timerlock = false;
 
         /// <summary>
@@ -1406,6 +1408,19 @@ namespace CAMEL.Baking.App
                 };
                 Thread.Sleep(50);
                 timerDownloadBatteryInfo.Start();
+
+
+                timerUploadSecondaryHighTempData = new System.Timers.Timer();
+                timerUploadSecondaryHighTempData.Interval = 60 * 1000;
+                timerUploadSecondaryHighTempData.Elapsed += delegate
+                {
+                    Thread listen = new Thread(new ThreadStart(UploadSecondaryHighTempData));
+                    listen.IsBackground = true;
+                    listen.Start();
+                };
+                Thread.Sleep(50);
+                timerUploadSecondaryHighTempData.Start();
+
 
                 this.timerTask = new System.Timers.Timer();
                 this.timerTask.Interval = Current.option.TaskInterval;
@@ -1827,36 +1842,6 @@ namespace CAMEL.Baking.App
         #region 定时将数据上传MES
 
         /// <summary>
-        /// 获取夹具绑定的电池信息
-        /// </summary>
-        public void DownloadBatteryInfo()
-        {
-            Thread.Sleep(200);
-            var clamps = Clamp.GetList(string.Format("SELECT TOP 3 * FROM [dbo].[{0}] WHERE [IsDownloaded] = 'false' AND [Code] LIKE 'LXY%' ORDER BY [Id] DESC", Clamp.TableName), out string msg);
-            if (!string.IsNullOrEmpty(msg))
-            {
-                Error.Alert(msg);
-                return;
-            }
-            if (clamps.Count < 1) return;
-
-            this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.mes, ".获取电池信息"); }));
-            for (int i = 0; i < clamps.Count; i++)
-            {
-                var isSuccess = MES.GetTrayBindingInfo(clamps[i], out List<Battery> batteries);
-                this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.mes, isSuccess ? "获取电池成功" : "获取电池失败"); }));
-                if (isSuccess)
-                {
-                    if (!Battery.Add(batteries, out msg))
-                    {
-                        Error.Alert("电池数据插入数据库失败：" + msg);
-                        return;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// 定时上传烤箱状态
         /// </summary>
         public void UploadMachineStatus()
@@ -1869,6 +1854,63 @@ namespace CAMEL.Baking.App
             }
         }
 
+        /// <summary>
+        /// 获取夹具绑定的电池信息
+        /// </summary>
+        public void DownloadBatteryInfo()
+        {
+            if (timerlock && Current.mes.IsEnable && TengDa.WF.Current.IsRunning)
+            {
+                Thread.Sleep(200);
+                var clamps = Clamp.GetList(string.Format("SELECT TOP 3 * FROM [dbo].[{0}] WHERE [IsDownloaded] = 'false' AND [Code] LIKE 'LXY%' ORDER BY [Id] DESC", Clamp.TableName), out string msg);
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    Error.Alert(msg);
+                    return;
+                }
+                if (clamps.Count < 1) return;
+
+                this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.mes, ".获取电池信息"); }));
+                for (int i = 0; i < clamps.Count; i++)
+                {
+                    var isSuccess = MES.GetTrayBindingInfo(clamps[i], out List<Battery> batteries);
+                    this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.mes, isSuccess ? "获取电池成功" : "获取电池失败"); }));
+                    if (isSuccess)
+                    {
+                        if (!Battery.Add(batteries, out msg))
+                        {
+                            Error.Alert("电池数据插入数据库失败：" + msg);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 上传二次高温数据到MES
+        /// </summary>
+        public void UploadSecondaryHighTempData()
+        {
+            if (timerlock && Current.mes.IsEnable && TengDa.WF.Current.IsRunning)
+            {
+                Thread.Sleep(200);
+                var clamps = Clamp.GetList(string.Format("SELECT TOP 3 * FROM [dbo].[{0}] WHERE [IsDownloaded] = 'true' AND [IsFinished] = 'true' AND [IsUploaded] = 'false' ORDER BY [Id] DESC", Clamp.TableName), out string msg);
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    Error.Alert(msg);
+                    return;
+                }
+                if (clamps.Count < 1) return;
+
+                this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.mes, ".上传烘烤数据"); }));
+                for (int i = 0; i < clamps.Count; i++)
+                {
+                    var isSuccess = MES.UploadSecondaryHighTempData(clamps[i]);
+                    this.BeginInvoke(new MethodInvoker(() => { this.SetMachineStatusInfo(Current.mes, isSuccess ? "成功上传数据" : "上传数据失败"); }));
+                }
+            }
+        }
         #endregion
 
         #region 用户登录、注销、注册、管理
@@ -3231,12 +3273,6 @@ namespace CAMEL.Baking.App
         }
 
         #endregion
-
-        private void btnDebug_Click(object sende, EventArgs e)
-        {
-            Current.RGV.Plc.GetInfoNoWrite(out string msg);
-            Console.WriteLine(msg);
-        }
 
         private void TableLayoutPanel1_DoubleClick(object sender, EventArgs e)
         {

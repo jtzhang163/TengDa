@@ -644,32 +644,32 @@ namespace CAMEL.Baking
             }
         }
 
-        private string uploadMesInterval = string.Empty;
-        /// <summary>
-        /// MES上传数据间隔时间，单位：秒
-        /// </summary>
-        [Description("MES上传数据间隔时间，单位：秒")]
-        [DisplayName("MES上传数据间隔时间")]
-        [Category("MES")]
-        public string UploadMesInterval
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(uploadMesInterval))
-                {
-                    uploadMesInterval = TengDa.WF.Option.GetOption("UploadMesInterval");
-                }
-                return uploadMesInterval;
-            }
-            set
-            {
-                if (value != uploadMesInterval)
-                {
-                    TengDa.WF.Option.SetOption("UploadMesInterval", value);
-                    uploadMesInterval = value;
-                }
-            }
-        }
+        //private string uploadMesInterval = string.Empty;
+        ///// <summary>
+        ///// MES上传数据间隔时间，单位：秒
+        ///// </summary>
+        //[Description("MES上传数据间隔时间，单位：秒")]
+        //[DisplayName("MES上传数据间隔时间")]
+        //[Category("MES")]
+        //public string UploadMesInterval
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(uploadMesInterval))
+        //        {
+        //            uploadMesInterval = TengDa.WF.Option.GetOption("UploadMesInterval");
+        //        }
+        //        return uploadMesInterval;
+        //    }
+        //    set
+        //    {
+        //        if (value != uploadMesInterval)
+        //        {
+        //            TengDa.WF.Option.SetOption("UploadMesInterval", value);
+        //            uploadMesInterval = value;
+        //        }
+        //    }
+        //}
 
         private int paintCurveInterval = -1;
         /// <summary>
@@ -996,32 +996,31 @@ namespace CAMEL.Baking
         }
 
 
-        //private string xxxXXXXXXXXXXXX = string.Empty;
-        ///// <summary>
-        ///// YYYYYYYYYYYYYYYYY
-        ///// </summary>
-        //[Description("YYYYYYYYYYYYYYYYY")]
-        //[DisplayName("YYYYYYYYYYYYYYYYY")]
-        //[Category("ZZZZZ")]
-        //public string XXXXXXXXXXXXXXX
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(xxxXXXXXXXXXXXX))
-        //        {
-        //            xxxXXXXXXXXXXXX = TengDa.WF.Option.GetOption("XXXXXXXXXXXXXXX");
-        //        }
-        //        return xxxXXXXXXXXXXXX;
-        //    }
-        //    set
-        //    {
-        //        if (value != xxxXXXXXXXXXXXX)
-        //        {
-        //            TengDa.WF.Option.SetOption("XXXXXXXXXXXXXXX", value);
-        //            xxxXXXXXXXXXXXX = value;
-        //        }
-        //    }
-        //}
+        private string currentMoCode = string.Empty;
+        /// <summary>
+        /// MES当前工单
+        /// </summary>
+        [DisplayName("MES当前工单")]
+        [Category("MES相关")]
+        public string CurrentMoCode
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(currentMoCode))
+                {
+                    currentMoCode = TengDa.WF.Option.GetOption("CurrentMoCode");
+                }
+                return currentMoCode;
+            }
+            set
+            {
+                if (value != currentMoCode)
+                {
+                    TengDa.WF.Option.SetOption("CurrentMoCode", value);
+                    currentMoCode = value;
+                }
+            }
+        }
 
 
         //private string xxxXXXXXXXXXXXX = string.Empty;

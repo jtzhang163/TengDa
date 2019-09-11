@@ -508,9 +508,9 @@ namespace CAMEL.Baking
             return FloorLog.Add(new List<FloorLog>() { log }, out msg);
         }
 
-        public _DeviceStatus GetMesDeviceStatus()
+        public DeviceStatusRecordRequest._DeviceStatus GetMesDeviceStatus()
         {
-            var ds = new _DeviceStatus();
+            var ds = new DeviceStatusRecordRequest._DeviceStatus();
             if (!string.IsNullOrEmpty(this.AlarmStr))
             {
                 ds.DeviceStatus = "DS03";

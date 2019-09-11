@@ -350,15 +350,19 @@ namespace CAMEL.Baking
 
                 if (this.GetPutType == GetPutType.烤箱 && floorStatus != value)
                 {
-                    if (value == FloorStatus.烘烤)
+                    if (value == FloorStatus.待烤)
+                    {
+                        this.Clamp.InOvenTime = DateTime.Now;
+                    }
+                    else if (value == FloorStatus.烘烤)
                     {
                         this.Clamp.OvenStationId = this.Id;
                         this.Clamp.BakingStartTime = DateTime.Now;
+                        this.Clamp.BakingTime = this.GetFloor().RunMinutesSet;
                     }
                     else if (value == FloorStatus.待出)
                     {
-                        var vacuum = this.GetFloor().Vacuum > 50 ? 49 : this.GetFloor().Vacuum;
-                        this.Clamp.Vacuum = vacuum;
+                        this.Clamp.Vacuum = this.GetFloor().Vacuum;
                         this.Clamp.Temperature = this.GetFloor().Temperatures.Average();
                         this.Clamp.BakingStopTime = DateTime.Now;
                     }
