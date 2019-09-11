@@ -46,12 +46,14 @@ namespace CAMEL.Baking.Control
             }
 
             this.robotUC1.Init(Current.RGV);
+            this.maintainUC1.Init();
         }
 
         public void RefreshUI()
         {
             this.feederUC1.Update(Current.Feeder);
             this.taskInfo1.UpdateInfo();
+            this.maintainUC1.UpdateUI();
 
             #region 烤箱
 

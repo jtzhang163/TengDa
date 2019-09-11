@@ -31,10 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PageMain1UC));
             this.tableLayoutPanel41 = new System.Windows.Forms.TableLayoutPanel();
-            this.showOvenInfoTypeUC1 = new CAMEL.Baking.Control.ShowOvenInfoTypeUC();
             this.panelRGV = new System.Windows.Forms.Panel();
-            this.robotUC1 = new CAMEL.Baking.Control.RGVUC();
             this.tlpOvenCol1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpOvenCol2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.robotUC1 = new CAMEL.Baking.Control.RGVUC();
             this.ovenUC02 = new CAMEL.Baking.Control.OvenUC();
             this.ovenUC14 = new CAMEL.Baking.Control.OvenUC();
             this.ovenUC13 = new CAMEL.Baking.Control.OvenUC();
@@ -50,7 +51,6 @@
             this.ovenUC03 = new CAMEL.Baking.Control.OvenUC();
             this.ovenUC01 = new CAMEL.Baking.Control.OvenUC();
             this.taskInfo1 = new CAMEL.Baking.Control.TaskInfo();
-            this.tlpOvenCol2 = new System.Windows.Forms.TableLayoutPanel();
             this.ovenUC25 = new CAMEL.Baking.Control.OvenUC();
             this.ovenUC24 = new CAMEL.Baking.Control.OvenUC();
             this.ovenUC23 = new CAMEL.Baking.Control.OvenUC();
@@ -63,10 +63,13 @@
             this.ovenUC16 = new CAMEL.Baking.Control.OvenUC();
             this.ovenUC15 = new CAMEL.Baking.Control.OvenUC();
             this.feederUC1 = new CAMEL.Baking.Control.FeederUC();
+            this.showOvenInfoTypeUC1 = new CAMEL.Baking.Control.ShowOvenInfoTypeUC();
+            this.maintainUC1 = new CAMEL.Baking.Control.MaintainUC();
             this.tableLayoutPanel41.SuspendLayout();
             this.panelRGV.SuspendLayout();
             this.tlpOvenCol1.SuspendLayout();
             this.tlpOvenCol2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel41
@@ -74,11 +77,11 @@
             this.tableLayoutPanel41.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.tableLayoutPanel41.ColumnCount = 1;
             this.tableLayoutPanel41.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel41.Controls.Add(this.showOvenInfoTypeUC1, 0, 3);
             this.tableLayoutPanel41.Controls.Add(this.panelRGV, 0, 1);
             this.tableLayoutPanel41.Controls.Add(this.tlpOvenCol1, 0, 0);
             this.tableLayoutPanel41.Controls.Add(this.taskInfo1, 0, 4);
             this.tableLayoutPanel41.Controls.Add(this.tlpOvenCol2, 0, 2);
+            this.tableLayoutPanel41.Controls.Add(this.tableLayoutPanel1, 0, 3);
             this.tableLayoutPanel41.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel41.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel41.Name = "tableLayoutPanel41";
@@ -90,14 +93,6 @@
             this.tableLayoutPanel41.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel41.Size = new System.Drawing.Size(1053, 479);
             this.tableLayoutPanel41.TabIndex = 1;
-            // 
-            // showOvenInfoTypeUC1
-            // 
-            this.showOvenInfoTypeUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.showOvenInfoTypeUC1.Location = new System.Drawing.Point(3, 421);
-            this.showOvenInfoTypeUC1.Name = "showOvenInfoTypeUC1";
-            this.showOvenInfoTypeUC1.Size = new System.Drawing.Size(260, 24);
-            this.showOvenInfoTypeUC1.TabIndex = 2;
             // 
             // panelRGV
             // 
@@ -112,15 +107,6 @@
             this.panelRGV.Padding = new System.Windows.Forms.Padding(450, 3, 3, 3);
             this.panelRGV.Size = new System.Drawing.Size(1033, 54);
             this.panelRGV.TabIndex = 0;
-            // 
-            // robotUC1
-            // 
-            this.robotUC1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.robotUC1.Location = new System.Drawing.Point(450, 3);
-            this.robotUC1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
-            this.robotUC1.Name = "robotUC1";
-            this.robotUC1.Size = new System.Drawing.Size(80, 46);
-            this.robotUC1.TabIndex = 0;
             // 
             // tlpOvenCol1
             // 
@@ -160,6 +146,67 @@
             this.tlpOvenCol1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpOvenCol1.Size = new System.Drawing.Size(1047, 173);
             this.tlpOvenCol1.TabIndex = 1;
+            // 
+            // tlpOvenCol2
+            // 
+            this.tlpOvenCol2.ColumnCount = 14;
+            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
+            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
+            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
+            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
+            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
+            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
+            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
+            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
+            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
+            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
+            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
+            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
+            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
+            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.140868F));
+            this.tlpOvenCol2.Controls.Add(this.ovenUC25, 13, 0);
+            this.tlpOvenCol2.Controls.Add(this.ovenUC24, 12, 0);
+            this.tlpOvenCol2.Controls.Add(this.ovenUC23, 11, 0);
+            this.tlpOvenCol2.Controls.Add(this.ovenUC22, 10, 0);
+            this.tlpOvenCol2.Controls.Add(this.ovenUC21, 9, 0);
+            this.tlpOvenCol2.Controls.Add(this.ovenUC20, 8, 0);
+            this.tlpOvenCol2.Controls.Add(this.ovenUC19, 7, 0);
+            this.tlpOvenCol2.Controls.Add(this.ovenUC18, 6, 0);
+            this.tlpOvenCol2.Controls.Add(this.ovenUC17, 5, 0);
+            this.tlpOvenCol2.Controls.Add(this.ovenUC16, 4, 0);
+            this.tlpOvenCol2.Controls.Add(this.ovenUC15, 3, 0);
+            this.tlpOvenCol2.Controls.Add(this.feederUC1, 0, 0);
+            this.tlpOvenCol2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpOvenCol2.Location = new System.Drawing.Point(3, 242);
+            this.tlpOvenCol2.Name = "tlpOvenCol2";
+            this.tlpOvenCol2.RowCount = 1;
+            this.tlpOvenCol2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpOvenCol2.Size = new System.Drawing.Size(1047, 173);
+            this.tlpOvenCol2.TabIndex = 2;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.showOvenInfoTypeUC1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.maintainUC1, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 418);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1053, 30);
+            this.tableLayoutPanel1.TabIndex = 5;
+            // 
+            // robotUC1
+            // 
+            this.robotUC1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.robotUC1.Location = new System.Drawing.Point(450, 3);
+            this.robotUC1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
+            this.robotUC1.Name = "robotUC1";
+            this.robotUC1.Size = new System.Drawing.Size(80, 46);
+            this.robotUC1.TabIndex = 0;
             // 
             // ovenUC02
             // 
@@ -311,43 +358,6 @@
             this.taskInfo1.Size = new System.Drawing.Size(1049, 20);
             this.taskInfo1.TabIndex = 4;
             // 
-            // tlpOvenCol2
-            // 
-            this.tlpOvenCol2.ColumnCount = 14;
-            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
-            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
-            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
-            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
-            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
-            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
-            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
-            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
-            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
-            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
-            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
-            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
-            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.14301F));
-            this.tlpOvenCol2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.140868F));
-            this.tlpOvenCol2.Controls.Add(this.ovenUC25, 13, 0);
-            this.tlpOvenCol2.Controls.Add(this.ovenUC24, 12, 0);
-            this.tlpOvenCol2.Controls.Add(this.ovenUC23, 11, 0);
-            this.tlpOvenCol2.Controls.Add(this.ovenUC22, 10, 0);
-            this.tlpOvenCol2.Controls.Add(this.ovenUC21, 9, 0);
-            this.tlpOvenCol2.Controls.Add(this.ovenUC20, 8, 0);
-            this.tlpOvenCol2.Controls.Add(this.ovenUC19, 7, 0);
-            this.tlpOvenCol2.Controls.Add(this.ovenUC18, 6, 0);
-            this.tlpOvenCol2.Controls.Add(this.ovenUC17, 5, 0);
-            this.tlpOvenCol2.Controls.Add(this.ovenUC16, 4, 0);
-            this.tlpOvenCol2.Controls.Add(this.ovenUC15, 3, 0);
-            this.tlpOvenCol2.Controls.Add(this.feederUC1, 0, 0);
-            this.tlpOvenCol2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpOvenCol2.Location = new System.Drawing.Point(3, 242);
-            this.tlpOvenCol2.Name = "tlpOvenCol2";
-            this.tlpOvenCol2.RowCount = 1;
-            this.tlpOvenCol2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpOvenCol2.Size = new System.Drawing.Size(1047, 173);
-            this.tlpOvenCol2.TabIndex = 2;
-            // 
             // ovenUC25
             // 
             this.ovenUC25.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -467,6 +477,22 @@
             this.feederUC1.Size = new System.Drawing.Size(68, 160);
             this.feederUC1.TabIndex = 12;
             // 
+            // showOvenInfoTypeUC1
+            // 
+            this.showOvenInfoTypeUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.showOvenInfoTypeUC1.Location = new System.Drawing.Point(3, 3);
+            this.showOvenInfoTypeUC1.Name = "showOvenInfoTypeUC1";
+            this.showOvenInfoTypeUC1.Size = new System.Drawing.Size(260, 24);
+            this.showOvenInfoTypeUC1.TabIndex = 2;
+            // 
+            // maintainUC1
+            // 
+            this.maintainUC1.Location = new System.Drawing.Point(528, 2);
+            this.maintainUC1.Margin = new System.Windows.Forms.Padding(2);
+            this.maintainUC1.Name = "maintainUC1";
+            this.maintainUC1.Size = new System.Drawing.Size(368, 26);
+            this.maintainUC1.TabIndex = 3;
+            // 
             // PageMain1UC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -478,6 +504,7 @@
             this.panelRGV.ResumeLayout(false);
             this.tlpOvenCol1.ResumeLayout(false);
             this.tlpOvenCol2.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -517,5 +544,7 @@
         private OvenUC ovenUC16;
         private OvenUC ovenUC15;
         private FeederUC feederUC1;
+        private MaintainUC maintainUC1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

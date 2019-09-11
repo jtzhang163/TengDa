@@ -80,6 +80,12 @@
     <Compile Include="MachineStatusUC.Designer.cs">
       <DependentUpon>MachineStatusUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="MaintainUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MaintainUC.Designer.cs">
+      <DependentUpon>MaintainUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesDubugUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineStatusUC.resx">
       <DependentUpon>MachineStatusUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaintainUC.resx">
+      <DependentUpon>MaintainUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesDubugUC.resx">
       <DependentUpon>MesDubugUC.cs</DependentUpon>

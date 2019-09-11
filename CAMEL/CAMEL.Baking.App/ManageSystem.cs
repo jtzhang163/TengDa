@@ -247,13 +247,22 @@ namespace CAMEL.Baking.App
 
             TreeNode tnCurrentTask = new TreeNode("当前任务");
 
-            tvSettings.Nodes.AddRange(new TreeNode[] { tnCurrentTask, tnConfig, tnOvenList, tnFeederList, tnScanerList, tnStationList, tnTaskList, tnEnabledTaskList, tnRGV, tnMES });
+            List<TreeNode> tnMaintains = new List<TreeNode>();
+            for (int i = 0; i < Current.maintains.Count; i++)
+            {
+                TreeNode tnMaintain = new TreeNode(string.Format("{0}:{1}", Current.maintains[i].Id, Current.maintains[i].Name));
+                tnMaintains.Add(tnMaintain);
+            }
+
+            TreeNode tnMaintainList = new TreeNode("维护列表", tnMaintains.ToArray());
+            tvSettings.Nodes.AddRange(new TreeNode[] { tnCurrentTask, tnConfig, tnOvenList, tnFeederList, tnScanerList, tnStationList, tnTaskList, tnEnabledTaskList, tnRGV, tnMES, tnMaintainList });
         }
 
         private void InitTerminal()
         {
             Current.ovens = Oven.OvenList;
             Current.Yields = Yield.YieldList;
+            Current.maintains = Maintain.MaintainsList;
             cbFloors.Items.Add("All");
             cbAlarmFloors.Items.Add("All");
 
@@ -2893,6 +2902,10 @@ namespace CAMEL.Baking.App
                             }
                         }
                     }
+                    else if (e.Node.Level == 1 && e.Node.Parent.Text == "维护列表")
+                    {
+                        this.propertyGridSettings.SelectedObject = Current.maintains.First(t => t.Id.ToString() == e.Node.Text.Split(':')[0]);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -2938,6 +2951,10 @@ namespace CAMEL.Baking.App
             else if (type == typeof(CurrentTask))
             {
                 settingsStr = string.Format("将当前任务的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
+            }
+            else if (type == typeof(Maintain))
+            {
+                settingsStr = string.Format("将维护列表的 {0} 由 {1} 修改为 {2} ", e.ChangedItem.PropertyDescriptor.DisplayName, e.OldValue, e.ChangedItem.Value);
             }
 
             if (!string.IsNullOrEmpty(settingsStr))

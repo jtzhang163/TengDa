@@ -56,5 +56,7 @@ namespace CAMEL.Baking
         public static CurrentTask Task = new CurrentTask(1);
 
         public static List<Yield> Yields = new List<Yield>();
+
+        public static List<Maintain> maintains = new List<Maintain>();
     }
 }

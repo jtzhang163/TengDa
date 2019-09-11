@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PageMain2UC));
             this.tableLayoutPanel41 = new System.Windows.Forms.TableLayoutPanel();
-            this.showOvenInfoTypeUC1 = new CAMEL.Baking.Control.ShowOvenInfoTypeUC();
             this.panelRGV = new System.Windows.Forms.Panel();
             this.robotUC1 = new CAMEL.Baking.Control.RGVUC();
             this.tlpOvenCol1 = new System.Windows.Forms.TableLayoutPanel();
@@ -67,10 +66,14 @@
             this.ovenUC021 = new CAMEL.Baking.Control.OvenUC();
             this.ovenUC020 = new CAMEL.Baking.Control.OvenUC();
             this.ovenUC019 = new CAMEL.Baking.Control.OvenUC();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.showOvenInfoTypeUC1 = new CAMEL.Baking.Control.ShowOvenInfoTypeUC();
+            this.maintainUC1 = new CAMEL.Baking.Control.MaintainUC();
             this.tableLayoutPanel41.SuspendLayout();
             this.panelRGV.SuspendLayout();
             this.tlpOvenCol1.SuspendLayout();
             this.tlpOvenCol2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel41
@@ -78,11 +81,11 @@
             this.tableLayoutPanel41.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.tableLayoutPanel41.ColumnCount = 1;
             this.tableLayoutPanel41.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel41.Controls.Add(this.showOvenInfoTypeUC1, 0, 3);
             this.tableLayoutPanel41.Controls.Add(this.panelRGV, 0, 1);
             this.tableLayoutPanel41.Controls.Add(this.tlpOvenCol1, 0, 0);
             this.tableLayoutPanel41.Controls.Add(this.taskInfo1, 0, 4);
             this.tableLayoutPanel41.Controls.Add(this.tlpOvenCol2, 0, 2);
+            this.tableLayoutPanel41.Controls.Add(this.tableLayoutPanel1, 0, 3);
             this.tableLayoutPanel41.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel41.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel41.Name = "tableLayoutPanel41";
@@ -94,14 +97,6 @@
             this.tableLayoutPanel41.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel41.Size = new System.Drawing.Size(1053, 479);
             this.tableLayoutPanel41.TabIndex = 1;
-            // 
-            // showOvenInfoTypeUC1
-            // 
-            this.showOvenInfoTypeUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.showOvenInfoTypeUC1.Location = new System.Drawing.Point(3, 421);
-            this.showOvenInfoTypeUC1.Name = "showOvenInfoTypeUC1";
-            this.showOvenInfoTypeUC1.Size = new System.Drawing.Size(260, 24);
-            this.showOvenInfoTypeUC1.TabIndex = 2;
             // 
             // panelRGV
             // 
@@ -517,6 +512,38 @@
             this.ovenUC019.Size = new System.Drawing.Size(67, 171);
             this.ovenUC019.TabIndex = 11;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.maintainUC1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.showOvenInfoTypeUC1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 418);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1053, 30);
+            this.tableLayoutPanel1.TabIndex = 5;
+            // 
+            // showOvenInfoTypeUC1
+            // 
+            this.showOvenInfoTypeUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.showOvenInfoTypeUC1.Location = new System.Drawing.Point(3, 3);
+            this.showOvenInfoTypeUC1.Name = "showOvenInfoTypeUC1";
+            this.showOvenInfoTypeUC1.Size = new System.Drawing.Size(260, 24);
+            this.showOvenInfoTypeUC1.TabIndex = 3;
+            // 
+            // maintainUC1
+            // 
+            this.maintainUC1.Location = new System.Drawing.Point(528, 2);
+            this.maintainUC1.Margin = new System.Windows.Forms.Padding(2);
+            this.maintainUC1.Name = "maintainUC1";
+            this.maintainUC1.Size = new System.Drawing.Size(368, 26);
+            this.maintainUC1.TabIndex = 4;
+            // 
             // PageMain2UC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -528,6 +555,7 @@
             this.panelRGV.ResumeLayout(false);
             this.tlpOvenCol1.ResumeLayout(false);
             this.tlpOvenCol2.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -535,7 +563,6 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel41;
-        private ShowOvenInfoTypeUC showOvenInfoTypeUC1;
         private System.Windows.Forms.Panel panelRGV;
         private RGVUC robotUC1;
         private System.Windows.Forms.TableLayoutPanel tlpOvenCol1;
@@ -571,5 +598,8 @@
         private OvenUC ovenUC016;
         private OvenUC ovenUC013;
         private FeederUC feederUC1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private ShowOvenInfoTypeUC showOvenInfoTypeUC1;
+        private MaintainUC maintainUC1;
     }
 }
