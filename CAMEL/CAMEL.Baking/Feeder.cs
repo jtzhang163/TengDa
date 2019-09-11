@@ -418,7 +418,7 @@ namespace CAMEL.Baking
                         return false;
                     }
 
-                    if (db17_2 == 2 && this.GetStation.ClampStatus != ClampStatus.满夹具)
+                    if (db17_2 == 2 && this.GetStation.ClampStatus != ClampStatus.满夹具 && this.GetStation.ClampId < 1)
                     {
                         var clampCode = Current.Feeder.PopClampCode();
                         if (!string.IsNullOrEmpty(clampCode))
