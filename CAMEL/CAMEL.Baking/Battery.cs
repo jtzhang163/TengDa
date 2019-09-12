@@ -181,11 +181,11 @@ namespace CAMEL.Baking
             return Database.Insert(string.Format("INSERT INTO [dbo].[{0}] ([Code], [ClampId], [FeederId], [Location], [ScanTime]) VALUES ('{1}', {2}, {3}, '{4}', '{5}')", TableName, addBattery.Code, addBattery.ClampId, addBattery.FeederId, addBattery.Location, DateTime.Now), out msg);
         }
 
-        public static bool Update(int clampId, int feederId, out string msg)
-        {
-            return Database.NonQuery(string.Format("UPDATE [dbo].[{0}] SET [ClampId] = {1} WHERE [Id] IN (SELECT TOP {2} [Id] FROM [dbo].[{0}] WHERE [ClampId] = -1 AND [FeederId] = {3} ORDER BY [Id])",
-                 TableName, clampId, Current.option.ClampBatteryCount, feederId), out msg);
-        }
+        //public static bool Update(int clampId, int feederId, out string msg)
+        //{
+        //    return Database.NonQuery(string.Format("UPDATE [dbo].[{0}] SET [ClampId] = {1} WHERE [Id] IN (SELECT TOP {2} [Id] FROM [dbo].[{0}] WHERE [ClampId] = -1 AND [FeederId] = {3} ORDER BY [Id])",
+        //         TableName, clampId, Current.option.ClampBatteryCount, feederId), out msg);
+        //}
 
         /// <summary>
         /// 增加多个，数据库一次插入多行

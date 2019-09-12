@@ -166,10 +166,10 @@ namespace CAMEL.Baking
         {
             this.Id = TengDa._Convert.StrToInt(rowInfo["Id"].ToString(), -1);
             this.ClampOri = (ClampOri)Enum.Parse(typeof(ClampOri), rowInfo["ClampOri"].ToString());
-            this.FeedingOK = TengDa._Convert.StrToInt(rowInfo["FeedingOK"].ToString(), 0);
-            this.FeedingNG = TengDa._Convert.StrToInt(rowInfo["FeedingNG"].ToString(), 0);
-            this.BlankingOK = TengDa._Convert.StrToInt(rowInfo["BlankingOK"].ToString(), 0);
-            this.BlankingNG = TengDa._Convert.StrToInt(rowInfo["BlankingNG"].ToString(), 0);
+            this.feedingOK = TengDa._Convert.StrToInt(rowInfo["FeedingOK"].ToString(), 0);
+            this.feedingNG = TengDa._Convert.StrToInt(rowInfo["FeedingNG"].ToString(), 0);
+            this.blankingOK = TengDa._Convert.StrToInt(rowInfo["BlankingOK"].ToString(), 0);
+            this.blankingNG = TengDa._Convert.StrToInt(rowInfo["BlankingNG"].ToString(), 0);
             this.Remark = rowInfo["Remark"].ToString();
         }
         #endregion

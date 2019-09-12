@@ -85,28 +85,6 @@ namespace CAMEL.Baking
             {
                 if (TengDa.WF.Current.IsTerminalInitFinished && clampStatus != value)
                 {
-                    if (value == ClampStatus.满夹具 && clampStatus == ClampStatus.无夹具 && this.GetPutType == GetPutType.上料机)
-                    {
-                        //上料计数逻辑
-                        Current.Yields.First(y => y.ClampOri == this.ClampOri).FeedingOK++;
-
-                        //电池夹具绑定
-                        if (this.Clamp.Batteries.Count == 0)
-                        {
-                            var msg = string.Empty;
-                            if (!Battery.Update(this.Clamp.Id, Current.Feeder.Id, out msg))
-                            {
-                                Error.Alert(msg);
-                            }
-                        }
-                    }
-
-                    //下料计数逻辑
-                    if (value == ClampStatus.无夹具 && clampStatus == ClampStatus.满夹具 && this.GetPutType == GetPutType.下料机)
-                    {
-                        Current.Yields.First(y => y.ClampOri == this.ClampOri).BlankingOK++;
-                    }
-
                     //解决取放料时夹具状态反复变化问题
                     if (value != ClampStatus.无夹具 && (this.Id == Current.Task.FromStationId || this.Id == Current.Task.ToStationId))
                     {

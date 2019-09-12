@@ -560,6 +560,8 @@ namespace CAMEL.Baking
 
                                     if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
                                     {
+                                        //上料计数逻辑
+                                        Current.Yields.First(y => y.ClampOri == ClampOri.A).FeedingOK++;
                                         Current.Feeder.GetFinished();
                                     }
                                 }
@@ -603,6 +605,8 @@ namespace CAMEL.Baking
 
                                     if (Current.Task.ToStation.GetPutType == GetPutType.下料机)
                                     {
+                                        //下料计数逻辑
+                                        Current.Yields.First(y => y.ClampOri == ClampOri.A).BlankingOK++;
                                         Current.Feeder.PutFinished();
                                     }
                                     Current.Task.Status = TaskStatus.完成;
@@ -667,6 +671,8 @@ namespace CAMEL.Baking
 
                                 if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
                                 {
+                                    //上料计数逻辑
+                                    Current.Yields.First(y => y.ClampOri == ClampOri.A).FeedingOK++;
                                     Current.Feeder.GetFinished();
                                 }
                             }
@@ -720,6 +726,8 @@ namespace CAMEL.Baking
 
                                 if (Current.Task.ToStation.GetPutType == GetPutType.下料机)
                                 {
+                                    //下料计数逻辑
+                                    Current.Yields.First(y => y.ClampOri == ClampOri.A).BlankingOK++;
                                     Current.Feeder.PutFinished();
                                 }
                                 Current.Task.Status = TaskStatus.完成;
