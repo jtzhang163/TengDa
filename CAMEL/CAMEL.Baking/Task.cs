@@ -555,7 +555,6 @@ namespace CAMEL.Baking
                                 {
                                     Current.RGV.ClampStatus = Current.Task.FromClampStatus;
                                     Current.RGV.ClampId = Current.Task.ClampId;
-                                    Current.Task.FromStation.ClampId = -1;
                                     Current.Task.Status = TaskStatus.取完;
 
                                     if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
@@ -564,6 +563,14 @@ namespace CAMEL.Baking
                                         Current.Yields.First(y => y.ClampOri == ClampOri.A).FeedingOK++;
                                         Current.Feeder.GetFinished();
                                     }
+
+                                    if (Current.Task.FromStation.GetPutType == GetPutType.烤箱)
+                                    {
+                                        Current.Task.FromStation.Clamp.OutOvenTime = DateTime.Now;
+                                        Current.Task.FromStation.Clamp.IsFinished = true;
+                                    }
+
+                                    Current.Task.FromStation.ClampId = -1;
                                 }
                             }
                             else if (Current.Task.Status == TaskStatus.取完)
@@ -666,7 +673,6 @@ namespace CAMEL.Baking
                             {
                                 Current.RGV.ClampStatus = Current.Task.FromClampStatus;
                                 Current.RGV.ClampId = Current.Task.ClampId;
-                                Current.Task.FromStation.ClampId = -1;
                                 Current.Task.Status = TaskStatus.取完;
 
                                 if (Current.Task.FromStation.GetPutType == GetPutType.上料机)
@@ -675,6 +681,14 @@ namespace CAMEL.Baking
                                     Current.Yields.First(y => y.ClampOri == ClampOri.A).FeedingOK++;
                                     Current.Feeder.GetFinished();
                                 }
+
+                                if (Current.Task.FromStation.GetPutType == GetPutType.烤箱)
+                                {
+                                    Current.Task.FromStation.Clamp.OutOvenTime = DateTime.Now;
+                                    Current.Task.FromStation.Clamp.IsFinished = true;
+                                }
+
+                                Current.Task.FromStation.ClampId = -1;
                             }
                         }
                         else if (Current.Task.Status == TaskStatus.取完)

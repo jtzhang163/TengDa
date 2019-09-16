@@ -344,11 +344,11 @@ namespace CAMEL.Baking
                         this.Clamp.Temperature = this.GetFloor().Temperatures.Average();
                         this.Clamp.BakingStopTime = DateTime.Now;
                     }
-                    else if (value == FloorStatus.无盘 && floorStatus == FloorStatus.待出)
-                    {
-                        this.Clamp.OutOvenTime = DateTime.Now;
-                        this.Clamp.IsFinished = true;
-                    }
+                    //else if (value == FloorStatus.无盘 && floorStatus == FloorStatus.待出)
+                    //{
+                    //    this.Clamp.OutOvenTime = DateTime.Now;
+                    //    this.Clamp.IsFinished = true;
+                    //}
                 }
 
                 if (floorStatus != value && this.IsAlive)
