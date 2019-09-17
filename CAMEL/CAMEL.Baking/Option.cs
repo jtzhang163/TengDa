@@ -142,8 +142,6 @@ namespace CAMEL.Baking
 
         public const int VacuumPointCount = 1;
 
-        public const int TemperatureSetPointCount = 10;
-
         private static int lineNum = -1;
         /// <summary>
         /// 设备布局类型    
@@ -164,12 +162,6 @@ namespace CAMEL.Baking
         public string[] TemperNames = new string[Option.TemperaturePointCount]
         {
             "温度1", "温度2", "温度3"
-        };
-
-        public string[] TemperSetNames = new string[Option.TemperatureSetPointCount]
-        {
-            "上左温度设定值", "上右温度设定值", "下左温度设定值", "下右温度设定值","左侧温度设定值",
-            "右侧温度设定值", "后左温度设定值", "后右温度设定值", "门左温度设定值","门右温度设定值"
         };
 
         private List<Color> curveColors = new List<Color>();

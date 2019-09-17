@@ -241,10 +241,6 @@ namespace CAMEL.Baking.Control
                 }
                 lbStatus.Text = startBakingTime;
             }
-            else if (Current.option.FloorShowInfoType == "出烤箱时间")
-            {
-                lbStatus.Text = floor.OutOvenTime > TengDa.Common.DefaultTime ? floor.OutOvenTime.ToString("yyyy-MM-dd HH:mm") : "";
-            }
             else if (Current.option.FloorShowInfoType == "温度设定")
             {
                 lbStatus.Text = floor.TemperSetting + "℃";

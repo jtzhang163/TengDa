@@ -574,22 +574,9 @@ namespace CAMEL.Baking
             }
         }
 
-        [ReadOnly(true)]
-        [DisplayName("是否可夹具扫码")]
-        public bool IsClampScanReady { get; set; }
-
-        /// <summary>
-        /// 是否为样品信息标记
-        /// </summary>
-        [ReadOnly(true)]
-        [DisplayName("是否为样品信息标记")]
-        public bool HasSampleFlag
-        {
-            get
-            {
-                return this.ClampStatus != ClampStatus.无夹具 && this.SampleInfo == SampleInfo.有样品;
-            }
-        }
+        //[ReadOnly(true)]
+        //[DisplayName("是否可夹具扫码")]
+        //public bool IsClampScanReady { get; set; }
 
 
         //[ReadOnly(true)]
@@ -616,7 +603,7 @@ namespace CAMEL.Baking
         /// <summary>
         /// 工位样品状态
         /// </summary>
-        [DisplayName("工位样品状态")]
+        [ReadOnly(true), DisplayName("工位样品状态")]
         public SampleStatus SampleStatus
         {
             get
@@ -640,7 +627,7 @@ namespace CAMEL.Baking
         /// <summary>
         /// 夹具样品信息
         /// </summary>
-        [DisplayName("夹具样品信息")]
+        [ReadOnly(true), DisplayName("夹具样品信息")]
         public SampleInfo SampleInfo
         {
             get

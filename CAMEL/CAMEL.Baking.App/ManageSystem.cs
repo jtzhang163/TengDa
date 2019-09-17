@@ -1843,7 +1843,7 @@ namespace CAMEL.Baking.App
         {
             if (timerlock)
             {
-                TVD.Add();
+                TVD.Save();
             }
         }
         #endregion
@@ -2545,7 +2545,7 @@ namespace CAMEL.Baking.App
                     }
                     dgvTV.Columns[Option.TemperaturePointCount + 1].Width = 100;
                     dgvTV.Columns[Option.TemperaturePointCount + 2].Width = 100;
-                    dgvTV.Columns[Option.TemperaturePointCount + 3].Width = 100;
+                    dgvTV.Columns[Option.TemperaturePointCount + 3].Width = 130;
                     dgvTV.Columns[Option.TemperaturePointCount + 3].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
                     tbNumTV.Text = dt.Rows.Count.ToString();
                 }));

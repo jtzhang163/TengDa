@@ -69,9 +69,9 @@ namespace CAMEL.Baking
             return Database.NonQuery(sb.ToString().TrimEnd(','), out msg);
         }
 
-        public static void Add()
+        public static void Save()
         {
-            List<TVD> TVDs = new List<TVD>();
+            List<TVD> tvds = new List<TVD>();
 
             for (int i = 0; i < Current.ovens.Count; i++)
             {
@@ -81,21 +81,21 @@ namespace CAMEL.Baking
                     {
                         if (Current.ovens[i].Floors[j].IsBaking)
                         {
-                            for(int k = 0;k< Current.ovens[i].Floors[j].Stations.Count; k++)
-                            {
-                                TVD tvd = new TVD();
-                                tvd.FloorId = Current.ovens[i].Floors[j].Id;
-                                tvd.UserId = TengDa.WF.Current.user.Id;
-                                tvd.RunMinutes = Current.ovens[i].Floors[j].RunMinutes;
-                                tvd.T = Current.ovens[i].Floors[j].Temperatures;
-                                TVDs.Add(tvd);
-                            }
+                            //for(int k = 0;k< Current.ovens[i].Floors[j].Stations.Count; k++)
+                            //{
+                            TVD tvd = new TVD();
+                            tvd.FloorId = Current.ovens[i].Floors[j].Id;
+                            tvd.UserId = TengDa.WF.Current.user.Id;
+                            tvd.RunMinutes = Current.ovens[i].Floors[j].RunMinutes;
+                            tvd.T = Current.ovens[i].Floors[j].Temperatures;
+                            tvds.Add(tvd);
+                            //}
                         }
                     }
                 }
             }
             string msg = string.Empty;
-            if (!TVD.Add(TVDs, out msg))
+            if (!TVD.Add(tvds, out msg))
             {
                 Error.Alert(msg);
             }

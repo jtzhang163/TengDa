@@ -148,80 +148,6 @@ namespace CAMEL.Baking
         [DisplayName("是否烘烤完成")]
         public bool IsBakeFinished { get; set; }
 
-        private bool isTestWaterContent = false;
-        /// <summary>
-        /// 是否测试水分
-        /// </summary>
-        [DisplayName("是否测试水分")]
-        public bool IsTestWaterContent
-        {
-            get
-            {
-                return isTestWaterContent;
-            }
-            set
-            {
-                if (isTestWaterContent != value)
-                {
-                    UpdateDbField("IsTestWaterContent", value);
-                    //if (value)
-                    //{
-                    //    foreach (Floor f in this.GetOven().Floors)
-                    //    {
-                    //        if (this != f)
-                    //        {
-                    //            f.IsTestWaterContent = false;
-                    //        }
-                    //    }
-                    //}
-                }
-                isTestWaterContent = value;
-            }
-        }
-
-        private int ngTimes = 0;
-
-        /// <summary>
-        /// 水分测试NG次数
-        /// </summary>
-        [DisplayName("水分测试NG次数")]
-        public int NgTimes
-        {
-            get
-            {
-                return ngTimes;
-            }
-            set
-            {
-                if (ngTimes != value)
-                {
-                    UpdateDbField("NgTimes", value);
-                }
-                ngTimes = value;
-            }
-        }
-
-        private DateTime outOvenTime = TengDa.Common.DefaultTime;
-        /// <summary>
-        /// 出烤箱时间
-        /// </summary>
-        [ReadOnly(true), DisplayName("出烤箱时间")]
-        public DateTime OutOvenTime
-        {
-            get
-            {
-                return outOvenTime;
-            }
-            set
-            {
-                if (outOvenTime != value)
-                {
-                    UpdateDbField("OutOvenTime", value);
-                }
-                outOvenTime = value;
-            }
-        }
-
 
         public TriLamp triLamp = TriLamp.Unknown;
         [ReadOnly(true), DisplayName("三色灯")]
@@ -247,27 +173,6 @@ namespace CAMEL.Baking
         [ReadOnly(true)]
         [DisplayName("温度数组")]
         public float[] Temperatures { get; set; } = new float[Option.TemperaturePointCount];
-
-        /// <summary>
-        /// 温度设定数组
-        /// </summary>
-        [ReadOnly(true)]
-        [DisplayName("温度设定数组")]
-        public float[] TemperatureSets { get; set; } = new float[Option.TemperatureSetPointCount];
-
-        /// <summary>
-        /// 运风温度设置值
-        /// </summary>
-        [ReadOnly(true)]
-        [DisplayName("运风温度设置值")]
-        public float YunfengTemperatureSet { get; set; }
-
-        /// <summary>
-        /// 真空度设置值
-        /// </summary>
-        [ReadOnly(true)]
-        [DisplayName("真空度设置值")]
-        public float VacuumSet { get; set; }
 
         #region 绘制温度曲线相关
         public List<float>[] sampledDatas = new List<float>[Option.TemperaturePointCount];//采样数据1
@@ -473,9 +378,6 @@ namespace CAMEL.Baking
             this.number = rowInfo["Number"].ToString();
             this.OvenId = TengDa._Convert.StrToInt(rowInfo["OvenId"].ToString(), -1);
             this.isEnable = Convert.ToBoolean(rowInfo["IsEnable"]);
-            this.isTestWaterContent = Convert.ToBoolean(rowInfo["IsTestWaterContent"]);
-            this.ngTimes = TengDa._Convert.StrToInt(rowInfo["NgTimes"].ToString(), 0);
-            this.outOvenTime = TengDa._Convert.StrToDateTime(rowInfo["OutOvenTime"].ToString(), Common.DefaultTime);
             for (int i = 0; i < Option.TemperaturePointCount; i++)
             {
                 this.sampledDatas[i] = new List<float>();
