@@ -839,6 +839,11 @@ namespace CAMEL.Baking
             //{
             //    return TengDa.TimeHelper.GetTimeStamp(this.Clamp.InOvenTime);
             //}
+            if (task.FromClampStatus == ClampStatus.满夹具 && task.ToType == GetPutType.烤箱)
+            {
+                var lastInOvenStationId = TengDa._Convert.StrToInt(Current.option.LastInOvenStationId, 0);
+                return this.Id > lastInOvenStationId ? this.Priority : 100000 + this.Priority;
+            }
             return this.Priority;
         }
 

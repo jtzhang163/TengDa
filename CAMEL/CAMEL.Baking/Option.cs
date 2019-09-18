@@ -1015,32 +1015,30 @@ namespace CAMEL.Baking
         }
 
 
-        //private string xxxXXXXXXXXXXXX = string.Empty;
-        ///// <summary>
-        ///// YYYYYYYYYYYYYYYYY
-        ///// </summary>
-        //[Description("YYYYYYYYYYYYYYYYY")]
-        //[DisplayName("YYYYYYYYYYYYYYYYY")]
-        //[Category("ZZZZZ")]
-        //public string XXXXXXXXXXXXXXX
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(xxxXXXXXXXXXXXX))
-        //        {
-        //            xxxXXXXXXXXXXXX = TengDa.WF.Option.GetOption("XXXXXXXXXXXXXXX");
-        //        }
-        //        return xxxXXXXXXXXXXXX;
-        //    }
-        //    set
-        //    {
-        //        if (value != xxxXXXXXXXXXXXX)
-        //        {
-        //            TengDa.WF.Option.SetOption("XXXXXXXXXXXXXXX", value);
-        //            xxxXXXXXXXXXXXX = value;
-        //        }
-        //    }
-        //}
+        private string lastInOvenStationId = string.Empty;
+        /// <summary>
+        /// 上次入炉工位ID
+        /// </summary>
+        [DisplayName("上次入炉工位ID"), ReadOnly(true)]
+        public string LastInOvenStationId
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(lastInOvenStationId))
+                {
+                    lastInOvenStationId = TengDa.WF.Option.GetOption("LastInOvenStationId");
+                }
+                return lastInOvenStationId;
+            }
+            set
+            {
+                if (value != lastInOvenStationId)
+                {
+                    TengDa.WF.Option.SetOption("LastInOvenStationId", value);
+                    lastInOvenStationId = value;
+                }
+            }
+        }
 
 
         //private string xxxXXXXXXXXXXXX = string.Empty;

@@ -616,6 +616,12 @@ namespace CAMEL.Baking
                                         Current.Yields.First(y => y.ClampOri == ClampOri.A).BlankingOK++;
                                         Current.Feeder.PutFinished();
                                     }
+
+                                    if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱)
+                                    {
+                                        Current.option.LastInOvenStationId = Current.Task.ToStation.Id.ToString();
+                                    }
+
                                     Current.Task.Status = TaskStatus.完成;
                                 }
                             }
@@ -744,6 +750,12 @@ namespace CAMEL.Baking
                                     Current.Yields.First(y => y.ClampOri == ClampOri.A).BlankingOK++;
                                     Current.Feeder.PutFinished();
                                 }
+
+                                if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱)
+                                {
+                                    Current.option.LastInOvenStationId = Current.Task.ToStation.Id.ToString();
+                                }
+
                                 Current.Task.Status = TaskStatus.完成;
                             }
                         }
