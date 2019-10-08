@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Text.RegularExpressions;
+using System.Threading;
 using TengDa;
 using TengDa.WF;
 
@@ -79,7 +80,10 @@ namespace Soundon.Dispatcher
                     {
                         Scaner scaner = new Scaner();
                         scaner.InitFields(dt.Rows[i]);
-                        scanerList.Add(scaner);
+                        if(scanerList.Count < 5)
+                        {
+                            scanerList.Add(scaner);
+                        }
                     }
                 }
                 return scanerList;
@@ -145,95 +149,58 @@ namespace Soundon.Dispatcher
 
         public ScanResult StartBatteryScan(out string code, out string msg)
         {
-            code = string.Empty;
-            string output = string.Empty;
-
-            if (!GetInfo(Current.option.BatteryScanerTriggerStr, 300, out output, out msg))
+            code = "";
+            if (!SetInfo("LON", out msg))
             {
-                if (msg.Contains("超时"))
-                {
-                    StopBatteryScan();
-                    return ScanResult.Timeout;
-                }
                 return ScanResult.Error;
             }
 
-            this.GetInfoNoWrite(out output);
+            Thread.Sleep(1000);
 
-            if (string.IsNullOrEmpty(output))
+            var receiveData = this.GetReceiveData();
+            if (receiveData.Length > 18)
             {
-                msg = "指定时间未接收到串口数据！";
-                return ScanResult.Error;
-            }
-
-            code = Regex.Match(output, Current.option.BatteryCodeRegularExpression).Value;
-            if (!string.IsNullOrEmpty(code))
-            {
+                code = receiveData;
+                this.ClearReceiveData();
                 return ScanResult.OK;
             }
 
-            code = Regex.Match(output, Current.option.BatteryScanerFailedStr).Value;
-            if (!string.IsNullOrEmpty(code))
-            {
-                return ScanResult.NG;
-            }
-
-            this.StopBatteryScan();
-            msg = "扫码枪返回字符串无法识别！";
-            LogHelper.WriteError(string.Format("获得电池条码：{0}，不满足正则表达式：{1}", output, Current.option.BatteryCodeRegularExpression));
-            return ScanResult.Unknown;
+            code = "ERROR";
+            StopBatteryScan();
+            return ScanResult.Error;
         }
 
         public ScanResult StartClampScan(out string code, out string msg)
         {
-            code = string.Empty;
-            string output = string.Empty;
-
-            if (!GetInfo(Current.option.ClampScanerTriggerStr, 200, out output, out msg))
+            code = "";
+            if (!SetInfo("LON", out msg))
             {
-                if (msg.Contains("超时"))
-                {
-                    StopClampScan();
-                    return ScanResult.Timeout;
-                }
                 return ScanResult.Error;
             }
 
-            if (string.IsNullOrEmpty(output))
-            {
-                msg = "指定时间未接收到串口数据！";
-                return ScanResult.Error;
-            }
+            Thread.Sleep(1000);
 
-            code = Regex.Match(output, Current.option.ClampCodeRegularExpression).Value;
-            if (!string.IsNullOrEmpty(code))
+            var receiveData = this.GetReceiveData();
+            if (receiveData.Length > 10)
             {
+                code = receiveData;
+                this.ClearReceiveData();
                 return ScanResult.OK;
             }
 
-            code = Regex.Match(output, Current.option.ClampScanerFailedStr).Value;
-            if (!string.IsNullOrEmpty(code))
-            {
-                return ScanResult.NG;
-            }
-
-            msg = "扫码枪返回字符串无法识别！";
-            LogHelper.WriteError(string.Format("获得夹具条码：{0}，不满足正则表达式：{1}", output, Current.option.ClampCodeRegularExpression));
-            return ScanResult.Unknown;
+            code = "ERROR";
+            StopBatteryScan();
+            return ScanResult.Error;
         }
 
         public void StopBatteryScan()
         {
-            string output = string.Empty;
-            string msg = string.Empty;
-            SetInfo(Current.option.BatteryScanerStopStr, out msg);
+            SetInfo("LOFF", out string msg);
         }
 
         public void StopClampScan()
         {
-            string output = string.Empty;
-            string msg = string.Empty;
-            SetInfo(Current.option.ClampScanerStopStr, out msg);
+            SetInfo("LOFF", out string msg);
         }
 
 

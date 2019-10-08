@@ -421,7 +421,7 @@ namespace Soundon.Dispatcher
         {
             get
             {
-                if (this.Scaners.Count > 0)
+                if (this.Scaners.Count > 2)
                 {
                     return this.Scaners[2];
                 }
@@ -432,6 +432,9 @@ namespace Soundon.Dispatcher
         #endregion
 
         #region 通信
+
+        [Browsable(false)]
+        public bool IsDealWithData { get; set; }
 
         public bool AlreadyGetAllInfo = false;
 
@@ -740,11 +743,11 @@ namespace Soundon.Dispatcher
             {
                 val = (ushort)2;
             }
-            else if (scanResults[0] == ScanResult.NG && scanResults[1] == ScanResult.OK)
+            else if (scanResults[0] == ScanResult.Error && scanResults[1] == ScanResult.OK)
             {
                 val = (ushort)8;
             }
-            else if (scanResults[0] == ScanResult.OK && scanResults[1] == ScanResult.NG)
+            else if (scanResults[0] == ScanResult.OK && scanResults[1] == ScanResult.Error)
             {
                 val = (ushort)16;
             }
@@ -768,27 +771,30 @@ namespace Soundon.Dispatcher
 
         public bool SetScanClampResult(ScanResult scanResult, out string msg)
         {
-            var val = (ushort)0;
-            if (scanResult == ScanResult.OK)
-            {
-                val = (ushort)1;
-            }
-            else
-            {
-                val = (ushort)0;
-            }
-
-            val = (ushort)2;
-
-            if (!this.Plc.SetInfo("D1002", val, out msg))
-            {
-                Error.Alert(msg);
-                this.Plc.IsAlive = false;
-                return false;
-            }
-
-            LogHelper.WriteInfo(string.Format("成功发送夹具扫码结果到{0} D1002:{1}", this.Plc.Name, val));
+            msg = "";
             return true;
+
+            //var val = (ushort)0;
+            //if (scanResult == ScanResult.OK)
+            //{
+            //    val = (ushort)1;
+            //}
+            //else
+            //{
+            //    val = (ushort)0;
+            //}
+
+            //val = (ushort)2;
+
+            //if (!this.Plc.SetInfo("D1002", val, out msg))
+            //{
+            //    Error.Alert(msg);
+            //    this.Plc.IsAlive = false;
+            //    return false;
+            //}
+
+            //LogHelper.WriteInfo(string.Format("成功发送夹具扫码结果到{0} D1002:{1}", this.Plc.Name, val));
+            //return true;
         }
 
         #endregion
