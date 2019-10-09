@@ -197,6 +197,9 @@ namespace Soundon.Dispatcher
         [ReadOnly(true), DisplayName("已请求启动")]
         public bool IsRequestStart { get; set; } = false;
 
+        [Browsable(false)]
+        public bool IsDealWithData { get; set; }
+
         #endregion
 
         #region 构造方法

@@ -614,30 +614,27 @@ namespace Soundon.Dispatcher
 
                         #endregion
 
+                        //获取夹具扫码信号
+                        var feeder = Current.feeders.Single(f => f.ClampScaner.Id > 0);
+                        if (feeder.ClampScaner.IsEnable)
+                        {
+                            if (bOutputs[14] == 2 && (Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.正放))
+                            {
+                                if (!feeder.ClampScaner.IsReady)
+                                {
+                                    feeder.ClampScaner.CanScan = true;
+                                }
+                                feeder.ClampScaner.IsReady = true;
+                            }
+                            else
+                            {
+                                feeder.ClampScaner.IsReady = false;
+                                feeder.ClampScaner.CanScan = false;
+                            }
+                        }
+
                         Current.Robot.Plc.IsAlive = true;
                         Current.Robot.AlreadyGetAllInfo = true;
-                    }
-
-
-                    //获取夹具扫码信号
-                    if (this.ClampScaner.IsEnable)
-                    {
-                        if ((new List<ushort>() { 1, 2, 3 }).Contains(bOutputs[1]))
-                        {
-                            if (!this.ClampScaner.IsReady)
-                            {
-                                this.ClampScaner.CanScan = true;
-                            }
-                            this.ClampScaner.IsReady = true;
-                            this.Stations[bOutputs[1] - 1].IsClampScanReady = true;
-                            this.CurrentPutStationId = this.Stations[bOutputs[1] - 1].Id;
-                        }
-                        else
-                        {
-                            this.Stations.ForEach(s => s.IsClampScanReady = false); this.ClampScaner.IsReady = false;
-                            this.ClampScaner.IsReady = false;
-                            this.ClampScaner.CanScan = false;
-                        }
                     }
 
                     //获取电池扫码信号

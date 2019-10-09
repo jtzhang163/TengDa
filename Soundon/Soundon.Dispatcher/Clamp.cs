@@ -412,6 +412,21 @@ namespace Soundon.Dispatcher
                 sampleInfo = value;
             }
         }
+        /// <summary>
+        /// 显示到界面的夹具条码（只保留）
+        /// </summary>
+        [Browsable(false)]
+        public string Code4Show
+        {
+            get
+            {
+                if (this.Code.Length >= 5)
+                {
+                    return this.Code.Substring(this.Code.Length - 5);
+                }
+                return this.Code;
+            }
+        }
 
         #endregion
 

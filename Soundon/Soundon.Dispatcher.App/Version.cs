@@ -19,8 +19,8 @@ namespace Soundon.Dispatcher.App
                 //assemblyVersion = Regex.Match(assemblyVersion, @"^[\d]+.[\d]+.[\d]+.[\d]+").Value;
                 assemblyVersion = Regex.Match(assemblyVersion, @"^[\d]+.[\d]+.[\d]+").Value;
                 //只获取主版本和次版本
-                return assemblyVersion;
-                // return "V" + assemblyVersion;
+                //return assemblyVersion;
+                return "V" + assemblyVersion;
             }
         }
 

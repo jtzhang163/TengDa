@@ -250,7 +250,7 @@ namespace Soundon.Dispatcher.App
                 List<TreeNode> tnFloors = new List<TreeNode>();
                 TreeNode tnOvenPlc = new TreeNode("PLC");
                 tnFloors.Add(tnOvenPlc);
-                for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
+                for (int j = 0; j < OvenFloorCount; j++)
                 {
                     TreeNode tnFloor = new TreeNode(string.Format("{0}:{1}", Current.ovens[i].Floors[j].Id, Current.ovens[i].Floors[j].Name));
                     tnFloors.Add(tnFloor);
@@ -373,7 +373,7 @@ namespace Soundon.Dispatcher.App
                 cbAlarmFloors.Items.Add(Current.ovens[i].Name);
 
                 ///查询温度真空时下拉列表数据            
-                for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
+                for (int j = 0; j < OvenFloorCount; j++)
                 {
                     Current.ovens[i].Floors[j].Stations.ForEach(s => cbStations.Items.Add(s.Name));
                     cbAlarmFloors.Items.Add(Current.ovens[i].Floors[j].Name);
@@ -397,9 +397,9 @@ namespace Soundon.Dispatcher.App
 
                 for (int j = 0; j < FeederBatteryScanerCount; j++)
                 {
-                    lbBatteryScanerNameN[i][j].Text = Current.feeders[i].Scaners[j].Name;
+                    lbBatteryScanerNameN[i][j].Text = Current.feeders[i].BatteryScaners[j].Name;
                     pbBatteryScanerLamp[i][j].Image = Properties.Resources.Gray_Round;
-                    cbBatteryScanerIsEnable[i][j].Checked = Current.feeders[i].Scaners[j].IsEnable;
+                    cbBatteryScanerIsEnable[i][j].Checked = Current.feeders[i].BatteryScaners[j].IsEnable;
                 }
 
                 if (Current.feeders[i].ClampScaner.Id > 0)
@@ -417,7 +417,7 @@ namespace Soundon.Dispatcher.App
                 pbBlankerLamp[i].Image = Properties.Resources.Gray_Round;
                 cbBlankerIsEnable[i].Checked = Current.blankers[i].IsEnable;
 
-                for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
+                for (int j = 0; j < BlankerStationCount; j++)
                 {
                     // lbBlankerStationName[i][j].Text = Current.blankers[i].Stations[j].Name.Replace("下料", "");
                     lbBlankerStationName[i][j].Text = Current.blankers[i].Stations[j].Name.Substring(3);
@@ -428,19 +428,19 @@ namespace Soundon.Dispatcher.App
             lbRobotName.Text = Current.Robot.Name;
             lbRobotNameN.Text = Current.Robot.Name;
 
-            lbRobotClampCode.Text = Current.Robot.Clamp.Code;
+            lbRobotClampCode.Text = Current.Robot.Clamp.Code4Show;
 
             lbRobotClampCode.BackColor = Current.Robot.ClampStatus == ClampStatus.异常 ? Color.Red : Color.Transparent;
 
             cbRobotIsEnable.Checked = Current.Robot.IsEnable;
 
             lbTransferName.Text = Current.Transfer.Name;
-            lbTransferClampCode.Text = Current.Transfer.Station.Clamp.Code;
+            lbTransferClampCode.Text = Current.Transfer.Station.Clamp.Code4Show;
 
             lbCacheName.Text = Current.Cache.Name;
-            for (int i = 0; i < Current.Cache.Stations.Count; i++)
+            for (int i = 0; i < CacheStationCount; i++)
             {
-                lbCacheClampCode[i].Text = Current.Cache.Stations[i].Clamp.Code;
+                lbCacheClampCode[i].Text = Current.Cache.Stations[i].Clamp.Code4Show;
             }
 
             bool isAll = true;
@@ -783,8 +783,8 @@ namespace Soundon.Dispatcher.App
                     {
                         lbFloorStatus[i][j].Text =
                             string.Format("{0} {1}",
-                            (oven.ClampOri == ClampOri.B ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadRight(8),
-                            (oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code : floor.Stations[1].Clamp.Code).PadLeft(8)
+                            (oven.ClampOri == ClampOri.B ? floor.Stations[0].Clamp.Code4Show : floor.Stations[1].Clamp.Code4Show).PadRight(8),
+                            (oven.ClampOri == ClampOri.A ? floor.Stations[0].Clamp.Code4Show : floor.Stations[1].Clamp.Code4Show).PadLeft(8)
                             );
                     }
 
@@ -828,7 +828,7 @@ namespace Soundon.Dispatcher.App
             #region 上料机
 
 
-            for (int i = 0; i < Current.feeders.Count; i++)
+            for (int i = 0; i < FeederCount; i++)
             {
                 Feeder feeder = Current.feeders[i];
                 feeder.IsAlive = feeder.IsEnable && feeder.Plc.IsAlive;
@@ -922,7 +922,7 @@ namespace Soundon.Dispatcher.App
                 {
                     Station station = Current.feeders[i].Stations[j];
 
-                    lbFeederClampCode[i][j].Text = station.Clamp.Code;
+                    lbFeederClampCode[i][j].Text = station.Clamp.Code4Show;
 
                     lbFeederClampCode[i][j].BackColor = station.HasSampleFlag ? Color.Blue : Color.White;
                     lbFeederClampCode[i][j].ForeColor = station.HasSampleFlag ? Color.White : Color.Blue;
@@ -1009,14 +1009,14 @@ namespace Soundon.Dispatcher.App
                 }
                 blanker.PreAlarmStr = blanker.AlarmStr;
 
-                for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
+                for (int j = 0; j < BlankerStationCount; j++)
                 {
                     Station station = Current.blankers[i].Stations[j];
 
                     lbBlankerStationName[i][j].BackColor = station.DoorStatus == DoorStatus.关闭 ? Color.Black : Color.Transparent;
                     lbBlankerStationName[i][j].ForeColor = station.DoorStatus == DoorStatus.关闭 ? Color.White : Color.Black;
 
-                    lbBlankerClampCode[i][j].Text = station.Clamp.Code;
+                    lbBlankerClampCode[i][j].Text = station.Clamp.Code4Show;
 
                     lbBlankerClampCode[i][j].BackColor = station.HasSampleFlag ? Color.Blue : Color.White;
                     lbBlankerClampCode[i][j].ForeColor = station.HasSampleFlag ? Color.White : Color.Blue;
@@ -1084,9 +1084,9 @@ namespace Soundon.Dispatcher.App
 
             this.tlpCache.BackColor = Current.Cache.IsAlive ? Color.White : Color.LightGray;
 
-            for (int j = 0; j < Current.Cache.Stations.Count; j++)
+            for (int j = 0; j < CacheStationCount; j++)
             {
-                lbCacheClampCode[j].Text = Current.Cache.Stations[j].Clamp.Code;
+                lbCacheClampCode[j].Text = Current.Cache.Stations[j].Clamp.Code4Show;
 
                 Station station = Current.Cache.Stations[j];
                 bool canChangeVisible = DateTime.Now.Second % 3 == 1;
@@ -1133,7 +1133,7 @@ namespace Soundon.Dispatcher.App
             this.tlpTransfer.BackColor = Current.Transfer.IsAlive ? Color.White : Color.LightGray;
 
           //  var sampleStatusFlag = Current.Transfer.Station.SampleStatus == SampleStatus.待测试 ? "" : Current.Transfer.Station.SampleStatus == SampleStatus.测试OK ? "✔ " : "✘ ";
-            lbTransferClampCode.Text = Current.Transfer.Station.Clamp.Code;
+            lbTransferClampCode.Text = Current.Transfer.Station.Clamp.Code4Show;
 
             bool canChangeVisibleRotater = DateTime.Now.Second % 3 == 1;
 
@@ -1298,7 +1298,7 @@ namespace Soundon.Dispatcher.App
                 this.lbRobotInfo.ForeColor = SystemColors.WindowText;
             }
 
-            lbRobotClampCode.Text = Current.Robot.Clamp.Code;
+            lbRobotClampCode.Text = Current.Robot.Clamp.Code4Show;
 
 
             if (!string.IsNullOrEmpty(Current.Robot.AlarmStr) && Current.Robot.IsAlive)
@@ -1614,7 +1614,7 @@ namespace Soundon.Dispatcher.App
         {
             string msg = string.Empty;
 
-            for (int i = 0; i < Current.feeders.Count; i++)
+            for (int i = 0; i < FeederCount; i++)
             {
                 if (Current.feeders[i].IsEnable)
                 {
@@ -1654,7 +1654,7 @@ namespace Soundon.Dispatcher.App
                 }
             }
 
-            for (int i = 0; i < Current.blankers.Count; i++)
+            for (int i = 0; i < BlankerCount; i++)
             {
                 if (Current.blankers[i].IsEnable)
                 {
@@ -1701,7 +1701,7 @@ namespace Soundon.Dispatcher.App
         {
             string msg = string.Empty;
 
-            for (int i = 0; i < Current.feeders.Count; i++)
+            for (int i = 0; i < FeederCount; i++)
             {
                 if (Current.feeders[i].IsEnable)
                 {
@@ -1735,7 +1735,7 @@ namespace Soundon.Dispatcher.App
                 Current.ovens[i].getInfoNum = 0;
 
                 Current.ovens[i].PreAlarmStr = string.Empty;
-                for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
+                for (int j = 0; j < OvenFloorCount; j++)
                 {
                     Current.ovens[i].Floors[j].DoorStatus = DoorStatus.未知;
                     Current.ovens[i].Floors[j].PreAlarmStr = string.Empty;
@@ -1820,9 +1820,9 @@ namespace Soundon.Dispatcher.App
         {
             string msg = string.Empty;
 
-            for (int i = 0; i < Current.feeders.Count; i++)
+            for (int i = 0; i < FeederCount; i++)
             {
-                for (int j = 0; j < Current.feeders[i].BatteryScaners.Count; j++)
+                for (int j = 0; j < FeederBatteryScanerCount; j++)
                 {
                     if (Current.feeders[i].BatteryScaners[j].IsEnable)
                     {
@@ -1870,9 +1870,9 @@ namespace Soundon.Dispatcher.App
         private bool ScanerDisConnect()
         {
             string msg = string.Empty;
-            for (int i = 0; i < Current.feeders.Count; i++)
+            for (int i = 0; i < FeederCount; i++)
             {
-                for (int j = 0; j < Current.feeders[i].BatteryScaners.Count; j++)
+                for (int j = 0; j < FeederBatteryScanerCount; j++)
                 {
                     if (Current.feeders[i].BatteryScaners[j].IsEnable)
                     {
@@ -1943,7 +1943,7 @@ namespace Soundon.Dispatcher.App
                 }
             }
 
-            for (int i = 0; i < Current.feeders.Count; i++)
+            for (int i = 0; i < FeederCount; i++)
             {
                 if (cbFeederIsEnable[i].Checked && !Current.feeders[i].Plc.IsAlive)
                 {
@@ -1951,17 +1951,23 @@ namespace Soundon.Dispatcher.App
                     return false;
                 }
 
-                for (int j = 0; j < Current.feeders[i].Scaners.Count; j++)
+                for (int j = 0; j < FeederBatteryScanerCount; j++)
                 {
-                    if (cbBatteryScanerIsEnable[i][j].Checked && !Current.feeders[i].Scaners[j].IsAlive)
+                    if (cbBatteryScanerIsEnable[i][j].Checked && !Current.feeders[i].BatteryScaners[j].IsAlive)
                     {
-                        msg = Current.feeders[i].Scaners[j].Name + " 启动异常！";
+                        msg = Current.feeders[i].BatteryScaners[j].Name + " 启动异常！";
                         return false;
                     }
                 }
+
+                if (Current.feeders[i].ClampScaner.Id > 0 && cbClampScanerIsEnable.Checked && !Current.feeders[i].ClampScaner.IsAlive)
+                {
+                    msg = Current.feeders[i].ClampScaner.Name + " 启动异常！";
+                    return false;
+                }
             }
 
-            for (int i = 0; i < Current.blankers.Count; i++)
+            for (int i = 0; i < BlankerCount; i++)
             {
                 if (cbBlankerIsEnable[i].Checked && !Current.blankers[i].Plc.IsAlive)
                 {
@@ -2203,7 +2209,7 @@ namespace Soundon.Dispatcher.App
 
                 if (Current.ovens[i].AlreadyGetAllInfo)
                 {
-                    for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
+                    for (int j = 0; j < OvenFloorCount; j++)
                     {
                         Floor floor = Current.ovens[i].Floors[j];
                         for (int k = 0; k < Current.ovens[i].Floors[j].Stations.Count; k++)
@@ -2292,9 +2298,7 @@ namespace Soundon.Dispatcher.App
         {
 
             string msg = string.Empty;
-
             int i = System.Convert.ToInt32(obj);
-
             var feeder = Current.feeders[i];
 
             if (feeder.IsEnable)
@@ -2302,7 +2306,6 @@ namespace Soundon.Dispatcher.App
                 if (!feeder.IsDealWithData)
                 {
                     feeder.IsDealWithData = true;
-
 
                     this.BeginInvoke(new MethodInvoker(() => { tbFeederStatus[i].Text = "发送指令—>" + feeder.Name + "PLC"; }));
                     if (feeder.GetInfo())
@@ -2316,60 +2319,27 @@ namespace Soundon.Dispatcher.App
 
                     if (feeder.AlreadyGetAllInfo)
                     {
-                        #region 夹具扫码逻辑
-                        if (feeder.ClampScaner.IsEnable && feeder.ClampScaner.CanScan)
-                        {
-                            feeder.Stations.ForEach(s =>
-                            {
-                                if (s.IsClampScanReady)
-                                {
-                                    string code = string.Empty;
-                                    ScanResult result = Current.feeders[i].ClampScaner.StartClampScan(out code, out msg);
-                                    if (result == ScanResult.OK)
-                                    {
-                                        this.BeginInvoke(new MethodInvoker(() => { this.tbBatteryScanerStatus[i][2].Text = "+" + code; }));
-                                        s.Clamp.Code = code;
-                                        s.Clamp.ScanTime = DateTime.Now;
-
-                                        if (!Current.feeders[i].SetScanClampResult(ScanResult.OK, out msg))
-                                        {
-                                            Error.Alert(msg);
-                                        }
-                                    }
-                                    else if (result == ScanResult.NG || result == ScanResult.Timeout)
-                                    {
-                                        this.BeginInvoke(new MethodInvoker(() => { this.tbBatteryScanerStatus[i][2].Text = "扫码NG"; }));
-                                        if (!Current.feeders[i].SetScanClampResult(ScanResult.NG, out msg))
-                                        {
-                                            Error.Alert(msg);
-                                        }
-                                    }
-                                    else if (!string.IsNullOrEmpty(msg))
-                                    {
-                                        Error.Alert(msg);
-                                    }
-
-                                }
-                            });
-                        }
-                        #endregion
 
                         #region 电池扫码逻辑
 
                         var batteryScanResults = new ScanResult[2];
-
                         var isScanFlag = false;//是否执行了扫码
 
-                        for (int j = 0; j < feeder.BatteryScaners.Count; j++)
+                        for (int j = 0; j < FeederBatteryScanerCount; j++)
                         {
                             int ii = i;
                             int jj = j;
-                            if (feeder.BatteryScaners[jj].IsEnable && feeder.BatteryScaners[jj].CanScan)
+                            var batteryScaner = feeder.BatteryScaners[jj];
+
+                            if (batteryScaner.IsEnable && batteryScaner.CanScan)
                             {
 
                                 string code = string.Empty;
-                                ScanResult result = feeder.BatteryScaners[j].StartBatteryScan(out code, out msg);
-
+                                ScanResult result = batteryScaner.StartBatteryScan(out code, out msg);
+                                if (result != ScanResult.OK)
+                                {
+                                    result = batteryScaner.StartBatteryScan(out code, out msg);
+                                }
                                 isScanFlag = true;
 
                                 if (result == ScanResult.OK)
@@ -2393,59 +2363,22 @@ namespace Soundon.Dispatcher.App
                                     t.Start();
 
                                     int id = Battery.Add(new Battery(code, feeder.Id, feeder.CurrentPutClampId), out msg);
-                                    if (id < 1)
-                                    {
-                                        Error.Alert(msg);
-                                    }
+                                    if (id < 1) { Error.Alert(msg); }
 
                                     batteryScanResults[j] = ScanResult.OK;
 
                                 }
                                 else if (result == ScanResult.Error)
                                 {
-                                    //再扫一次
-                                    result = feeder.BatteryScaners[jj].StartBatteryScan(out code, out msg);
-                                    if (result == ScanResult.OK)
-                                    {
-                                        this.BeginInvoke(new MethodInvoker(() =>
-                                        {
-                                            this.tbBatteryScanerStatus[ii][jj].Text = "+" + code;
-                                            this.tbBatteryScanerStatus[ii][jj].ForeColor = SystemColors.Control;
-                                            this.tbBatteryScanerStatus[ii][jj].BackColor = Color.Green;
-                                        }));
-
-                                        Thread t = new Thread(() =>
-                                        {
-                                            Thread.Sleep(1000);
-                                            this.BeginInvoke(new MethodInvoker(() =>
-                                            {
-                                                this.tbBatteryScanerStatus[ii][jj].ForeColor = Color.Green;
-                                                this.tbBatteryScanerStatus[ii][jj].BackColor = SystemColors.Control;
-                                            }));
-                                        });
-                                        t.Start();
-
-                                        int id = Battery.Add(new Battery(code, feeder.Id, feeder.CurrentPutClampId), out msg);
-                                        if (id < 1)
-                                        {
-                                            Error.Alert(msg);
-                                        }
-
-                                        batteryScanResults[jj] = ScanResult.OK;
-                                    }
-                                    else if (result == ScanResult.Error)
-                                    {
-                                        this.BeginInvoke(new MethodInvoker(() => { this.tbBatteryScanerStatus[ii][jj].Text = "扫码NG"; }));
-
-                                        batteryScanResults[jj] = ScanResult.Error;
-                                    }
+                                    this.BeginInvoke(new MethodInvoker(() => { this.tbBatteryScanerStatus[ii][jj].Text = "扫码NG"; }));
+                                    batteryScanResults[jj] = ScanResult.Error;
                                 }
                                 else
                                 {
                                     Error.Alert(msg);
                                 }
 
-                                feeder.BatteryScaners[j].CanScan = false;
+                                batteryScaner.CanScan = false;
                             }
                         }
 
@@ -2479,9 +2412,7 @@ namespace Soundon.Dispatcher.App
                         feeder.PreCurrentBatteryCount = feeder.CurrentBatteryCount;
                         #endregion
 
-
                     }
-
 
                     feeder.IsDealWithData = false;
                 }
@@ -2528,7 +2459,52 @@ namespace Soundon.Dispatcher.App
 
                 if (Current.Robot.AlreadyGetAllInfo)
                 {
+                    if (!Current.Robot.IsDealWithData)
+                    {
+                        Current.Robot.IsDealWithData = true;
 
+                        #region 夹具扫码逻辑
+
+                        var feeder = Current.feeders.Single(f => f.ClampScaner.Id > 0);
+                        if (feeder.ClampScaner.IsEnable && feeder.ClampScaner.CanScan)
+                        {
+                            string code = string.Empty;
+                            ScanResult result = feeder.ClampScaner.StartClampScan(out code, out msg);
+                            if (result != ScanResult.OK)
+                            {
+                                result = feeder.ClampScaner.StartClampScan(out code, out msg);
+                            }
+                            if (result == ScanResult.OK)
+                            {
+                                this.BeginInvoke(new MethodInvoker(() => { this.tbClampScanerStatus.Text = "+" + code; }));
+                                Current.Robot.Clamp.Code = code;
+                                Current.Robot.Clamp.ScanTime = DateTime.Now;
+
+                                if (!feeder.SetScanClampResult(ScanResult.OK, out msg))
+                                {
+                                    Error.Alert(msg);
+                                }
+                            }
+                            else if (result == ScanResult.Error)
+                            {
+                                this.BeginInvoke(new MethodInvoker(() => { this.tbClampScanerStatus.Text = "扫码NG"; }));
+                                if (!feeder.SetScanClampResult(ScanResult.NG, out msg))
+                                {
+                                    Error.Alert(msg);
+                                }
+                            }
+                            else if (!string.IsNullOrEmpty(msg))
+                            {
+                                Error.Alert(msg);
+                            }
+
+                            feeder.ClampScaner.CanScan = false;
+                        }
+
+                        #endregion
+
+                        Current.Robot.IsDealWithData = false;
+                    }
 
                 }
             }
@@ -2550,7 +2526,7 @@ namespace Soundon.Dispatcher.App
                     //待烤层关门启动
                     for (int i = 0; i < OvenCount; i++)
                     {
-                        for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
+                        for (int j = 0; j < OvenFloorCount; j++)
                         {
                             Floor floor = Current.ovens[i].Floors[j];
 
@@ -2660,7 +2636,7 @@ namespace Soundon.Dispatcher.App
                     //下料台取消干涉
                     for (int i = 0; i < BlankerCount; i++)
                     {
-                        for (int j = 0; j < Current.blankers[i].Stations.Count; j++)
+                        for (int j = 0; j < BlankerStationCount; j++)
                         {
                             Station station = Current.blankers[i].Stations[j];
 
@@ -2683,7 +2659,7 @@ namespace Soundon.Dispatcher.App
                 //无论手动还是自动任务模式都会执行
                 for (int i = 0; i < OvenCount; i++)
                 {
-                    for (int j = 0; j < Current.ovens[i].Floors.Count; j++)
+                    for (int j = 0; j < OvenFloorCount; j++)
                     {
                         Floor floor = Current.ovens[i].Floors[j];
 
@@ -2762,7 +2738,7 @@ namespace Soundon.Dispatcher.App
                 string msg = string.Empty;
                 if (clamps.Count < 1)
                 {
-                    clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsInUploaded] = 'false' AND [IsInFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
+                    clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsInUploaded] = 'false' AND [IsInFinished] = 'true' AND [OvenStationId] > 0 ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
                     if (!string.IsNullOrEmpty(msg))
                     {
                         Error.Alert(msg);
@@ -2781,7 +2757,7 @@ namespace Soundon.Dispatcher.App
             }
             catch (Exception ex)
             {
-                Error.Alert(ex.Message);
+                Error.Alert(ex);
             }
         }
 
@@ -2794,7 +2770,7 @@ namespace Soundon.Dispatcher.App
                 string msg = string.Empty;
                 if (clamps.Count < 1)
                 {
-                    clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsOutUploaded] = 'false' AND [IsOutFinished] = 'true' ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
+                    clamps = Clamp.GetList(string.Format("SELECT TOP 10 * FROM [dbo].[{0}] WHERE [IsOutUploaded] = 'false' AND [IsOutFinished] = 'true' AND [OvenStationId] > 0 ORDER BY [ScanTime] DESC", Clamp.TableName), out msg);
                     if (!string.IsNullOrEmpty(msg))
                     {
                         Error.Alert(msg);
@@ -2813,7 +2789,7 @@ namespace Soundon.Dispatcher.App
             }
             catch (Exception ex)
             {
-                Error.Alert(ex.Message);
+                Error.Alert(ex);
             }
         }
 
@@ -2882,7 +2858,7 @@ namespace Soundon.Dispatcher.App
             }
             catch (Exception ex)
             {
-                Error.Alert(ex.Message);
+                Error.Alert(ex);
             }
 
         }
