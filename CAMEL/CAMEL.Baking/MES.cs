@@ -576,6 +576,7 @@ namespace CAMEL.Baking
                 if(batteries.Count == 0)
                 {
                     LogHelper.WriteInfo(string.Format("二次高温电池数据上传MES时，检测到{0}无绑定的电池数据，ID：{1}", clamp.Code, clamp.Id));
+                    clamp.IsUploaded = true;
                     return true;
                 }
 

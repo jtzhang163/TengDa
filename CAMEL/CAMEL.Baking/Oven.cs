@@ -351,7 +351,7 @@ namespace CAMEL.Baking
                     this.TriLamp =
                         bOutputs0[70] == 1 ? TriLamp.Green :
                         bOutputs0[70] == 2 ? TriLamp.Yellow :
-                        bOutputs0[70] == 3 ? TriLamp.Red : TriLamp.Unknown;
+                        bOutputs0[70] == 3 ? TriLamp.Red : this.TriLamp;
 
                     var bOutputs1 = new ushort[] { };
                     if (!this.Plc.GetInfo(true, "D0", (ushort)200, out bOutputs1, out msg))

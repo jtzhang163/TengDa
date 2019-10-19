@@ -61,17 +61,17 @@ namespace CAMEL.Baking.Control
                     this.lbInfo.Text = Current.RGV.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动", rgv.MovingDirSign) : string.Format("移动{0}", rgv.MovingDirSign);
                     this.lbInfo.ForeColor = Color.Blue;
                 }
+                else if (Current.RGV.Status > 2)
+                {
+                    this.lbInfo.Text = "未就绪";
+                    this.lbInfo.ForeColor = Color.Red; 
+                }
                 else if (rgv.Status == 1)
                 {
                     this.lbInfo.Text = Current.Task.Status == TaskStatus.正取 ? "取盘中" : "放盘中";
                     //this.lbInfo.Text = Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取 ? "取盘中" : "放盘中";
                     this.lbInfo.ForeColor = Color.Blue;
-                }
-                else if (Current.RGV.Status > 2)
-                {
-                    this.lbInfo.Text = "未就绪";
-                    this.lbInfo.ForeColor = Color.Red;
-                }
+                }           
                 else
                 {
                     this.lbInfo.Text = "闲置";
@@ -149,11 +149,13 @@ namespace CAMEL.Baking.Control
 
             var isFeederEnabled = false;
 
-            var feederStations = new List<Station>()
-            {
-                Current.Feeder.PutStation,
-                Current.Feeder.GetStation
-            };
+            //var feederStations = new List<Station>()
+            //{
+            //    Current.Feeder.PutStation,
+            //    Current.Feeder.GetStation
+            //};
+            var feederStations = new List<Station>();
+            feederStations.Add(isGet ? Current.Feeder.GetStation : Current.Feeder.PutStation);
 
             feederStations.ForEach(s =>
             {

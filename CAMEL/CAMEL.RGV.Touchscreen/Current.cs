@@ -1,8 +1,10 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace CAMEL.RGV.Touchscreen
 {
@@ -12,5 +14,6 @@ namespace CAMEL.RGV.Touchscreen
 
         public static Option Option = new Option();
 
+        
     }
 }

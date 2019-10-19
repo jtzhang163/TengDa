@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CAMEL.RGV.Touchscreen.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace CAMEL.RGV.Touchscreen
         {
             if (!Current.RGV.IsConnected)
             {
+                Speech.Voice("尚未连接RGV PLC");
                 MessageBox.Show("尚未连接RGV PLC！", "异常提示", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
@@ -22,6 +24,7 @@ namespace CAMEL.RGV.Touchscreen
             var msg = string.Empty;
             var button = sender as Label;
             var btnContent = button.Content.ToString();
+            Speech.Voice(btnContent);
             var addr = Parameter.GetAddr(btnContent);
 
             if (btnContent == "参数写入")

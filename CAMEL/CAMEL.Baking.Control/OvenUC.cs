@@ -64,7 +64,6 @@ namespace CAMEL.Baking.Control
                     string alarmStr = this.lbName.Text;
                     this.lbName.Text = alarmStr.Substring(1, alarmStr.Length - 1) + alarmStr.Substring(0, 1);
                 }
-
                 this.lbName.ForeColor = Color.White;
                 this.lbName.BackColor = Color.Red;
             }

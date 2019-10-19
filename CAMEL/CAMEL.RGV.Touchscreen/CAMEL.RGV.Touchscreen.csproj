@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -77,6 +78,7 @@
     <Compile Include="Model\Parameter.cs" />
     <Compile Include="MouseOrTouchDownOrUp.cs" />
     <Compile Include="Util\Net.cs" />
+    <Compile Include="Util\Speech.cs" />
     <Compile Include="Util\Tool.cs" />
     <Compile Include="Util\_Convert.cs" />
     <Compile Include="ViewModel\Option.cs" />
@@ -208,6 +210,16 @@
   <ItemGroup>
     <Resource Include="Image\Line1.PNG" />
     <Resource Include="Image\Line2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CAML.KeyInput\CAML.KeyInput.csproj">
+      <Project>{6af9669a-5ce1-4e70-a749-1585562a8cda}</Project>
+      <Name>CAML.KeyInput</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Linev1.png" />
+    <Resource Include="Image\Linev2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

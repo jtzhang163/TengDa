@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CAMEL.RGV.Touchscreen.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,12 +32,14 @@ namespace CAMEL.RGV.Touchscreen.View
         {
             if (Current.RGV.Connect(out string msg))
             {
+                Speech.Voice("连接成功");
                 this.selectRGV.IsEnabled = false;
                 this.btnConnect.IsEnabled = false;
                 this.btnDisConnect.IsEnabled = true;
             }
             else
             {
+                Speech.Voice("连接PLC出错");
                 MessageBox.Show("连接PLC出错：" + msg, "异常提示", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
@@ -45,6 +48,7 @@ namespace CAMEL.RGV.Touchscreen.View
         {
             if (Current.RGV.DisConnect(out string msg))
             {
+                Speech.Voice("断开连接成功");
                 this.selectRGV.IsEnabled = true;
                 this.btnConnect.IsEnabled = true;
                 this.btnDisConnect.IsEnabled = false;

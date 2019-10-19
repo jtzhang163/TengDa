@@ -497,11 +497,18 @@ namespace CAMEL.Baking.App
             {
                 Oven oven = Current.ovens[i];
 
-                if (oven.Plc.IsAlive) { if (this.GetMachineStatusInfo(oven) == "未连接") { this.SetMachineStatusInfo(oven, "连接成功"); } }
+                if (oven.Plc.IsAlive)
+                {
+                    if (this.GetMachineStatusInfo(oven) == "未连接")
+                    {
+                        this.SetMachineStatusInfo(oven, "连接成功");
+                    }
+                    this.SetMachineLampColor(oven, Color.Green);
+                }
                 else
                 {
                     this.SetMachineStatusInfo(oven, "未连接");
-                    this.SetMachineLampColor(Current.mes, Color.Gray);
+                    this.SetMachineLampColor(oven, Color.Gray);
                 }
 
                 for (int j = 0; j < OvenFloorCount; j++)
@@ -524,45 +531,24 @@ namespace CAMEL.Baking.App
 
             #endregion
 
-            #region 上料机、扫码枪
+            #region 上料机
 
-            if (Current.Feeder.Plc.IsAlive) { if (this.GetMachineStatusInfo(Current.Feeder) == "未连接") { this.SetMachineStatusInfo(Current.Feeder, "连接成功"); } }
-            else {
+            if (Current.Feeder.Plc.IsAlive)
+            {
+                if (this.GetMachineStatusInfo(Current.Feeder) == "未连接")
+                {
+                    this.SetMachineStatusInfo(Current.Feeder, "连接成功");
+                }
+                this.SetMachineLampColor(Current.Feeder, Color.Green);
+            }
+            else
+            {
                 this.SetMachineStatusInfo(Current.Feeder, "未连接");
                 this.SetMachineLampColor(Current.Feeder, Color.Gray);
             }
-
-            //    for (int j = 0; j < Current.Feeder.Scaners.Count; j++)
-            //    {
-            //        Scaner scaner = Current.Feeder.Scaners[j];
-            //        if (!scaner.IsEnable)
-            //            scaner.IsAlive = false;
-            //        if (scaner.IsAlive)
-            //        {
-            //            if (tbScanerStatus[i][j].Text.Trim() == "未连接")
-            //            {
-            //                tbScanerStatus[i][j].Text = "连接成功";
-            //            }
-
-            //            this.pbScanerLamp[i][j].Image = Properties.Resources.Green_Round;
-            //        }
-            //        else
-            //        {
-            //            this.tbScanerStatus[i][j].Text = "未连接";
-            //            this.pbScanerLamp[i][j].Image = Properties.Resources.Gray_Round;
-            //        }
-            //    }
-
-
-
-            //    tlpFeeders[i].Invalidate();
-
-
             #endregion
 
-
             #region MES
-
             if (Current.runStstus != RunStatus.闲置 && Current.mes.IsAlive)
             {
                 if (this.GetMachineStatusInfo(Current.mes) == "未连接")
@@ -581,7 +567,13 @@ namespace CAMEL.Baking.App
 
             #region RGV
 
-            if (Current.RGV.Plc.IsAlive) { if (this.GetMachineStatusInfo(Current.RGV) == "未连接") { this.SetMachineStatusInfo(Current.RGV, "连接成功"); } }
+            if (Current.RGV.Plc.IsAlive)
+            {
+                if (this.GetMachineStatusInfo(Current.RGV) == "未连接")
+                {
+                    this.SetMachineStatusInfo(Current.RGV, "连接成功");
+                }
+            }
             else
             {
                 this.SetMachineStatusInfo(Current.RGV, "未连接");
@@ -589,6 +581,8 @@ namespace CAMEL.Baking.App
             }
 
             #endregion
+
+
 
             #region 当前时间，运行状态、产量、任务信息
 
@@ -1153,7 +1147,6 @@ namespace CAMEL.Baking.App
         private bool ScanerConnect()
         {
             string msg = string.Empty;
-
             //if (Current.BatteryScaner.IsEnable)
             //{
             //    if (!Current.BatteryScaner.IsPingSuccess)
@@ -2610,7 +2603,7 @@ namespace CAMEL.Baking.App
                 DataTable dt = null;
                 if (selectFloor == "All")
                 {
-                    dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Alarm] WHERE [开始时间] BETWEEN '{1}' AND '{2}' ORDER BY [开始时间]", Config.DbTableNamePre, startTime, stopTime), out msg);
+                    dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Alarm] WHERE [开始时间] BETWEEN '{1}' AND '{2}' ORDER BY [开始时间] ", Config.DbTableNamePre, startTime, stopTime), out msg);
                 }
                 else
                 {
@@ -2701,7 +2694,7 @@ namespace CAMEL.Baking.App
 
                 string msg = string.Empty;
 
-                DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_TaskLog] WHERE [任务生成时间] BETWEEN '{1}' AND '{2}' ", Config.DbTableNamePre, startTime, stopTime), out msg);
+                DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_TaskLog] WHERE [任务生成时间] BETWEEN '{1}' AND '{2}' order by [任务完成时间] desc", Config.DbTableNamePre, startTime, stopTime), out msg);
 
                 if (dt == null)
                 {

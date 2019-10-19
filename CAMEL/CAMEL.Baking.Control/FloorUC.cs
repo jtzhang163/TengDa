@@ -95,8 +95,7 @@ namespace CAMEL.Baking.Control
                 if (floor.IsBaking)
                 {
                     this.lbInfoTop.Text = string.Format("烘烤中 {0}℃",
-                         floor.Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4)
-                          );
+                         floor.Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4) );
                 }
                 else
                 {

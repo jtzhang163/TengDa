@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CAMEL.RGV.Touchscreen.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -32,9 +33,11 @@ namespace CAMEL.RGV.Touchscreen.View
         {
             var username = this.username.Text.Trim();
             var password = this.password.Password.Trim();
-
+           
             if (username == "admin" && password == "admin")
             {
+                
+                Speech.Voice("登录成功");
                 Current.Option.Username = username;
 
                 Window parentWindow = Window.GetWindow(this);
@@ -44,6 +47,7 @@ namespace CAMEL.RGV.Touchscreen.View
             }
             else
             {
+                Speech.Voice("登录失败");
                 lbTip.Content = "用户名或密码错误";
                 lbTip.Visibility = Visibility.Visible;
             }
