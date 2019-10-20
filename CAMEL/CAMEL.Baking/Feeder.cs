@@ -207,12 +207,11 @@ namespace CAMEL.Baking
         /// 缓存夹具条码序列
         /// LXY00054&LXY00055&
         /// </summary>
-        [ReadOnly(true)]
         [DisplayName("缓存夹具条码序列")]
         public string CacheClampCodes
         {
             get { return cacheClampCodes; }
-            private set
+            set
             {
                 if (cacheClampCodes != value)
                 {
@@ -572,10 +571,11 @@ namespace CAMEL.Baking
         /// <param name="code"></param>
         public void PushClampCode(string code)
         {
-            if (string.IsNullOrEmpty(code) || code.Length != 8) return;
-            if (this.CacheClampCodes.Contains(code)) return;
-            if (this.CacheClampCodes.Length > 20) return;
-            this.CacheClampCodes = this.CacheClampCodes + code + "&";
+            //if (string.IsNullOrEmpty(code) || code.Length != 8) return;
+            //if (this.CacheClampCodes.Contains(code)) return;
+            //if (this.CacheClampCodes.Length > 20) return;
+            //this.CacheClampCodes = this.CacheClampCodes + code + "&";
+            this.CacheClampCodes = code;
         }
 
         /// <summary>
@@ -584,13 +584,16 @@ namespace CAMEL.Baking
         /// <returns></returns>
         public string PopClampCode()
         {
-            if (this.CacheClampCodes.Length < 9)
-            {
-                return string.Empty;
-            }
-            var codes = this.CacheClampCodes;
-            var code = codes.Split('&')[0];
-            this.CacheClampCodes = codes.Replace(code, "").TrimStart('&');
+            //if (this.CacheClampCodes.Length < 9)
+            //{
+            //    return string.Empty;
+            //}
+            //var codes = this.CacheClampCodes;
+            //var code = codes.Split('&')[0];
+            //this.CacheClampCodes = codes.Replace(code, "").TrimStart('&');
+            //return code;
+            var code = this.CacheClampCodes;
+            this.CacheClampCodes = "";
             return code;
         }
 

@@ -49,10 +49,6 @@ namespace CAMEL.Baking
         {
             get
             {
-                if (!this.IsAlive)
-                {
-                    triLamp = TriLamp.Unknown;
-                }
                 return triLamp;
             }
             set

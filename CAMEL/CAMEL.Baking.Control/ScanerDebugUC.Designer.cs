@@ -46,18 +46,19 @@
             this.groupBox3.Controls.Add(this.cbClampScaner);
             this.groupBox3.Controls.Add(this.btnClampScanStart);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(30);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(30, 30, 30, 30);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(30);
-            this.groupBox3.Size = new System.Drawing.Size(316, 116);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(30, 30, 30, 30);
+            this.groupBox3.Size = new System.Drawing.Size(343, 116);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "夹具扫码枪手动调试";
             // 
             // btnClampScanNgBackToFeeder
             // 
-            this.btnClampScanNgBackToFeeder.Location = new System.Drawing.Point(228, 72);
+            this.btnClampScanNgBackToFeeder.Location = new System.Drawing.Point(255, 72);
             this.btnClampScanNgBackToFeeder.Name = "btnClampScanNgBackToFeeder";
             this.btnClampScanNgBackToFeeder.Size = new System.Drawing.Size(41, 23);
             this.btnClampScanNgBackToFeeder.TabIndex = 6;
@@ -70,13 +71,13 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(58, 77);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 12);
+            this.label2.Size = new System.Drawing.Size(119, 14);
             this.label2.TabIndex = 5;
             this.label2.Text = "结果反馈上料机：";
             // 
             // btnClampScanOkBackToFeeder
             // 
-            this.btnClampScanOkBackToFeeder.Location = new System.Drawing.Point(167, 72);
+            this.btnClampScanOkBackToFeeder.Location = new System.Drawing.Point(194, 72);
             this.btnClampScanOkBackToFeeder.Name = "btnClampScanOkBackToFeeder";
             this.btnClampScanOkBackToFeeder.Size = new System.Drawing.Size(41, 23);
             this.btnClampScanOkBackToFeeder.TabIndex = 4;
@@ -90,12 +91,12 @@
             this.cbClampScaner.FormattingEnabled = true;
             this.cbClampScaner.Location = new System.Drawing.Point(58, 32);
             this.cbClampScaner.Name = "cbClampScaner";
-            this.cbClampScaner.Size = new System.Drawing.Size(102, 20);
+            this.cbClampScaner.Size = new System.Drawing.Size(127, 22);
             this.cbClampScaner.TabIndex = 3;
             // 
             // btnClampScanStart
             // 
-            this.btnClampScanStart.Location = new System.Drawing.Point(194, 31);
+            this.btnClampScanStart.Location = new System.Drawing.Point(221, 31);
             this.btnClampScanStart.Name = "btnClampScanStart";
             this.btnClampScanStart.Size = new System.Drawing.Size(75, 23);
             this.btnClampScanStart.TabIndex = 0;
@@ -108,8 +109,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox3);
+            this.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "ScanerDebugUC";
-            this.Size = new System.Drawing.Size(316, 116);
+            this.Size = new System.Drawing.Size(343, 116);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);

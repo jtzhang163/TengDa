@@ -116,6 +116,12 @@
     <Compile Include="ScanerDebugUC.Designer.cs">
       <DependentUpon>ScanerDebugUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShowFloorFinishUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ShowFloorFinishUC.Designer.cs">
+      <DependentUpon>ShowFloorFinishUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShowOvenInfoTypeUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -226,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ScanerDebugUC.resx">
       <DependentUpon>ScanerDebugUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowFloorFinishUC.resx">
+      <DependentUpon>ShowFloorFinishUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShowOvenInfoTypeUC.resx">
       <DependentUpon>ShowOvenInfoTypeUC.cs</DependentUpon>

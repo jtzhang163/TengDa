@@ -573,6 +573,7 @@ namespace CAMEL.Baking.App
                 {
                     this.SetMachineStatusInfo(Current.RGV, "连接成功");
                 }
+                this.SetMachineLampColor(Current.RGV, Color.Green);
             }
             else
             {
@@ -1554,7 +1555,7 @@ namespace CAMEL.Baking.App
                 if (Current.Feeder.AlreadyGetAllInfo)
                 {
                     #region 夹具扫码逻辑
-                    if (Current.ClampScaner.IsEnable && Current.ClampScaner.CanScan)
+                    if (Current.ClampScaner.IsEnable && Current.ClampScaner.CanScan && string.IsNullOrEmpty(Current.Feeder.CacheClampCodes))
                     {
                         Current.ClampScaner.CanScan = false;
                         string code = string.Empty;

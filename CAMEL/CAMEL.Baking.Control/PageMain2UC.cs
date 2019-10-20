@@ -47,6 +47,7 @@ namespace CAMEL.Baking.Control
 
             this.robotUC1.Init(Current.RGV);
             this.maintainUC1.Init();
+            this.showFloorFinishUC1.Init();
         }
 
         public void RefreshUI()
@@ -54,7 +55,7 @@ namespace CAMEL.Baking.Control
             this.feederUC1.Update(Current.Feeder);
             this.taskInfo1.UpdateInfo();
             this.maintainUC1.UpdateUI();
-
+            this.showFloorFinishUC1.UpdateUI();
             #region 烤箱
 
             for (int i = 0; i < OvenCount; i++)

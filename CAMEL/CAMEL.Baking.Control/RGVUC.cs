@@ -358,6 +358,19 @@ namespace CAMEL.Baking.Control
                         return;
                     }
 
+                    if (station.GetPutType == GetPutType.烤箱 && station.ClampStatus == ClampStatus.满夹具)
+                    {
+                        var floor = station.GetFloor();
+                        //烘烤中途停止强制出炉弹窗提示
+                        if (floor.RunMinutes != 0 && floor.RunRemainMinutes != 0)
+                        {
+                            if (MessageBox.Show(floor.Name + "静置时间未到，是否叉出？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                            {
+                                return;
+                            }
+                        }
+                    }
+
                     Current.Task.StartTime = DateTime.Now;
                     Current.Task.TaskId = -1;
                     Current.Task.NextFromStationId = station.Id;

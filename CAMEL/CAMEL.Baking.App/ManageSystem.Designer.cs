@@ -346,7 +346,7 @@
             this.tabMain.Margin = new System.Windows.Forms.Padding(5, 3, 0, 3);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(456, 94);
+            this.tabMain.Size = new System.Drawing.Size(455, 94);
             this.tabMain.TabIndex = 7;
             // 
             // tabMainUser
@@ -362,7 +362,7 @@
             this.tabMainUser.Location = new System.Drawing.Point(4, 22);
             this.tabMainUser.Name = "tabMainUser";
             this.tabMainUser.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMainUser.Size = new System.Drawing.Size(448, 68);
+            this.tabMainUser.Size = new System.Drawing.Size(447, 68);
             this.tabMainUser.TabIndex = 1;
             this.tabMainUser.Text = "用户";
             // 
@@ -542,7 +542,7 @@
             this.tabMainOperate.Location = new System.Drawing.Point(4, 22);
             this.tabMainOperate.Name = "tabMainOperate";
             this.tabMainOperate.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMainOperate.Size = new System.Drawing.Size(448, 68);
+            this.tabMainOperate.Size = new System.Drawing.Size(447, 68);
             this.tabMainOperate.TabIndex = 0;
             this.tabMainOperate.Text = "操作";
             // 
@@ -2587,6 +2587,7 @@
             this.dgViewBattery.Location = new System.Drawing.Point(58, 59);
             this.dgViewBattery.Margin = new System.Windows.Forms.Padding(0);
             this.dgViewBattery.Name = "dgViewBattery";
+            this.dgViewBattery.ReadOnly = true;
             this.dgViewBattery.RowTemplate.Height = 23;
             this.dgViewBattery.Size = new System.Drawing.Size(1060, 479);
             this.dgViewBattery.TabIndex = 5;
@@ -3018,7 +3019,7 @@
             // activationUC1
             // 
             this.activationUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.activationUC1.Location = new System.Drawing.Point(464, 25);
+            this.activationUC1.Location = new System.Drawing.Point(463, 25);
             this.activationUC1.Name = "activationUC1";
             this.activationUC1.Size = new System.Drawing.Size(227, 50);
             this.activationUC1.TabIndex = 11;

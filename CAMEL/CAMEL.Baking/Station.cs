@@ -351,7 +351,7 @@ namespace CAMEL.Baking
                     //}
                 }
 
-                if (floorStatus != value && this.IsAlive)
+                if (floorStatus != value)
                 {
                     //PreFloorStatus = value;
                     UpdateDbField("FloorStatus", value);
