@@ -128,20 +128,6 @@
             this.tabContentPageMain = new System.Windows.Forms.TabPage();
             this.tabContentTemperCurve = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
-            this.pCurve = new TengDa.WF.Controls.DoubleBufferPanel();
-            this.label61 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.tableLayoutPanel32 = new System.Windows.Forms.TableLayoutPanel();
             this.label51 = new System.Windows.Forms.Label();
@@ -177,9 +163,6 @@
             this.tbTips = new System.Windows.Forms.TextBox();
             this.tabContentPageManuTest = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.mesDubugUC1 = new CAMEL.Baking.Control.MesDubugUC();
-            this.scanerDebugUC1 = new CAMEL.Baking.Control.ScanerDebugUC();
-            this.btnTest = new System.Windows.Forms.Button();
             this.tabContentTaskLog = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvTaskLog = new System.Windows.Forms.DataGridView();
@@ -241,15 +224,32 @@
             this.lbRunStatus = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.activationUC1 = new CAMEL.Baking.Control.ActivationUC();
             this.lbTaskMode = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel6 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.lbTime = new System.Windows.Forms.Label();
-            this.yieldDisplay = new CAMEL.Baking.Control.YieldDisplay();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay2();
+            this.pCurve = new TengDa.WF.Controls.DoubleBufferPanel();
+            this.label61 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.activationUC1 = new CAMEL.Baking.Control.ActivationUC();
+            this.yieldDisplay = new CAMEL.Baking.Control.YieldDisplay();
+            this.mesDubugUC1 = new CAMEL.Baking.Control.MesDubugUC();
+            this.scanerDebugUC1 = new CAMEL.Baking.Control.ScanerDebugUC();
+            this.clampManageUC1 = new CAMEL.Baking.Control.ClampManageUC();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -283,7 +283,6 @@
             this.panel3333.SuspendLayout();
             this.tabContentTemperCurve.SuspendLayout();
             this.tableLayoutPanel18.SuspendLayout();
-            this.pCurve.SuspendLayout();
             this.tableLayoutPanel32.SuspendLayout();
             this.tableLayoutPanel31.SuspendLayout();
             this.tabContentPageTVQuery.SuspendLayout();
@@ -335,6 +334,7 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.pCurve.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMain
@@ -1410,182 +1410,6 @@
             this.tableLayoutPanel18.Size = new System.Drawing.Size(1178, 599);
             this.tableLayoutPanel18.TabIndex = 0;
             // 
-            // pCurve
-            // 
-            this.pCurve.BackColor = System.Drawing.Color.Black;
-            this.pCurve.Controls.Add(this.label61);
-            this.pCurve.Controls.Add(this.label60);
-            this.pCurve.Controls.Add(this.label58);
-            this.pCurve.Controls.Add(this.label59);
-            this.pCurve.Controls.Add(this.label46);
-            this.pCurve.Controls.Add(this.label44);
-            this.pCurve.Controls.Add(this.label43);
-            this.pCurve.Controls.Add(this.label42);
-            this.pCurve.Controls.Add(this.label40);
-            this.pCurve.Controls.Add(this.label38);
-            this.pCurve.Controls.Add(this.label34);
-            this.pCurve.Controls.Add(this.label33);
-            this.pCurve.Controls.Add(this.label32);
-            this.pCurve.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pCurve.Location = new System.Drawing.Point(40, 20);
-            this.pCurve.Margin = new System.Windows.Forms.Padding(0);
-            this.pCurve.Name = "pCurve";
-            this.pCurve.Size = new System.Drawing.Size(1098, 400);
-            this.pCurve.TabIndex = 4;
-            this.pCurve.Paint += new System.Windows.Forms.PaintEventHandler(this.pCurve_Paint);
-            // 
-            // label61
-            // 
-            this.label61.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label61.AutoSize = true;
-            this.label61.BackColor = System.Drawing.Color.Transparent;
-            this.label61.ForeColor = System.Drawing.Color.Lime;
-            this.label61.Location = new System.Drawing.Point(3, 115);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(29, 12);
-            this.label61.TabIndex = 13;
-            this.label61.Text = "70℃";
-            // 
-            // label60
-            // 
-            this.label60.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label60.AutoSize = true;
-            this.label60.BackColor = System.Drawing.Color.Transparent;
-            this.label60.ForeColor = System.Drawing.Color.Lime;
-            this.label60.Location = new System.Drawing.Point(3, 155);
-            this.label60.Margin = new System.Windows.Forms.Padding(0);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(29, 12);
-            this.label60.TabIndex = 12;
-            this.label60.Text = "60℃";
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.BackColor = System.Drawing.Color.Transparent;
-            this.label58.ForeColor = System.Drawing.Color.Lime;
-            this.label58.Location = new System.Drawing.Point(3, 235);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(29, 12);
-            this.label58.TabIndex = 11;
-            this.label58.Text = "40℃";
-            // 
-            // label59
-            // 
-            this.label59.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label59.AutoSize = true;
-            this.label59.BackColor = System.Drawing.Color.Transparent;
-            this.label59.ForeColor = System.Drawing.Color.Lime;
-            this.label59.Location = new System.Drawing.Point(3, 195);
-            this.label59.Margin = new System.Windows.Forms.Padding(0);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(29, 12);
-            this.label59.TabIndex = 10;
-            this.label59.Text = "50℃";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.BackColor = System.Drawing.Color.Transparent;
-            this.label46.ForeColor = System.Drawing.Color.Lime;
-            this.label46.Location = new System.Drawing.Point(3, 355);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(29, 12);
-            this.label46.TabIndex = 8;
-            this.label46.Text = "10℃";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.BackColor = System.Drawing.Color.Transparent;
-            this.label44.ForeColor = System.Drawing.Color.Lime;
-            this.label44.Location = new System.Drawing.Point(3, 315);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(29, 12);
-            this.label44.TabIndex = 7;
-            this.label44.Text = "20℃";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.BackColor = System.Drawing.Color.Transparent;
-            this.label43.ForeColor = System.Drawing.Color.Lime;
-            this.label43.Location = new System.Drawing.Point(3, 75);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(29, 12);
-            this.label43.TabIndex = 6;
-            this.label43.Text = "80℃";
-            // 
-            // label42
-            // 
-            this.label42.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label42.AutoSize = true;
-            this.label42.ForeColor = System.Drawing.Color.Lime;
-            this.label42.Location = new System.Drawing.Point(282, 386);
-            this.label42.Margin = new System.Windows.Forms.Padding(3, 0, 600, 0);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(35, 12);
-            this.label42.TabIndex = 5;
-            this.label42.Text = "40min";
-            // 
-            // label40
-            // 
-            this.label40.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label40.AutoSize = true;
-            this.label40.ForeColor = System.Drawing.Color.Lime;
-            this.label40.Location = new System.Drawing.Point(482, 386);
-            this.label40.Margin = new System.Windows.Forms.Padding(3, 0, 600, 0);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(35, 12);
-            this.label40.TabIndex = 4;
-            this.label40.Text = "30min";
-            // 
-            // label38
-            // 
-            this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label38.AutoSize = true;
-            this.label38.ForeColor = System.Drawing.Color.Lime;
-            this.label38.Location = new System.Drawing.Point(682, 386);
-            this.label38.Margin = new System.Windows.Forms.Padding(3, 0, 400, 0);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(35, 12);
-            this.label38.TabIndex = 3;
-            this.label38.Text = "20min";
-            // 
-            // label34
-            // 
-            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label34.AutoSize = true;
-            this.label34.ForeColor = System.Drawing.Color.Lime;
-            this.label34.Location = new System.Drawing.Point(882, 386);
-            this.label34.Margin = new System.Windows.Forms.Padding(3, 0, 200, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(35, 12);
-            this.label34.TabIndex = 2;
-            this.label34.Text = "10min";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.BackColor = System.Drawing.Color.Transparent;
-            this.label33.ForeColor = System.Drawing.Color.Lime;
-            this.label33.Location = new System.Drawing.Point(3, 275);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(29, 12);
-            this.label33.TabIndex = 1;
-            this.label33.Text = "30℃";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.ForeColor = System.Drawing.Color.Lime;
-            this.label32.Location = new System.Drawing.Point(3, 35);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(29, 12);
-            this.label32.TabIndex = 0;
-            this.label32.Text = "90℃";
-            // 
             // label31
             // 
             this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -2081,7 +1905,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.35468F));
             this.tableLayoutPanel3.Controls.Add(this.mesDubugUC1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.scanerDebugUC1, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnTest, 2, 3);
+            this.tableLayoutPanel3.Controls.Add(this.clampManageUC1, 2, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -2095,35 +1919,6 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1178, 599);
             this.tableLayoutPanel3.TabIndex = 2;
-            // 
-            // mesDubugUC1
-            // 
-            this.tableLayoutPanel3.SetColumnSpan(this.mesDubugUC1, 2);
-            this.mesDubugUC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mesDubugUC1.Location = new System.Drawing.Point(30, 30);
-            this.mesDubugUC1.Margin = new System.Windows.Forms.Padding(30);
-            this.mesDubugUC1.Name = "mesDubugUC1";
-            this.tableLayoutPanel3.SetRowSpan(this.mesDubugUC1, 4);
-            this.mesDubugUC1.Size = new System.Drawing.Size(724, 539);
-            this.mesDubugUC1.TabIndex = 1;
-            // 
-            // scanerDebugUC1
-            // 
-            this.scanerDebugUC1.Location = new System.Drawing.Point(814, 30);
-            this.scanerDebugUC1.Margin = new System.Windows.Forms.Padding(30);
-            this.scanerDebugUC1.Name = "scanerDebugUC1";
-            this.scanerDebugUC1.Size = new System.Drawing.Size(334, 109);
-            this.scanerDebugUC1.TabIndex = 0;
-            // 
-            // btnTest
-            // 
-            this.btnTest.Location = new System.Drawing.Point(787, 486);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(75, 23);
-            this.btnTest.TabIndex = 2;
-            this.btnTest.Text = "测试";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Click += new System.EventHandler(this.BtnTest_Click);
             // 
             // tabContentTaskLog
             // 
@@ -2648,7 +2443,7 @@
             // tableLayoutPanel10
             // 
             this.tableLayoutPanel10.ColumnCount = 5;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 181F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -2670,7 +2465,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label25.Location = new System.Drawing.Point(252, 0);
+            this.label25.Location = new System.Drawing.Point(294, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(65, 53);
             this.label25.TabIndex = 4;
@@ -2681,12 +2476,13 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label24.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label24.Location = new System.Drawing.Point(0, 0);
             this.label24.Margin = new System.Windows.Forms.Padding(0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(68, 53);
+            this.label24.Size = new System.Drawing.Size(110, 53);
             this.label24.TabIndex = 3;
-            this.label24.Text = "起始时间：";
+            this.label24.Text = "扫码开始时间：";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dtPickerStop
@@ -2694,7 +2490,7 @@
             this.dtPickerStop.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.dtPickerStop.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.dtPickerStop.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtPickerStop.Location = new System.Drawing.Point(335, 16);
+            this.dtPickerStop.Location = new System.Drawing.Point(377, 16);
             this.dtPickerStop.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.dtPickerStop.Name = "dtPickerStop";
             this.dtPickerStop.Size = new System.Drawing.Size(151, 21);
@@ -2705,7 +2501,7 @@
             this.dtPickerStart.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.dtPickerStart.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.dtPickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtPickerStart.Location = new System.Drawing.Point(83, 16);
+            this.dtPickerStart.Location = new System.Drawing.Point(125, 16);
             this.dtPickerStart.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.dtPickerStart.Name = "dtPickerStart";
             this.dtPickerStart.Size = new System.Drawing.Size(151, 21);
@@ -3016,15 +2812,6 @@
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.DoubleClick += new System.EventHandler(this.TableLayoutPanel1_DoubleClick);
             // 
-            // activationUC1
-            // 
-            this.activationUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.activationUC1.Location = new System.Drawing.Point(463, 25);
-            this.activationUC1.Name = "activationUC1";
-            this.activationUC1.Size = new System.Drawing.Size(227, 50);
-            this.activationUC1.TabIndex = 11;
-            this.activationUC1.Visible = false;
-            // 
             // lbTaskMode
             // 
             this.lbTaskMode.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -3111,6 +2898,200 @@
             this.lbTime.Text = "当前时间";
             this.lbTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // userDisplay
+            // 
+            this.userDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userDisplay.Location = new System.Drawing.Point(5, 535);
+            this.userDisplay.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.userDisplay.Name = "userDisplay";
+            this.userDisplay.Size = new System.Drawing.Size(170, 65);
+            this.userDisplay.TabIndex = 17;
+            // 
+            // pCurve
+            // 
+            this.pCurve.BackColor = System.Drawing.Color.Black;
+            this.pCurve.Controls.Add(this.label61);
+            this.pCurve.Controls.Add(this.label60);
+            this.pCurve.Controls.Add(this.label58);
+            this.pCurve.Controls.Add(this.label59);
+            this.pCurve.Controls.Add(this.label46);
+            this.pCurve.Controls.Add(this.label44);
+            this.pCurve.Controls.Add(this.label43);
+            this.pCurve.Controls.Add(this.label42);
+            this.pCurve.Controls.Add(this.label40);
+            this.pCurve.Controls.Add(this.label38);
+            this.pCurve.Controls.Add(this.label34);
+            this.pCurve.Controls.Add(this.label33);
+            this.pCurve.Controls.Add(this.label32);
+            this.pCurve.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pCurve.Location = new System.Drawing.Point(40, 20);
+            this.pCurve.Margin = new System.Windows.Forms.Padding(0);
+            this.pCurve.Name = "pCurve";
+            this.pCurve.Size = new System.Drawing.Size(1098, 400);
+            this.pCurve.TabIndex = 4;
+            this.pCurve.Paint += new System.Windows.Forms.PaintEventHandler(this.pCurve_Paint);
+            // 
+            // label61
+            // 
+            this.label61.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label61.AutoSize = true;
+            this.label61.BackColor = System.Drawing.Color.Transparent;
+            this.label61.ForeColor = System.Drawing.Color.Lime;
+            this.label61.Location = new System.Drawing.Point(3, 115);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(29, 12);
+            this.label61.TabIndex = 13;
+            this.label61.Text = "70℃";
+            // 
+            // label60
+            // 
+            this.label60.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label60.AutoSize = true;
+            this.label60.BackColor = System.Drawing.Color.Transparent;
+            this.label60.ForeColor = System.Drawing.Color.Lime;
+            this.label60.Location = new System.Drawing.Point(3, 155);
+            this.label60.Margin = new System.Windows.Forms.Padding(0);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(29, 12);
+            this.label60.TabIndex = 12;
+            this.label60.Text = "60℃";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.BackColor = System.Drawing.Color.Transparent;
+            this.label58.ForeColor = System.Drawing.Color.Lime;
+            this.label58.Location = new System.Drawing.Point(3, 235);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(29, 12);
+            this.label58.TabIndex = 11;
+            this.label58.Text = "40℃";
+            // 
+            // label59
+            // 
+            this.label59.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label59.AutoSize = true;
+            this.label59.BackColor = System.Drawing.Color.Transparent;
+            this.label59.ForeColor = System.Drawing.Color.Lime;
+            this.label59.Location = new System.Drawing.Point(3, 195);
+            this.label59.Margin = new System.Windows.Forms.Padding(0);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(29, 12);
+            this.label59.TabIndex = 10;
+            this.label59.Text = "50℃";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.BackColor = System.Drawing.Color.Transparent;
+            this.label46.ForeColor = System.Drawing.Color.Lime;
+            this.label46.Location = new System.Drawing.Point(3, 355);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(29, 12);
+            this.label46.TabIndex = 8;
+            this.label46.Text = "10℃";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.BackColor = System.Drawing.Color.Transparent;
+            this.label44.ForeColor = System.Drawing.Color.Lime;
+            this.label44.Location = new System.Drawing.Point(3, 315);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(29, 12);
+            this.label44.TabIndex = 7;
+            this.label44.Text = "20℃";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.BackColor = System.Drawing.Color.Transparent;
+            this.label43.ForeColor = System.Drawing.Color.Lime;
+            this.label43.Location = new System.Drawing.Point(3, 75);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(29, 12);
+            this.label43.TabIndex = 6;
+            this.label43.Text = "80℃";
+            // 
+            // label42
+            // 
+            this.label42.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label42.AutoSize = true;
+            this.label42.ForeColor = System.Drawing.Color.Lime;
+            this.label42.Location = new System.Drawing.Point(282, 386);
+            this.label42.Margin = new System.Windows.Forms.Padding(3, 0, 600, 0);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(35, 12);
+            this.label42.TabIndex = 5;
+            this.label42.Text = "40min";
+            // 
+            // label40
+            // 
+            this.label40.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label40.AutoSize = true;
+            this.label40.ForeColor = System.Drawing.Color.Lime;
+            this.label40.Location = new System.Drawing.Point(482, 386);
+            this.label40.Margin = new System.Windows.Forms.Padding(3, 0, 600, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(35, 12);
+            this.label40.TabIndex = 4;
+            this.label40.Text = "30min";
+            // 
+            // label38
+            // 
+            this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label38.AutoSize = true;
+            this.label38.ForeColor = System.Drawing.Color.Lime;
+            this.label38.Location = new System.Drawing.Point(682, 386);
+            this.label38.Margin = new System.Windows.Forms.Padding(3, 0, 400, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(35, 12);
+            this.label38.TabIndex = 3;
+            this.label38.Text = "20min";
+            // 
+            // label34
+            // 
+            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label34.AutoSize = true;
+            this.label34.ForeColor = System.Drawing.Color.Lime;
+            this.label34.Location = new System.Drawing.Point(882, 386);
+            this.label34.Margin = new System.Windows.Forms.Padding(3, 0, 200, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(35, 12);
+            this.label34.TabIndex = 2;
+            this.label34.Text = "10min";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.BackColor = System.Drawing.Color.Transparent;
+            this.label33.ForeColor = System.Drawing.Color.Lime;
+            this.label33.Location = new System.Drawing.Point(3, 275);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(29, 12);
+            this.label33.TabIndex = 1;
+            this.label33.Text = "30℃";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.Color.Transparent;
+            this.label32.ForeColor = System.Drawing.Color.Lime;
+            this.label32.Location = new System.Drawing.Point(3, 35);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(29, 12);
+            this.label32.TabIndex = 0;
+            this.label32.Text = "90℃";
+            // 
+            // activationUC1
+            // 
+            this.activationUC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.activationUC1.Location = new System.Drawing.Point(463, 25);
+            this.activationUC1.Name = "activationUC1";
+            this.activationUC1.Size = new System.Drawing.Size(227, 50);
+            this.activationUC1.TabIndex = 11;
+            this.activationUC1.Visible = false;
+            // 
             // yieldDisplay
             // 
             this.yieldDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -3121,14 +3102,35 @@
             this.yieldDisplay.TabIndex = 14;
             this.yieldDisplay.btnYieldClearClick += new CAMEL.Baking.Control.YieldDisplay.BtnClick(this.btnYieldClear_Click);
             // 
-            // userDisplay
+            // mesDubugUC1
             // 
-            this.userDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userDisplay.Location = new System.Drawing.Point(5, 535);
-            this.userDisplay.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.userDisplay.Name = "userDisplay";
-            this.userDisplay.Size = new System.Drawing.Size(170, 65);
-            this.userDisplay.TabIndex = 17;
+            this.tableLayoutPanel3.SetColumnSpan(this.mesDubugUC1, 2);
+            this.mesDubugUC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mesDubugUC1.Location = new System.Drawing.Point(30, 30);
+            this.mesDubugUC1.Margin = new System.Windows.Forms.Padding(30);
+            this.mesDubugUC1.Name = "mesDubugUC1";
+            this.tableLayoutPanel3.SetRowSpan(this.mesDubugUC1, 4);
+            this.mesDubugUC1.Size = new System.Drawing.Size(724, 539);
+            this.mesDubugUC1.TabIndex = 1;
+            // 
+            // scanerDebugUC1
+            // 
+            this.scanerDebugUC1.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.scanerDebugUC1.Location = new System.Drawing.Point(814, 30);
+            this.scanerDebugUC1.Margin = new System.Windows.Forms.Padding(30);
+            this.scanerDebugUC1.Name = "scanerDebugUC1";
+            this.scanerDebugUC1.Size = new System.Drawing.Size(334, 109);
+            this.scanerDebugUC1.TabIndex = 0;
+            // 
+            // clampManageUC1
+            // 
+            this.clampManageUC1.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.clampManageUC1.Location = new System.Drawing.Point(814, 199);
+            this.clampManageUC1.Margin = new System.Windows.Forms.Padding(30);
+            this.clampManageUC1.Name = "clampManageUC1";
+            this.tableLayoutPanel3.SetRowSpan(this.clampManageUC1, 2);
+            this.clampManageUC1.Size = new System.Drawing.Size(334, 231);
+            this.clampManageUC1.TabIndex = 3;
             // 
             // ManageSystem
             // 
@@ -3191,8 +3193,6 @@
             this.panel3333.PerformLayout();
             this.tabContentTemperCurve.ResumeLayout(false);
             this.tableLayoutPanel18.ResumeLayout(false);
-            this.pCurve.ResumeLayout(false);
-            this.pCurve.PerformLayout();
             this.tableLayoutPanel32.ResumeLayout(false);
             this.tableLayoutPanel32.PerformLayout();
             this.tableLayoutPanel31.ResumeLayout(false);
@@ -3259,6 +3259,8 @@
             this.splitContainer2.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.pCurve.ResumeLayout(false);
+            this.pCurve.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3474,6 +3476,6 @@
         private Control.ScanerDebugUC scanerDebugUC1;
         private Control.MesDubugUC mesDubugUC1;
         private Control.ActivationUC activationUC1;
-        private System.Windows.Forms.Button btnTest;
+        private Control.ClampManageUC clampManageUC1;
     }
 }

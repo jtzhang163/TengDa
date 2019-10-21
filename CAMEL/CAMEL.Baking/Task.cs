@@ -733,10 +733,7 @@ namespace CAMEL.Baking
                                 Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                                 Current.Task.ToStation.ClampId = Current.Task.ClampId;
                                 Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
-                                if (Current.Task.FromStation != null)
-                                {
-                                    Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
-                                }
+                                Current.Task.FromStation.ClampStatus = ClampStatus.无夹具;
                                 Current.RGV.ClampStatus = ClampStatus.无夹具;
                                 Current.RGV.ClampId = -1;
                                 if (!TaskLog.Add(out msg))//记录

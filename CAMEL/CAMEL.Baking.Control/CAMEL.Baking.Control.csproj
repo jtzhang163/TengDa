@@ -110,6 +110,12 @@
     <Compile Include="PageMain1UC.Designer.cs">
       <DependentUpon>PageMain1UC.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClampManageUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClampManageUC.Designer.cs">
+      <DependentUpon>ClampManageUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="ScanerDebugUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -229,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PageMain1UC.resx">
       <DependentUpon>PageMain1UC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClampManageUC.resx">
+      <DependentUpon>ClampManageUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScanerDebugUC.resx">
       <DependentUpon>ScanerDebugUC.cs</DependentUpon>

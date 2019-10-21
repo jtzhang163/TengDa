@@ -399,6 +399,7 @@ namespace CAMEL.Baking.App
 
             this.scanerDebugUC1.Init();
             this.mesDubugUC1.Init();
+            this.clampManageUC1.Init();
         }
 
         private void ManageSystem_FormClosing(object sender, FormClosingEventArgs e)
@@ -618,6 +619,21 @@ namespace CAMEL.Baking.App
                 Yield.Clear();
                 Current.option.ClearYieldTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 yieldDisplay.SetClearYieldTime(DateTime.Now);
+
+                try
+                {
+                    new Thread(() => {
+                        if (Battery.GetCount(out string msg) > 110000)
+                        {
+                            var tip = Battery.DeleteLongAgo(out msg) ? "删除电池表中较早的数据成功！" : "删除电池表中较早的数据失败！" + msg;
+                            AddTips(tip);
+                        }
+                    }).Start();
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteError("删除电池表中较早的数据失败，msg：" + ex.ToString());
+                }
             }
 
             // this.lbTaskStatus.Text = Current.Task.Status.ToString();

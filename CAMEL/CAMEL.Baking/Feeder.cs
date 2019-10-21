@@ -409,6 +409,11 @@ namespace CAMEL.Baking
                     this.PutStation.ClampStatus = db17_0 == 2 ? ClampStatus.无夹具 : ClampStatus.满夹具;
                     this.PutStation.Status = db17_0 == 2 ? StationStatus.可放 : StationStatus.工作中;
 
+                    if(db17_0 == 2)
+                    {
+                        this.PutStation.ClampId = -1;
+                    }
+
                     addr = Option.LineNum == 1 ? "DB17.2" : "DB17.6";
                     if (!this.Plc.GetInfo(false, plcCompany, true, addr, (ushort)0, out ushort db17_2, out msg))
                     {

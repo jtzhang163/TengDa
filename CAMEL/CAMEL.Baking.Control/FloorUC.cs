@@ -435,6 +435,14 @@ namespace CAMEL.Baking.Control
 
         private void TsmStopBaking_Click(object sender, EventArgs e)
         {
+            //烘烤中途停止烘烤弹窗提示
+            if (floor.RunMinutes != 0 && floor.RunRemainMinutes != 0)
+            {
+                if (MessageBox.Show(floor.Name + "静置时间未到，是否停止？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
             floor.AddLog("手动停止运行");
             oven.StopBaking(oven.Floors.IndexOf(floor));
         }
