@@ -12,10 +12,11 @@ namespace CAMEL.RGV.Touchscreen.Util
         private static SpeechSynthesizer Speechs;
         private static string ValueAlarmStr;
         private static string ValueConnect;
-        private static bool IsRun=true;
-        
-        public static  void Voice(string content=null)
+        private static bool IsRun = true;
+
+        public static void Voice(string content = null)
         {
+            return;
             if (Speechs == null)
             {
                 Speechs = new SpeechSynthesizer();
@@ -23,23 +24,22 @@ namespace CAMEL.RGV.Touchscreen.Util
                 Speechs.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult);
             }
             Thread thread = new Thread(o =>
-              {
-                  Speak2(content);           
-                  
-                  if (IsRun)
-                  {
-                      while (true)
-                      {
-                          Speak1(Current.RGV.AlarmStr);                      Speak2(Current.RGV.IsConnected?"通讯中":"未连接");
-                          IsRun = false;
-                      }                  
-                  }           
-              });
+            {
+                Speak2(content);
+                if (IsRun)
+                {
+                    while (true)
+                    {
+                        Speak1(Current.RGV.AlarmStr);
+                        Speak2(Current.RGV.IsConnected ? "通讯中" : "未连接");
+                        IsRun = false;
+                    }
+                }
+            });
             thread.Start();
-            
         }
 
-        private static  void Speak1(string content)
+        private static void Speak1(string content)
         {
             if (!string.IsNullOrEmpty(content))
             {
@@ -65,6 +65,5 @@ namespace CAMEL.RGV.Touchscreen.Util
             }
             ValueConnect = content;
         }
-
     }
 }

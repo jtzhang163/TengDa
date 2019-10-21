@@ -35,7 +35,7 @@ namespace CAMEL.RGV.Touchscreen.View
             var password = this.password.Password.Trim();
            
             if (username == "admin" && password == "admin")
-            {
+            {    
                 
                 Speech.Voice("登录成功");
                 Current.Option.Username = username;

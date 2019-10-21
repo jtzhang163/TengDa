@@ -14,6 +14,8 @@ namespace CAMEL.RGV.Touchscreen
 
         public string Type { get; set; }
 
+        public string DataType { get; set; }
+
         public int MaxValue { set; get; }
 
         public int MinValue { set; get; }
@@ -47,10 +49,10 @@ namespace CAMEL.RGV.Touchscreen
                         new Parameter{ Name= "货叉减速时间", Addr = "D2027" ,Type = "一般参数", MinValue= 2000, MaxValue= 10000 },
                         new Parameter{ Name= "货叉目标速度", Addr = "D2028" ,Type = "一般参数", MinValue= 0, MaxValue= 500 },
                         new Parameter{ Name= "货位号", Addr = "D2029" ,Type = "一般参数" ,MinValue=0, MaxValue=10000 },
-                        new Parameter{ Name= "行走电机", Addr = "D2036" ,Type = "一般参数"},
+                        new Parameter{ Name= "行走电机", Addr = "D2036" ,Type = "一般参数", DataType = "ushort"},
                         new Parameter{ Name= "升降电机", Addr = "D2038" ,Type = "一般参数"},
                         new Parameter{ Name= "货叉电机", Addr = "D2040" ,Type = "一般参数"},
-                        new Parameter{ Name= "行走位置参数", Addr = "D2042" ,Type = "一般参数",MinValue=0, MaxValue=10000 },
+                        new Parameter{ Name= "行走位置参数", Addr = "D2042" ,Type = "一般参数",MinValue=0, MaxValue=40000, DataType = "ushort" },
                         new Parameter{ Name= "升降1位置参数", Addr = "D2044" ,Type = "一般参数",MinValue=0, MaxValue=10000 },
                         new Parameter{ Name= "升降2位置参数", Addr = "D2046" ,Type = "一般参数",MinValue=0, MaxValue=10000 },
                         new Parameter{ Name= "货叉位置参数", Addr = "D2048" ,Type = "一般参数",MinValue=0, MaxValue=10000 },
@@ -92,6 +94,10 @@ namespace CAMEL.RGV.Touchscreen
         public static string GetType(string name)
         {
             return Parameters.FirstOrDefault(o => o.Name == name)?.Type;
+        }
+        public static string GetDataType(string name)
+        {
+            return Parameters.FirstOrDefault(o => o.Name == name)?.DataType;
         }
         public static int GetMinvalue(string name)
         {

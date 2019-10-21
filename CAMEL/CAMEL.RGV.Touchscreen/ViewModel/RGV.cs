@@ -40,6 +40,7 @@ namespace CAMEL.RGV.Touchscreen
             }
         }
 
+
         private bool isConnected;
         public bool IsConnected
         {
@@ -431,6 +432,7 @@ namespace CAMEL.RGV.Touchscreen
         public string Alarm2BinString { get; private set; }
 
         int overtimeCount = 0;
+
         public string[] Alarms = new string[] {
             "急停按下",
             "PLC异常状态异常",
@@ -490,7 +492,7 @@ namespace CAMEL.RGV.Touchscreen
                 omron_net.ReceiveTimeOut = 1000;
                 omron_net.ConnectTimeOut = 1000;
                 OperateResult result = omron_net.ConnectServer();
-                System.Diagnostics.Debug.WriteLine("连接欧姆龙 ："+result.IsSuccess);
+                System.Diagnostics.Debug.WriteLine("连接欧姆龙 ：" + result.IsSuccess);
                 if (!result.IsSuccess)
                 {
                     msg = result.Message;
@@ -554,6 +556,25 @@ namespace CAMEL.RGV.Touchscreen
             return false;
         }
 
+        public bool Write(string addr, ushort value, out string msg)
+        {
+            msg = "";
+            try
+            {
+                OperateResult result = omron_net.Write(addr, value);
+                if (result.IsSuccess)
+                {
+                    return true;
+                }
+                msg = result.Message;
+            }
+            catch (Exception ex)
+            {
+                msg = ex.Message;
+            }
+            return false;
+        }
+
         public void GetInfo()
         {         
             if (!this.IsConnected)
@@ -561,8 +582,7 @@ namespace CAMEL.RGV.Touchscreen
                 return;
             }
 
-            OperateResult<short[]> result = omron_net.ReadInt16("D2000", (ushort)100);
-                     
+            OperateResult<short[]> result = omron_net.ReadInt16("D2000", (ushort)100);                 
             if (result.IsSuccess)
             {
                 overtimeCount = 0;
@@ -614,43 +634,6 @@ namespace CAMEL.RGV.Touchscreen
             else
             {
                 ReeultError(result.Message);
-                //if (result.Message.Contains("1000") && overtimeCount < 1)
-                //{
-                //    overtimeCount++;
-                //}
-                //else
-                //{
-                //    this.IsConnected = false;
-                //    MessageBox.Show("连接PLC出错：" + result.Message, "异常提示", MessageBoxButton.OK, MessageBoxImage.Information);
-                //}
-            }
-
-            OperateResult<ushort[]> resultUInt16 = omron_net.ReadUInt16("D2000", 50);
-            if (resultUInt16.IsSuccess)
-            {
-                overtimeCount = 0;
-                var datasUInt16 = resultUInt16.Content;
-
-                this.行走当前位置 = datasUInt16[30];
-                this.行走电机 = datasUInt16[36];
-                this.行走位置参数 = datasUInt16[42];
-            }
-            else
-            {
-                ReeultError(result.Message);
-                //if (result.Message.Contains("1000") && overtimeCount < 1)
-                //{
-                //    overtimeCount++;
-                //}
-                //else
-                //{
-                //    this.IsConnected = false;
-                //    MessageBox.Show("连接PLC出错：" + result.Message, "异常提示", MessageBoxButton.OK, MessageBoxImage.Information);
-                //}
-            }
-            if (omron_net == null)
-            {
-                return;
             }
 
             result = omron_net.ReadInt16("D1000", (ushort)100);
@@ -696,9 +679,27 @@ namespace CAMEL.RGV.Touchscreen
             else
             {
                 ReeultError(result.Message);
-                //this.IsConnected = false;
-                //MessageBox.Show("连接PLC出错：" + result.Message, "异常提示", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+
+            OperateResult<ushort[]> resultUInt16 = omron_net.ReadUInt16("D2000", 50);
+            if (resultUInt16.IsSuccess)
+            {
+                overtimeCount = 0;
+                var datasUInt16 = resultUInt16.Content;
+
+                this.行走当前位置 = datasUInt16[30];
+                this.行走电机 = datasUInt16[36];
+                this.行走位置参数 = datasUInt16[42];
+            }
+            else
+            {
+                ReeultError(result.Message);
+            }
+            if (omron_net == null)
+            {
+                return;
+            }
+
 
         }
 
@@ -711,8 +712,9 @@ namespace CAMEL.RGV.Touchscreen
             else
             {
                 this.IsConnected = false;
-                MessageBox.Show("连接PLC出错：" + msg, "异常提示", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("连接PLC出错：" + msg.Replace("成功",""), "异常提示", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+
         }
     }
 }

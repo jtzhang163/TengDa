@@ -3,11 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:input="clr-namespace:System.Windows.Input;assembly=PresentationCore"
         xmlns:local="clr-namespace:CAMEL.RGV.Touchscreen.View" Topmost="True"
         xmlns:ctrl="clr-namespace:CAMEL.RGV.Touchscreen.Control"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="RGV参数设置" Height="300" Width="500"  >
+        Title="RGV参数设置" Height="300" Width="500">
     <Window.Resources>
         <Style TargetType="{x:Type Label}">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -33,23 +32,22 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="195*"/>
-            <ColumnDefinition Width="98*"/>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="170*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="参数名" HorizontalAlignment="Right" Margin="0,8,0,7"/>
-        <Label Name="lbParamName" Content="" Grid.Column="1" Foreground="Green" HorizontalAlignment="Left" FontWeight="Bold" Margin="0,8,0,7"/>
-        <Label Content="当前值" Grid.Row="1" HorizontalAlignment="Right" Margin="0,7,0,8"/>
-        <Label Name="lbCurrentValue" Grid.Row="1" Grid.Column="1" FontSize="30" Foreground="Green" FontWeight="Bold"
-                HorizontalAlignment="Stretch"  Width="100" Margin="10,21,13,22" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
-        <Label Content="新值" Grid.Row="2" HorizontalAlignment="Right" Margin="0,8,0,7"/>
+        <Label Content="参数名" HorizontalAlignment="Right"/>
+        <Label Name="lbParamName" Content="" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Green" HorizontalAlignment="Left" FontWeight="Bold"/>
+        <Label Content="当前值" Grid.Row="1" HorizontalAlignment="Right"/>
+        <Label Name="lbCurrentValue" Grid.Row="1" Grid.Column="1" FontSize="30" Foreground="Green" FontWeight="Bold" 
+               HorizontalAlignment="Stretch"  Width="100" Margin="10,0,0,0" VerticalContentAlignment="Center"/>
+        <Label Content="新值" Grid.Row="2" HorizontalAlignment="Right"/>
         <TextBox Name="tbNewValue" Text="0" Grid.Row="2" CharacterCasing="Upper"  Grid.Column="1" Grid.ColumnSpan="2" FontSize="30" Foreground="Green" FontWeight="Bold"
                  HorizontalAlignment="Left" Width="100" Margin="10,0,0,0" TextAlignment="Center" Padding="5" GotFocus="TbNewValue_GotFocus" LostFocus="TbNewValue_LostFocus" KeyDown="TbNewValue_KeyDown"/>
-        <Label Content="提示信息" Grid.Row="3" HorizontalAlignment="Right" Margin="0,7,0,8"/>
-        <Label Name="lbTip" Content="" Grid.Row="3" Grid.Column="1" Foreground="Red" HorizontalAlignment="Left" Margin="0,7,0,8"/>
-        <Button Name="btnOK" Click="BtnOK_Click" TouchEnter="BtnOK_TouchEnter" Grid.Row="4" HorizontalAlignment="Right" Margin="0,6,0,7">确定</Button>
-        <Button Name="btnClose" Click="BtnClose_Click" TouchLeave="BtnClose_TouchLeave" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Background="Red" Grid.ColumnSpan="2" Margin="0,6,0,7">取消</Button>
+        <Label Content="提示信息" Grid.Row="3" HorizontalAlignment="Right"/>
+        <Label Name="lbTip" Content="" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Red" HorizontalAlignment="Left"/>
+        <Button Name="btnOK" Click="BtnOK_Click" TouchEnter="BtnOK_TouchEnter" Grid.Row="4" HorizontalAlignment="Right">确定</Button>
+        <Button Name="btnClose" Click="BtnClose_Click" TouchLeave="BtnClose_TouchLeave" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Background="Red">取消</Button>
 
     </Grid>
 </Window>

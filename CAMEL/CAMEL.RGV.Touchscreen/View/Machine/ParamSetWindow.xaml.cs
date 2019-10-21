@@ -47,8 +47,7 @@ namespace CAMEL.RGV.Touchscreen.View
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
-        {
-          
+        {        
             if (Current.Option.IsPad) return;   //运行在平板时不触发
             CloseIWindow();
         }
@@ -59,7 +58,6 @@ namespace CAMEL.RGV.Touchscreen.View
             CloseIWindow();
         }
      
-
         private void ChangeParam()
         {
             if (!int.TryParse(this.tbNewValue.Text.Trim(), out int result))
@@ -78,11 +76,23 @@ namespace CAMEL.RGV.Touchscreen.View
 
             if (result != currentValue)
             {
-                if (!Current.RGV.Write(Parameter.GetAddr(this.paramName), (short)result, out string msg))
+                if (Parameter.GetDataType(this.paramName) == "ushort")
                 {
-                    Speech.Voice("ERROR:" + msg);
-                    this.lbTip.Content = "ERROR:" + msg;
-                    return;
+                    if (!Current.RGV.Write(Parameter.GetAddr(this.paramName), (ushort)result, out string msg))
+                    {
+                        Speech.Voice("ERROR:" + msg);
+                        this.lbTip.Content = "ERROR:" + msg;
+                        return;
+                    }
+                }
+                else
+                {
+                    if (!Current.RGV.Write(Parameter.GetAddr(this.paramName), (short)result, out string msg))
+                    {
+                        Speech.Voice("ERROR:" + msg);
+                        this.lbTip.Content = "ERROR:" + msg;
+                        return;
+                    }
                 }
             }
             Speech.Voice("设置成功");
@@ -94,7 +104,6 @@ namespace CAMEL.RGV.Touchscreen.View
             this.Close();
         }
 
-    
         [DllImport("user32.dll", EntryPoint = "keybd_event", SetLastError = true)]
         public static extern void keybd_event(byte bvk, byte bScan, uint dwFlags, uint dwExtraInfo);
         private  Process process;
@@ -102,39 +111,6 @@ namespace CAMEL.RGV.Touchscreen.View
         private void TbNewValue_GotFocus(object sender, RoutedEventArgs e)
         {
             //StartProcess();
-        }
-        public void StartProcess()
-        {
-
-            Thread thread = new Thread(o =>
-              {
-                  try
-                  {
-                      string path = string.Format(System.IO.Directory.GetCurrentDirectory() + @"\APP.exe");
-                      if (!System.IO.File.Exists(path))
-                          return;
-                      if (process != null)
-                      {
-                          process.Close();
-                      }
-                      process = Process.Start(path);
-                      
-                  }
-                  catch (Exception ex)
-                  {
-                      process.Kill();
-
-                  }
-              });
-            thread.IsBackground = true;
-            thread.Start();
-        }
-        public void TopProcess()
-        {
-            if (process != null && !process.HasExited)
-            {
-                process.Kill();
-            }
         }
         private void TbNewValue_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -145,5 +121,39 @@ namespace CAMEL.RGV.Touchscreen.View
         {
 
         }
+        public void StartProcess()
+        {
+
+            Thread thread = new Thread(o =>
+            {
+                try
+                {
+                    string path = string.Format(System.IO.Directory.GetCurrentDirectory() + @"\APP.exe");
+                    if (!System.IO.File.Exists(path))
+                        return;
+                    if (process != null)
+                    {
+                        process.Close();
+                    }
+                    process = Process.Start(path);
+                      
+                }
+                catch (Exception ex)
+                {
+                    process.Kill();
+
+                }
+            });
+            thread.IsBackground = true;
+            thread.Start();
+        }
+        public void TopProcess()
+        {
+            if (process != null && !process.HasExited)
+            {
+                process.Kill();
+            }
+        }
+
     }
 }

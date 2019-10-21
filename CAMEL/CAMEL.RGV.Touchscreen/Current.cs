@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +12,6 @@ namespace CAMEL.RGV.Touchscreen
         public static RGV RGV = new RGV();
 
         public static Option Option = new Option();
-
-        
+    
     }
 }
