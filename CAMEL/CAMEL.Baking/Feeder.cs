@@ -465,7 +465,7 @@ namespace CAMEL.Baking
                         }
                     }
 
-
+                    //心跳
                     addr = Option.LineNum == 1 ? "DB17.28" : "DB17.30";
 
                     if (!this.Plc.GetInfo(false, plcCompany, false, addr, this.HeartValue, out ushort db17_28, out msg))
@@ -475,6 +475,16 @@ namespace CAMEL.Baking
                     }
 
                     this.HeartValue = this.HeartValue == 0 ? (ushort)2 : (ushort)0;
+
+                    //自动手动模式传给上料机
+                    addr = Option.LineNum == 1 ? "DB17.32" : "DB17.34";
+                    var value = Current.TaskMode == TaskMode.自动任务 ? (ushort)2 : (ushort)0;
+
+                    if (!this.Plc.GetInfo(false, plcCompany, false, addr, value, out ushort db17_32, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                    }
 
                     #endregion
                     Thread.Sleep(20);
