@@ -568,10 +568,9 @@ namespace Soundon.Dispatcher
 
                         #region 获取是否启动完成
 
-                        //Current.Robot.IsStartting = true;
                         Current.Robot.IsStarting = bOutputs[13] == 1;
 
-                        Current.Robot.IsExecuting = Current.Robot.IsStarting && bOutputs[16] == 1;
+                        Current.Robot.IsExecuting = bOutputs[13] == 1 && bOutputs[16] == 1;
 
                         #endregion
 
@@ -734,8 +733,7 @@ namespace Soundon.Dispatcher
 
         public bool SetScanBatteryResult(ScanResult[] scanResults, out string msg)
         {
-
-            var val = (ushort)0;
+            ushort val;
             if (scanResults[0] == ScanResult.OK && scanResults[1] == ScanResult.OK)
             {
                 val = (ushort)2;
@@ -753,8 +751,6 @@ namespace Soundon.Dispatcher
                 val = (ushort)4;
             }
 
-            val = 2;//________________________________
-
             if (!this.Plc.SetInfo("D1002", val, out msg))
             {
                 Error.Alert(msg);
@@ -762,7 +758,7 @@ namespace Soundon.Dispatcher
                 return false;
             }
 
-            LogHelper.WriteInfo(string.Format("成功发送电池扫码结果到{0} D1002:{1}", this.Plc.Name, val));
+            LogHelper.WriteInfo(string.Format("成功发送电池扫码结果到{0} D1002:{1}【2：OK OK, 4：NG NG, 8: NG OK, 16: OK NG】", this.Plc.Name, val));
             return true;
         }
 

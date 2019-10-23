@@ -722,7 +722,7 @@ namespace Soundon.Dispatcher.App
                             {
                                 if (ss[x].FloorStatus == FloorStatus.待出)
                                 {
-                                    strs[x] = ss[x].SampleStatus == SampleStatus.待结果 ? "待测" : ss[x].SampleStatus == SampleStatus.水分OK ? "水分OK" : ss[x].SampleStatus == SampleStatus.水分NG ? "水分NG" : "未知";
+                                    strs[x] = ss[x].SampleStatus == SampleStatus.待测试 ? "待测" : ss[x].SampleStatus == SampleStatus.待结果 ? "待结果" : ss[x].SampleStatus == SampleStatus.水分OK ? "水分OK" : ss[x].SampleStatus == SampleStatus.水分NG ? "水分NG" : "未知";
                                 }
                                 else if (ss[x].FloorStatus == FloorStatus.待烤 && ss[x].SampleStatus == SampleStatus.水分NG)
                                 {
@@ -1227,12 +1227,14 @@ namespace Soundon.Dispatcher.App
 
             #region 机器人
 
-            Current.Robot.IsAlive = Current.Robot.IsEnable && Current.Robot.Plc.IsAlive;
+            var robot = Current.Robot;
 
-            if (Current.Robot.IsAlive)
+            robot.IsAlive = robot.IsEnable && robot.Plc.IsAlive;
+
+            if (robot.IsAlive)
             {
 
-                switch (Current.Robot.ClampStatus)
+                switch (robot.ClampStatus)
                 {
                     case ClampStatus.满夹具: this.panelRobot.BackColor = Color.LimeGreen; break;
                     case ClampStatus.空夹具: this.panelRobot.BackColor = Color.Cyan; break;
@@ -1254,34 +1256,34 @@ namespace Soundon.Dispatcher.App
                 this.pbRobotLamp.Image = Properties.Resources.Gray_Round;
             }
 
-            if (Current.Robot.PrePosition != Current.Robot.Position && Current.Robot.Position > 0)
+            if (robot.PrePosition != robot.Position && robot.Position > 0)
             {
                 this.tlpTrack.Controls.Remove(this.panelRobot);
-                int col = Current.Robot.Position - 1;
+                int col = robot.Position - 1;
                 this.tlpTrack.Controls.Add(this.panelRobot, col, 0);
             }
 
-            Current.Robot.PrePosition = Current.Robot.Position;
+            robot.PrePosition = robot.Position;
 
-            if (Current.Robot.IsAlive)
+            if (robot.IsAlive)
             {
-                if (Current.Robot.IsPausing)
+                if (robot.IsPausing)
                 {
                     this.lbRobotInfo.Text = "暂停中";
                     this.lbRobotInfo.ForeColor = Color.Red;
 
                 }
-                else if (Current.Robot.IsMoving && TengDa.WF.Current.IsTerminalInitFinished)
+                else if (robot.IsMoving && TengDa.WF.Current.IsTerminalInitFinished)
                 {
-                    this.lbRobotInfo.Text = Current.Robot.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动", Current.Robot.MovingDirSign) : string.Format("移动{0}", Current.Robot.MovingDirSign);
+                    this.lbRobotInfo.Text = robot.MovingDirection == MovingDirection.前进 ? string.Format("{0}移动", robot.MovingDirSign) : string.Format("移动{0}", robot.MovingDirSign);
                     this.lbRobotInfo.ForeColor = Color.Blue;
                 }
-                else if (Current.Robot.IsGettingOrPutting)
+                else if (robot.IsGettingOrPutting)
                 {
                     this.lbRobotInfo.Text = Current.Task.Status == TaskStatus.取完 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取 ? "取盘中" : "放盘中";
                     this.lbRobotInfo.ForeColor = Color.Blue;
                 }
-                else if (!Current.Robot.IsExecuting)
+                else if (!robot.IsExecuting)
                 {
                     this.lbRobotInfo.Text = "未就绪";
                     this.lbRobotInfo.ForeColor = Color.Red;
@@ -1298,14 +1300,14 @@ namespace Soundon.Dispatcher.App
                 this.lbRobotInfo.ForeColor = SystemColors.WindowText;
             }
 
-            lbRobotClampCode.Text = Current.Robot.Clamp.Code4Show;
+            lbRobotClampCode.Text = robot.Clamp.Code4Show;
 
 
-            if (!string.IsNullOrEmpty(Current.Robot.AlarmStr) && Current.Robot.IsAlive)
+            if (!string.IsNullOrEmpty(robot.AlarmStr) && robot.IsAlive)
             {
-                if (Current.Robot.PreAlarmStr != Current.Robot.AlarmStr)
+                if (robot.PreAlarmStr != robot.AlarmStr)
                 {
-                    this.lbRobotName.Text = Current.Robot.AlarmStr.TrimEnd(',') + "...";
+                    this.lbRobotName.Text = robot.AlarmStr.TrimEnd(',') + "...";
                 }
                 else
                 {
@@ -1318,16 +1320,16 @@ namespace Soundon.Dispatcher.App
             }
             else
             {
-                this.lbRobotName.Text = Current.Robot.Name;
+                this.lbRobotName.Text = robot.Name;
                 this.lbRobotName.ForeColor = SystemColors.WindowText;
                 this.lbRobotName.BackColor = Color.Transparent;
             }
-            Current.Robot.PreAlarmStr = Current.Robot.AlarmStr;
+            robot.PreAlarmStr = robot.AlarmStr;
 
             //机器人急停按钮显示逻辑
-            tlpEmergencyStop.Visible = Current.Robot.IsAlive && TengDa.WF.Current.IsRunning && TengDa.WF.Current.user.Id > 0;
+            tlpEmergencyStop.Visible = robot.IsAlive && TengDa.WF.Current.IsRunning && TengDa.WF.Current.user.Id > 0;
 
-            panelRobot.Margin = new Padding(Current.Robot.Position + 3, 3, 0, 3);
+            panelRobot.Margin = new Padding(robot.Position + 3, 3, 0, 3);
 
             #endregion
         }
@@ -2272,7 +2274,18 @@ namespace Soundon.Dispatcher.App
                                 case FloorStatus.待出:
                                     if (floor.RunRemainMinutes <= 0)
                                     {
-                                        station.Status = StationStatus.可取;
+                                        if (station.SampleStatus == SampleStatus.待测试 && station.SampleInfo == SampleInfo.有样品)
+                                        {
+                                            station.Status = StationStatus.可取;
+                                        }
+                                        else if (station.SampleStatus == SampleStatus.水分OK && station.SampleInfo == SampleInfo.无样品)
+                                        {
+                                            station.Status = StationStatus.可取;
+                                        }
+                                        else
+                                        {
+                                            station.Status = StationStatus.工作中;
+                                        }
                                     }
                                     else
                                     {
@@ -2667,11 +2680,11 @@ namespace Soundon.Dispatcher.App
                         {
                             floor.Stations.ForEach(s =>
                             {
-                                s.SampleStatus = SampleStatus.待结果;
+                                s.SampleStatus = SampleStatus.待测试;
                             });
                         }
 
-                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleInfo == SampleInfo.无样品) == 2)
+                        if (floor.Stations.Count(s => s.FloorStatus == FloorStatus.待出 && s.SampleStatus == SampleStatus.待测试 && s.SampleInfo == SampleInfo.无样品) == 2)
                         {
                             floor.Stations.ForEach(s =>
                             {
@@ -4344,6 +4357,14 @@ namespace Soundon.Dispatcher.App
             srcBlankerName = (sender as ContextMenuStrip).SourceControl.Name;
             int i = TengDa._Convert.StrToInt(srcBlankerName.Substring(10, 1), 0) - 1;
             this.tsmCancelRasterInductive.Enabled = Current.blankers[i].IsAlive;
+
+            this.tsmBlankerStation1.Enabled = Current.blankers[i].Stations[0].ClampStatus != ClampStatus.无夹具;
+            this.tsmBlankerStation1.Text = Current.blankers[i].Stations[0].Name;
+            this.tsmBlankerStation1.Tag = Current.blankers[i].Stations[0].Id;
+
+            this.tsmBlankerStation2.Enabled = Current.blankers[i].Stations[1].ClampStatus != ClampStatus.无夹具;
+            this.tsmBlankerStation2.Text = Current.blankers[i].Stations[1].Name;
+            this.tsmBlankerStation2.Tag = Current.blankers[i].Stations[1].Id;
         }
 
         private void TsmCancelRasterInductive_Click(object sender, EventArgs e)
@@ -5351,6 +5372,12 @@ namespace Soundon.Dispatcher.App
                     }
                 }
             }
+        }
+
+        private void TsmBlankerStation_Click(object sender, EventArgs e)
+        {
+            var id = Convert.ToInt32((sender as ToolStripMenuItem).Tag);
+            Station.StationList.Single(o => o.Id == id).SampleStatus = SampleStatus.待回炉;
         }
     }
 }

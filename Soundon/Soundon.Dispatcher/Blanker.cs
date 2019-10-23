@@ -263,7 +263,7 @@ namespace Soundon.Dispatcher
                     #region 获取信息
 
                     var bOutputs = new ushort[] { };
-                    if (!this.Plc.GetInfo("D2000", (ushort)30, out bOutputs, out msg))
+                    if (!this.Plc.GetInfo("D2000", (ushort)40, out bOutputs, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;
@@ -275,37 +275,55 @@ namespace Soundon.Dispatcher
                         //jj 0：3/5#线 1： 4/6#线
                         int jj = Current.blankers.IndexOf(this) == 0 ? 1 - j : j;
 
-                        if (bOutputs[10 + j] == 1)
+                        if (bOutputs[31 + j] == 1)
                         {
-                            this.Stations[jj].ClampStatus = ClampStatus.空夹具;
+                            this.Stations[jj].SampleStatus = SampleStatus.待回炉;
+                            if (!this.Plc.SetInfo(string.Format("D{0:D4}", 2031 + j), (ushort)0, out msg))
+                            {
+                                Error.Alert(msg);
+                                this.Plc.IsAlive = false;
+                                return false;
+                            }
+                            LogHelper.WriteInfo(string.Format("成功清除取完水分信号到{0}:{1}", this.Name, "D" + (2031 + j).ToString("D4") + " 0"));
+                        }
+
+                        if (this.Stations[jj].SampleStatus == SampleStatus.待回炉)
+                        {
                             this.Stations[jj].Status = StationStatus.可取;
-                            this.Stations[jj].SampleInfo = SampleInfo.未知;
-                        }
-                        else if (bOutputs[10 + j] == 2)
-                        {
-                            this.Stations[jj].ClampStatus = ClampStatus.无夹具;
-                            this.Stations[jj].Status = StationStatus.可放;
-                        }
-                        else if (bOutputs[10 + j] == 3)
-                        {
-                            this.Stations[jj].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[jj].Status = StationStatus.工作中;
-                        }
-                        else if (bOutputs[10 + j] == 4)
-                        {
-                            this.Stations[jj].ClampStatus = ClampStatus.异常;
-                            this.Stations[jj].Status = StationStatus.不可用;
-                        }
-                        else if (bOutputs[10 + j] == 5) //NG回炉
-                        {
-                            this.Stations[jj].ClampStatus = ClampStatus.满夹具;
-                            this.Stations[jj].Status = StationStatus.可取;
-                            this.Stations[jj].SampleStatus = SampleStatus.水分NG;
                         }
                         else
                         {
-                            this.Stations[jj].ClampStatus = ClampStatus.未知;
-                            this.Stations[jj].Status = StationStatus.不可用;
+                            if (bOutputs[10 + j] == 1)
+                            {
+                                this.Stations[jj].ClampStatus = ClampStatus.空夹具;
+                                this.Stations[jj].Status = StationStatus.可取;
+                            }
+                            else if (bOutputs[10 + j] == 2)
+                            {
+                                this.Stations[jj].ClampStatus = ClampStatus.无夹具;
+                                this.Stations[jj].Status = StationStatus.可放;
+                            }
+                            else if (bOutputs[10 + j] == 3)
+                            {
+                                this.Stations[jj].ClampStatus = ClampStatus.满夹具;
+                                this.Stations[jj].Status = StationStatus.工作中;
+                            }
+                            else if (bOutputs[10 + j] == 4)
+                            {
+                                this.Stations[jj].ClampStatus = ClampStatus.异常;
+                                this.Stations[jj].Status = StationStatus.不可用;
+                            }
+                            else if (bOutputs[10 + j] == 5) //NG回炉
+                            {
+                                this.Stations[jj].ClampStatus = ClampStatus.满夹具;
+                                this.Stations[jj].Status = StationStatus.可取;
+                                this.Stations[jj].SampleStatus = SampleStatus.水分NG;
+                            }
+                            else
+                            {
+                                this.Stations[jj].ClampStatus = ClampStatus.未知;
+                                this.Stations[jj].Status = StationStatus.不可用;
+                            }
                         }
 
                         var samResultVal = bOutputs[21 + j];
@@ -413,34 +431,35 @@ namespace Soundon.Dispatcher
                     for (int j = 0; j < this.Stations.Count; j++)
                     {
                         int jj = Current.blankers.IndexOf(this) == 0 ? 1 - j : j;
-
-                        if (this.Stations[j].SampleInfo == SampleInfo.无样品)
+                        if (this.Stations[j].ClampStatus != ClampStatus.无夹具)
                         {
-                            if (bOutputs[21 + jj] == 0)
+                            if (this.Stations[j].SampleInfo == SampleInfo.无样品)
                             {
-                                if (!this.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), (ushort)1, out msg))
+                                if (bOutputs[21 + jj] == 0)
                                 {
-                                    Error.Alert(msg);
-                                    this.Plc.IsAlive = false;
-                                    return false;
-                                }
+                                    if (!this.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), (ushort)1, out msg))
+                                    {
+                                        Error.Alert(msg);
+                                        this.Plc.IsAlive = false;
+                                        return false;
+                                    }
 
-                                LogHelper.WriteInfo(string.Format("成功发送无水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + jj).ToString("D4") + "1"));
+                                    LogHelper.WriteInfo(string.Format("成功发送无水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + jj).ToString("D4") + " 1"));
+                                }
                             }
-                        }
-
-                        if (this.Stations[j].SampleInfo == SampleInfo.有样品)
-                        {
-                            if (bOutputs[21 + jj] == 0)
+                            else if (this.Stations[j].SampleInfo == SampleInfo.有样品)
                             {
-                                if (!this.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), (ushort)2, out msg))
+                                if (bOutputs[21 + jj] == 0)
                                 {
-                                    Error.Alert(msg);
-                                    this.Plc.IsAlive = false;
-                                    return false;
-                                }
+                                    if (!this.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), (ushort)2, out msg))
+                                    {
+                                        Error.Alert(msg);
+                                        this.Plc.IsAlive = false;
+                                        return false;
+                                    }
 
-                                LogHelper.WriteInfo(string.Format("成功发送有水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + jj).ToString("D4") + "2"));
+                                    LogHelper.WriteInfo(string.Format("成功发送有水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + jj).ToString("D4") + " 2"));
+                                }
                             }
                         }
                     }

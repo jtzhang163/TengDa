@@ -1013,9 +1013,11 @@ namespace Soundon.Dispatcher
 
     public enum SampleStatus
     {
+        待测试,
         待结果,
         水分OK,
         水分NG,
+        待回炉,
         未知
     }
 

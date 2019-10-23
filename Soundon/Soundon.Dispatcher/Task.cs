@@ -644,23 +644,32 @@ namespace Soundon.Dispatcher
                             }
 
 
-                            //入炉后逻辑
-                            //修改工位状态
-                            if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具)
-                            {
-                                if (Current.Task.ToStation.FloorStatus == FloorStatus.待烤)
-                                {
-                                    Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
-                                }
-                            }
+                            ////入炉后逻辑
+                            ////修改工位状态
+                            //if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具)
+                            //{
+                            //    if (Current.Task.ToStation.FloorStatus == FloorStatus.待烤)
+                            //    {
+                            //        Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
+                            //    }
+                            //}
 
                             //测试水分出烤箱后逻辑
-                            if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
+                            if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具 && Current.Task.FromStation.SampleInfo == SampleInfo.有样品)
                             {
-                                if (Current.Task.FromStation.SampleInfo == SampleInfo.有样品 && Current.Task.FromStation.SampleStatus == SampleStatus.待结果)
-                                {
-                                    Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
-                                }
+                                Current.Task.FromStation.SampleStatus = SampleStatus.待结果;
+                                Current.Task.ToStation.SampleStatus = SampleStatus.待测试;
+                            }
+
+                            //取完水分回炉逻辑
+                            if (Current.Task.FromStation.GetPutType == GetPutType.下料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具 && Current.Task.FromStation.SampleInfo == SampleInfo.有样品)
+                            {
+                                Current.Task.ToStation.FloorStatus = FloorStatus.待出;
+                                Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
+                                Current.Task.ToStation.GetLabStation().SampleStatus = SampleStatus.待结果;
+
+                                Current.Task.ToStation.SampleInfo = SampleInfo.无样品;
+                                Current.Task.FromStation.SampleStatus = SampleStatus.未知;
                             }
 
                         }
@@ -814,23 +823,32 @@ namespace Soundon.Dispatcher
                             // Current.Task.FromStation.ClampId = -1;
                         }
 
-                        //入炉后逻辑
-                        //修改工位状态
-                        if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具)
-                        {
-                            if (Current.Task.ToStation.FloorStatus == FloorStatus.待烤)
-                            {
-                                Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
-                            }
-                        }
+                        ////入炉后逻辑
+                        ////修改工位状态
+                        //if (Current.Task.FromStation.GetPutType == GetPutType.上料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具)
+                        //{
+                        //    if (Current.Task.ToStation.FloorStatus == FloorStatus.待烤)
+                        //    {
+                        //        Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
+                        //    }
+                        //}
 
                         //测试水分出烤箱后逻辑
-                        if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
+                        if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具 && Current.Task.FromStation.SampleInfo == SampleInfo.有样品)
                         {
-                            if (Current.Task.FromStation.SampleInfo == SampleInfo.有样品 && Current.Task.FromStation.SampleStatus == SampleStatus.待结果)
-                            {
-                                Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
-                            }
+                            Current.Task.FromStation.SampleStatus = SampleStatus.待结果;
+                            Current.Task.ToStation.SampleStatus = SampleStatus.待测试;
+                        }
+
+                        //取完水分回炉逻辑
+                        if (Current.Task.FromStation.GetPutType == GetPutType.下料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具 && Current.Task.FromStation.SampleInfo == SampleInfo.有样品)
+                        {
+                            Current.Task.ToStation.FloorStatus = FloorStatus.待出;
+                            Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
+                            Current.Task.ToStation.GetLabStation().SampleStatus = SampleStatus.待结果;
+
+                            Current.Task.ToStation.SampleInfo = SampleInfo.无样品;
+                            Current.Task.FromStation.SampleStatus = SampleStatus.未知;
                         }
 
                     }
