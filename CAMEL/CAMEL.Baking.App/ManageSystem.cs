@@ -855,11 +855,11 @@ namespace CAMEL.Baking.App
                     {
                         for (int j = 0; j < OvenFloorCount; j++)
                         {
-                            //if (Current.ovens[i].Floors[j].IsAlive && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.打开)
-                            //{
-                            //    Tip.Alert(Current.ovens[i].Floors[j].Name + "门尚未关闭，请手动关闭后再切换自动");
-                            //    return;
-                            //}
+                            if (Current.ovens[i].Floors[j].IsAlive && Current.ovens[i].Floors[j].DoorStatus == DoorStatus.打开)
+                            {
+                                Tip.Alert(Current.ovens[i].Floors[j].Name + "门尚未关闭，请手动关闭后再切换自动任务");
+                                return;
+                            }
                         }
                     }
                     if (Current.RGV.IsAlive)
