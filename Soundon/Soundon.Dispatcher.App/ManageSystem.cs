@@ -1021,6 +1021,7 @@ namespace Soundon.Dispatcher.App
                     lbBlankerClampCode[i][j].BackColor = station.HasSampleFlag ? Color.Blue : Color.White;
                     lbBlankerClampCode[i][j].ForeColor = station.HasSampleFlag ? Color.White : Color.Blue;
 
+                    this.lbBlankerFromStationName[i][j].BackColor = station.SampleStatus == SampleStatus.待回炉 ? Color.Black: Color.Transparent;
                     bool canChangeVisible = DateTime.Now.Second % 3 == 1;
 
                     if (Current.blankers[i].IsAlive && canChangeVisible && station.Id == Current.Task.FromStationId && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
@@ -2278,7 +2279,7 @@ namespace Soundon.Dispatcher.App
                                         {
                                             station.Status = StationStatus.可取;
                                         }
-                                        else if (station.SampleStatus == SampleStatus.水分OK && station.SampleInfo == SampleInfo.无样品)
+                                        else if (station.SampleStatus == SampleStatus.水分OK)
                                         {
                                             station.Status = StationStatus.可取;
                                         }
@@ -5068,6 +5069,10 @@ namespace Soundon.Dispatcher.App
             var result = true;
             if (manuFlag == "Get")
             {
+                if (s.GetPutType == GetPutType.下料机 && s.SampleStatus == SampleStatus.待测试)
+                {
+                    return false;
+                }
                 result = s.IsAlive && s.DoorStatus == DoorStatus.打开 && s.ClampStatus != ClampStatus.无夹具;
             }
             else if (manuFlag == "Put")
@@ -5240,7 +5245,6 @@ namespace Soundon.Dispatcher.App
                     {
                         s.SampleStatus = SampleStatus.水分OK;
                         s.FloorStatus = FloorStatus.待出;
-                        s.SampleInfo = SampleInfo.无样品;
                     }
                     else
                     {

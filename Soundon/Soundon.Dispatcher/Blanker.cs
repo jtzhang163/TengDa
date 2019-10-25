@@ -94,6 +94,14 @@ namespace Soundon.Dispatcher
 
         public ushort D2027;
 
+        [ReadOnly(true)]
+        [DisplayName("产量")]
+        public int ProductCount { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayName("产量(总)")]
+        public int ProductCountAll { get; set; }
+
         /// <summary>
         /// 人员处于安全光栅感应区
         /// 感应到此信号时，若搬运机器人运行至下料附近，则发送急停信号给搬运机器人
@@ -262,6 +270,18 @@ namespace Soundon.Dispatcher
 
                     #region 获取信息
 
+
+                    var bOutputs0 = new ushort[] { };
+                    if (!this.Plc.GetInfo("D1000", (ushort)40, out bOutputs0, out msg))
+                    {
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
+                    }
+                    this.ProductCount = bOutputs0[31];
+                    this.ProductCountAll = bOutputs0[33];
+
+
                     var bOutputs = new ushort[] { };
                     if (!this.Plc.GetInfo("D2000", (ushort)40, out bOutputs, out msg))
                     {
@@ -284,7 +304,7 @@ namespace Soundon.Dispatcher
                                 this.Plc.IsAlive = false;
                                 return false;
                             }
-                            LogHelper.WriteInfo(string.Format("成功清除取完水分信号到{0}:{1}", this.Name, "D" + (2031 + j).ToString("D4") + " 0"));
+                            LogHelper.WriteInfo(string.Format("成功清除取完水分信号到{0}:{1}", this.Name, "D" + (2031 + j).ToString("D4") + " 1 --> 0"));
                         }
 
                         if (this.Stations[jj].SampleStatus == SampleStatus.待回炉)
@@ -326,29 +346,29 @@ namespace Soundon.Dispatcher
                             }
                         }
 
-                        var samResultVal = bOutputs[21 + j];
-                        if (samResultVal == 3 || samResultVal == 4)
-                        {
+                        //var samResultVal = bOutputs[21 + j];
+                        //if (samResultVal == 3 || samResultVal == 4)
+                        //{
 
-                            var sampleStatus = samResultVal == 3 ? SampleStatus.水分OK : SampleStatus.水分NG;
+                        //    var sampleStatus = samResultVal == 3 ? SampleStatus.水分OK : SampleStatus.水分NG;
 
-                            if (this.Stations[jj].ClampStatus != ClampStatus.无夹具)
-                            {
-                                this.Stations[jj].SampleStatus = sampleStatus;
-                            }
+                        //    if (this.Stations[jj].ClampStatus != ClampStatus.无夹具)
+                        //    {
+                        //        this.Stations[jj].SampleStatus = sampleStatus;
+                        //    }
 
-                            var floorStation = Station.GetStation(this.Stations[jj].FromStationId);
-                            if (floorStation != null && floorStation.GetPutType == GetPutType.烤箱)
-                            {
-                                floorStation.GetFloor().Stations.ForEach(s =>
-                                {
-                                    if(s.ClampStatus == ClampStatus.满夹具)
-                                    {
-                                        s.SampleStatus = sampleStatus;
-                                    }
-                                });
-                            }
-                        }
+                        //    var floorStation = Station.GetStation(this.Stations[jj].FromStationId);
+                        //    if (floorStation != null && floorStation.GetPutType == GetPutType.烤箱)
+                        //    {
+                        //        floorStation.GetFloor().Stations.ForEach(s =>
+                        //        {
+                        //            if(s.ClampStatus == ClampStatus.满夹具)
+                        //            {
+                        //                s.SampleStatus = sampleStatus;
+                        //            }
+                        //        });
+                        //    }
+                        //}
                     }
 
                     switch (bOutputs[18])
@@ -428,41 +448,41 @@ namespace Soundon.Dispatcher
                     }
 
 
-                    for (int j = 0; j < this.Stations.Count; j++)
-                    {
-                        int jj = Current.blankers.IndexOf(this) == 0 ? 1 - j : j;
-                        if (this.Stations[j].ClampStatus != ClampStatus.无夹具)
-                        {
-                            if (this.Stations[j].SampleInfo == SampleInfo.无样品)
-                            {
-                                if (bOutputs[21 + jj] == 0)
-                                {
-                                    if (!this.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), (ushort)1, out msg))
-                                    {
-                                        Error.Alert(msg);
-                                        this.Plc.IsAlive = false;
-                                        return false;
-                                    }
+                    //for (int j = 0; j < this.Stations.Count; j++)
+                    //{
+                    //    int jj = Current.blankers.IndexOf(this) == 0 ? 1 - j : j;
+                    //    if (this.Stations[j].ClampStatus != ClampStatus.无夹具)
+                    //    {
+                    //        if (this.Stations[j].SampleInfo == SampleInfo.无样品)
+                    //        {
+                    //            if (bOutputs[21 + jj] == 0)
+                    //            {
+                    //                if (!this.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), (ushort)1, out msg))
+                    //                {
+                    //                    Error.Alert(msg);
+                    //                    this.Plc.IsAlive = false;
+                    //                    return false;
+                    //                }
 
-                                    LogHelper.WriteInfo(string.Format("成功发送无水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + jj).ToString("D4") + " 1"));
-                                }
-                            }
-                            else if (this.Stations[j].SampleInfo == SampleInfo.有样品)
-                            {
-                                if (bOutputs[21 + jj] == 0)
-                                {
-                                    if (!this.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), (ushort)2, out msg))
-                                    {
-                                        Error.Alert(msg);
-                                        this.Plc.IsAlive = false;
-                                        return false;
-                                    }
+                    //                LogHelper.WriteInfo(string.Format("成功发送无水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + jj).ToString("D4") + " 1"));
+                    //            }
+                    //        }
+                    //        else if (this.Stations[j].SampleInfo == SampleInfo.有样品)
+                    //        {
+                    //            if (bOutputs[21 + jj] == 0)
+                    //            {
+                    //                if (!this.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), (ushort)2, out msg))
+                    //                {
+                    //                    Error.Alert(msg);
+                    //                    this.Plc.IsAlive = false;
+                    //                    return false;
+                    //                }
 
-                                    LogHelper.WriteInfo(string.Format("成功发送有水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + jj).ToString("D4") + " 2"));
-                                }
-                            }
-                        }
-                    }
+                    //                LogHelper.WriteInfo(string.Format("成功发送有水分夹具指令到{0}:{1}", this.Name, "D" + (2021 + jj).ToString("D4") + " 2"));
+                    //            }
+                    //        }
+                    //    }
+                    //}
 
 
                     //避让功能

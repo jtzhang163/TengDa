@@ -374,8 +374,12 @@ namespace Soundon.Dispatcher
         }
         #endregion
 
+        private static bool IsRun;
+             
         public static void Run()
         {
+            if (IsRun) return;
+            IsRun = true;
             string msg = string.Empty;
             if (Current.TaskMode == TaskMode.自动任务)
             {
@@ -612,7 +616,8 @@ namespace Soundon.Dispatcher
                     }
                     else if (Current.Task.Status == TaskStatus.正放 && Current.Task.ToStation != null)
                     {
-                        if (Current.Robot.ClampStatus == ClampStatus.无夹具)
+
+                        if (!Current.Robot.IsGettingOrPutting)
                         {
                             Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                             Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
@@ -640,7 +645,7 @@ namespace Soundon.Dispatcher
 
                             if (Current.Task.FromStation != null && Current.Task.FromStation != Current.Task.ToStation)
                             {
-                               // Current.Task.FromStation.ClampId = -1;
+                                // Current.Task.FromStation.ClampId = -1;
                             }
 
 
@@ -654,29 +659,64 @@ namespace Soundon.Dispatcher
                             //    }
                             //}
 
-                            //测试水分出烤箱后逻辑
-                            if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具 && Current.Task.FromStation.SampleInfo == SampleInfo.有样品)
+                            //出炉给下料机写值, 区分不同类型
+                            if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
                             {
-                                Current.Task.FromStation.SampleStatus = SampleStatus.待结果;
-                                Current.Task.ToStation.SampleStatus = SampleStatus.待测试;
+                                var blanker = Current.Task.ToStation.GetBlanker();
+                                int j = blanker.Stations.IndexOf(Current.Task.ToStation);
+                                int jj = Current.blankers.IndexOf(blanker) == 0 ? 1 - j : j;
+
+                                var value = (ushort)0;
+                                if (Current.Task.FromStation.SampleStatus == SampleStatus.待测试)
+                                {
+                                    value = (ushort)2;
+                                }
+                                else if (Current.Task.FromStation.SampleStatus == SampleStatus.水分OK && Current.Robot.Clamp.SampleInfo == SampleInfo.有样品)
+                                {
+                                    value = (ushort)3;
+                                }
+                                else if (Current.Task.FromStation.SampleStatus == SampleStatus.水分OK && Current.Robot.Clamp.SampleInfo == SampleInfo.无样品)
+                                {
+                                    value = (ushort)1;
+                                }
+
+                                if (blanker.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), value, out msg))
+                                {
+                                    LogHelper.WriteInfo(string.Format("成功发送下料机夹具信号指令到{0} {1}：{2} {3}", blanker.Name, "D" + (2021 + jj).ToString("D4"), value, Current.Task.ToStation.Name));
+                                }
+                                else
+                                {
+                                    Error.Alert(msg);
+                                }
+
+                            }
+
+                            //测试水分出烤箱后逻辑
+                            if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
+                            {
+                                if (Current.Task.FromStation.SampleStatus == SampleStatus.待测试)
+                                {
+                                    Current.Task.FromStation.SampleStatus = SampleStatus.待结果;
+                                    Current.Task.ToStation.SampleStatus = SampleStatus.待测试;
+                                }
+                                else if (Current.Task.FromStation.SampleStatus == SampleStatus.水分OK)
+                                {
+                                    Current.Task.FromStation.SampleStatus = SampleStatus.未知;
+                                    Current.Task.ToStation.SampleStatus = SampleStatus.未知;
+                                }
                             }
 
                             //取完水分回炉逻辑
-                            if (Current.Task.FromStation.GetPutType == GetPutType.下料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具 && Current.Task.FromStation.SampleInfo == SampleInfo.有样品)
+                            if (Current.Task.FromStation.GetPutType == GetPutType.下料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具 && Current.Robot.Clamp.SampleInfo == SampleInfo.有样品)
                             {
                                 Current.Task.ToStation.FloorStatus = FloorStatus.待出;
                                 Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
                                 Current.Task.ToStation.GetLabStation().SampleStatus = SampleStatus.待结果;
 
-                                Current.Task.ToStation.SampleInfo = SampleInfo.无样品;
+                                Current.Task.ToStation.SampleInfo = SampleInfo.有样品;
                                 Current.Task.FromStation.SampleStatus = SampleStatus.未知;
                             }
 
-                        }
-
-
-                        if (!Current.Robot.IsGettingOrPutting)
-                        {
                             if (!TaskLog.Add(out msg))//记录
                             {
                                 Error.Alert("保存搬运记录失败：" + msg);
@@ -792,7 +832,7 @@ namespace Soundon.Dispatcher
                 }
                 else if (Current.Task.Status == TaskStatus.正放 && Current.Task.ToStation != null)
                 {
-                    if (Current.Robot.ClampStatus == ClampStatus.无夹具)
+                    if (!Current.Robot.IsGettingOrPutting)
                     {
                         Current.Task.ToStation.ClampStatus = Current.Task.FromClampStatus;
                         Current.Task.ToStation.FromStationId = Current.Task.FromStationId;
@@ -815,7 +855,7 @@ namespace Soundon.Dispatcher
                         {
                             Current.Task.ToStation.ClampId = Current.Task.ClampId;
                         }
-                        
+
                         // Current.Robot.ClampId = -1;
 
                         if (Current.Task.FromStation != null && Current.Task.FromStation != Current.Task.ToStation)
@@ -833,29 +873,64 @@ namespace Soundon.Dispatcher
                         //    }
                         //}
 
-                        //测试水分出烤箱后逻辑
-                        if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具 && Current.Task.FromStation.SampleInfo == SampleInfo.有样品)
+                        //出炉给下料机写值, 区分不同类型
+                        if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
                         {
-                            Current.Task.FromStation.SampleStatus = SampleStatus.待结果;
-                            Current.Task.ToStation.SampleStatus = SampleStatus.待测试;
+                            var blanker = Current.Task.ToStation.GetBlanker();
+                            int j = blanker.Stations.IndexOf(Current.Task.ToStation);
+                            int jj = Current.blankers.IndexOf(blanker) == 0 ? 1 - j : j;
+
+                            var value = (ushort)0;
+                            if (Current.Task.FromStation.SampleStatus == SampleStatus.待测试)
+                            {
+                                value = (ushort)2;
+                            }
+                            else if (Current.Task.FromStation.SampleStatus == SampleStatus.水分OK && Current.Robot.Clamp.SampleInfo == SampleInfo.有样品)
+                            {
+                                value = (ushort)3;
+                            }
+                            else if (Current.Task.FromStation.SampleStatus == SampleStatus.水分OK && Current.Robot.Clamp.SampleInfo == SampleInfo.无样品)
+                            {
+                                value = (ushort)1;
+                            }
+
+                            if (blanker.Plc.SetInfo("D" + (2021 + jj).ToString("D4"), value, out msg))
+                            {
+                                LogHelper.WriteInfo(string.Format("成功发送下料机夹具信号指令到{0} {1}：{2} {3}", blanker.Name, "D" + (2021 + jj).ToString("D4"), value, Current.Task.ToStation.Name));
+                            }
+                            else
+                            {
+                                Error.Alert(msg);
+                            }
+
+                        }
+
+                        //测试水分出烤箱后逻辑
+                        if (Current.Task.FromStation.GetPutType == GetPutType.烤箱 && Current.Task.ToStation.GetPutType == GetPutType.下料机 && Current.Task.FromClampStatus == ClampStatus.满夹具)
+                        {
+                            if (Current.Task.FromStation.SampleStatus == SampleStatus.待测试)
+                            {
+                                Current.Task.FromStation.SampleStatus = SampleStatus.待结果;
+                                Current.Task.ToStation.SampleStatus = SampleStatus.待测试;
+                            }
+                            else if (Current.Task.FromStation.SampleStatus == SampleStatus.水分OK)
+                            {
+                                Current.Task.FromStation.SampleStatus = SampleStatus.未知;
+                                Current.Task.ToStation.SampleStatus = SampleStatus.未知;
+                            }
                         }
 
                         //取完水分回炉逻辑
-                        if (Current.Task.FromStation.GetPutType == GetPutType.下料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具 && Current.Task.FromStation.SampleInfo == SampleInfo.有样品)
+                        if (Current.Task.FromStation.GetPutType == GetPutType.下料机 && Current.Task.ToStation.GetPutType == GetPutType.烤箱 && Current.Task.FromClampStatus == ClampStatus.满夹具 && Current.Robot.Clamp.SampleInfo == SampleInfo.有样品)
                         {
                             Current.Task.ToStation.FloorStatus = FloorStatus.待出;
                             Current.Task.ToStation.SampleStatus = SampleStatus.待结果;
                             Current.Task.ToStation.GetLabStation().SampleStatus = SampleStatus.待结果;
 
-                            Current.Task.ToStation.SampleInfo = SampleInfo.无样品;
+                            Current.Task.ToStation.SampleInfo = SampleInfo.有样品;
                             Current.Task.FromStation.SampleStatus = SampleStatus.未知;
                         }
 
-                    }
-
-
-                    if (!Current.Robot.IsGettingOrPutting)
-                    {
                         if (!TaskLog.Add(out msg))//记录
                         {
                             Error.Alert("保存搬运记录失败：" + msg);
@@ -865,6 +940,7 @@ namespace Soundon.Dispatcher
                     }
                 }
             }
+            IsRun = false;
         }
     }
 

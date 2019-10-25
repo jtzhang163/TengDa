@@ -478,7 +478,12 @@ namespace CAMEL.Baking
 
                     //自动手动模式传给上料机
                     addr = Option.LineNum == 1 ? "DB17.32" : "DB17.34";
-                    var value = Current.TaskMode == TaskMode.自动任务 ? (ushort)2 : (ushort)0;
+
+                    var value = (ushort)0;
+                    if (Current.TaskMode == TaskMode.自动任务 && Current.RGV.IsAuto)
+                    {
+                        value = (ushort)2;
+                    }
 
                     if (!this.Plc.GetInfo(false, plcCompany, false, addr, value, out ushort db17_32, out msg))
                     {

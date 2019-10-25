@@ -200,6 +200,15 @@ namespace Soundon.Dispatcher
         }
 
 
+        [ReadOnly(true)]
+        [DisplayName("产量")]
+        public int ProductCount { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayName("产量(总)")]
+        public int ProductCountAll { get; set; }
+
+
         public void CacheBatteryIn(Battery battery)
         {
             var c = CacheBatteries;
@@ -458,12 +467,15 @@ namespace Soundon.Dispatcher
                     #region 获取信息
 
                     var bOutputs = new ushort[] { };
-                    if (!this.Plc.GetInfo("D1000", (ushort)30, out bOutputs, out msg))
+                    if (!this.Plc.GetInfo("D1000", (ushort)40, out bOutputs, out msg))
                     {
                         Error.Alert(msg);
                         this.Plc.IsAlive = false;
                         return false;
                     }
+
+                    this.ProductCount = bOutputs[31];
+                    this.ProductCountAll = bOutputs[33];
 
                     for (int j = 0; j < this.Stations.Count; j++)
                     {

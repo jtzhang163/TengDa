@@ -48,22 +48,27 @@
     <Compile Include="TaskInfo.Designer.cs">
       <DependentUpon>TaskInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductCountDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductCountDisplay.Designer.cs">
+      <DependentUpon>ProductCountDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="YieldDisplay.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="YieldDisplay.Designer.cs">
-      <DependentUpon>YieldDisplay.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="YieldDisplay.Designer.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TaskInfo.resx">
       <DependentUpon>TaskInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="YieldDisplay.resx">
-      <DependentUpon>YieldDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="ProductCountDisplay.resx">
+      <DependentUpon>ProductCountDisplay.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="YieldDisplay.resx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\TengDa\TengDa.WF\TengDa.WF.csproj">

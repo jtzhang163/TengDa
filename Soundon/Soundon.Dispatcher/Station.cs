@@ -130,7 +130,7 @@ namespace Soundon.Dispatcher
                         value = Current.Task.FromClampStatus;
                     }
 
-                    if(value == ClampStatus.无夹具 || value == ClampStatus.空夹具)
+                    if(value == ClampStatus.空夹具)
                     {
                         this.SampleStatus = SampleStatus.未知;
                     }
@@ -693,6 +693,14 @@ namespace Soundon.Dispatcher
         {
             get
             {
+                if (this.ClampStatus == ClampStatus.空夹具)
+                {
+                    return SampleInfo.无样品;
+                }
+                else if (this.ClampStatus == ClampStatus.无夹具)
+                {
+                    return SampleInfo.未知;
+                }
                 return this.Clamp.SampleInfo;
             }
             set
