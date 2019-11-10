@@ -628,6 +628,12 @@ namespace Anchitech.Baking.Dispatcher
                             var tip = Battery.DeleteLongAgo(out msg) ? "删除电池表中较早的数据成功！" : "删除电池表中较早的数据失败！" + msg;
                             AddTips(tip);
                         }
+
+                        if (TVD.GetCount(out msg) > 1010000)
+                        {
+                            var tip = TVD.DeleteLongAgo(out msg) ? "删除温度真空表中较早的数据成功！" : "删除温度真空表中较早的数据失败！" + msg;
+                            AddTips(tip);
+                        }
                     }).Start();
                 }
                 catch (Exception ex)
