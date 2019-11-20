@@ -693,24 +693,6 @@ namespace Soundon.Dispatcher
                                     return false;
                                 }
                             }
-
-                            for (var i = 0; i < Current.blankers.Count; i++)
-                            {
-                                var blanker = Current.blankers[i];
-                                if (blanker.IsAlive)
-                                {
-                                    if (bOutputs[27 + i] != blanker.D2027)
-                                    {
-                                        var addr = string.Format("D{0:D4}", 1027 + i);
-                                        if (!this.Plc.SetInfo(addr, blanker.D2027, out msg))
-                                        {
-                                            Error.Alert(msg);
-                                            this.Plc.IsAlive = false;
-                                            return false;
-                                        }
-                                    }
-                                }
-                            }
                         }
                         else
                         {
@@ -722,6 +704,28 @@ namespace Soundon.Dispatcher
                                     Error.Alert(msg);
                                     this.Plc.IsAlive = false;
                                     return false;
+                                }
+                            }
+                        }
+                    }
+
+                    //下料机/上料机信号传递
+                    if (Current.Robot.Plc.Id == this.Plc.Id)
+                    {
+                        for (var i = 0; i < Current.blankers.Count; i++)
+                        {
+                            var blanker = Current.blankers[i];
+                            if (blanker.IsAlive)
+                            {
+                                if (bOutputs[27 + i] != blanker.D2027)
+                                {
+                                    var addr = string.Format("D{0:D4}", 1027 + i);
+                                    if (!this.Plc.SetInfo(addr, blanker.D2027, out msg))
+                                    {
+                                        Error.Alert(msg);
+                                        this.Plc.IsAlive = false;
+                                        return false;
+                                    }
                                 }
                             }
                         }
