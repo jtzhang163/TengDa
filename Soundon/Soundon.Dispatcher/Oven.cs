@@ -510,19 +510,47 @@ namespace Soundon.Dispatcher
 
                         if (this.Floors[j].toCloseDoor)
                         {
-                            var addr = Current.option.OvenCloseDoorAddrVals.Split(',')[j].Split(':')[0];
-                            var val = Convert.ToUInt16(Current.option.OvenCloseDoorAddrVals.Split(',')[j].Split(':')[1]);
+                            //关门前判断该处有无任务
 
-                            if (!this.Plc.SetInfo(addr, val, out msg))
+                            // cannotClose : 不能关门
+                            bool cannotClose = false;
+                            if (this.Floors[j].Stations.Count(s => s.Id == Current.Task.FromStationId) > 0 && (Current.Task.Status == TaskStatus.就绪 || Current.Task.Status == TaskStatus.可取 || Current.Task.Status == TaskStatus.正取))
                             {
-                                Error.Alert(msg);
-                                this.Plc.IsAlive = false;
-                                return false;
+                                Tip.Alert(Current.Task.FromStationName + "正在取盘，无法关门！");
+                                cannotClose = true;
                             }
 
-                            LogHelper.WriteInfo(string.Format("成功发送关门指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenCloseDoorAddrVals.Split(',')[j]));
-                            this.Floors[j].toCloseDoor = false;
-                            this.Floors[j].DoorIsClosing = true;
+                            if (!cannotClose)
+                            {
+                                if (this.Floors[j].Stations.Count(s => s.Id == Current.Task.ToStationId) > 0 && (Current.Task.Status == TaskStatus.可放 || Current.Task.Status == TaskStatus.正放))
+                                {
+                                    Tip.Alert(Current.Task.FromStationName + "正在放盘，无法关门！");
+                                    cannotClose = true;
+                                }
+                            }
+
+                            if (cannotClose)
+                            {
+                                this.Floors[j].toCloseDoor = false;
+                            }
+                            else
+                            {
+                                var addr = Current.option.OvenCloseDoorAddrVals.Split(',')[j].Split(':')[0];
+                                var val = Convert.ToUInt16(Current.option.OvenCloseDoorAddrVals.Split(',')[j].Split(':')[1]);
+
+                                if (!this.Plc.SetInfo(addr, val, out msg))
+                                {
+                                    Error.Alert(msg);
+                                    this.Plc.IsAlive = false;
+                                    return false;
+                                }
+
+                                LogHelper.WriteInfo(string.Format("成功发送关门指令到{0}:{1}", this.Floors[j].Name, Current.option.OvenCloseDoorAddrVals.Split(',')[j]));
+                                this.Floors[j].toCloseDoor = false;
+                                this.Floors[j].DoorIsClosing = true;
+                                this.Floors[j].DoorStatusNotFinal = DoorStatus.正在关闭;
+                                this.Floors[j].DoorStatus = DoorStatus.正在关闭;
+                            }
                         }
                         #endregion
 

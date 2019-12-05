@@ -4034,7 +4034,8 @@ namespace Soundon.Dispatcher.App
 
             int i = TengDa._Convert.StrToInt(srcFloorName.Substring(8, 2), 0) - 1;
             int j = TengDa._Convert.StrToInt(srcFloorName.Substring(10, 2), 0) - 1;
-            Current.ovens[i].Floors[j].AddLog("手动开门");
+
+            LogHelper.WriteInfo("手动操作开门：" + Current.ovens[i].Floors[j].Name);
             Current.ovens[i].OpenDoor(j);
         }
 
@@ -4061,7 +4062,7 @@ namespace Soundon.Dispatcher.App
                 return;
             }
 
-            Current.ovens[i].Floors[j].AddLog("手动关门");
+            LogHelper.WriteInfo("手动操作关门：" + Current.ovens[i].Floors[j].Name);
             Current.ovens[i].CloseDoor(j);
         }
 
