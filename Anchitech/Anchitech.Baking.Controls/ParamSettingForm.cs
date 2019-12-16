@@ -15,7 +15,7 @@ namespace Anchitech.Baking.Controls
     public partial class ParamSettingForm : Form
     {
         private Floor floor;
-        private OvenParamUC[] ovenParamUCs = new OvenParamUC[20];
+        private OvenParamUC[] ovenParamUCs = new OvenParamUC[23];
         public ParamSettingForm(Floor floor)
         {
             InitializeComponent();
