@@ -92,6 +92,12 @@ namespace CAMEL.Baking
             }
         }
 
+        /// <summary>
+        /// 是否正在充氮气
+        /// </summary>
+        [ReadOnly(true), DisplayName("是否正在充氮气")]
+        public bool IsAerating { get; set; }
+
         [ReadOnly(true), Description("网控已开启")]
         [DisplayName("网控已开启")]
         public bool IsNetControlOpen { get; set; }
@@ -216,6 +222,8 @@ namespace CAMEL.Baking
         public bool toClearRunTime = false;
         public bool toOpenNetControl = false;
         public bool toAlarmReset = false;
+        public bool toAerating = false;
+        public bool toCancelAerating = false;
         #endregion
 
         #endregion

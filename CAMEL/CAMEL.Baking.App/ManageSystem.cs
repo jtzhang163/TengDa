@@ -628,11 +628,16 @@ namespace CAMEL.Baking.App
                             var tip = Battery.DeleteLongAgo(out msg) ? "删除电池表中较早的数据成功！" : "删除电池表中较早的数据失败！" + msg;
                             AddTips(tip);
                         }
+                        if (TVD.GetCount(out msg) > 110000)
+                        {
+                            var tip = TVD.DeleteLongAgo(out msg) ? "删除温度历史表中较早的数据成功！" : "删除温度历史表中较早的数据失败！" + msg;
+                            AddTips(tip);
+                        }
                     }).Start();
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.WriteError("删除电池表中较早的数据失败，msg：" + ex.ToString());
+                    LogHelper.WriteError("删除电池表或温度历史表中较早的数据失败，msg：" + ex.ToString());
                 }
             }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using TengDa;
@@ -99,6 +100,24 @@ namespace CAMEL.Baking
             {
                 Error.Alert(msg);
             }
+        }
+
+        public static int GetCount(out string msg)
+        {
+            DataTable dt = Database.Query(string.Format("SELECT COUNT(*) FROM [dbo].[{0}];", TableName), out msg);
+            if (dt.Rows.Count > 0)
+            {
+                return TengDa._Convert.StrToInt(dt.Rows[0][0].ToString(), -1);
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// 删除很久之前数据库中的温度数据，保留最近的100000条数据
+        /// </summary>
+        public static bool DeleteLongAgo(out string msg)
+        {
+            return Database.NonQuery(string.Format("DELETE FROM dbo.[{0}] WHERE Id <= ((SELECT MAX(Id) from dbo.[{0}]) - 100000)", TableName), 60, out msg);
         }
     }
 }

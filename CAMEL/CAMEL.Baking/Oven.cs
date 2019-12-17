@@ -35,7 +35,7 @@ namespace CAMEL.Baking
         //    }
         //}
 
-        public string Alarm2BinString = string.Empty;
+        public string Alarm2BinString { get; set; } = string.Empty;
 
         public string PreAlarm2BinString = string.Empty;
 
@@ -368,6 +368,7 @@ namespace CAMEL.Baking
                         this.Floors[j].TemperSetting = bOutputs1[30 + j] / 10;
                         this.Floors[j].PreHeatTimeSetting = bOutputs1[100];
                         this.Floors[j].TemperOverOffsetSetting = bOutputs1[102];
+                        this.Floors[j].IsAerating = bOutputs1[81 + j] == 1;
                     }
 
                     #region 报警信息
@@ -388,28 +389,35 @@ namespace CAMEL.Baking
                     }
 
 
-                    if (this.TriLamp == TriLamp.Red)
+                    //if (this.TriLamp == TriLamp.Red || this.Floors.Count(o => o.IsAerating) > 0)
+                    //{
+                    var bOutputs3 = new ushort[] { };
+                    if (!this.Plc.GetInfo(true, "C1000", (ushort)11, out bOutputs3, out msg))
                     {
-                        var bOutputs3 = new ushort[] { };
-                        if (!this.Plc.GetInfo(true, "C1000", (ushort)11, out bOutputs3, out msg))
-                        {
-                            Error.Alert(msg);
-                            this.Plc.IsAlive = false;
-                            return false;
-                        }
-
-                        StringBuilder sb = new StringBuilder();
-                        for (int n = 0; n < bOutputs3.Length; n++)
-                        {
-                            sb.Append(_Convert.Revert(OmronPLC.GetBitStr(bOutputs3[n], 16)));
-                        }
-
-                        this.Alarm2BinString = sb.ToString();
+                        Error.Alert(msg);
+                        this.Plc.IsAlive = false;
+                        return false;
                     }
-                    else
+
+                    StringBuilder sb = new StringBuilder();
+                    for (int n = 0; n < bOutputs3.Length; n++)
                     {
-                        this.Alarm2BinString = new String('0', 176);
+                        sb.Append(_Convert.Revert(OmronPLC.GetBitStr(bOutputs3[n], 16)));
                     }
+                    var alarm2BinString = sb.ToString();
+
+                    char[] chars = alarm2BinString.ToCharArray();
+                    for (int j = 0; j < 5; j++)
+                    {
+                        chars[8 + 32 * j] = this.Floors[j].IsAerating ? '1' : '0';
+                    }
+
+                    this.Alarm2BinString = new String(chars);
+                    //}
+                    //else
+                    //{
+                    //    this.Alarm2BinString = new String('0', 176);
+                    //}
 
 
                     if (this.Alarm2BinString != this.PreAlarm2BinString)
@@ -708,6 +716,38 @@ namespace CAMEL.Baking
 
                             LogHelper.WriteInfo(string.Format("成功发送运行时间清零指令到{0}:{1}", this.Name, addr));
                             this.Floors[j].toClearRunTime = false;
+                        }
+                        #endregion
+
+                        #region 开始充氮气
+                        if (this.Floors[j].toAerating)
+                        {
+                            var addr = "D" + (81 + j);
+                            if (!this.Plc.SetInfo(addr, (ushort)1, out msg))
+                            {
+                                Error.Alert(msg);
+                                this.Plc.IsAlive = false;
+                                return false;
+                            }
+                            LogHelper.WriteInfo(string.Format("成功发送充氮气指令到{0}:{1}", this.Name, addr));
+                            this.Floors[j].toAerating = false;
+                            this.Floors[j].IsAerating = true;
+                        }
+                        #endregion
+
+                        #region 取消充氮气
+                        if (this.Floors[j].toCancelAerating)
+                        {
+                            var addr = "D" + (81 + j);
+                            if (!this.Plc.SetInfo(addr, (ushort)0, out msg))
+                            {
+                                Error.Alert(msg);
+                                this.Plc.IsAlive = false;
+                                return false;
+                            }
+                            LogHelper.WriteInfo(string.Format("成功发送取消充氮气指令到{0}:{1}", this.Name, addr));
+                            this.Floors[j].toCancelAerating = false;
+                            this.Floors[j].IsAerating = false;
                         }
                         #endregion
                     }
@@ -1100,6 +1140,41 @@ namespace CAMEL.Baking
             }
 
             this.Floors[j].toAlarmReset = true;
+        }
+
+        /// <summary>
+        /// 充氮气
+        /// </summary>
+        /// <param name="j">炉腔序号</param>
+        /// <returns></returns>
+        public void Aerating(int j)
+        {
+            if (!this.Plc.IsPingSuccess)
+            {
+                this.Plc.IsAlive = false;
+                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
+                return;
+            }
+
+            this.Floors[j].toAerating = true;
+        }
+
+
+        /// <summary>
+        /// 取消充氮气
+        /// </summary>
+        /// <param name="j">炉腔序号</param>
+        /// <returns></returns>
+        public void CancelAerating(int j)
+        {
+            if (!this.Plc.IsPingSuccess)
+            {
+                this.Plc.IsAlive = false;
+                LogHelper.WriteError("无法连接到 " + this.Plc.IP);
+                return;
+            }
+
+            this.Floors[j].toCancelAerating = true;
         }
 
         /// <summary>

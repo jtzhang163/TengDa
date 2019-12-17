@@ -68,7 +68,6 @@
             this.cbShowType.Items.AddRange(new object[] {
             "默认信息",
             "夹具条码",
-            "开始烘烤时间",
             "温度设定",
             "预热时间设定",
             "超温偏差设定"});

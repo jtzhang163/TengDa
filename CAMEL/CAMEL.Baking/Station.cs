@@ -196,7 +196,7 @@ namespace CAMEL.Baking
         /// <summary>
         /// 取放时间
         /// </summary>
-        [DisplayName("取放时间")]
+        [Browsable(false),DisplayName("取放时间")]
         public DateTime GetPutTime
         {
             get { return getPutTime; }

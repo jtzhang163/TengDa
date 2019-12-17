@@ -22,10 +22,11 @@ namespace CAMEL.Baking.Control
         private Floor floor;
 
         private Oven _oven;
-        private Oven oven {
+        private Oven oven
+        {
             get
             {
-                if(_oven == null)
+                if (_oven == null)
                 {
                     _oven = floor.GetOven();
                 }
@@ -95,7 +96,7 @@ namespace CAMEL.Baking.Control
                 if (floor.IsBaking)
                 {
                     this.lbInfoTop.Text = string.Format("烘烤中 {0}℃",
-                         floor.Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4) );
+                         floor.Temperatures[Current.option.DisplayTemperIndex].ToString("#0.0").PadLeft(4));
                 }
                 else
                 {
@@ -370,6 +371,8 @@ namespace CAMEL.Baking.Control
             this.tsmClearRunTime.Enabled =
                 floor.IsNetControlOpen
                 && oven.IsAlive;
+            this.tsmAerating.Enabled = !floor.IsAerating && oven.IsAlive;
+            this.tsmCancelAerating.Enabled = floor.IsAerating && oven.IsAlive;
         }
 
         private void TsmAlarmReset_Click(object sender, EventArgs e)
@@ -535,5 +538,16 @@ namespace CAMEL.Baking.Control
             showTandVForm.ShowDialog();
         }
 
+        private void TsmAerating_Click(object sender, EventArgs e)
+        {
+            floor.AddLog("手动充氮气");
+            oven.Aerating(oven.Floors.IndexOf(floor));
+        }
+
+        private void TsmCancelAerating_Click(object sender, EventArgs e)
+        {
+            floor.AddLog("手动取消充氮气");
+            oven.CancelAerating(oven.Floors.IndexOf(floor));
+        }
     }
 }

@@ -46,10 +46,12 @@
             this.tsmStartBaking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStopBaking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmOpenNetControl = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmClearRunTime = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmParamSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmShowTandV = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFloorEnabled = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmClearRunTime = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAerating = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCancelAerating = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpFloor.SuspendLayout();
             this.cmsFloor.SuspendLayout();
             this.SuspendLayout();
@@ -143,7 +145,9 @@
             this.tsmStartBaking,
             this.tsmStopBaking,
             this.tsmOpenNetControl,
-            this.tsmClearRunTime});
+            this.tsmClearRunTime,
+            this.tsmAerating,
+            this.tsmCancelAerating});
             this.tsmRemoteControl.Name = "tsmRemoteControl";
             this.tsmRemoteControl.Size = new System.Drawing.Size(180, 22);
             this.tsmRemoteControl.Text = "远程控制";
@@ -230,6 +234,13 @@
             this.tsmOpenNetControl.Visible = false;
             this.tsmOpenNetControl.Click += new System.EventHandler(this.TsmOpenNetControl_Click);
             // 
+            // tsmClearRunTime
+            // 
+            this.tsmClearRunTime.Name = "tsmClearRunTime";
+            this.tsmClearRunTime.Size = new System.Drawing.Size(180, 22);
+            this.tsmClearRunTime.Text = "运行时间清零";
+            this.tsmClearRunTime.Click += new System.EventHandler(this.TsmClearRunTime_Click);
+            // 
             // tsmParamSetting
             // 
             this.tsmParamSetting.Name = "tsmParamSetting";
@@ -251,12 +262,19 @@
             this.tsmFloorEnabled.Text = "启用/禁用";
             this.tsmFloorEnabled.Click += new System.EventHandler(this.TsmFloorEnabled_Click);
             // 
-            // tsmClearRunTime
+            // tsmAerating
             // 
-            this.tsmClearRunTime.Name = "tsmClearRunTime";
-            this.tsmClearRunTime.Size = new System.Drawing.Size(180, 22);
-            this.tsmClearRunTime.Text = "运行时间清零";
-            this.tsmClearRunTime.Click += new System.EventHandler(this.TsmClearRunTime_Click);
+            this.tsmAerating.Name = "tsmAerating";
+            this.tsmAerating.Size = new System.Drawing.Size(180, 22);
+            this.tsmAerating.Text = "充氮气";
+            this.tsmAerating.Click += new System.EventHandler(this.TsmAerating_Click);
+            // 
+            // tsmCancelAerating
+            // 
+            this.tsmCancelAerating.Name = "tsmCancelAerating";
+            this.tsmCancelAerating.Size = new System.Drawing.Size(180, 22);
+            this.tsmCancelAerating.Text = "取消充氮气";
+            this.tsmCancelAerating.Click += new System.EventHandler(this.TsmCancelAerating_Click);
             // 
             // FloorUC
             // 
@@ -294,5 +312,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmFloorEnabled;
         private System.Windows.Forms.ToolStripMenuItem tsmShowTandV;
         private System.Windows.Forms.ToolStripMenuItem tsmClearRunTime;
+        private System.Windows.Forms.ToolStripMenuItem tsmAerating;
+        private System.Windows.Forms.ToolStripMenuItem tsmCancelAerating;
     }
 }
