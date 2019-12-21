@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSystem));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -41,41 +40,33 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSystem));
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabMainUser = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
-            this.pbUserMana = new System.Windows.Forms.PictureBox();
             this.splitter7 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
-            this.pbUserReg = new System.Windows.Forms.PictureBox();
             this.splitter6 = new System.Windows.Forms.Splitter();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.pbUserLogout = new System.Windows.Forms.PictureBox();
             this.splitter5 = new System.Windows.Forms.Splitter();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
-            this.pbUserLogin = new System.Windows.Forms.PictureBox();
             this.tabMainOperate = new System.Windows.Forms.TabPage();
             this.panelTaskReset = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
-            this.pictureBoxTaskFuWei = new System.Windows.Forms.PictureBox();
             this.panelSwitchAuto = new System.Windows.Forms.Panel();
             this.lbAuto = new System.Windows.Forms.Label();
-            this.pictureBoxAuto = new System.Windows.Forms.PictureBox();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panelReset = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
-            this.pictureBoxReset = new System.Windows.Forms.PictureBox();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panelStop = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBoxStop = new System.Windows.Forms.PictureBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panelStart = new System.Windows.Forms.Panel();
-            this.pictureBoxStart = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabContent = new System.Windows.Forms.TabControl();
@@ -134,7 +125,6 @@
             this.label72 = new System.Windows.Forms.Label();
             this.tableLayoutPanel23 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel35 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbFeederTriLamp02 = new System.Windows.Forms.PictureBox();
             this.lbFeederName02 = new System.Windows.Forms.Label();
             this.tlpFeeder2 = new System.Windows.Forms.TableLayoutPanel();
             this.tlpFeederStationClamp0202 = new System.Windows.Forms.TableLayoutPanel();
@@ -151,15 +141,12 @@
             this.tlpFloor1002 = new System.Windows.Forms.TableLayoutPanel();
             this.cmsFloor = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmRemoteControl = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAlarmReset = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmOvenOpenDoor = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmOvenCloseDoor = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmStartBaking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLoadVacuum = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCancelLoadVacuum = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUploadVacuum = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCancelUploadVacuum = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmStopBaking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmClearRunTime = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmWatContentResult = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmWatContentTestOK = new System.Windows.Forms.ToolStripMenuItem();
@@ -189,13 +176,10 @@
             this.pbRunTime0603 = new System.Windows.Forms.ProgressBar();
             this.lbFloorStatus0603 = new System.Windows.Forms.Label();
             this.tableLayoutPanel27 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbOvenTriLamp06 = new System.Windows.Forms.PictureBox();
             this.lbOvenName06 = new System.Windows.Forms.Label();
             this.tableLayoutPanel25 = new System.Windows.Forms.TableLayoutPanel();
             this.lbOvenName07 = new System.Windows.Forms.Label();
-            this.pbOvenTriLamp07 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel26 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbOvenTriLamp08 = new System.Windows.Forms.PictureBox();
             this.lbOvenName08 = new System.Windows.Forms.Label();
             this.tlpOven08 = new System.Windows.Forms.TableLayoutPanel();
             this.tlpFloor0802 = new System.Windows.Forms.TableLayoutPanel();
@@ -224,10 +208,8 @@
             this.pbRunTime0703 = new System.Windows.Forms.ProgressBar();
             this.lbFloorStatus0703 = new System.Windows.Forms.Label();
             this.tableLayoutPanel37 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbOvenTriLamp10 = new System.Windows.Forms.PictureBox();
             this.lbOvenName10 = new System.Windows.Forms.Label();
             this.tableLayoutPanel38 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbOvenTriLamp09 = new System.Windows.Forms.PictureBox();
             this.lbOvenName09 = new System.Windows.Forms.Label();
             this.tlpOven09 = new System.Windows.Forms.TableLayoutPanel();
             this.tlpFloor0902 = new System.Windows.Forms.TableLayoutPanel();
@@ -257,20 +239,15 @@
             this.pbRunTime0503 = new System.Windows.Forms.ProgressBar();
             this.lbFloorStatus0503 = new System.Windows.Forms.Label();
             this.tableLayoutPanel28 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbOvenTriLamp05 = new System.Windows.Forms.PictureBox();
             this.lbOvenName05 = new System.Windows.Forms.Label();
             this.tableLayoutPanel50 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbOvenTriLamp01 = new System.Windows.Forms.PictureBox();
             this.lbOvenName01 = new System.Windows.Forms.Label();
             this.tableLayoutPanel51 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbOvenTriLamp02 = new System.Windows.Forms.PictureBox();
             this.lbOvenName02 = new System.Windows.Forms.Label();
             this.tableLayoutPanel52 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbOvenTriLamp03 = new System.Windows.Forms.PictureBox();
             this.lbOvenName03 = new System.Windows.Forms.Label();
             this.tableLayoutPanel53 = new System.Windows.Forms.TableLayoutPanel();
             this.lbOvenName04 = new System.Windows.Forms.Label();
-            this.pbOvenTriLamp04 = new System.Windows.Forms.PictureBox();
             this.tlpOven01 = new System.Windows.Forms.TableLayoutPanel();
             this.tlpFloor0102 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFloorInfoTop0102 = new System.Windows.Forms.Label();
@@ -324,20 +301,11 @@
             this.pbRunTime0203 = new System.Windows.Forms.ProgressBar();
             this.lbFloorStatus0203 = new System.Windows.Forms.Label();
             this.pRobot = new System.Windows.Forms.Panel();
-            this.tlpTrack = new System.Windows.Forms.TableLayoutPanel();
-            this.panelRobot = new System.Windows.Forms.Panel();
             this.cmsRobot = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmRobotPause = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRobotRestart = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmManuGetStation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmManuPutStation = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbRobotClampCode = new System.Windows.Forms.Label();
-            this.lbRobotInfo = new System.Windows.Forms.Label();
-            this.lbRobotName = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel34 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbFeederTriLamp01 = new System.Windows.Forms.PictureBox();
             this.lbFeederName01 = new System.Windows.Forms.Label();
             this.tlpFeeder1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFeederStationName0101 = new System.Windows.Forms.Label();
@@ -365,12 +333,10 @@
             this.lbTransferName = new System.Windows.Forms.Label();
             this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel36 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbBlankerTriLamp01 = new System.Windows.Forms.PictureBox();
             this.lbBlankerName01 = new System.Windows.Forms.Label();
             this.tlpBlanker1 = new System.Windows.Forms.TableLayoutPanel();
             this.cmsBlanker = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmBlankerRemoteControl = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmCancelRasterInductive = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBlankerFinishGetSample = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBlankerStation1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBlankerStation2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -384,7 +350,6 @@
             this.lbBlankerStationName0101 = new System.Windows.Forms.Label();
             this.tableLayoutPanel47 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel48 = new System.Windows.Forms.TableLayoutPanel();
-            this.pbBlankerTriLamp02 = new System.Windows.Forms.PictureBox();
             this.lbBlankerName02 = new System.Windows.Forms.Label();
             this.tlpBlanker2 = new System.Windows.Forms.TableLayoutPanel();
             this.lbBlankerFromStationName0202 = new System.Windows.Forms.Label();
@@ -573,11 +538,9 @@
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.tbBlankerStatus01 = new System.Windows.Forms.TextBox();
             this.tbBatteryScanerStatus0202 = new System.Windows.Forms.TextBox();
-            this.pbBatteryScanerLamp0202 = new System.Windows.Forms.PictureBox();
             this.lbBatteryScanerNameN0202 = new System.Windows.Forms.Label();
             this.cbBatteryScanerIsEnable0202 = new System.Windows.Forms.CheckBox();
             this.tbBatteryScanerStatus0201 = new System.Windows.Forms.TextBox();
-            this.pbBatteryScanerLamp0201 = new System.Windows.Forms.PictureBox();
             this.cbBatteryScanerIsEnable0201 = new System.Windows.Forms.CheckBox();
             this.lbBatteryScanerNameN0201 = new System.Windows.Forms.Label();
             this.cbFeederIsEnable01 = new System.Windows.Forms.CheckBox();
@@ -585,15 +548,10 @@
             this.lbBlankerNameN01 = new System.Windows.Forms.Label();
             this.cbBlankerIsEnable01 = new System.Windows.Forms.CheckBox();
             this.tbFeederStatus01 = new System.Windows.Forms.TextBox();
-            this.pbFeederLamp01 = new System.Windows.Forms.PictureBox();
             this.cbOvenIsEnable01 = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable02 = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable03 = new System.Windows.Forms.CheckBox();
             this.cbOvenIsEnable04 = new System.Windows.Forms.CheckBox();
-            this.pbOvenLamp01 = new System.Windows.Forms.PictureBox();
-            this.pbOvenLamp02 = new System.Windows.Forms.PictureBox();
-            this.pbOvenLamp03 = new System.Windows.Forms.PictureBox();
-            this.pbOvenLamp04 = new System.Windows.Forms.PictureBox();
             this.tbOvenStatus01 = new System.Windows.Forms.TextBox();
             this.tbOvenStatus02 = new System.Windows.Forms.TextBox();
             this.tbOvenStatus03 = new System.Windows.Forms.TextBox();
@@ -604,56 +562,42 @@
             this.lbOvenNameN04 = new System.Windows.Forms.Label();
             this.cbFeederIsEnable02 = new System.Windows.Forms.CheckBox();
             this.lbFeederNameN02 = new System.Windows.Forms.Label();
-            this.pbFeederLamp02 = new System.Windows.Forms.PictureBox();
             this.tbFeederStatus02 = new System.Windows.Forms.TextBox();
             this.cbRobotIsEnable = new System.Windows.Forms.CheckBox();
             this.lbRobotNameN = new System.Windows.Forms.Label();
-            this.pbRobotLamp = new System.Windows.Forms.PictureBox();
             this.tbRobotStatus = new System.Windows.Forms.TextBox();
             this.cbOvenIsEnable05 = new System.Windows.Forms.CheckBox();
             this.lbOvenNameN05 = new System.Windows.Forms.Label();
-            this.pbOvenLamp05 = new System.Windows.Forms.PictureBox();
             this.tbOvenStatus05 = new System.Windows.Forms.TextBox();
             this.cbOvenIsEnable06 = new System.Windows.Forms.CheckBox();
             this.lbOvenNameN06 = new System.Windows.Forms.Label();
-            this.pbOvenLamp06 = new System.Windows.Forms.PictureBox();
             this.tbOvenStatus06 = new System.Windows.Forms.TextBox();
             this.cbOvenIsEnable07 = new System.Windows.Forms.CheckBox();
             this.lbOvenNameN07 = new System.Windows.Forms.Label();
-            this.pbOvenLamp07 = new System.Windows.Forms.PictureBox();
             this.tbOvenStatus07 = new System.Windows.Forms.TextBox();
             this.cbOvenIsEnable08 = new System.Windows.Forms.CheckBox();
             this.lbOvenNameN08 = new System.Windows.Forms.Label();
-            this.pbOvenLamp08 = new System.Windows.Forms.PictureBox();
             this.tbOvenStatus08 = new System.Windows.Forms.TextBox();
             this.cbBatteryScanerIsEnable0101 = new System.Windows.Forms.CheckBox();
             this.lbBatteryScanerNameN0101 = new System.Windows.Forms.Label();
-            this.pbBatteryScanerLamp0101 = new System.Windows.Forms.PictureBox();
             this.tbBatteryScanerStatus0101 = new System.Windows.Forms.TextBox();
-            this.pbBlankerLamp01 = new System.Windows.Forms.PictureBox();
             this.cbBatteryScanerIsEnable0102 = new System.Windows.Forms.CheckBox();
             this.lbBatteryScanerNameN0102 = new System.Windows.Forms.Label();
-            this.pbBatteryScanerLamp0102 = new System.Windows.Forms.PictureBox();
             this.tbBatteryScanerStatus0102 = new System.Windows.Forms.TextBox();
             this.cbOvenIsEnable09 = new System.Windows.Forms.CheckBox();
             this.lbOvenNameN09 = new System.Windows.Forms.Label();
-            this.pbOvenLamp09 = new System.Windows.Forms.PictureBox();
             this.tbOvenStatus09 = new System.Windows.Forms.TextBox();
             this.cbOvenIsEnable10 = new System.Windows.Forms.CheckBox();
             this.lbOvenNameN10 = new System.Windows.Forms.Label();
-            this.pbOvenLamp10 = new System.Windows.Forms.PictureBox();
             this.tbOvenStatus10 = new System.Windows.Forms.TextBox();
             this.cbMesIsEnable = new System.Windows.Forms.CheckBox();
             this.lbMesNameN = new System.Windows.Forms.Label();
-            this.pbMesLamp = new System.Windows.Forms.PictureBox();
             this.tbMesStatus = new System.Windows.Forms.TextBox();
             this.cbBlankerIsEnable02 = new System.Windows.Forms.CheckBox();
             this.lbBlankerNameN02 = new System.Windows.Forms.Label();
-            this.pbBlankerLamp02 = new System.Windows.Forms.PictureBox();
             this.tbBlankerStatus02 = new System.Windows.Forms.TextBox();
             this.cbClampScanerIsEnable = new System.Windows.Forms.CheckBox();
             this.lbClampScanerNameN = new System.Windows.Forms.Label();
-            this.pbClampScanerLamp = new System.Windows.Forms.PictureBox();
             this.tbClampScanerStatus = new System.Windows.Forms.TextBox();
             this.lbRunStatus = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -661,7 +605,6 @@
             this.lbTaskMode = new System.Windows.Forms.Label();
             this.tlpEmergencyStop = new System.Windows.Forms.TableLayoutPanel();
             this.label57 = new System.Windows.Forms.Label();
-            this.pbEmergencyStop = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -669,27 +612,77 @@
             this.lbTime = new System.Windows.Forms.Label();
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
             this.yieldDisplay = new Soundon.Dispatcher.Controls.YieldDisplay();
+            this.pbUserMana = new System.Windows.Forms.PictureBox();
+            this.pbUserReg = new System.Windows.Forms.PictureBox();
+            this.pbUserLogout = new System.Windows.Forms.PictureBox();
+            this.pbUserLogin = new System.Windows.Forms.PictureBox();
+            this.pictureBoxTaskFuWei = new System.Windows.Forms.PictureBox();
+            this.pictureBoxAuto = new System.Windows.Forms.PictureBox();
+            this.pictureBoxReset = new System.Windows.Forms.PictureBox();
+            this.pictureBoxStop = new System.Windows.Forms.PictureBox();
+            this.pictureBoxStart = new System.Windows.Forms.PictureBox();
+            this.pbEmergencyStop = new System.Windows.Forms.PictureBox();
+            this.pbBatteryScanerLamp0202 = new System.Windows.Forms.PictureBox();
+            this.pbBatteryScanerLamp0201 = new System.Windows.Forms.PictureBox();
+            this.pbFeederLamp01 = new System.Windows.Forms.PictureBox();
+            this.pbOvenLamp01 = new System.Windows.Forms.PictureBox();
+            this.pbOvenLamp02 = new System.Windows.Forms.PictureBox();
+            this.pbOvenLamp03 = new System.Windows.Forms.PictureBox();
+            this.pbOvenLamp04 = new System.Windows.Forms.PictureBox();
+            this.pbFeederLamp02 = new System.Windows.Forms.PictureBox();
+            this.pbRobotLamp = new System.Windows.Forms.PictureBox();
+            this.pbOvenLamp05 = new System.Windows.Forms.PictureBox();
+            this.pbOvenLamp06 = new System.Windows.Forms.PictureBox();
+            this.pbOvenLamp07 = new System.Windows.Forms.PictureBox();
+            this.pbOvenLamp08 = new System.Windows.Forms.PictureBox();
+            this.pbBatteryScanerLamp0101 = new System.Windows.Forms.PictureBox();
+            this.pbBlankerLamp01 = new System.Windows.Forms.PictureBox();
+            this.pbBatteryScanerLamp0102 = new System.Windows.Forms.PictureBox();
+            this.pbOvenLamp09 = new System.Windows.Forms.PictureBox();
+            this.pbOvenLamp10 = new System.Windows.Forms.PictureBox();
+            this.pbMesLamp = new System.Windows.Forms.PictureBox();
+            this.pbBlankerLamp02 = new System.Windows.Forms.PictureBox();
+            this.pbClampScanerLamp = new System.Windows.Forms.PictureBox();
+            this.pbFeederTriLamp02 = new System.Windows.Forms.PictureBox();
+            this.tsmAlarmReset = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStartBaking = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStopBaking = new System.Windows.Forms.ToolStripMenuItem();
+            this.pbOvenTriLamp06 = new System.Windows.Forms.PictureBox();
+            this.pbOvenTriLamp07 = new System.Windows.Forms.PictureBox();
+            this.pbOvenTriLamp08 = new System.Windows.Forms.PictureBox();
+            this.pbOvenTriLamp10 = new System.Windows.Forms.PictureBox();
+            this.pbOvenTriLamp09 = new System.Windows.Forms.PictureBox();
+            this.pbOvenTriLamp05 = new System.Windows.Forms.PictureBox();
+            this.pbOvenTriLamp01 = new System.Windows.Forms.PictureBox();
+            this.pbOvenTriLamp02 = new System.Windows.Forms.PictureBox();
+            this.pbOvenTriLamp03 = new System.Windows.Forms.PictureBox();
+            this.pbOvenTriLamp04 = new System.Windows.Forms.PictureBox();
+            this.tlpTrack = new System.Windows.Forms.TableLayoutPanel();
+            this.panelRobot = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbRobotClampCode = new System.Windows.Forms.Label();
+            this.lbRobotInfo = new System.Windows.Forms.Label();
+            this.lbRobotName = new System.Windows.Forms.Label();
+            this.pbFeederTriLamp01 = new System.Windows.Forms.PictureBox();
+            this.pbBlankerTriLamp01 = new System.Windows.Forms.PictureBox();
+            this.tsmCancelRasterInductive = new System.Windows.Forms.ToolStripMenuItem();
+            this.pbBlankerTriLamp02 = new System.Windows.Forms.PictureBox();
+            this.tsmRobotStart = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRobotPause = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRobotRestart = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRobotAlarmReset = new System.Windows.Forms.ToolStripMenuItem();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUserMana)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUserReg)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUserLogout)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUserLogin)).BeginInit();
             this.tabMainOperate.SuspendLayout();
             this.panelTaskReset.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTaskFuWei)).BeginInit();
             this.panelSwitchAuto.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAuto)).BeginInit();
             this.panelReset.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReset)).BeginInit();
             this.panelStop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStop)).BeginInit();
             this.panelStart.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStart)).BeginInit();
             this.tabContent.SuspendLayout();
             this.tabContentPageUser.SuspendLayout();
             this.gbReg.SuspendLayout();
@@ -705,7 +698,6 @@
             this.tableLayoutPanel40.SuspendLayout();
             this.tableLayoutPanel23.SuspendLayout();
             this.tableLayoutPanel35.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFeederTriLamp02)).BeginInit();
             this.tlpFeeder2.SuspendLayout();
             this.tlpFeederStationClamp0202.SuspendLayout();
             this.tlpFeederStationClamp0201.SuspendLayout();
@@ -721,11 +713,8 @@
             this.tlpFloor0601.SuspendLayout();
             this.tlpFloor0603.SuspendLayout();
             this.tableLayoutPanel27.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp06)).BeginInit();
             this.tableLayoutPanel25.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp07)).BeginInit();
             this.tableLayoutPanel26.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp08)).BeginInit();
             this.tlpOven08.SuspendLayout();
             this.tlpFloor0802.SuspendLayout();
             this.tlpFloor0801.SuspendLayout();
@@ -735,9 +724,7 @@
             this.tlpFloor0701.SuspendLayout();
             this.tlpFloor0703.SuspendLayout();
             this.tableLayoutPanel37.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp10)).BeginInit();
             this.tableLayoutPanel38.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp09)).BeginInit();
             this.tlpOven09.SuspendLayout();
             this.tlpFloor0902.SuspendLayout();
             this.tlpFloor0901.SuspendLayout();
@@ -748,15 +735,10 @@
             this.tlpFloor0501.SuspendLayout();
             this.tlpFloor0503.SuspendLayout();
             this.tableLayoutPanel28.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp05)).BeginInit();
             this.tableLayoutPanel50.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp01)).BeginInit();
             this.tableLayoutPanel51.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp02)).BeginInit();
             this.tableLayoutPanel52.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp03)).BeginInit();
             this.tableLayoutPanel53.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp04)).BeginInit();
             this.tlpOven01.SuspendLayout();
             this.tlpFloor0102.SuspendLayout();
             this.tlpFloor0101.SuspendLayout();
@@ -774,13 +756,9 @@
             this.tlpFloor0201.SuspendLayout();
             this.tlpFloor0203.SuspendLayout();
             this.pRobot.SuspendLayout();
-            this.tlpTrack.SuspendLayout();
-            this.panelRobot.SuspendLayout();
             this.cmsRobot.SuspendLayout();
-            this.tableLayoutPanel21.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel34.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFeederTriLamp01)).BeginInit();
             this.tlpFeeder1.SuspendLayout();
             this.tlpFeederStationClamp0102.SuspendLayout();
             this.tlpFeederStationClamp0101.SuspendLayout();
@@ -794,14 +772,12 @@
             this.tlpTransferClamp.SuspendLayout();
             this.tableLayoutPanel20.SuspendLayout();
             this.tableLayoutPanel36.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp01)).BeginInit();
             this.tlpBlanker1.SuspendLayout();
             this.cmsBlanker.SuspendLayout();
             this.tlpBlankerStationClamp0101.SuspendLayout();
             this.tlpBlankerStationClamp0102.SuspendLayout();
             this.tableLayoutPanel47.SuspendLayout();
             this.tableLayoutPanel48.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp02)).BeginInit();
             this.tlpBlanker2.SuspendLayout();
             this.tlpBlankerStationClamp0202.SuspendLayout();
             this.tlpBlankerStationClamp0201.SuspendLayout();
@@ -855,6 +831,27 @@
             this.tableLayoutPanel24.SuspendLayout();
             this.groupBoxTerminal.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tlpEmergencyStop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUserMana)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUserReg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUserLogout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUserLogin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTaskFuWei)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAuto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReset)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStop)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEmergencyStop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBatteryScanerLamp0202)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBatteryScanerLamp0201)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFeederLamp01)).BeginInit();
@@ -876,18 +873,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbMesLamp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBlankerLamp02)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbClampScanerLamp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tlpEmergencyStop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbEmergencyStop)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFeederTriLamp02)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp06)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp07)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp08)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp09)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp05)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp01)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp02)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp03)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp04)).BeginInit();
+            this.tlpTrack.SuspendLayout();
+            this.panelRobot.SuspendLayout();
+            this.tableLayoutPanel21.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFeederTriLamp01)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp01)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp02)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMain
@@ -941,19 +943,6 @@
             this.label11.TabIndex = 5;
             this.label11.Text = "管理";
             // 
-            // pbUserMana
-            // 
-            this.pbUserMana.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pbUserMana.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbUserMana.Image = global::Soundon.Dispatcher.App.Properties.Resources.Settings_green;
-            this.pbUserMana.Location = new System.Drawing.Point(18, 6);
-            this.pbUserMana.Name = "pbUserMana";
-            this.pbUserMana.Size = new System.Drawing.Size(51, 50);
-            this.pbUserMana.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbUserMana.TabIndex = 4;
-            this.pbUserMana.TabStop = false;
-            this.pbUserMana.Click += new System.EventHandler(this.pbUser_Click);
-            // 
             // splitter7
             // 
             this.splitter7.Location = new System.Drawing.Point(264, 3);
@@ -984,19 +973,6 @@
             this.label10.TabIndex = 4;
             this.label10.Text = "注册";
             // 
-            // pbUserReg
-            // 
-            this.pbUserReg.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pbUserReg.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbUserReg.Image = global::Soundon.Dispatcher.App.Properties.Resources.register;
-            this.pbUserReg.Location = new System.Drawing.Point(16, 6);
-            this.pbUserReg.Name = "pbUserReg";
-            this.pbUserReg.Size = new System.Drawing.Size(51, 50);
-            this.pbUserReg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbUserReg.TabIndex = 3;
-            this.pbUserReg.TabStop = false;
-            this.pbUserReg.Click += new System.EventHandler(this.pbUser_Click);
-            // 
             // splitter6
             // 
             this.splitter6.Location = new System.Drawing.Point(176, 3);
@@ -1026,19 +1002,6 @@
             this.label9.TabIndex = 3;
             this.label9.Text = "注销";
             // 
-            // pbUserLogout
-            // 
-            this.pbUserLogout.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pbUserLogout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbUserLogout.Image = global::Soundon.Dispatcher.App.Properties.Resources.logout;
-            this.pbUserLogout.Location = new System.Drawing.Point(16, 6);
-            this.pbUserLogout.Name = "pbUserLogout";
-            this.pbUserLogout.Size = new System.Drawing.Size(51, 50);
-            this.pbUserLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbUserLogout.TabIndex = 2;
-            this.pbUserLogout.TabStop = false;
-            this.pbUserLogout.Click += new System.EventHandler(this.pbUser_Click);
-            // 
             // splitter5
             // 
             this.splitter5.Location = new System.Drawing.Point(88, 3);
@@ -1067,19 +1030,6 @@
             this.label8.Size = new System.Drawing.Size(40, 16);
             this.label8.TabIndex = 2;
             this.label8.Text = "登录";
-            // 
-            // pbUserLogin
-            // 
-            this.pbUserLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pbUserLogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbUserLogin.Image = global::Soundon.Dispatcher.App.Properties.Resources.login;
-            this.pbUserLogin.Location = new System.Drawing.Point(16, 6);
-            this.pbUserLogin.Name = "pbUserLogin";
-            this.pbUserLogin.Size = new System.Drawing.Size(51, 50);
-            this.pbUserLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbUserLogin.TabIndex = 1;
-            this.pbUserLogin.TabStop = false;
-            this.pbUserLogin.Click += new System.EventHandler(this.pbUser_Click);
             // 
             // tabMainOperate
             // 
@@ -1122,19 +1072,6 @@
             this.label7.TabIndex = 4;
             this.label7.Text = "任务复位";
             // 
-            // pictureBoxTaskFuWei
-            // 
-            this.pictureBoxTaskFuWei.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBoxTaskFuWei.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxTaskFuWei.Image = global::Soundon.Dispatcher.App.Properties.Resources.Reset_green;
-            this.pictureBoxTaskFuWei.Location = new System.Drawing.Point(22, 6);
-            this.pictureBoxTaskFuWei.Name = "pictureBoxTaskFuWei";
-            this.pictureBoxTaskFuWei.Size = new System.Drawing.Size(51, 50);
-            this.pictureBoxTaskFuWei.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxTaskFuWei.TabIndex = 3;
-            this.pictureBoxTaskFuWei.TabStop = false;
-            this.pictureBoxTaskFuWei.Click += new System.EventHandler(this.pictureBox_Click);
-            // 
             // panelSwitchAuto
             // 
             this.panelSwitchAuto.Controls.Add(this.lbAuto);
@@ -1157,19 +1094,6 @@
             this.lbAuto.Size = new System.Drawing.Size(72, 16);
             this.lbAuto.TabIndex = 4;
             this.lbAuto.Text = "切换自动";
-            // 
-            // pictureBoxAuto
-            // 
-            this.pictureBoxAuto.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBoxAuto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxAuto.Image = global::Soundon.Dispatcher.App.Properties.Resources.Switch_green;
-            this.pictureBoxAuto.Location = new System.Drawing.Point(20, 6);
-            this.pictureBoxAuto.Name = "pictureBoxAuto";
-            this.pictureBoxAuto.Size = new System.Drawing.Size(51, 50);
-            this.pictureBoxAuto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxAuto.TabIndex = 3;
-            this.pictureBoxAuto.TabStop = false;
-            this.pictureBoxAuto.Click += new System.EventHandler(this.pictureBox_Click);
             // 
             // splitter3
             // 
@@ -1202,19 +1126,6 @@
             this.label6.TabIndex = 3;
             this.label6.Text = "复位";
             // 
-            // pictureBoxReset
-            // 
-            this.pictureBoxReset.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBoxReset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxReset.Image = global::Soundon.Dispatcher.App.Properties.Resources.Reset_Lime;
-            this.pictureBoxReset.Location = new System.Drawing.Point(16, 6);
-            this.pictureBoxReset.Name = "pictureBoxReset";
-            this.pictureBoxReset.Size = new System.Drawing.Size(51, 50);
-            this.pictureBoxReset.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxReset.TabIndex = 2;
-            this.pictureBoxReset.TabStop = false;
-            this.pictureBoxReset.Click += new System.EventHandler(this.pictureBox_Click);
-            // 
             // splitter2
             // 
             this.splitter2.Location = new System.Drawing.Point(176, 3);
@@ -1246,20 +1157,6 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "暂停";
             // 
-            // pictureBoxStop
-            // 
-            this.pictureBoxStop.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBoxStop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxStop.Image = global::Soundon.Dispatcher.App.Properties.Resources.Stop_Red;
-            this.pictureBoxStop.InitialImage = null;
-            this.pictureBoxStop.Location = new System.Drawing.Point(16, 6);
-            this.pictureBoxStop.Name = "pictureBoxStop";
-            this.pictureBoxStop.Size = new System.Drawing.Size(51, 50);
-            this.pictureBoxStop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxStop.TabIndex = 1;
-            this.pictureBoxStop.TabStop = false;
-            this.pictureBoxStop.Click += new System.EventHandler(this.pictureBox_Click);
-            // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(88, 3);
@@ -1278,19 +1175,6 @@
             this.panelStart.Name = "panelStart";
             this.panelStart.Size = new System.Drawing.Size(85, 83);
             this.panelStart.TabIndex = 0;
-            // 
-            // pictureBoxStart
-            // 
-            this.pictureBoxStart.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBoxStart.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxStart.Image = global::Soundon.Dispatcher.App.Properties.Resources.Start_Green;
-            this.pictureBoxStart.Location = new System.Drawing.Point(16, 6);
-            this.pictureBoxStart.Name = "pictureBoxStart";
-            this.pictureBoxStart.Size = new System.Drawing.Size(51, 50);
-            this.pictureBoxStart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxStart.TabIndex = 0;
-            this.pictureBoxStart.TabStop = false;
-            this.pictureBoxStart.Click += new System.EventHandler(this.pictureBox_Click);
             // 
             // label3
             // 
@@ -2053,18 +1937,6 @@
             this.tableLayoutPanel35.Size = new System.Drawing.Size(156, 22);
             this.tableLayoutPanel35.TabIndex = 34;
             // 
-            // pbFeederTriLamp02
-            // 
-            this.pbFeederTriLamp02.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbFeederTriLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbFeederTriLamp02.Image")));
-            this.pbFeederTriLamp02.Location = new System.Drawing.Point(136, 1);
-            this.pbFeederTriLamp02.Margin = new System.Windows.Forms.Padding(0);
-            this.pbFeederTriLamp02.Name = "pbFeederTriLamp02";
-            this.pbFeederTriLamp02.Size = new System.Drawing.Size(20, 19);
-            this.pbFeederTriLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbFeederTriLamp02.TabIndex = 29;
-            this.pbFeederTriLamp02.TabStop = false;
-            // 
             // lbFeederName02
             // 
             this.lbFeederName02.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2415,14 +2287,6 @@
             this.tsmRemoteControl.Size = new System.Drawing.Size(148, 22);
             this.tsmRemoteControl.Text = "远程控制";
             // 
-            // tsmAlarmReset
-            // 
-            this.tsmAlarmReset.Image = global::Soundon.Dispatcher.App.Properties.Resources.Reset_green;
-            this.tsmAlarmReset.Name = "tsmAlarmReset";
-            this.tsmAlarmReset.Size = new System.Drawing.Size(148, 22);
-            this.tsmAlarmReset.Text = "报警复位";
-            this.tsmAlarmReset.Click += new System.EventHandler(this.tsmAlarmReset_Click);
-            // 
             // tsmOvenOpenDoor
             // 
             this.tsmOvenOpenDoor.Name = "tsmOvenOpenDoor";
@@ -2436,14 +2300,6 @@
             this.tsmOvenCloseDoor.Size = new System.Drawing.Size(148, 22);
             this.tsmOvenCloseDoor.Text = "关门";
             this.tsmOvenCloseDoor.Click += new System.EventHandler(this.tsmOvenCloseDoor_Click);
-            // 
-            // tsmStartBaking
-            // 
-            this.tsmStartBaking.Image = global::Soundon.Dispatcher.App.Properties.Resources.Start_Green;
-            this.tsmStartBaking.Name = "tsmStartBaking";
-            this.tsmStartBaking.Size = new System.Drawing.Size(148, 22);
-            this.tsmStartBaking.Text = "启动";
-            this.tsmStartBaking.Click += new System.EventHandler(this.tsmStartBaking_Click);
             // 
             // tsmLoadVacuum
             // 
@@ -2474,14 +2330,6 @@
             this.tsmCancelUploadVacuum.Text = "取消破真空";
             this.tsmCancelUploadVacuum.Visible = false;
             this.tsmCancelUploadVacuum.Click += new System.EventHandler(this.tsmCancelUploadVacuum_Click);
-            // 
-            // tsmStopBaking
-            // 
-            this.tsmStopBaking.Image = global::Soundon.Dispatcher.App.Properties.Resources.Stop_Red;
-            this.tsmStopBaking.Name = "tsmStopBaking";
-            this.tsmStopBaking.Size = new System.Drawing.Size(148, 22);
-            this.tsmStopBaking.Text = "停止";
-            this.tsmStopBaking.Click += new System.EventHandler(this.tsmStopBaking_Click);
             // 
             // tsmClearRunTime
             // 
@@ -2932,18 +2780,6 @@
             this.tableLayoutPanel27.Size = new System.Drawing.Size(126, 25);
             this.tableLayoutPanel27.TabIndex = 33;
             // 
-            // pbOvenTriLamp06
-            // 
-            this.pbOvenTriLamp06.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbOvenTriLamp06.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp06.Image")));
-            this.pbOvenTriLamp06.Location = new System.Drawing.Point(106, 3);
-            this.pbOvenTriLamp06.Margin = new System.Windows.Forms.Padding(0);
-            this.pbOvenTriLamp06.Name = "pbOvenTriLamp06";
-            this.pbOvenTriLamp06.Size = new System.Drawing.Size(20, 19);
-            this.pbOvenTriLamp06.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenTriLamp06.TabIndex = 29;
-            this.pbOvenTriLamp06.TabStop = false;
-            // 
             // lbOvenName06
             // 
             this.lbOvenName06.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2983,18 +2819,6 @@
             this.lbOvenName07.Text = "7#";
             this.lbOvenName07.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pbOvenTriLamp07
-            // 
-            this.pbOvenTriLamp07.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbOvenTriLamp07.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp07.Image")));
-            this.pbOvenTriLamp07.Location = new System.Drawing.Point(103, 3);
-            this.pbOvenTriLamp07.Margin = new System.Windows.Forms.Padding(0);
-            this.pbOvenTriLamp07.Name = "pbOvenTriLamp07";
-            this.pbOvenTriLamp07.Size = new System.Drawing.Size(20, 19);
-            this.pbOvenTriLamp07.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenTriLamp07.TabIndex = 29;
-            this.pbOvenTriLamp07.TabStop = false;
-            // 
             // tableLayoutPanel26
             // 
             this.tableLayoutPanel26.ColumnCount = 2;
@@ -3011,18 +2835,6 @@
             this.tableLayoutPanel26.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel26.Size = new System.Drawing.Size(123, 25);
             this.tableLayoutPanel26.TabIndex = 31;
-            // 
-            // pbOvenTriLamp08
-            // 
-            this.pbOvenTriLamp08.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbOvenTriLamp08.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp08.Image")));
-            this.pbOvenTriLamp08.Location = new System.Drawing.Point(103, 3);
-            this.pbOvenTriLamp08.Margin = new System.Windows.Forms.Padding(0);
-            this.pbOvenTriLamp08.Name = "pbOvenTriLamp08";
-            this.pbOvenTriLamp08.Size = new System.Drawing.Size(20, 19);
-            this.pbOvenTriLamp08.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenTriLamp08.TabIndex = 29;
-            this.pbOvenTriLamp08.TabStop = false;
             // 
             // lbOvenName08
             // 
@@ -3498,18 +3310,6 @@
             this.tableLayoutPanel37.Size = new System.Drawing.Size(123, 25);
             this.tableLayoutPanel37.TabIndex = 37;
             // 
-            // pbOvenTriLamp10
-            // 
-            this.pbOvenTriLamp10.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbOvenTriLamp10.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp10.Image")));
-            this.pbOvenTriLamp10.Location = new System.Drawing.Point(103, 3);
-            this.pbOvenTriLamp10.Margin = new System.Windows.Forms.Padding(0);
-            this.pbOvenTriLamp10.Name = "pbOvenTriLamp10";
-            this.pbOvenTriLamp10.Size = new System.Drawing.Size(20, 19);
-            this.pbOvenTriLamp10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenTriLamp10.TabIndex = 29;
-            this.pbOvenTriLamp10.TabStop = false;
-            // 
             // lbOvenName10
             // 
             this.lbOvenName10.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -3537,18 +3337,6 @@
             this.tableLayoutPanel38.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel38.Size = new System.Drawing.Size(123, 25);
             this.tableLayoutPanel38.TabIndex = 38;
-            // 
-            // pbOvenTriLamp09
-            // 
-            this.pbOvenTriLamp09.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbOvenTriLamp09.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp09.Image")));
-            this.pbOvenTriLamp09.Location = new System.Drawing.Point(103, 3);
-            this.pbOvenTriLamp09.Margin = new System.Windows.Forms.Padding(0);
-            this.pbOvenTriLamp09.Name = "pbOvenTriLamp09";
-            this.pbOvenTriLamp09.Size = new System.Drawing.Size(20, 19);
-            this.pbOvenTriLamp09.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenTriLamp09.TabIndex = 29;
-            this.pbOvenTriLamp09.TabStop = false;
             // 
             // lbOvenName09
             // 
@@ -4057,18 +3845,6 @@
             this.tableLayoutPanel28.Size = new System.Drawing.Size(123, 25);
             this.tableLayoutPanel28.TabIndex = 33;
             // 
-            // pbOvenTriLamp05
-            // 
-            this.pbOvenTriLamp05.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbOvenTriLamp05.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp05.Image")));
-            this.pbOvenTriLamp05.Location = new System.Drawing.Point(103, 3);
-            this.pbOvenTriLamp05.Margin = new System.Windows.Forms.Padding(0);
-            this.pbOvenTriLamp05.Name = "pbOvenTriLamp05";
-            this.pbOvenTriLamp05.Size = new System.Drawing.Size(20, 19);
-            this.pbOvenTriLamp05.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenTriLamp05.TabIndex = 29;
-            this.pbOvenTriLamp05.TabStop = false;
-            // 
             // lbOvenName05
             // 
             this.lbOvenName05.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -4096,18 +3872,6 @@
             this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel50.Size = new System.Drawing.Size(126, 25);
             this.tableLayoutPanel50.TabIndex = 33;
-            // 
-            // pbOvenTriLamp01
-            // 
-            this.pbOvenTriLamp01.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbOvenTriLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp01.Image")));
-            this.pbOvenTriLamp01.Location = new System.Drawing.Point(106, 3);
-            this.pbOvenTriLamp01.Margin = new System.Windows.Forms.Padding(0);
-            this.pbOvenTriLamp01.Name = "pbOvenTriLamp01";
-            this.pbOvenTriLamp01.Size = new System.Drawing.Size(20, 19);
-            this.pbOvenTriLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenTriLamp01.TabIndex = 29;
-            this.pbOvenTriLamp01.TabStop = false;
             // 
             // lbOvenName01
             // 
@@ -4137,18 +3901,6 @@
             this.tableLayoutPanel51.Size = new System.Drawing.Size(123, 25);
             this.tableLayoutPanel51.TabIndex = 33;
             // 
-            // pbOvenTriLamp02
-            // 
-            this.pbOvenTriLamp02.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbOvenTriLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp02.Image")));
-            this.pbOvenTriLamp02.Location = new System.Drawing.Point(103, 3);
-            this.pbOvenTriLamp02.Margin = new System.Windows.Forms.Padding(0);
-            this.pbOvenTriLamp02.Name = "pbOvenTriLamp02";
-            this.pbOvenTriLamp02.Size = new System.Drawing.Size(20, 19);
-            this.pbOvenTriLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenTriLamp02.TabIndex = 29;
-            this.pbOvenTriLamp02.TabStop = false;
-            // 
             // lbOvenName02
             // 
             this.lbOvenName02.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -4176,18 +3928,6 @@
             this.tableLayoutPanel52.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel52.Size = new System.Drawing.Size(123, 25);
             this.tableLayoutPanel52.TabIndex = 32;
-            // 
-            // pbOvenTriLamp03
-            // 
-            this.pbOvenTriLamp03.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbOvenTriLamp03.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp03.Image")));
-            this.pbOvenTriLamp03.Location = new System.Drawing.Point(103, 3);
-            this.pbOvenTriLamp03.Margin = new System.Windows.Forms.Padding(0);
-            this.pbOvenTriLamp03.Name = "pbOvenTriLamp03";
-            this.pbOvenTriLamp03.Size = new System.Drawing.Size(20, 19);
-            this.pbOvenTriLamp03.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenTriLamp03.TabIndex = 29;
-            this.pbOvenTriLamp03.TabStop = false;
             // 
             // lbOvenName03
             // 
@@ -4227,18 +3967,6 @@
             this.lbOvenName04.TabIndex = 6;
             this.lbOvenName04.Text = "4#";
             this.lbOvenName04.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbOvenTriLamp04
-            // 
-            this.pbOvenTriLamp04.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbOvenTriLamp04.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp04.Image")));
-            this.pbOvenTriLamp04.Location = new System.Drawing.Point(103, 3);
-            this.pbOvenTriLamp04.Margin = new System.Windows.Forms.Padding(0);
-            this.pbOvenTriLamp04.Name = "pbOvenTriLamp04";
-            this.pbOvenTriLamp04.Size = new System.Drawing.Size(20, 19);
-            this.pbOvenTriLamp04.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenTriLamp04.TabIndex = 29;
-            this.pbOvenTriLamp04.TabStop = false;
             // 
             // tlpOven01
             // 
@@ -5144,59 +4872,18 @@
             this.pRobot.Size = new System.Drawing.Size(1026, 45);
             this.pRobot.TabIndex = 11;
             // 
-            // tlpTrack
-            // 
-            this.tlpTrack.BackgroundImage = global::Soundon.Dispatcher.App.Properties.Resources.Robot_Track_Lime;
-            this.tlpTrack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tlpTrack.ColumnCount = 1;
-            this.tlpTrack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.97987F));
-            this.tlpTrack.Controls.Add(this.panelRobot, 0, 0);
-            this.tlpTrack.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpTrack.Location = new System.Drawing.Point(0, 0);
-            this.tlpTrack.Name = "tlpTrack";
-            this.tlpTrack.RowCount = 1;
-            this.tlpTrack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpTrack.Size = new System.Drawing.Size(1024, 43);
-            this.tlpTrack.TabIndex = 0;
-            // 
-            // panelRobot
-            // 
-            this.panelRobot.BackColor = System.Drawing.SystemColors.Control;
-            this.panelRobot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelRobot.ContextMenuStrip = this.cmsRobot;
-            this.panelRobot.Controls.Add(this.tableLayoutPanel21);
-            this.panelRobot.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelRobot.Location = new System.Drawing.Point(3, 3);
-            this.panelRobot.Name = "panelRobot";
-            this.panelRobot.Size = new System.Drawing.Size(71, 37);
-            this.panelRobot.TabIndex = 1;
-            // 
             // cmsRobot
             // 
             this.cmsRobot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmRobotStart,
             this.tsmRobotPause,
             this.tsmRobotRestart,
+            this.tsmRobotAlarmReset,
             this.tsmManuGetStation,
             this.tsmManuPutStation});
             this.cmsRobot.Name = "cmsRobot";
-            this.cmsRobot.Size = new System.Drawing.Size(149, 92);
+            this.cmsRobot.Size = new System.Drawing.Size(149, 136);
             this.cmsRobot.Opening += new System.ComponentModel.CancelEventHandler(this.cmsRobot_Opening);
-            // 
-            // tsmRobotPause
-            // 
-            this.tsmRobotPause.Image = global::Soundon.Dispatcher.App.Properties.Resources.Stop_Red;
-            this.tsmRobotPause.Name = "tsmRobotPause";
-            this.tsmRobotPause.Size = new System.Drawing.Size(148, 22);
-            this.tsmRobotPause.Text = "暂停";
-            this.tsmRobotPause.Click += new System.EventHandler(this.tsmRobotPause_Click);
-            // 
-            // tsmRobotRestart
-            // 
-            this.tsmRobotRestart.Image = global::Soundon.Dispatcher.App.Properties.Resources.Continue_Green;
-            this.tsmRobotRestart.Name = "tsmRobotRestart";
-            this.tsmRobotRestart.Size = new System.Drawing.Size(148, 22);
-            this.tsmRobotRestart.Text = "继续";
-            this.tsmRobotRestart.Click += new System.EventHandler(this.tsmRobotRestart_Click);
             // 
             // tsmManuGetStation
             // 
@@ -5211,63 +4898,6 @@
             this.tsmManuPutStation.Size = new System.Drawing.Size(148, 22);
             this.tsmManuPutStation.Text = "手动【放盘】";
             this.tsmManuPutStation.DropDownOpening += new System.EventHandler(this.tsmManuStation_DropDownOpening);
-            // 
-            // tableLayoutPanel21
-            // 
-            this.tableLayoutPanel21.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel21.ColumnCount = 1;
-            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel21.Controls.Add(this.lbRobotClampCode, 0, 2);
-            this.tableLayoutPanel21.Controls.Add(this.lbRobotInfo, 0, 1);
-            this.tableLayoutPanel21.Controls.Add(this.lbRobotName, 0, 0);
-            this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel21.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel21.Name = "tableLayoutPanel21";
-            this.tableLayoutPanel21.RowCount = 3;
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel21.Size = new System.Drawing.Size(69, 35);
-            this.tableLayoutPanel21.TabIndex = 0;
-            // 
-            // lbRobotClampCode
-            // 
-            this.lbRobotClampCode.AutoSize = true;
-            this.lbRobotClampCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbRobotClampCode.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbRobotClampCode.ForeColor = System.Drawing.Color.Transparent;
-            this.lbRobotClampCode.Location = new System.Drawing.Point(0, 24);
-            this.lbRobotClampCode.Margin = new System.Windows.Forms.Padding(0);
-            this.lbRobotClampCode.Name = "lbRobotClampCode";
-            this.lbRobotClampCode.Size = new System.Drawing.Size(69, 11);
-            this.lbRobotClampCode.TabIndex = 3;
-            this.lbRobotClampCode.Text = "夹具条码";
-            this.lbRobotClampCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbRobotInfo
-            // 
-            this.lbRobotInfo.AutoSize = true;
-            this.lbRobotInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbRobotInfo.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbRobotInfo.ForeColor = System.Drawing.Color.Lime;
-            this.lbRobotInfo.Location = new System.Drawing.Point(3, 10);
-            this.lbRobotInfo.Name = "lbRobotInfo";
-            this.lbRobotInfo.Size = new System.Drawing.Size(63, 14);
-            this.lbRobotInfo.TabIndex = 1;
-            this.lbRobotInfo.Text = "取/放盘";
-            this.lbRobotInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbRobotName
-            // 
-            this.lbRobotName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbRobotName.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbRobotName.Location = new System.Drawing.Point(0, 0);
-            this.lbRobotName.Margin = new System.Windows.Forms.Padding(0);
-            this.lbRobotName.Name = "lbRobotName";
-            this.lbRobotName.Size = new System.Drawing.Size(69, 10);
-            this.lbRobotName.TabIndex = 0;
-            this.lbRobotName.Text = "XXXX";
-            this.lbRobotName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel4
             // 
@@ -5300,18 +4930,6 @@
             this.tableLayoutPanel34.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel34.Size = new System.Drawing.Size(156, 25);
             this.tableLayoutPanel34.TabIndex = 34;
-            // 
-            // pbFeederTriLamp01
-            // 
-            this.pbFeederTriLamp01.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbFeederTriLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbFeederTriLamp01.Image")));
-            this.pbFeederTriLamp01.Location = new System.Drawing.Point(136, 3);
-            this.pbFeederTriLamp01.Margin = new System.Windows.Forms.Padding(0);
-            this.pbFeederTriLamp01.Name = "pbFeederTriLamp01";
-            this.pbFeederTriLamp01.Size = new System.Drawing.Size(20, 19);
-            this.pbFeederTriLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbFeederTriLamp01.TabIndex = 29;
-            this.pbFeederTriLamp01.TabStop = false;
             // 
             // lbFeederName01
             // 
@@ -5803,18 +5421,6 @@
             this.tableLayoutPanel36.Size = new System.Drawing.Size(105, 30);
             this.tableLayoutPanel36.TabIndex = 34;
             // 
-            // pbBlankerTriLamp01
-            // 
-            this.pbBlankerTriLamp01.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbBlankerTriLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbBlankerTriLamp01.Image")));
-            this.pbBlankerTriLamp01.Location = new System.Drawing.Point(85, 5);
-            this.pbBlankerTriLamp01.Margin = new System.Windows.Forms.Padding(0);
-            this.pbBlankerTriLamp01.Name = "pbBlankerTriLamp01";
-            this.pbBlankerTriLamp01.Size = new System.Drawing.Size(20, 19);
-            this.pbBlankerTriLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbBlankerTriLamp01.TabIndex = 29;
-            this.pbBlankerTriLamp01.TabStop = false;
-            // 
             // lbBlankerName01
             // 
             this.lbBlankerName01.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -5868,14 +5474,6 @@
             this.tsmBlankerRemoteControl.Name = "tsmBlankerRemoteControl";
             this.tsmBlankerRemoteControl.Size = new System.Drawing.Size(160, 22);
             this.tsmBlankerRemoteControl.Text = "远程控制";
-            // 
-            // tsmCancelRasterInductive
-            // 
-            this.tsmCancelRasterInductive.Image = global::Soundon.Dispatcher.App.Properties.Resources.Reset_green;
-            this.tsmCancelRasterInductive.Name = "tsmCancelRasterInductive";
-            this.tsmCancelRasterInductive.Size = new System.Drawing.Size(148, 22);
-            this.tsmCancelRasterInductive.Text = "光栅报警复位";
-            this.tsmCancelRasterInductive.Click += new System.EventHandler(this.TsmCancelRasterInductive_Click);
             // 
             // tsmBlankerFinishGetSample
             // 
@@ -6098,18 +5696,6 @@
             this.tableLayoutPanel48.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel48.Size = new System.Drawing.Size(105, 30);
             this.tableLayoutPanel48.TabIndex = 34;
-            // 
-            // pbBlankerTriLamp02
-            // 
-            this.pbBlankerTriLamp02.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pbBlankerTriLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbBlankerTriLamp02.Image")));
-            this.pbBlankerTriLamp02.Location = new System.Drawing.Point(85, 5);
-            this.pbBlankerTriLamp02.Margin = new System.Windows.Forms.Padding(0);
-            this.pbBlankerTriLamp02.Name = "pbBlankerTriLamp02";
-            this.pbBlankerTriLamp02.Size = new System.Drawing.Size(20, 19);
-            this.pbBlankerTriLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbBlankerTriLamp02.TabIndex = 29;
-            this.pbBlankerTriLamp02.TabStop = false;
             // 
             // lbBlankerName02
             // 
@@ -8871,18 +8457,6 @@
             this.tbBatteryScanerStatus0202.TabIndex = 41;
             this.tbBatteryScanerStatus0202.Text = "未连接";
             // 
-            // pbBatteryScanerLamp0202
-            // 
-            this.pbBatteryScanerLamp0202.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbBatteryScanerLamp0202.Image = ((System.Drawing.Image)(resources.GetObject("pbBatteryScanerLamp0202.Image")));
-            this.pbBatteryScanerLamp0202.Location = new System.Drawing.Point(122, 92);
-            this.pbBatteryScanerLamp0202.Margin = new System.Windows.Forms.Padding(2);
-            this.pbBatteryScanerLamp0202.Name = "pbBatteryScanerLamp0202";
-            this.pbBatteryScanerLamp0202.Size = new System.Drawing.Size(17, 13);
-            this.pbBatteryScanerLamp0202.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbBatteryScanerLamp0202.TabIndex = 34;
-            this.pbBatteryScanerLamp0202.TabStop = false;
-            // 
             // lbBatteryScanerNameN0202
             // 
             this.lbBatteryScanerNameN0202.AutoSize = true;
@@ -8918,18 +8492,6 @@
             this.tbBatteryScanerStatus0201.Size = new System.Drawing.Size(117, 14);
             this.tbBatteryScanerStatus0201.TabIndex = 40;
             this.tbBatteryScanerStatus0201.Text = "未连接";
-            // 
-            // pbBatteryScanerLamp0201
-            // 
-            this.pbBatteryScanerLamp0201.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbBatteryScanerLamp0201.Image = ((System.Drawing.Image)(resources.GetObject("pbBatteryScanerLamp0201.Image")));
-            this.pbBatteryScanerLamp0201.Location = new System.Drawing.Point(122, 74);
-            this.pbBatteryScanerLamp0201.Margin = new System.Windows.Forms.Padding(2);
-            this.pbBatteryScanerLamp0201.Name = "pbBatteryScanerLamp0201";
-            this.pbBatteryScanerLamp0201.Size = new System.Drawing.Size(17, 13);
-            this.pbBatteryScanerLamp0201.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbBatteryScanerLamp0201.TabIndex = 33;
-            this.pbBatteryScanerLamp0201.TabStop = false;
             // 
             // cbBatteryScanerIsEnable0201
             // 
@@ -9014,18 +8576,6 @@
             this.tbFeederStatus01.TabIndex = 2;
             this.tbFeederStatus01.Text = "未连接";
             // 
-            // pbFeederLamp01
-            // 
-            this.pbFeederLamp01.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbFeederLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbFeederLamp01.Image")));
-            this.pbFeederLamp01.Location = new System.Drawing.Point(122, 2);
-            this.pbFeederLamp01.Margin = new System.Windows.Forms.Padding(2);
-            this.pbFeederLamp01.Name = "pbFeederLamp01";
-            this.pbFeederLamp01.Size = new System.Drawing.Size(17, 13);
-            this.pbFeederLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbFeederLamp01.TabIndex = 3;
-            this.pbFeederLamp01.TabStop = false;
-            // 
             // cbOvenIsEnable01
             // 
             this.cbOvenIsEnable01.AutoSize = true;
@@ -9069,54 +8619,6 @@
             this.cbOvenIsEnable04.TabIndex = 30;
             this.cbOvenIsEnable04.UseVisualStyleBackColor = true;
             this.cbOvenIsEnable04.CheckedChanged += new System.EventHandler(this.cbOvenIsEnable_CheckedChanged);
-            // 
-            // pbOvenLamp01
-            // 
-            this.pbOvenLamp01.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbOvenLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp01.Image")));
-            this.pbOvenLamp01.Location = new System.Drawing.Point(122, 146);
-            this.pbOvenLamp01.Margin = new System.Windows.Forms.Padding(2);
-            this.pbOvenLamp01.Name = "pbOvenLamp01";
-            this.pbOvenLamp01.Size = new System.Drawing.Size(17, 13);
-            this.pbOvenLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenLamp01.TabIndex = 34;
-            this.pbOvenLamp01.TabStop = false;
-            // 
-            // pbOvenLamp02
-            // 
-            this.pbOvenLamp02.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbOvenLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp02.Image")));
-            this.pbOvenLamp02.Location = new System.Drawing.Point(122, 164);
-            this.pbOvenLamp02.Margin = new System.Windows.Forms.Padding(2);
-            this.pbOvenLamp02.Name = "pbOvenLamp02";
-            this.pbOvenLamp02.Size = new System.Drawing.Size(17, 13);
-            this.pbOvenLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenLamp02.TabIndex = 35;
-            this.pbOvenLamp02.TabStop = false;
-            // 
-            // pbOvenLamp03
-            // 
-            this.pbOvenLamp03.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbOvenLamp03.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp03.Image")));
-            this.pbOvenLamp03.Location = new System.Drawing.Point(122, 182);
-            this.pbOvenLamp03.Margin = new System.Windows.Forms.Padding(2);
-            this.pbOvenLamp03.Name = "pbOvenLamp03";
-            this.pbOvenLamp03.Size = new System.Drawing.Size(17, 13);
-            this.pbOvenLamp03.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenLamp03.TabIndex = 36;
-            this.pbOvenLamp03.TabStop = false;
-            // 
-            // pbOvenLamp04
-            // 
-            this.pbOvenLamp04.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbOvenLamp04.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp04.Image")));
-            this.pbOvenLamp04.Location = new System.Drawing.Point(122, 200);
-            this.pbOvenLamp04.Margin = new System.Windows.Forms.Padding(2);
-            this.pbOvenLamp04.Name = "pbOvenLamp04";
-            this.pbOvenLamp04.Size = new System.Drawing.Size(17, 13);
-            this.pbOvenLamp04.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenLamp04.TabIndex = 37;
-            this.pbOvenLamp04.TabStop = false;
             // 
             // tbOvenStatus01
             // 
@@ -9245,18 +8747,6 @@
             this.lbFeederNameN02.Text = "XXXXX";
             this.lbFeederNameN02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pbFeederLamp02
-            // 
-            this.pbFeederLamp02.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbFeederLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbFeederLamp02.Image")));
-            this.pbFeederLamp02.Location = new System.Drawing.Point(122, 20);
-            this.pbFeederLamp02.Margin = new System.Windows.Forms.Padding(2);
-            this.pbFeederLamp02.Name = "pbFeederLamp02";
-            this.pbFeederLamp02.Size = new System.Drawing.Size(17, 13);
-            this.pbFeederLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbFeederLamp02.TabIndex = 38;
-            this.pbFeederLamp02.TabStop = false;
-            // 
             // tbFeederStatus02
             // 
             this.tbFeederStatus02.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -9293,18 +8783,6 @@
             this.lbRobotNameN.TabIndex = 52;
             this.lbRobotNameN.Text = "XXXX";
             this.lbRobotNameN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pbRobotLamp
-            // 
-            this.pbRobotLamp.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbRobotLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbRobotLamp.Image")));
-            this.pbRobotLamp.Location = new System.Drawing.Point(122, 128);
-            this.pbRobotLamp.Margin = new System.Windows.Forms.Padding(2);
-            this.pbRobotLamp.Name = "pbRobotLamp";
-            this.pbRobotLamp.Size = new System.Drawing.Size(17, 13);
-            this.pbRobotLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbRobotLamp.TabIndex = 38;
-            this.pbRobotLamp.TabStop = false;
             // 
             // tbRobotStatus
             // 
@@ -9343,18 +8821,6 @@
             this.lbOvenNameN05.Text = "XXXXX";
             this.lbOvenNameN05.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pbOvenLamp05
-            // 
-            this.pbOvenLamp05.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbOvenLamp05.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp05.Image")));
-            this.pbOvenLamp05.Location = new System.Drawing.Point(122, 218);
-            this.pbOvenLamp05.Margin = new System.Windows.Forms.Padding(2);
-            this.pbOvenLamp05.Name = "pbOvenLamp05";
-            this.pbOvenLamp05.Size = new System.Drawing.Size(17, 13);
-            this.pbOvenLamp05.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenLamp05.TabIndex = 67;
-            this.pbOvenLamp05.TabStop = false;
-            // 
             // tbOvenStatus05
             // 
             this.tbOvenStatus05.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -9391,18 +8857,6 @@
             this.lbOvenNameN06.TabIndex = 62;
             this.lbOvenNameN06.Text = "XXXXX";
             this.lbOvenNameN06.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pbOvenLamp06
-            // 
-            this.pbOvenLamp06.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbOvenLamp06.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp06.Image")));
-            this.pbOvenLamp06.Location = new System.Drawing.Point(122, 236);
-            this.pbOvenLamp06.Margin = new System.Windows.Forms.Padding(2);
-            this.pbOvenLamp06.Name = "pbOvenLamp06";
-            this.pbOvenLamp06.Size = new System.Drawing.Size(17, 13);
-            this.pbOvenLamp06.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenLamp06.TabIndex = 68;
-            this.pbOvenLamp06.TabStop = false;
             // 
             // tbOvenStatus06
             // 
@@ -9441,18 +8895,6 @@
             this.lbOvenNameN07.Text = "XXXXX";
             this.lbOvenNameN07.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pbOvenLamp07
-            // 
-            this.pbOvenLamp07.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbOvenLamp07.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp07.Image")));
-            this.pbOvenLamp07.Location = new System.Drawing.Point(122, 254);
-            this.pbOvenLamp07.Margin = new System.Windows.Forms.Padding(2);
-            this.pbOvenLamp07.Name = "pbOvenLamp07";
-            this.pbOvenLamp07.Size = new System.Drawing.Size(17, 13);
-            this.pbOvenLamp07.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenLamp07.TabIndex = 69;
-            this.pbOvenLamp07.TabStop = false;
-            // 
             // tbOvenStatus07
             // 
             this.tbOvenStatus07.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -9489,17 +8931,6 @@
             this.lbOvenNameN08.TabIndex = 64;
             this.lbOvenNameN08.Text = "XXXXX";
             this.lbOvenNameN08.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pbOvenLamp08
-            // 
-            this.pbOvenLamp08.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp08.Image")));
-            this.pbOvenLamp08.Location = new System.Drawing.Point(122, 272);
-            this.pbOvenLamp08.Margin = new System.Windows.Forms.Padding(2);
-            this.pbOvenLamp08.Name = "pbOvenLamp08";
-            this.pbOvenLamp08.Size = new System.Drawing.Size(17, 13);
-            this.pbOvenLamp08.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenLamp08.TabIndex = 70;
-            this.pbOvenLamp08.TabStop = false;
             // 
             // tbOvenStatus08
             // 
@@ -9538,18 +8969,6 @@
             this.lbBatteryScanerNameN0101.Text = "XXXXXX";
             this.lbBatteryScanerNameN0101.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pbBatteryScanerLamp0101
-            // 
-            this.pbBatteryScanerLamp0101.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbBatteryScanerLamp0101.Image = ((System.Drawing.Image)(resources.GetObject("pbBatteryScanerLamp0101.Image")));
-            this.pbBatteryScanerLamp0101.Location = new System.Drawing.Point(122, 38);
-            this.pbBatteryScanerLamp0101.Margin = new System.Windows.Forms.Padding(2);
-            this.pbBatteryScanerLamp0101.Name = "pbBatteryScanerLamp0101";
-            this.pbBatteryScanerLamp0101.Size = new System.Drawing.Size(17, 13);
-            this.pbBatteryScanerLamp0101.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbBatteryScanerLamp0101.TabIndex = 66;
-            this.pbBatteryScanerLamp0101.TabStop = false;
-            // 
             // tbBatteryScanerStatus0101
             // 
             this.tbBatteryScanerStatus0101.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -9563,17 +8982,6 @@
             this.tbBatteryScanerStatus0101.Size = new System.Drawing.Size(117, 14);
             this.tbBatteryScanerStatus0101.TabIndex = 72;
             this.tbBatteryScanerStatus0101.Text = "未连接";
-            // 
-            // pbBlankerLamp01
-            // 
-            this.pbBlankerLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbBlankerLamp01.Image")));
-            this.pbBlankerLamp01.Location = new System.Drawing.Point(122, 326);
-            this.pbBlankerLamp01.Margin = new System.Windows.Forms.Padding(2);
-            this.pbBlankerLamp01.Name = "pbBlankerLamp01";
-            this.pbBlankerLamp01.Size = new System.Drawing.Size(17, 13);
-            this.pbBlankerLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbBlankerLamp01.TabIndex = 38;
-            this.pbBlankerLamp01.TabStop = false;
             // 
             // cbBatteryScanerIsEnable0102
             // 
@@ -9597,18 +9005,6 @@
             this.lbBatteryScanerNameN0102.TabIndex = 53;
             this.lbBatteryScanerNameN0102.Text = "XXXXXX";
             this.lbBatteryScanerNameN0102.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pbBatteryScanerLamp0102
-            // 
-            this.pbBatteryScanerLamp0102.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbBatteryScanerLamp0102.Image = ((System.Drawing.Image)(resources.GetObject("pbBatteryScanerLamp0102.Image")));
-            this.pbBatteryScanerLamp0102.Location = new System.Drawing.Point(122, 56);
-            this.pbBatteryScanerLamp0102.Margin = new System.Windows.Forms.Padding(2);
-            this.pbBatteryScanerLamp0102.Name = "pbBatteryScanerLamp0102";
-            this.pbBatteryScanerLamp0102.Size = new System.Drawing.Size(17, 13);
-            this.pbBatteryScanerLamp0102.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbBatteryScanerLamp0102.TabIndex = 39;
-            this.pbBatteryScanerLamp0102.TabStop = false;
             // 
             // tbBatteryScanerStatus0102
             // 
@@ -9647,17 +9043,6 @@
             this.lbOvenNameN09.Text = "XXXXX";
             this.lbOvenNameN09.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pbOvenLamp09
-            // 
-            this.pbOvenLamp09.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp09.Image")));
-            this.pbOvenLamp09.Location = new System.Drawing.Point(122, 290);
-            this.pbOvenLamp09.Margin = new System.Windows.Forms.Padding(2);
-            this.pbOvenLamp09.Name = "pbOvenLamp09";
-            this.pbOvenLamp09.Size = new System.Drawing.Size(17, 13);
-            this.pbOvenLamp09.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenLamp09.TabIndex = 81;
-            this.pbOvenLamp09.TabStop = false;
-            // 
             // tbOvenStatus09
             // 
             this.tbOvenStatus09.BackColor = System.Drawing.SystemColors.Control;
@@ -9695,17 +9080,6 @@
             this.lbOvenNameN10.Text = "XXXXX";
             this.lbOvenNameN10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pbOvenLamp10
-            // 
-            this.pbOvenLamp10.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp10.Image")));
-            this.pbOvenLamp10.Location = new System.Drawing.Point(122, 308);
-            this.pbOvenLamp10.Margin = new System.Windows.Forms.Padding(2);
-            this.pbOvenLamp10.Name = "pbOvenLamp10";
-            this.pbOvenLamp10.Size = new System.Drawing.Size(17, 13);
-            this.pbOvenLamp10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOvenLamp10.TabIndex = 85;
-            this.pbOvenLamp10.TabStop = false;
-            // 
             // tbOvenStatus10
             // 
             this.tbOvenStatus10.BackColor = System.Drawing.SystemColors.Control;
@@ -9740,17 +9114,6 @@
             this.lbMesNameN.TabIndex = 78;
             this.lbMesNameN.Text = "mes";
             this.lbMesNameN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pbMesLamp
-            // 
-            this.pbMesLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbMesLamp.Image")));
-            this.pbMesLamp.Location = new System.Drawing.Point(122, 362);
-            this.pbMesLamp.Margin = new System.Windows.Forms.Padding(2);
-            this.pbMesLamp.Name = "pbMesLamp";
-            this.pbMesLamp.Size = new System.Drawing.Size(17, 18);
-            this.pbMesLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbMesLamp.TabIndex = 27;
-            this.pbMesLamp.TabStop = false;
             // 
             // tbMesStatus
             // 
@@ -9789,17 +9152,6 @@
             this.lbBlankerNameN02.Text = "XXXXX";
             this.lbBlankerNameN02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pbBlankerLamp02
-            // 
-            this.pbBlankerLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbBlankerLamp02.Image")));
-            this.pbBlankerLamp02.Location = new System.Drawing.Point(122, 344);
-            this.pbBlankerLamp02.Margin = new System.Windows.Forms.Padding(2);
-            this.pbBlankerLamp02.Name = "pbBlankerLamp02";
-            this.pbBlankerLamp02.Size = new System.Drawing.Size(17, 13);
-            this.pbBlankerLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbBlankerLamp02.TabIndex = 89;
-            this.pbBlankerLamp02.TabStop = false;
-            // 
             // tbBlankerStatus02
             // 
             this.tbBlankerStatus02.BackColor = System.Drawing.SystemColors.Control;
@@ -9835,18 +9187,6 @@
             this.lbClampScanerNameN.TabIndex = 92;
             this.lbClampScanerNameN.Text = "XXXXXX";
             this.lbClampScanerNameN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pbClampScanerLamp
-            // 
-            this.pbClampScanerLamp.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbClampScanerLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbClampScanerLamp.Image")));
-            this.pbClampScanerLamp.Location = new System.Drawing.Point(122, 111);
-            this.pbClampScanerLamp.Margin = new System.Windows.Forms.Padding(2);
-            this.pbClampScanerLamp.Name = "pbClampScanerLamp";
-            this.pbClampScanerLamp.Size = new System.Drawing.Size(17, 12);
-            this.pbClampScanerLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbClampScanerLamp.TabIndex = 93;
-            this.pbClampScanerLamp.TabStop = false;
             // 
             // tbClampScanerStatus
             // 
@@ -9958,20 +9298,6 @@
             this.label57.Text = "机器人急停";
             this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pbEmergencyStop
-            // 
-            this.pbEmergencyStop.BackColor = System.Drawing.Color.Transparent;
-            this.pbEmergencyStop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbEmergencyStop.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pbEmergencyStop.Image = ((System.Drawing.Image)(resources.GetObject("pbEmergencyStop.Image")));
-            this.pbEmergencyStop.Location = new System.Drawing.Point(3, 21);
-            this.pbEmergencyStop.Name = "pbEmergencyStop";
-            this.pbEmergencyStop.Size = new System.Drawing.Size(75, 75);
-            this.pbEmergencyStop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbEmergencyStop.TabIndex = 11;
-            this.pbEmergencyStop.TabStop = false;
-            this.pbEmergencyStop.Click += new System.EventHandler(this.pbEmergencyStop_Click);
-            // 
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -10065,6 +9391,700 @@
             this.yieldDisplay.TabIndex = 14;
             this.yieldDisplay.btnYieldClearClick += new Soundon.Dispatcher.Controls.YieldDisplay.BtnClick(this.btnYieldClear_Click);
             // 
+            // pbUserMana
+            // 
+            this.pbUserMana.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pbUserMana.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbUserMana.Image = global::Soundon.Dispatcher.App.Properties.Resources.Settings_green;
+            this.pbUserMana.Location = new System.Drawing.Point(18, 6);
+            this.pbUserMana.Name = "pbUserMana";
+            this.pbUserMana.Size = new System.Drawing.Size(51, 50);
+            this.pbUserMana.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbUserMana.TabIndex = 4;
+            this.pbUserMana.TabStop = false;
+            this.pbUserMana.Click += new System.EventHandler(this.pbUser_Click);
+            // 
+            // pbUserReg
+            // 
+            this.pbUserReg.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pbUserReg.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbUserReg.Image = global::Soundon.Dispatcher.App.Properties.Resources.register;
+            this.pbUserReg.Location = new System.Drawing.Point(16, 6);
+            this.pbUserReg.Name = "pbUserReg";
+            this.pbUserReg.Size = new System.Drawing.Size(51, 50);
+            this.pbUserReg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbUserReg.TabIndex = 3;
+            this.pbUserReg.TabStop = false;
+            this.pbUserReg.Click += new System.EventHandler(this.pbUser_Click);
+            // 
+            // pbUserLogout
+            // 
+            this.pbUserLogout.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pbUserLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbUserLogout.Image = global::Soundon.Dispatcher.App.Properties.Resources.logout;
+            this.pbUserLogout.Location = new System.Drawing.Point(16, 6);
+            this.pbUserLogout.Name = "pbUserLogout";
+            this.pbUserLogout.Size = new System.Drawing.Size(51, 50);
+            this.pbUserLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbUserLogout.TabIndex = 2;
+            this.pbUserLogout.TabStop = false;
+            this.pbUserLogout.Click += new System.EventHandler(this.pbUser_Click);
+            // 
+            // pbUserLogin
+            // 
+            this.pbUserLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pbUserLogin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbUserLogin.Image = global::Soundon.Dispatcher.App.Properties.Resources.login;
+            this.pbUserLogin.Location = new System.Drawing.Point(16, 6);
+            this.pbUserLogin.Name = "pbUserLogin";
+            this.pbUserLogin.Size = new System.Drawing.Size(51, 50);
+            this.pbUserLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbUserLogin.TabIndex = 1;
+            this.pbUserLogin.TabStop = false;
+            this.pbUserLogin.Click += new System.EventHandler(this.pbUser_Click);
+            // 
+            // pictureBoxTaskFuWei
+            // 
+            this.pictureBoxTaskFuWei.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBoxTaskFuWei.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxTaskFuWei.Image = global::Soundon.Dispatcher.App.Properties.Resources.Reset_green;
+            this.pictureBoxTaskFuWei.Location = new System.Drawing.Point(22, 6);
+            this.pictureBoxTaskFuWei.Name = "pictureBoxTaskFuWei";
+            this.pictureBoxTaskFuWei.Size = new System.Drawing.Size(51, 50);
+            this.pictureBoxTaskFuWei.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxTaskFuWei.TabIndex = 3;
+            this.pictureBoxTaskFuWei.TabStop = false;
+            this.pictureBoxTaskFuWei.Click += new System.EventHandler(this.pictureBox_Click);
+            // 
+            // pictureBoxAuto
+            // 
+            this.pictureBoxAuto.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBoxAuto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxAuto.Image = global::Soundon.Dispatcher.App.Properties.Resources.Switch_green;
+            this.pictureBoxAuto.Location = new System.Drawing.Point(20, 6);
+            this.pictureBoxAuto.Name = "pictureBoxAuto";
+            this.pictureBoxAuto.Size = new System.Drawing.Size(51, 50);
+            this.pictureBoxAuto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxAuto.TabIndex = 3;
+            this.pictureBoxAuto.TabStop = false;
+            this.pictureBoxAuto.Click += new System.EventHandler(this.pictureBox_Click);
+            // 
+            // pictureBoxReset
+            // 
+            this.pictureBoxReset.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBoxReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxReset.Image = global::Soundon.Dispatcher.App.Properties.Resources.Reset_Lime;
+            this.pictureBoxReset.Location = new System.Drawing.Point(16, 6);
+            this.pictureBoxReset.Name = "pictureBoxReset";
+            this.pictureBoxReset.Size = new System.Drawing.Size(51, 50);
+            this.pictureBoxReset.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxReset.TabIndex = 2;
+            this.pictureBoxReset.TabStop = false;
+            this.pictureBoxReset.Click += new System.EventHandler(this.pictureBox_Click);
+            // 
+            // pictureBoxStop
+            // 
+            this.pictureBoxStop.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBoxStop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxStop.Image = global::Soundon.Dispatcher.App.Properties.Resources.Stop_Red;
+            this.pictureBoxStop.InitialImage = null;
+            this.pictureBoxStop.Location = new System.Drawing.Point(16, 6);
+            this.pictureBoxStop.Name = "pictureBoxStop";
+            this.pictureBoxStop.Size = new System.Drawing.Size(51, 50);
+            this.pictureBoxStop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxStop.TabIndex = 1;
+            this.pictureBoxStop.TabStop = false;
+            this.pictureBoxStop.Click += new System.EventHandler(this.pictureBox_Click);
+            // 
+            // pictureBoxStart
+            // 
+            this.pictureBoxStart.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBoxStart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxStart.Image = global::Soundon.Dispatcher.App.Properties.Resources.Start_Green;
+            this.pictureBoxStart.Location = new System.Drawing.Point(16, 6);
+            this.pictureBoxStart.Name = "pictureBoxStart";
+            this.pictureBoxStart.Size = new System.Drawing.Size(51, 50);
+            this.pictureBoxStart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxStart.TabIndex = 0;
+            this.pictureBoxStart.TabStop = false;
+            this.pictureBoxStart.Click += new System.EventHandler(this.pictureBox_Click);
+            // 
+            // pbEmergencyStop
+            // 
+            this.pbEmergencyStop.BackColor = System.Drawing.Color.Transparent;
+            this.pbEmergencyStop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbEmergencyStop.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pbEmergencyStop.Image = ((System.Drawing.Image)(resources.GetObject("pbEmergencyStop.Image")));
+            this.pbEmergencyStop.Location = new System.Drawing.Point(3, 21);
+            this.pbEmergencyStop.Name = "pbEmergencyStop";
+            this.pbEmergencyStop.Size = new System.Drawing.Size(75, 75);
+            this.pbEmergencyStop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbEmergencyStop.TabIndex = 11;
+            this.pbEmergencyStop.TabStop = false;
+            this.pbEmergencyStop.Click += new System.EventHandler(this.pbEmergencyStop_Click);
+            // 
+            // pbBatteryScanerLamp0202
+            // 
+            this.pbBatteryScanerLamp0202.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbBatteryScanerLamp0202.Image = ((System.Drawing.Image)(resources.GetObject("pbBatteryScanerLamp0202.Image")));
+            this.pbBatteryScanerLamp0202.Location = new System.Drawing.Point(122, 92);
+            this.pbBatteryScanerLamp0202.Margin = new System.Windows.Forms.Padding(2);
+            this.pbBatteryScanerLamp0202.Name = "pbBatteryScanerLamp0202";
+            this.pbBatteryScanerLamp0202.Size = new System.Drawing.Size(17, 13);
+            this.pbBatteryScanerLamp0202.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbBatteryScanerLamp0202.TabIndex = 34;
+            this.pbBatteryScanerLamp0202.TabStop = false;
+            // 
+            // pbBatteryScanerLamp0201
+            // 
+            this.pbBatteryScanerLamp0201.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbBatteryScanerLamp0201.Image = ((System.Drawing.Image)(resources.GetObject("pbBatteryScanerLamp0201.Image")));
+            this.pbBatteryScanerLamp0201.Location = new System.Drawing.Point(122, 74);
+            this.pbBatteryScanerLamp0201.Margin = new System.Windows.Forms.Padding(2);
+            this.pbBatteryScanerLamp0201.Name = "pbBatteryScanerLamp0201";
+            this.pbBatteryScanerLamp0201.Size = new System.Drawing.Size(17, 13);
+            this.pbBatteryScanerLamp0201.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbBatteryScanerLamp0201.TabIndex = 33;
+            this.pbBatteryScanerLamp0201.TabStop = false;
+            // 
+            // pbFeederLamp01
+            // 
+            this.pbFeederLamp01.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbFeederLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbFeederLamp01.Image")));
+            this.pbFeederLamp01.Location = new System.Drawing.Point(122, 2);
+            this.pbFeederLamp01.Margin = new System.Windows.Forms.Padding(2);
+            this.pbFeederLamp01.Name = "pbFeederLamp01";
+            this.pbFeederLamp01.Size = new System.Drawing.Size(17, 13);
+            this.pbFeederLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbFeederLamp01.TabIndex = 3;
+            this.pbFeederLamp01.TabStop = false;
+            // 
+            // pbOvenLamp01
+            // 
+            this.pbOvenLamp01.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbOvenLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp01.Image")));
+            this.pbOvenLamp01.Location = new System.Drawing.Point(122, 146);
+            this.pbOvenLamp01.Margin = new System.Windows.Forms.Padding(2);
+            this.pbOvenLamp01.Name = "pbOvenLamp01";
+            this.pbOvenLamp01.Size = new System.Drawing.Size(17, 13);
+            this.pbOvenLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenLamp01.TabIndex = 34;
+            this.pbOvenLamp01.TabStop = false;
+            // 
+            // pbOvenLamp02
+            // 
+            this.pbOvenLamp02.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbOvenLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp02.Image")));
+            this.pbOvenLamp02.Location = new System.Drawing.Point(122, 164);
+            this.pbOvenLamp02.Margin = new System.Windows.Forms.Padding(2);
+            this.pbOvenLamp02.Name = "pbOvenLamp02";
+            this.pbOvenLamp02.Size = new System.Drawing.Size(17, 13);
+            this.pbOvenLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenLamp02.TabIndex = 35;
+            this.pbOvenLamp02.TabStop = false;
+            // 
+            // pbOvenLamp03
+            // 
+            this.pbOvenLamp03.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbOvenLamp03.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp03.Image")));
+            this.pbOvenLamp03.Location = new System.Drawing.Point(122, 182);
+            this.pbOvenLamp03.Margin = new System.Windows.Forms.Padding(2);
+            this.pbOvenLamp03.Name = "pbOvenLamp03";
+            this.pbOvenLamp03.Size = new System.Drawing.Size(17, 13);
+            this.pbOvenLamp03.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenLamp03.TabIndex = 36;
+            this.pbOvenLamp03.TabStop = false;
+            // 
+            // pbOvenLamp04
+            // 
+            this.pbOvenLamp04.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbOvenLamp04.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp04.Image")));
+            this.pbOvenLamp04.Location = new System.Drawing.Point(122, 200);
+            this.pbOvenLamp04.Margin = new System.Windows.Forms.Padding(2);
+            this.pbOvenLamp04.Name = "pbOvenLamp04";
+            this.pbOvenLamp04.Size = new System.Drawing.Size(17, 13);
+            this.pbOvenLamp04.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenLamp04.TabIndex = 37;
+            this.pbOvenLamp04.TabStop = false;
+            // 
+            // pbFeederLamp02
+            // 
+            this.pbFeederLamp02.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbFeederLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbFeederLamp02.Image")));
+            this.pbFeederLamp02.Location = new System.Drawing.Point(122, 20);
+            this.pbFeederLamp02.Margin = new System.Windows.Forms.Padding(2);
+            this.pbFeederLamp02.Name = "pbFeederLamp02";
+            this.pbFeederLamp02.Size = new System.Drawing.Size(17, 13);
+            this.pbFeederLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbFeederLamp02.TabIndex = 38;
+            this.pbFeederLamp02.TabStop = false;
+            // 
+            // pbRobotLamp
+            // 
+            this.pbRobotLamp.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbRobotLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbRobotLamp.Image")));
+            this.pbRobotLamp.Location = new System.Drawing.Point(122, 128);
+            this.pbRobotLamp.Margin = new System.Windows.Forms.Padding(2);
+            this.pbRobotLamp.Name = "pbRobotLamp";
+            this.pbRobotLamp.Size = new System.Drawing.Size(17, 13);
+            this.pbRobotLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbRobotLamp.TabIndex = 38;
+            this.pbRobotLamp.TabStop = false;
+            // 
+            // pbOvenLamp05
+            // 
+            this.pbOvenLamp05.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbOvenLamp05.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp05.Image")));
+            this.pbOvenLamp05.Location = new System.Drawing.Point(122, 218);
+            this.pbOvenLamp05.Margin = new System.Windows.Forms.Padding(2);
+            this.pbOvenLamp05.Name = "pbOvenLamp05";
+            this.pbOvenLamp05.Size = new System.Drawing.Size(17, 13);
+            this.pbOvenLamp05.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenLamp05.TabIndex = 67;
+            this.pbOvenLamp05.TabStop = false;
+            // 
+            // pbOvenLamp06
+            // 
+            this.pbOvenLamp06.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbOvenLamp06.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp06.Image")));
+            this.pbOvenLamp06.Location = new System.Drawing.Point(122, 236);
+            this.pbOvenLamp06.Margin = new System.Windows.Forms.Padding(2);
+            this.pbOvenLamp06.Name = "pbOvenLamp06";
+            this.pbOvenLamp06.Size = new System.Drawing.Size(17, 13);
+            this.pbOvenLamp06.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenLamp06.TabIndex = 68;
+            this.pbOvenLamp06.TabStop = false;
+            // 
+            // pbOvenLamp07
+            // 
+            this.pbOvenLamp07.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbOvenLamp07.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp07.Image")));
+            this.pbOvenLamp07.Location = new System.Drawing.Point(122, 254);
+            this.pbOvenLamp07.Margin = new System.Windows.Forms.Padding(2);
+            this.pbOvenLamp07.Name = "pbOvenLamp07";
+            this.pbOvenLamp07.Size = new System.Drawing.Size(17, 13);
+            this.pbOvenLamp07.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenLamp07.TabIndex = 69;
+            this.pbOvenLamp07.TabStop = false;
+            // 
+            // pbOvenLamp08
+            // 
+            this.pbOvenLamp08.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp08.Image")));
+            this.pbOvenLamp08.Location = new System.Drawing.Point(122, 272);
+            this.pbOvenLamp08.Margin = new System.Windows.Forms.Padding(2);
+            this.pbOvenLamp08.Name = "pbOvenLamp08";
+            this.pbOvenLamp08.Size = new System.Drawing.Size(17, 13);
+            this.pbOvenLamp08.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenLamp08.TabIndex = 70;
+            this.pbOvenLamp08.TabStop = false;
+            // 
+            // pbBatteryScanerLamp0101
+            // 
+            this.pbBatteryScanerLamp0101.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbBatteryScanerLamp0101.Image = ((System.Drawing.Image)(resources.GetObject("pbBatteryScanerLamp0101.Image")));
+            this.pbBatteryScanerLamp0101.Location = new System.Drawing.Point(122, 38);
+            this.pbBatteryScanerLamp0101.Margin = new System.Windows.Forms.Padding(2);
+            this.pbBatteryScanerLamp0101.Name = "pbBatteryScanerLamp0101";
+            this.pbBatteryScanerLamp0101.Size = new System.Drawing.Size(17, 13);
+            this.pbBatteryScanerLamp0101.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbBatteryScanerLamp0101.TabIndex = 66;
+            this.pbBatteryScanerLamp0101.TabStop = false;
+            // 
+            // pbBlankerLamp01
+            // 
+            this.pbBlankerLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbBlankerLamp01.Image")));
+            this.pbBlankerLamp01.Location = new System.Drawing.Point(122, 326);
+            this.pbBlankerLamp01.Margin = new System.Windows.Forms.Padding(2);
+            this.pbBlankerLamp01.Name = "pbBlankerLamp01";
+            this.pbBlankerLamp01.Size = new System.Drawing.Size(17, 13);
+            this.pbBlankerLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbBlankerLamp01.TabIndex = 38;
+            this.pbBlankerLamp01.TabStop = false;
+            // 
+            // pbBatteryScanerLamp0102
+            // 
+            this.pbBatteryScanerLamp0102.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbBatteryScanerLamp0102.Image = ((System.Drawing.Image)(resources.GetObject("pbBatteryScanerLamp0102.Image")));
+            this.pbBatteryScanerLamp0102.Location = new System.Drawing.Point(122, 56);
+            this.pbBatteryScanerLamp0102.Margin = new System.Windows.Forms.Padding(2);
+            this.pbBatteryScanerLamp0102.Name = "pbBatteryScanerLamp0102";
+            this.pbBatteryScanerLamp0102.Size = new System.Drawing.Size(17, 13);
+            this.pbBatteryScanerLamp0102.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbBatteryScanerLamp0102.TabIndex = 39;
+            this.pbBatteryScanerLamp0102.TabStop = false;
+            // 
+            // pbOvenLamp09
+            // 
+            this.pbOvenLamp09.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp09.Image")));
+            this.pbOvenLamp09.Location = new System.Drawing.Point(122, 290);
+            this.pbOvenLamp09.Margin = new System.Windows.Forms.Padding(2);
+            this.pbOvenLamp09.Name = "pbOvenLamp09";
+            this.pbOvenLamp09.Size = new System.Drawing.Size(17, 13);
+            this.pbOvenLamp09.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenLamp09.TabIndex = 81;
+            this.pbOvenLamp09.TabStop = false;
+            // 
+            // pbOvenLamp10
+            // 
+            this.pbOvenLamp10.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenLamp10.Image")));
+            this.pbOvenLamp10.Location = new System.Drawing.Point(122, 308);
+            this.pbOvenLamp10.Margin = new System.Windows.Forms.Padding(2);
+            this.pbOvenLamp10.Name = "pbOvenLamp10";
+            this.pbOvenLamp10.Size = new System.Drawing.Size(17, 13);
+            this.pbOvenLamp10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenLamp10.TabIndex = 85;
+            this.pbOvenLamp10.TabStop = false;
+            // 
+            // pbMesLamp
+            // 
+            this.pbMesLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbMesLamp.Image")));
+            this.pbMesLamp.Location = new System.Drawing.Point(122, 362);
+            this.pbMesLamp.Margin = new System.Windows.Forms.Padding(2);
+            this.pbMesLamp.Name = "pbMesLamp";
+            this.pbMesLamp.Size = new System.Drawing.Size(17, 18);
+            this.pbMesLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbMesLamp.TabIndex = 27;
+            this.pbMesLamp.TabStop = false;
+            // 
+            // pbBlankerLamp02
+            // 
+            this.pbBlankerLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbBlankerLamp02.Image")));
+            this.pbBlankerLamp02.Location = new System.Drawing.Point(122, 344);
+            this.pbBlankerLamp02.Margin = new System.Windows.Forms.Padding(2);
+            this.pbBlankerLamp02.Name = "pbBlankerLamp02";
+            this.pbBlankerLamp02.Size = new System.Drawing.Size(17, 13);
+            this.pbBlankerLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbBlankerLamp02.TabIndex = 89;
+            this.pbBlankerLamp02.TabStop = false;
+            // 
+            // pbClampScanerLamp
+            // 
+            this.pbClampScanerLamp.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbClampScanerLamp.Image = ((System.Drawing.Image)(resources.GetObject("pbClampScanerLamp.Image")));
+            this.pbClampScanerLamp.Location = new System.Drawing.Point(122, 111);
+            this.pbClampScanerLamp.Margin = new System.Windows.Forms.Padding(2);
+            this.pbClampScanerLamp.Name = "pbClampScanerLamp";
+            this.pbClampScanerLamp.Size = new System.Drawing.Size(17, 12);
+            this.pbClampScanerLamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbClampScanerLamp.TabIndex = 93;
+            this.pbClampScanerLamp.TabStop = false;
+            // 
+            // pbFeederTriLamp02
+            // 
+            this.pbFeederTriLamp02.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbFeederTriLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbFeederTriLamp02.Image")));
+            this.pbFeederTriLamp02.Location = new System.Drawing.Point(136, 1);
+            this.pbFeederTriLamp02.Margin = new System.Windows.Forms.Padding(0);
+            this.pbFeederTriLamp02.Name = "pbFeederTriLamp02";
+            this.pbFeederTriLamp02.Size = new System.Drawing.Size(20, 19);
+            this.pbFeederTriLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbFeederTriLamp02.TabIndex = 29;
+            this.pbFeederTriLamp02.TabStop = false;
+            // 
+            // tsmAlarmReset
+            // 
+            this.tsmAlarmReset.Image = global::Soundon.Dispatcher.App.Properties.Resources.Reset_green;
+            this.tsmAlarmReset.Name = "tsmAlarmReset";
+            this.tsmAlarmReset.Size = new System.Drawing.Size(148, 22);
+            this.tsmAlarmReset.Text = "报警复位";
+            this.tsmAlarmReset.Click += new System.EventHandler(this.tsmAlarmReset_Click);
+            // 
+            // tsmStartBaking
+            // 
+            this.tsmStartBaking.Image = global::Soundon.Dispatcher.App.Properties.Resources.Start_Green;
+            this.tsmStartBaking.Name = "tsmStartBaking";
+            this.tsmStartBaking.Size = new System.Drawing.Size(148, 22);
+            this.tsmStartBaking.Text = "启动";
+            this.tsmStartBaking.Click += new System.EventHandler(this.tsmStartBaking_Click);
+            // 
+            // tsmStopBaking
+            // 
+            this.tsmStopBaking.Image = global::Soundon.Dispatcher.App.Properties.Resources.Stop_Red;
+            this.tsmStopBaking.Name = "tsmStopBaking";
+            this.tsmStopBaking.Size = new System.Drawing.Size(148, 22);
+            this.tsmStopBaking.Text = "停止";
+            this.tsmStopBaking.Click += new System.EventHandler(this.tsmStopBaking_Click);
+            // 
+            // pbOvenTriLamp06
+            // 
+            this.pbOvenTriLamp06.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbOvenTriLamp06.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp06.Image")));
+            this.pbOvenTriLamp06.Location = new System.Drawing.Point(106, 3);
+            this.pbOvenTriLamp06.Margin = new System.Windows.Forms.Padding(0);
+            this.pbOvenTriLamp06.Name = "pbOvenTriLamp06";
+            this.pbOvenTriLamp06.Size = new System.Drawing.Size(20, 19);
+            this.pbOvenTriLamp06.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenTriLamp06.TabIndex = 29;
+            this.pbOvenTriLamp06.TabStop = false;
+            // 
+            // pbOvenTriLamp07
+            // 
+            this.pbOvenTriLamp07.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbOvenTriLamp07.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp07.Image")));
+            this.pbOvenTriLamp07.Location = new System.Drawing.Point(103, 3);
+            this.pbOvenTriLamp07.Margin = new System.Windows.Forms.Padding(0);
+            this.pbOvenTriLamp07.Name = "pbOvenTriLamp07";
+            this.pbOvenTriLamp07.Size = new System.Drawing.Size(20, 19);
+            this.pbOvenTriLamp07.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenTriLamp07.TabIndex = 29;
+            this.pbOvenTriLamp07.TabStop = false;
+            // 
+            // pbOvenTriLamp08
+            // 
+            this.pbOvenTriLamp08.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbOvenTriLamp08.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp08.Image")));
+            this.pbOvenTriLamp08.Location = new System.Drawing.Point(103, 3);
+            this.pbOvenTriLamp08.Margin = new System.Windows.Forms.Padding(0);
+            this.pbOvenTriLamp08.Name = "pbOvenTriLamp08";
+            this.pbOvenTriLamp08.Size = new System.Drawing.Size(20, 19);
+            this.pbOvenTriLamp08.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenTriLamp08.TabIndex = 29;
+            this.pbOvenTriLamp08.TabStop = false;
+            // 
+            // pbOvenTriLamp10
+            // 
+            this.pbOvenTriLamp10.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbOvenTriLamp10.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp10.Image")));
+            this.pbOvenTriLamp10.Location = new System.Drawing.Point(103, 3);
+            this.pbOvenTriLamp10.Margin = new System.Windows.Forms.Padding(0);
+            this.pbOvenTriLamp10.Name = "pbOvenTriLamp10";
+            this.pbOvenTriLamp10.Size = new System.Drawing.Size(20, 19);
+            this.pbOvenTriLamp10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenTriLamp10.TabIndex = 29;
+            this.pbOvenTriLamp10.TabStop = false;
+            // 
+            // pbOvenTriLamp09
+            // 
+            this.pbOvenTriLamp09.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbOvenTriLamp09.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp09.Image")));
+            this.pbOvenTriLamp09.Location = new System.Drawing.Point(103, 3);
+            this.pbOvenTriLamp09.Margin = new System.Windows.Forms.Padding(0);
+            this.pbOvenTriLamp09.Name = "pbOvenTriLamp09";
+            this.pbOvenTriLamp09.Size = new System.Drawing.Size(20, 19);
+            this.pbOvenTriLamp09.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenTriLamp09.TabIndex = 29;
+            this.pbOvenTriLamp09.TabStop = false;
+            // 
+            // pbOvenTriLamp05
+            // 
+            this.pbOvenTriLamp05.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbOvenTriLamp05.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp05.Image")));
+            this.pbOvenTriLamp05.Location = new System.Drawing.Point(103, 3);
+            this.pbOvenTriLamp05.Margin = new System.Windows.Forms.Padding(0);
+            this.pbOvenTriLamp05.Name = "pbOvenTriLamp05";
+            this.pbOvenTriLamp05.Size = new System.Drawing.Size(20, 19);
+            this.pbOvenTriLamp05.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenTriLamp05.TabIndex = 29;
+            this.pbOvenTriLamp05.TabStop = false;
+            // 
+            // pbOvenTriLamp01
+            // 
+            this.pbOvenTriLamp01.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbOvenTriLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp01.Image")));
+            this.pbOvenTriLamp01.Location = new System.Drawing.Point(106, 3);
+            this.pbOvenTriLamp01.Margin = new System.Windows.Forms.Padding(0);
+            this.pbOvenTriLamp01.Name = "pbOvenTriLamp01";
+            this.pbOvenTriLamp01.Size = new System.Drawing.Size(20, 19);
+            this.pbOvenTriLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenTriLamp01.TabIndex = 29;
+            this.pbOvenTriLamp01.TabStop = false;
+            // 
+            // pbOvenTriLamp02
+            // 
+            this.pbOvenTriLamp02.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbOvenTriLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp02.Image")));
+            this.pbOvenTriLamp02.Location = new System.Drawing.Point(103, 3);
+            this.pbOvenTriLamp02.Margin = new System.Windows.Forms.Padding(0);
+            this.pbOvenTriLamp02.Name = "pbOvenTriLamp02";
+            this.pbOvenTriLamp02.Size = new System.Drawing.Size(20, 19);
+            this.pbOvenTriLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenTriLamp02.TabIndex = 29;
+            this.pbOvenTriLamp02.TabStop = false;
+            // 
+            // pbOvenTriLamp03
+            // 
+            this.pbOvenTriLamp03.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbOvenTriLamp03.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp03.Image")));
+            this.pbOvenTriLamp03.Location = new System.Drawing.Point(103, 3);
+            this.pbOvenTriLamp03.Margin = new System.Windows.Forms.Padding(0);
+            this.pbOvenTriLamp03.Name = "pbOvenTriLamp03";
+            this.pbOvenTriLamp03.Size = new System.Drawing.Size(20, 19);
+            this.pbOvenTriLamp03.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenTriLamp03.TabIndex = 29;
+            this.pbOvenTriLamp03.TabStop = false;
+            // 
+            // pbOvenTriLamp04
+            // 
+            this.pbOvenTriLamp04.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbOvenTriLamp04.Image = ((System.Drawing.Image)(resources.GetObject("pbOvenTriLamp04.Image")));
+            this.pbOvenTriLamp04.Location = new System.Drawing.Point(103, 3);
+            this.pbOvenTriLamp04.Margin = new System.Windows.Forms.Padding(0);
+            this.pbOvenTriLamp04.Name = "pbOvenTriLamp04";
+            this.pbOvenTriLamp04.Size = new System.Drawing.Size(20, 19);
+            this.pbOvenTriLamp04.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOvenTriLamp04.TabIndex = 29;
+            this.pbOvenTriLamp04.TabStop = false;
+            // 
+            // tlpTrack
+            // 
+            this.tlpTrack.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tlpTrack.BackgroundImage")));
+            this.tlpTrack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tlpTrack.ColumnCount = 1;
+            this.tlpTrack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.97987F));
+            this.tlpTrack.Controls.Add(this.panelRobot, 0, 0);
+            this.tlpTrack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpTrack.Location = new System.Drawing.Point(0, 0);
+            this.tlpTrack.Name = "tlpTrack";
+            this.tlpTrack.RowCount = 1;
+            this.tlpTrack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpTrack.Size = new System.Drawing.Size(1024, 43);
+            this.tlpTrack.TabIndex = 0;
+            // 
+            // panelRobot
+            // 
+            this.panelRobot.BackColor = System.Drawing.SystemColors.Control;
+            this.panelRobot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRobot.ContextMenuStrip = this.cmsRobot;
+            this.panelRobot.Controls.Add(this.tableLayoutPanel21);
+            this.panelRobot.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelRobot.Location = new System.Drawing.Point(3, 3);
+            this.panelRobot.Name = "panelRobot";
+            this.panelRobot.Size = new System.Drawing.Size(71, 37);
+            this.panelRobot.TabIndex = 1;
+            // 
+            // tableLayoutPanel21
+            // 
+            this.tableLayoutPanel21.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanel21.ColumnCount = 1;
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel21.Controls.Add(this.lbRobotClampCode, 0, 2);
+            this.tableLayoutPanel21.Controls.Add(this.lbRobotInfo, 0, 1);
+            this.tableLayoutPanel21.Controls.Add(this.lbRobotName, 0, 0);
+            this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel21.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel21.Name = "tableLayoutPanel21";
+            this.tableLayoutPanel21.RowCount = 3;
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(69, 35);
+            this.tableLayoutPanel21.TabIndex = 0;
+            // 
+            // lbRobotClampCode
+            // 
+            this.lbRobotClampCode.AutoSize = true;
+            this.lbRobotClampCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbRobotClampCode.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbRobotClampCode.ForeColor = System.Drawing.Color.Transparent;
+            this.lbRobotClampCode.Location = new System.Drawing.Point(0, 24);
+            this.lbRobotClampCode.Margin = new System.Windows.Forms.Padding(0);
+            this.lbRobotClampCode.Name = "lbRobotClampCode";
+            this.lbRobotClampCode.Size = new System.Drawing.Size(69, 11);
+            this.lbRobotClampCode.TabIndex = 3;
+            this.lbRobotClampCode.Text = "夹具条码";
+            this.lbRobotClampCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbRobotInfo
+            // 
+            this.lbRobotInfo.AutoSize = true;
+            this.lbRobotInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbRobotInfo.Font = new System.Drawing.Font("黑体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbRobotInfo.ForeColor = System.Drawing.Color.Lime;
+            this.lbRobotInfo.Location = new System.Drawing.Point(3, 10);
+            this.lbRobotInfo.Name = "lbRobotInfo";
+            this.lbRobotInfo.Size = new System.Drawing.Size(63, 14);
+            this.lbRobotInfo.TabIndex = 1;
+            this.lbRobotInfo.Text = "取/放盘";
+            this.lbRobotInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbRobotName
+            // 
+            this.lbRobotName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbRobotName.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbRobotName.Location = new System.Drawing.Point(0, 0);
+            this.lbRobotName.Margin = new System.Windows.Forms.Padding(0);
+            this.lbRobotName.Name = "lbRobotName";
+            this.lbRobotName.Size = new System.Drawing.Size(69, 10);
+            this.lbRobotName.TabIndex = 0;
+            this.lbRobotName.Text = "XXXX";
+            this.lbRobotName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pbFeederTriLamp01
+            // 
+            this.pbFeederTriLamp01.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbFeederTriLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbFeederTriLamp01.Image")));
+            this.pbFeederTriLamp01.Location = new System.Drawing.Point(136, 3);
+            this.pbFeederTriLamp01.Margin = new System.Windows.Forms.Padding(0);
+            this.pbFeederTriLamp01.Name = "pbFeederTriLamp01";
+            this.pbFeederTriLamp01.Size = new System.Drawing.Size(20, 19);
+            this.pbFeederTriLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbFeederTriLamp01.TabIndex = 29;
+            this.pbFeederTriLamp01.TabStop = false;
+            // 
+            // pbBlankerTriLamp01
+            // 
+            this.pbBlankerTriLamp01.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbBlankerTriLamp01.Image = ((System.Drawing.Image)(resources.GetObject("pbBlankerTriLamp01.Image")));
+            this.pbBlankerTriLamp01.Location = new System.Drawing.Point(85, 5);
+            this.pbBlankerTriLamp01.Margin = new System.Windows.Forms.Padding(0);
+            this.pbBlankerTriLamp01.Name = "pbBlankerTriLamp01";
+            this.pbBlankerTriLamp01.Size = new System.Drawing.Size(20, 19);
+            this.pbBlankerTriLamp01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbBlankerTriLamp01.TabIndex = 29;
+            this.pbBlankerTriLamp01.TabStop = false;
+            // 
+            // tsmCancelRasterInductive
+            // 
+            this.tsmCancelRasterInductive.Image = global::Soundon.Dispatcher.App.Properties.Resources.Reset_green;
+            this.tsmCancelRasterInductive.Name = "tsmCancelRasterInductive";
+            this.tsmCancelRasterInductive.Size = new System.Drawing.Size(148, 22);
+            this.tsmCancelRasterInductive.Text = "光栅报警复位";
+            this.tsmCancelRasterInductive.Click += new System.EventHandler(this.TsmCancelRasterInductive_Click);
+            // 
+            // pbBlankerTriLamp02
+            // 
+            this.pbBlankerTriLamp02.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pbBlankerTriLamp02.Image = ((System.Drawing.Image)(resources.GetObject("pbBlankerTriLamp02.Image")));
+            this.pbBlankerTriLamp02.Location = new System.Drawing.Point(85, 5);
+            this.pbBlankerTriLamp02.Margin = new System.Windows.Forms.Padding(0);
+            this.pbBlankerTriLamp02.Name = "pbBlankerTriLamp02";
+            this.pbBlankerTriLamp02.Size = new System.Drawing.Size(20, 19);
+            this.pbBlankerTriLamp02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbBlankerTriLamp02.TabIndex = 29;
+            this.pbBlankerTriLamp02.TabStop = false;
+            // 
+            // tsmRobotStart
+            // 
+            this.tsmRobotStart.Image = global::Soundon.Dispatcher.App.Properties.Resources.Start_Green;
+            this.tsmRobotStart.Name = "tsmRobotStart";
+            this.tsmRobotStart.Size = new System.Drawing.Size(148, 22);
+            this.tsmRobotStart.Text = "启动";
+            this.tsmRobotStart.Click += new System.EventHandler(this.tsmRobotStart_Click);
+            // 
+            // tsmRobotPause
+            // 
+            this.tsmRobotPause.Image = global::Soundon.Dispatcher.App.Properties.Resources.Stop_Red;
+            this.tsmRobotPause.Name = "tsmRobotPause";
+            this.tsmRobotPause.Size = new System.Drawing.Size(148, 22);
+            this.tsmRobotPause.Text = "暂停";
+            this.tsmRobotPause.Click += new System.EventHandler(this.tsmRobotPause_Click);
+            // 
+            // tsmRobotRestart
+            // 
+            this.tsmRobotRestart.Image = global::Soundon.Dispatcher.App.Properties.Resources.Continue_Green;
+            this.tsmRobotRestart.Name = "tsmRobotRestart";
+            this.tsmRobotRestart.Size = new System.Drawing.Size(148, 22);
+            this.tsmRobotRestart.Text = "继续";
+            this.tsmRobotRestart.Click += new System.EventHandler(this.tsmRobotRestart_Click);
+            // 
+            // tsmRobotAlarmReset
+            // 
+            this.tsmRobotAlarmReset.Image = global::Soundon.Dispatcher.App.Properties.Resources.Reset_green;
+            this.tsmRobotAlarmReset.Name = "tsmRobotAlarmReset";
+            this.tsmRobotAlarmReset.Size = new System.Drawing.Size(148, 22);
+            this.tsmRobotAlarmReset.Text = "报警复位";
+            this.tsmRobotAlarmReset.Click += new System.EventHandler(this.TsmRobotAlarmReset_Click);
+            // 
             // ManageSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -10084,32 +10104,23 @@
             this.tabMainUser.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUserMana)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUserReg)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUserLogout)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUserLogin)).EndInit();
             this.tabMainOperate.ResumeLayout(false);
             this.panelTaskReset.ResumeLayout(false);
             this.panelTaskReset.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTaskFuWei)).EndInit();
             this.panelSwitchAuto.ResumeLayout(false);
             this.panelSwitchAuto.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAuto)).EndInit();
             this.panelReset.ResumeLayout(false);
             this.panelReset.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReset)).EndInit();
             this.panelStop.ResumeLayout(false);
             this.panelStop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStop)).EndInit();
             this.panelStart.ResumeLayout(false);
             this.panelStart.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStart)).EndInit();
             this.tabContent.ResumeLayout(false);
             this.tabContentPageUser.ResumeLayout(false);
             this.gbReg.ResumeLayout(false);
@@ -10132,7 +10143,6 @@
             this.tableLayoutPanel40.PerformLayout();
             this.tableLayoutPanel23.ResumeLayout(false);
             this.tableLayoutPanel35.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbFeederTriLamp02)).EndInit();
             this.tlpFeeder2.ResumeLayout(false);
             this.tlpFeeder2.PerformLayout();
             this.tlpFeederStationClamp0202.ResumeLayout(false);
@@ -10158,11 +10168,8 @@
             this.tlpFloor0603.ResumeLayout(false);
             this.tlpFloor0603.PerformLayout();
             this.tableLayoutPanel27.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp06)).EndInit();
             this.tableLayoutPanel25.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp07)).EndInit();
             this.tableLayoutPanel26.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp08)).EndInit();
             this.tlpOven08.ResumeLayout(false);
             this.tlpFloor0802.ResumeLayout(false);
             this.tlpFloor0802.PerformLayout();
@@ -10178,9 +10185,7 @@
             this.tlpFloor0703.ResumeLayout(false);
             this.tlpFloor0703.PerformLayout();
             this.tableLayoutPanel37.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp10)).EndInit();
             this.tableLayoutPanel38.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp09)).EndInit();
             this.tlpOven09.ResumeLayout(false);
             this.tlpFloor0902.ResumeLayout(false);
             this.tlpFloor0902.PerformLayout();
@@ -10197,15 +10202,10 @@
             this.tlpFloor0503.ResumeLayout(false);
             this.tlpFloor0503.PerformLayout();
             this.tableLayoutPanel28.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp05)).EndInit();
             this.tableLayoutPanel50.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp01)).EndInit();
             this.tableLayoutPanel51.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp02)).EndInit();
             this.tableLayoutPanel52.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp03)).EndInit();
             this.tableLayoutPanel53.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp04)).EndInit();
             this.tlpOven01.ResumeLayout(false);
             this.tlpFloor0102.ResumeLayout(false);
             this.tlpFloor0102.PerformLayout();
@@ -10235,14 +10235,9 @@
             this.tlpFloor0203.ResumeLayout(false);
             this.tlpFloor0203.PerformLayout();
             this.pRobot.ResumeLayout(false);
-            this.tlpTrack.ResumeLayout(false);
-            this.panelRobot.ResumeLayout(false);
             this.cmsRobot.ResumeLayout(false);
-            this.tableLayoutPanel21.ResumeLayout(false);
-            this.tableLayoutPanel21.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel34.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbFeederTriLamp01)).EndInit();
             this.tlpFeeder1.ResumeLayout(false);
             this.tlpFeeder1.PerformLayout();
             this.tlpFeederStationClamp0102.ResumeLayout(false);
@@ -10266,7 +10261,6 @@
             this.tlpTransferClamp.PerformLayout();
             this.tableLayoutPanel20.ResumeLayout(false);
             this.tableLayoutPanel36.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp01)).EndInit();
             this.tlpBlanker1.ResumeLayout(false);
             this.tlpBlanker1.PerformLayout();
             this.cmsBlanker.ResumeLayout(false);
@@ -10276,7 +10270,6 @@
             this.tlpBlankerStationClamp0102.PerformLayout();
             this.tableLayoutPanel47.ResumeLayout(false);
             this.tableLayoutPanel48.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp02)).EndInit();
             this.tlpBlanker2.ResumeLayout(false);
             this.tlpBlanker2.PerformLayout();
             this.tlpBlankerStationClamp0202.ResumeLayout(false);
@@ -10352,6 +10345,30 @@
             this.groupBoxTerminal.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel14.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.tlpEmergencyStop.ResumeLayout(false);
+            this.tlpEmergencyStop.PerformLayout();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUserMana)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUserReg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUserLogout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUserLogin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTaskFuWei)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAuto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReset)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStop)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEmergencyStop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBatteryScanerLamp0202)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBatteryScanerLamp0201)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFeederLamp01)).EndInit();
@@ -10373,21 +10390,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbMesLamp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBlankerLamp02)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbClampScanerLamp)).EndInit();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.tlpEmergencyStop.ResumeLayout(false);
-            this.tlpEmergencyStop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbEmergencyStop)).EndInit();
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFeederTriLamp02)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp06)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp07)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp08)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp09)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp05)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp01)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp02)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp03)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOvenTriLamp04)).EndInit();
+            this.tlpTrack.ResumeLayout(false);
+            this.panelRobot.ResumeLayout(false);
+            this.tableLayoutPanel21.ResumeLayout(false);
+            this.tableLayoutPanel21.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFeederTriLamp01)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp01)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBlankerTriLamp02)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -11021,5 +11041,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmBlankerFinishGetSample;
         private System.Windows.Forms.ToolStripMenuItem tsmBlankerStation1;
         private System.Windows.Forms.ToolStripMenuItem tsmBlankerStation2;
+        private System.Windows.Forms.ToolStripMenuItem tsmRobotStart;
+        private System.Windows.Forms.ToolStripMenuItem tsmRobotAlarmReset;
     }
 }
