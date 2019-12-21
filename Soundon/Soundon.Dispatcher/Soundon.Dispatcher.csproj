@@ -62,6 +62,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SafetyDoor.cs" />
     <Compile Include="UploadTVD.cs" />
     <Compile Include="Robot.cs" />
     <Compile Include="Transfer.cs" />

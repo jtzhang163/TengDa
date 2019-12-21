@@ -51,5 +51,7 @@ namespace Soundon.Dispatcher
         public static CurrentTask Task = new CurrentTask(1);
 
         public static List<Yield> Yields = new List<Yield>();
+
+        public static SafetyDoor SafetyDoor = new SafetyDoor();
     }
 }
