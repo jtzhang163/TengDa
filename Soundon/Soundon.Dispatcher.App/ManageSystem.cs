@@ -4857,16 +4857,17 @@ namespace Soundon.Dispatcher.App
 
         private void cmsRobot_Opening(object sender, CancelEventArgs e)
         {
+            this.tsmRobotStart.Enabled = Current.Robot.IsAlive && Current.Robot.D1102 && Current.Robot.D1104;
             this.tsmRobotPause.Enabled = Current.Robot.IsAlive && !Current.Robot.IsPausing;
             this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing;
+            this.tsmRobotAlarmReset.Enabled = Current.Robot.IsAlive;
             this.tsmManuGetStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.Robot.IsAlive && Current.Robot.ClampStatus == ClampStatus.无夹具 && (Current.Task.Status == TaskStatus.正放 || Current.Robot.IsStarting) && Current.Task.Status != TaskStatus.可取 && Current.Task.Status != TaskStatus.正取;
             this.tsmManuPutStation.Enabled = Current.TaskMode == TaskMode.手动任务 && Current.Robot.IsAlive && Current.Robot.ClampStatus != ClampStatus.无夹具 && (Current.Task.Status == TaskStatus.正取 || Current.Robot.IsStarting) && Current.Task.Status != TaskStatus.可放 && Current.Task.Status != TaskStatus.正放;
         }
 
         private void tsmRobotStart_Click(object sender, EventArgs e)
         {
-            var msg = string.Empty;
-            if (Current.Robot.Start(out msg))
+            if (Current.Robot.Start(out string msg))
             {
                 Tip.Alert(Current.Robot.Name + "启动成功！");
             }
@@ -4878,8 +4879,7 @@ namespace Soundon.Dispatcher.App
 
         private void tsmRobotPause_Click(object sender, EventArgs e)
         {
-            var msg = string.Empty;
-            if (Current.Robot.Pause(out msg))
+            if (Current.Robot.Pause(out string msg))
             {
                 Tip.Alert(Current.Robot.Name + "暂停运行成功！");
             }
@@ -4891,8 +4891,7 @@ namespace Soundon.Dispatcher.App
 
         private void tsmRobotRestart_Click(object sender, EventArgs e)
         {
-            var msg = string.Empty;
-            if (Current.Robot.Restart(out msg))
+            if (Current.Robot.Restart(out string msg))
             {
                 Tip.Alert(Current.Robot.Name + "继续运行成功！");
             }
@@ -4902,10 +4901,21 @@ namespace Soundon.Dispatcher.App
             }
         }
 
+        private void TsmRobotAlarmReset_Click(object sender, EventArgs e)
+        {
+            if (Current.Robot.AlarmReset(out string msg))
+            {
+                Tip.Alert(Current.Robot.Name + "报警复位成功！");
+            }
+            else
+            {
+                Error.Alert(msg);
+            }
+        }
+
         private void pbEmergencyStop_Click(object sender, EventArgs e)
         {
-            var msg = string.Empty;
-            if (Current.Robot.Stop(out msg))
+            if (Current.Robot.Stop(out string msg))
             {
                 Tip.Alert(Current.Robot.Name + "急停成功！");
             }
