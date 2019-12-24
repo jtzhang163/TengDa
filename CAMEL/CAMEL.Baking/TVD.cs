@@ -64,10 +64,10 @@ namespace CAMEL.Baking
                     sbT1.Append(string.Format(",{0}", addTVD.T[i]));
                 }
 
-                sb.Append(string.Format("({0} {1}, {2}, '{3}', {4}),", addTVD.FloorId, sbT1,  addTVD.RunMinutes, DateTime.Now, addTVD.UserId));
+                sb.Append(string.Format("({0} {1}, {2}, '{3}', {4}),", addTVD.FloorId, sbT1, addTVD.RunMinutes, DateTime.Now, addTVD.UserId));
             }
 
-            return Database.NonQuery(sb.ToString().TrimEnd(','), out msg);
+            return Database.NonQuery(sb.ToString().TrimEnd(','), 60, out msg);
         }
 
         public static void Save()
