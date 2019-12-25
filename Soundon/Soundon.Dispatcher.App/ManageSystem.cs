@@ -1331,8 +1331,9 @@ namespace Soundon.Dispatcher.App
             tlpEmergencyStop.Visible = robot.IsAlive && TengDa.WF.Current.IsRunning && TengDa.WF.Current.user.Id > 0;
 
             panelRobot.Margin = new Padding(robot.Position + 3, 3, 0, 3);
-
             #endregion
+
+            this.safetyDoorUC1.UpdateUI();
         }
 
         #endregion
@@ -4857,7 +4858,7 @@ namespace Soundon.Dispatcher.App
 
         private void cmsRobot_Opening(object sender, CancelEventArgs e)
         {
-            this.tsmRobotStart.Enabled = Current.Robot.IsAlive && Current.Robot.D1102 && Current.Robot.D1104;
+            this.tsmRobotStart.Enabled = Current.Robot.IsAlive && Current.Robot.D1102 && Current.Robot.D1104 && !Current.Robot.D1103;
             this.tsmRobotPause.Enabled = Current.Robot.IsAlive && !Current.Robot.IsPausing;
             this.tsmRobotRestart.Enabled = Current.Robot.IsAlive && Current.Robot.IsPausing;
             this.tsmRobotAlarmReset.Enabled = Current.Robot.IsAlive;

@@ -689,6 +689,20 @@ namespace Soundon.Dispatcher
                                     Error.Alert(msg);
                                 }
 
+                                if (value == (ushort)2)
+                                {
+                                    var addr = "D2050";
+                                    var val = (ushort)Current.Task.FromStation.RobotGetCode;
+                                    if (blanker.Plc.SetInfo(addr, val, out msg))
+                                    {
+                                        LogHelper.WriteInfo(string.Format("成功发送下料机测水分来源烤箱工位编码到{0} {1}：{2} {3}", blanker.Name, addr, val, Current.Task.ToStation.Name));
+                                    }
+                                    else
+                                    {
+                                        Error.Alert(msg);
+                                    }
+                                }
+
                             }
 
                             //测试水分出烤箱后逻辑

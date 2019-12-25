@@ -42,6 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SafetyDoorUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SafetyDoorUC.Designer.cs">
+      <DependentUpon>SafetyDoorUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="TaskInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -62,13 +73,19 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SafetyDoorUC.resx">
+      <DependentUpon>SafetyDoorUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TaskInfo.resx">
       <DependentUpon>TaskInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductCountDisplay.resx">
       <DependentUpon>ProductCountDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="YieldDisplay.resx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\TengDa\TengDa.WF\TengDa.WF.csproj">
@@ -79,6 +96,18 @@
       <Project>{bad9a0f6-0be4-448b-b8f8-6aa6ddf7bb83}</Project>
       <Name>Soundon.Dispatcher</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Green_Round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Red_Round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Red_Round1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Green_Round1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

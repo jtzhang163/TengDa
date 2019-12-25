@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using TengDa;
 using TengDa.WF;
 
@@ -200,6 +201,24 @@ namespace Soundon.Dispatcher
         [Browsable(false)]
         public bool IsDealWithData { get; set; }
 
+        /// <summary>
+        /// 机器人就绪
+        /// </summary>
+        [ReadOnly(true), DisplayName("D1102(机器人就绪)")]
+        public bool D1102 { get; set; }
+
+        /// <summary>
+        /// 机器人运行中
+        /// </summary>
+        [ReadOnly(true), DisplayName("D1103(机器人运行中)")]
+        public bool D1103 { get; set; }
+
+        /// <summary>
+        /// 安全防护中
+        /// </summary>
+        [ReadOnly(true), DisplayName("D1104(安全防护中)")]
+        public bool D1104 { get; set; }
+
         #endregion
 
         #region 构造方法
@@ -271,7 +290,7 @@ namespace Soundon.Dispatcher
         {
             get
             {
-                if(plc.Id < 1)
+                if (plc.Id < 1)
                 {
                     plc = PLC.PlcList.First(p => p.Id == this.PlcId);
                 }
@@ -308,7 +327,7 @@ namespace Soundon.Dispatcher
         {
 
             return true;
-         
+
         }
 
         /// <summary>
@@ -356,12 +375,18 @@ namespace Soundon.Dispatcher
         }
 
         /// <summary>
-        /// 首次开机启动机器人
+        /// 启动机器人
         /// </summary>
         /// <returns></returns>
         public bool Start(out string msg)
         {
-            msg = "";
+            if (!Current.Robot.Plc.SetInfo("D1100", (ushort)1, out msg))
+            {
+                Error.Alert(msg);
+                this.Plc.IsAlive = false;
+                return false;
+            }
+            LogHelper.WriteInfo(string.Format("给机器人发送启动指令------{0}：{1}  ", "D1100", 1));
             return true;
         }
 
@@ -372,7 +397,6 @@ namespace Soundon.Dispatcher
         /// <returns></returns>
         public bool Pause(out string msg)
         {
-
             if (!Current.Robot.Plc.SetInfo("D1012", (ushort)1, out msg))
             {
                 Error.Alert(msg);
@@ -416,6 +440,38 @@ namespace Soundon.Dispatcher
             return true;
         }
 
+        /// <summary>
+        /// 机器人报警复位
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public bool AlarmReset(out string msg)
+        {
+            new Thread(() =>
+            {
+                //string msg = "";
+                if (!Current.Robot.Plc.SetInfo("D1101", (ushort)1, out string msg1))
+                {
+                    Error.Alert(msg1);
+                    this.Plc.IsAlive = false;
+                }
+
+                Thread.Sleep(2000);
+                if (!Current.Robot.Plc.SetInfo("D1101", (ushort)0, out string msg2))
+                {
+                    Error.Alert(msg2);
+                    this.Plc.IsAlive = false;
+                }
+
+                if (string.IsNullOrEmpty(msg1) && string.IsNullOrEmpty(msg2))
+                {
+                    LogHelper.WriteInfo(string.Format("给机器人发送报警复位指令------{0}：先{1}后{2}  ", "D1101", 1, 0));
+                }
+            }).Start();
+
+            msg = "";
+            return true;
+        }
         #endregion
     }
 

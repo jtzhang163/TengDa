@@ -644,6 +644,31 @@ namespace Soundon.Dispatcher
                             }
                         }
 
+
+                        //上位机启动机器人相关
+                        var outsD1100 = new ushort[] { };
+                        if (!this.Plc.GetInfo("D1100", (ushort)20, out outsD1100, out msg))
+                        {
+                            Error.Alert(msg);
+                            this.Plc.IsAlive = false;
+                            return false;
+                        }
+
+                        Current.Robot.D1102 = outsD1100[2] == 1;
+                        Current.Robot.D1103 = outsD1100[3] == 1;
+                        Current.Robot.D1104 = outsD1100[4] == 1;
+
+                        Current.SafetyDoor.D1105 = outsD1100[5] == 0;
+                        Current.SafetyDoor.D1106 = outsD1100[6] == 1;
+                        Current.SafetyDoor.D1107 = outsD1100[7] == 1;
+                        Current.SafetyDoor.D1108 = outsD1100[8] == 1;
+                        Current.SafetyDoor.D1109 = outsD1100[9] == 1;
+                        Current.SafetyDoor.D1110 = outsD1100[10] == 1;
+                        Current.SafetyDoor.D1111 = outsD1100[11] == 0;
+                        Current.SafetyDoor.D1112 = outsD1100[12] == 0;
+                        Current.SafetyDoor.D1113 = outsD1100[13] == 0;
+                        Current.SafetyDoor.D1114 = outsD1100[14] == 0;
+
                         Current.Robot.Plc.IsAlive = true;
                         Current.Robot.AlreadyGetAllInfo = true;
                     }
