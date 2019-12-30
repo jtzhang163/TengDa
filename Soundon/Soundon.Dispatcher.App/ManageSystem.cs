@@ -522,6 +522,8 @@ namespace Soundon.Dispatcher.App
             });
             cbBatteryScaner.SelectedIndex = 0;
             cbClampScaner.SelectedIndex = 0;
+
+            this.safetyDoorUC1.Init();
         }
 
         private void InitMES()
@@ -2433,7 +2435,7 @@ namespace Soundon.Dispatcher.App
                 }
             }
         }
-
+        
         private void BlankerRunInvokeFunc(object obj)
         {
 

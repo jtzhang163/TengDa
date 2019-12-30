@@ -97,17 +97,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(120, 120);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // pbD1110
-            // 
-            this.pbD1110.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbD1110.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbD1110.Location = new System.Drawing.Point(3, 51);
-            this.pbD1110.Name = "pbD1110";
-            this.pbD1110.Size = new System.Drawing.Size(18, 18);
-            this.pbD1110.TabIndex = 9;
-            this.pbD1110.TabStop = false;
-            this.toolTip.SetToolTip(this.pbD1110, "4号小门打开");
-            // 
             // pbD1105
             // 
             this.pbD1105.BackgroundImage = global::Soundon.Dispatcher.Controls.Properties.Resources.Green_Round;
@@ -118,7 +107,6 @@
             this.pbD1105.Size = new System.Drawing.Size(18, 18);
             this.pbD1105.TabIndex = 0;
             this.pbD1105.TabStop = false;
-            this.toolTip.SetToolTip(this.pbD1105, "电箱实际急停状态");
             // 
             // pbD1106
             // 
@@ -129,7 +117,6 @@
             this.pbD1106.Size = new System.Drawing.Size(18, 18);
             this.pbD1106.TabIndex = 1;
             this.pbD1106.TabStop = false;
-            this.toolTip.SetToolTip(this.pbD1106, "3号上料门打开");
             // 
             // pbD1107
             // 
@@ -140,7 +127,6 @@
             this.pbD1107.Size = new System.Drawing.Size(18, 18);
             this.pbD1107.TabIndex = 3;
             this.pbD1107.TabStop = false;
-            this.toolTip.SetToolTip(this.pbD1107, "3号下料门打开");
             // 
             // pbD1108
             // 
@@ -151,7 +137,6 @@
             this.pbD1108.Size = new System.Drawing.Size(18, 18);
             this.pbD1108.TabIndex = 2;
             this.pbD1108.TabStop = false;
-            this.toolTip.SetToolTip(this.pbD1108, "4号上料门打开");
             // 
             // pbD1109
             // 
@@ -162,7 +147,16 @@
             this.pbD1109.Size = new System.Drawing.Size(18, 18);
             this.pbD1109.TabIndex = 4;
             this.pbD1109.TabStop = false;
-            this.toolTip.SetToolTip(this.pbD1109, "4号下料门打开");
+            // 
+            // pbD1110
+            // 
+            this.pbD1110.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbD1110.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbD1110.Location = new System.Drawing.Point(3, 51);
+            this.pbD1110.Name = "pbD1110";
+            this.pbD1110.Size = new System.Drawing.Size(18, 18);
+            this.pbD1110.TabIndex = 9;
+            this.pbD1110.TabStop = false;
             // 
             // label1
             // 
@@ -176,17 +170,6 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "安全防护门信号";
             // 
-            // pbD1113
-            // 
-            this.pbD1113.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbD1113.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbD1113.Location = new System.Drawing.Point(75, 51);
-            this.pbD1113.Name = "pbD1113";
-            this.pbD1113.Size = new System.Drawing.Size(18, 18);
-            this.pbD1113.TabIndex = 5;
-            this.pbD1113.TabStop = false;
-            this.toolTip.SetToolTip(this.pbD1113, "4号上料急停");
-            // 
             // pbD1111
             // 
             this.pbD1111.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -196,7 +179,6 @@
             this.pbD1111.Size = new System.Drawing.Size(18, 18);
             this.pbD1111.TabIndex = 7;
             this.pbD1111.TabStop = false;
-            this.toolTip.SetToolTip(this.pbD1111, "3号上料急停");
             // 
             // pbD1112
             // 
@@ -207,7 +189,16 @@
             this.pbD1112.Size = new System.Drawing.Size(18, 18);
             this.pbD1112.TabIndex = 8;
             this.pbD1112.TabStop = false;
-            this.toolTip.SetToolTip(this.pbD1112, "3号下料急停");
+            // 
+            // pbD1113
+            // 
+            this.pbD1113.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbD1113.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbD1113.Location = new System.Drawing.Point(75, 51);
+            this.pbD1113.Name = "pbD1113";
+            this.pbD1113.Size = new System.Drawing.Size(18, 18);
+            this.pbD1113.TabIndex = 5;
+            this.pbD1113.TabStop = false;
             // 
             // pbD1114
             // 
@@ -218,7 +209,6 @@
             this.pbD1114.Size = new System.Drawing.Size(18, 18);
             this.pbD1114.TabIndex = 6;
             this.pbD1114.TabStop = false;
-            this.toolTip.SetToolTip(this.pbD1114, "4号下料急停");
             // 
             // label2
             // 
@@ -241,7 +231,6 @@
             this.pbD1102.Size = new System.Drawing.Size(18, 18);
             this.pbD1102.TabIndex = 12;
             this.pbD1102.TabStop = false;
-            this.toolTip.SetToolTip(this.pbD1102, "大机器人就绪");
             // 
             // pbD1103
             // 
@@ -252,7 +241,6 @@
             this.pbD1103.Size = new System.Drawing.Size(18, 18);
             this.pbD1103.TabIndex = 11;
             this.pbD1103.TabStop = false;
-            this.toolTip.SetToolTip(this.pbD1103, "大机器人运行中");
             // 
             // pbD1104
             // 
@@ -263,7 +251,6 @@
             this.pbD1104.Size = new System.Drawing.Size(18, 18);
             this.pbD1104.TabIndex = 13;
             this.pbD1104.TabStop = false;
-            this.toolTip.SetToolTip(this.pbD1104, "安全防护");
             // 
             // SafetyDoorUC
             // 
