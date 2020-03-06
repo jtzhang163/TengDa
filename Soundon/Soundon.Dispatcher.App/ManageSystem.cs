@@ -5083,7 +5083,11 @@ namespace Soundon.Dispatcher.App
             var result = true;
             if (manuFlag == "Get")
             {
-                if (s.GetPutType == GetPutType.下料机 && s.SampleStatus == SampleStatus.待测试)
+                if (s.GetPutType == GetPutType.上料机 && s.ClampStatus == ClampStatus.空夹具)
+                {
+                    return false;
+                }
+                else if (s.GetPutType == GetPutType.下料机 && s.ClampStatus == ClampStatus.满夹具 && s.Status != StationStatus.可取)
                 {
                     return false;
                 }

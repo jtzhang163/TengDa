@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace TengDa
 {
-    /// <summary>
-    /// 时间帮助类
-    /// </summary>
     public class TimeHelper
     {
         /// <summary>
