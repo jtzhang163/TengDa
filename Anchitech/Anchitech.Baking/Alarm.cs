@@ -220,8 +220,25 @@ namespace Anchitech.Baking
         {
             return Database.NonQuery(string.Format("UPDATE [dbo].[{0}] SET [StopTime] = GETDATE() WHERE [StopTime] < '2001-01-01' AND [AlarmId] = {1} AND [AlarmType] = '{2}' AND [TypeId] = {3}", TableName, alarmId, alarmType, typeId), out msg);
         }
-
         #endregion
+
+        public static int GetCount(out string msg)
+        {
+            DataTable dt = Database.Query(string.Format("SELECT COUNT(*) FROM [dbo].[{0}];", TableName), out msg);
+            if (dt.Rows.Count > 0)
+            {
+                return TengDa._Convert.StrToInt(dt.Rows[0][0].ToString(), -1);
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// 保留最近的20000条数据
+        /// </summary>
+        public static bool DeleteLongAgo(out string msg)
+        {
+            return Database.NonQuery(string.Format("DELETE FROM dbo.[{0}] WHERE Id <= ((SELECT MAX(Id) from dbo.[{0}]) - 20000)", TableName), 60, out msg);
+        }
     }
 
     public enum AlarmType

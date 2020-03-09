@@ -424,6 +424,24 @@ namespace Anchitech.Baking
             return true;
         }
         #endregion
+
+        public static int GetCount(out string msg)
+        {
+            DataTable dt = Database.Query(string.Format("SELECT COUNT(*) FROM [dbo].[{0}];", TableName), out msg);
+            if (dt.Rows.Count > 0)
+            {
+                return TengDa._Convert.StrToInt(dt.Rows[0][0].ToString(), -1);
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// 保留最近的10000条数据
+        /// </summary>
+        public static bool DeleteLongAgo(out string msg)
+        {
+            return Database.NonQuery(string.Format("DELETE FROM dbo.[{0}] WHERE Id <= ((SELECT MAX(Id) from dbo.[{0}]) - 10000)", TableName), 60, out msg);
+        }
     }
 
     /// <summary>
