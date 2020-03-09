@@ -2480,7 +2480,7 @@ namespace Anchitech.Baking.Dispatcher
             Thread t = new Thread(() =>
             {
                 string msg = string.Empty;
-                DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Battery] WHERE [扫码时间] BETWEEN '{1}' AND '{2}' AND [电池条码] LIKE '%{3}%'", Config.DbTableNamePre, startTime, stopTime, code), out msg);
+                DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Battery] WHERE [扫码时间] BETWEEN '{1}' AND '{2}' AND [电池条码] LIKE '%{3}%' ORDER BY [扫码时间]", Config.DbTableNamePre, startTime, stopTime, code), out msg);
                 if (dt == null)
                 {
                     Error.Alert(msg);
@@ -2492,20 +2492,20 @@ namespace Anchitech.Baking.Dispatcher
                     dgViewBattery.DataSource = dt;
 
                     dgViewBattery.Columns[1].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
-                    dgViewBattery.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
                     dgViewBattery.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
                     dgViewBattery.Columns[6].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
                     dgViewBattery.Columns[7].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
+                    dgViewBattery.Columns[8].DefaultCellStyle.Format = "yyyy-MM-dd  HH:mm:ss";
 
                     ////设置显示列宽度
                     dgViewBattery.Columns[0].Width = 160;
                     dgViewBattery.Columns[1].Width = 130;
                     dgViewBattery.Columns[2].Width = 80;
 
-                    dgViewBattery.Columns[4].Width = 130;
                     dgViewBattery.Columns[5].Width = 130;
                     dgViewBattery.Columns[6].Width = 130;
                     dgViewBattery.Columns[7].Width = 130;
+                    dgViewBattery.Columns[8].Width = 130;
                     //dgViewBattery.Columns[8].Width = 100;
 
                     tbBatteryCount.Text = dt.Rows.Count.ToString();
