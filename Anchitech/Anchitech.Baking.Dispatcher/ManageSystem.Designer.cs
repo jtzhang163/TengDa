@@ -287,7 +287,6 @@
             this.label24 = new System.Windows.Forms.Label();
             this.dtPickerStop = new System.Windows.Forms.DateTimePicker();
             this.dtPickerStart = new System.Windows.Forms.DateTimePicker();
-            this.btnQuery = new System.Windows.Forms.Button();
             this.tabContentPageOperation = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.dgViewOper = new System.Windows.Forms.DataGridView();
@@ -317,6 +316,8 @@
             this.userDisplay = new TengDa.WF.Controls.UserDisplay();
             this.yieldDisplay = new Anchitech.Baking.Controls.YieldDisplay();
             this.machinesStatusUC1 = new Anchitech.Baking.Controls.MachinesStatusUC();
+            this.btnQuery = new System.Windows.Forms.Button();
+            this.tbCode = new System.Windows.Forms.TextBox();
             this.tabMain.SuspendLayout();
             this.tabMainUser.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -3549,17 +3550,19 @@
             // 
             // tableLayoutPanel10
             // 
-            this.tableLayoutPanel10.ColumnCount = 5;
+            this.tableLayoutPanel10.ColumnCount = 6;
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 181F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 181F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 123F));
             this.tableLayoutPanel10.Controls.Add(this.label25, 2, 0);
             this.tableLayoutPanel10.Controls.Add(this.label24, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.dtPickerStop, 3, 0);
             this.tableLayoutPanel10.Controls.Add(this.dtPickerStart, 1, 0);
-            this.tableLayoutPanel10.Controls.Add(this.btnQuery, 4, 0);
+            this.tableLayoutPanel10.Controls.Add(this.btnQuery, 5, 0);
+            this.tableLayoutPanel10.Controls.Add(this.dtPickerStop, 3, 0);
+            this.tableLayoutPanel10.Controls.Add(this.tbCode, 4, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(55, 3);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
@@ -3612,18 +3615,6 @@
             this.dtPickerStart.Name = "dtPickerStart";
             this.dtPickerStart.Size = new System.Drawing.Size(151, 21);
             this.dtPickerStart.TabIndex = 1;
-            // 
-            // btnQuery
-            // 
-            this.btnQuery.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnQuery.Location = new System.Drawing.Point(821, 13);
-            this.btnQuery.Margin = new System.Windows.Forms.Padding(13);
-            this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Size = new System.Drawing.Size(97, 25);
-            this.btnQuery.TabIndex = 0;
-            this.btnQuery.Text = "查询(&Q)";
-            this.btnQuery.UseVisualStyleBackColor = true;
-            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
             // tabContentPageOperation
             // 
@@ -4030,6 +4021,26 @@
             this.machinesStatusUC1.Size = new System.Drawing.Size(270, 416);
             this.machinesStatusUC1.TabIndex = 16;
             // 
+            // btnQuery
+            // 
+            this.btnQuery.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnQuery.Location = new System.Drawing.Point(821, 13);
+            this.btnQuery.Margin = new System.Windows.Forms.Padding(13);
+            this.btnQuery.Name = "btnQuery";
+            this.btnQuery.Size = new System.Drawing.Size(97, 25);
+            this.btnQuery.TabIndex = 0;
+            this.btnQuery.Text = "查询(&Q)";
+            this.btnQuery.UseVisualStyleBackColor = true;
+            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
+            // 
+            // tbCode
+            // 
+            this.tbCode.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tbCode.Location = new System.Drawing.Point(504, 15);
+            this.tbCode.Name = "tbCode";
+            this.tbCode.Size = new System.Drawing.Size(282, 21);
+            this.tbCode.TabIndex = 5;
+            // 
             // ManageSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -4240,7 +4251,6 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ComboBox cbbUserGroupName;
         private System.Windows.Forms.Button btnChangeUserLevel;
-        private System.Windows.Forms.Button btnQuery;
         private System.Windows.Forms.DateTimePicker dtPickerStop;
         private System.Windows.Forms.DateTimePicker dtPickerStart;
         private System.Windows.Forms.Label label25;
@@ -4452,5 +4462,7 @@
         private Controls.ShowOvenInfoTypeUC showOvenInfoTypeUC1;
         private Controls.OpenAllNetControlUC openAllNetControlUC1;
         private Controls.BatteryBindInitUC batteryBindInitUC1;
+        private System.Windows.Forms.Button btnQuery;
+        private System.Windows.Forms.TextBox tbCode;
     }
 }

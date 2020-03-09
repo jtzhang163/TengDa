@@ -2484,6 +2484,8 @@ namespace Anchitech.Baking.Dispatcher
         {
             var startTime = dtPickerStart.Value;
             var stopTime = dtPickerStop.Value;
+            var code = tbCode.Text;
+
 
             TimeSpan ts = startTime - stopTime;
             int timeSpan = TengDa._Convert.StrToInt(Current.option.QueryBatteryTimeSpan, -1);
@@ -2496,7 +2498,7 @@ namespace Anchitech.Baking.Dispatcher
             Thread t = new Thread(() =>
             {
                 string msg = string.Empty;
-                DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Battery] WHERE [扫码时间] BETWEEN '{1}' AND '{2}'", Config.DbTableNamePre, startTime, stopTime), out msg);
+                DataTable dt = Database.Query(string.Format("SELECT * FROM [dbo].[{0}.V_Battery] WHERE [扫码时间] BETWEEN '{1}' AND '{2}' AND [电池条码] LIKE '%{3}%'", Config.DbTableNamePre, startTime, stopTime, code), out msg);
                 if (dt == null)
                 {
                     Error.Alert(msg);
