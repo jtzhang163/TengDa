@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using TengDa;
 using TengDa.WF;
 
@@ -563,6 +564,42 @@ namespace Anchitech.Baking
                 }
                 return 4;
             }
+        }
+
+        /// <summary>
+        /// 有异常温度点
+        /// </summary>
+        private bool hasExTPoint = false;
+
+        public bool HasExTPoint()
+        {
+            var tExParams = Current.option.TExParams;
+            if (this.Temperatures.Count(t => t > tExParams.NL && t < tExParams.NH) >= tExParams.NC)
+            {
+                if (this.Temperatures.Count(t => t < tExParams.EL) > 0 || this.Temperatures.Count(t => t > tExParams.EH) > 0)
+                {
+                    if (!hasExTPoint)
+                    {
+                        Thread thread = new Thread(()=> {
+                            this.WriteExTInfo();
+                        });
+                        thread.IsBackground = true;
+                        thread.Start();
+                        hasExTPoint = true;
+                    }
+                    return hasExTPoint;
+                }
+            }
+            hasExTPoint = false;
+            return hasExTPoint;
+        }
+
+        private void WriteExTInfo()
+        {
+            LogHelper.WriteError(string.Format("有温度异常点：{0}\r\n 温度列表： \r\n{1}\r\n 电池列表： \r\n{2}",
+            this.Name,
+            string.Join(",", this.Temperatures),
+            string.Join(",", Array.ConvertAll<Battery, string>(this.Clamp.Batteries.ToArray(), delegate (Battery b) { return b.Code; }))));
         }
 
         /// <summary>

@@ -22,9 +22,12 @@ namespace Anchitech.Baking.Controls
             this.lbSubject.Text = subject;
         }
 
-        public void UpdateValue(float val)
+        public void UpdateValue(float val, bool isExTPoint)
         {
             this.lbValue.Text = val.ToString();
+
+            this.lbValue.ForeColor = isExTPoint ? System.Drawing.Color.White : System.Drawing.Color.Green;
+            this.lbValue.BackColor = isExTPoint ? System.Drawing.Color.Red : SystemColors.Control;
         }
     }
 }

@@ -205,13 +205,13 @@ namespace Anchitech.Baking.Dispatcher
                 List<TreeNode> tnClamps = new List<TreeNode>();
                 if (station.Clamp.Id > 0)
                 {
-                    List<TreeNode> tnBatteries = new List<TreeNode>();
-                    var batteries = station.Clamp.Batteries;
-                    foreach (var b in batteries)
-                    {
-                        tnBatteries.Add(new TreeNode(string.Format("{0}:{1}(电芯)", b.Id, b.Code)));
-                    }
-                    tnClamps.Add(new TreeNode(string.Format("{0}:{1}(夹具)", station.Clamp.Id, station.Clamp.Code), tnBatteries.ToArray()));
+                    //List<TreeNode> tnBatteries = new List<TreeNode>();
+                    //var batteries = station.Clamp.Batteries;
+                    //foreach (var b in batteries)
+                    //{
+                    //    tnBatteries.Add(new TreeNode(string.Format("{0}:{1}(电芯)", b.Id, b.Code)));
+                    //}
+                    tnClamps.Add(new TreeNode(string.Format("{0}:{1}(夹具)", station.Clamp.Id, station.Clamp.Code)/*, tnBatteries.ToArray()*/));
                 }
                 tnStations.Add(new TreeNode(string.Format("{0}:{1}", station.Id, station.Name), tnClamps.ToArray()));
             }
@@ -2984,19 +2984,19 @@ namespace Anchitech.Baking.Dispatcher
                             this.propertyGridSettings.SelectedObject = clamp;
                         }
                     }
-                    else if (e.Node.Level == 3 && e.Node.Text.IndexOf("电芯") > -1)
-                    {
-                        int stationId = _Convert.StrToInt(e.Node.Parent.Parent.Text.Split(':')[0], -1);
-                        Clamp clamp = Station.StationList.FirstOrDefault(s => s.Id == stationId).Clamp;
-                        if (clamp.Id == _Convert.StrToInt(e.Node.Parent.Text.Split(':')[0], -1))
-                        {
-                            Battery battery = clamp.Batteries.FirstOrDefault(b => b.Id == _Convert.StrToInt(e.Node.Text.Split(':')[0], -1));
-                            if (battery != null)
-                            {
-                                this.propertyGridSettings.SelectedObject = battery;
-                            }
-                        }
-                    }
+                    //else if (e.Node.Level == 3 && e.Node.Text.IndexOf("电芯") > -1)
+                    //{
+                    //    int stationId = _Convert.StrToInt(e.Node.Parent.Parent.Text.Split(':')[0], -1);
+                    //    Clamp clamp = Station.StationList.FirstOrDefault(s => s.Id == stationId).Clamp;
+                    //    if (clamp.Id == _Convert.StrToInt(e.Node.Parent.Text.Split(':')[0], -1))
+                    //    {
+                    //        Battery battery = clamp.Batteries.FirstOrDefault(b => b.Id == _Convert.StrToInt(e.Node.Text.Split(':')[0], -1));
+                    //        if (battery != null)
+                    //        {
+                    //            this.propertyGridSettings.SelectedObject = battery;
+                    //        }
+                    //    }
+                    //}
                 }
                 catch (Exception ex)
                 {

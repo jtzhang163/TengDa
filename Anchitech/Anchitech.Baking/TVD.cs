@@ -114,11 +114,11 @@ namespace Anchitech.Baking
         }
 
         /// <summary>
-        /// 保留最近的50000条数据
+        /// 保留最近的200000条数据
         /// </summary>
         public static bool DeleteLongAgo(out string msg)
         {
-            return Database.NonQuery(string.Format("DELETE FROM dbo.[{0}] WHERE Id <= ((SELECT MAX(Id) from dbo.[{0}]) - 50000)", TableName), 60, out msg);
+            return Database.NonQuery(string.Format("DELETE FROM dbo.[{0}] WHERE Id <= ((SELECT MAX(Id) from dbo.[{0}]) - 200000)", TableName), 60, out msg);
         }
     }
 }

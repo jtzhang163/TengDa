@@ -958,6 +958,37 @@ namespace Anchitech.Baking
             }
         }
 
+        private TemperatureExParam temperatureExParam = null;
+
+        [Browsable(false)]
+        public TemperatureExParam TExParams
+        {
+            get
+            {
+                if (temperatureExParam == null)
+                {
+                    try
+                    {
+                        string temperature_ex_params = ConfigurationManager.AppSettings["temperature_ex_params"].ToString();
+                        string[] paramArray = temperature_ex_params.Split(',');
+
+                        temperatureExParam = new TemperatureExParam()
+                        {
+                            NC = _Convert.StrToInt(paramArray[0], 0),
+                            NL = _Convert.StrToFloat(paramArray[1], 0),
+                            NH = _Convert.StrToFloat(paramArray[2], 0),
+                            EL = _Convert.StrToFloat(paramArray[3], 0),
+                            EH = _Convert.StrToFloat(paramArray[4], 0)
+                        };
+                    }
+                    catch (Exception ex)
+                    {
+                        Error.Alert("度异常点报警参数，输入有误！" + ex);
+                    }
+                }
+                return temperatureExParam;
+            }
+        }
 
         //private string xxxXXXXXXXXXXXX = string.Empty;
         ///// <summary>

@@ -24,7 +24,7 @@ namespace Anchitech.Baking
                         AlarmLog.DeleteLongAgo(out msg);
                     }
 
-                    if (Battery.GetCount(out msg) > 51000)
+                    if (Battery.GetCount(out msg) > 110000)
                     {
                         Battery.DeleteLongAgo(out msg);
                     }
@@ -44,7 +44,7 @@ namespace Anchitech.Baking
                         TaskLog.DeleteLongAgo(out msg);
                     }
 
-                    if (TVD.GetCount(out msg) > 51000)
+                    if (TVD.GetCount(out msg) > 210000)
                     {
                         TVD.DeleteLongAgo(out msg);
                     }

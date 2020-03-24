@@ -464,6 +464,16 @@ namespace Anchitech.Baking
                         }
                         tmpAlarm2BinString += output.Substring(6, 6);
 
+                        //温度异常点判断
+                        for (int i = 0; i < this.Floors.Count; i++)
+                        {
+                            for (int j = 0; j < this.Floors[i].Stations.Count; j++)
+                            {
+                                bool hasExTPoint = this.Floors[i].Stations[j].HasExTPoint();
+                                tmpAlarm2BinString += (hasExTPoint ? "1" : "0");
+                            }
+                        }
+
                         this.Alarm2BinString = tmpAlarm2BinString;
 
                         if (this.Alarm2BinString != this.PreAlarm2BinString)

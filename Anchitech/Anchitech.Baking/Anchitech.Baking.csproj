@@ -59,6 +59,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="TemperatureExParam.cs" />
     <Compile Include="UploadTVD.cs" />
     <Compile Include="Robot.cs" />
     <Compile Include="Transfer.cs" />

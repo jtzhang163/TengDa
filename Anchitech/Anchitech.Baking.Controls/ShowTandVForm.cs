@@ -40,11 +40,27 @@ namespace Anchitech.Baking.Controls
         {
             for (int i = 0; i < Option.TemperaturePointCount; i++)
             {
-                showTempers[i].UpdateValue(this.floor.Stations[0].Temperatures[i]);
-                showTempers[i + 24].UpdateValue(this.floor.Stations[1].Temperatures[i]);
+                var isExTPoint0 = IsExTPoint(this.floor.Stations[0], this.floor.Stations[0].Temperatures[i]);
+                showTempers[i].UpdateValue(this.floor.Stations[0].Temperatures[i], isExTPoint0);
+
+                var isExTPoint1 = IsExTPoint(this.floor.Stations[1], this.floor.Stations[1].Temperatures[i]);
+                showTempers[i + 24].UpdateValue(this.floor.Stations[1].Temperatures[i], isExTPoint1);
             }
 
-            this.showVacuum.UpdateValue(floor.Vacuum);
+            this.showVacuum.UpdateValue(floor.Vacuum, false);
+        }
+
+        private bool IsExTPoint(Station station, float temperature)
+        {
+            var tExParams = Current.option.TExParams;
+            if (station.Temperatures.Count(t => t > tExParams.NL && t < tExParams.NH) >= tExParams.NC)
+            {
+                if (temperature < tExParams.EL || temperature > tExParams.EH)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
